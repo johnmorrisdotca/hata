@@ -6,6 +6,8 @@ All notable changes to this project are written here. The format follows
 
 ## [Unreleased]
 
+## [1.2.0] - 2026-10-09
+
 ### Added
 
 - **Every flag is offered whole and cropped.** `fit: "whole"` shows all of the flag (the same as `contain`) and
