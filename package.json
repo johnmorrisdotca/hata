@@ -1,0 +1,118 @@
+{
+  "name": "@johnmorrisdotca/hata",
+  "version": "1.0.0",
+  "description": "Hata 旗, flags as SVG: every country, and every prefecture of Japan, province and territory of Canada and state of the United States, keyed by the ISO 3166 codes Kuni uses. Optimised, sanitised, with the Wikimedia Commons file, author and licence of each. One module per flag, a lazy lookup, and frames for 4:3, square and round. Zero dependencies.",
+  "keywords": [
+    "flags",
+    "flag-icons",
+    "svg",
+    "country-flags",
+    "iso-3166",
+    "iso-3166-1",
+    "iso-3166-2",
+    "prefectures",
+    "japan",
+    "provinces",
+    "canada",
+    "states",
+    "wikimedia-commons",
+    "wikidata",
+    "typescript",
+    "zero-dependencies",
+    "tree-shakeable",
+    "esm",
+    "browser",
+    "node",
+    "itsutsu"
+  ],
+  "homepage": "https://johnmorrisdotca.github.io/hata/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/johnmorrisdotca/hata.git"
+  },
+  "bugs": {
+    "url": "https://github.com/johnmorrisdotca/hata/issues"
+  },
+  "author": "John Morris",
+  "license": "MIT",
+  "type": "module",
+  "sideEffects": false,
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./flags/*": {
+      "types": "./dist/flags/*.d.ts",
+      "default": "./dist/flags/*.js"
+    },
+    "./load": {
+      "types": "./dist/load.d.ts",
+      "default": "./dist/load.js"
+    },
+    "./manifest": {
+      "types": "./dist/manifest.d.ts",
+      "default": "./dist/manifest.js"
+    },
+    "./manifest.json": "./dist/manifest.json",
+    "./svg/*": "./dist/svg/*",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "NOTICE.md",
+    "CHANGELOG.md"
+  ],
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "build": "node -e \"require('node:fs').rmSync('dist', { recursive: true, force: true })\" && tsup && node scripts/build-extras.ts",
+    "lint": "eslint .",
+    "typecheck": "tsc -p tsconfig.check.json",
+    "test": "vitest run",
+    "test:package": "pnpm build && node scripts/check-package.mjs",
+    "check": "pnpm lint && pnpm typecheck && pnpm build && node scripts/check-docs.mjs && pnpm test && node scripts/check-package.mjs",
+    "prepublishOnly": "pnpm check",
+    "data": "node scripts/build-data.ts",
+    "data:wikidata": "node scripts/fetch-wikidata.ts",
+    "data:commons": "node scripts/fetch-commons.ts",
+    "site": "pnpm build && node scripts/site.mjs",
+    "test:demo": "pnpm site && playwright test",
+    "screenshots:readme": "pnpm site && node scripts/readme-pictures.mjs",
+    "docs:make": "node scripts/docs.mjs",
+    "data:compare": "node scripts/compare.mjs",
+    "data:choose": "node scripts/choose.mjs",
+    "data:sheet": "node scripts/sheet.mjs"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.0.0",
+    "@johnmorrisdotca/kuni": "1.0.0",
+    "@playwright/test": "^1.64.0",
+    "@types/node": "^24.0.0",
+    "circle-flags": "2.8.3",
+    "country-flag-icons": "1.6.20",
+    "esbuild": "0.27.7",
+    "eslint": "^9.0.0",
+    "flag-icons": "7.5.0",
+    "svgo": "4.1.0",
+    "tsup": "^8.5.0",
+    "typescript": "~5.9.0",
+    "typescript-eslint": "^8.0.0",
+    "vitest": "^5.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "packageManager": "pnpm@10.11.0",
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
+  }
+}
