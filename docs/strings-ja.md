@@ -50,7 +50,7 @@ open a *Fix a translation* issue with the string's name. `{name}` and the other 
 | `left_out_title` | Places with no flag here ({n}) | 旗を収録していない地域（{n}） |
 | `left_out_blurb` | Every country and region Kuni knows has a flag here or is listed with the reason (in English, as the package gives it). | Kuni に含まれる国と地域は、すべて旗を収録しているか、ここに理由とともに載っています（理由は英語で、パッケージの記載のままです）。 |
 | `close` | Close | 閉じる |
-| `frames_title` | The whole flag and a crop of it, at each shape, by flag(code, { shape, fit }) | 形ごとの、旗の全体と切り抜き（flag(code, { shape, fit })） |
+| `frames_title` | The whole flag and a crop of it, at each shape, by flag(code, { shape, fit }) | 形ごとの旗の全体表示と切り抜き（flag(code, { shape, fit })） |
 | `frame_whole` | whole | 全体 |
 | `frame_crop` | cropped | 切り抜き |
 | `frame_default` | the default | 既定の表示 |
@@ -58,10 +58,10 @@ open a *Fix a translation* issue with the string's name. `{name}` and the other 
 | `how_crop_own` | its own shape | 本来の形 |
 | `how_crop_adapted` | drawn for the shape by flag-icons | flag-icons がこの形用に描いた図 |
 | `how_crop_centre` | cropped from the centre | 中央で切り抜き |
-| `how_crop_allowed` | {side}, with a colour smaller than in the flag (reason on hover) | {side}（一部の色は元の旗より小さくなります。理由はカーソルを合わせると表示） |
+| `how_crop_allowed` | {side}, with a colour smaller than in the flag (reason on hover) | {side}（一部の色は元の旗より小さくなります。理由はカーソルを合わせると表示されます） |
 | `how_crop_side_loses` | {side}; whole by default because this crop loses a colour | {side}（この切り抜きでは色が欠けるため、既定は全体） |
 | `how_crop_whole_loses` | from the centre; whole by default because this crop loses a colour | 中央で切り抜き（この切り抜きでは色が欠けるため、既定は全体） |
-| `how_crop_whole_judged` | from the centre; whole by default because no square crop shows this flag fairly | 中央で切り抜き（どの正方形の切り抜きもこの旗を正しく表せないため、既定は全体） |
+| `how_crop_whole_judged` | from the centre; whole by default because no square crop shows this flag fairly | 中央で切り抜き（どの正方形の切り抜きもこの旗を適切に表せないため、既定は全体） |
 | `side_left` | kept at the hoist | 旗竿側を残す |
 | `side_right` | kept at the fly | 旗のはためく側を残す |
 | `side_top` | kept at the top | 上側を残す |

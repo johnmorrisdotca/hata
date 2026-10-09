@@ -31,7 +31,7 @@ export const FLAG_OPTIONS = [
     attribute: "fit",
     default: "auto",
     label: { en: "Whole or cropped", ja: "全体か切り抜きか" },
-    help: { en: "In a 4:3, square or round frame: the best for the flag, all of the flag, or a crop kept at the side chosen for it (the United States' stars and stripes, not its middle stripes).", ja: "4:3・正方形・円形の枠で、旗に合わせた最適な表示、旗の全体、または旗ごとに選んだ側を残した切り抜き（アメリカなら中央の縞ではなく星と縞）を選びます。" },
+    help: { en: "In a 4:3, square or round frame: the best for the flag, all of the flag, or a crop kept at the side chosen for it (the United States' stars and stripes, not its middle stripes).", ja: "4:3・正方形・円形の枠で、旗に合わせた最適な表示、旗の全体、または旗ごとに選んだ側を残した切り抜き（アメリカなら、中央の縞ではなく星のある側）を選びます。" },
     choices: [
       { value: "auto", label: { en: "Best for the flag", ja: "旗に合わせて自動" } },
       { value: "whole", label: { en: "The whole flag", ja: "旗の全体" } },
