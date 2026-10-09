@@ -6,6 +6,8 @@ All notable changes to this project are written here. The format follows
 
 ## [Unreleased]
 
+## [1.3.0] - 2026-10-09
+
 ### Added
 
 - **Disputed and alternative flags.** A place with more than one flag in real use has them all as variants, each with a
