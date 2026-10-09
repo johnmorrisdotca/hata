@@ -18,7 +18,7 @@ const { LEFT_OUT } = await import(new URL("../dist/manifest.js", import.meta.url
 // at its end, so the shared header and footer can name it. Once the template lists Hata this does nothing.
 for (const [one, pitch] of [
   [{ id: "kuni", name: "Kuni", kana: "国" }, "every country and its subdivisions, with ISO 3166 codes and names in English and Japanese"],
-  [{ id, name: "Hata", kana: "旗" }, "flags as SVG for every country, Japan's prefectures, Canada's provinces and the American states"],
+  [{ id, name: "Hata", kana: "旗" }, "flags as SVG for every country, and the regions of Japan, Canada, the United States, Australia, the United Kingdom, Germany, France, Switzerland, Austria and Brazil"],
 ]) {
   if (!FAMILY.some((member) => member.id === one.id)) {
     FAMILY.push(one);
@@ -55,6 +55,7 @@ const uses = [
   `frame(svg, { shape: "4:3", fit: "contain" })  // never stretched`,
   `flagUrl("US-TX")  // ".../dist/svg/us-tx.svg" on jsDelivr`,
   `toDataUri(svg)  // for an <img src>`,
+  `<hata-flag code="DE-BY" shape="round" size="48"></hata-flag>`,
   `manifest("YE")?.source  // "country-flag-icons"`,
 ];
 
@@ -62,9 +63,9 @@ const gallery = `<section class="fam-panels" id="gallery-panel" role="tabpanel" 
         <div class="fam-panel">
           <p class="blurb" data-say="gallery_blurb"></p>
           ${row(["Type a place's name in English or Japanese, or its code (JP-13, CA-ON, US-TX).", "地名（英語でも日本語でも）か、コード（JP-13、CA-ON、US-TX）を入力します。"], `<label class="fam-label" for="search" data-say="search"></label><input id="search" class="fam-field" data-testid="search" type="search" spellcheck="false" autocomplete="off" autocapitalize="off" data-say-placeholder="search_hint" />`)}
-          ${seg("set", "set", [["all", "set_all"], ["country", "set_country"], ["jp", "set_jp"], ["ca", "set_ca"], ["us", "set_us"]], ["Show every flag, or only the countries, Japan's prefectures, Canada's provinces or the American states.", "すべての旗を表示するか、国・日本の都道府県・カナダの州と準州・アメリカの州のどれかに絞って表示します。"])}
+          ${row(["Show every flag, or only the countries, or one country's regions: Japan's prefectures, Canada's provinces, the American states, Australia's states, the United Kingdom's four countries, Germany's states, France's regions, Switzerland's cantons, Austria's states or Brazil's states.", "すべての旗を表示するか、国だけ、または一つの国の地域だけに絞り込みます。日本の都道府県、カナダの州と準州、アメリカの州、オーストラリアの州と準州、イギリスの4つの構成国、ドイツの州、フランスの地域圏、スイスの州、オーストリアの州、ブラジルの州から選べます。"], `<label class="fam-label" for="set" data-say="set"></label><select id="set" class="fam-field" data-testid="set"></select>`)}
           ${row(["Narrow the countries to one continent.", "国を大陸で絞り込みます。"], `<label class="fam-label" for="region" data-say="region"></label><select id="region" class="fam-field" data-testid="region"></select>`, ` id="region-row"`)}
-          ${seg("shape", "shape", [["flag", "shape_flag"], ["4:3", "shape_43"], ["1:1", "shape_11"], ["round", "shape_round"]], ["See every flag at its own proportions, or framed at 4:3, square or round, the way frame() frames it, without stretching.", "旗を本来の縦横比のまま、または frame() と同じ 4:3・正方形・円形の枠に、引き伸ばさずに収めて表示します。"])}
+          ${seg("shape", "shape", [["flag", "shape_flag"], ["4:3", "shape_43"], ["1:1", "shape_11"], ["round", "shape_round"]], ["See every flag at its own proportions, or framed at 4:3, square or round as the package frames it: never stretched, cropped only where a crop keeps every colour, and drawn again for the shape where flag-icons has done so.", "旗を本来の縦横比のまま、またはパッケージと同じ方法で 4:3・正方形・円形の枠に収めて表示します。引き伸ばさず、切り抜くのはどの色も残る場合だけで、flag-icons がその形用に描いた図があればそれを使います。"])}
           <div class="tools">
             <p class="count" id="count" data-testid="count" aria-live="polite"></p>
             <div class="fam-actions">
@@ -85,7 +86,7 @@ const gallery = `<section class="fam-panels" id="gallery-panel" role="tabpanel" 
 const quiz = `<section class="fam-panels" id="quiz-panel" role="tabpanel" aria-labelledby="tab-quiz" data-testid="quiz-panel" hidden>
         <div class="fam-panel">
           <p class="blurb" data-say="quiz_blurb"></p>
-          ${seg("mode", "mode", [["country", "mode_country"], ["jp", "mode_jp"], ["ca", "mode_ca"], ["us", "mode_us"]], ["Pick what to be asked: the world's countries, Japan's prefectures, Canada's provinces and territories, or the American states.", "出題範囲を選びます。世界の国、日本の都道府県、カナダの州と準州、アメリカの州から選べます。"])}
+          ${row(["Pick what to be asked: the world's countries, or the regions of Japan, Canada, the United States, Australia, Brazil, Germany or Switzerland, or Europe's regions together (the United Kingdom's, Germany's, France's, Switzerland's and Austria's).", "出題範囲を選びます。世界の国、日本・カナダ・アメリカ・オーストラリア・ブラジル・ドイツ・スイスの地域、またはヨーロッパの地域（イギリス・ドイツ・フランス・スイス・オーストリア）をまとめて選べます。"], `<label class="fam-label" for="mode" data-say="mode"></label><select id="mode" class="fam-field" data-testid="mode"></select>`)}
           ${row(["The same game, word for word, comes from the same seed: share the link and a friend gets your ten flags in your order.", "同じシードからは同じ問題が出ます。リンクを共有すると、友だちにも同じ10問が同じ順で出ます。"], `<span class="fam-label" data-say="seed"></span><code class="fam-code" id="seed" data-testid="seed"></code><button type="button" class="fam-button" id="new-game" data-testid="new-game" data-say="new_game"></button><button type="button" class="fam-button" id="daily" data-testid="daily" data-say="daily"></button><button type="button" class="fam-button" id="share" data-testid="share" data-say="share"></button>`)}
           <div class="scores" data-testid="scores">
             <div class="fam-card"><b id="score" data-testid="score">0</b><span data-say="score"></span></div>
@@ -112,6 +113,9 @@ const dialog = `<dialog id="detail" class="detail" data-testid="detail" aria-lab
       <dl class="facts" id="facts" data-testid="facts"></dl>
       <h3 data-say="copy_title"></h3>
       <div class="copies" id="copies" data-testid="copies"></div>
+      <h3 data-say="embed_title"></h3>
+      <p class="fam-fine" data-say="embed_blurb"></p>
+      <div class="embed" id="embed" data-testid="embed"></div>
       <h3 data-say="download_title"></h3>
       <div class="fam-actions downloads">
         <button type="button" class="fam-button" id="download-svg" data-testid="download-svg" data-say="download_svg"></button>
@@ -126,10 +130,10 @@ const page = `<!doctype html>
   <head>
     ${familyHead({
       id,
-      title: "Hata · flags as SVG for every country, Japan's prefectures, Canada's provinces and the American states",
-      description: "Every country's flag, and every prefecture of Japan, province of Canada and American state, as optimised SVG keyed by ISO 3166 code, with each flag's source and licence. Search, download as SVG or PNG, and play the flag quiz. Free and open source.",
+      title: "Hata · flags as SVG for every country and the regions of ten countries",
+      description: "Every country's flag, and the regions of Japan, Canada, the United States, Australia, the United Kingdom, Germany, France, Switzerland, Austria and Brazil, as optimised SVG keyed by ISO 3166 code, with each flag's source and licence. Search, embed anywhere, download as SVG or PNG, and play the flag quiz. Free and open source.",
       ogTitle: "Hata: flags as SVG, keyed by ISO 3166 code",
-      ogDescription: "358 flags at their true proportions, from Wikimedia Commons and MIT flag sets, with provenance for each, and a flag quiz in English and Japanese.",
+      ogDescription: `${FLAG_CODES.length} flags at their true proportions, from Wikimedia Commons and MIT flag sets, with provenance for each, an element to embed one anywhere, and a flag quiz in English and Japanese.`,
     })}
     <link rel="icon" href="${ICON}" />
     <link rel="stylesheet" href="family.css" />

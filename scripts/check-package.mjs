@@ -71,18 +71,25 @@ import tokyo from "${pkg.name}/flags/jp-13";
 import { flag } from "${pkg.name}/load";
 import { manifest, MANIFEST, LEFT_OUT } from "${pkg.name}/manifest";
 import json from "${pkg.name}/manifest.json" with { type: "json" };
+import { flagName, flagAspect } from "${pkg.name}/names";
+import { defineFlag, FLAG_ELEMENT_NAME } from "${pkg.name}/element";
+import "${pkg.name}/element/define";
+import canadaSquare from "${pkg.name}/flags/ca.1x1";
 const wanted = ${JSON.stringify(japan)};
 if (VERSION !== ${JSON.stringify(pkg.version)}) throw new Error("VERSION is " + VERSION);
 if (japan !== wanted || svg !== wanted) throw new Error("flags/jp is not the built SVG");
 if (FLAG_CODES.length !== ${FLAG_CODES.length} || flagCode("jp-13") !== "JP-13") throw new Error("the codes are wrong");
 if ((await flag("JP-13")) !== tokyo || (await flag("XX")) !== null) throw new Error("/load answered wrongly");
 if (!frame(japan, { shape: "round" }).includes("clipPath") || !toDataUri(japan).startsWith("data:image/svg+xml,")) throw new Error("the helpers answered wrongly");
+if (flagName("JP-13", "ja") !== "東京都" || flagAspect("CA") !== 2) throw new Error("/names answered wrongly");
+if (FLAG_ELEMENT_NAME !== "hata-flag" || typeof defineFlag !== "function") throw new Error("/element is wrong");
+if ((await flag("CA", { shape: "1:1" })) !== canadaSquare) throw new Error("/load did not use the square drawn for Canada");
 if (manifest("JP")?.code !== "JP" || MANIFEST.length !== FLAG_CODES.length || json.flags.length !== MANIFEST.length || json.leftOut.length !== LEFT_OUT.length) throw new Error("the manifest is wrong");
 const file = readFileSync(createRequire(import.meta.url).resolve("${pkg.name}/svg/jp.svg"), "utf8").trim();
 if (file !== wanted) throw new Error("svg/jp.svg is not the module's SVG");
 const required = createRequire(import.meta.url)("${pkg.name}/flags/jp");
 if (required.default !== wanted) throw new Error("require() of flags/jp gave " + typeof required.default);
-console.log("every entry, flags/jp, /load, svg/jp.svg, manifest.json and require()");
+console.log("every entry, flags/jp, flags/ca.1x1, /load, /names, /element, svg/jp.svg, manifest.json and require()");
 `,
 );
 console.log(`ok   ${run(process.execPath, ["esm.mjs"], project).trim()}`);
@@ -93,7 +100,9 @@ writeFileSync(
   `import { FLAG_CODES, flagCode, flagUrl, frame, type FlagCode, type FrameOptions } from "${pkg.name}";
 import japan from "${pkg.name}/flags/jp";
 import { flag, flagDataUri } from "${pkg.name}/load";
-import { manifest, type FlagRecord } from "${pkg.name}/manifest";
+import { manifest, type FlagRecord, type Framing } from "${pkg.name}/manifest";
+import { flagName } from "${pkg.name}/names";
+import { defineFlag, type HataFlagElement } from "${pkg.name}/element";
 
 const code: FlagCode | null = flagCode("jp");
 const first: FlagCode = FLAG_CODES[0];
@@ -103,10 +112,15 @@ const url: string | null = flagUrl("JP");
 const later: Promise<string | null> = flag("JP-13");
 const uri: Promise<string | null> = flagDataUri("JP");
 const record: FlagRecord | null = manifest("JP");
-export { code, first, framed, later, record, uri, url };
+const square: Framing | undefined = record?.framings["1:1"];
+const name: string | null = flagName("JP", "ja");
+const define: (name?: string) => void = defineFlag;
+type Element = HataFlagElement;
+export { code, define, first, framed, later, name, record, square, uri, url };
+export type { Element };
 `,
 );
-writeFileSync(join(project, "tsconfig.json"), JSON.stringify({ compilerOptions: { module: "nodenext", moduleResolution: "nodenext", target: "es2022", strict: true, noEmit: true, types: [], skipLibCheck: false }, files: ["types.mts"] }));
+writeFileSync(join(project, "tsconfig.json"), JSON.stringify({ compilerOptions: { module: "nodenext", moduleResolution: "nodenext", target: "es2022", lib: ["es2022", "dom"], strict: true, noEmit: true, types: [], skipLibCheck: false }, files: ["types.mts"] }));
 run(process.execPath, [join(root, "node_modules", "typescript", "bin", "tsc"), "-p", project], project);
 console.log("ok   types: every entry resolves and checks under nodenext");
 

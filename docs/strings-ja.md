@@ -8,7 +8,7 @@ open a *Fix a translation* issue with the string's name. `{name}` and the other 
 | Name | English | Japanese |
 | --- | --- | --- |
 | `pageApi` | API reference | API（英語） |
-| `pitch` | Flags as SVG for every country, Japan's prefectures, Canada's provinces and territories and the American states, at their true proportions, keyed by ISO 3166 code. Tap a flag for where it comes from, its licence, the code to use it and downloads; or play the quiz. | 世界の国々、日本の都道府県、カナダの州と準州、アメリカの州の旗を、本来の縦横比の SVG で収録し、ISO 3166 のコードで引けるようにしたパッケージです。旗をタップすると、出典、ライセンス、使い方のコード、ダウンロードが表示されます。クイズもあります。 |
+| `pitch` | Flags as SVG for every country, and the regions of Japan, Canada, the United States, Australia, the United Kingdom, Germany, France, Switzerland, Austria and Brazil, at their true proportions, keyed by ISO 3166 code. Tap a flag for where it comes from, its licence, the code to embed it and downloads; or play the quiz. | 世界の国々と、日本・カナダ・アメリカ・オーストラリア・イギリス・ドイツ・フランス・スイス・オーストリア・ブラジルの地域の旗を、本来の縦横比の SVG で収録し、ISO 3166 のコードで引けるようにしたパッケージです。旗をタップすると、出典、ライセンス、埋め込み用のコード、ダウンロードが表示されます。クイズもあります。 |
 | `name` | Hata (旗) is Japanese for “flag”. | Hata は、国や地域のしるしとして掲げる「旗（はた）」のことです。 |
 | `nameLink` | About the name | 名前について（英語） |
 | `foot` | Every flag is drawn from the package's own files in your browser. Nothing leaves this page. | 旗はすべて、パッケージ自身のファイルを使って、お使いのブラウザ上で表示しています。このページの外にデータが送られることはありません。 |
@@ -16,7 +16,7 @@ open a *Fix a translation* issue with the string's name. `{name}` and the other 
 | `moreText` | Each flag is a module of its own, so a page carries only the flags it imports; the lookup loads one by its code when it is wanted. Each line below is all it takes. | 旗は一つずつ別のモジュールなので、ページには読み込んだ旗だけが含まれます。ISO コードで旗を引く関数は、必要になったときにその旗だけを読み込みます。下の各行がそのまま使えるコードです。 |
 | `tab_gallery` | Flags | 旗の一覧 |
 | `tab_quiz` | Quiz | クイズ |
-| `gallery_blurb` | Every flag in the package. Search by name in English or Japanese, or by code; narrow it to a country's regions or a continent; and see the frames the package draws without stretching a flag. | パッケージに含まれるすべての旗です。英語名・日本語名・コードで検索し、日本・カナダ・アメリカの地域別や、大陸別に絞り込めます。旗を引き伸ばさずに枠に収める表示も試せます。 |
+| `gallery_blurb` | Every flag in the package. Search by name in English or Japanese, or by code; narrow it to a country's regions or a continent; and see the frames the package draws without stretching a flag. | パッケージに含まれるすべての旗です。英語名・日本語名・コードで検索し、国ごとの地域や大陸で絞り込めます。旗を引き伸ばさずに枠に収める表示も試せます。 |
 | `search` | Find | 検索 |
 | `search_hint` | Tokyo, 東京, Ontario, JP-13 … | 東京、Tokyo、オンタリオ、JP-13 … |
 | `set` | Which flags | 表示する旗 |
@@ -25,6 +25,13 @@ open a *Fix a translation* issue with the string's name. `{name}` and the other 
 | `set_jp` | Japan | 日本 |
 | `set_ca` | Canada | カナダ |
 | `set_us` | United States | アメリカ |
+| `set_au` | Australia | オーストラリア |
+| `set_gb` | United Kingdom | イギリス |
+| `set_de` | Germany | ドイツ |
+| `set_fr` | France | フランス |
+| `set_ch` | Switzerland | スイス |
+| `set_at` | Austria | オーストリア |
+| `set_br` | Brazil | ブラジル |
 | `region` | Continent | 大陸 |
 | `region_all` | Every continent | すべての大陸 |
 | `shape` | Shape | 形 |
@@ -39,10 +46,17 @@ open a *Fix a translation* issue with the string's name. `{name}` and the other 
 | `left_out_title` | Places with no flag here ({n}) | 旗を収録していない地域（{n}） |
 | `left_out_blurb` | Every country and region Kuni knows has a flag here or is listed with the reason (in English, as the package gives it). | Kuni に含まれる国と地域は、すべて旗を収録しているか、ここに理由とともに載っています（理由は英語で、パッケージの記載のままです）。 |
 | `close` | Close | 閉じる |
-| `frames_title` | Framed by frame() | frame() で枠に収めた形 |
-| `frame_43` | 4:3, cropped | 4:3（切り抜き） |
-| `frame_11` | 1:1, whole | 1:1（全体） |
+| `frames_title` | Framed without misrepresenting it, by flag(code, { shape }) | flag(code, { shape }) で、旗の姿を損なわずに枠に収めた形 |
+| `frame_43` | 4:3 | 4:3 |
+| `frame_11` | Square | 正方形 |
 | `frame_round` | Round | 円形 |
+| `method_own` | its own shape | 本来の形 |
+| `method_adapted` | drawn for the shape by flag-icons | flag-icons がこの形用に描いた図 |
+| `method_cover` | cropped, keeping every colour | 切り抜き（どの色も残る） |
+| `method_hoist` | cropped from the fly | 旗竿側を残して切り抜き |
+| `method_contain` | whole: a crop would lose a colour | 全体を表示（切り抜くと色が欠けるため） |
+| `embed_title` | Embed this flag | この旗を埋め込む |
+| `embed_blurb` | Choose how it looks, and copy the code for your page: a <hata-flag> element, an <img>, an iframe, or for React, Vue, Svelte or Angular. | 見た目を選ぶと、ページに貼るコードをコピーできます。<hata-flag> 要素、<img>、iframe のほか、React・Vue・Svelte・Angular 用のコードもあります。 |
 | `fact_code` | Code | コード |
 | `fact_ratio` | Proportions | 縦横比 |
 | `fact_size` | Size | サイズ |
@@ -82,6 +96,11 @@ open a *Fix a translation* issue with the string's name. `{name}` and the other 
 | `mode_jp` | Prefectures | 都道府県 |
 | `mode_ca` | Provinces | カナダの州・準州 |
 | `mode_us` | States | アメリカの州 |
+| `mode_au` | Australia's states and territories | オーストラリアの州・準州 |
+| `mode_br` | Brazil's states | ブラジルの州 |
+| `mode_de` | Germany's states | ドイツの州 |
+| `mode_ch` | Swiss cantons | スイスの州 |
+| `mode_europe` | Europe's regions | ヨーロッパの地域 |
 | `seed` | Seed | シード |
 | `new_game` | New game | 新しいゲーム |
 | `daily` | Today's | 今日の問題 |

@@ -28,10 +28,12 @@ test("asks the same ten flags, in the same order with the same names, for the sa
   expect(errors).toEqual([]);
 });
 
-test("asks each mode about its own places, four names each, one of them right", async ({ page }, testInfo) => {
+test("asks each mode about its own places, four names each, one of them right", async ({ page }) => {
   await open(page, "?lang=en&tab=quiz&seed=modes");
-  for (const [mode, pattern] of [["country", /^[A-Z]{2}$/], ["jp", /^JP-/], ["ca", /^CA-/], ["us", /^US-/]]) {
-    await tap(page, `${at("mode")} [data-value="${mode}"]`, testInfo);
+  const modes = [["country", /^[A-Z]{2}$/], ["jp", /^JP-/], ["ca", /^CA-/], ["us", /^US-/], ["au", /^AU-/], ["br", /^BR-/], ["de", /^DE-/], ["ch", /^CH-/], ["europe", /^(GB|DE|FR|CH|AT)-/]];
+  expect(await page.locator(`${at("mode")} option`).evaluateAll((options) => options.map((option) => option.value))).toEqual(modes.map(([mode]) => mode));
+  for (const [mode, pattern] of modes) {
+    await page.locator(at("mode")).selectOption(mode);
     const code = await questionCode(page);
     expect(code, mode).toMatch(pattern);
     const options = await page.locator(`${at("choices")} button`).evaluateAll((buttons) => buttons.map((button) => button.dataset.code));

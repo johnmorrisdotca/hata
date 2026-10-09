@@ -18,6 +18,9 @@ const flagEntries: Record<string, string> = Object.fromEntries(
 const flagImports: Plugin = {
   name: "hata-flag-imports",
   setup(build) {
+    // The element's modules are entries of their own: <hata-flag> loads /load and /names, and element-define the
+    // element, rather than carry a copy of each.
+    build.onResolve({ filter: /^\.\/(load|names|element)\.js$/ }, (args) => ({ path: args.path, external: true }));
     // /load's table of the drawings made for a frame is an entry of its own, loaded when a frame is asked for.
     build.onResolve({ filter: /^\.\/data\/adapted\.data\.js$/ }, () => ({ path: "./adapted.js", external: true }));
     build.onResolve({ filter: /^\.\.\/flags\/[a-z0-9.-]+\.js$/ }, (args) => ({ path: `./flags/${basename(args.path)}`, external: true }));
@@ -38,7 +41,7 @@ const shared = {
 export default defineConfig([
   {
     ...shared,
-    entry: { index: "src/index.ts", load: "src/load.ts", manifest: "src/manifest.ts", adapted: "src/data/adapted.data.ts" },
+    entry: { index: "src/index.ts", load: "src/load.ts", manifest: "src/manifest.ts", adapted: "src/data/adapted.data.ts", names: "src/names.ts", element: "src/element.ts", "element-define": "src/element-define.ts" },
     dts: true,
     minify: false,
     esbuildOptions(options) {

@@ -437,6 +437,21 @@ export { ADAPTED };
 `,
 );
 
+// Every flag's names in English and Japanese (Kuni's) and its aspect ratio, for /names and <hata-flag>: a name to
+// read aloud, and the box to keep before the picture arrives.
+writeFileSync(
+  join(DATA_DIR, "names.data.ts"),
+  `${HEADER}
+// From Kuni ${JSON.parse(readFileSync(join(ROOT, "node_modules", "@johnmorrisdotca", "kuni", "package.json"), "utf8")).version}: each flag's place in English and Japanese, and the flag's width over its height.
+
+const NAMES: Readonly<Record<string, readonly [en: string, ja: string, aspect: number]>> = {
+${shipped.map((one) => `  ${quote(one.place.code)}: [${quote(one.place.en)}, ${quote(one.place.ja ?? one.place.en)}, ${Number((one.optimised.width / one.optimised.height).toFixed(4))}],`).join("\n")}
+};
+
+export { NAMES };
+`,
+);
+
 // What frame() does with each picture at 4:3, square and round, where it is not a crop from the centre: a letter for
 // each (c cover, h hoist, w the whole flag), keyed by the name the picture carries (data-hata).
 const LETTER: Record<Framing["fit"], string> = { cover: "c", hoist: "h", contain: "w" };

@@ -1,10 +1,14 @@
 // The demo page's own script: a gallery of every flag with a detail panel, and a flag quiz, each drawn from the
 // package's own built files, as a page that installed it would. The gallery shows dist/svg/<code>.svg; the detail
-// panel loads the flag's module with /load and frames it with frame(); the facts are /manifest's. The names are
+// panel loads the flag's module with /load and its frames with flag(code, { shape }), and writes the code to embed
+// it with the family's builder (embed-builder.js, given Hata's side in embed-hata.js); the facts are /manifest's. The names are
 // Kuni's, written into names.js when the site is built. The page's words are set as text, never as HTML.
-import { aspectOf, FLAG_CODES, flagUrl, frame, toDataUri } from "./dist/index.js";
+import "./dist/element-define.js";
+import { aspectOf, FLAG_CODES, flagUrl, toDataUri } from "./dist/index.js";
 import { flag } from "./dist/load.js";
 import { LEFT_OUT, manifest, MANIFEST } from "./dist/manifest.js";
+import { mountEmbedBuilder } from "./embed-builder.js";
+import { FLAG_OPTIONS, HATA_PRODUCT } from "./embed-hata.js";
 import { CONTINENTS, NAMES } from "./names.js";
 import { WORDS } from "./words.js";
 
@@ -18,6 +22,12 @@ const ja = () => language.lang === "ja";
 const nameOf = (code) => (ja() ? NAMES[code].ja : NAMES[code].en);
 const otherName = (code) => (ja() ? NAMES[code].en : NAMES[code].ja);
 const groupOf = (code) => (code.length === 2 ? "country" : code.slice(0, 2).toLowerCase());
+// The sets the gallery can show, in the order of the codes: the countries, then each country's first level.
+const GROUPS = ["country", ...new Set(FLAG_CODES.filter((code) => code.length > 2).map(groupOf))];
+// The quiz's modes: a set with at least four flags of its own to ask about, and Europe's regions together, since the
+// United Kingdom, France and Austria each have fewer than four flags no other place flies.
+const EUROPE = ["gb", "de", "fr", "ch", "at"];
+const MODES = ["country", "jp", "ca", "us", "au", "br", "de", "ch", "europe"];
 const fileOf = (code) => `dist/svg/${code.toLowerCase()}.svg`;
 const KB = (bytes) => (bytes < 1024 ? `${bytes} B` : `${(bytes / 1024).toFixed(1)} KB`);
 const RATIOS = [[1, "1:1"], [4 / 3, "4:3"], [3 / 2, "3:2"], [5 / 3, "5:3"], [8 / 5, "8:5"], [5 / 4, "5:4"], [7 / 4, "7:4"], [13 / 7, "13:7"], [19 / 10, "19:10"], [2, "2:1"], [11 / 8, "11:8"], [7 / 5, "7:5"], [10 / 7, "10:7"], [9 / 7, "9:7"], [11 / 6, "11:6"], [5 / 2, "5:2"]];
@@ -42,10 +52,10 @@ const asked = new URLSearchParams(location.search);
 const state = {
   tab: asked.get("tab") === "quiz" ? "quiz" : "gallery",
   query: asked.get("q") ?? "",
-  set: ["all", "country", "jp", "ca", "us"].includes(asked.get("set")) ? asked.get("set") : "all",
+  set: ["all", ...GROUPS].includes(asked.get("set")) ? asked.get("set") : "all",
   region: Object.keys(CONTINENTS).includes(asked.get("region")) ? asked.get("region") : "all",
   shape: ["flag", "4:3", "1:1", "round"].includes(asked.get("shape")) ? asked.get("shape") : "flag",
-  mode: ["country", "jp", "ca", "us"].includes(asked.get("mode")) ? asked.get("mode") : "country",
+  mode: MODES.includes(asked.get("mode")) ? asked.get("mode") : "country",
   seed: /^[\w-]{1,32}$/.test(asked.get("seed") ?? "") ? asked.get("seed") : null,
 };
 const remember = () => {
@@ -131,6 +141,26 @@ for (const code of FLAG_CODES) {
 }
 const searchText = new Map(FLAG_CODES.map((code) => [code, [code, NAMES[code].en, NAMES[code].ja, NAMES[code].short, NAMES[code].shortJa, NAMES[code].reading].map(fold).join("|")]));
 
+// The picture a tile shows at the gallery's shape: the drawing made by hand for it where there is one, else the flag's
+// own file, fitted by CSS the way the package measured for it (data-fit: cover, hoist or contain).
+function drawTilePicture(code) {
+  const image = tiles.get(code).item.querySelector("img");
+  const framing = state.shape === "flag" ? null : records.get(code).framings[state.shape];
+  const owner = (records.get(code).sameAs ?? code).toLowerCase();
+  const src = framing?.method === "adapted" ? `dist/svg/${owner}.${state.shape === "4:3" ? "4x3" : "1x1"}.svg` : fileOf(code);
+  if (image.getAttribute("src") !== src) image.src = src;
+  image.dataset.fit = framing === null || framing.method === "adapted" ? "cover" : framing.fit;
+}
+
+function fillSets() {
+  const set = $("set");
+  set.replaceChildren(...["all", ...GROUPS].map((value) => Object.assign(document.createElement("option"), { value, textContent: say(`set_${value}`) })));
+  set.value = state.set;
+  const mode = $("mode");
+  mode.replaceChildren(...MODES.map((value) => Object.assign(document.createElement("option"), { value, textContent: say(`mode_${value}`) })));
+  mode.value = state.mode;
+}
+
 function fillRegion() {
   const select = $("region");
   const options = [["all", say("region_all")], ...Object.entries(CONTINENTS).filter(([code]) => FLAG_CODES.some((one) => NAMES[one].continent === code)).map(([code, names]) => [code, names[language.lang]])];
@@ -149,13 +179,17 @@ function drawGallery() {
     const group = groupOf(code);
     const visible = (state.set === "all" || state.set === group) && (state.region === "all" || (group === "country" && NAMES[code].continent === state.region)) && (wanted === "" || searchText.get(code).includes(wanted));
     tile.item.hidden = !visible;
-    if (visible) shown += 1;
+    if (visible) {
+      shown += 1;
+      drawTilePicture(code);
+    }
   }
   $("count").textContent = say("count", { shown, total: FLAG_CODES.length });
   $("empty").hidden = shown > 0;
   $("grid").dataset.shape = state.shape;
   $("region-row").hidden = state.set !== "all" && state.set !== "country";
-  for (const [name, value] of [["set", state.set], ["shape", state.shape]]) for (const button of $(name).querySelectorAll("button")) button.setAttribute("aria-pressed", String(button.dataset.value === value));
+  $("set").value = state.set;
+  for (const button of $("shape").querySelectorAll("button")) button.setAttribute("aria-pressed", String(button.dataset.value === state.shape));
 }
 
 function drawLeftOut() {
@@ -180,17 +214,20 @@ $("search").addEventListener("input", () => {
   drawGallery();
   remember();
 });
-for (const name of ["set", "shape"]) {
-  for (const button of $(name).querySelectorAll("button")) {
-    button.addEventListener("click", () => {
-      state[name] = button.dataset.value;
-      if (name === "set" && state.set !== "all" && state.set !== "country") state.region = "all";
-      $("region").value = state.region;
-      drawGallery();
-      remember();
-    });
-  }
+for (const button of $("shape").querySelectorAll("button")) {
+  button.addEventListener("click", () => {
+    state.shape = button.dataset.value;
+    drawGallery();
+    remember();
+  });
 }
+$("set").addEventListener("change", () => {
+  state.set = $("set").value;
+  if (state.set !== "all" && state.set !== "country") state.region = "all";
+  $("region").value = state.region;
+  drawGallery();
+  remember();
+});
 $("region").addEventListener("change", () => {
   state.region = $("region").value;
   drawGallery();
@@ -255,24 +292,44 @@ async function showDetail(code) {
   const svg = await flag(code);
   if (opened !== code) return;
   openedSvg = svg;
-  drawFrames(code, svg);
+  await drawFrames(code);
+  if (opened !== code) return;
   drawCopies(code, svg);
+  drawEmbed(code);
 }
 
-function drawFrames(code, svg) {
-  const shapes = [["4:3", "frame_43", "cover"], ["1:1", "frame_11", "contain"], ["round", "frame_round", "cover"]];
+// The three frames, each loaded the way a page would (flag(code, { shape })), with how it was framed: the flag's own
+// shape, a drawing made for the shape by hand, a crop that keeps every colour, or the whole flag.
+async function drawFrames(code) {
+  const record = manifest(code);
+  const shapes = [["4:3", "frame_43"], ["1:1", "frame_11"], ["round", "frame_round"]];
+  const framed = await Promise.all(shapes.map(([shape]) => flag(code, { shape })));
+  if (opened !== code) return;
   const heading = Object.assign(document.createElement("p"), { className: "fam-fine", textContent: say("frames_title") });
   $("frames").replaceChildren(
     heading,
-    ...shapes.map(([shape, key, fit]) => {
+    ...shapes.map(([shape, key], at) => {
       const figure = document.createElement("figure");
-      const image = Object.assign(document.createElement("img"), { src: toDataUri(frame(svg, { shape, fit })), alt: "" });
+      const image = Object.assign(document.createElement("img"), { src: toDataUri(framed[at]), alt: "" });
       image.dataset.shape = shape;
+      const method = record.framings[shape].method;
+      figure.dataset.method = method;
+      figure.setAttribute("data-testid", `frame-${shape}`);
       const caption = Object.assign(document.createElement("figcaption"), { textContent: say(key) });
+      const how = Object.assign(document.createElement("small"), { textContent: say(`method_${method}`) });
+      if (method === "contain" && record.framings[shape].coverLoses.length > 0) how.title = record.framings[shape].coverLoses.join(", ");
+      caption.append(document.createElement("br"), how);
       figure.append(image, caption);
       return figure;
     }),
   );
+}
+
+// "Embed this flag": the family's builder, given Hata's options and code writers, on the flag that is open.
+let builder = null;
+function drawEmbed(code) {
+  if (builder === null) builder = mountEmbedBuilder($("embed"), { product: HATA_PRODUCT, schema: FLAG_OPTIONS, values: { code }, lang: language.lang });
+  else builder.update({ code });
 }
 
 function drawCopies(code, svg) {
@@ -334,7 +391,7 @@ const quiz = { questions: [], at: 0, score: 0, streak: 0, answered: false };
 
 // Each mode asks only flags no other place shares, so every question has one right answer.
 const shared = new Set(MANIFEST.filter((record) => record.sameAs !== null).flatMap((record) => [record.code, record.sameAs]));
-const poolOf = (mode) => FLAG_CODES.filter((code) => groupOf(code) === mode && !shared.has(code));
+const poolOf = (mode) => FLAG_CODES.filter((code) => (mode === "europe" ? EUROPE.includes(groupOf(code)) : groupOf(code) === mode) && !shared.has(code));
 
 // A seeded generator: the same seed and mode give the same game in every browser.
 const hash = (text) => {
@@ -396,7 +453,7 @@ function startGame(seed) {
 function drawQuestion() {
   const question = quiz.questions[quiz.at];
   $("seed").textContent = state.seed;
-  for (const button of $("mode").querySelectorAll("button")) button.setAttribute("aria-pressed", String(button.dataset.value === state.mode));
+  $("mode").value = state.mode;
   $("score").textContent = String(quiz.score);
   $("streak").textContent = String(quiz.streak);
   $("best").textContent = String(readBest());
@@ -453,12 +510,10 @@ $("next").addEventListener("click", () => {
     drawQuestion();
   }
 });
-for (const button of $("mode").querySelectorAll("button")) {
-  button.addEventListener("click", () => {
-    state.mode = button.dataset.value;
-    startGame(state.seed ?? newSeed());
-  });
-}
+$("mode").addEventListener("change", () => {
+  state.mode = $("mode").value;
+  startGame(state.seed ?? newSeed());
+});
 $("new-game").addEventListener("click", () => startGame(newSeed()));
 $("daily").addEventListener("click", () => startGame(today()));
 $("share").addEventListener("click", async () => {
@@ -475,13 +530,16 @@ $("share").addEventListener("click", async () => {
 // ----- Words, and the first drawing ---------------------------------------------------------------------------
 
 function sayAll() {
+  fillSets();
   fillRegion();
+  builder?.setLanguage(language.lang);
   drawGallery();
   drawLeftOut();
   if (quiz.questions.length > 0) drawQuestion();
   if (opened !== null) showDetail(opened);
 }
 
+fillSets();
 fillRegion();
 drawGallery();
 drawLeftOut();

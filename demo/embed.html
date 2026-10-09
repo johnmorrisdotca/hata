@@ -1,0 +1,43 @@
+<!doctype html>
+<!-- One flag and nothing else, for another site's iframe. Everything it shows comes from its own address, the same
+     attributes <hata-flag> takes: embed.html?code=JP-13&shape=round&size=48&lang=ja&border=1&shadow=1&theme=dark
+     (after a # works too). It stores nothing, tracks nothing and loads nothing from anywhere else. When the flag is
+     drawn it tells the page around it: postMessage({ hata: "load", code }), or { hata: "error", code, reason }. -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Hata · a flag</title>
+    <style>
+      html, body { margin: 0; background: transparent; }
+      body { padding: 4px; line-height: 0; }
+    </style>
+  </head>
+  <body>
+    <hata-flag id="flag" loading="eager"></hata-flag>
+    <script type="module">
+      import "./dist/element-define.js";
+      const element = document.getElementById("flag");
+      const ATTRIBUTES = ["code", "shape", "size", "fit", "label", "theme", "border", "shadow"];
+      const FLAGS = ["border", "shadow"];
+      const draw = () => {
+        const query = new URLSearchParams(location.hash.length > 1 ? location.hash.slice(1) : location.search.slice(1));
+        const lang = query.get("lang");
+        if (lang === "en" || lang === "ja") document.documentElement.lang = lang;
+        for (const name of ATTRIBUTES) {
+          const value = query.get(name);
+          if (FLAGS.includes(name)) element.toggleAttribute(name, value !== null && value !== "0" && value !== "false");
+          else if (value === null || value === "") element.removeAttribute(name);
+          else element.setAttribute(name, value);
+        }
+      };
+      const tell = (message) => parent !== window && parent.postMessage(message, "*");
+      element.addEventListener("hata-load", (event) => tell({ hata: "load", code: event.detail.code }));
+      element.addEventListener("hata-error", (event) => tell({ hata: "error", code: event.detail.code, reason: event.detail.reason }));
+      addEventListener("hashchange", draw);
+      draw();
+    </script>
+  </body>
+</html>

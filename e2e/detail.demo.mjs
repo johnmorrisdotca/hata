@@ -21,6 +21,8 @@ test("opens on a tap with the flag's names, code, proportions, source, licence a
   await expect(page.locator(`${at("frames")} img`)).toHaveCount(3);
   const round = page.locator(`${at("frames")} img[data-shape="round"]`);
   await expect(round).toHaveAttribute("src", /^data:image\/svg\+xml,/);
+  // Each frame says how it was made.
+  await expect(page.locator(at("frame-round"))).toHaveAttribute("data-method", /^(own|adapted|cover|hoist|contain)$/);
   await noSidewaysScroll(page);
   await tap(page, at("close"), testInfo);
   await expect(panel).toBeHidden();
@@ -53,7 +55,7 @@ test("copies the import, the lookup, an <img> tag and the SVG", async ({ page, b
   await expect(fields).toHaveCount(4);
   await expect(fields.nth(0)).toHaveValue('import flag from "@johnmorrisdotca/hata/flags/us-tx";');
   await expect(fields.nth(2)).toHaveValue(/^<img src="https:\/\/cdn\.jsdelivr\.net\/npm\/@johnmorrisdotca\/hata@1\/dist\/svg\/us-tx\.svg" alt="Texas"/);
-  await expect(fields.nth(3)).toHaveValue(/^<svg xmlns="http:\/\/www\.w3\.org\/2000\/svg" viewBox=/);
+  await expect(fields.nth(3)).toHaveValue(/^<svg data-hata="us-tx" xmlns="http:\/\/www\.w3\.org\/2000\/svg" viewBox=/);
   await tap(page, at("copy-copy_import"), testInfo);
   await expect(page.locator(at("copied"))).not.toHaveText("");
   if (browserName === "chromium") expect(await page.evaluate(() => navigator.clipboard.readText())).toBe('import flag from "@johnmorrisdotca/hata/flags/us-tx";');

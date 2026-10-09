@@ -81,3 +81,23 @@ select.fam-field { appearance: none; -webkit-appearance: none; padding-right: 32
   .question { height: 150px; }
   .choices { grid-template-columns: minmax(0, 1fr); }
 }
+
+/* The gallery's frames follow the package's: a crop only where it keeps every colour, the whole flag otherwise. */
+.grid[data-shape] .pic img[data-fit="contain"] { object-fit: contain; }
+.grid[data-shape] .pic img[data-fit="hoist"] { object-position: left center; }
+.grid[data-shape="round"] .pic img[data-fit="contain"] { background: #e6e6e6; }
+.frames figcaption small { font-size: .7rem; }
+
+/* "Embed this flag": the family's builder (embed-builder.js). */
+.embed { display: grid; gap: 12px; }
+.embed-options { display: grid; grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr)); gap: 8px 14px; align-items: end; }
+.embed-option { display: grid; gap: 4px; min-width: 0; }
+.embed-option .fam-label { min-width: 0; font-size: .8rem; }
+.embed-option .fam-field { width: 100%; min-width: 0; font-size: 16px; }
+.embed-option-boolean { display: flex; align-items: center; gap: 8px; min-height: 44px; }
+.embed-option-boolean input { width: 20px; height: 20px; margin: 0; }
+.embed-preview { display: flex; align-items: center; justify-content: center; min-height: 96px; padding: 16px; border-radius: 12px; background: repeating-conic-gradient(color-mix(in srgb, var(--ink) 7%, transparent) 0 25%, transparent 0 50%) 0 0 / 16px 16px; overflow: auto; }
+.embed-tabs { display: flex; flex-wrap: wrap; gap: 4px; }
+.embed-tabs button { min-height: 36px; padding: 4px 10px; font-size: .85rem; }
+.embed-code-head { display: flex; justify-content: flex-end; margin-bottom: 4px; }
+.embed-code { width: 100%; min-height: 44px; font-family: var(--mono); font-size: 14px; line-height: 1.4; padding: 8px 10px; resize: vertical; white-space: pre; overflow-x: auto; }

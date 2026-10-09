@@ -11,7 +11,7 @@ export default tseslint.config(
     },
   },
   { files: ["scripts/**/*.ts", "scripts/**/*.mjs", "tsup.config.ts"], languageOptions: { globals: { console: "readonly", process: "readonly", fetch: "readonly", Buffer: "readonly", URL: "readonly", URLSearchParams: "readonly", setTimeout: "readonly", document: "readonly" } } },
-  { files: ["e2e/**/*.mjs", "playwright.config.mjs"], languageOptions: { globals: { console: "readonly", URL: "readonly", document: "readonly", window: "readonly", location: "readonly", getComputedStyle: "readonly", localStorage: "readonly", navigator: "readonly", fetch: "readonly", innerHeight: "readonly" } } },
+  { files: ["e2e/**/*.mjs", "playwright.config.mjs"], languageOptions: { globals: { console: "readonly", URL: "readonly", document: "readonly", window: "readonly", location: "readonly", getComputedStyle: "readonly", localStorage: "readonly", navigator: "readonly", fetch: "readonly", innerHeight: "readonly", setTimeout: "readonly", Image: "readonly" } } },
   { files: ["scripts/readme-pictures.mjs", "scripts/readme-pictures-lib.mjs", "scripts/screenshots.mjs"], languageOptions: { globals: { window: "readonly", localStorage: "readonly", innerHeight: "readonly" } } },
   // These run code inside the browser page they drive.
   { files: ["scripts/comparer.mjs", "scripts/sheet.mjs"], languageOptions: { globals: { Image: "readonly", Blob: "readonly", document: "readonly" } } },

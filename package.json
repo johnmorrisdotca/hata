@@ -36,7 +36,9 @@
   "author": "John Morris",
   "license": "MIT",
   "type": "module",
-  "sideEffects": false,
+  "sideEffects": [
+    "./dist/element-define.js"
+  ],
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -58,6 +60,18 @@
       "default": "./dist/manifest.js"
     },
     "./manifest.json": "./dist/manifest.json",
+    "./names": {
+      "types": "./dist/names.d.ts",
+      "default": "./dist/names.js"
+    },
+    "./element": {
+      "types": "./dist/element.d.ts",
+      "default": "./dist/element.js"
+    },
+    "./element/define": {
+      "types": "./dist/element-define.d.ts",
+      "default": "./dist/element-define.js"
+    },
     "./svg/*": "./dist/svg/*",
     "./package.json": "./package.json"
   },
