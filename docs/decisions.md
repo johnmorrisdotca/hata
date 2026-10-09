@@ -151,15 +151,47 @@ record's `framings`:
   another design (it is MIT, ships as `/flags/<code>.4x3` and `.1x1`, and is optimised and proved pixel by pixel
   like every flag); else a **crop from the centre** where it passes; else **the whole flag**, with clear bands.
   Round is the square's choice in a circle; a circle may crop only where the square may, and shows the whole flag
-  on a neutral disc otherwise. A crop from the hoist is used only where `FOCUS` records that a flag's meaning is
-  at the hoist, because the colour test alone would pass a hoist crop of Canada that keeps half the leaf; `FOCUS`
-  is empty.
+  on a neutral disc otherwise. A crop kept at a side is used only where `FOCUS` records that a flag's meaning is
+  there, because the colour test alone would pass a hoist crop of Canada that keeps half the leaf (see below: a later change
+  filled `FOCUS`).
 - **Why prefer flag-icons' drawing to a crop that passes**: it is laid out for the shape by a person, which a crop
   cannot be. The cost is size: 425 drawings, 2.8 MB in the package, of which a page loads only the frames it asks for.
 - **`frame(svg)`** works on the one SVG it is given, so it cannot use another drawing: its default, `fit: "auto"`,
   crops where a crop passes and shows the whole flag where not, read from the name each shipped SVG carries
   (`data-hata="ca"`). An SVG that names no flag of this package is shown whole. **This changes 1.0.0's default**,
   which was always a crop; `fit: "cover"` gives the old frame.
+
+### Whole and cropped, and where a crop is kept (after 1.1.0)
+
+John, 2026-10-09, looking at the United States' square: it "should not be a zoomed out image, but a square variant …
+the USA flag should just be left aligned which will capture the essence of the flag. That is how we should approach
+many flags where there is a prominent top-left (or whatever) corner image with the body pattern … it requires a little
+guesswork and can't just be the middle or a zoom-out. So we should offer both whole 1:1 and cropped 1:1 where the cropped
+actually looks nice." What was done:
+
+- **Both are offered for every flag**: `fit: "whole"` and `fit: "crop"`; `auto` takes the crop where it shows the flag
+  fairly and the whole flag where not. A crop asked for by name always crops, so a crop that drops a colour is the caller's
+  to ask for.
+- **`FOCUS` was filled by hand**, by looking at every flag's whole picture beside its centre crop (406 flags, on
+  2026-10-09), then at each chosen crop beside the whole flag. 121 flags have a line, each with its reason in
+  `scripts/data-config.ts` and in [framing.md](framing.md): 84 at the square have a crop kept at a side, 37 are judged to have no
+  good square crop and are shown whole by `auto`. The groups: a canton at the hoist (the United States and its states
+  that have one, Liberia, Malaysia, Taiwan, Chile, Uruguay, Greece, China, Samoa and others), a triangle or wedge at the
+  hoist (Cuba, the Czech Republic, Jordan, Palestine, Sudan, the Philippines, Puerto Rico and others), a band at the
+  hoist (the Emirates, Benin, Belarus, Madagascar), an emblem nearer the hoist (Congo-Kinshasa, the Marshall Islands,
+  Mongolia, Namibia, Turkey, Colorado, South Carolina, Texas), the Nordic crosses (set towards the hoist), and the fly for
+  Rwanda and Zambia. The whole group: Blue and Red Ensigns, whose Union Flag and badge no square holds together, and
+  flags whose design runs the length of the flag (Sri Lanka, Alaska, Newfoundland and Labrador, Qatar).
+- **The colour test still applies to a chosen crop.** A crop kept at a side that drops a colour covering 5% of the flag is
+  used by default only with a written reason (`loses` in `FOCUS`): nine flags, each looked at beside its whole flag
+  (the Bahamas, Eritrea, Guinea-Bissau, Jordan, Malta, Namibia, the Solomon Islands, Seychelles, South Sudan). Qatar was
+  looked at too and left whole: its serrated white band covers a third of the flag, so a square at the hoist is white.
+- **Where flag-icons drew the square, that drawing is the crop** for `flag(code, { shape })`: it is the same judgement
+  made by its author (its United States is the canton and stripes at the left). `FOCUS` is what `frame()` does with a
+  flag's own SVG, which cannot use another drawing, so the two agree on the United States and Uruguay and differ
+  nowhere that matters.
+- **Not done**: a crop zoomed to the canton alone (the United States' stars without the stripes); a side is one of left,
+  right, top, bottom, because a crop that fills a frame can move along one axis only.
 
 On 2026-10-09: 212 flags drawn again for 4:3 and 213 for the square, 215 and 183 cropped, 2 and 10 shown whole
 (Sri Lanka, Timor-Leste, the Bahamas, Jamaica, Burundi, South Sudan, Wallis and Futuna, Santa Catarina, Yukon,

@@ -6,6 +6,38 @@ All notable changes to this project are written here. The format follows
 
 ## [Unreleased]
 
+### Added
+
+- **Every flag is offered whole and cropped.** `fit: "whole"` shows all of the flag (the same as `contain`) and
+  `fit: "crop"` crops it at the side a person chose for that flag, not at the middle. `fit: "auto"`, the default,
+  takes the crop where it shows the flag fairly and the whole flag where it does not. `frame()`, `flag()` and
+  `<hata-flag fit="…">` take both. The sides a crop can be kept at are `left` (the hoist), `right` (the fly), `top`,
+  `bottom` and `centre`.
+- **121 flags have a side chosen by hand** (`FOCUS` in `scripts/data-config.ts`, each with its reason, listed in
+  `docs/framing.md`): the United States, Uruguay, Chile, Taiwan and the other flags with a canton at the hoist,
+  and the American states with one, kept at the left so that the emblem and a slice of the stripes show; Cuba,
+  the Czech Republic, Bahrain and the other flags with a triangle or a serrated edge at the hoist; the Nordic
+  crosses, set towards the hoist; Rwanda and Zambia at the fly. 37 more (the Blue Ensigns, Alaska, Sri Lanka, Qatar
+  and others whose meaning is spread across the flag) are shown whole by default, because no square crop holds them.
+- **`crop` in every manifest `framings` record**, and the type `FramingCrop`: which crop `auto` uses (`own`,
+  `curated`, `centre` or `whole`), the side (`at`), the reason (`why`) and the colours the crop drops (`loses`).
+- **The demo** shows the whole flag beside its crop at 4:3, square and round in the flag's panel, each labelled with
+  how it was made and which is the default; the gallery has a Best / Whole / Cropped switch for the framed shapes;
+  and the embed builder offers `fit`. A browser test draws every chosen crop and checks it is the flag cut at the
+  side `FOCUS` names.
+
+### Changed
+
+- **A crop of a flag with a side chosen for it is kept there by default**: `frame(usa, { shape: "1:1" })` is the canton
+  and a slice of the stripes, where 1.1.0 gave the middle stripes. A crop that drops a colour covering 5% of the flag
+  is the default only where the reason beside the flag says why (nine flags: the Bahamas, Eritrea, Guinea-Bissau,
+  Jordan, Malta, Namibia, the Solomon Islands, Seychelles and South Sudan); otherwise the flag is shown whole. The 37
+  flags judged to have no good square crop (the Blue Ensigns among them) are now shown whole by `auto`, where 1.1.0
+  gave a centre crop that showed half of each.
+- **`Fit`** gains `whole` and `crop`; `hoist` and `cover` are unchanged. `Framing.method` can be `crop` (no longer
+  `hoist`, which was never produced) and `Framing.fit` can be `crop`.
+- The main entry is 11 KB (3.9 KB gzipped), from 10 KB, for the table of sides.
+
 ## [1.1.0] - 2026-10-09
 
 ### Added

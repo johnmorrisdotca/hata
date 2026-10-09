@@ -82,10 +82,12 @@ Install the scoped name: an unscoped `hata` on npm, if there is one, is somebody
 - **True proportions.** Japan's 2:3, Canada's 1:2, the United States' 10:19, Switzerland's square, Nepal's two
   pennants: each flag is shipped as its government draws it, and `frame()` puts it in a 4:3, square or round frame
   when that is what a layout needs, never stretched.
-- **Frames that keep the flag.** A crop from the centre turns Canada's square into a white square with a leaf. Every
-  flag's frames were measured: a crop is used only where it keeps every colour of the flag, flag-icons' drawing
-  made by hand for the shape is used where there is one (Canada's square, with narrower bars), and the whole flag
-  is shown otherwise. The manifest says which, for every flag and frame.
+- **Frames that keep the flag, whole and cropped.** A crop from the centre turns Canada's square into a white square
+  with a leaf, and shows the middle stripes of the United States' flag and not its stars. Every flag is offered both
+  ways, `fit: "whole"` and `fit: "crop"`, and the default (`auto`) takes the crop only where it shows the flag fairly:
+  kept at the side a person chose for 121 flags (the canton and a slice of the stripes for the United States, the Sun of
+  May for Uruguay, the triangle for Cuba; 37 of them are shown whole by default, because no square crop holds them), from the centre where that keeps every colour, and the whole flag otherwise.
+  The manifest says which, and why, for every flag and frame.
 - **Embed it anywhere.** `<hata-flag>`, a custom element named for a screen reader in the page's language, an
   iframe page, and a builder in the demo that writes the code for an element, an `<img>`, an iframe, an ES module,
   React, Vue, Svelte or Angular.
@@ -95,7 +97,7 @@ Install the scoped name: an unscoped `hata` on npm, if there is one, is somebody
   Nothing is redrawn, and every shipped flag is proved to draw as its source does.
 - **Safe to inline.** Scripts, event handlers, foreign objects and references outside the picture are refused at
   build time, and every id and class carries the flag's own prefix, so two flags in one page cannot collide.
-- **Small where it matters.** The main entry is 10 KB (3.5 KB gzipped) and carries no flag; the median flag is
+- **Small where it matters.** The main entry is 11 KB (3.9 KB gzipped) and carries no flag; the median flag is
   under 800 bytes; the lookup is 25 KB and then the flag's own file.
 - **Provenance for every flag**, in `/manifest` and `manifest.json`: the file, its page, the Wikidata item, the
   licence, the author, the restrictions Commons notes, and the dates.
@@ -166,16 +168,40 @@ frame(canada, { shape: "4:3" });                   // cropped from the centre: t
 frame(canada, { shape: "1:1" });                   // the whole flag: a centre crop would lose the red bars
 frame(canada, { shape: "1:1", fit: "cover" });     // the centre crop anyway, because you asked for it
 frame(canada, { shape: "round", label: "Canada" }); // the whole flag on a neutral disc, with role="img" and a title
+
+// Whole and cropped, for every flag: the crop is kept where a person judged the flag's meaning to be.
+await flag("US", { shape: "1:1", fit: "whole" });  // all of the stars and stripes, in a square
+await flag("US", { shape: "1:1", fit: "crop" });   // the canton and a slice of the stripes, not the middle stripes
+frame(usa, { shape: "1:1" });                      // auto: the same crop, kept at the hoist
+frame(usa, { shape: "1:1", fit: "whole" });        // the whole flag
 ```
+
+#### Whole and cropped
+
+Every flag is offered as the whole flag and as a crop, at 4:3, square and round. `fit: "whole"` (CSS's `contain`) shows
+all of it. `fit: "crop"` crops it **at the side a person chose for that flag**, not at the middle: the United States and
+Uruguay at the hoist, so that the canton or the Sun of May shows with a slice of the stripes; Rwanda at the fly, where its
+sun is; Cuba, the Czech Republic and the other flags with a triangle or a serrated edge at the hoist at the hoist too;
+and the Nordic crosses at the hoist, where the cross is. Where nobody chose a side the crop is from the centre (Japan's
+disc, a coat of arms, a tricolour). `fit: "auto"`, the default, takes the crop where it shows the flag fairly and the whole flag
+where it does not: a Blue Ensign (Australia, New Zealand, Fiji and the territories) has its Union Flag in one corner and its
+stars or badge in the other, and no square holds both. A crop asked for by name always crops, even there, so a crop that
+drops a colour is yours to ask for. `manifest(code).framings[shape].crop` records, for every flag and frame, which crop `auto`
+uses (`own`, `curated`, `centre` or `whole`), the side (`at`), the reason (`why`) and the colours a crop at that side drops
+(`loses`; a crop that drops a colour covering 5% of the flag is used by default only where the reason says why), and
+[docs/framing.md](./docs/framing.md) lists every flag with its side and reason. The demo's flag panel shows the whole flag
+beside its crop at each shape, and the gallery has a Whole / Cropped switch.
 
 `pnpm data:framing` measured every flag's frames in a browser. A frame keeps a flag when every colour covering 5%
 of the flag still covers at least half that share. For 4:3 and square it takes, in order: the flag itself where it
 is that shape already; flag-icons' drawing made by hand for the shape, where it keeps the colours and draws the
 same design; a crop from the centre, where that keeps them; and the whole flag otherwise. Round is the square's
-choice in a circle. `flag(code, { shape })` uses all of these; `frame(svg)` works on the one SVG it is given, so it
-crops or shows the flag whole, as measured for the flag the SVG names (`data-hata`). `manifest(code).framings`
-says which for every flag, and a browser test fails if any frame of any flag loses a colour. Of the 434 pictures,
-212 are drawn again for 4:3 and 213 for the square, 215 and 183 are cropped, and 2 and 10 are shown whole.
+choice in a circle. Where a person chose a side for the flag, a crop kept at that side comes before the centre one
+(see "Whole and cropped" below). `flag(code, { shape })` uses all of these; `frame(svg)` works on the one SVG it is given,
+so it crops or shows the flag whole, as measured for the flag the SVG names (`data-hata`). `manifest(code).framings`
+says which for every flag, and a browser test fails if any frame of any flag loses a colour no reason excuses. Of the 434
+pictures, 212 are drawn again for 4:3 and 213 for the square; of the rest, a crop kept at a chosen side is the default of 82
+at 4:3 and 84 at the square, a centre crop of 310 and 279, and the whole flag of 37 and 43.
 
 ### 4. Embed it anywhere
 
@@ -192,7 +218,7 @@ One script tag and an element, for any page:
 | `code` | The flag's code, in any case: `JP`, `jp-13`, `CA-ON`, `DE-BY` |
 | `shape` | `own` (the default: its own proportions), `4:3`, `1:1` or `round`, framed as `flag(code, { shape })` frames it |
 | `size` | Its height in CSS pixels; left out, `1em`, the height of the text around it, and any CSS height works |
-| `fit` | `auto` (the default), `cover`, `hoist` or `contain`, as `frame()` takes them |
+| `fit` | `auto` (the default), `whole` (all of the flag), `crop` (a crop at the side chosen for the flag), `cover`, `hoist` or `contain`, as `frame()` takes them |
 | `label` | What a screen reader says; left out, the place's name |
 | `lang` | `en` or `ja`, the language of that name; left out, the language of the page where the element is |
 | `theme` | `auto` (the default), `light` or `dark`: the colour of the border on a light or a dark page |
@@ -289,7 +315,8 @@ const options = countries({ order: "ja" }).map((one) => ({ value: one.alpha2, la
 
 A flag's SVG file in an `<img>` behaves like any picture, so CSS frames it without stretching it too. Use
 `manifest(code).framings` to frame it as the package does: the `.1x1.svg` or `.4x3.svg` file where the method is
-`adapted`, `object-fit: contain` where the fit is `contain`, and `cover` otherwise.
+`adapted`, `object-fit: contain` where the fit is `contain`, and `cover` otherwise, with `object-position: left` (or
+`right`) where the fit is `crop` and `crop.at` says so.
 
 ```css
 .tile img { width: 48px; height: 36px; object-fit: cover; }                       /* 4:3 */
@@ -318,7 +345,7 @@ The [API reference](https://johnmorrisdotca.github.io/hata/api.html) lists every
 | `@johnmorrisdotca/hata/names` | `flagName`, `flagAspect` and the type `NameLanguage` |
 | `@johnmorrisdotca/hata/element` | `defineFlag`, `FLAG_ELEMENT_NAME`, `FLAG_ELEMENT_ATTRIBUTES`, and the types `HataFlagElement` and `FlagElementEventDetail` |
 | `@johnmorrisdotca/hata/element/define` | `defineFlag`, after registering `<hata-flag>` |
-| `@johnmorrisdotca/hata/manifest` | `MANIFEST`, `LEFT_OUT`, `manifest`, `leftOut`, and the types `FlagRecord`, `Framing`, `LeftOutRecord`, `LicenceKind` and `FlagSource` |
+| `@johnmorrisdotca/hata/manifest` | `MANIFEST`, `LEFT_OUT`, `manifest`, `leftOut`, and the types `FlagRecord`, `Framing`, `FramingCrop`, `LeftOutRecord`, `LicenceKind` and `FlagSource` |
 
 A flag's record:
 
@@ -347,8 +374,9 @@ interface FlagRecord {
   gzip: number;
   notes: string[];                // text drawn with a font, an embedded raster picture
   framings: Record<"4:3" | "1:1" | "round", {
-    method: "own" | "adapted" | "cover" | "hoist" | "contain";  // how flag(code, { shape }) frames it
-    fit: "cover" | "hoist" | "contain";  // what frame() does with the flag's own SVG
+    method: "own" | "adapted" | "cover" | "crop" | "contain";  // how flag(code, { shape }) frames it
+    fit: "cover" | "crop" | "contain";  // what frame() does with the flag's own SVG
+    crop: { rule: "own" | "curated" | "centre" | "whole"; at: "left" | "right" | "top" | "bottom" | "centre"; why: string | null; loses: string[] };  // which crop, at which side, and why
     source: "flag-icons" | null; file: string | null; page: string | null; bytes: number | null;  // an adapted drawing
     coverLoses: string[];         // what a centre crop would lose: ["red 65% to 29%"]
   }>;
