@@ -61,15 +61,15 @@ const uses = [
 const gallery = `<section class="fam-panels" id="gallery-panel" role="tabpanel" aria-labelledby="tab-gallery" data-testid="gallery-panel">
         <div class="fam-panel">
           <p class="blurb" data-say="gallery_blurb"></p>
-          ${row(["Type a place's name in English or Japanese, or its code (JP-13, CA-ON, US-TX).", "地名を英語か日本語で、またはコード（JP-13、CA-ON、US-TX）を入力します。"], `<label class="fam-label" for="search" data-say="search"></label><input id="search" class="fam-field" data-testid="search" type="search" spellcheck="false" autocomplete="off" autocapitalize="off" data-say-placeholder="search_hint" />`)}
-          ${seg("set", "set", [["all", "set_all"], ["country", "set_country"], ["jp", "set_jp"], ["ca", "set_ca"], ["us", "set_us"]], ["Show every flag, or only the countries, Japan's prefectures, Canada's provinces or the American states.", "すべての旗、または国・日本の都道府県・カナダの州・アメリカの州だけを表示します。"])}
+          ${row(["Type a place's name in English or Japanese, or its code (JP-13, CA-ON, US-TX).", "地名（英語でも日本語でも）か、コード（JP-13、CA-ON、US-TX）を入力します。"], `<label class="fam-label" for="search" data-say="search"></label><input id="search" class="fam-field" data-testid="search" type="search" spellcheck="false" autocomplete="off" autocapitalize="off" data-say-placeholder="search_hint" />`)}
+          ${seg("set", "set", [["all", "set_all"], ["country", "set_country"], ["jp", "set_jp"], ["ca", "set_ca"], ["us", "set_us"]], ["Show every flag, or only the countries, Japan's prefectures, Canada's provinces or the American states.", "すべての旗を表示するか、国・日本の都道府県・カナダの州と準州・アメリカの州のどれかに絞って表示します。"])}
           ${row(["Narrow the countries to one continent.", "国を大陸で絞り込みます。"], `<label class="fam-label" for="region" data-say="region"></label><select id="region" class="fam-field" data-testid="region"></select>`, ` id="region-row"`)}
-          ${seg("shape", "shape", [["flag", "shape_flag"], ["4:3", "shape_43"], ["1:1", "shape_11"], ["round", "shape_round"]], ["See every flag at its own proportions, or framed at 4:3, square or round, the way frame() frames it, without stretching.", "旗を本来の縦横比で、または frame() と同じく 4:3・正方形・円形に、引き伸ばさずに表示します。"])}
+          ${seg("shape", "shape", [["flag", "shape_flag"], ["4:3", "shape_43"], ["1:1", "shape_11"], ["round", "shape_round"]], ["See every flag at its own proportions, or framed at 4:3, square or round, the way frame() frames it, without stretching.", "旗を本来の縦横比のまま、または frame() と同じ 4:3・正方形・円形の枠に、引き伸ばさずに収めて表示します。"])}
           <div class="tools">
             <p class="count" id="count" data-testid="count" aria-live="polite"></p>
             <div class="fam-actions">
               <button type="button" class="fam-button" id="download-list" data-testid="download-list" data-say="download_list" data-tip-en="A text file listing the flags shown: code, English name, Japanese name, source and licence." data-tip-ja="表示中の旗の一覧（コード、英語名、日本語名、出典、ライセンス）をテキストファイルで保存します。"></button>
-              <button type="button" class="fam-button" id="download-manifest" data-testid="download-manifest" data-say="download_manifest" data-tip-en="The whole manifest as JSON: every flag's source, licence, author and size, and the codes with no flag." data-tip-ja="マニフェスト全体を JSON で保存します。各旗の出典、ライセンス、作者、サイズ、旗のないコードを含みます。"></button>
+              <button type="button" class="fam-button" id="download-manifest" data-testid="download-manifest" data-say="download_manifest" data-tip-en="The whole manifest as JSON: every flag's source, licence, author and size, and the codes with no flag." data-tip-ja="マニフェスト全体を JSON で保存します。各旗の出典・ライセンス・作者・サイズと、旗のないコードが含まれます。"></button>
             </div>
           </div>
           <ul class="grid" id="grid" data-testid="grid" data-shape="flag"></ul>
@@ -85,7 +85,7 @@ const gallery = `<section class="fam-panels" id="gallery-panel" role="tabpanel" 
 const quiz = `<section class="fam-panels" id="quiz-panel" role="tabpanel" aria-labelledby="tab-quiz" data-testid="quiz-panel" hidden>
         <div class="fam-panel">
           <p class="blurb" data-say="quiz_blurb"></p>
-          ${seg("mode", "mode", [["country", "mode_country"], ["jp", "mode_jp"], ["ca", "mode_ca"], ["us", "mode_us"]], ["Pick what to be asked: the world's countries, Japan's prefectures, Canada's provinces and territories, or the American states.", "出題の範囲を選びます：世界の国、日本の都道府県、カナダの州と準州、アメリカの州。"])}
+          ${seg("mode", "mode", [["country", "mode_country"], ["jp", "mode_jp"], ["ca", "mode_ca"], ["us", "mode_us"]], ["Pick what to be asked: the world's countries, Japan's prefectures, Canada's provinces and territories, or the American states.", "出題範囲を選びます。世界の国、日本の都道府県、カナダの州と準州、アメリカの州から選べます。"])}
           ${row(["The same game, word for word, comes from the same seed: share the link and a friend gets your ten flags in your order.", "同じシードからは同じ問題が出ます。リンクを共有すると、友だちにも同じ10問が同じ順で出ます。"], `<span class="fam-label" data-say="seed"></span><code class="fam-code" id="seed" data-testid="seed"></code><button type="button" class="fam-button" id="new-game" data-testid="new-game" data-say="new_game"></button><button type="button" class="fam-button" id="daily" data-testid="daily" data-say="daily"></button><button type="button" class="fam-button" id="share" data-testid="share" data-say="share"></button>`)}
           <div class="scores" data-testid="scores">
             <div class="fam-card"><b id="score" data-testid="score">0</b><span data-say="score"></span></div>
