@@ -35,7 +35,7 @@ difference is the design itself, [decisions.md](decisions.md) says which ships a
 | `MU` | Mauritius | commons | circle-flags 26% | same design: the sets draw it simplified, in other shades, or laid out again at their shape; Commons' drawing is the full one |
 | `MY` | Malaysia | commons | circle-flags 38% | same design: the sets draw it simplified, in other shades, or laid out again at their shape; Commons' drawing is the full one |
 | `MZ` | Mozambique | commons | flag-icons 36%, circle-flags 32% | same design: the sets draw it simplified, in other shades, or laid out again at their shape; Commons' drawing is the full one |
-| `NC` | New Caledonia | commons | circle-flags 28% | same design: the sets draw it simplified, in other shades, or laid out again at their shape; Commons' drawing is the full one |
+| `NC` | New Caledonia | commons | circle-flags 28% | same design: every source draws the FLNKS (Kanak) flag, Wikidata's choice; which of New Caledonia's two flags to ship is in docs/decisions.md. |
 | `NP` | Nepal | commons | country-flag-icons 26%, circle-flags 28% | same design: the sets draw it simplified, in other shades, or laid out again at their shape; Commons' drawing is the full one |
 | `PK` | Pakistan | commons | flag-icons 76%, circle-flags 60% | same design: the sets draw it simplified, in other shades, or laid out again at their shape; Commons' drawing is the full one |
 | `PM` | St. Pierre & Miquelon | commons | flag-icons 82%, country-flag-icons 90%, circle-flags 29% | design: Commons' drawing is the local flag of Saint-Pierre and Miquelon; flag-icons and country-flag-icons draw France's. |

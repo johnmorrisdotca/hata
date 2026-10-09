@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Report a security problem
+    url: https://github.com/johnmorrisdotca/hata/blob/main/SECURITY.md
+    about: A flag or a frame that lets text out of the picture into a page, or anything else that should not be public before it is fixed.

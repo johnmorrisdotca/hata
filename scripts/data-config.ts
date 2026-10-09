@@ -36,6 +36,7 @@ const REVIEWED: Readonly<Record<string, string>> = {
   GF: "design: Wikidata gives France's flag; country-flag-icons and circle-flags draw the regional flag of French Guiana.",
   GP: "design: Commons gives France's flag (data-config CHOSEN); circle-flags draws a local flag.",
   MF: "design: Wikidata gives France's flag; the sets draw Saint Martin's local flag.",
+  NC: "same design: every source draws the FLNKS (Kanak) flag, Wikidata's choice; which of New Caledonia's two flags to ship is in docs/decisions.md.",
   PM: "design: Commons' drawing is the local flag of Saint-Pierre and Miquelon; flag-icons and country-flag-icons draw France's.",
   RE: "design: Wikidata gives France's flag; circle-flags draws the Lofo, a flag proposed for Réunion.",
   SH: "design: Wikidata gives the Union Flag for Saint Helena, Ascension and Tristan da Cunha; the sets draw Saint Helena's own flag.",
@@ -43,7 +44,7 @@ const REVIEWED: Readonly<Record<string, string>> = {
   YT: "design: Commons' drawing is Mayotte's local flag, with its lettering; flag-icons draws France's.",
 };
 const SAME_DESIGN = "same design: the sets draw it simplified, in other shades, or laid out again at their shape; Commons' drawing is the full one";
-for (const code of ["BB", "BS", "BZ", "CA-BC", "DJ", "DM", "ES", "ET", "GS", "GY", "IO", "JM", "KI", "KN", "KY", "LK", "LT", "MP", "MU", "MY", "MZ", "NC", "NP", "PK", "PN", "SB", "SZ", "TM", "UM", "US", "US-DC", "US-MS", "US-SC", "US-UM", "US-VI", "US-WY", "UY", "VI", "ZW"]) {
+for (const code of ["BB", "BS", "BZ", "CA-BC", "DJ", "DM", "ES", "ET", "GS", "GY", "IO", "JM", "KI", "KN", "KY", "LK", "LT", "MP", "MU", "MY", "MZ", "NP", "PK", "PN", "SB", "SZ", "TM", "UM", "US", "US-DC", "US-MS", "US-SC", "US-UM", "US-VI", "US-WY", "UY", "VI", "ZW"]) {
   (REVIEWED as Record<string, string>)[code] = SAME_DESIGN;
 }
 
