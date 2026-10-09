@@ -39,6 +39,10 @@ open a *Fix a translation* issue with the string's name. `{name}` and the other 
 | `shape_43` | 4:3 | 4:3 |
 | `shape_11` | 1:1 | 1:1 |
 | `shape_round` | Round | 円形 |
+| `fit` | Frame | 表示 |
+| `fit_auto` | Best | おまかせ |
+| `fit_whole` | Whole | 全体 |
+| `fit_crop` | Cropped | 切り抜き |
 | `count` | {shown} of {total} flags | {total} 件中 {shown} 件 |
 | `download_list` | List (TXT) | 一覧（TXT） |
 | `download_manifest` | Manifest (JSON) | マニフェスト（JSON） |
@@ -46,15 +50,26 @@ open a *Fix a translation* issue with the string's name. `{name}` and the other 
 | `left_out_title` | Places with no flag here ({n}) | 旗を収録していない地域（{n}） |
 | `left_out_blurb` | Every country and region Kuni knows has a flag here or is listed with the reason (in English, as the package gives it). | Kuni に含まれる国と地域は、すべて旗を収録しているか、ここに理由とともに載っています（理由は英語で、パッケージの記載のままです）。 |
 | `close` | Close | 閉じる |
-| `frames_title` | Framed without misrepresenting it, by flag(code, { shape }) | flag(code, { shape }) で、旗の姿を損なわずに枠に収めた形 |
+| `frames_title` | The whole flag and a crop of it, at each shape, by flag(code, { shape, fit }) | 形ごとの、旗の全体と切り抜き（flag(code, { shape, fit })） |
+| `frame_whole` | whole | 全体 |
+| `frame_crop` | cropped | 切り抜き |
+| `frame_default` | the default | 既定の表示 |
+| `how_whole` | all of the flag | 旗の全体 |
+| `how_crop_own` | its own shape | 本来の形 |
+| `how_crop_adapted` | drawn for the shape by flag-icons | flag-icons がこの形用に描いた図 |
+| `how_crop_centre` | cropped from the centre | 中央で切り抜き |
+| `how_crop_allowed` | {side}, with a colour smaller than in the flag (reason on hover) | {side}（一部の色は元の旗より小さくなります。理由はカーソルを合わせると表示） |
+| `how_crop_side_loses` | {side}; whole by default because this crop loses a colour | {side}（この切り抜きでは色が欠けるため、既定は全体） |
+| `how_crop_whole_loses` | from the centre; whole by default because this crop loses a colour | 中央で切り抜き（この切り抜きでは色が欠けるため、既定は全体） |
+| `how_crop_whole_judged` | from the centre; whole by default because no square crop shows this flag fairly | 中央で切り抜き（どの正方形の切り抜きもこの旗を正しく表せないため、既定は全体） |
+| `side_left` | kept at the hoist | 旗竿側を残す |
+| `side_right` | kept at the fly | 旗のはためく側を残す |
+| `side_top` | kept at the top | 上側を残す |
+| `side_bottom` | kept at the bottom | 下側を残す |
+| `side_centre` | cropped from the centre | 中央で切り抜き |
 | `frame_43` | 4:3 | 4:3 |
 | `frame_11` | Square | 正方形 |
 | `frame_round` | Round | 円形 |
-| `method_own` | its own shape | 本来の形 |
-| `method_adapted` | drawn for the shape by flag-icons | flag-icons がこの形用に描いた図 |
-| `method_cover` | cropped, keeping every colour | 切り抜き（どの色も残る） |
-| `method_hoist` | cropped from the fly | 旗竿側を残して切り抜き |
-| `method_contain` | whole: a crop would lose a colour | 全体を表示（切り抜くと色が欠けるため） |
 | `embed_title` | Embed this flag | この旗を埋め込む |
 | `embed_blurb` | Choose how it looks, and copy the code for your page: a <hata-flag> element, an <img>, an iframe, or for React, Vue, Svelte or Angular. | 見た目を選ぶと、ページに貼るコードをコピーできます。<hata-flag> 要素、<img>、iframe のほか、React・Vue・Svelte・Angular 用のコードもあります。 |
 | `fact_code` | Code | コード |

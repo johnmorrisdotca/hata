@@ -55,6 +55,7 @@ const state = {
   set: ["all", ...GROUPS].includes(asked.get("set")) ? asked.get("set") : "all",
   region: Object.keys(CONTINENTS).includes(asked.get("region")) ? asked.get("region") : "all",
   shape: ["flag", "4:3", "1:1", "round"].includes(asked.get("shape")) ? asked.get("shape") : "flag",
+  fit: ["auto", "whole", "crop"].includes(asked.get("fit")) ? asked.get("fit") : "auto",
   mode: MODES.includes(asked.get("mode")) ? asked.get("mode") : "country",
   seed: /^[\w-]{1,32}$/.test(asked.get("seed") ?? "") ? asked.get("seed") : null,
 };
@@ -66,6 +67,7 @@ const remember = () => {
   put("set", state.set, "all");
   put("region", state.region, "all");
   put("shape", state.shape, "flag");
+  put("fit", state.fit, "auto");
   put("mode", state.tab === "quiz" ? state.mode : null, null);
   put("seed", state.tab === "quiz" ? state.seed : null, null);
   const search = query.toString();
@@ -141,15 +143,21 @@ for (const code of FLAG_CODES) {
 }
 const searchText = new Map(FLAG_CODES.map((code) => [code, [code, NAMES[code].en, NAMES[code].ja, NAMES[code].short, NAMES[code].shortJa, NAMES[code].reading].map(fold).join("|")]));
 
-// The picture a tile shows at the gallery's shape: the drawing made by hand for it where there is one, else the flag's
-// own file, fitted by CSS the way the package measured for it (data-fit: cover, hoist or contain).
+// The picture a tile shows at the gallery's shape and frame (best for the flag, whole, or cropped): the drawing made by
+// hand for it where there is one and the frame is not "whole", else the flag's own file, fitted by CSS the way the package
+// fits it (data-fit: cover, crop or contain; data-at: the side a crop keeps).
 function drawTilePicture(code) {
   const image = tiles.get(code).item.querySelector("img");
   const framing = state.shape === "flag" ? null : records.get(code).framings[state.shape];
   const owner = (records.get(code).sameAs ?? code).toLowerCase();
-  const src = framing?.method === "adapted" ? `dist/svg/${owner}.${state.shape === "4:3" ? "4x3" : "1x1"}.svg` : fileOf(code);
+  const drawn = framing?.method === "adapted" && state.fit !== "whole";
+  const src = drawn ? `dist/svg/${owner}.${state.shape === "4:3" ? "4x3" : "1x1"}.svg` : fileOf(code);
   if (image.getAttribute("src") !== src) image.src = src;
-  image.dataset.fit = framing === null || framing.method === "adapted" ? "cover" : framing.fit;
+  // Asked for by name, "whole" is the whole flag and "crop" is a crop (kept at the side chosen for the flag); "best" is the package's own choice.
+  const fit = framing === null || drawn ? "cover" : state.fit === "whole" ? "contain" : state.fit === "crop" ? "crop" : framing.fit;
+  image.dataset.fit = fit;
+  if (fit === "crop") image.dataset.at = framing.crop.at;
+  else delete image.dataset.at;
 }
 
 function fillSets() {
@@ -190,6 +198,9 @@ function drawGallery() {
   $("region-row").hidden = state.set !== "all" && state.set !== "country";
   $("set").value = state.set;
   for (const button of $("shape").querySelectorAll("button")) button.setAttribute("aria-pressed", String(button.dataset.value === state.shape));
+  $("fit").hidden = state.shape === "flag";
+  $("grid").dataset.fit = state.fit;
+  for (const button of $("fit").querySelectorAll("button")) button.setAttribute("aria-pressed", String(button.dataset.value === state.fit));
 }
 
 function drawLeftOut() {
@@ -217,6 +228,13 @@ $("search").addEventListener("input", () => {
 for (const button of $("shape").querySelectorAll("button")) {
   button.addEventListener("click", () => {
     state.shape = button.dataset.value;
+    drawGallery();
+    remember();
+  });
+}
+for (const button of $("fit").querySelectorAll("button")) {
+  button.addEventListener("click", () => {
+    state.fit = button.dataset.value;
     drawGallery();
     remember();
   });
@@ -298,29 +316,62 @@ async function showDetail(code) {
   drawEmbed(code);
 }
 
-// The three frames, each loaded the way a page would (flag(code, { shape })), with how it was framed: the flag's own
-// shape, a drawing made for the shape by hand, a crop that keeps every colour, or the whole flag.
+// What a crop of the flag is, in words: the drawing made for the shape by hand, the side a person chose, or the centre,
+// and, where the package shows the whole flag by default, why.
+function cropHow(record, shape) {
+  const framing = record.framings[shape];
+  const { rule, at, loses } = framing.crop;
+  if (rule === "own") return say("how_crop_own");
+  if (framing.method === "adapted") return say("how_crop_adapted");
+  const side = say(`side_${at}`);
+  if (rule === "curated") return loses.length > 0 ? say("how_crop_allowed", { side }) : side;
+  if (rule === "centre") return say("how_crop_centre");
+  if (at !== "centre") return say("how_crop_side_loses", { side });
+  return loses.length > 0 ? say("how_crop_whole_loses") : say("how_crop_whole_judged");
+}
+
+// Each shape's two frames side by side, the whole flag and the crop, each loaded the way a page would
+// (flag(code, { shape, fit })), and labelled with how it was made and which of the two is the default.
 async function drawFrames(code) {
   const record = manifest(code);
   const shapes = [["4:3", "frame_43"], ["1:1", "frame_11"], ["round", "frame_round"]];
-  const framed = await Promise.all(shapes.map(([shape]) => flag(code, { shape })));
+  const framed = await Promise.all(shapes.flatMap(([shape]) => [flag(code, { shape, fit: "whole" }), flag(code, { shape, fit: "crop" })]));
   if (opened !== code) return;
   const heading = Object.assign(document.createElement("p"), { className: "fam-fine", textContent: say("frames_title") });
   $("frames").replaceChildren(
     heading,
     ...shapes.map(([shape, key], at) => {
-      const figure = document.createElement("figure");
-      const image = Object.assign(document.createElement("img"), { src: toDataUri(framed[at]), alt: "" });
-      image.dataset.shape = shape;
-      const method = record.framings[shape].method;
-      figure.dataset.method = method;
-      figure.setAttribute("data-testid", `frame-${shape}`);
-      const caption = Object.assign(document.createElement("figcaption"), { textContent: say(key) });
-      const how = Object.assign(document.createElement("small"), { textContent: say(`method_${method}`) });
-      if (method === "contain" && record.framings[shape].coverLoses.length > 0) how.title = record.framings[shape].coverLoses.join(", ");
-      caption.append(document.createElement("br"), how);
-      figure.append(image, caption);
-      return figure;
+      const framing = record.framings[shape];
+      const pair = document.createElement("div");
+      pair.className = "frame-pair";
+      pair.setAttribute("data-testid", `frame-${shape}`);
+      pair.dataset.method = framing.method;
+      // What `auto` does: the whole flag where the crop loses a colour or misrepresents it, else the crop.
+      const preferred = framing.method === "own" ? "whole" : framing.fit === "contain" && framing.method !== "adapted" ? "whole" : "crop";
+      pair.dataset.default = framing.method === "own" ? "both" : preferred;
+      for (const [which, offset] of [["whole", 0], ["crop", 1]]) {
+        const figure = document.createElement("figure");
+        figure.dataset.frame = which;
+        figure.setAttribute("data-testid", `frame-${shape}-${which}`);
+        const image = Object.assign(document.createElement("img"), { src: toDataUri(framed[at * 2 + offset]), alt: "" });
+        image.dataset.shape = shape;
+        const caption = Object.assign(document.createElement("figcaption"), { textContent: `${say(key)} · ${say(`frame_${which}`)}` });
+        const how = Object.assign(document.createElement("small"), { textContent: which === "whole" ? say("how_whole") : cropHow(record, shape) });
+        if (which === "crop" && framing.crop.why !== null) {
+          how.title = framing.crop.why;
+          how.dataset.why = "true";
+        }
+        if (which === "crop" && framing.crop.loses.length > 0) how.title = `${how.title ? `${how.title} ` : ""}(${framing.crop.loses.join(", ")})`;
+        caption.append(document.createElement("br"), how);
+        if (framing.method !== "own" && preferred === which) {
+          const tag = Object.assign(document.createElement("small"), { textContent: say("frame_default") });
+          tag.dataset.default = "true";
+          caption.append(document.createElement("br"), tag);
+        }
+        figure.append(image, caption);
+        pair.append(figure);
+      }
+      return pair;
     }),
   );
 }

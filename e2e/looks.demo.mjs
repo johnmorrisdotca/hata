@@ -16,7 +16,7 @@ for (const scheme of ["light", "dark"]) {
       await page.goto(`https://hata.test/?lang=${lang}&q=South Georgia`);
       await page.waitForSelector('main[data-ready="true"]');
       await tap(page, at("tile-GS"), testInfo);
-      await expect(page.locator(`${at("frames")} img`)).toHaveCount(3);
+      await expect(page.locator(`${at("frames")} img`)).toHaveCount(6);
       await noSidewaysScroll(page);
       const panel = await page.locator(at("detail")).evaluate((node) => [node.scrollWidth, node.clientWidth]);
       expect(panel[0]).toBeLessThanOrEqual(panel[1]);

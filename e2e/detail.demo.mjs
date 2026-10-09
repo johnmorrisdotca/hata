@@ -18,11 +18,13 @@ test("opens on a tap with the flag's names, code, proportions, source, licence a
   await expect(facts).toContainText("Public domain");
   await expect(facts).toContainText("insignia");
   await expect(facts.locator("a").first()).toHaveAttribute("href", /^https:\/\/commons\.wikimedia\.org\/wiki\/File:/);
-  await expect(page.locator(`${at("frames")} img`)).toHaveCount(3);
-  const round = page.locator(`${at("frames")} img[data-shape="round"]`);
+  // Each shape shows the whole flag beside a crop of it, and says how each was made and which is the default.
+  await expect(page.locator(`${at("frames")} img`)).toHaveCount(6);
+  const round = page.locator(`${at("frame-round-crop")} img[data-shape="round"]`);
   await expect(round).toHaveAttribute("src", /^data:image\/svg\+xml,/);
-  // Each frame says how it was made.
-  await expect(page.locator(at("frame-round"))).toHaveAttribute("data-method", /^(own|adapted|cover|hoist|contain)$/);
+  await expect(page.locator(at("frame-round-whole"))).toContainText("all of the flag");
+  await expect(page.locator(at("frame-round"))).toHaveAttribute("data-method", /^(own|adapted|cover|crop|contain)$/);
+  await expect(page.locator(at("frame-1:1"))).toHaveAttribute("data-default", /^(both|whole|crop)$/);
   await noSidewaysScroll(page);
   await tap(page, at("close"), testInfo);
   await expect(panel).toBeHidden();
@@ -64,7 +66,7 @@ test("copies the import, the lookup, an <img> tag and the SVG", async ({ page, b
 test("downloads the SVG, a PNG at the chosen width and the flag's record", async ({ page }, testInfo) => {
   await open(page, "?lang=en&set=jp");
   await tap(page, at("tile-JP-13"), testInfo);
-  await expect(page.locator(`${at("frames")} img`)).toHaveCount(3);
+  await expect(page.locator(`${at("frames")} img`)).toHaveCount(6);
   const [svg] = await Promise.all([page.waitForEvent("download"), tap(page, at("download-svg"), testInfo)]);
   expect(svg.suggestedFilename()).toBe("jp-13.svg");
   expect(readFileSync(await svg.path(), "utf8")).toBe(readFileSync("site/dist/svg/jp-13.svg", "utf8"));

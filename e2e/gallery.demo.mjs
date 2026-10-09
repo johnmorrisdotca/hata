@@ -81,6 +81,37 @@ test("frames every flag at 4:3, square or round without stretching it, as the pa
   await expect(page.locator(`${at("tile-CA")} img`)).toHaveAttribute("src", "dist/svg/ca.1x1.svg");
 });
 
+test("offers the whole flag and a crop of it for every frame, with the crop kept where it was chosen, and back to the best", async ({ page }, testInfo) => {
+  await open(page, "?lang=en&set=us");
+  await expect(page.locator(at("fit"))).toBeHidden();
+  await tap(page, `${at("shape")} [data-value="1:1"]`, testInfo);
+  await expect(page.locator(at("fit"))).toBeVisible();
+  const texas = page.locator(`${at("tile-US-TX")} img`);
+  const style = (name) => texas.evaluate((node, property) => getComputedStyle(node)[property], name);
+  // Best: Texas's crop, kept at the hoist so that the star and the blue bar show.
+  await expect(texas).toHaveAttribute("data-fit", "crop");
+  await expect(texas).toHaveAttribute("data-at", "left");
+  expect(await style("objectFit")).toBe("cover");
+  expect(await style("objectPosition")).toBe("0% 50%");
+  // Whole: all of the flag, never cropped.
+  await tap(page, `${at("fit")} [data-value="whole"]`, testInfo);
+  await expect(texas).toHaveAttribute("data-fit", "contain");
+  expect(await style("objectFit")).toBe("contain");
+  await expect(page).toHaveURL(/fit=whole/);
+  // Cropped: a flag with no crop that keeps it true (Alaska, shown whole by default) is cropped from the centre when asked.
+  const alaska = page.locator(`${at("tile-US-AK")} img`);
+  await expect(alaska).toHaveAttribute("data-fit", "contain");
+  await tap(page, `${at("fit")} [data-value="crop"]`, testInfo);
+  await expect(alaska).toHaveAttribute("data-fit", "crop");
+  await expect(alaska).toHaveAttribute("data-at", "centre");
+  await expect(texas).toHaveAttribute("data-at", "left");
+  // And back to the best for each flag.
+  await tap(page, `${at("fit")} [data-value="auto"]`, testInfo);
+  await expect(alaska).toHaveAttribute("data-fit", "contain");
+  await expect(texas).toHaveAttribute("data-fit", "crop");
+  await expect(page).not.toHaveURL(/fit=/);
+});
+
 test("saves the list of the flags shown, and the whole manifest", async ({ page }, testInfo) => {
   await open(page, "?lang=en&set=jp");
   const [list] = await Promise.all([page.waitForEvent("download"), tap(page, at("download-list"), testInfo)]);

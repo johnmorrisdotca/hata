@@ -57,6 +57,8 @@ test("no frame of any flag loses a colour the flag is made of", async ({ page },
         const framed = await shares(await flag(code, { shape }), 160, shape === "4:3" ? 120 : 160);
         // A whole flag on a neutral disc is the flag itself: the disc's grey is not one of its colours, and is left out.
         if (record.framings[shape].method === "contain") continue;
+        // A crop kept at a side a person chose may drop a colour where FOCUS writes the reason beside it (docs/framing.md).
+        if (record.framings[shape].method === "crop" && record.framings[shape].crop.loses.length > 0) continue;
         const lost = Object.entries(full).filter(([colour, share]) => share >= 0.05 && (framed[colour] ?? 0) < share * 0.5);
         if (lost.length > 0) out.push(`${code} ${shape} (${record.framings[shape].method}) loses ${lost.map(([colour, share]) => `${colour} ${Math.round(share * 100)}% to ${Math.round((framed[colour] ?? 0) * 100)}%`).join(", ")}`);
       }

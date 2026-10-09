@@ -25,6 +25,19 @@ export const FLAG_OPTIONS = [
       { value: "round", label: { en: "Round", ja: "円形" } },
     ],
   },
+  {
+    id: "fit",
+    kind: "choice",
+    attribute: "fit",
+    default: "auto",
+    label: { en: "Whole or cropped", ja: "全体か切り抜きか" },
+    help: { en: "In a 4:3, square or round frame: the best for the flag, all of the flag, or a crop kept at the side chosen for it (the United States' stars and stripes, not its middle stripes).", ja: "4:3・正方形・円形の枠で、旗に合わせた最適な表示、旗の全体、または旗ごとに選んだ側を残した切り抜き（アメリカなら中央の縞ではなく星と縞）を選びます。" },
+    choices: [
+      { value: "auto", label: { en: "Best for the flag", ja: "旗に合わせて自動" } },
+      { value: "whole", label: { en: "The whole flag", ja: "旗の全体" } },
+      { value: "crop", label: { en: "Cropped", ja: "切り抜き" } },
+    ],
+  },
   { id: "size", kind: "number", attribute: "size", default: 48, required: true, min: 12, max: 512, step: 4, label: { en: "Height in pixels", ja: "高さ（ピクセル）" }, help: { en: "Its height in CSS pixels; the width follows from the shape.", ja: "CSS ピクセルでの高さです。幅は形に合わせて決まります。" } },
   {
     id: "lang",
@@ -61,13 +74,27 @@ const aspectFor = (settings) => (settings.shape === "4:3" ? 4 / 3 : settings.sha
 const nameFor = (settings) => settings.label || flagName(settings.code, settings.lang || "en") || settings.code;
 const escapeAttribute = (text) => String(text).replaceAll("&", "&amp;").replaceAll('"', "&quot;").replaceAll("<", "&lt;");
 
+// What the flag's own file needs in a frame: the whole flag (contain), or a crop (cover) kept at a side. `whole` and
+// `crop` are what was asked for; `auto` is what the package measured for the flag.
+const POSITION = { left: "left", right: "right", top: "top", bottom: "bottom" };
+function fitOf(settings, framing) {
+  const asked = settings.fit || "auto";
+  if (asked === "whole") return { contain: true, at: "centre" };
+  if (asked === "crop") return { contain: false, at: framing?.crop?.at ?? "centre" };
+  return { contain: framing?.fit === "contain", at: framing?.fit === "crop" ? (framing.crop?.at ?? "centre") : "centre" };
+}
+
+// Whether the picture is the drawing made for the shape by hand, which `auto` and `crop` use and `whole` does not.
+const drawnFor = (settings, framing) => settings.shape !== "own" && framing?.method === "adapted" && (settings.fit || "auto") !== "whole";
+
 // The CSS an <img> needs to look as <hata-flag> does: framed by object-fit where no drawing was made for the shape.
 function imageStyle(settings, framing, adapted) {
   const rules = [];
   if (settings.shape !== "own" && !adapted) {
-    rules.push(`object-fit:${framing?.fit === "contain" ? "contain" : "cover"}`);
-    if (framing?.fit === "hoist") rules.push("object-position:left");
-    if (settings.shape === "round" && framing?.fit === "contain") rules.push("background:#e6e6e6");
+    const { contain, at } = fitOf(settings, framing);
+    rules.push(`object-fit:${contain ? "contain" : "cover"}`);
+    if (!contain && POSITION[at] !== undefined) rules.push(`object-position:${POSITION[at]}`);
+    if (settings.shape === "round" && contain) rules.push("background:#e6e6e6");
   }
   if (settings.shape === "round") rules.push("border-radius:50%");
   const shadows = [settings.border ? `0 0 0 1px ${settings.theme === "dark" ? "rgba(255,255,255,.32)" : "rgba(0,0,0,.22)"}` : "", settings.shadow ? "0 1px 3px rgba(0,0,0,.28)" : ""].filter(Boolean);
@@ -85,7 +112,7 @@ export const HATA_PRODUCT = {
   embed: "https://johnmorrisdotca.github.io/hata/embed.html",
   formats: ["element", "img", "data", "iframe", "module", "react", "vue", "svelte", "angular"],
   async context(settings) {
-    const options = settings.shape === "own" ? undefined : { shape: settings.shape };
+    const options = settings.shape === "own" ? undefined : { shape: settings.shape, ...(settings.fit && settings.fit !== "auto" ? { fit: settings.fit } : {}) };
     return { uri: await flagDataUri(settings.code, options), framing: manifest(settings.code)?.framings[settings.shape] ?? null };
   },
   frameSize(settings) {
@@ -114,7 +141,7 @@ export const HATA_PRODUCT = {
       language: "html",
       write(settings, _attributes, context) {
         const size = Number(settings.size);
-        const adapted = settings.shape !== "own" && context.framing?.method === "adapted";
+        const adapted = drawnFor(settings, context.framing);
         const file = adapted ? `${settings.code.toLowerCase()}.${settings.shape === "4:3" ? "4x3" : "1x1"}.svg` : `${settings.code.toLowerCase()}.svg`;
         const width = Math.round(size * aspectFor(settings));
         return `<img src="${SVG_BASE}/${file}" alt="${escapeAttribute(nameFor(settings))}" width="${width}" height="${size}"${imageStyle(settings, context.framing, adapted)}>`;
@@ -134,7 +161,8 @@ export const HATA_PRODUCT = {
       label: { en: "ES module", ja: "ES モジュール" },
       language: "js",
       write(settings) {
-        const options = settings.shape === "own" ? "" : `, { shape: ${JSON.stringify(settings.shape)} }`;
+        const fit = settings.fit && settings.fit !== "auto" ? `, fit: ${JSON.stringify(settings.fit)}` : "";
+        const options = settings.shape === "own" ? "" : `, { shape: ${JSON.stringify(settings.shape)}${fit} }`;
         return `import { flagDataUri } from "${PACKAGE}/load";\n\nconst image = new Image();\nimage.src = (await flagDataUri(${JSON.stringify(settings.code)}${options})) ?? "";\nimage.alt = ${JSON.stringify(nameFor(settings))};\nimage.height = ${Number(settings.size)};\ndocument.body.append(image);`;
       },
     },
