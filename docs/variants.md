@@ -44,4 +44,4 @@ own module, `/flags/<code>--<id>`, and file, `svg/<code>--<id>.svg`.
 
 ## Offered in the data and left out
 
-None: every drawing named in `VARIANTS` ships.
+None: every drawing named in VARIANTS ships.

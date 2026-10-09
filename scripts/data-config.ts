@@ -317,7 +317,7 @@ const VARIANTS: Readonly<Record<string, VariantSet>> = {
       {
         id: "union-flag",
         name: "The Union Flag",
-        nameJa: "ユニオンフラッグ（英国旗）",
+        nameJa: "ユニオンフラッグ（イギリス国旗）",
         status: "official",
         from: null,
         until: null,
@@ -334,7 +334,7 @@ const VARIANTS: Readonly<Record<string, VariantSet>> = {
       {
         id: "lozenges",
         name: "White and blue lozenges",
-        nameJa: "白と青の菱形模様",
+        nameJa: "白と青の菱形模様の旗",
         status: "official",
         from: null,
         until: null,
@@ -345,7 +345,7 @@ const VARIANTS: Readonly<Record<string, VariantSet>> = {
       {
         id: "stripes",
         name: "White and blue stripes",
-        nameJa: "白と青の縞模様",
+        nameJa: "白と青の横縞の旗",
         status: "official",
         from: null,
         until: null,
@@ -362,7 +362,7 @@ const VARIANTS: Readonly<Record<string, VariantSet>> = {
       {
         id: "union-flag",
         name: "The Union Flag",
-        nameJa: "ユニオンフラッグ（英国旗）",
+        nameJa: "ユニオンフラッグ（イギリス国旗）",
         status: "official",
         from: "1973",
         until: null,
@@ -419,7 +419,7 @@ const VARIANTS: Readonly<Record<string, VariantSet>> = {
       {
         id: "local",
         name: "Guadeloupe's local flag",
-        nameJa: "グアドループの地域旗",
+        nameJa: "グアドループの非公式の旗",
         status: "local",
         from: null,
         until: null,
@@ -455,7 +455,7 @@ const VARIANTS: Readonly<Record<string, VariantSet>> = {
       {
         id: "local",
         name: "French Guiana's local flag",
-        nameJa: "フランス領ギアナの地域旗",
+        nameJa: "仏領ギアナの非公式の旗",
         status: "local",
         from: null,
         until: null,
@@ -491,7 +491,7 @@ const VARIANTS: Readonly<Record<string, VariantSet>> = {
       {
         id: "local",
         name: "Mayotte's local flag",
-        nameJa: "マヨットの地域旗",
+        nameJa: "マヨットの非公式の旗",
         status: "local",
         from: null,
         until: null,
@@ -509,7 +509,7 @@ const VARIANTS: Readonly<Record<string, VariantSet>> = {
       {
         id: "local",
         name: "Saint-Barthélemy's local flag",
-        nameJa: "サン・バルテルミーの地域旗",
+        nameJa: "サン・バルテルミーの非公式の旗",
         status: "local",
         from: null,
         until: null,
@@ -527,7 +527,7 @@ const VARIANTS: Readonly<Record<string, VariantSet>> = {
       {
         id: "local",
         name: "The local flag of Saint-Pierre and Miquelon",
-        nameJa: "サンピエール・ミクロンの地域旗",
+        nameJa: "サンピエール島・ミクロン島の非公式の旗",
         status: "local",
         from: null,
         until: null,
@@ -545,7 +545,7 @@ const VARIANTS: Readonly<Record<string, VariantSet>> = {
       {
         id: "local",
         name: "The local flag of Wallis and Futuna",
-        nameJa: "ウォリス・フツナの地域旗",
+        nameJa: "ウォリス・フツナの非公式の旗",
         status: "local",
         from: null,
         until: null,
@@ -562,7 +562,7 @@ const VARIANTS: Readonly<Record<string, VariantSet>> = {
       {
         id: "kanak",
         name: "The Kanak flag",
-        nameJa: "カナク旗",
+        nameJa: "カナック旗",
         status: "official",
         from: "2010",
         until: null,

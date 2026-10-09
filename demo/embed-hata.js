@@ -31,7 +31,7 @@ export const FLAG_OPTIONS = [
     attribute: "variant",
     default: "",
     label: { en: "Variant (optional)", ja: "別の旗（任意）" },
-    help: { en: "Which of the place's flags in real use to draw, by its id (the flag's panel above has the switch): de-facto, stripes, local. Left empty, the default.", ja: "その地域で実際に使われている旗のうち、どれを描くかを id で指定します（上の旗のパネルに切り替えがあります）。例：de-facto、stripes、local。空のままなら既定の旗です。" },
+    help: { en: "Which of the place's flags in real use to draw, by its id (the flag's panel above has the switch): de-facto, stripes, local. Left empty, the default.", ja: "その地域で実際に使われている旗のうち、描く旗を id で指定します（切り替えは上の旗のパネルにあります）。例：de-facto、stripes、local。空のままなら既定の旗を描きます。" },
   },
   {
     id: "fit",
