@@ -6,6 +6,41 @@ All notable changes to this project are written here. The format follows
 
 ## [Unreleased]
 
+### Added
+
+- **105 more flags, 463 in all**: the first level of seven more countries, each whole (every code Kuni 1.1.0
+  gives it has a flag or a reason). Australia's 8 states and territories; the United Kingdom's England, Scotland
+  and Wales (Northern Ireland has no flag of its own); Germany's 16 states, each its civil flag (Bavaria's
+  lozenges); France's Corsica, Nouvelle-Aquitaine and Normandy, and its 13 overseas codes, which fly their
+  country code's flag (nine regions use a logo, and Brittany's drawing is CC BY-SA); Switzerland's 26 cantons;
+  Austria's 9 states, each its civil flag; and Brazil's 26 states and Federal District. Spain, Italy, Mexico and
+  India wait, for the reasons in `docs/decisions.md`.
+- **`<hata-flag>`**, a custom element (`@johnmorrisdotca/hata/element`, and `/element/define` or
+  `dist/element-define.js` to register it): `code`, `shape`, `size`, `fit`, `label`, `lang`, `theme`, `border`,
+  `shadow` and `loading`; named for a screen reader from Kuni's names in the page's language; lazy; `hata-load`
+  and `hata-error` events; a code with no flag draws nothing and warns once. The family's conventions, from
+  Kyuubu's `<kyuubu-cube>`.
+- **`embed.html`** in the demo: one flag for an iframe, from the same attributes in its address.
+- **`@johnmorrisdotca/hata/names`**: `flagName(code, lang)` and `flagAspect(code)`.
+- **Drawings made for a frame**: flag-icons' 4:3 and square drawings of 212 and 213 flags, as
+  `/flags/<code>.4x3` and `.1x1` and `svg/<code>.4x3.svg` and `.1x1.svg`, used by `flag(code, { shape })`.
+- **`framings` in every manifest record**, and the type `Framing`: how each frame is made, and what a centre crop
+  would lose.
+- The demo: the new countries in the gallery's set list (now a menu) and the quiz (Australia's, Brazil's,
+  Germany's and Switzerland's regions, and Europe's together), the frames each say how they were made, and
+  **Embed this flag**, a builder that writes the code for an element, an `<img>`, a data: URI, an iframe, an ES
+  module, React, Vue, Svelte or Angular, each with a Copy button.
+
+### Changed
+
+- **Frames no longer misrepresent a flag.** `frame()`'s default fit is now `auto`: a crop from the centre only
+  where it keeps every colour that covers 5% of the flag at half its share or more, and the whole flag otherwise
+  (on a neutral disc when round). 1.0.0 always cropped, which turned Canada's square into a white square with a
+  leaf; `fit: "cover"` gives the old frame. `flag(code, { shape })` uses flag-icons' drawing made for the shape
+  where there is one. A new fit, `hoist`, crops from the fly. Every frame of every flag is checked in a browser.
+- Every shipped SVG names its flag on its root (`data-hata="ca"`), which is how `frame()` finds its measured fit.
+- Kuni 1.1.0 for the codes and names. The Wikidata snapshot asks only for the codes Kuni lists at the first level.
+
 ## [1.0.0] - 2026-10-09
 
 The first version: flags as SVG for every country, and for the first-level subdivisions of Japan, Canada and the

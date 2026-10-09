@@ -8,8 +8,10 @@ import { describe, expect, it } from "vitest";
 import { WORDS } from "../demo/words.js";
 import { REVIEWED } from "../scripts/data-config.ts";
 import * as main from "./index.ts";
+import * as element from "./element.ts";
 import * as load from "./load.ts";
 import * as manifest from "./manifest.ts";
+import * as names from "./names.ts";
 
 const pkg = JSON.parse(readFileSync("package.json", "utf8"));
 const readme = readFileSync("README.md", "utf8");
@@ -31,7 +33,7 @@ describe("the README", () => {
   it("names in its API table every runtime export of every entry", () => {
     const table = section("API");
     const rowOf = (entry) => table.split("\n").find((line) => line.startsWith(`| \`${entry}\``)) ?? "";
-    for (const [entry, module] of [[pkg.name, main], [`${pkg.name}/load`, load], [`${pkg.name}/manifest`, manifest]]) {
+    for (const [entry, module] of [[pkg.name, main], [`${pkg.name}/load`, load], [`${pkg.name}/manifest`, manifest], [`${pkg.name}/names`, names], [`${pkg.name}/element`, element]]) {
       const row = rowOf(entry);
       for (const name of Object.keys(module)) expect(row, `${name} is not in the API table's row for ${entry}`).toContain(`\`${name}\``);
     }
@@ -51,6 +53,7 @@ describe("the README", () => {
     expect(readme).toContain(`${count("JP-")} of Japan's 47 prefectures`);
     expect(readme).toContain(`${count("CA-")} of Canada's 13 provinces and territories`);
     expect(readme).toContain(`${count("US-")} of the United States' 57`);
+    for (const [prefix, words] of [["AU-", "of Australia's 8"], ["GB-", "of the United Kingdom's 4"], ["DE-", "of Germany's 16"], ["FR-", "of France's 26"], ["CH-", "of Switzerland's 26"], ["AT-", "of Austria's 9"], ["BR-", "of Brazil's 27"]]) expect(readme).toContain(`${count(prefix)} ${words}`);
     expect(readme).toContain(`${manifest.LEFT_OUT.length} codes`);
   });
 

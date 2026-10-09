@@ -38,9 +38,22 @@ describe("the built entries", () => {
 
   it("list in docs/sizes.md exactly the flags over the budget", () => {
     const doc = readFileSync("docs/sizes.md", "utf8");
-    const section = doc.slice(doc.indexOf("## Over the budget"), doc.indexOf("## Worth knowing"));
+    const section = doc.slice(doc.indexOf("## Over the budget"), doc.indexOf("## Drawings made for a frame over the budget"));
     const listed = [...section.matchAll(/^\| `([A-Z-]+)` /gm)].map((match) => match[1]).sort();
     const over = MANIFEST.filter((record) => record.sameAs === null && record.bytes > BUDGET_BYTES).map((record) => record.code).sort();
     expect(listed).toEqual(over);
+  });
+
+  it("list in docs/sizes.md exactly the drawings made for a frame that are over the budget, none over the ceiling", () => {
+    const doc = readFileSync("docs/sizes.md", "utf8");
+    const section = doc.slice(doc.indexOf("## Drawings made for a frame over the budget"), doc.indexOf("## Worth knowing"));
+    const listed = [...section.matchAll(/^\| `([a-z0-9.-]+)` /gm)].map((match) => match[1]).sort();
+    const over = MANIFEST.filter((record) => record.sameAs === null)
+      .flatMap((record) => (["4:3", "1:1"] as const).filter((shape) => record.framings[shape].method === "adapted").map((shape) => ({ module: `${record.code.toLowerCase()}.${shape.replace(":", "x")}`, bytes: record.framings[shape].bytes! })))
+      .filter((one) => one.bytes > BUDGET_BYTES)
+      .map((one) => one.module)
+      .sort();
+    expect(listed).toEqual(over);
+    for (const record of MANIFEST) for (const shape of ["4:3", "1:1"] as const) expect(record.framings[shape].bytes ?? 0, `${record.code} ${shape}`).toBeLessThan(CEILING_BYTES);
   });
 });

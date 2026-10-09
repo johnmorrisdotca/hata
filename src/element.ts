@@ -256,6 +256,7 @@ const build = (): CustomElementConstructor => {
  * that wants another name passes it.
  *
  * @param name - The tag to register; `hata-flag` when left out.
+ * @returns Nothing: the element is registered, or was already, or there is no browser to register it in.
  *
  * @example
  * ```ts

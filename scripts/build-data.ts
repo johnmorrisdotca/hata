@@ -292,6 +292,7 @@ for (const one of owners) {
     if (candidate === undefined) throw new Error(`${one.place.code}: ${entry.source} has no ${entry.file}: run pnpm data:framing ${one.place.code}`);
     const module = `${moduleName(one.place.code)}.${shapeName(shape)}`;
     const optimised = optimiseFlag(candidate.text, `${one.place.code}-${shapeName(shape)}`, { ...(entry.precision === undefined ? {} : { precision: entry.precision }), ...(entry.keepPaths ? { keepPaths: true } : {}) });
+    if (Buffer.byteLength(optimised.svg) > CEILING_BYTES) throw new Error(`${module}: ${KB(Buffer.byteLength(optimised.svg))} after optimising, over the ceiling of ${KB(CEILING_BYTES)}`);
     adapted.push({ owner: one.place.code, shape, module, file: candidate.file, page: candidate.page, version: setNamed(candidate.source).version, optimised, raw: Buffer.byteLength(candidate.text) });
   }
 }
@@ -655,6 +656,7 @@ Made by \`pnpm data\`; a test fails if this list and the data differ. Sizes are 
 | The same drawings as their sources have them | ${owners.length} | ${KB(totals.raw)} | |
 | The median flag | | ${KB(median)} | |
 | The countries alone | ${owners.filter((one) => one.place.group === "country").length} | ${KB(owners.filter((one) => one.place.group === "country").reduce((sum, one) => sum + size(one), 0))} | ${KB(owners.filter((one) => one.place.group === "country").reduce((sum, one) => sum + one.gzip, 0))} |
+| Drawings made for a frame (flag-icons' 4:3 and square, \`/flags/<code>.4x3\`, \`.1x1\`) | ${adapted.length} | ${KB(adapted.reduce((sum, one) => sum + Buffer.byteLength(one.optimised.svg), 0))} | ${KB(adapted.reduce((sum, one) => sum + gzipSync(one.optimised.svg, { level: 9 }).length, 0))} |
 
 ## Over the budget
 
@@ -669,6 +671,18 @@ ${
 | --- | --- | --- | --- | --- |
 ${over.map((one) => `| \`${one.place.code}\` | ${cell(one.place.en)} | ${KB(size(one))} | ${KB(one.gzip)} | ${KB(one.drawing.bytes)} |`).join("\n")}`
 }
+
+## Drawings made for a frame over the budget
+
+${(() => {
+  const heavy = adapted.filter((one) => Buffer.byteLength(one.optimised.svg) > BUDGET_BYTES).sort((a, b) => Buffer.byteLength(b.optimised.svg) - Buffer.byteLength(a.optimised.svg));
+  if (heavy.length === 0) return "None.";
+  return `They carry the same coats of arms as the flags, drawn again by flag-icons; a page loads one only when it asks for that frame.
+
+| Module | Place | SVG | Gzipped | As flag-icons has it |
+| --- | --- | --- | --- | --- |
+${heavy.map((one) => `| \`${one.module}\` | ${cell(places.find((place) => place.code === one.owner)!.en)} | ${KB(Buffer.byteLength(one.optimised.svg))} | ${KB(gzipSync(one.optimised.svg, { level: 9 }).length)} | ${KB(one.raw)} |`).join("\n")}`;
+})()}
 
 ## Worth knowing about some pictures
 

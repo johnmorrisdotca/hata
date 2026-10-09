@@ -25,7 +25,7 @@ export const FLAG_OPTIONS = [
       { value: "round", label: { en: "Round", ja: "円形" } },
     ],
   },
-  { id: "size", kind: "number", attribute: "size", default: 48, required: true, min: 12, max: 512, step: 4, label: { en: "Height (px)", ja: "高さ（px）" }, help: { en: "Its height in CSS pixels; the width follows from the shape.", ja: "CSS ピクセルでの高さです。幅は形に合わせて決まります。" } },
+  { id: "size", kind: "number", attribute: "size", default: 48, required: true, min: 12, max: 512, step: 4, label: { en: "Height in pixels", ja: "高さ（ピクセル）" }, help: { en: "Its height in CSS pixels; the width follows from the shape.", ja: "CSS ピクセルでの高さです。幅は形に合わせて決まります。" } },
   {
     id: "lang",
     kind: "choice",

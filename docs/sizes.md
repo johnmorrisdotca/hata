@@ -9,6 +9,7 @@ Made by `pnpm data`; a test fails if this list and the data differ. Sizes are of
 | The same drawings as their sources have them | 434 | 14594.2 KB | |
 | The median flag | | 755 B | |
 | The countries alone | 238 | 1996.9 KB | 668.5 KB |
+| Drawings made for a frame (flag-icons' 4:3 and square, `/flags/<code>.4x3`, `.1x1`) | 425 | 2792.2 KB | 934.7 KB |
 
 ## Over the budget
 
@@ -73,6 +74,25 @@ and listed here so a new one is noticed (the size test holds this list).
 | `GS` | South Georgia & South Sandwich Islands | 41.4 KB | 15.4 KB | 51.7 KB |
 | `BZ` | Belize | 40.8 KB | 14.8 KB | 70.2 KB |
 | `DO` | Dominican Republic | 40.7 KB | 14.7 KB | 198.8 KB |
+
+## Drawings made for a frame over the budget
+
+They carry the same coats of arms as the flags, drawn again by flag-icons; a page loads one only when it asks for that frame.
+
+| Module | Place | SVG | Gzipped | As flag-icons has it |
+| --- | --- | --- | --- | --- |
+| `rs.4x3` | Serbia | 175.3 KB | 48.5 KB | 177.4 KB |
+| `rs.1x1` | Serbia | 174.9 KB | 48.2 KB | 177.2 KB |
+| `bo.1x1` | Bolivia | 100.3 KB | 24.3 KB | 102.3 KB |
+| `bo.4x3` | Bolivia | 98.5 KB | 24.0 KB | 100.5 KB |
+| `mx.4x3` | Mexico | 81.6 KB | 28.7 KB | 82.8 KB |
+| `es.1x1` | Spain | 78.6 KB | 15.0 KB | 80.2 KB |
+| `es.4x3` | Spain | 77.5 KB | 14.3 KB | 79.1 KB |
+| `mx.1x1` | Mexico | 77.2 KB | 26.9 KB | 78.3 KB |
+| `sv.1x1` | El Salvador | 71.7 KB | 21.2 KB | 75.9 KB |
+| `sv.4x3` | El Salvador | 71.3 KB | 20.9 KB | 75.5 KB |
+| `me.1x1` | Montenegro | 55.3 KB | 21.0 KB | 55.6 KB |
+| `me.4x3` | Montenegro | 54.7 KB | 20.7 KB | 55.1 KB |
 
 ## Worth knowing about some pictures
 

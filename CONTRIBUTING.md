@@ -90,6 +90,7 @@ pnpm test:demo        # build the demo and play it in a real browser
 pnpm data             # rebuild src/flags, src/data and the lists in docs/ from data-sources/ (no network, no browser)
 pnpm data:compare     # draw every shipped flag beside its source, pixel by pixel (Chromium)
 pnpm data:choose      # compare every flag's drawings and choose what ships (Chromium); then pnpm data
+pnpm data:framing     # measure each flag's 4:3, square and round frames (Chromium); then pnpm data
 pnpm data:sheet <out.png> <codes…> | --compared   # the drawings side by side, for a person to look at
 pnpm data:wikidata    # take a new Wikidata snapshot (network)
 pnpm data:commons     # fetch the Commons files it names, and what Commons says about them (network)
@@ -105,12 +106,17 @@ Every file under `src/flags/` and `src/data/`, and `docs/provenance.md`, `docs/l
 - **A wrong or out-of-date flag is fixed at its source.** Wikidata's flag image for the place (P41) and the
   Commons file it names take edits from anyone; the next snapshot brings the change in. What only this package
   decides is in `scripts/data-config.ts`, each with its reason: `CHOSEN` (which file where Wikidata names two),
-  `ITEM` (which item where two carry a code), `ACCEPTED` (a licence the maintainer accepted), `NO_FLAG`, and
-  `REVIEWED` (what a person found where the flag sets draw something else).
+  `ITEM` (which item where two carry a code), `NAMED` (a Commons file named by hand: a civil flag where Wikidata
+  gives the service flag, a drawing at the law's proportions), `SAME_PLACE` (a subdivision code that is a country
+  code too), `ACCEPTED` (a licence the maintainer accepted), `NO_FLAG`, `FOCUS` (a flag that may be cropped from
+  the hoist), `REVIEWED` (what a person found where the flag sets draw something else), and
+  `SUBDIVISION_COUNTRIES`.
+- **A country's regions come in whole**: every first-level code Kuni gives it has a flag or a reason, or the
+  country waits (`docs/decisions.md`).
 - **Nothing is redrawn**, and nothing from anywhere but Commons and the MIT flag sets is used. A drawing ships
   only under public domain, CC0, CC BY or MIT.
-- **A changed flag is compared before it ships**: `pnpm data:choose <code>`, `pnpm data`, then
-  `pnpm data:compare <code>`. A place newly listed in `docs/compared.md` needs a line in `REVIEWED`, written after
+- **A changed flag is compared before it ships**: `pnpm data:choose <code>`, `pnpm data`, `pnpm data:framing
+  <code>`, `pnpm data` again, then `pnpm data:compare <code>`. A place newly listed in `docs/compared.md` needs a line in `REVIEWED`, written after
   looking at `pnpm data:sheet`; the tests fail until it has one.
 - **Sizes**: a flag over the budget is listed in `docs/sizes.md`, and the size test holds the list; a flag over
   the ceiling stops the build.

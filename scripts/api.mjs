@@ -1,7 +1,7 @@
 // The API reference, made from the source: every export of every entry point in package.json,
 // with its signature and its doc comment, read with the TypeScript compiler the package is
 // built with. `apiOf()` is the data; `apiPage()` is the page the demo site serves as api.html.
-// A dev-only tool: the package itself depends on nothing. The 358 entries of one flag each (`/flags/*`) are one
+// A dev-only tool: the package itself depends on nothing. The entries of one flag each (`/flags/*`) are one
 // string apiece, described once on the page, and the files (`/svg/*`, `/manifest.json`) are not code.
 import { Buffer } from "node:buffer";
 import { readFileSync } from "node:fs";
