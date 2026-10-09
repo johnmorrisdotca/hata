@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_the_United_States.svg
 
 /**
- * The flag of U.S. Outlying Islands (合衆国領有小離島), UM, as an SVG string: viewBox 7410 by 3900 (19:10), 727 B.
+ * The flag of U.S. Outlying Islands (合衆国領有小離島), UM, as an SVG string: viewBox 7410 by 3900 (19:10), 742 B.
  * From Wikimedia Commons, "Flag of the United States.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 7410 3900\"><path fill=\"#b31942\" d=\"M0 0h7410v3900H0\"/><path stroke=\"#fff\" stroke-width=\"300\" d=\"M0 450h7410m0 600H0m0 600h7410m0 600H0m0 600h7410m0 600H0\"/><path fill=\"#0a3161\" d=\"M0 0h2964v2100H0\"/><g fill=\"#fff\"><g id=\"hata-um-d\"><g id=\"hata-um-c\"><g id=\"hata-um-e\"><g id=\"hata-um-b\"><path id=\"hata-um-a\" d=\"m247 90 71 217-185-134h228L176 307z\"/><use y=\"420\" href=\"#hata-um-a\"/><use y=\"840\" href=\"#hata-um-a\"/><use y=\"1260\" href=\"#hata-um-a\"/></g><use y=\"1680\" href=\"#hata-um-a\"/></g><use x=\"247\" y=\"210\" href=\"#hata-um-b\"/></g><use x=\"494\" href=\"#hata-um-c\"/></g><use x=\"988\" href=\"#hata-um-d\"/><use x=\"1976\" href=\"#hata-um-c\"/><use x=\"2470\" href=\"#hata-um-e\"/></g></svg>";
+const svg: string = "<svg data-hata=\"um\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 7410 3900\"><path fill=\"#b31942\" d=\"M0 0h7410v3900H0\"/><path stroke=\"#fff\" stroke-width=\"300\" d=\"M0 450h7410m0 600H0m0 600h7410m0 600H0m0 600h7410m0 600H0\"/><path fill=\"#0a3161\" d=\"M0 0h2964v2100H0\"/><g fill=\"#fff\"><g id=\"hata-um-d\"><g id=\"hata-um-c\"><g id=\"hata-um-e\"><g id=\"hata-um-b\"><path id=\"hata-um-a\" d=\"m247 90 71 217-185-134h228L176 307z\"/><use y=\"420\" href=\"#hata-um-a\"/><use y=\"840\" href=\"#hata-um-a\"/><use y=\"1260\" href=\"#hata-um-a\"/></g><use y=\"1680\" href=\"#hata-um-a\"/></g><use x=\"247\" y=\"210\" href=\"#hata-um-b\"/></g><use x=\"494\" href=\"#hata-um-c\"/></g><use x=\"988\" href=\"#hata-um-d\"/><use x=\"1976\" href=\"#hata-um-c\"/><use x=\"2470\" href=\"#hata-um-e\"/></g></svg>";
 
 export { svg };
 export default svg;

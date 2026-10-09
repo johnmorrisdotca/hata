@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_Namibia.svg
 
 /**
- * The flag of Namibia (ナミビア), NA, as an SVG string: viewBox 90 by 60 (3:2), 697 B.
+ * The flag of Namibia (ナミビア), NA, as an SVG string: viewBox 90 by 60 (3:2), 712 B.
  * From Wikimedia Commons, "Flag of Namibia.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 90 60\"><title>Flag of Namibia</title><defs><clipPath id=\"hata-na-a\"><path d=\"M0 0h90v60H0z\"/></clipPath></defs><path fill=\"#002f6c\" d=\"M0 60V0h90z\"/><path fill=\"#009a44\" d=\"M90 0v60H0z\"/><g clip-path=\"url(#hata-na-a)\"><path stroke=\"#fff\" stroke-width=\"20\" d=\"M0 60 90 0\"/><path stroke=\"#c8102e\" stroke-width=\"15\" d=\"M0 60 90 0\"/></g><path fill=\"#ffcd00\" d=\"m18 6.34 1.55 4.2L23 7.69l-.76 4.42 4.42-.76-2.86 3.45 4.2 1.55-4.2 1.55 2.86 3.45-4.42-.76L23 25l-3.45-2.86-1.55 4.2-1.55-4.2L13 25l.76-4.42-4.42.76 2.86-3.45L8 16.34l4.2-1.55-2.86-3.45 4.42.76L13 7.68l3.45 2.87z\"/><circle cx=\"18\" cy=\"16.34\" r=\"5.5\" stroke=\"#002f6c\"/></svg>";
+const svg: string = "<svg data-hata=\"na\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 90 60\"><title>Flag of Namibia</title><defs><clipPath id=\"hata-na-a\"><path d=\"M0 0h90v60H0z\"/></clipPath></defs><path fill=\"#002f6c\" d=\"M0 60V0h90z\"/><path fill=\"#009a44\" d=\"M90 0v60H0z\"/><g clip-path=\"url(#hata-na-a)\"><path stroke=\"#fff\" stroke-width=\"20\" d=\"M0 60 90 0\"/><path stroke=\"#c8102e\" stroke-width=\"15\" d=\"M0 60 90 0\"/></g><path fill=\"#ffcd00\" d=\"m18 6.34 1.55 4.2L23 7.69l-.76 4.42 4.42-.76-2.86 3.45 4.2 1.55-4.2 1.55 2.86 3.45-4.42-.76L23 25l-3.45-2.86-1.55 4.2-1.55-4.2L13 25l.76-4.42-4.42.76 2.86-3.45L8 16.34l4.2-1.55-2.86-3.45 4.42.76L13 7.68l3.45 2.87z\"/><circle cx=\"18\" cy=\"16.34\" r=\"5.5\" stroke=\"#002f6c\"/></svg>";
 
 export { svg };
 export default svg;

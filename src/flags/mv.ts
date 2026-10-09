@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_Maldives.svg
 
 /**
- * The flag of Maldives (モルディブ), MV, as an SVG string: viewBox 720 by 480 (3:2), 244 B.
+ * The flag of Maldives (モルディブ), MV, as an SVG string: viewBox 720 by 480 (3:2), 259 B.
  * From Wikimedia Commons, "Flag of Maldives.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 720 480\"><path fill=\"#007e3a\" stroke=\"#d21034\" stroke-width=\"120\" d=\"M60 60h600v360H60z\"/><circle cx=\"390\" cy=\"240\" r=\"80\" fill=\"#fff\"/><circle cx=\"420\" cy=\"240\" r=\"80\" fill=\"#007e3a\"/></svg>";
+const svg: string = "<svg data-hata=\"mv\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 720 480\"><path fill=\"#007e3a\" stroke=\"#d21034\" stroke-width=\"120\" d=\"M60 60h600v360H60z\"/><circle cx=\"390\" cy=\"240\" r=\"80\" fill=\"#fff\"/><circle cx=\"420\" cy=\"240\" r=\"80\" fill=\"#007e3a\"/></svg>";
 
 export { svg };
 export default svg;

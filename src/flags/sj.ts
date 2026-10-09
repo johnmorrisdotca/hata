@@ -4,7 +4,7 @@
 import { svg as shared } from "./no";
 
 /**
- * The flag of Svalbard & Jan Mayen (スバールバル諸島・ヤンマイエン島), SJ, as an SVG string: viewBox 22 by 16 (11:8), 252 B. The same picture as NO's.
+ * The flag of Svalbard & Jan Mayen (スバールバル諸島・ヤンマイエン島), SJ, as an SVG string: viewBox 22 by 16 (11:8), 267 B. The same picture as NO's.
  * From Wikimedia Commons, "Flag of Norway.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *

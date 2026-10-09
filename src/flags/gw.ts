@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_Guinea-Bissau.svg
 
 /**
- * The flag of Guinea-Bissau (ギニアビサウ), GW, as an SVG string: viewBox 12 by 6 (2:1), 526 B.
+ * The flag of Guinea-Bissau (ギニアビサウ), GW, as an SVG string: viewBox 12 by 6 (2:1), 541 B.
  * From Wikimedia Commons, "Flag of Guinea-Bissau.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-2 -3 12 6\"><path fill=\"#fcd116\" d=\"M-2-3h12v6H-2z\"/><path fill=\"#009e49\" d=\"M-2 0h12v3H-2z\"/><path fill=\"#ce1126\" d=\"M-2-3h4v6h-4z\"/><g id=\"hata-gw-b\"><path id=\"hata-gw-a\" fill=\"#000\" d=\"M0-1v1h.5\" transform=\"rotate(18 0,-1)\"/><use href=\"#hata-gw-a\" transform=\"scale(-1,1)\"/></g><use href=\"#hata-gw-b\" transform=\"rotate(72)\"/><use href=\"#hata-gw-b\" transform=\"rotate(144)\"/><use href=\"#hata-gw-b\" transform=\"rotate(216)\"/><use href=\"#hata-gw-b\" transform=\"rotate(288)\"/></svg>";
+const svg: string = "<svg data-hata=\"gw\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-2 -3 12 6\"><path fill=\"#fcd116\" d=\"M-2-3h12v6H-2z\"/><path fill=\"#009e49\" d=\"M-2 0h12v3H-2z\"/><path fill=\"#ce1126\" d=\"M-2-3h4v6h-4z\"/><g id=\"hata-gw-b\"><path id=\"hata-gw-a\" fill=\"#000\" d=\"M0-1v1h.5\" transform=\"rotate(18 0,-1)\"/><use href=\"#hata-gw-a\" transform=\"scale(-1,1)\"/></g><use href=\"#hata-gw-b\" transform=\"rotate(72)\"/><use href=\"#hata-gw-b\" transform=\"rotate(144)\"/><use href=\"#hata-gw-b\" transform=\"rotate(216)\"/><use href=\"#hata-gw-b\" transform=\"rotate(288)\"/></svg>";
 
 export { svg };
 export default svg;

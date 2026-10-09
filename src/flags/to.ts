@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_Tonga.svg
 
 /**
- * The flag of Tonga (トンガ), TO, as an SVG string: viewBox 96 by 48 (2:1), 202 B.
+ * The flag of Tonga (トンガ), TO, as an SVG string: viewBox 96 by 48 (2:1), 217 B.
  * From Wikimedia Commons, "Flag of Tonga.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 96 48\"><g fill=\"#c10000\"><path d=\"M0 0h96v48H0z\"/><path fill=\"#fff\" d=\"M0 0h40v24H0z\"/><path d=\"M17 3h6v18h-6z\"/><path d=\"M11 9h18v6H11z\"/></g></svg>";
+const svg: string = "<svg data-hata=\"to\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 96 48\"><g fill=\"#c10000\"><path d=\"M0 0h96v48H0z\"/><path fill=\"#fff\" d=\"M0 0h40v24H0z\"/><path d=\"M17 3h6v18h-6z\"/><path d=\"M11 9h18v6H11z\"/></g></svg>";
 
 export { svg };
 export default svg;

@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_Tokyo_Metropolis.svg
 
 /**
- * The flag of Tokyo (東京都), JP-13, as an SVG string: viewBox 27 by 18 (3:2), 412 B.
+ * The flag of Tokyo (東京都), JP-13, as an SVG string: viewBox 27 by 18 (3:2), 430 B.
  * From Wikimedia Commons, "Flag of Tokyo Metropolis.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"#fff\" viewBox=\"-13.5 -9 27 18\"><path fill=\"indigo\" d=\"M-13.5-9h27V9h-27z\"/><g id=\"hata-jp-13-b\"><path id=\"hata-jp-13-a\" d=\"m0 6 .5-.5V2h-1v3.5z\"/><use href=\"#hata-jp-13-a\" transform=\"rotate(60)\"/><use href=\"#hata-jp-13-a\" transform=\"rotate(-60)\"/></g><use href=\"#hata-jp-13-b\" transform=\"scale(1-1)\"/><circle r=\"3\"/><circle r=\"2\" fill=\"indigo\"/><circle r=\"1\"/></svg>";
+const svg: string = "<svg data-hata=\"jp-13\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"#fff\" viewBox=\"-13.5 -9 27 18\"><path fill=\"indigo\" d=\"M-13.5-9h27V9h-27z\"/><g id=\"hata-jp-13-b\"><path id=\"hata-jp-13-a\" d=\"m0 6 .5-.5V2h-1v3.5z\"/><use href=\"#hata-jp-13-a\" transform=\"rotate(60)\"/><use href=\"#hata-jp-13-a\" transform=\"rotate(-60)\"/></g><use href=\"#hata-jp-13-b\" transform=\"scale(1-1)\"/><circle r=\"3\"/><circle r=\"2\" fill=\"indigo\"/><circle r=\"1\"/></svg>";
 
 export { svg };
 export default svg;

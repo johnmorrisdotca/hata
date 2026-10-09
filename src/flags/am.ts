@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_Armenia.svg
 
 /**
- * The flag of Armenia (アルメニア), AM, as an SVG string: viewBox 1200 by 600 (2:1), 198 B.
+ * The flag of Armenia (アルメニア), AM, as an SVG string: viewBox 1200 by 600 (2:1), 213 B.
  * From Wikimedia Commons, "Flag of Armenia.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1200 600\"><path fill=\"#f2a800\" d=\"M0 0h1200v600H0z\"/><path fill=\"#0033a0\" d=\"M0 0h1200v400H0z\"/><path fill=\"#d90012\" d=\"M0 0h1200v200H0z\"/></svg>";
+const svg: string = "<svg data-hata=\"am\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1200 600\"><path fill=\"#f2a800\" d=\"M0 0h1200v600H0z\"/><path fill=\"#0033a0\" d=\"M0 0h1200v400H0z\"/><path fill=\"#d90012\" d=\"M0 0h1200v200H0z\"/></svg>";
 
 export { svg };
 export default svg;

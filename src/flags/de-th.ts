@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_Thuringia.svg
 
 /**
- * The flag of Thuringia (テューリンゲン州), DE-TH, as an SVG string: viewBox 500 by 250 (2:1), 151 B.
+ * The flag of Thuringia (テューリンゲン州), DE-TH, as an SVG string: viewBox 500 by 250 (2:1), 169 B.
  * From Wikimedia Commons, "Flag of Thuringia.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 500 250\"><path fill=\"#fff\" d=\"M0 0h500v125H0z\"/><path fill=\"#e10000\" d=\"M0 125h500v125H0z\"/></svg>";
+const svg: string = "<svg data-hata=\"de-th\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 500 250\"><path fill=\"#fff\" d=\"M0 0h500v125H0z\"/><path fill=\"#e10000\" d=\"M0 125h500v125H0z\"/></svg>";
 
 export { svg };
 export default svg;

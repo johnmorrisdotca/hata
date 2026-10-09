@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_Gabon.svg
 
 /**
- * The flag of Gabon (ガボン), GA, as an SVG string: viewBox 1000 by 750 (4:3), 198 B.
+ * The flag of Gabon (ガボン), GA, as an SVG string: viewBox 1000 by 750 (4:3), 213 B.
  * From Wikimedia Commons, "Flag of Gabon.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1000 750\"><path fill=\"#3a75c4\" d=\"M0 0h1000v750H0z\"/><path fill=\"#fcd116\" d=\"M0 0h1000v500H0z\"/><path fill=\"#009e60\" d=\"M0 0h1000v250H0z\"/></svg>";
+const svg: string = "<svg data-hata=\"ga\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1000 750\"><path fill=\"#3a75c4\" d=\"M0 0h1000v750H0z\"/><path fill=\"#fcd116\" d=\"M0 0h1000v500H0z\"/><path fill=\"#009e60\" d=\"M0 0h1000v250H0z\"/></svg>";
 
 export { svg };
 export default svg;

@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:CHE_Luzern_Flag.svg
 
 /**
- * The flag of Lucerne (ルツェルン州), CH-LU, as an SVG string: viewBox 600 by 600 (1:1), 206 B.
+ * The flag of Lucerne (ルツェルン州), CH-LU, as an SVG string: viewBox 600 by 600 (1:1), 224 B.
  * From Wikimedia Commons, "CHE Luzern Flag.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" xml:space=\"preserve\" viewBox=\"0 0 600 600\"><path fill=\"#268bcc\" d=\"M0 0h600v600H0z\" style=\"fill:#0093dd;fill-opacity:1\"/><path fill=\"#fff\" d=\"M0 0h600v300H0z\"/></svg>";
+const svg: string = "<svg data-hata=\"ch-lu\" xmlns=\"http://www.w3.org/2000/svg\" xml:space=\"preserve\" viewBox=\"0 0 600 600\"><path fill=\"#268bcc\" d=\"M0 0h600v600H0z\" style=\"fill:#0093dd;fill-opacity:1\"/><path fill=\"#fff\" d=\"M0 0h600v300H0z\"/></svg>";
 
 export { svg };
 export default svg;

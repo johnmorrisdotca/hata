@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_Russia.svg
 
 /**
- * The flag of Russia (ロシア), RU, as an SVG string: viewBox 9 by 6 (3:2), 175 B.
+ * The flag of Russia (ロシア), RU, as an SVG string: viewBox 9 by 6 (3:2), 190 B.
  * From Wikimedia Commons, "Flag of Russia.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 9 6\"><path fill=\"#fff\" d=\"M0 0h9v3H0z\"/><path fill=\"#d52b1e\" d=\"M0 3h9v3H0z\"/><path fill=\"#0039a6\" d=\"M0 2h9v2H0z\"/></svg>";
+const svg: string = "<svg data-hata=\"ru\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 9 6\"><path fill=\"#fff\" d=\"M0 0h9v3H0z\"/><path fill=\"#d52b1e\" d=\"M0 3h9v3H0z\"/><path fill=\"#0039a6\" d=\"M0 2h9v2H0z\"/></svg>";
 
 export { svg };
 export default svg;

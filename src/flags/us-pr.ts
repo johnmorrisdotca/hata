@@ -4,7 +4,7 @@
 import { svg as shared } from "./pr";
 
 /**
- * The flag of Puerto Rico (プエルトリコ), US-PR, as an SVG string: viewBox 900 by 600 (3:2), 248 B. The same picture as PR's.
+ * The flag of Puerto Rico (プエルトリコ), US-PR, as an SVG string: viewBox 900 by 600 (3:2), 263 B. The same picture as PR's.
  * From Wikimedia Commons, "Flag of Puerto Rico.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *

@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_Kuwait.svg
 
 /**
- * The flag of Kuwait (クウェート), KW, as an SVG string: viewBox 12 by 6 (2:1), 206 B.
+ * The flag of Kuwait (クウェート), KW, as an SVG string: viewBox 12 by 6 (2:1), 221 B.
  * From Wikimedia Commons, "Flag of Kuwait.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 12 6\"><path fill=\"#007a3d\" d=\"M0 0h12v6H0z\"/><path fill=\"#fff\" d=\"M0 2h12v4H0z\"/><path fill=\"#ce1126\" d=\"M0 4h12v2H0z\"/><path d=\"m0 0 3 2v2L0 6z\"/></svg>";
+const svg: string = "<svg data-hata=\"kw\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 12 6\"><path fill=\"#007a3d\" d=\"M0 0h12v6H0z\"/><path fill=\"#fff\" d=\"M0 2h12v4H0z\"/><path fill=\"#ce1126\" d=\"M0 4h12v2H0z\"/><path d=\"m0 0 3 2v2L0 6z\"/></svg>";
 
 export { svg };
 export default svg;

@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_Israel.svg
 
 /**
- * The flag of Israel (イスラエル), IL, as an SVG string: viewBox 1100 by 800 (11:8), 290 B.
+ * The flag of Israel (イスラエル), IL, as an SVG string: viewBox 1100 by 800 (11:8), 305 B.
  * From Wikimedia Commons, "Flag of Israel.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1100 800\"><path fill=\"#fff\" d=\"M0 0h1100v800H0Z\"/><path fill=\"#0038b8\" d=\"M0 75h1100v125H0Zm0 525h1100v125H0Z\"/><path fill=\"none\" stroke=\"#0038b8\" stroke-width=\"27.5\" d=\"M423.8 472.9h252.4L550 254.3ZM550 545.7l126.2-218.6H423.8Z\"/></svg>";
+const svg: string = "<svg data-hata=\"il\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1100 800\"><path fill=\"#fff\" d=\"M0 0h1100v800H0Z\"/><path fill=\"#0038b8\" d=\"M0 75h1100v125H0Zm0 525h1100v125H0Z\"/><path fill=\"none\" stroke=\"#0038b8\" stroke-width=\"27.5\" d=\"M423.8 472.9h252.4L550 254.3ZM550 545.7l126.2-218.6H423.8Z\"/></svg>";
 
 export { svg };
 export default svg;

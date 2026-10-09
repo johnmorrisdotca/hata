@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Bandeira_do_Acre.svg
 
 /**
- * The flag of Acre (アクレ州), BR-AC, as an SVG string: viewBox 500 by 350 (10:7), 205 B.
+ * The flag of Acre (アクレ州), BR-AC, as an SVG string: viewBox 500 by 350 (10:7), 223 B.
  * From Wikimedia Commons, "Bandeira do Acre.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 500 350\"><path fill=\"#008f4c\" d=\"M0 0h500v350H0\"/><path fill=\"#fdea02\" d=\"M0 0h500L0 350\"/><path fill=\"#ed1c24\" d=\"m75 25 29 90-77-55h96l-77 55\"/></svg>";
+const svg: string = "<svg data-hata=\"br-ac\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 500 350\"><path fill=\"#008f4c\" d=\"M0 0h500v350H0\"/><path fill=\"#fdea02\" d=\"M0 0h500L0 350\"/><path fill=\"#ed1c24\" d=\"m75 25 29 90-77-55h96l-77 55\"/></svg>";
 
 export { svg };
 export default svg;

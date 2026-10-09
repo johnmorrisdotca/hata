@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_Gunma_Prefecture.svg
 
 /**
- * The flag of Gunma (群馬県), JP-10, as an SVG string: viewBox 300 by 200 (3:2), 975 B.
+ * The flag of Gunma (群馬県), JP-10, as an SVG string: viewBox 300 by 200 (3:2), 993 B.
  * From Wikimedia Commons, "Flag of Gunma Prefecture.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"#fff\" viewBox=\"-150 -100 300 200\"><path fill=\"#4c0f7b\" d=\"M-150-100h300v200h-300z\"/><g id=\"hata-jp-10-a\"><circle cy=\"-36\" r=\"25.5\"/><circle cy=\"-69\" r=\"25.5\" fill=\"#4c0f7b\"/></g><use href=\"#hata-jp-10-a\" transform=\"rotate(120)\"/><use href=\"#hata-jp-10-a\" transform=\"rotate(240)\"/><clipPath id=\"hata-jp-10-b\"><circle r=\"80\"/></clipPath><path d=\"m-5.6-6.9.3-.4a9 9 0 0 1 10.6 0 1 1 0 0 1 0 1.7 9 9 0 0 1-10.6 0l-.3-.4h1.2a8 8 0 0 0 9.2-.3v-.3a8 8 0 0 0-9.2-.3zm3 0h5.2v1h-5.2z\"/><g clip-path=\"url(#hata-jp-10-b)\" transform=\"scale(.1125)\"><circle id=\"hata-jp-10-c\" cx=\"-47\" cy=\"-64.7\" r=\"45.6\" fill=\"none\" stroke=\"#fff\" stroke-width=\"7.6\"/><use href=\"#hata-jp-10-c\" transform=\"scale(-1 1)\"/><path d=\"M30.4-18.1a30.6 30.6 0 1 1-60.8 0zm-52.8 7.6a23 23 0 0 0 44.8 0zm-15.5 0a38.2 38.2 0 0 0 75.8 0h7.7a45.8 45.8 0 0 1-91.2 0z\"/><path stroke=\"#fff\" stroke-width=\"7.6\" d=\"M-81 19.1h57m48 0h57M-75 38.2H75m-140 19H65M0 25v60\"/></g></svg>";
+const svg: string = "<svg data-hata=\"jp-10\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"#fff\" viewBox=\"-150 -100 300 200\"><path fill=\"#4c0f7b\" d=\"M-150-100h300v200h-300z\"/><g id=\"hata-jp-10-a\"><circle cy=\"-36\" r=\"25.5\"/><circle cy=\"-69\" r=\"25.5\" fill=\"#4c0f7b\"/></g><use href=\"#hata-jp-10-a\" transform=\"rotate(120)\"/><use href=\"#hata-jp-10-a\" transform=\"rotate(240)\"/><clipPath id=\"hata-jp-10-b\"><circle r=\"80\"/></clipPath><path d=\"m-5.6-6.9.3-.4a9 9 0 0 1 10.6 0 1 1 0 0 1 0 1.7 9 9 0 0 1-10.6 0l-.3-.4h1.2a8 8 0 0 0 9.2-.3v-.3a8 8 0 0 0-9.2-.3zm3 0h5.2v1h-5.2z\"/><g clip-path=\"url(#hata-jp-10-b)\" transform=\"scale(.1125)\"><circle id=\"hata-jp-10-c\" cx=\"-47\" cy=\"-64.7\" r=\"45.6\" fill=\"none\" stroke=\"#fff\" stroke-width=\"7.6\"/><use href=\"#hata-jp-10-c\" transform=\"scale(-1 1)\"/><path d=\"M30.4-18.1a30.6 30.6 0 1 1-60.8 0zm-52.8 7.6a23 23 0 0 0 44.8 0zm-15.5 0a38.2 38.2 0 0 0 75.8 0h7.7a45.8 45.8 0 0 1-91.2 0z\"/><path stroke=\"#fff\" stroke-width=\"7.6\" d=\"M-81 19.1h57m48 0h57M-75 38.2H75m-140 19H65M0 25v60\"/></g></svg>";
 
 export { svg };
 export default svg;

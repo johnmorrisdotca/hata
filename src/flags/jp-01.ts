@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_Hokkaido_Prefecture.svg
 
 /**
- * The flag of Hokkaidō (北海道), JP-01, as an SVG string: viewBox 1260 by 840 (3:2), 812 B.
+ * The flag of Hokkaidō (北海道), JP-01, as an SVG string: viewBox 1260 by 840 (3:2), 830 B.
  * From Wikimedia Commons, "Flag of Hokkaido Prefecture.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-630 -420 1260 840\"><path fill=\"#2f304e\" d=\"M-630-420H630v840H-630z\"/><path id=\"hata-jp-01-a\" fill=\"#fff\" d=\"m0-265 60-29V0H-60v-294z\"/><g id=\"hata-jp-01-b\"><use href=\"#hata-jp-01-a\" transform=\"rotate(51.428571428571)\"/><use href=\"#hata-jp-01-a\" transform=\"rotate(102.857142857143)\"/><use href=\"#hata-jp-01-a\" transform=\"rotate(154.285714285714)\"/></g><use href=\"#hata-jp-01-b\" transform=\"rotate(154.285714285714)\"/><path id=\"hata-jp-01-c\" fill=\"#d13a43\" d=\"M0-265 33 0h-66z\"/><g id=\"hata-jp-01-d\"><use href=\"#hata-jp-01-c\" transform=\"rotate(51.428571428571)\"/><use href=\"#hata-jp-01-c\" transform=\"rotate(102.857142857143)\"/><use href=\"#hata-jp-01-c\" transform=\"rotate(154.285714285714)\"/></g><use href=\"#hata-jp-01-d\" transform=\"rotate(154.285714285714)\"/></svg>";
+const svg: string = "<svg data-hata=\"jp-01\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-630 -420 1260 840\"><path fill=\"#2f304e\" d=\"M-630-420H630v840H-630z\"/><path id=\"hata-jp-01-a\" fill=\"#fff\" d=\"m0-265 60-29V0H-60v-294z\"/><g id=\"hata-jp-01-b\"><use href=\"#hata-jp-01-a\" transform=\"rotate(51.428571428571)\"/><use href=\"#hata-jp-01-a\" transform=\"rotate(102.857142857143)\"/><use href=\"#hata-jp-01-a\" transform=\"rotate(154.285714285714)\"/></g><use href=\"#hata-jp-01-b\" transform=\"rotate(154.285714285714)\"/><path id=\"hata-jp-01-c\" fill=\"#d13a43\" d=\"M0-265 33 0h-66z\"/><g id=\"hata-jp-01-d\"><use href=\"#hata-jp-01-c\" transform=\"rotate(51.428571428571)\"/><use href=\"#hata-jp-01-c\" transform=\"rotate(102.857142857143)\"/><use href=\"#hata-jp-01-c\" transform=\"rotate(154.285714285714)\"/></g><use href=\"#hata-jp-01-d\" transform=\"rotate(154.285714285714)\"/></svg>";
 
 export { svg };
 export default svg;

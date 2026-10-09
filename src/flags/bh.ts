@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_Bahrain.svg
 
 /**
- * The flag of Bahrain (バーレーン), BH, as an SVG string: viewBox 100 by 60 (5:3), 262 B.
+ * The flag of Bahrain (バーレーン), BH, as an SVG string: viewBox 100 by 60 (5:3), 277 B.
  * From Wikimedia Commons, "Flag of Bahrain.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 60\"><path xmlns=\"http://www.w3.org/2000/svg\" fill=\"#fff\" d=\"M0 0h100v60H0z\"/><path xmlns=\"http://www.w3.org/2000/svg\" fill=\"#da291c\" d=\"M25 0h75v60H25l15-6-15-6 15-6-15-6 15-6-15-6 15-6-15-6 15-6z\"/></svg>";
+const svg: string = "<svg data-hata=\"bh\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 60\"><path xmlns=\"http://www.w3.org/2000/svg\" fill=\"#fff\" d=\"M0 0h100v60H0z\"/><path xmlns=\"http://www.w3.org/2000/svg\" fill=\"#da291c\" d=\"M25 0h75v60H25l15-6-15-6 15-6-15-6 15-6-15-6 15-6-15-6 15-6z\"/></svg>";
 
 export { svg };
 export default svg;

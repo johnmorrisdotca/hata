@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_Iceland.svg
 
 /**
- * The flag of Iceland (アイスランド), IS, as an SVG string: viewBox 25 by 18 (1.389:1), 223 B.
+ * The flag of Iceland (アイスランド), IS, as an SVG string: viewBox 25 by 18 (1.389:1), 238 B.
  * From Wikimedia Commons, "Flag of Iceland.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 25 18\"><path fill=\"#02529c\" d=\"M0 0h25v18H0Z\"/><path stroke=\"#fff\" stroke-width=\"4\" d=\"M0 9h25M9 0v18\"/><path stroke=\"#dc1e35\" stroke-width=\"2\" d=\"M0 9h25M9 0v18\"/></svg>";
+const svg: string = "<svg data-hata=\"is\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 25 18\"><path fill=\"#02529c\" d=\"M0 0h25v18H0Z\"/><path stroke=\"#fff\" stroke-width=\"4\" d=\"M0 9h25M9 0v18\"/><path stroke=\"#dc1e35\" stroke-width=\"2\" d=\"M0 9h25M9 0v18\"/></svg>";
 
 export { svg };
 export default svg;

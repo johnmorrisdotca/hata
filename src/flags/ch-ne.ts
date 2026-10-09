@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:CHE_Canton_de_Neuch%C3%A2tel_Flag.svg
 
 /**
- * The flag of Neuchâtel (ヌーシャテル州), CH-NE, as an SVG string: viewBox 540 by 540 (1:1), 326 B.
+ * The flag of Neuchâtel (ヌーシャテル州), CH-NE, as an SVG string: viewBox 540 by 540 (1:1), 344 B.
  * From Wikimedia Commons, "CHE Canton de Neuchâtel Flag.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 540 540\"><path fill=\"#e8423f\" d=\"M0 0h540v540H0z\" style=\"fill:#f00000;fill-opacity:1\"/><path fill=\"#fff\" d=\"M0 0h360v540H0z\"/><path fill=\"#16a74e\" d=\"M0 0h180v540H0z\" style=\"fill:#094;fill-opacity:1\"/><path stroke=\"#fff\" stroke-width=\"20\" d=\"M450 20v140m-70-70h140\"/></svg>";
+const svg: string = "<svg data-hata=\"ch-ne\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 540 540\"><path fill=\"#e8423f\" d=\"M0 0h540v540H0z\" style=\"fill:#f00000;fill-opacity:1\"/><path fill=\"#fff\" d=\"M0 0h360v540H0z\"/><path fill=\"#16a74e\" d=\"M0 0h180v540H0z\" style=\"fill:#094;fill-opacity:1\"/><path stroke=\"#fff\" stroke-width=\"20\" d=\"M450 20v140m-70-70h140\"/></svg>";
 
 export { svg };
 export default svg;

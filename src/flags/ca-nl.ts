@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_Newfoundland_and_Labrador.svg
 
 /**
- * The flag of Newfoundland and Labrador (ニューファンドランド・ラブラドール州), CA-NL, as an SVG string: viewBox 43200 by 21600 (2:1), 512 B.
+ * The flag of Newfoundland and Labrador (ニューファンドランド・ラブラドール州), CA-NL, as an SVG string: viewBox 43200 by 21600 (2:1), 530 B.
  * From Wikimedia Commons, "Flag of Newfoundland and Labrador.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 43200 21600\"><title>Flag of Newfoundland and Labrador</title><path fill=\"#fff\" d=\"M0 0h43200v21600H0z\"/><path fill=\"#003865\" d=\"M3159 900h13547v7822zm0 19800h13547v-7822zm-1559-948v-8152h14121zm0-17904v8152h14121z\"/><path fill=\"#ba0c2f\" d=\"M18706 8722V900h23094zm0 1154h17894l3000 924-3000 924H18706l1600-924zm0 3002v7822h23094zm17631 6922H19606v-5667zm0-18000H19606v5667z\"/><path fill=\"#ffa400\" d=\"M20199 10276h16341l1701 524-1701 524H20199l907-524z\"/></svg>";
+const svg: string = "<svg data-hata=\"ca-nl\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 43200 21600\"><title>Flag of Newfoundland and Labrador</title><path fill=\"#fff\" d=\"M0 0h43200v21600H0z\"/><path fill=\"#003865\" d=\"M3159 900h13547v7822zm0 19800h13547v-7822zm-1559-948v-8152h14121zm0-17904v8152h14121z\"/><path fill=\"#ba0c2f\" d=\"M18706 8722V900h23094zm0 1154h17894l3000 924-3000 924H18706l1600-924zm0 3002v7822h23094zm17631 6922H19606v-5667zm0-18000H19606v5667z\"/><path fill=\"#ffa400\" d=\"M20199 10276h16341l1701 524-1701 524H20199l907-524z\"/></svg>";
 
 export { svg };
 export default svg;

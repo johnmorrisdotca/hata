@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_%C3%85land.svg
 
 /**
- * The flag of Åland Islands (オーランド諸島), AX, as an SVG string: viewBox 52 by 34 (1.529:1), 231 B.
+ * The flag of Åland Islands (オーランド諸島), AX, as an SVG string: viewBox 52 by 34 (1.529:1), 246 B.
  * From Wikimedia Commons, "Flag of Åland.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 52 34\"><path fill=\"#0064ad\" d=\"M0 0h52v34H0Z\"/><path stroke=\"#ffd300\" stroke-width=\"10\" d=\"M0 17h52M21 0v34\"/><path stroke=\"#da0e15\" stroke-width=\"4\" d=\"M0 17h52M21 0v34\"/></svg>";
+const svg: string = "<svg data-hata=\"ax\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 52 34\"><path fill=\"#0064ad\" d=\"M0 0h52v34H0Z\"/><path stroke=\"#ffd300\" stroke-width=\"10\" d=\"M0 17h52M21 0v34\"/><path stroke=\"#da0e15\" stroke-width=\"4\" d=\"M0 17h52M21 0v34\"/></svg>";
 
 export { svg };
 export default svg;

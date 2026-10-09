@@ -4,7 +4,7 @@
 import { svg as shared } from "./nc";
 
 /**
- * The flag of New Caledonia (ニューカレドニア), FR-NC, as an SVG string: viewBox 900 by 450 (2:1), 1.0 KB. The same picture as NC's.
+ * The flag of New Caledonia (ニューカレドニア), FR-NC, as an SVG string: viewBox 900 by 450 (2:1), 1.1 KB. The same picture as NC's.
  * From Wikimedia Commons, "Flag of FLNKS.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *

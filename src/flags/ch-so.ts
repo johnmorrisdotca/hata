@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:CHE_Solothurn_SO_Flag.svg
 
 /**
- * The flag of Solothurn (ゾロトゥルン州), CH-SO, as an SVG string: viewBox 470 by 470 (1:1), 189 B.
+ * The flag of Solothurn (ゾロトゥルン州), CH-SO, as an SVG string: viewBox 470 by 470 (1:1), 207 B.
  * From Wikimedia Commons, "CHE Solothurn SO Flag.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 470 470\"><path d=\"M0 0h470v470H0\" style=\"fill:#fff\"/><path fill=\"#e7423f\" d=\"M0 0h470v235H0\" style=\"fill:#f00000;fill-opacity:1\"/></svg>";
+const svg: string = "<svg data-hata=\"ch-so\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 470 470\"><path d=\"M0 0h470v470H0\" style=\"fill:#fff\"/><path fill=\"#e7423f\" d=\"M0 0h470v235H0\" style=\"fill:#f00000;fill-opacity:1\"/></svg>";
 
 export { svg };
 export default svg;

@@ -4,7 +4,7 @@
 import { svg as shared } from "./bl";
 
 /**
- * The flag of St. Barthélemy (サン・バルテルミー), FR-BL, as an SVG string: viewBox 937.5 by 625 (3:2), 28.9 KB. The same picture as BL's.
+ * The flag of St. Barthélemy (サン・バルテルミー), FR-BL, as an SVG string: viewBox 937.5 by 625 (3:2), 29.0 KB. The same picture as BL's.
  * From Wikimedia Commons, "Flag of Saint Barthélemy (local).svg" (CC BY 2.5); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *

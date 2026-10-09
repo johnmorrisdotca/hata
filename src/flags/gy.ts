@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_Guyana.svg
 
 /**
- * The flag of Guyana (ガイアナ), GY, as an SVG string: viewBox 100 by 60 (5:3), 482 B.
+ * The flag of Guyana (ガイアナ), GY, as an SVG string: viewBox 100 by 60 (5:3), 497 B.
  * From Wikimedia Commons, "Flag of Guyana.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 60\"><title>Flag of Guyana</title><defs><clipPath id=\"hata-gy-a\"><path d=\"m0 0 100 30L0 60z\"/></clipPath><clipPath id=\"hata-gy-b\"><path d=\"m0 0 50 30L0 60z\"/></clipPath></defs><path fill=\"#2a936a\" d=\"M0 0h100v60H0z\"/><path fill=\"#ffc20e\" stroke=\"#fff\" stroke-width=\"4\" d=\"m0 0 100 30L0 60\" clip-path=\"url(#hata-gy-a)\"/><path fill=\"#be1e2d\" stroke=\"#000\" stroke-width=\"4\" d=\"m0 0 50 30L0 60\" clip-path=\"url(#hata-gy-b)\"/></svg>";
+const svg: string = "<svg data-hata=\"gy\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 60\"><title>Flag of Guyana</title><defs><clipPath id=\"hata-gy-a\"><path d=\"m0 0 100 30L0 60z\"/></clipPath><clipPath id=\"hata-gy-b\"><path d=\"m0 0 50 30L0 60z\"/></clipPath></defs><path fill=\"#2a936a\" d=\"M0 0h100v60H0z\"/><path fill=\"#ffc20e\" stroke=\"#fff\" stroke-width=\"4\" d=\"m0 0 100 30L0 60\" clip-path=\"url(#hata-gy-a)\"/><path fill=\"#be1e2d\" stroke=\"#000\" stroke-width=\"4\" d=\"m0 0 50 30L0 60\" clip-path=\"url(#hata-gy-b)\"/></svg>";
 
 export { svg };
 export default svg;

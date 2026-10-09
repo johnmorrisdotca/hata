@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_Tochigi_Prefecture.svg
 
 /**
- * The flag of Tochigi (栃木県), JP-09, as an SVG string: viewBox 900 by 630 (10:7), 524 B.
+ * The flag of Tochigi (栃木県), JP-09, as an SVG string: viewBox 900 by 630 (10:7), 542 B.
  * From Wikimedia Commons, "Flag of Tochigi Prefecture.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"#fff\" viewBox=\"0 0 900 630\"><path fill=\"#76b138\" d=\"M0 0h900v630H0z\"/><g transform=\"translate(303 189) scale(2.1)\"><path d=\"M20 10h50v40H20zm70 0h40v25a27.5 27.5 0 0 1-25.1 26.4l-31.1 2.7A26 26 0 0 0 50 90v20H10V85a27.5 27.5 0 0 1 25.1-26.4l31.1-2.7A26 26 0 0 0 90 30zm40 60-28.5 4A25 25 0 0 0 80 95v15H56V90a20 20 0 0 1 20-20z\"/><path fill=\"none\" stroke=\"#76b138\" d=\"m15 33.4 30-24 30 24m0 10-30-24-30 24m0 10 30-24 30 24M45 9v42\"/><circle cx=\"105\" cy=\"95\" r=\"15.8\"/></g></svg>";
+const svg: string = "<svg data-hata=\"jp-09\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"#fff\" viewBox=\"0 0 900 630\"><path fill=\"#76b138\" d=\"M0 0h900v630H0z\"/><g transform=\"translate(303 189) scale(2.1)\"><path d=\"M20 10h50v40H20zm70 0h40v25a27.5 27.5 0 0 1-25.1 26.4l-31.1 2.7A26 26 0 0 0 50 90v20H10V85a27.5 27.5 0 0 1 25.1-26.4l31.1-2.7A26 26 0 0 0 90 30zm40 60-28.5 4A25 25 0 0 0 80 95v15H56V90a20 20 0 0 1 20-20z\"/><path fill=\"none\" stroke=\"#76b138\" d=\"m15 33.4 30-24 30 24m0 10-30-24-30 24m0 10 30-24 30 24M45 9v42\"/><circle cx=\"105\" cy=\"95\" r=\"15.8\"/></g></svg>";
 
 export { svg };
 export default svg;

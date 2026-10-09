@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_Saga_Prefecture.svg
 
 /**
- * The flag of Saga (佐賀県), JP-41, as an SVG string: viewBox 630 by 420 (3:2), 599 B.
+ * The flag of Saga (佐賀県), JP-41, as an SVG string: viewBox 630 by 420 (3:2), 617 B.
  * From Wikimedia Commons, "Flag of Saga Prefecture.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"#df4133\" viewBox=\"-315 -210 630 420\"><path fill=\"#006462\" d=\"M-315-210h630v420h-630z\"/><g id=\"hata-jp-41-b\"><g id=\"hata-jp-41-a\"><path fill=\"#fff\" d=\"M41.2-71.3a47.5 47.5 0 0 1 65-17.4L129.8-75v27.5A47.5 47.5 0 0 1 82.4 0L-10 5z\"/><path d=\"M50.9-72.7a89 89 0 0 1 11.8 10L32.5-32.5a12.3 12.3 0 0 0 11.9 20.6l41.3-11a89 89 0 0 1 2.7 15.2l-45.5 4a20 20 0 0 1-18.2-31.6z\"/></g><use href=\"#hata-jp-41-a\" transform=\"scale(-1 1)\"/><use href=\"#hata-jp-41-a\" transform=\"rotate(-60)\"/></g><use href=\"#hata-jp-41-b\" transform=\"scale(1-1)\"/><circle r=\"12.3\"/></svg>";
+const svg: string = "<svg data-hata=\"jp-41\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"#df4133\" viewBox=\"-315 -210 630 420\"><path fill=\"#006462\" d=\"M-315-210h630v420h-630z\"/><g id=\"hata-jp-41-b\"><g id=\"hata-jp-41-a\"><path fill=\"#fff\" d=\"M41.2-71.3a47.5 47.5 0 0 1 65-17.4L129.8-75v27.5A47.5 47.5 0 0 1 82.4 0L-10 5z\"/><path d=\"M50.9-72.7a89 89 0 0 1 11.8 10L32.5-32.5a12.3 12.3 0 0 0 11.9 20.6l41.3-11a89 89 0 0 1 2.7 15.2l-45.5 4a20 20 0 0 1-18.2-31.6z\"/></g><use href=\"#hata-jp-41-a\" transform=\"scale(-1 1)\"/><use href=\"#hata-jp-41-a\" transform=\"rotate(-60)\"/></g><use href=\"#hata-jp-41-b\" transform=\"scale(1-1)\"/><circle r=\"12.3\"/></svg>";
 
 export { svg };
 export default svg;

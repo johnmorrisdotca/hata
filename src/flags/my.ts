@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_Malaysia.svg
 
 /**
- * The flag of Malaysia (マレーシア), MY, as an SVG string: viewBox 13440 by 6720 (2:1), 666 B.
+ * The flag of Malaysia (マレーシア), MY, as an SVG string: viewBox 13440 by 6720 (2:1), 681 B.
  * From Wikimedia Commons, "Flag of Malaysia.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 13440 6720\"><title>Flag of Malaysia</title><path fill=\"#fff\" d=\"M0 0h13440v6720H0z\"/><path stroke=\"#c00\" stroke-width=\"480\" d=\"M480 240h12960m0 960H480m0 960h12960m0 960H480\"/><path fill=\"#006\" d=\"M0 0h6720v4080H0z\"/><path stroke=\"#c00\" stroke-width=\"480\" d=\"M0 4080h13440m0 960H0m0 960h13440\"/><path fill=\"#fc0\" d=\"m4200 720 107 732 414-613-222 706 639-373-506 540 738-59-690 267 690 267-738-59 506 540-639-373 222 706-414-613-107 732-107-732-414 613 222-706-639 373 506-540-738 59 690-267-690-267 738 59-506-540 639 373-222-706 414 613zm-600 30a1280 1280 0 1 0 0 2340 1440 1440 0 1 1 0-2340\"/></svg>";
+const svg: string = "<svg data-hata=\"my\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 13440 6720\"><title>Flag of Malaysia</title><path fill=\"#fff\" d=\"M0 0h13440v6720H0z\"/><path stroke=\"#c00\" stroke-width=\"480\" d=\"M480 240h12960m0 960H480m0 960h12960m0 960H480\"/><path fill=\"#006\" d=\"M0 0h6720v4080H0z\"/><path stroke=\"#c00\" stroke-width=\"480\" d=\"M0 4080h13440m0 960H0m0 960h13440\"/><path fill=\"#fc0\" d=\"m4200 720 107 732 414-613-222 706 639-373-506 540 738-59-690 267 690 267-738-59 506 540-639-373 222 706-414-613-107 732-107-732-414 613 222-706-639 373 506-540-738 59 690-267-690-267 738 59-506-540 639 373-222-706 414 613zm-600 30a1280 1280 0 1 0 0 2340 1440 1440 0 1 1 0-2340\"/></svg>";
 
 export { svg };
 export default svg;

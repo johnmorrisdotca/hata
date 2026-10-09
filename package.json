@@ -88,7 +88,8 @@
     "docs:make": "node scripts/docs.mjs",
     "data:compare": "node scripts/compare.mjs",
     "data:choose": "node scripts/choose.mjs",
-    "data:sheet": "node scripts/sheet.mjs"
+    "data:sheet": "node scripts/sheet.mjs",
+    "data:framing": "node scripts/framing.mjs"
   },
   "devDependencies": {
     "@eslint/js": "^9.0.0",

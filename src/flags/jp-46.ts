@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_Kagoshima_Prefecture.svg
 
 /**
- * The flag of Kagoshima (鹿児島県), JP-46, as an SVG string: viewBox 900 by 600 (3:2), 311 B.
+ * The flag of Kagoshima (鹿児島県), JP-46, as an SVG string: viewBox 900 by 600 (3:2), 329 B.
  * From Wikimedia Commons, "Flag of Kagoshima Prefecture.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 900 600\"><path fill=\"#fff\" d=\"M0 0h900v600H0z\"/><g transform=\"translate(450 300) scale(1.8)\"><path d=\"M-30 95.4A100 100 0 1 1 88.7 46.3a10 10 0 0 0-11 16.7A100 100 0 0 1 30 95.4l20.7-49a55 55 0 1 0-101.4 0z\"/><circle cy=\"25\" r=\"40\" fill=\"#bd0227\"/></g></svg>";
+const svg: string = "<svg data-hata=\"jp-46\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 900 600\"><path fill=\"#fff\" d=\"M0 0h900v600H0z\"/><g transform=\"translate(450 300) scale(1.8)\"><path d=\"M-30 95.4A100 100 0 1 1 88.7 46.3a10 10 0 0 0-11 16.7A100 100 0 0 1 30 95.4l20.7-49a55 55 0 1 0-101.4 0z\"/><circle cy=\"25\" r=\"40\" fill=\"#bd0227\"/></g></svg>";
 
 export { svg };
 export default svg;

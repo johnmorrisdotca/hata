@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_Guernsey.svg
 
 /**
- * The flag of Guernsey (ガーンジー), GG, as an SVG string: viewBox 36 by 24 (3:2), 259 B.
+ * The flag of Guernsey (ガーンジー), GG, as an SVG string: viewBox 36 by 24 (3:2), 274 B.
  * From Wikimedia Commons, "Flag of Guernsey.svg" (CC0); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 36 24\"><path fill=\"#fff\" d=\"M0 0h36v24H0z\"/><path fill=\"#e8112d\" d=\"M21 0v9h15v6H21v9h-6v-9H0V9h15V0z\"/><path fill=\"#f9dd16\" d=\"m9 14 1-1h7v7l-1 1h4l-1-1v-7h7l1 1v-4l-1 1h-7V4l1-1h-4l1 1v7h-7l-1-1z\"/></svg>";
+const svg: string = "<svg data-hata=\"gg\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 36 24\"><path fill=\"#fff\" d=\"M0 0h36v24H0z\"/><path fill=\"#e8112d\" d=\"M21 0v9h15v6H21v9h-6v-9H0V9h15V0z\"/><path fill=\"#f9dd16\" d=\"m9 14 1-1h7v7l-1 1h4l-1-1v-7h7l1 1v-4l-1 1h-7V4l1-1h-4l1 1v7h-7l-1-1z\"/></svg>";
 
 export { svg };
 export default svg;

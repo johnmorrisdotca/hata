@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_Canada_(Pantone).svg
 
 /**
- * The flag of Canada (カナダ), CA, as an SVG string: viewBox 9600 by 4800 (2:1), 683 B.
+ * The flag of Canada (カナダ), CA, as an SVG string: viewBox 9600 by 4800 (2:1), 698 B.
  * From Wikimedia Commons, "Flag of Canada (Pantone).svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 9600 4800\"><title>Flag of Canada (Pantone colours)</title><path fill=\"#d52b1e\" d=\"M0 0h2400l99 99h4602l99-99h2400v4800H7200l-99-99H2499l-99 99H0z\"/><path fill=\"#fff\" d=\"M2400 0h4800v4800H2400zm2490 4430-45-863a95 95 0 0 1 111-98l859 151-116-320a65 65 0 0 1 20-73l941-762-212-99a65 65 0 0 1-34-79l186-572-542 115a65 65 0 0 1-73-38l-105-247-423 454a65 65 0 0 1-111-57l204-1052-327 189a65 65 0 0 1-91-27l-332-652-332 652a65 65 0 0 1-91 27l-327-189 204 1052a65 65 0 0 1-111 57l-423-454-105 247a65 65 0 0 1-73 38l-542-115 186 572a65 65 0 0 1-34 79l-212 99 941 762a65 65 0 0 1 20 73l-116 320 859-151a95 95 0 0 1 111 98l-45 863z\"/></svg>";
+const svg: string = "<svg data-hata=\"ca\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 9600 4800\"><title>Flag of Canada (Pantone colours)</title><path fill=\"#d52b1e\" d=\"M0 0h2400l99 99h4602l99-99h2400v4800H7200l-99-99H2499l-99 99H0z\"/><path fill=\"#fff\" d=\"M2400 0h4800v4800H2400zm2490 4430-45-863a95 95 0 0 1 111-98l859 151-116-320a65 65 0 0 1 20-73l941-762-212-99a65 65 0 0 1-34-79l186-572-542 115a65 65 0 0 1-73-38l-105-247-423 454a65 65 0 0 1-111-57l204-1052-327 189a65 65 0 0 1-91-27l-332-652-332 652a65 65 0 0 1-91 27l-327-189 204 1052a65 65 0 0 1-111 57l-423-454-105 247a65 65 0 0 1-73 38l-542-115 186 572a65 65 0 0 1-34 79l-212 99 941 762a65 65 0 0 1 20 73l-116 320 859-151a95 95 0 0 1 111 98l-45 863z\"/></svg>";
 
 export { svg };
 export default svg;

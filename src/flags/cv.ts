@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_Cape_Verde_(10-17).svg
 
 /**
- * The flag of Cape Verde (カーボベルデ), CV, as an SVG string: viewBox 1020 by 600 (1.700:1), 538 B.
+ * The flag of Cape Verde (カーボベルデ), CV, as an SVG string: viewBox 1020 by 600 (1.700:1), 553 B.
  * From Wikimedia Commons, "Flag of Cape Verde (10-17).svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1020 600\"><path fill=\"#003893\" d=\"M0 0h1020v600H0\"/><path fill=\"#fff\" d=\"M0 300h1020v150H0\"/><path fill=\"#cf2027\" d=\"M0 350h1020v50H0\"/><g id=\"hata-cv-c\"><g id=\"hata-cv-b\"><path id=\"hata-cv-a\" fill=\"#f7d116\" d=\"m382.5 197.4 16.2 50-42.5-31h52.6l-42.5 31\"/><use x=\"88.2\" y=\"28.6\" href=\"#hata-cv-a\"/></g><use href=\"#hata-cv-b\" transform=\"rotate(72 382.5 375)\"/></g><use href=\"#hata-cv-c\" transform=\"rotate(144 382.5 375)\"/><use href=\"#hata-cv-b\" transform=\"rotate(288 382.5 375)\"/></svg>";
+const svg: string = "<svg data-hata=\"cv\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1020 600\"><path fill=\"#003893\" d=\"M0 0h1020v600H0\"/><path fill=\"#fff\" d=\"M0 300h1020v150H0\"/><path fill=\"#cf2027\" d=\"M0 350h1020v50H0\"/><g id=\"hata-cv-c\"><g id=\"hata-cv-b\"><path id=\"hata-cv-a\" fill=\"#f7d116\" d=\"m382.5 197.4 16.2 50-42.5-31h52.6l-42.5 31\"/><use x=\"88.2\" y=\"28.6\" href=\"#hata-cv-a\"/></g><use href=\"#hata-cv-b\" transform=\"rotate(72 382.5 375)\"/></g><use href=\"#hata-cv-c\" transform=\"rotate(144 382.5 375)\"/><use href=\"#hata-cv-b\" transform=\"rotate(288 382.5 375)\"/></svg>";
 
 export { svg };
 export default svg;

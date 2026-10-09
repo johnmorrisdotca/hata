@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_Yamagata_Prefecture.svg
 
 /**
- * The flag of Yamagata (山形県), JP-06, as an SVG string: viewBox 600 by 400 (3:2), 270 B.
+ * The flag of Yamagata (山形県), JP-06, as an SVG string: viewBox 600 by 400 (3:2), 288 B.
  * From Wikimedia Commons, "Flag of Yamagata Prefecture.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 600 400\"><path fill=\"#006bbd\" d=\"M0 0h600v400H0z\"/><path fill=\"#fff\" d=\"m102 263.8 68.9-133.2 64.7 124.2L300 130.6l64.4 124.2L429 130.6l69 133.2h-72l-24-46.4-24 46.4h-81l-24-46.4-24 46.4h-81l-24-46.4-24 46.4z\"/></svg>";
+const svg: string = "<svg data-hata=\"jp-06\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 600 400\"><path fill=\"#006bbd\" d=\"M0 0h600v400H0z\"/><path fill=\"#fff\" d=\"m102 263.8 68.9-133.2 64.7 124.2L300 130.6l64.4 124.2L429 130.6l69 133.2h-72l-24-46.4-24 46.4h-81l-24-46.4-24 46.4h-81l-24-46.4-24 46.4z\"/></svg>";
 
 export { svg };
 export default svg;

@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_Singapore.svg
 
 /**
- * The flag of Singapore (シンガポール), SG, as an SVG string: viewBox 54 by 36 (3:2), 491 B.
+ * The flag of Singapore (シンガポール), SG, as an SVG string: viewBox 54 by 36 (3:2), 506 B.
  * From Wikimedia Commons, "Flag of Singapore.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"#fff\" viewBox=\"0 0 54 36\"><path d=\"M0 0h54v36H0z\"/><path fill=\"#ed2939\" d=\"M0 0h54v18H0z\"/><circle cx=\"11.4\" cy=\"9\" r=\"6.63\"/><circle cx=\"15.03\" cy=\"9\" r=\"7.25\" fill=\"#ed2939\"/><path id=\"hata-sg-a\" d=\"M15.03 3.48 14.02 6.6l2.65-1.93H13.4l2.65 1.93z\"/><g id=\"hata-sg-b\"><use href=\"#hata-sg-a\" transform=\"rotate(72 15.03 9)\"/><use href=\"#hata-sg-a\" transform=\"rotate(216 15.03 9)\"/></g><use href=\"#hata-sg-b\" transform=\"rotate(72 15.03 9)\"/></svg>";
+const svg: string = "<svg data-hata=\"sg\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"#fff\" viewBox=\"0 0 54 36\"><path d=\"M0 0h54v36H0z\"/><path fill=\"#ed2939\" d=\"M0 0h54v18H0z\"/><circle cx=\"11.4\" cy=\"9\" r=\"6.63\"/><circle cx=\"15.03\" cy=\"9\" r=\"7.25\" fill=\"#ed2939\"/><path id=\"hata-sg-a\" d=\"M15.03 3.48 14.02 6.6l2.65-1.93H13.4l2.65 1.93z\"/><g id=\"hata-sg-b\"><use href=\"#hata-sg-a\" transform=\"rotate(72 15.03 9)\"/><use href=\"#hata-sg-a\" transform=\"rotate(216 15.03 9)\"/></g><use href=\"#hata-sg-b\" transform=\"rotate(72 15.03 9)\"/></svg>";
 
 export { svg };
 export default svg;

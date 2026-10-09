@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_Cameroon.svg
 
 /**
- * The flag of Cameroon (カメルーン), CM, as an SVG string: viewBox 9 by 6 (3:2), 249 B.
+ * The flag of Cameroon (カメルーン), CM, as an SVG string: viewBox 9 by 6 (3:2), 264 B.
  * From Wikimedia Commons, "Flag of Cameroon.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 9 6\"><title>Flag of Cameroon</title><path fill=\"#ce1126\" d=\"M0 0h9v6H0Z\"/><path fill=\"#007a5e\" d=\"M0 0h3v6H0Z\"/><path fill=\"#fcd116\" d=\"M6 0h3v6H6ZM4.03 3.64l1.23-.89H3.74l1.23.9L4.5 2.2Z\"/></svg>";
+const svg: string = "<svg data-hata=\"cm\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 9 6\"><title>Flag of Cameroon</title><path fill=\"#ce1126\" d=\"M0 0h9v6H0Z\"/><path fill=\"#007a5e\" d=\"M0 0h3v6H0Z\"/><path fill=\"#fcd116\" d=\"M6 0h3v6H6ZM4.03 3.64l1.23-.89H3.74l1.23.9L4.5 2.2Z\"/></svg>";
 
 export { svg };
 export default svg;

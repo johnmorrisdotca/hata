@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_Kenya.svg
 
 /**
- * The flag of Kenya (ケニア), KE, as an SVG string: viewBox 240 by 160 (3:2), 974 B.
+ * The flag of Kenya (ケニア), KE, as an SVG string: viewBox 240 by 160 (3:2), 989 B.
  * From Wikimedia Commons, "Flag of Kenya.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-120 -80 240 160\"><defs><path id=\"hata-ke-a\" stroke-miterlimit=\"10\" d=\"M-1 55.4h2V-38c2-2 2-5 2-8 0-2 0-10-3-18.7C-3-56-3-48-3-46c0 3 0 6 2 8z\" transform=\"rotate(30)\"/></defs><path fill=\"#fff\" d=\"M-120-80h240V80h-240z\"/><path d=\"M-120-80h240v48h-240z\"/><path fill=\"#060\" d=\"M-120 32h240v48h-240z\"/><g id=\"hata-ke-b\"><use stroke=\"#000\" href=\"#hata-ke-a\"/><use fill=\"#fff\" href=\"#hata-ke-a\"/></g><use href=\"#hata-ke-b\" transform=\"scale(-1 1)\"/><path fill=\"#b00\" d=\"M-120-24v48h101c3 8 13 24 19 24s16-16 19-24h101v-48H19C16-32 6-48 0-48s-16 16-19 24z\"/><path id=\"hata-ke-c\" d=\"M19 24c3-8 5-16 5-24s-2-16-5-24c-3 8-5 16-5 24s2 16 5 24\"/><use href=\"#hata-ke-c\" transform=\"scale(-1 1)\"/><g fill=\"#fff\"><ellipse rx=\"4\" ry=\"6\"/><path id=\"hata-ke-d\" d=\"M1 5.9s4 8 4 21-4 21-4 21z\"/><use href=\"#hata-ke-d\" transform=\"scale(-1)\"/><use href=\"#hata-ke-d\" transform=\"scale(-1 1)\"/><use href=\"#hata-ke-d\" transform=\"scale(1 -1)\"/></g></svg>";
+const svg: string = "<svg data-hata=\"ke\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-120 -80 240 160\"><defs><path id=\"hata-ke-a\" stroke-miterlimit=\"10\" d=\"M-1 55.4h2V-38c2-2 2-5 2-8 0-2 0-10-3-18.7C-3-56-3-48-3-46c0 3 0 6 2 8z\" transform=\"rotate(30)\"/></defs><path fill=\"#fff\" d=\"M-120-80h240V80h-240z\"/><path d=\"M-120-80h240v48h-240z\"/><path fill=\"#060\" d=\"M-120 32h240v48h-240z\"/><g id=\"hata-ke-b\"><use stroke=\"#000\" href=\"#hata-ke-a\"/><use fill=\"#fff\" href=\"#hata-ke-a\"/></g><use href=\"#hata-ke-b\" transform=\"scale(-1 1)\"/><path fill=\"#b00\" d=\"M-120-24v48h101c3 8 13 24 19 24s16-16 19-24h101v-48H19C16-32 6-48 0-48s-16 16-19 24z\"/><path id=\"hata-ke-c\" d=\"M19 24c3-8 5-16 5-24s-2-16-5-24c-3 8-5 16-5 24s2 16 5 24\"/><use href=\"#hata-ke-c\" transform=\"scale(-1 1)\"/><g fill=\"#fff\"><ellipse rx=\"4\" ry=\"6\"/><path id=\"hata-ke-d\" d=\"M1 5.9s4 8 4 21-4 21-4 21z\"/><use href=\"#hata-ke-d\" transform=\"scale(-1)\"/><use href=\"#hata-ke-d\" transform=\"scale(-1 1)\"/><use href=\"#hata-ke-d\" transform=\"scale(1 -1)\"/></g></svg>";
 
 export { svg };
 export default svg;

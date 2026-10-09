@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_Vietnam.svg
 
 /**
- * The flag of Vietnam (ベトナム), VN, as an SVG string: viewBox 30 by 20 (3:2), 170 B.
+ * The flag of Vietnam (ベトナム), VN, as an SVG string: viewBox 30 by 20 (3:2), 185 B.
  * From Wikimedia Commons, "Flag of Vietnam.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 30 20\"><path fill=\"#da251d\" d=\"M0 0h30v20H0z\"/><path fill=\"#ff0\" d=\"m15 4-3.53 10.85 9.24-6.7H9.29l9.24 6.7z\"/></svg>";
+const svg: string = "<svg data-hata=\"vn\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 30 20\"><path fill=\"#da251d\" d=\"M0 0h30v20H0z\"/><path fill=\"#ff0\" d=\"m15 4-3.53 10.85 9.24-6.7H9.29l9.24 6.7z\"/></svg>";
 
 export { svg };
 export default svg;

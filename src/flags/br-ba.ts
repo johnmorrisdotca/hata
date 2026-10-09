@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Bandeira_da_Bahia.svg
 
 /**
- * The flag of Bahia (バイーア州), BR-BA, as an SVG string: viewBox 1500 by 1000 (3:2), 281 B.
+ * The flag of Bahia (バイーア州), BR-BA, as an SVG string: viewBox 1500 by 1000 (3:2), 299 B.
  * From Wikimedia Commons, "Bandeira da Bahia.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"#fff\" viewBox=\"0 0 1500 1000\"><title>Bandeira da Bahia</title><path d=\"M0 0h1500v1000H0z\"/><path fill=\"#d31920\" d=\"M0 250h1500v250H500zm0 500h1500v250H0z\"/><path fill=\"#003087\" d=\"M0 0h500v500H0z\"/><path d=\"M54 410h392L250 70z\"/></svg>";
+const svg: string = "<svg data-hata=\"br-ba\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"#fff\" viewBox=\"0 0 1500 1000\"><title>Bandeira da Bahia</title><path d=\"M0 0h1500v1000H0z\"/><path fill=\"#d31920\" d=\"M0 250h1500v250H500zm0 500h1500v250H0z\"/><path fill=\"#003087\" d=\"M0 0h500v500H0z\"/><path d=\"M54 410h392L250 70z\"/></svg>";
 
 export { svg };
 export default svg;

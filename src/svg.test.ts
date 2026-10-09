@@ -34,7 +34,7 @@ describe("frame", () => {
   });
 
   it("frames at 4:3 and 1:1 by nesting the whole flag, cropped from the centre or shown whole, never stretched", () => {
-    const four = frame(canada, { shape: "4:3" })!;
+    const four = frame(canada, { shape: "4:3", fit: "cover" })!;
     expect(four).toMatch(/^<svg xmlns="http:\/\/www\.w3\.org\/2000\/svg" viewBox="0 0 640 480">/);
     expect(four).toContain('viewBox="0 0 1000 500" x="0" y="0" width="640" height="480" preserveAspectRatio="xMidYMid slice"');
     expect(aspectOf(four)).toBeCloseTo(4 / 3);
@@ -42,15 +42,29 @@ describe("frame", () => {
     expect(square).toContain('preserveAspectRatio="xMidYMid meet"');
     expect(aspectOf(square)).toBe(1);
     expect(square).not.toContain('preserveAspectRatio="none"');
+    expect(frame(canada, { shape: "1:1", fit: "hoist" })).toContain('preserveAspectRatio="xMinYMid slice"');
+  });
+
+  it("shows a picture that names no flag of this package whole by default, since nothing was measured for it", () => {
+    expect(frame(canada, { shape: "4:3" })).toBe(frame(canada, { shape: "4:3", fit: "contain" }));
+    expect(frame(japan, { shape: "round" })).toBe(frame(japan, { shape: "round", fit: "contain" }));
+  });
+
+  it("puts the whole flag on a neutral disc in a round frame, its corners touching the circle", () => {
+    const round = frame(canada, { shape: "round", fit: "contain" })!;
+    expect(round).toContain('<circle cx="256" cy="256" r="256" fill="#e6e6e6"/>');
+    // 2:1 inside a circle of radius 256: half-diagonal 256, so 457.95 by 228.97, centred.
+    expect(round).toContain('x="27.03" y="141.51" width="457.95" height="228.97" preserveAspectRatio="xMidYMid meet"');
   });
 
   it("frames round with a clip path of its own, the same id for the same flag and another for another", () => {
-    const one = frame(japan, { shape: "round" })!;
+    const one = frame(japan, { shape: "round", fit: "cover" })!;
     expect(one).toMatch(/<clipPath id="(hata-round-[a-z0-9]+)"><circle cx="256" cy="256" r="256"\/><\/clipPath>/);
     const id = /clipPath id="([^"]+)"/.exec(one)![1];
     expect(one).toContain(`clip-path="url(#${id})"`);
-    expect(frame(japan, { shape: "round" })).toBe(one);
-    expect(frame(canada, { shape: "round" })).not.toContain(id);
+    expect(frame(japan, { shape: "round", fit: "cover" })).toBe(one);
+    expect(frame(canada, { shape: "round", fit: "cover" })).not.toContain(id);
+    expect(frame(japan, { shape: "round", fit: "contain" })).not.toContain(id);
   });
 
   it("labels it for assistive technology, escaped", () => {

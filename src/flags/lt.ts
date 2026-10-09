@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_Lithuania.svg
 
 /**
- * The flag of Lithuania (リトアニア), LT, as an SVG string: viewBox 1000 by 600 (5:3), 198 B.
+ * The flag of Lithuania (リトアニア), LT, as an SVG string: viewBox 1000 by 600 (5:3), 213 B.
  * From Wikimedia Commons, "Flag of Lithuania.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1000 600\"><path fill=\"#c1272d\" d=\"M0 0h1000v600H0z\"/><path fill=\"#006a44\" d=\"M0 0h1000v400H0z\"/><path fill=\"#fdb913\" d=\"M0 0h1000v200H0z\"/></svg>";
+const svg: string = "<svg data-hata=\"lt\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1000 600\"><path fill=\"#c1272d\" d=\"M0 0h1000v600H0z\"/><path fill=\"#006a44\" d=\"M0 0h1000v400H0z\"/><path fill=\"#fdb913\" d=\"M0 0h1000v200H0z\"/></svg>";
 
 export { svg };
 export default svg;

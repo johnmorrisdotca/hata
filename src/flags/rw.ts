@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_Rwanda.svg
 
 /**
- * The flag of Rwanda (ルワンダ), RW, as an SVG string: viewBox 1560 by 1040 (3:2), 804 B.
+ * The flag of Rwanda (ルワンダ), RW, as an SVG string: viewBox 1560 by 1040 (3:2), 819 B.
  * From Wikimedia Commons, "Flag of Rwanda.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1560 1040\"><title>Flag of Rwanda</title><path fill=\"#fad201\" d=\"M0 0h1560v1040H0z\"/><path fill=\"#00a3e0\" d=\"M0 0h1560v520H0z\"/><path fill=\"#20603d\" d=\"M0 780h1560v260H0z\"/><g transform=\"translate(1280,272)\"><path fill=\"#e5be01\" d=\"M0-168 6.8-51.6l36.7-110.7L19.9-48 84-145.5 31.7-41.2l87-77.6-77.5 87.1L145.5-84 48-19.9l114.3-23.6L51.6-6.8 168 0 51.6 6.8l110.7 36.7L48 19.9 145.5 84 41.3 31.7l77.5 87-87.1-77.5L84 145.5 19.9 48l23.6 114.3L6.8 51.6 0 168-6.8 51.6l-36.7 110.7L-19.9 48-84 145.5l52.3-104.2-87 77.5 77.5-87.1L-145.5 84-48 19.9l-114.3 23.6L-51.6 6.8-168 0l116.4-6.8-110.7-36.7L-48-19.9-145.5-84l104.3 52.3-77.6-87 87.1 77.5L-84-145.5-19.9-48l-23.6-114.3L-6.8-51.6z\"/><circle r=\"49\" fill=\"none\" stroke=\"#00a3e0\" stroke-width=\"6\"/></g></svg>";
+const svg: string = "<svg data-hata=\"rw\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1560 1040\"><title>Flag of Rwanda</title><path fill=\"#fad201\" d=\"M0 0h1560v1040H0z\"/><path fill=\"#00a3e0\" d=\"M0 0h1560v520H0z\"/><path fill=\"#20603d\" d=\"M0 780h1560v260H0z\"/><g transform=\"translate(1280,272)\"><path fill=\"#e5be01\" d=\"M0-168 6.8-51.6l36.7-110.7L19.9-48 84-145.5 31.7-41.2l87-77.6-77.5 87.1L145.5-84 48-19.9l114.3-23.6L51.6-6.8 168 0 51.6 6.8l110.7 36.7L48 19.9 145.5 84 41.3 31.7l77.5 87-87.1-77.5L84 145.5 19.9 48l23.6 114.3L6.8 51.6 0 168-6.8 51.6l-36.7 110.7L-19.9 48-84 145.5l52.3-104.2-87 77.5 77.5-87.1L-145.5 84-48 19.9l-114.3 23.6L-51.6 6.8-168 0l116.4-6.8-110.7-36.7L-48-19.9-145.5-84l104.3 52.3-77.6-87 87.1 77.5L-84-145.5-19.9-48l-23.6-114.3L-6.8-51.6z\"/><circle r=\"49\" fill=\"none\" stroke=\"#00a3e0\" stroke-width=\"6\"/></g></svg>";
 
 export { svg };
 export default svg;

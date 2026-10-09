@@ -2,7 +2,7 @@
 // Source: https://cdn.jsdelivr.net/npm/country-flag-icons@1.6.20/3x2/YE.svg
 
 /**
- * The flag of Yemen (イエメン), YE, as an SVG string: viewBox 512 by 341.33 (3:2), 204 B.
+ * The flag of Yemen (イエメン), YE, as an SVG string: viewBox 512 by 341.33 (3:2), 219 B.
  * From country-flag-icons 1.6.20, 3x2/YE.svg (MIT); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 85.33 512 341.33\"><path fill=\"#fff\" d=\"M0 85.34h512v341.32H0z\"/><path fill=\"#d80027\" d=\"M0 85.34h512V199.1H0z\"/><path d=\"M0 312.89h512v113.77H0z\"/></svg>";
+const svg: string = "<svg data-hata=\"ye\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 85.33 512 341.33\"><path fill=\"#fff\" d=\"M0 85.34h512v341.32H0z\"/><path fill=\"#d80027\" d=\"M0 85.34h512V199.1H0z\"/><path d=\"M0 312.89h512v113.77H0z\"/></svg>";
 
 export { svg };
 export default svg;

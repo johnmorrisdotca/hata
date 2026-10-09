@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_Chiba_Prefecture.svg
 
 /**
- * The flag of Chiba (千葉県), JP-12, as an SVG string: viewBox 900 by 600 (3:2), 403 B.
+ * The flag of Chiba (千葉県), JP-12, as an SVG string: viewBox 900 by 600 (3:2), 421 B.
  * From Wikimedia Commons, "Flag of Chiba Prefecture.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-450 -294 900 600\"><path fill=\"#006da5\" d=\"M-450-294h900v600h-900z\"/><path fill=\"#fece60\" d=\"m0-200 40 60-40 40-40-40zL29-50l144-50L58 0l115 100L29 50 0 200-29 50l-144 50L-58 0l-115-100 144 50z\"/><path fill=\"#fff\" d=\"m0-184 28 43-22 22 16 81 110-38L26 15 0 152-26 15l-106-91 110 38 16-81-22-22zM35 20 51 6l81 70L31 41zm-70 0L-51 6l-81 70 101-35z\"/></svg>";
+const svg: string = "<svg data-hata=\"jp-12\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-450 -294 900 600\"><path fill=\"#006da5\" d=\"M-450-294h900v600h-900z\"/><path fill=\"#fece60\" d=\"m0-200 40 60-40 40-40-40zL29-50l144-50L58 0l115 100L29 50 0 200-29 50l-144 50L-58 0l-115-100 144 50z\"/><path fill=\"#fff\" d=\"m0-184 28 43-22 22 16 81 110-38L26 15 0 152-26 15l-106-91 110 38 16-81-22-22zM35 20 51 6l81 70L31 41zm-70 0L-51 6l-81 70 101-35z\"/></svg>";
 
 export { svg };
 export default svg;

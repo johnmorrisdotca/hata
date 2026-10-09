@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_Ibaraki_Prefecture.svg
 
 /**
- * The flag of Ibaraki (茨城県), JP-08, as an SVG string: viewBox 3000 by 2000 (3:2), 590 B.
+ * The flag of Ibaraki (茨城県), JP-08, as an SVG string: viewBox 3000 by 2000 (3:2), 608 B.
  * From Wikimedia Commons, "Flag of Ibaraki Prefecture.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 3000 2000\"><path fill=\"#3b4aa8\" d=\"M0 0h3000v2000H0z\"/><path fill=\"#fff\" d=\"M1731 661c0 137-106 243-244 243a195 195 0 0 1-194-191c0-94 64-167 158-172 88-5 138 55 138 117 0 66-49 99-100 99-58 0-97-54-83-117 6 36 32 58 60 62 29 3 55-16 55-48 0-31-25-51-65-51-49 0-88 38-88 93 0 74 54 124 121 124 88 0 162-64 162-164 0-107-93-179-201-179s-238 91-238 241c0 149 124 271 273 271 182 0 332-133 332-313 0-116-46-245-165-359 328 156 448 429 448 673 0 330-269 597-600 597a599 599 0 0 1-600-597c0-301 227-548 502-589 205-31 329 122 329 260\"/></svg>";
+const svg: string = "<svg data-hata=\"jp-08\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 3000 2000\"><path fill=\"#3b4aa8\" d=\"M0 0h3000v2000H0z\"/><path fill=\"#fff\" d=\"M1731 661c0 137-106 243-244 243a195 195 0 0 1-194-191c0-94 64-167 158-172 88-5 138 55 138 117 0 66-49 99-100 99-58 0-97-54-83-117 6 36 32 58 60 62 29 3 55-16 55-48 0-31-25-51-65-51-49 0-88 38-88 93 0 74 54 124 121 124 88 0 162-64 162-164 0-107-93-179-201-179s-238 91-238 241c0 149 124 271 273 271 182 0 332-133 332-313 0-116-46-245-165-359 328 156 448 429 448 673 0 330-269 597-600 597a599 599 0 0 1-600-597c0-301 227-548 502-589 205-31 329 122 329 260\"/></svg>";
 
 export { svg };
 export default svg;

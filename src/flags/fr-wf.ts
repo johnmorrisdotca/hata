@@ -4,7 +4,7 @@
 import { svg as shared } from "./wf";
 
 /**
- * The flag of Wallis & Futuna (ウォリス・フツナ), FR-WF, as an SVG string: viewBox 150 by 100 (3:2), 391 B. The same picture as WF's.
+ * The flag of Wallis & Futuna (ウォリス・フツナ), FR-WF, as an SVG string: viewBox 150 by 100 (3:2), 406 B. The same picture as WF's.
  * From Wikimedia Commons, "Flag of Wallis and Futuna.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *

@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_Scotland.svg
 
 /**
- * The flag of Scotland (スコットランド), GB-SCT, as an SVG string: viewBox 1000 by 600 (5:3), 189 B.
+ * The flag of Scotland (スコットランド), GB-SCT, as an SVG string: viewBox 1000 by 600 (5:3), 208 B.
  * From Wikimedia Commons, "Flag of Scotland.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1000 600\"><rect width=\"100%\" height=\"100%\" fill=\"#005eb8\"/><path stroke=\"#fff\" stroke-width=\"120\" d=\"m0 0 1000 600M0 600 1000 0\"/></svg>";
+const svg: string = "<svg data-hata=\"gb-sct\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1000 600\"><rect width=\"100%\" height=\"100%\" fill=\"#005eb8\"/><path stroke=\"#fff\" stroke-width=\"120\" d=\"m0 0 1000 600M0 600 1000 0\"/></svg>";
 
 export { svg };
 export default svg;

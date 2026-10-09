@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Bandeira_do_Distrito_Federal_(Brasil).svg
 
 /**
- * The flag of Federal District (ブラジリア連邦直轄区), BR-DF, as an SVG string: viewBox 1453.8 by 1050 (1.385:1), 826 B.
+ * The flag of Federal District (ブラジリア連邦直轄区), BR-DF, as an SVG string: viewBox 1453.8 by 1050 (1.385:1), 844 B.
  * From Wikimedia Commons, "Bandeira do Distrito Federal (Brasil).svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1453.8 1050\"><path fill=\"#fff\" d=\"M0 920h180v130H0z\" style=\"fill:#fff;stroke-width:.12189\" transform=\"matrix(8.0769231,0,0,8.0769231,0,-7430.7691)\"/><path fill=\"#00923f\" d=\"M60.7 952.2h58v65h-58z\" style=\"fill:#00b241;fill-opacity:1;stroke-width:.118078\" transform=\"matrix(8.0769231,0,0,8.0769231,0,-7430.7691)\"/><path d=\"m89.7 953.7-7.5 6h4v2.8l-2 1.6v15H72.6l-1.6 2h-2.8v-4l-6 7.6 6 7.5v-4H71l1.6 2h11.6v15l2 1.7v2.8h-4l7.5 6 7.5-6h-4v-2.8l2-1.6v-15.1h11.6l1.6-2h2.8v4l6-7.5-6-7.5v4h-2.8l-1.6-2H95.2V964l-2-1.6v-2.8h4Zm0 23.5 5.5 5.5 2 2-3.5 3.5-2 2-2 2-3.5-3.5-2-2-2-2 4-4Z\" style=\"fill:#feb81c;fill-opacity:1;stroke-width:1.48119;stroke-linecap:round;stroke-linejoin:round;paint-order:markers fill stroke\" transform=\"matrix(8.0769231,0,0,8.0769231,0,-7430.7691)\"/></svg>";
+const svg: string = "<svg data-hata=\"br-df\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1453.8 1050\"><path fill=\"#fff\" d=\"M0 920h180v130H0z\" style=\"fill:#fff;stroke-width:.12189\" transform=\"matrix(8.0769231,0,0,8.0769231,0,-7430.7691)\"/><path fill=\"#00923f\" d=\"M60.7 952.2h58v65h-58z\" style=\"fill:#00b241;fill-opacity:1;stroke-width:.118078\" transform=\"matrix(8.0769231,0,0,8.0769231,0,-7430.7691)\"/><path d=\"m89.7 953.7-7.5 6h4v2.8l-2 1.6v15H72.6l-1.6 2h-2.8v-4l-6 7.6 6 7.5v-4H71l1.6 2h11.6v15l2 1.7v2.8h-4l7.5 6 7.5-6h-4v-2.8l2-1.6v-15.1h11.6l1.6-2h2.8v4l6-7.5-6-7.5v4h-2.8l-1.6-2H95.2V964l-2-1.6v-2.8h4Zm0 23.5 5.5 5.5 2 2-3.5 3.5-2 2-2 2-3.5-3.5-2-2-2-2 4-4Z\" style=\"fill:#feb81c;fill-opacity:1;stroke-width:1.48119;stroke-linecap:round;stroke-linejoin:round;paint-order:markers fill stroke\" transform=\"matrix(8.0769231,0,0,8.0769231,0,-7430.7691)\"/></svg>";
 
 export { svg };
 export default svg;

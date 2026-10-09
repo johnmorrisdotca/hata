@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_Aichi_Prefecture.svg
 
 /**
- * The flag of Aichi (愛知県), JP-23, as an SVG string: viewBox 1000 by 700 (10:7), 670 B.
+ * The flag of Aichi (愛知県), JP-23, as an SVG string: viewBox 1000 by 700 (10:7), 688 B.
  * From Wikimedia Commons, "Flag of Aichi Prefecture.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" xml:space=\"preserve\" viewBox=\"0 0 1000 700\"><path fill=\"#a63c47\" fill-rule=\"evenodd\" d=\"M0 0h1000v700H0z\"/><path fill=\"#fff\" d=\"M601 257a161 161 0 0 0-59.6 62s42.7 23.4 42.2 73q0 5.8-.8 11.1a143.3 143.3 0 0 1-172.6 131A168.3 168.3 0 0 0 601 257\"/><path fill=\"#fff\" d=\"M439.5 529.8a138 138 0 0 0 130.2-92.2 92 92 0 0 1-37.8 31.5 168 168 0 0 1 62-217.2q24.1-15.1 52.7-21.4s-44.6-20.6-105.8-8c0 0-11.7-55.6-40-81.3l-1-1.2-.8 1.2c-28.4 25.7-40 81.4-40 81.4-61.3-12.7-105.9 7.9-105.9 7.9A167.8 167.8 0 0 1 467.8 469s-51.1-20.2-51.7-77.2c-.5-49.5 42.2-73 42.2-73a161 161 0 0 0-59.4-61.8 168 168 0 0 0-5.7 264.7q21.7 7.9 46.3 8z\"/></svg>";
+const svg: string = "<svg data-hata=\"jp-23\" xmlns=\"http://www.w3.org/2000/svg\" xml:space=\"preserve\" viewBox=\"0 0 1000 700\"><path fill=\"#a63c47\" fill-rule=\"evenodd\" d=\"M0 0h1000v700H0z\"/><path fill=\"#fff\" d=\"M601 257a161 161 0 0 0-59.6 62s42.7 23.4 42.2 73q0 5.8-.8 11.1a143.3 143.3 0 0 1-172.6 131A168.3 168.3 0 0 0 601 257\"/><path fill=\"#fff\" d=\"M439.5 529.8a138 138 0 0 0 130.2-92.2 92 92 0 0 1-37.8 31.5 168 168 0 0 1 62-217.2q24.1-15.1 52.7-21.4s-44.6-20.6-105.8-8c0 0-11.7-55.6-40-81.3l-1-1.2-.8 1.2c-28.4 25.7-40 81.4-40 81.4-61.3-12.7-105.9 7.9-105.9 7.9A167.8 167.8 0 0 1 467.8 469s-51.1-20.2-51.7-77.2c-.5-49.5 42.2-73 42.2-73a161 161 0 0 0-59.4-61.8 168 168 0 0 0-5.7 264.7q21.7 7.9 46.3 8z\"/></svg>";
 
 export { svg };
 export default svg;

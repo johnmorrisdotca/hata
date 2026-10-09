@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_Botswana.svg
 
 /**
- * The flag of Botswana (ボツワナ), BW, as an SVG string: viewBox 36 by 24 (3:2), 167 B.
+ * The flag of Botswana (ボツワナ), BW, as an SVG string: viewBox 36 by 24 (3:2), 182 B.
  * From Wikimedia Commons, "Flag of Botswana.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 36 24\"><path fill=\"#6da9d2\" d=\"M0 0h36v24H0z\"/><path fill=\"#fff\" d=\"M0 9h36v6H0z\"/><path d=\"M0 10h36v4H0z\"/></svg>";
+const svg: string = "<svg data-hata=\"bw\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 36 24\"><path fill=\"#6da9d2\" d=\"M0 0h36v24H0z\"/><path fill=\"#fff\" d=\"M0 9h36v6H0z\"/><path d=\"M0 10h36v4H0z\"/></svg>";
 
 export { svg };
 export default svg;

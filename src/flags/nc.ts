@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_FLNKS.svg
 
 /**
- * The flag of New Caledonia (ニューカレドニア), NC, as an SVG string: viewBox 900 by 450 (2:1), 1.0 KB.
+ * The flag of New Caledonia (ニューカレドニア), NC, as an SVG string: viewBox 900 by 450 (2:1), 1.1 KB.
  * From Wikimedia Commons, "Flag of FLNKS.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 900 450\"><title>Flag of New Caledonia</title><path fill=\"#009543\" d=\"M0 0h900v450H0z\"/><path fill=\"#ed4135\" d=\"M0 0h900v300H0z\"/><path fill=\"#0035ad\" d=\"M0 0h900v150H0z\"/><circle cx=\"300\" cy=\"225\" r=\"147.5\" fill=\"#fae600\" stroke=\"#000\" stroke-width=\"5\"/><path stroke=\"#000\" stroke-width=\"6\" d=\"M275 247h50m-50-37h50M300 78v252\"/><path d=\"M240.6 360.4c60.2 24.6 116.6 1.5 116.6 1.5S336 339 325 330c-10.6-8.8-42-8.4-52.7 0-8.9 7-34.5 33-31.7 30.5\"/><ellipse cx=\"300\" cy=\"293\" rx=\"16.5\" ry=\"24\"/><ellipse cx=\"300\" cy=\"228.5\" rx=\"20\" ry=\"12.7\"/><circle cx=\"300\" cy=\"170\" r=\"20\"/><path d=\"M324 95.5s1.7 2.9-2 9.4c-17.3 31.4-34.8 32.1-38.1 34.8-3.7 3-5.2 2.8-5.2 2.8l.6-14.8c2.7-14.6 24.8-14.4 42.2-29.4 2.7-2.4 2.5-2.8 2.5-2.8\"/><path id=\"hata-nc-a\" d=\"M265.5 163s4 11.2 4.5 22.5c1 18 18.2 18.5 30 18.5v-10c-8.9 0-16.6-1.3-23-14.5a115 115 0 0 0-11.5-16.5m-.5 145s6.3-7.8 13.7-26c3.8-9.5 13-15 21.3-15v-14c-19 0-28.2 7-29.1 17.4-2 21.1-5.9 37.6-5.9 37.6\"/><use href=\"#hata-nc-a\" transform=\"translate(600,0)scale(-1,1)\"/></svg>";
+const svg: string = "<svg data-hata=\"nc\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 900 450\"><title>Flag of New Caledonia</title><path fill=\"#009543\" d=\"M0 0h900v450H0z\"/><path fill=\"#ed4135\" d=\"M0 0h900v300H0z\"/><path fill=\"#0035ad\" d=\"M0 0h900v150H0z\"/><circle cx=\"300\" cy=\"225\" r=\"147.5\" fill=\"#fae600\" stroke=\"#000\" stroke-width=\"5\"/><path stroke=\"#000\" stroke-width=\"6\" d=\"M275 247h50m-50-37h50M300 78v252\"/><path d=\"M240.6 360.4c60.2 24.6 116.6 1.5 116.6 1.5S336 339 325 330c-10.6-8.8-42-8.4-52.7 0-8.9 7-34.5 33-31.7 30.5\"/><ellipse cx=\"300\" cy=\"293\" rx=\"16.5\" ry=\"24\"/><ellipse cx=\"300\" cy=\"228.5\" rx=\"20\" ry=\"12.7\"/><circle cx=\"300\" cy=\"170\" r=\"20\"/><path d=\"M324 95.5s1.7 2.9-2 9.4c-17.3 31.4-34.8 32.1-38.1 34.8-3.7 3-5.2 2.8-5.2 2.8l.6-14.8c2.7-14.6 24.8-14.4 42.2-29.4 2.7-2.4 2.5-2.8 2.5-2.8\"/><path id=\"hata-nc-a\" d=\"M265.5 163s4 11.2 4.5 22.5c1 18 18.2 18.5 30 18.5v-10c-8.9 0-16.6-1.3-23-14.5a115 115 0 0 0-11.5-16.5m-.5 145s6.3-7.8 13.7-26c3.8-9.5 13-15 21.3-15v-14c-19 0-28.2 7-29.1 17.4-2 21.1-5.9 37.6-5.9 37.6\"/><use href=\"#hata-nc-a\" transform=\"translate(600,0)scale(-1,1)\"/></svg>";
 
 export { svg };
 export default svg;

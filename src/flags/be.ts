@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_Belgium.svg
 
 /**
- * The flag of Belgium (ベルギー), BE, as an SVG string: viewBox 900 by 780 (1.154:1), 179 B.
+ * The flag of Belgium (ベルギー), BE, as an SVG string: viewBox 900 by 780 (1.154:1), 194 B.
  * From Wikimedia Commons, "Flag of Belgium.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 900 780\"><path fill=\"#ef3340\" d=\"M0 0h900v780H0z\"/><path fill=\"#fdda25\" d=\"M0 0h600v780H0z\"/><path d=\"M0 0h300v780H0z\"/></svg>";
+const svg: string = "<svg data-hata=\"be\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 900 780\"><path fill=\"#ef3340\" d=\"M0 0h900v780H0z\"/><path fill=\"#fdda25\" d=\"M0 0h600v780H0z\"/><path d=\"M0 0h300v780H0z\"/></svg>";
 
 export { svg };
 export default svg;

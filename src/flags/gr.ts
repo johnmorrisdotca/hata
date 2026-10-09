@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_Greece.svg
 
 /**
- * The flag of Greece (ギリシャ), GR, as an SVG string: viewBox 27 by 18 (3:2), 206 B.
+ * The flag of Greece (ギリシャ), GR, as an SVG string: viewBox 27 by 18 (3:2), 221 B.
  * From Wikimedia Commons, "Flag of Greece.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 27 18\"><path fill=\"#0d5eaf\" d=\"M0 0h27v18H0z\"/><path fill=\"none\" stroke=\"#fff\" stroke-width=\"2\" d=\"M5 0v11M0 5h10m0-2h17M10 7h17M0 11h27M0 15h27\"/></svg>";
+const svg: string = "<svg data-hata=\"gr\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 27 18\"><path fill=\"#0d5eaf\" d=\"M0 0h27v18H0z\"/><path fill=\"none\" stroke=\"#fff\" stroke-width=\"2\" d=\"M5 0v11M0 5h10m0-2h17M10 7h17M0 11h27M0 15h27\"/></svg>";
 
 export { svg };
 export default svg;

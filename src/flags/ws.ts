@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_Samoa.svg
 
 /**
- * The flag of Samoa (サモア), WS, as an SVG string: viewBox 288 by 144 (2:1), 612 B.
+ * The flag of Samoa (サモア), WS, as an SVG string: viewBox 288 by 144 (2:1), 627 B.
  * From Wikimedia Commons, "Flag of Samoa.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"#fff\" viewBox=\"0 0 288 144\"><title>Flag of Samoa</title><defs><path id=\"hata-ws-a\" d=\"M0-.95.3 0l-.8-.59h1L-.3 0z\"/><path id=\"hata-ws-b\" d=\"m0 0 .3.95-.8-.59h1l-.8.6z\"/></defs><path fill=\"#ce1126\" d=\"M0 0h288v144H0z\"/><path fill=\"#002b7f\" d=\"M0 0h144v72H0z\"/><use href=\"#hata-ws-a\" transform=\"matrix(20,0,0,20,72,69)\"/><use href=\"#hata-ws-b\" transform=\"matrix(16,0,0,16,50,21)\"/><use href=\"#hata-ws-b\" transform=\"matrix(16,0,0,16,72,3)\"/><use href=\"#hata-ws-b\" transform=\"matrix(15,0,0,15,94.5,18)\"/><use href=\"#hata-ws-a\" transform=\"matrix(10,0,0,10,83,46)\"/></svg>";
+const svg: string = "<svg data-hata=\"ws\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"#fff\" viewBox=\"0 0 288 144\"><title>Flag of Samoa</title><defs><path id=\"hata-ws-a\" d=\"M0-.95.3 0l-.8-.59h1L-.3 0z\"/><path id=\"hata-ws-b\" d=\"m0 0 .3.95-.8-.59h1l-.8.6z\"/></defs><path fill=\"#ce1126\" d=\"M0 0h288v144H0z\"/><path fill=\"#002b7f\" d=\"M0 0h144v72H0z\"/><use href=\"#hata-ws-a\" transform=\"matrix(20,0,0,20,72,69)\"/><use href=\"#hata-ws-b\" transform=\"matrix(16,0,0,16,50,21)\"/><use href=\"#hata-ws-b\" transform=\"matrix(16,0,0,16,72,3)\"/><use href=\"#hata-ws-b\" transform=\"matrix(15,0,0,15,94.5,18)\"/><use href=\"#hata-ws-a\" transform=\"matrix(10,0,0,10,83,46)\"/></svg>";
 
 export { svg };
 export default svg;

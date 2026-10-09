@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_North_Macedonia.svg
 
 /**
- * The flag of North Macedonia (北マケドニア), MK, as an SVG string: viewBox 280 by 140 (2:1), 337 B.
+ * The flag of North Macedonia (北マケドニア), MK, as an SVG string: viewBox 280 by 140 (2:1), 352 B.
  * From Wikimedia Commons, "Flag of North Macedonia.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"#f8e92e\" viewBox=\"-140 -70 280 140\"><path fill=\"#d82126\" d=\"M-140-70h280V70h-280z\"/><path d=\"M-140 14v-28l280 28v-28zm126-84h28L0-15zM14 70h-28L0 15zM-140-70h42L12.9 7.7zm0 140h42L12.9-7.7zM140-70H98L-12.9 7.7zm0 140H98L-12.9-7.7z\"/><circle r=\"22.5\" stroke=\"#d82126\" stroke-width=\"5\"/></svg>";
+const svg: string = "<svg data-hata=\"mk\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"#f8e92e\" viewBox=\"-140 -70 280 140\"><path fill=\"#d82126\" d=\"M-140-70h280V70h-280z\"/><path d=\"M-140 14v-28l280 28v-28zm126-84h28L0-15zM14 70h-28L0 15zM-140-70h42L12.9 7.7zm0 140h42L12.9-7.7zM140-70H98L-12.9 7.7zm0 140H98L-12.9-7.7z\"/><circle r=\"22.5\" stroke=\"#d82126\" stroke-width=\"5\"/></svg>";
 
 export { svg };
 export default svg;

@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_Niue.svg
 
 /**
- * The flag of Niue (ニウエ), NU, as an SVG string: viewBox 120 by 60 (2:1), 1014 B.
+ * The flag of Niue (ニウエ), NU, as an SVG string: viewBox 120 by 60 (2:1), 1.0 KB.
  * From Wikimedia Commons, "Flag of Niue.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 120 60\"><clipPath id=\"hata-nu-a\"><path d=\"M0 0v15h70v15H60zm0 30v10h30V0h30z\"/></clipPath><title>Flag of Niue</title><path fill=\"#012169\" d=\"M0 0h120v60H0z\"/><g stroke=\"#c8102e\" stroke-width=\"6\"><path stroke=\"#fff\" d=\"m0 0 60 30m0-30L0 30\"/><path stroke-width=\"4\" d=\"m0 0 60 30m0-30L0 30\" clip-path=\"url(#hata-nu-a)\"/><path stroke=\"#fff\" stroke-width=\"10\" d=\"M30 0v40M0 15h70\"/><path d=\"M30 0v40M0 15h70\"/></g><path fill=\"#fedd00\" d=\"M60 0h60v60H0V30h60z\"/><g transform=\"translate(30,15)\"><g transform=\"scale(5.10390485)\"><circle r=\"1\" fill=\"#012169\"/><path id=\"hata-nu-b\" fill=\"#fedd00\" d=\"m0-513674 301930 929245-790463-574305h977066l-790463 574305\" transform=\"scale(0.00000194676)\"/></g><use href=\"#hata-nu-b\" transform=\"translate(-17.5,0.29) scale(3)\"/><use href=\"#hata-nu-b\" transform=\"translate(17.5,0.29) scale(3)\"/><use href=\"#hata-nu-b\" transform=\"translate(0,10.29) scale(3)\"/><use href=\"#hata-nu-b\" transform=\"translate(0,-9.71) scale(3)\"/></g></svg>";
+const svg: string = "<svg data-hata=\"nu\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 120 60\"><clipPath id=\"hata-nu-a\"><path d=\"M0 0v15h70v15H60zm0 30v10h30V0h30z\"/></clipPath><title>Flag of Niue</title><path fill=\"#012169\" d=\"M0 0h120v60H0z\"/><g stroke=\"#c8102e\" stroke-width=\"6\"><path stroke=\"#fff\" d=\"m0 0 60 30m0-30L0 30\"/><path stroke-width=\"4\" d=\"m0 0 60 30m0-30L0 30\" clip-path=\"url(#hata-nu-a)\"/><path stroke=\"#fff\" stroke-width=\"10\" d=\"M30 0v40M0 15h70\"/><path d=\"M30 0v40M0 15h70\"/></g><path fill=\"#fedd00\" d=\"M60 0h60v60H0V30h60z\"/><g transform=\"translate(30,15)\"><g transform=\"scale(5.10390485)\"><circle r=\"1\" fill=\"#012169\"/><path id=\"hata-nu-b\" fill=\"#fedd00\" d=\"m0-513674 301930 929245-790463-574305h977066l-790463 574305\" transform=\"scale(0.00000194676)\"/></g><use href=\"#hata-nu-b\" transform=\"translate(-17.5,0.29) scale(3)\"/><use href=\"#hata-nu-b\" transform=\"translate(17.5,0.29) scale(3)\"/><use href=\"#hata-nu-b\" transform=\"translate(0,10.29) scale(3)\"/><use href=\"#hata-nu-b\" transform=\"translate(0,-9.71) scale(3)\"/></g></svg>";
 
 export { svg };
 export default svg;

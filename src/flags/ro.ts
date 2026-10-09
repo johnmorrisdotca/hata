@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_Romania.svg
 
 /**
- * The flag of Romania (ルーマニア), RO, as an SVG string: viewBox 3 by 2 (3:2), 178 B.
+ * The flag of Romania (ルーマニア), RO, as an SVG string: viewBox 3 by 2 (3:2), 193 B.
  * From Wikimedia Commons, "Flag of Romania.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 3 2\"><path fill=\"#002b7f\" d=\"M0 0h3v2H0z\"/><path fill=\"#fcd116\" d=\"M1 0h2v2H1z\"/><path fill=\"#ce1126\" d=\"M2 0h1v2H2z\"/></svg>";
+const svg: string = "<svg data-hata=\"ro\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 3 2\"><path fill=\"#002b7f\" d=\"M0 0h3v2H0z\"/><path fill=\"#fcd116\" d=\"M1 0h2v2H1z\"/><path fill=\"#ce1126\" d=\"M2 0h1v2H2z\"/></svg>";
 
 export { svg };
 export default svg;

@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_Ukraine.svg
 
 /**
- * The flag of Ukraine (ウクライナ), UA, as an SVG string: viewBox 1200 by 800 (3:2), 154 B.
+ * The flag of Ukraine (ウクライナ), UA, as an SVG string: viewBox 1200 by 800 (3:2), 169 B.
  * From Wikimedia Commons, "Flag of Ukraine.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1200 800\"><path fill=\"#0057b7\" d=\"M0 0h1200v800H0z\"/><path fill=\"gold\" d=\"M0 400h1200v400H0z\"/></svg>";
+const svg: string = "<svg data-hata=\"ua\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1200 800\"><path fill=\"#0057b7\" d=\"M0 0h1200v800H0z\"/><path fill=\"gold\" d=\"M0 400h1200v400H0z\"/></svg>";
 
 export { svg };
 export default svg;

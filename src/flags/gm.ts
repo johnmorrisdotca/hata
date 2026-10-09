@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_The_Gambia.svg
 
 /**
- * The flag of Gambia (ガンビア), GM, as an SVG string: viewBox 27 by 18 (3:2), 254 B.
+ * The flag of Gambia (ガンビア), GM, as an SVG string: viewBox 27 by 18 (3:2), 269 B.
  * From Wikimedia Commons, "Flag of The Gambia.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 27 18\"><title>Flag of the Gambia</title><path fill=\"#fff\" d=\"M0 0h27v18H0z\"/><path fill=\"#ce1126\" d=\"M0 0h27v6H0z\"/><path fill=\"#0c1c8c\" d=\"M0 7h27v4H0z\"/><path fill=\"#3a7728\" d=\"M0 12h27v6H0z\"/></svg>";
+const svg: string = "<svg data-hata=\"gm\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 27 18\"><title>Flag of the Gambia</title><path fill=\"#fff\" d=\"M0 0h27v18H0z\"/><path fill=\"#ce1126\" d=\"M0 0h27v6H0z\"/><path fill=\"#0c1c8c\" d=\"M0 7h27v4H0z\"/><path fill=\"#3a7728\" d=\"M0 12h27v6H0z\"/></svg>";
 
 export { svg };
 export default svg;

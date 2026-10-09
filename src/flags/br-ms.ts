@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Bandeira_de_Mato_Grosso_do_Sul.svg
 
 /**
- * The flag of Mato Grosso do Sul (マットグロッソ・ド・スル州), BR-MS, as an SVG string: viewBox 1000 by 700 (10:7), 284 B.
+ * The flag of Mato Grosso do Sul (マットグロッソ・ド・スル州), BR-MS, as an SVG string: viewBox 1000 by 700 (10:7), 302 B.
  * From Wikimedia Commons, "Bandeira de Mato Grosso do Sul.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1000 700\"><path fill=\"#fff\" d=\"M0 0h1000v700H0z\"/><path fill=\"#009ddc\" d=\"M0 700 700 0h300v700z\"/><path fill=\"#00a160\" d=\"M0 0v500L500 0z\"/><path fill=\"#ffe900\" d=\"m850 450 25 77h75l-62 43 25 75-63-47-63 47 25-75-62-43h75z\"/></svg>";
+const svg: string = "<svg data-hata=\"br-ms\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1000 700\"><path fill=\"#fff\" d=\"M0 0h1000v700H0z\"/><path fill=\"#009ddc\" d=\"M0 700 700 0h300v700z\"/><path fill=\"#00a160\" d=\"M0 0v500L500 0z\"/><path fill=\"#ffe900\" d=\"m850 450 25 77h75l-62 43 25 75-63-47-63 47 25-75-62-43h75z\"/></svg>";
 
 export { svg };
 export default svg;

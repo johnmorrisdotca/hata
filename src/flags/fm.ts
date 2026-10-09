@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_the_Federated_States_of_Micronesia.svg
 
 /**
- * The flag of Micronesia (ミクロネシア連邦), FM, as an SVG string: viewBox 38 by 20 (19:10), 644 B.
+ * The flag of Micronesia (ミクロネシア連邦), FM, as an SVG string: viewBox 38 by 20 (19:10), 659 B.
  * From Wikimedia Commons, "Flag of the Federated States of Micronesia.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-19 -10 38 20\"><path fill=\"#75b2dd\" d=\"M-19-10h38v20h-38z\"/><g id=\"hata-fm-c\" fill=\"#fff\" transform=\"translate(0,-6)\"><g id=\"hata-fm-b\"><path id=\"hata-fm-a\" d=\"M0-2v2h1\" transform=\"rotate(18 0,-2)\"/><use href=\"#hata-fm-a\" transform=\"scale(-1,1)\"/></g><use href=\"#hata-fm-b\" transform=\"rotate(72)\"/><use href=\"#hata-fm-b\" transform=\"rotate(144)\"/><use href=\"#hata-fm-b\" transform=\"rotate(216)\"/><use href=\"#hata-fm-b\" transform=\"rotate(288)\"/></g><use href=\"#hata-fm-c\" transform=\"rotate(90)\"/><use href=\"#hata-fm-c\" transform=\"rotate(180)\"/><use href=\"#hata-fm-c\" transform=\"rotate(270)\"/></svg>";
+const svg: string = "<svg data-hata=\"fm\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-19 -10 38 20\"><path fill=\"#75b2dd\" d=\"M-19-10h38v20h-38z\"/><g id=\"hata-fm-c\" fill=\"#fff\" transform=\"translate(0,-6)\"><g id=\"hata-fm-b\"><path id=\"hata-fm-a\" d=\"M0-2v2h1\" transform=\"rotate(18 0,-2)\"/><use href=\"#hata-fm-a\" transform=\"scale(-1,1)\"/></g><use href=\"#hata-fm-b\" transform=\"rotate(72)\"/><use href=\"#hata-fm-b\" transform=\"rotate(144)\"/><use href=\"#hata-fm-b\" transform=\"rotate(216)\"/><use href=\"#hata-fm-b\" transform=\"rotate(288)\"/></g><use href=\"#hata-fm-c\" transform=\"rotate(90)\"/><use href=\"#hata-fm-c\" transform=\"rotate(180)\"/><use href=\"#hata-fm-c\" transform=\"rotate(270)\"/></svg>";
 
 export { svg };
 export default svg;

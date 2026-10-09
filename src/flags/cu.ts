@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_Cuba.svg
 
 /**
- * The flag of Cuba (キューバ), CU, as an SVG string: viewBox 30 by 15 (2:1), 276 B.
+ * The flag of Cuba (キューバ), CU, as an SVG string: viewBox 30 by 15 (2:1), 291 B.
  * From Wikimedia Commons, "Flag of Cuba.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"#fff\" viewBox=\"0 0 30 15\"><title>Flag of Cuba</title><path fill=\"#002a8f\" d=\"M0 0h30v15H0z\"/><path d=\"M3 3h27v3H9v3h21v3H3z\"/><path fill=\"#cb1515\" d=\"M12.99 7.5 0 15V0z\"/><path d=\"M4.33 5 2.86 9.52l3.85-2.8H1.95l3.85 2.8z\"/></svg>";
+const svg: string = "<svg data-hata=\"cu\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"#fff\" viewBox=\"0 0 30 15\"><title>Flag of Cuba</title><path fill=\"#002a8f\" d=\"M0 0h30v15H0z\"/><path d=\"M3 3h27v3H9v3h21v3H3z\"/><path fill=\"#cb1515\" d=\"M12.99 7.5 0 15V0z\"/><path d=\"M4.33 5 2.86 9.52l3.85-2.8H1.95l3.85 2.8z\"/></svg>";
 
 export { svg };
 export default svg;

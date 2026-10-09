@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_Maryland.svg
 
 /**
- * The flag of Maryland (メリーランド州), US-MD, as an SVG string: viewBox 36 by 24 (3:2), 787 B.
+ * The flag of Maryland (メリーランド州), US-MD, as an SVG string: viewBox 36 by 24 (3:2), 805 B.
  * From Wikimedia Commons, "Flag of Maryland.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 36 24\"><defs><path id=\"hata-us-md-a\" d=\"M0 215a32 32 0 0 0 32-32v-16h31a32 32 0 0 0 0-64H32V32h199v31a32 32 0 0 0 64 0V32h28a32 32 0 0 0 32-32H0z\" transform=\"scale(.024)\"/></defs><path d=\"M0 0h36v24H0z\"/><path fill=\"#eaaa00\" d=\"M0 24V2l3 2v20h3V0h3v24h3V0h3v24h3V0h3v24h3V0h3v24h3V0h3v24h3v-2L3 0v4l30 20z\"/><g id=\"hata-us-md-b\"><path fill=\"#fff\" d=\"M18 0h9v12h9V6H18z\"/><path fill=\"#9d2235\" d=\"M27 0h9v6H18v6h9z\"/><g transform=\"translate(27,6)\"><use fill=\"#9d2235\" href=\"#hata-us-md-a\"/><use fill=\"#fff\" href=\"#hata-us-md-a\" transform=\"scale(-1 1)\"/><use fill=\"#fff\" href=\"#hata-us-md-a\" transform=\"scale(1 -1)\"/><use fill=\"#9d2235\" href=\"#hata-us-md-a\" transform=\"scale(-1)\"/></g></g><use x=\"-18\" y=\"12\" href=\"#hata-us-md-b\"/></svg>";
+const svg: string = "<svg data-hata=\"us-md\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 36 24\"><defs><path id=\"hata-us-md-a\" d=\"M0 215a32 32 0 0 0 32-32v-16h31a32 32 0 0 0 0-64H32V32h199v31a32 32 0 0 0 64 0V32h28a32 32 0 0 0 32-32H0z\" transform=\"scale(.024)\"/></defs><path d=\"M0 0h36v24H0z\"/><path fill=\"#eaaa00\" d=\"M0 24V2l3 2v20h3V0h3v24h3V0h3v24h3V0h3v24h3V0h3v24h3V0h3v24h3v-2L3 0v4l30 20z\"/><g id=\"hata-us-md-b\"><path fill=\"#fff\" d=\"M18 0h9v12h9V6H18z\"/><path fill=\"#9d2235\" d=\"M27 0h9v6H18v6h9z\"/><g transform=\"translate(27,6)\"><use fill=\"#9d2235\" href=\"#hata-us-md-a\"/><use fill=\"#fff\" href=\"#hata-us-md-a\" transform=\"scale(-1 1)\"/><use fill=\"#fff\" href=\"#hata-us-md-a\" transform=\"scale(1 -1)\"/><use fill=\"#9d2235\" href=\"#hata-us-md-a\" transform=\"scale(-1)\"/></g></g><use x=\"-18\" y=\"12\" href=\"#hata-us-md-b\"/></svg>";
 
 export { svg };
 export default svg;

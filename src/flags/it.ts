@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_Italy.svg
 
 /**
- * The flag of Italy (イタリア), IT, as an SVG string: viewBox 3 by 2 (3:2), 175 B.
+ * The flag of Italy (イタリア), IT, as an SVG string: viewBox 3 by 2 (3:2), 190 B.
  * From Wikimedia Commons, "Flag of Italy.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 3 2\"><path fill=\"#009246\" d=\"M0 0h3v2H0z\"/><path fill=\"#fff\" d=\"M1 0h2v2H1z\"/><path fill=\"#ce2b37\" d=\"M2 0h1v2H2z\"/></svg>";
+const svg: string = "<svg data-hata=\"it\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 3 2\"><path fill=\"#009246\" d=\"M0 0h3v2H0z\"/><path fill=\"#fff\" d=\"M1 0h2v2H1z\"/><path fill=\"#ce2b37\" d=\"M2 0h1v2H2z\"/></svg>";
 
 export { svg };
 export default svg;

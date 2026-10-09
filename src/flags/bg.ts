@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_Bulgaria.svg
 
 /**
- * The flag of Bulgaria (ブルガリア), BG, as an SVG string: viewBox 5 by 3 (5:3), 175 B.
+ * The flag of Bulgaria (ブルガリア), BG, as an SVG string: viewBox 5 by 3 (5:3), 190 B.
  * From Wikimedia Commons, "Flag of Bulgaria.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 5 3\"><path fill=\"#fff\" d=\"M0 0h5v3H0z\"/><path fill=\"#00966e\" d=\"M0 1h5v2H0z\"/><path fill=\"#d62612\" d=\"M0 2h5v1H0z\"/></svg>";
+const svg: string = "<svg data-hata=\"bg\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 5 3\"><path fill=\"#fff\" d=\"M0 0h5v3H0z\"/><path fill=\"#00966e\" d=\"M0 1h5v2H0z\"/><path fill=\"#d62612\" d=\"M0 2h5v1H0z\"/></svg>";
 
 export { svg };
 export default svg;

@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_Alaska.svg
 
 /**
- * The flag of Alaska (アラスカ州), US-AK, as an SVG string: viewBox 1416 by 1000 (1.416:1), 1.2 KB.
+ * The flag of Alaska (アラスカ州), US-AK, as an SVG string: viewBox 1416 by 1000 (1.416:1), 1.3 KB.
  * From Wikimedia Commons, "Flag of Alaska.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1416 1000\"><path fill=\"#0f204b\" d=\"M0 0h1416v1000H0z\"/><g fill=\"#ffb612\" transform=\"matrix(57.48978 0 0 57.48978 1157.996 187.49)\"><g id=\"hata-us-ak-b\"><path id=\"hata-us-ak-a\" d=\"M0 0v1h.5z\" transform=\"rotate(18 3.157 -.5)\"/><use href=\"#hata-us-ak-a\" transform=\"scale(-1 1)\"/></g><use href=\"#hata-us-ak-b\" transform=\"rotate(72)\"/><use href=\"#hata-us-ak-b\" transform=\"rotate(-72)\"/><use href=\"#hata-us-ak-b\" transform=\"rotate(144)\"/><use href=\"#hata-us-ak-b\" transform=\"rotate(216)\"/></g><g id=\"hata-us-ak-c\" fill=\"#ffb612\" transform=\"matrix(34.27276 0 0 34.27276 228.995 399.273)\"><path d=\"m0-1-.3 1 .5.1z\"/><use href=\"#hata-us-ak-a\" transform=\"scale(-1 1)\"/><use href=\"#hata-us-ak-b\" transform=\"rotate(72)\"/><use href=\"#hata-us-ak-b\" transform=\"rotate(-72)\"/><use href=\"#hata-us-ak-b\" transform=\"rotate(144)\"/><use href=\"#hata-us-ak-b\" transform=\"rotate(216)\"/></g><use href=\"#hata-us-ak-c\" transform=\"translate(167 62)\"/><use href=\"#hata-us-ak-c\" transform=\"translate(250 151)\"/><use href=\"#hata-us-ak-c\" transform=\"translate(334 244)\"/><use href=\"#hata-us-ak-c\" transform=\"translate(584 333)\"/><use href=\"#hata-us-ak-c\" transform=\"translate(323 375)\"/><use href=\"#hata-us-ak-c\" transform=\"translate(511 437)\"/></svg>";
+const svg: string = "<svg data-hata=\"us-ak\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1416 1000\"><path fill=\"#0f204b\" d=\"M0 0h1416v1000H0z\"/><g fill=\"#ffb612\" transform=\"matrix(57.48978 0 0 57.48978 1157.996 187.49)\"><g id=\"hata-us-ak-b\"><path id=\"hata-us-ak-a\" d=\"M0 0v1h.5z\" transform=\"rotate(18 3.157 -.5)\"/><use href=\"#hata-us-ak-a\" transform=\"scale(-1 1)\"/></g><use href=\"#hata-us-ak-b\" transform=\"rotate(72)\"/><use href=\"#hata-us-ak-b\" transform=\"rotate(-72)\"/><use href=\"#hata-us-ak-b\" transform=\"rotate(144)\"/><use href=\"#hata-us-ak-b\" transform=\"rotate(216)\"/></g><g id=\"hata-us-ak-c\" fill=\"#ffb612\" transform=\"matrix(34.27276 0 0 34.27276 228.995 399.273)\"><path d=\"m0-1-.3 1 .5.1z\"/><use href=\"#hata-us-ak-a\" transform=\"scale(-1 1)\"/><use href=\"#hata-us-ak-b\" transform=\"rotate(72)\"/><use href=\"#hata-us-ak-b\" transform=\"rotate(-72)\"/><use href=\"#hata-us-ak-b\" transform=\"rotate(144)\"/><use href=\"#hata-us-ak-b\" transform=\"rotate(216)\"/></g><use href=\"#hata-us-ak-c\" transform=\"translate(167 62)\"/><use href=\"#hata-us-ak-c\" transform=\"translate(250 151)\"/><use href=\"#hata-us-ak-c\" transform=\"translate(334 244)\"/><use href=\"#hata-us-ak-c\" transform=\"translate(584 333)\"/><use href=\"#hata-us-ak-c\" transform=\"translate(323 375)\"/><use href=\"#hata-us-ak-c\" transform=\"translate(511 437)\"/></svg>";
 
 export { svg };
 export default svg;

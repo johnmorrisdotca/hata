@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_the_Republic_of_the_Congo.svg
 
 /**
- * The flag of Congo - Brazzaville (コンゴ共和国(ブラザビル)), CG, as an SVG string: viewBox 900 by 600 (3:2), 200 B.
+ * The flag of Congo - Brazzaville (コンゴ共和国(ブラザビル)), CG, as an SVG string: viewBox 900 by 600 (3:2), 215 B.
  * From Wikimedia Commons, "Flag of the Republic of the Congo.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 900 600\"><path fill=\"#009739\" d=\"M0 0h900v600H0z\"/><path fill=\"#ffd100\" d=\"M0 600 600 0h300v600z\"/><path fill=\"#dc241f\" d=\"M900 0v600H300z\"/></svg>";
+const svg: string = "<svg data-hata=\"cg\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 900 600\"><path fill=\"#009739\" d=\"M0 0h900v600H0z\"/><path fill=\"#ffd100\" d=\"M0 600 600 0h300v600z\"/><path fill=\"#dc241f\" d=\"M900 0v600H300z\"/></svg>";
 
 export { svg };
 export default svg;

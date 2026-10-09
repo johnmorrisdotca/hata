@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_Iwate_Prefecture.svg
 
 /**
- * The flag of Iwate (岩手県), JP-03, as an SVG string: viewBox 165 by 110 (3:2), 363 B.
+ * The flag of Iwate (岩手県), JP-03, as an SVG string: viewBox 165 by 110 (3:2), 381 B.
  * From Wikimedia Commons, "Flag of Iwate Prefecture.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-82.5 -55 165 110\"><path fill=\"#145e70\" d=\"M-82.5-55h165V55h-165z\"/><path id=\"hata-jp-03-a\" fill=\"#fff\" d=\"M-15-5h4l3 3h4l-2-2 6-6 6 6-2 2h4l3-3h4l-5 5h-20zM0-2l2-2-2-2-2 2z\" transform=\"scale(1.7320508075689 3)\"/><use href=\"#hata-jp-03-a\" transform=\"scale(1-1)\"/><path fill=\"#145e70\" d=\"M-26-.3h52v.6h-52z\"/></svg>";
+const svg: string = "<svg data-hata=\"jp-03\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-82.5 -55 165 110\"><path fill=\"#145e70\" d=\"M-82.5-55h165V55h-165z\"/><path id=\"hata-jp-03-a\" fill=\"#fff\" d=\"M-15-5h4l3 3h4l-2-2 6-6 6 6-2 2h4l3-3h4l-5 5h-20zM0-2l2-2-2-2-2 2z\" transform=\"scale(1.7320508075689 3)\"/><use href=\"#hata-jp-03-a\" transform=\"scale(1-1)\"/><path fill=\"#145e70\" d=\"M-26-.3h52v.6h-52z\"/></svg>";
 
 export { svg };
 export default svg;

@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:CHE_Z%C3%BCrich_Flag.svg
 
 /**
- * The flag of Zürich (チューリヒ州), CH-ZH, as an SVG string: viewBox 507 by 507 (1:1), 228 B.
+ * The flag of Zürich (チューリヒ州), CH-ZH, as an SVG string: viewBox 507 by 507 (1:1), 246 B.
  * From Wikimedia Commons, "CHE Zürich Flag.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 507 507\"><path fill=\"#f00000\" d=\"M0 0h507v507H0z\" style=\"fill:#fff\"/><path d=\"M507 507 0 0v507Z\" style=\"fill:#0093dd;stroke:none;stroke-width:.99999994;fill-opacity:1\"/></svg>";
+const svg: string = "<svg data-hata=\"ch-zh\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 507 507\"><path fill=\"#f00000\" d=\"M0 0h507v507H0z\" style=\"fill:#fff\"/><path d=\"M507 507 0 0v507Z\" style=\"fill:#0093dd;stroke:none;stroke-width:.99999994;fill-opacity:1\"/></svg>";
 
 export { svg };
 export default svg;

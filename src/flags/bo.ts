@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_Bolivia.svg
 
 /**
- * The flag of Bolivia (ボリビア), BO, as an SVG string: viewBox 1100 by 750 (1.467:1), 198 B.
+ * The flag of Bolivia (ボリビア), BO, as an SVG string: viewBox 1100 by 750 (1.467:1), 213 B.
  * From Wikimedia Commons, "Flag of Bolivia.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1100 750\"><path fill=\"#007934\" d=\"M0 0h1100v750H0z\"/><path fill=\"#f9e300\" d=\"M0 0h1100v500H0z\"/><path fill=\"#d52b1e\" d=\"M0 0h1100v250H0z\"/></svg>";
+const svg: string = "<svg data-hata=\"bo\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1100 750\"><path fill=\"#007934\" d=\"M0 0h1100v750H0z\"/><path fill=\"#f9e300\" d=\"M0 0h1100v500H0z\"/><path fill=\"#d52b1e\" d=\"M0 0h1100v250H0z\"/></svg>";
 
 export { svg };
 export default svg;

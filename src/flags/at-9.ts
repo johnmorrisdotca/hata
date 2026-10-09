@@ -4,7 +4,7 @@
 import { svg as shared } from "./at-5";
 
 /**
- * The flag of Vienna (ウィーン), AT-9, as an SVG string: viewBox 600 by 400 (3:2), 151 B. The same picture as AT-5's.
+ * The flag of Vienna (ウィーン), AT-9, as an SVG string: viewBox 600 by 400 (3:2), 168 B. The same picture as AT-5's.
  * From Wikimedia Commons, "Flag of Salzburg, Vienna, Vorarlberg.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *

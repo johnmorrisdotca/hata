@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_Colorado.svg
 
 /**
- * The flag of Colorado (コロラド州), US-CO, as an SVG string: viewBox 1800 by 1200 (3:2), 265 B.
+ * The flag of Colorado (コロラド州), US-CO, as an SVG string: viewBox 1800 by 1200 (3:2), 283 B.
  * From Wikimedia Commons, "Flag of Colorado.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1800 1200\"><path fill=\"#00205b\" d=\"M0 0h1800v1200H0\"/><path fill=\"#fff\" d=\"M0 400h1800v400H0\"/><path fill=\"#bf0a30\" d=\"M1131 750a400 400 0 1 1 0-300L760 600\"/><circle cx=\"760\" cy=\"600\" r=\"200\" fill=\"gold\"/></svg>";
+const svg: string = "<svg data-hata=\"us-co\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1800 1200\"><path fill=\"#00205b\" d=\"M0 0h1800v1200H0\"/><path fill=\"#fff\" d=\"M0 400h1800v400H0\"/><path fill=\"#bf0a30\" d=\"M1131 750a400 400 0 1 1 0-300L760 600\"/><circle cx=\"760\" cy=\"600\" r=\"200\" fill=\"gold\"/></svg>";
 
 export { svg };
 export default svg;

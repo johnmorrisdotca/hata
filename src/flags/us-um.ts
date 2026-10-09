@@ -4,7 +4,7 @@
 import { svg as shared } from "./um";
 
 /**
- * The flag of U.S. Outlying Islands (合衆国領有小離島), US-UM, as an SVG string: viewBox 7410 by 3900 (19:10), 727 B. The same picture as UM's.
+ * The flag of U.S. Outlying Islands (合衆国領有小離島), US-UM, as an SVG string: viewBox 7410 by 3900 (19:10), 742 B. The same picture as UM's.
  * From Wikimedia Commons, "Flag of the United States.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *

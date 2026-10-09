@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_Kumamoto_Prefecture.svg
 
 /**
- * The flag of Kumamoto (熊本県), JP-43, as an SVG string: viewBox 225 by 150 (3:2), 219 B.
+ * The flag of Kumamoto (熊本県), JP-43, as an SVG string: viewBox 225 by 150 (3:2), 237 B.
  * From Wikimedia Commons, "Flag of Kumamoto Prefecture.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-112.5 -75 225 150\"><path fill=\"#931d23\" d=\"M-112.5-75h225V75h-225z\"/><path fill=\"#fff\" d=\"M-72-50H0a50 50 0 1 1-45.8 70 30 30 0 0 0 55-24 30 30 0 0 0-55 24H-90z\"/></svg>";
+const svg: string = "<svg data-hata=\"jp-43\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-112.5 -75 225 150\"><path fill=\"#931d23\" d=\"M-112.5-75h225V75h-225z\"/><path fill=\"#fff\" d=\"M-72-50H0a50 50 0 1 1-45.8 70 30 30 0 0 0 55-24 30 30 0 0 0-55 24H-90z\"/></svg>";
 
 export { svg };
 export default svg;

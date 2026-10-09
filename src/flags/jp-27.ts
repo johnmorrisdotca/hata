@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_Osaka_Prefecture.svg
 
 /**
- * The flag of Ōsaka (大阪府), JP-27, as an SVG string: viewBox 30 by 20 (3:2), 541 B.
+ * The flag of Ōsaka (大阪府), JP-27, as an SVG string: viewBox 30 by 20 (3:2), 559 B.
  * From Wikimedia Commons, "Flag of Osaka Prefecture.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-15 -10 30 20\"><path fill=\"#33419a\" d=\"M-15-10h30v20h-30z\"/><g id=\"hata-jp-27-b\"><circle id=\"hata-jp-27-a\" cx=\"6\" r=\"2\" fill=\"none\" stroke=\"#fff\" stroke-width=\"2\"/><use href=\"#hata-jp-27-a\" transform=\"rotate(120 2 0)\"/></g><use href=\"#hata-jp-27-b\" transform=\"rotate(180)\"/><path id=\"hata-jp-27-c\" fill=\"#fff\" d=\"M6 0a1 1 0 0 0 0 1.7H3A1 1 0 0 0 3 0z\" transform=\"rotate(60 3 0)\"/><use href=\"#hata-jp-27-c\" transform=\"rotate(120 2 0)\"/><use href=\"#hata-jp-27-c\" transform=\"scale(-1 1)\"/></svg>";
+const svg: string = "<svg data-hata=\"jp-27\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-15 -10 30 20\"><path fill=\"#33419a\" d=\"M-15-10h30v20h-30z\"/><g id=\"hata-jp-27-b\"><circle id=\"hata-jp-27-a\" cx=\"6\" r=\"2\" fill=\"none\" stroke=\"#fff\" stroke-width=\"2\"/><use href=\"#hata-jp-27-a\" transform=\"rotate(120 2 0)\"/></g><use href=\"#hata-jp-27-b\" transform=\"rotate(180)\"/><path id=\"hata-jp-27-c\" fill=\"#fff\" d=\"M6 0a1 1 0 0 0 0 1.7H3A1 1 0 0 0 3 0z\" transform=\"rotate(60 3 0)\"/><use href=\"#hata-jp-27-c\" transform=\"rotate(120 2 0)\"/><use href=\"#hata-jp-27-c\" transform=\"scale(-1 1)\"/></svg>";
 
 export { svg };
 export default svg;

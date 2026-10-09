@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_Canton_of_Schwyz.svg
 
 /**
- * The flag of Schwyz (シュヴィーツ州), CH-SZ, as an SVG string: viewBox 475 by 475 (1:1), 235 B.
+ * The flag of Schwyz (シュヴィーツ州), CH-SZ, as an SVG string: viewBox 475 by 475 (1:1), 253 B.
  * From Wikimedia Commons, "Flag of Canton of Schwyz.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" xml:space=\"preserve\" viewBox=\"-207.7 -207.9 475 475\"><path fill=\"#e8423f\" d=\"M-207.7-207.9h475v475h-475z\"/><path fill=\"#fff\" d=\"M-185.4-95.4h68v68h22.3v-68h68v-22.3h-68v-68h-22.3v68h-68z\"/></svg>";
+const svg: string = "<svg data-hata=\"ch-sz\" xmlns=\"http://www.w3.org/2000/svg\" xml:space=\"preserve\" viewBox=\"-207.7 -207.9 475 475\"><path fill=\"#e8423f\" d=\"M-207.7-207.9h475v475h-475z\"/><path fill=\"#fff\" d=\"M-185.4-95.4h68v68h22.3v-68h68v-22.3h-68v-68h-22.3v68h-68z\"/></svg>";
 
 export { svg };
 export default svg;

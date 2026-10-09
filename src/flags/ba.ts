@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_Bosnia_and_Herzegovina.svg
 
 /**
- * The flag of Bosnia & Herzegovina (ボスニア・ヘルツェゴビナ), BA, as an SVG string: viewBox 16 by 8 (2:1), 393 B.
+ * The flag of Bosnia & Herzegovina (ボスニア・ヘルツェゴビナ), BA, as an SVG string: viewBox 16 by 8 (2:1), 408 B.
  * From Wikimedia Commons, "Flag of Bosnia and Herzegovina.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 16 8\"><path fill=\"#002395\" d=\"M0 0h16v8H0z\"/><path fill=\"#fecb00\" d=\"M4.24 0h8v8z\"/><g id=\"hata-ba-b\"><path id=\"hata-ba-a\" fill=\"#fff\" d=\"M2.353.525 2.8-.85 3.247.525l-1.17-.85h1.446z\"/><use x=\"1\" y=\"1\" href=\"#hata-ba-a\"/><use x=\"2\" y=\"2\" href=\"#hata-ba-a\"/></g><use x=\"3\" y=\"3\" href=\"#hata-ba-b\"/><use x=\"6\" y=\"6\" href=\"#hata-ba-b\"/></svg>";
+const svg: string = "<svg data-hata=\"ba\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 16 8\"><path fill=\"#002395\" d=\"M0 0h16v8H0z\"/><path fill=\"#fecb00\" d=\"M4.24 0h8v8z\"/><g id=\"hata-ba-b\"><path id=\"hata-ba-a\" fill=\"#fff\" d=\"M2.353.525 2.8-.85 3.247.525l-1.17-.85h1.446z\"/><use x=\"1\" y=\"1\" href=\"#hata-ba-a\"/><use x=\"2\" y=\"2\" href=\"#hata-ba-a\"/></g><use x=\"3\" y=\"3\" href=\"#hata-ba-b\"/><use x=\"6\" y=\"6\" href=\"#hata-ba-b\"/></svg>";
 
 export { svg };
 export default svg;

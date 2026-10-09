@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_Tottori_Prefecture.svg
 
 /**
- * The flag of Tottori (鳥取県), JP-31, as an SVG string: viewBox 1260 by 840 (3:2), 320 B.
+ * The flag of Tottori (鳥取県), JP-31, as an SVG string: viewBox 1260 by 840 (3:2), 338 B.
  * From Wikimedia Commons, "Flag of Tottori Prefecture.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1260 840\"><path fill=\"#2e328c\" d=\"M0 0h1260v840H0z\"/><path fill=\"#fff\" d=\"M435 138a38.5 38.5 0 0 1 60.3 31.8V260a231 231 0 0 1 77-13.2h346.5L774.4 343H572.3a127.3 127.3 0 0 0-127.1 134.8 127 127 0 1 0 180-115.5h147.1a231 231 0 1 1-423.7 57.6L408.3 189h-47.8z\"/></svg>";
+const svg: string = "<svg data-hata=\"jp-31\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1260 840\"><path fill=\"#2e328c\" d=\"M0 0h1260v840H0z\"/><path fill=\"#fff\" d=\"M435 138a38.5 38.5 0 0 1 60.3 31.8V260a231 231 0 0 1 77-13.2h346.5L774.4 343H572.3a127.3 127.3 0 0 0-127.1 134.8 127 127 0 1 0 180-115.5h147.1a231 231 0 1 1-423.7 57.6L408.3 189h-47.8z\"/></svg>";
 
 export { svg };
 export default svg;

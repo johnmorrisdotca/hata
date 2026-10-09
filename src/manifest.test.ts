@@ -116,8 +116,10 @@ describe("every flag's picture", () => {
     }
   }, 60_000);
 
-  it("is the generated module's own: one file in src/flags for each code, none other", () => {
-    const files = readdirSync("src/flags").map((file) => file.replace(/\.ts$/, "").toUpperCase()).sort();
-    expect(files).toEqual([...FLAG_CODES].sort());
+  it("is the generated module's own: one file in src/flags for each code and each drawing made for a frame, none other", () => {
+    const files = readdirSync("src/flags").map((file) => file.replace(/\.ts$/, ""));
+    expect(files.filter((file) => !file.includes(".")).map((file) => file.toUpperCase()).sort()).toEqual([...FLAG_CODES].sort());
+    const framed = MANIFEST.filter((one) => one.sameAs === null).flatMap((one) => (["4:3", "1:1"] as const).filter((shape) => one.framings[shape].method === "adapted").map((shape) => `${one.code.toLowerCase()}.${shape.replace(":", "x")}`));
+    expect(files.filter((file) => file.includes(".")).sort()).toEqual(framed.sort());
   });
 });

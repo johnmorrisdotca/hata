@@ -86,6 +86,45 @@ interface FlagRecord {
   gzip: number;
   /** Things worth knowing about the picture: text drawn with a font, an embedded raster picture. */
   notes: string[];
+  /** How the flag is framed at 4:3, square and round by `flag(code, { shape })`, and by `frame()`; see `Framing`. */
+  framings: Record<"4:3" | "1:1" | "round", Framing>;
+}
+
+/**
+ * How one frame shows a flag, measured so that no frame misrepresents it (`pnpm data:framing`): a frame keeps a
+ * flag's colours when every colour covering at least 5% of the flag still covers at least half that share.
+ *
+ * - `own`: the flag is that shape already.
+ * - `adapted`: a drawing made for that shape by hand, by flag-icons (MIT): Canada's square, with narrower bars.
+ *   It is its own module, `/flags/<code>.1x1` or `/flags/<code>.4x3`; round uses the square one in a circle.
+ * - `cover`: the flag cropped from the centre, which keeps its colours.
+ * - `hoist`: the flag cropped from the fly, keeping the side by the pole, where that was recorded by hand.
+ * - `contain`: the whole flag, with clear bands (on a neutral disc when round), because a crop would lose a colour.
+ *
+ * @example
+ * ```ts
+ * import { manifest, type Framing } from "@johnmorrisdotca/hata/manifest";
+ *
+ * const square: Framing | undefined = manifest("CA")?.framings["1:1"];
+ * square?.method; // "adapted"
+ * square?.fit;    // "contain": what frame() does with the flag's own SVG, which cannot use the adapted drawing
+ * ```
+ */
+interface Framing {
+  /** How `flag(code, { shape })` frames it: `own`, `adapted`, `cover`, `hoist` or `contain`. */
+  method: "own" | "adapted" | "cover" | "hoist" | "contain";
+  /** What `frame()` does with the flag's own SVG at this shape when its `fit` is `auto`: `cover`, `hoist` or `contain`. */
+  fit: "cover" | "hoist" | "contain";
+  /** Where an adapted drawing comes from (`flag-icons`); null otherwise. */
+  source: "flag-icons" | null;
+  /** The adapted drawing's path in the set ("flags/1x1/ca.svg"); null otherwise. */
+  file: string | null;
+  /** The adapted drawing on jsDelivr at the set's version; null otherwise. */
+  page: string | null;
+  /** The adapted drawing's size optimised, in bytes; null otherwise. */
+  bytes: number | null;
+  /** The colours a crop from the centre would lose, as measured ("red 55% to 15%"); empty where it loses none. */
+  coverLoses: string[];
 }
 
 /**
@@ -114,4 +153,4 @@ interface LeftOutRecord {
   licence: string | null;
 }
 
-export type { FlagRecord, FlagSource, LeftOutRecord, LicenceKind };
+export type { FlagRecord, FlagSource, Framing, LeftOutRecord, LicenceKind };

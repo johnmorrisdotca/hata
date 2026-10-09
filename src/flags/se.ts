@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_Sweden.svg
 
 /**
- * The flag of Sweden (スウェーデン), SE, as an SVG string: viewBox 8 by 5 (8:5), 145 B.
+ * The flag of Sweden (スウェーデン), SE, as an SVG string: viewBox 8 by 5 (8:5), 160 B.
  * From Wikimedia Commons, "Flag of Sweden.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 8 5\"><path fill=\"#005293\" d=\"M0 0h8v5H0Z\"/><path stroke=\"#fecb00\" d=\"M0 2.5h8M3 0v5\"/></svg>";
+const svg: string = "<svg data-hata=\"se\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 8 5\"><path fill=\"#005293\" d=\"M0 0h8v5H0Z\"/><path stroke=\"#fecb00\" d=\"M0 2.5h8M3 0v5\"/></svg>";
 
 export { svg };
 export default svg;

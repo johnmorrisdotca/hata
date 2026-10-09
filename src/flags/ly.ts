@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_Libya.svg
 
 /**
- * The flag of Libya (リビア), LY, as an SVG string: viewBox 960 by 480 (2:1), 314 B.
+ * The flag of Libya (リビア), LY, as an SVG string: viewBox 960 by 480 (2:1), 329 B.
  * From Wikimedia Commons, "Flag of Libya.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 960 480\"><path fill=\"#239e46\" d=\"M0 0h960v480H0z\"/><path d=\"M0 0h960v360H0z\"/><path fill=\"#e70013\" d=\"M0 0h960v120H0z\"/><circle cx=\"480\" cy=\"240\" r=\"60\" fill=\"#fff\"/><circle cx=\"492\" cy=\"240\" r=\"52\"/><path fill=\"#fff\" d=\"m509 240 81-26-50 68v-84l50 68z\"/></svg>";
+const svg: string = "<svg data-hata=\"ly\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 960 480\"><path fill=\"#239e46\" d=\"M0 0h960v480H0z\"/><path d=\"M0 0h960v360H0z\"/><path fill=\"#e70013\" d=\"M0 0h960v120H0z\"/><circle cx=\"480\" cy=\"240\" r=\"60\" fill=\"#fff\"/><circle cx=\"492\" cy=\"240\" r=\"52\"/><path fill=\"#fff\" d=\"m509 240 81-26-50 68v-84l50 68z\"/></svg>";
 
 export { svg };
 export default svg;

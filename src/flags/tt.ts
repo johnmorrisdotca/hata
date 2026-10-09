@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_Trinidad_and_Tobago.svg
 
 /**
- * The flag of Trinidad & Tobago (トリニダード・トバゴ), TT, as an SVG string: viewBox 30 by 18 (5:3), 195 B.
+ * The flag of Trinidad & Tobago (トリニダード・トバゴ), TT, as an SVG string: viewBox 30 by 18 (5:3), 210 B.
  * From Wikimedia Commons, "Flag of Trinidad and Tobago.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 30 18\"><path fill=\"#da1a35\" d=\"M0 0h30v18H0z\"/><path fill=\"#fff\" d=\"m0 0 20.82 18H30L9.18 0z\"/><path d=\"m1.53 0 20.82 18h6.12L7.65 0z\"/></svg>";
+const svg: string = "<svg data-hata=\"tt\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 30 18\"><path fill=\"#da1a35\" d=\"M0 0h30v18H0z\"/><path fill=\"#fff\" d=\"m0 0 20.82 18H30L9.18 0z\"/><path d=\"m1.53 0 20.82 18h6.12L7.65 0z\"/></svg>";
 
 export { svg };
 export default svg;

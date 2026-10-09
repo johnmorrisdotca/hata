@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_the_People%27s_Republic_of_China.svg
 
 /**
- * The flag of China (中国), CN, as an SVG string: viewBox 900 by 600 (3:2), 493 B.
+ * The flag of China (中国), CN, as an SVG string: viewBox 900 by 600 (3:2), 508 B.
  * From Wikimedia Commons, "Flag of the People's Republic of China.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 900 600\"><path fill=\"#ee1c25\" d=\"M0 0h900v600H0\"/><g transform=\"matrix(3 0 0 3 150 150)\"><path id=\"hata-cn-a\" fill=\"#ff0\" d=\"m0-30 17.6 54.3-46.1-33.6h57l-46.1 33.6Z\"/></g><use href=\"#hata-cn-a\" transform=\"rotate(23.036 2.784 766.082)\"/><use href=\"#hata-cn-a\" transform=\"rotate(45.87 38.201 485.396)\"/><use href=\"#hata-cn-a\" transform=\"rotate(69.945 29.892 362.328)\"/><use href=\"#hata-cn-a\" transform=\"rotate(20.66 -590.66 957.955)\"/></svg>";
+const svg: string = "<svg data-hata=\"cn\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 900 600\"><path fill=\"#ee1c25\" d=\"M0 0h900v600H0\"/><g transform=\"matrix(3 0 0 3 150 150)\"><path id=\"hata-cn-a\" fill=\"#ff0\" d=\"m0-30 17.6 54.3-46.1-33.6h57l-46.1 33.6Z\"/></g><use href=\"#hata-cn-a\" transform=\"rotate(23.036 2.784 766.082)\"/><use href=\"#hata-cn-a\" transform=\"rotate(45.87 38.201 485.396)\"/><use href=\"#hata-cn-a\" transform=\"rotate(69.945 29.892 362.328)\"/><use href=\"#hata-cn-a\" transform=\"rotate(20.66 -590.66 957.955)\"/></svg>";
 
 export { svg };
 export default svg;

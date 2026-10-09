@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_Nauru.svg
 
 /**
- * The flag of Nauru (ナウル), NR, as an SVG string: viewBox 600 by 300 (2:1), 477 B.
+ * The flag of Nauru (ナウル), NR, as an SVG string: viewBox 600 by 300 (2:1), 492 B.
  * From Wikimedia Commons, "Flag of Nauru.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 600 300\"><path fill=\"#002b7f\" d=\"M0 0h600v300H0z\" style=\"fill:#012169;fill-opacity:1\"/><path fill=\"#ffc61e\" d=\"M0 137.5h600v25H0z\" style=\"fill:#ffc72c;fill-opacity:1\"/><path fill=\"#fff\" d=\"m150 262.5-6.5-25.9-18.5 19.2 7.3-25.6-25.6 7.3 19.2-18.5-25.9-6.5 25.9-6.5-19.2-18.5 25.6 7.3-7.3-25.6 18.5 19.2 6.5-25.9 6.5 25.9 18.5-19.2-7.3 25.6 25.6-7.3-19.2 18.5 25.9 6.5-25.9 6.5 19.2 18.5-25.6-7.3 7.3 25.6-18.5-19.2z\"/></svg>";
+const svg: string = "<svg data-hata=\"nr\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 600 300\"><path fill=\"#002b7f\" d=\"M0 0h600v300H0z\" style=\"fill:#012169;fill-opacity:1\"/><path fill=\"#ffc61e\" d=\"M0 137.5h600v25H0z\" style=\"fill:#ffc72c;fill-opacity:1\"/><path fill=\"#fff\" d=\"m150 262.5-6.5-25.9-18.5 19.2 7.3-25.6-25.6 7.3 19.2-18.5-25.9-6.5 25.9-6.5-19.2-18.5 25.6 7.3-7.3-25.6 18.5 19.2 6.5-25.9 6.5 25.9 18.5-19.2-7.3 25.6 25.6-7.3-19.2 18.5 25.9 6.5-25.9 6.5 19.2 18.5-25.6-7.3 7.3 25.6-18.5-19.2z\"/></svg>";
 
 export { svg };
 export default svg;

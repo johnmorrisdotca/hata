@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_Syria_(2025-).svg
 
 /**
- * The flag of Syria (シリア), SY, as an SVG string: viewBox 900 by 600 (3:2), 331 B.
+ * The flag of Syria (シリア), SY, as an SVG string: viewBox 900 by 600 (3:2), 346 B.
  * From Wikimedia Commons, "Flag of Syria (2025-).svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 900 600\"><path d=\"M0 0h900v600H0z\"/><path fill=\"#fff\" d=\"M0 0h900v400H0z\"/><path fill=\"#007a3d\" d=\"M0 0h900v200H0z\"/><path fill=\"#ce1126\" d=\"M176.3 375 225 225l48.7 150-127.6-92.7H304M626.3 375 675 225l48.7 150-127.6-92.7H754M401.3 375 450 225l48.7 150-127.6-92.7h157.7\"/></svg>";
+const svg: string = "<svg data-hata=\"sy\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 900 600\"><path d=\"M0 0h900v600H0z\"/><path fill=\"#fff\" d=\"M0 0h900v400H0z\"/><path fill=\"#007a3d\" d=\"M0 0h900v200H0z\"/><path fill=\"#ce1126\" d=\"M176.3 375 225 225l48.7 150-127.6-92.7H304M626.3 375 675 225l48.7 150-127.6-92.7H754M401.3 375 450 225l48.7 150-127.6-92.7h157.7\"/></svg>";
 
 export { svg };
 export default svg;

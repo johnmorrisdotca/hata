@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:CHE_Ticino_Flag.svg
 
 /**
- * The flag of Ticino (ティチーノ州), CH-TI, as an SVG string: viewBox 470 by 470 (1:1), 243 B.
+ * The flag of Ticino (ティチーノ州), CH-TI, as an SVG string: viewBox 470 by 470 (1:1), 261 B.
  * From Wikimedia Commons, "CHE Ticino Flag.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" xml:space=\"preserve\" viewBox=\"0 0 470 470\"><path fill=\"#268bcc\" d=\"M0 0h470v470H0\" style=\"fill:#1c63b7;fill-opacity:1\"/><path fill=\"#e8423f\" d=\"M0 0h470v235H0\" style=\"fill:#f00000;fill-opacity:1\"/></svg>";
+const svg: string = "<svg data-hata=\"ch-ti\" xmlns=\"http://www.w3.org/2000/svg\" xml:space=\"preserve\" viewBox=\"0 0 470 470\"><path fill=\"#268bcc\" d=\"M0 0h470v470H0\" style=\"fill:#1c63b7;fill-opacity:1\"/><path fill=\"#e8423f\" d=\"M0 0h470v235H0\" style=\"fill:#f00000;fill-opacity:1\"/></svg>";
 
 export { svg };
 export default svg;

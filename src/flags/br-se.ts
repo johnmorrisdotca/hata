@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Bandeira_de_Sergipe.svg
 
 /**
- * The flag of Sergipe (セルジッペ州), BR-SE, as an SVG string: viewBox 1000 by 700 (10:7), 824 B.
+ * The flag of Sergipe (セルジッペ州), BR-SE, as an SVG string: viewBox 1000 by 700 (10:7), 842 B.
  * From Wikimedia Commons, "Bandeira de Sergipe.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1000 700\"><path d=\"M0 0h1000v175H0zm0 350h1000v175H0z\" style=\"fill:#00923f;fill-opacity:1;stroke:none;stroke-opacity:1\"/><path d=\"M0 175h1000v175H0zm0 350h1000v175H0z\" style=\"fill:#f8c300;fill-opacity:1;stroke:none;stroke-opacity:1\"/><path d=\"M0 0h350v350H0z\" style=\"fill:#28166f;fill-opacity:1;stroke:none;stroke-opacity:1\"/><path d=\"m222 239.7-47-34.1-47 34.1 18-55.3-47-34.1h58L175 95l18 55.3h58l-47 34.1zM83.5 322.4 60 305.3l-23.5 17 9-27.6-23.5-17h29l9-27.7 9 27.6h29l-23.5 17.1zm230-230L290 75.3l-23.5 17 9-27.6-23.5-17h29l9-27.7 9 27.6h29l-23.5 17.1zm-230 0L60 75.3l-23.5 17 9-27.6-23.5-17h29L60 20l9 27.6h29L74.5 64.7zm230 230L290 305.3l-23.5 17 9-27.6-23.5-17h29l9-27.7 9 27.6h29l-23.5 17.1z\" style=\"fill:#fff;fill-opacity:1;stroke:none;stroke-opacity:1\"/></svg>";
+const svg: string = "<svg data-hata=\"br-se\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1000 700\"><path d=\"M0 0h1000v175H0zm0 350h1000v175H0z\" style=\"fill:#00923f;fill-opacity:1;stroke:none;stroke-opacity:1\"/><path d=\"M0 175h1000v175H0zm0 350h1000v175H0z\" style=\"fill:#f8c300;fill-opacity:1;stroke:none;stroke-opacity:1\"/><path d=\"M0 0h350v350H0z\" style=\"fill:#28166f;fill-opacity:1;stroke:none;stroke-opacity:1\"/><path d=\"m222 239.7-47-34.1-47 34.1 18-55.3-47-34.1h58L175 95l18 55.3h58l-47 34.1zM83.5 322.4 60 305.3l-23.5 17 9-27.6-23.5-17h29l9-27.7 9 27.6h29l-23.5 17.1zm230-230L290 75.3l-23.5 17 9-27.6-23.5-17h29l9-27.7 9 27.6h29l-23.5 17.1zm-230 0L60 75.3l-23.5 17 9-27.6-23.5-17h29L60 20l9 27.6h29L74.5 64.7zm230 230L290 305.3l-23.5 17 9-27.6-23.5-17h29l9-27.7 9 27.6h29l-23.5 17.1z\" style=\"fill:#fff;fill-opacity:1;stroke:none;stroke-opacity:1\"/></svg>";
 
 export { svg };
 export default svg;

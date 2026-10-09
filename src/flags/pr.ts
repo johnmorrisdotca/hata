@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_Puerto_Rico.svg
 
 /**
- * The flag of Puerto Rico (プエルトリコ), PR, as an SVG string: viewBox 900 by 600 (3:2), 248 B.
+ * The flag of Puerto Rico (プエルトリコ), PR, as an SVG string: viewBox 900 by 600 (3:2), 263 B.
  * From Wikimedia Commons, "Flag of Puerto Rico.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"#fff\" viewBox=\"0 0 900 600\"><path fill=\"#e00\" d=\"M0 0h900v600H0\"/><path d=\"M0 120h900v120H0v120h900v120H0\"/><path fill=\"#04f\" d=\"m0 0 520 300L0 600\"/><path d=\"m173 200-59 181 154-112H78l154 112\"/></svg>";
+const svg: string = "<svg data-hata=\"pr\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"#fff\" viewBox=\"0 0 900 600\"><path fill=\"#e00\" d=\"M0 0h900v600H0\"/><path d=\"M0 120h900v120H0v120h900v120H0\"/><path fill=\"#04f\" d=\"m0 0 520 300L0 600\"/><path d=\"m173 200-59 181 154-112H78l154 112\"/></svg>";
 
 export { svg };
 export default svg;

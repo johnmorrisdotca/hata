@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_Somalia.svg
 
 /**
- * The flag of Somalia (ソマリア), SO, as an SVG string: viewBox 900 by 600 (3:2), 211 B.
+ * The flag of Somalia (ソマリア), SO, as an SVG string: viewBox 900 by 600 (3:2), 226 B.
  * From Wikimedia Commons, "Flag of Somalia.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 900 600\"><path stroke=\"#418fde\" stroke-width=\"900\" d=\"M450 600V0\"/><path fill=\"#fff\" d=\"m450 156 32 99h105l-85 62 33 100-85-62-85 62 33-100-85-62h105\"/></svg>";
+const svg: string = "<svg data-hata=\"so\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 900 600\"><path stroke=\"#418fde\" stroke-width=\"900\" d=\"M450 600V0\"/><path fill=\"#fff\" d=\"m450 156 32 99h105l-85 62 33 100-85-62-85 62 33-100-85-62h105\"/></svg>";
 
 export { svg };
 export default svg;

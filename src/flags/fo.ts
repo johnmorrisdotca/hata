@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_the_Faroe_Islands.svg
 
 /**
- * The flag of Faroe Islands (フェロー諸島), FO, as an SVG string: viewBox 22 by 16 (11:8), 243 B.
+ * The flag of Faroe Islands (フェロー諸島), FO, as an SVG string: viewBox 22 by 16 (11:8), 258 B.
  * From Wikimedia Commons, "Flag of the Faroe Islands.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 22 16\"><path fill=\"#fff\" d=\"M0 0h22v16H0z\"/><g fill=\"#005eb8\"><path d=\"M6 0h4v16H6z\"/><path d=\"M0 6h22v4H0z\"/></g><g fill=\"#ef3340\"><path d=\"M7 0h2v16H7z\"/><path d=\"M0 7h22v2H0z\"/></g></svg>";
+const svg: string = "<svg data-hata=\"fo\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 22 16\"><path fill=\"#fff\" d=\"M0 0h22v16H0z\"/><g fill=\"#005eb8\"><path d=\"M6 0h4v16H6z\"/><path d=\"M0 6h22v4H0z\"/></g><g fill=\"#ef3340\"><path d=\"M7 0h2v16H7z\"/><path d=\"M0 7h22v2H0z\"/></g></svg>";
 
 export { svg };
 export default svg;

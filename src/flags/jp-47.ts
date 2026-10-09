@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_Okinawa_Prefecture.svg
 
 /**
- * The flag of Okinawa (沖縄県), JP-47, as an SVG string: viewBox 211.67 by 141.02 (3:2), 305 B.
+ * The flag of Okinawa (沖縄県), JP-47, as an SVG string: viewBox 211.67 by 141.02 (3:2), 323 B.
  * From Wikimedia Commons, "Flag of Okinawa Prefecture.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 211.67 141.02\"><path fill=\"#fff\" d=\"M0 0h211.67v141.02H0z\"/><circle cx=\"105.83\" cy=\"70.4\" r=\"50.24\" fill=\"#e00\"/><ellipse cx=\"105.83\" cy=\"60.4\" fill=\"#fff\" rx=\"34.35\" ry=\"35.11\"/><ellipse cx=\"105.83\" cy=\"52.65\" fill=\"#e00\" rx=\"22.57\" ry=\"22.54\"/></svg>";
+const svg: string = "<svg data-hata=\"jp-47\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 211.67 141.02\"><path fill=\"#fff\" d=\"M0 0h211.67v141.02H0z\"/><circle cx=\"105.83\" cy=\"70.4\" r=\"50.24\" fill=\"#e00\"/><ellipse cx=\"105.83\" cy=\"60.4\" fill=\"#fff\" rx=\"34.35\" ry=\"35.11\"/><ellipse cx=\"105.83\" cy=\"52.65\" fill=\"#e00\" rx=\"22.57\" ry=\"22.54\"/></svg>";
 
 export { svg };
 export default svg;

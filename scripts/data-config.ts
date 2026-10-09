@@ -125,6 +125,11 @@ const NO_FLAG: Readonly<Record<string, string>> = {
   EH: "Western Sahara has no flag of its own on Wikidata. The flag often shown for it is the Sahrawi Arab Democratic Republic's, one claimant's; it is left out rather than chosen for the territory (see docs/decisions.md).",
 };
 
+// Flags whose meaning is at the hoist, by the pole, so that a frame that must crop them may crop from the fly and
+// keep the hoist (scripts/framing.mjs; a crop is used only where it also keeps the flag's colours). Empty: no flag
+// needs it yet. Every flag a centre crop would misrepresent is shown whole, or drawn again by flag-icons.
+const FOCUS: Readonly<Record<string, "hoist">> = {};
+
 // The size budget of one optimised flag, in bytes of SVG. Flags carrying a detailed coat of arms or seal go over
 // it; the build lists them in docs/sizes.md and the size test holds the list, so a new one is a decision.
 const BUDGET_BYTES = 40 * 1024;
@@ -132,4 +137,4 @@ const BUDGET_BYTES = 40 * 1024;
 // Flags may go over the budget only up to this, after which the build fails: a picture this large is not an icon.
 const CEILING_BYTES = 400 * 1024;
 
-export { ACCEPTED, BUDGET_BYTES, CEILING_BYTES, CHOSEN, ITEM, NAMED, NO_FLAG, REVIEWED, SAME_PLACE, SUBDIVISION_COUNTRIES };
+export { ACCEPTED, BUDGET_BYTES, CEILING_BYTES, CHOSEN, FOCUS, ITEM, NAMED, NO_FLAG, REVIEWED, SAME_PLACE, SUBDIVISION_COUNTRIES };

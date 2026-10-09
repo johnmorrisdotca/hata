@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_Algeria.svg
 
 /**
- * The flag of Algeria (アルジェリア), DZ, as an SVG string: viewBox 900 by 600 (3:2), 253 B.
+ * The flag of Algeria (アルジェリア), DZ, as an SVG string: viewBox 900 by 600 (3:2), 268 B.
  * From Wikimedia Commons, "Flag of Algeria.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 900 600\"><path fill=\"#fff\" d=\"M0 0h900v600H0z\"/><path fill=\"#063\" d=\"M0 0h450v600H0z\"/><path fill=\"#d21034\" d=\"M580 225a150 150 0 1 0 0 150 120 120 0 1 1 0-150m6 75-136-44 84 115V229l-84 115z\"/></svg>";
+const svg: string = "<svg data-hata=\"dz\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 900 600\"><path fill=\"#fff\" d=\"M0 0h900v600H0z\"/><path fill=\"#063\" d=\"M0 0h450v600H0z\"/><path fill=\"#d21034\" d=\"M580 225a150 150 0 1 0 0 150 120 120 0 1 1 0-150m6 75-136-44 84 115V229l-84 115z\"/></svg>";
 
 export { svg };
 export default svg;

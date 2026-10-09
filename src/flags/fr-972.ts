@@ -4,7 +4,7 @@
 import { svg as shared } from "./mq";
 
 /**
- * The flag of Martinique (マルティニーク), FR-972, as an SVG string: viewBox 900 by 600 (3:2), 198 B. The same picture as MQ's.
+ * The flag of Martinique (マルティニーク), FR-972, as an SVG string: viewBox 900 by 600 (3:2), 213 B. The same picture as MQ's.
  * From Wikimedia Commons, "Flag-of-Martinique.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *

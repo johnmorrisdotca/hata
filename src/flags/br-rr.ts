@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Bandeira_de_Roraima.svg
 
 /**
- * The flag of Roraima (ロライマ州), BR-RR, as an SVG string: viewBox 2000 by 1400 (10:7), 349 B.
+ * The flag of Roraima (ロライマ州), BR-RR, as an SVG string: viewBox 2000 by 1400 (10:7), 367 B.
  * From Wikimedia Commons, "Bandeira de Roraima.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 2000 1400\"><rect width=\"100%\" height=\"100%\" fill=\"#fff\"/><path fill=\"#00a5ff\" d=\"M0 800V0h1600z\"/><path fill=\"#008200\" d=\"M2000 600v800H400z\"/><path fill=\"#dc0000\" d=\"M0 1180h2000v40H0z\"/><path fill=\"#f8c300\" d=\"M1000 200 888 544H525l294 212-113 344 294-212 294 212-113-344 294-212h-363z\"/></svg>";
+const svg: string = "<svg data-hata=\"br-rr\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 2000 1400\"><rect width=\"100%\" height=\"100%\" fill=\"#fff\"/><path fill=\"#00a5ff\" d=\"M0 800V0h1600z\"/><path fill=\"#008200\" d=\"M2000 600v800H400z\"/><path fill=\"#dc0000\" d=\"M0 1180h2000v40H0z\"/><path fill=\"#f8c300\" d=\"M1000 200 888 544H525l294 212-113 344 294-212 294 212-113-344 294-212h-363z\"/></svg>";
 
 export { svg };
 export default svg;

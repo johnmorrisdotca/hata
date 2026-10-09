@@ -4,7 +4,7 @@
 import { svg as shared } from "./tf";
 
 /**
- * The flag of French Southern Territories (仏領極南諸島), FR-TF, as an SVG string: viewBox 450 by 300 (3:2), 738 B. The same picture as TF's.
+ * The flag of French Southern Territories (仏領極南諸島), FR-TF, as an SVG string: viewBox 450 by 300 (3:2), 753 B. The same picture as TF's.
  * From Wikimedia Commons, "Flag of the French Southern and Antarctic Lands.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *

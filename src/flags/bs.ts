@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_the_Bahamas.svg
 
 /**
- * The flag of Bahamas (バハマ), BS, as an SVG string: viewBox 6 by 3 (2:1), 201 B.
+ * The flag of Bahamas (バハマ), BS, as an SVG string: viewBox 6 by 3 (2:1), 216 B.
  * From Wikimedia Commons, "Flag of the Bahamas.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 6 3\"><title>Flag of the Bahamas</title><path fill=\"#00778b\" d=\"M0 0h6v3H0z\"/><path fill=\"#ffc72c\" d=\"M1 1h5v1H1z\"/><path d=\"M2.6 1.5 0 3V0z\"/></svg>";
+const svg: string = "<svg data-hata=\"bs\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 6 3\"><title>Flag of the Bahamas</title><path fill=\"#00778b\" d=\"M0 0h6v3H0z\"/><path fill=\"#ffc72c\" d=\"M1 1h5v1H1z\"/><path d=\"M2.6 1.5 0 3V0z\"/></svg>";
 
 export { svg };
 export default svg;

@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_France.svg
 
 /**
- * The flag of France (フランス), FR, as an SVG string: viewBox 900 by 600 (3:2), 188 B.
+ * The flag of France (フランス), FR, as an SVG string: viewBox 900 by 600 (3:2), 203 B.
  * From Wikimedia Commons, "Flag of France.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 900 600\"><path fill=\"#ce1126\" d=\"M0 0h900v600H0\"/><path fill=\"#fff\" d=\"M0 0h600v600H0\"/><path fill=\"#002654\" d=\"M0 0h300v600H0\"/></svg>";
+const svg: string = "<svg data-hata=\"fr\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 900 600\"><path fill=\"#ce1126\" d=\"M0 0h900v600H0\"/><path fill=\"#fff\" d=\"M0 0h600v600H0\"/><path fill=\"#002654\" d=\"M0 0h300v600H0\"/></svg>";
 
 export { svg };
 export default svg;

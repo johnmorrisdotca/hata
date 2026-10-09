@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Bandeira_de_Pernambuco.svg
 
 /**
- * The flag of Pernambuco (ペルナンブーコ州), BR-PE, as an SVG string: viewBox 540 by 360 (3:2), 917 B.
+ * The flag of Pernambuco (ペルナンブーコ州), BR-PE, as an SVG string: viewBox 540 by 360 (3:2), 935 B.
  * From Wikimedia Commons, "Bandeira de Pernambuco.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 540 360\"><path fill=\"#3155a4\" d=\"M0 0h540v216H0z\"/><path stroke=\"#c34342\" stroke-width=\"12\" d=\"M69 270a129 129 202.5 0 1 402 0\" style=\"fill:none\"/><path stroke=\"#ffb511\" stroke-width=\"12\" d=\"M81 270a117 117 202.5 0 1 378 0\" style=\"fill:none\"/><path stroke=\"#00ad4a\" stroke-width=\"12\" d=\"M93 270a105 105 202.5 0 1 354 0\" style=\"fill:none\"/><path fill=\"#fff\" d=\"M0 216h540v144H0z\"/><path fill=\"none\" stroke=\"#c34342\" stroke-width=\"12\" d=\"M270 243v90m-27-58.5h54\"/><path fill=\"#ffb511\" d=\"m270 126 3 9.2 5.2-8.1.4 9.6 7.1-6.5-2 9.4 8.6-4.4-4.4 8.6 9.4-2-6.5 7 9.6.5-8 5.3 9.1 2.9-9.2 3 8.1 5.2-9.6.4 6.5 7.1-9.4-2 4.4 8.6-8.6-4.4 2 9.4-7-6.5-.5 9.6-5.3-8-2.9 9.1-3-9.2-5.2 8.1-.4-9.6-7.1 6.5 2-9.4-8.6 4.4 4.4-8.6-9.4 2 6.5-7-9.6-.5 8-5.3-9.1-2.9 9.2-3-8.1-5.2 9.6-.4-6.5-7.1 9.4 2-4.4-8.6 8.6 4.4-2-9.4 7 6.5.5-9.6 5.3 8zm0-108 8.8 27-23-16.7h28.4l-23 16.7z\"/></svg>";
+const svg: string = "<svg data-hata=\"br-pe\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 540 360\"><path fill=\"#3155a4\" d=\"M0 0h540v216H0z\"/><path stroke=\"#c34342\" stroke-width=\"12\" d=\"M69 270a129 129 202.5 0 1 402 0\" style=\"fill:none\"/><path stroke=\"#ffb511\" stroke-width=\"12\" d=\"M81 270a117 117 202.5 0 1 378 0\" style=\"fill:none\"/><path stroke=\"#00ad4a\" stroke-width=\"12\" d=\"M93 270a105 105 202.5 0 1 354 0\" style=\"fill:none\"/><path fill=\"#fff\" d=\"M0 216h540v144H0z\"/><path fill=\"none\" stroke=\"#c34342\" stroke-width=\"12\" d=\"M270 243v90m-27-58.5h54\"/><path fill=\"#ffb511\" d=\"m270 126 3 9.2 5.2-8.1.4 9.6 7.1-6.5-2 9.4 8.6-4.4-4.4 8.6 9.4-2-6.5 7 9.6.5-8 5.3 9.1 2.9-9.2 3 8.1 5.2-9.6.4 6.5 7.1-9.4-2 4.4 8.6-8.6-4.4 2 9.4-7-6.5-.5 9.6-5.3-8-2.9 9.1-3-9.2-5.2 8.1-.4-9.6-7.1 6.5 2-9.4-8.6 4.4 4.4-8.6-9.4 2 6.5-7-9.6-.5 8-5.3-9.1-2.9 9.2-3-8.1-5.2 9.6-.4-6.5-7.1 9.4 2-4.4-8.6 8.6 4.4-2-9.4 7 6.5.5-9.6 5.3 8zm0-108 8.8 27-23-16.7h28.4l-23 16.7z\"/></svg>";
 
 export { svg };
 export default svg;

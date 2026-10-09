@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_Bremen.svg
 
 /**
- * The flag of Bremen (ブレーメン州), DE-HB, as an SVG string: viewBox 12 by 8 (3:2), 170 B.
+ * The flag of Bremen (ブレーメン州), DE-HB, as an SVG string: viewBox 12 by 8 (3:2), 188 B.
  * From Wikimedia Commons, "Flag of Bremen.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 12 8\"><path fill=\"#fff\" d=\"M0 0h12v8H0\"/><path fill=\"#d00\" d=\"M0 0h1v8h1V0h10v1H0v1h12v1H0v1h12v1H0v1h12v1H0\"/></svg>";
+const svg: string = "<svg data-hata=\"de-hb\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 12 8\"><path fill=\"#fff\" d=\"M0 0h12v8H0\"/><path fill=\"#d00\" d=\"M0 0h1v8h1V0h10v1H0v1h12v1H0v1h12v1H0v1h12v1H0\"/></svg>";
 
 export { svg };
 export default svg;

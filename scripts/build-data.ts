@@ -243,6 +243,8 @@ for (const { place, drawing, reference, referenceLicence, item, choice, named } 
   let optimised = optimisedByKey.get(drawing.key);
   if (optimised === undefined) {
     optimised = optimiseFlag(drawing.text, owner, { ...(choice.precision === undefined ? {} : { precision: choice.precision }), ...(choice.keepPaths ? { keepPaths: true } : {}) });
+    // The picture names its flag, so that frame() can frame it the way measured for it (FRAMINGS).
+    optimised = { ...optimised, svg: optimised.svg.replace(/^<svg\b/, `<svg data-hata="${owner.toLowerCase()}"`) };
     optimisedByKey.set(drawing.key, optimised);
   }
   const bytes = Buffer.byteLength(optimised.svg);
@@ -252,6 +254,49 @@ for (const { place, drawing, reference, referenceLicence, item, choice, named } 
 shipped.sort(byCode);
 leftOut.sort(byCode);
 const owners = shipped.filter((one) => one.owner === one.place.code);
+
+// How each picture is framed at 4:3, square and round (scripts/framing.mjs, `pnpm data:framing`), and the
+// hand-adapted drawings that ship for the frames that use one.
+type FramedShape = "4:3" | "1:1" | "round";
+const FRAMED_SHAPES: FramedShape[] = ["4:3", "1:1", "round"];
+interface Framing {
+  method: "own" | "adapted" | "cover" | "hoist" | "contain";
+  fit: "cover" | "hoist" | "contain";
+  source?: "flag-icons";
+  file?: string;
+  precision?: number;
+  keepPaths?: boolean;
+  coverLoses?: string[];
+  refused?: string;
+}
+const FRAMINGS_FILE = JSON.parse(readFileSync(join(ROOT, "scripts", "framings.data.json"), "utf8")) as Record<string, Record<FramedShape, Framing>>;
+const shapeName = (shape: "4:3" | "1:1"): string => shape.replace(":", "x");
+interface Adapted {
+  owner: string;
+  shape: "4:3" | "1:1";
+  module: string; // "ca.1x1"
+  file: string;
+  page: string;
+  version: string;
+  optimised: Optimised;
+  raw: number;
+}
+const adapted: Adapted[] = [];
+for (const one of owners) {
+  const framing = FRAMINGS_FILE[one.place.code];
+  if (framing === undefined || FRAMED_SHAPES.some((shape) => framing[shape] === undefined)) throw new Error(`${one.place.code} has no line in scripts/framings.data.json: run pnpm data:framing ${one.place.code}`);
+  for (const shape of ["4:3", "1:1"] as const) {
+    const entry = framing[shape];
+    if (entry.method !== "adapted") continue;
+    const candidate = setCandidates(one.place.code).find((option) => option.source === entry.source && option.file === entry.file);
+    if (candidate === undefined) throw new Error(`${one.place.code}: ${entry.source} has no ${entry.file}: run pnpm data:framing ${one.place.code}`);
+    const module = `${moduleName(one.place.code)}.${shapeName(shape)}`;
+    const optimised = optimiseFlag(candidate.text, `${one.place.code}-${shapeName(shape)}`, { ...(entry.precision === undefined ? {} : { precision: entry.precision }), ...(entry.keepPaths ? { keepPaths: true } : {}) });
+    adapted.push({ owner: one.place.code, shape, module, file: candidate.file, page: candidate.page, version: setNamed(candidate.source).version, optimised, raw: Buffer.byteLength(candidate.text) });
+  }
+}
+const framingOf = (one: Shipped): Record<FramedShape, Framing> => FRAMINGS_FILE[one.owner]!;
+const adaptedFor = (one: Shipped, shape: FramedShape): Adapted | undefined => adapted.find((entry) => entry.owner === one.owner && entry.shape === (shape === "round" ? "1:1" : shape) && framingOf(one)[shape].method === "adapted");
 
 // 4. The source files.
 const quote = (text: string): string => JSON.stringify(text);
@@ -295,6 +340,23 @@ for (const one of shipped) {
       ? `${HEADER}\n// Source: ${one.drawing.page}\n\n${docOf(one)}\nconst svg: string = ${quote(one.optimised.svg)};\n\nexport { svg };\nexport default svg;\n`
       : `${HEADER}\n// Source: ${one.drawing.page}, the same drawing as ${one.owner}'s flag.\n\nimport { svg as shared } from "./${moduleName(one.owner)}";\n\n${docOf(one)}\nconst svg: string = shared;\n\nexport { svg };\nexport default svg;\n`;
   writeFileSync(join(FLAGS_DIR, name), body);
+}
+for (const one of adapted) {
+  const name = `${one.module}.ts`;
+  written.add(name);
+  const place = places.find((candidate) => candidate.code === one.owner)!;
+  const doc = `/**
+ * The flag of ${place.en}${place.ja ? ` (${place.ja})` : ""}, ${one.owner}, drawn again by hand at ${one.shape} by flag-icons ${one.version} (MIT), as an SVG string: viewBox ${one.optimised.width} by ${one.optimised.height}, ${KB(Buffer.byteLength(one.optimised.svg))}.
+ * The drawing \`flag("${one.owner}", { shape: "${one.shape}" })\` uses${one.shape === "1:1" ? " (and the round frame, in a circle)" : ""}, made for that shape by hand rather than cut from the flag. The /manifest entry's \`framings\` say how each frame was chosen.
+ *
+ * @example
+ * \`\`\`ts
+ * import square from "@johnmorrisdotca/hata/flags/${one.module}";
+ *
+ * element.innerHTML = square;
+ * \`\`\`
+ */`;
+  writeFileSync(join(FLAGS_DIR, name), `${HEADER}\n// Source: ${one.page}\n\n${doc}\nconst svg: string = ${quote(one.optimised.svg)};\n\nexport { svg };\nexport default svg;\n`);
 }
 for (const old of readdirSync(FLAGS_DIR)) if (!written.has(old)) rmSync(join(FLAGS_DIR, old));
 
@@ -359,6 +421,40 @@ export { LOADERS };
 `,
 );
 
+writeFileSync(
+  join(DATA_DIR, "adapted.data.ts"),
+  `${HEADER}
+// The drawings made by hand for a frame that /load uses, by code and shape ("CA 1:1"; "CA round" is the square in a
+// circle). Its own entry (dist/adapted.js), loaded only when a frame is asked for, so /load stays small.
+
+type Loader = () => Promise<{ svg: string }>;
+
+const ADAPTED: Readonly<Record<string, Loader>> = {
+${shipped.flatMap((one) => FRAMED_SHAPES.flatMap((shape) => { const found = adaptedFor(one, shape); return found === undefined ? [] : [`  ${quote(`${one.place.code} ${shape}`)}: () => import("../flags/${found.module}.js"),`]; })).join("\n")}
+};
+
+export { ADAPTED };
+`,
+);
+
+// What frame() does with each picture at 4:3, square and round, where it is not a crop from the centre: a letter for
+// each (c cover, h hoist, w the whole flag), keyed by the name the picture carries (data-hata).
+const LETTER: Record<Framing["fit"], string> = { cover: "c", hoist: "h", contain: "w" };
+const framingRows = owners.map((one) => [moduleName(one.place.code), FRAMED_SHAPES.map((shape) => LETTER[framingOf(one)[shape].fit]).join(",")] as const).filter(([, letters]) => letters !== "c,c,c");
+writeFileSync(
+  join(DATA_DIR, "framings.data.ts"),
+  `${HEADER}
+// How frame() fits each flag at 4:3, square and round by default, where a crop from the centre would lose a colour:
+// c a crop from the centre, h a crop from the hoist, w the whole flag. Measured by pnpm data:framing.
+
+const FRAMINGS: Readonly<Record<string, string>> = {
+${framingRows.map(([name, letters]) => `  ${quote(name)}: ${quote(letters)},`).join("\n")}
+};
+
+export { FRAMINGS };
+`,
+);
+
 // The manifest: one row a flag, and one a code left out.
 const row = (one: Shipped): string => {
   const { drawing, reference } = one;
@@ -385,6 +481,24 @@ const row = (one: Shipped): string => {
     bytes: size(one),
     gzip: one.gzip,
     notes: one.optimised.notes,
+    framings: Object.fromEntries(
+      FRAMED_SHAPES.map((shape) => {
+        const framing = framingOf(one)[shape];
+        const found = adaptedFor(one, shape);
+        return [
+          shape,
+          {
+            method: framing.method,
+            fit: framing.fit,
+            source: found === undefined ? null : "flag-icons",
+            file: found?.file ?? null,
+            page: found?.page ?? null,
+            bytes: found === undefined ? null : Buffer.byteLength(found.optimised.svg),
+            coverLoses: framing.coverLoses ?? [],
+          },
+        ];
+      }),
+    ),
   };
   return `  ${JSON.stringify(record)},`;
 };
@@ -566,7 +680,7 @@ const creditOf = (one: Shipped): string => {
   const by = [metadata.Attribution ? `attributed as "${metadata.Attribution}"` : null, metadata.Artist ? `author as Commons gives it: ${metadata.Artist}` : null].filter(Boolean).join("; ");
   return `- \`${one.place.code}\` ${one.place.en}: "${one.drawing.file}", ${by || "no author named on Commons"}; ${one.drawing.licence.name}${one.drawing.licence.url ? ` (${one.drawing.licence.url})` : ""}; ${one.drawing.page}`;
 };
-const setsUsed = [...new Set(owners.filter((one) => one.drawing.source !== "commons").map((one) => one.drawing.source))].sort();
+const setsUsed = [...new Set([...owners.filter((one) => one.drawing.source !== "commons").map((one) => one.drawing.source), ...(adapted.length > 0 ? ["flag-icons"] : [])])].sort();
 const setsBody =
   setsUsed.length === 0
     ? "No drawing in this version is taken from a flag set."
@@ -574,8 +688,9 @@ const setsBody =
         .map((name) => {
           const set = setNamed(name);
           const flags = shipped.filter((one) => one.drawing.source === name).map((one) => `\`${one.place.code}\``);
+          const framed = name === "flag-icons" ? adapted.map((one) => `\`${one.module}\``) : [];
           const licence = readFileSync(join(ROOT, "node_modules", name, "LICENSE"), "utf8").replace(/^# /, "").trim();
-          return `### ${name} ${set.version}\n\n${set.home}, on npm as \`${name}\`. The drawings of ${flags.join(", ")}.\n\n\`\`\`text\n${licence}\n\`\`\``;
+          return `### ${name} ${set.version}\n\n${set.home}, on npm as \`${name}\`. ${[flags.length > 0 ? `The drawings of ${flags.join(", ")}.` : "", framed.length > 0 ? `The drawings made for a frame: ${framed.join(", ")}.` : ""].filter(Boolean).join(" ")}\n\n\`\`\`text\n${licence}\n\`\`\``;
         })
         .join("\n\n");
 writeFileSync(join(ROOT, "NOTICE.md"), between(between(notice, "attributions", credited.length === 0 ? "No Commons drawing in this version is under a licence that asks for credit." : credited.map(creditOf).join("\n")), "sets", setsBody));

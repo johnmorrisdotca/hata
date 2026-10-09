@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_Denmark.svg
 
 /**
- * The flag of Denmark (デンマーク), DK, as an SVG string: viewBox 37 by 28 (1.321:1), 165 B.
+ * The flag of Denmark (デンマーク), DK, as an SVG string: viewBox 37 by 28 (1.321:1), 180 B.
  * From Wikimedia Commons, "Flag of Denmark.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 37 28\"><path fill=\"#c8102e\" d=\"M0 0h37v28H0Z\"/><path stroke=\"#fff\" stroke-width=\"4\" d=\"M0 14h37M14 0v28\"/></svg>";
+const svg: string = "<svg data-hata=\"dk\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 37 28\"><path fill=\"#c8102e\" d=\"M0 0h37v28H0Z\"/><path stroke=\"#fff\" stroke-width=\"4\" d=\"M0 14h37M14 0v28\"/></svg>";
 
 export { svg };
 export default svg;

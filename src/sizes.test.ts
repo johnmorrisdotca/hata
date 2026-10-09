@@ -16,14 +16,16 @@ const size = (path: string): number => {
 };
 
 describe("the built entries", () => {
-  it("keep the main entry under 12 KB and /load under 24 KB, with no flag in either", () => {
+  it("keep the main entry under 12 KB, /load under 28 KB and its table of frames' drawings under 36 KB, with no flag in any", () => {
+    // /load is one line a flag, about 55 bytes each; dist/adapted.js one a frame's drawing, loaded when a frame is asked for.
     expect(size("dist/index.js")).toBeLessThan(12 * KB);
-    expect(size("dist/load.js")).toBeLessThan(24 * KB);
-    for (const file of ["dist/index.js", "dist/load.js"]) expect(readFileSync(file, "utf8"), file).not.toContain("<path");
+    expect(size("dist/load.js")).toBeLessThan(28 * KB);
+    expect(size("dist/adapted.js")).toBeLessThan(36 * KB);
+    for (const file of ["dist/index.js", "dist/load.js", "dist/adapted.js"]) expect(readFileSync(file, "utf8"), file).not.toContain("<path");
   });
 
   it("make each flag's module its SVG and a line, no larger than the ceiling, and a shared flag's a line alone", () => {
-    const files = readdirSync("dist/flags").filter((file) => file.endsWith(".js"));
+    const files = readdirSync("dist/flags").filter((file) => file.endsWith(".js") && !/\.(4x3|1x1)\.js$/.test(file));
     expect(files).toHaveLength(MANIFEST.length);
     for (const record of MANIFEST) {
       const bytes = size(`dist/flags/${record.code.toLowerCase()}.js`);

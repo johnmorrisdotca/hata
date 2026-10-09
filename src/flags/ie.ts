@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_Ireland.svg
 
 /**
- * The flag of Ireland (アイルランド), IE, as an SVG string: viewBox 1200 by 600 (2:1), 201 B.
+ * The flag of Ireland (アイルランド), IE, as an SVG string: viewBox 1200 by 600 (2:1), 216 B.
  * From Wikimedia Commons, "Flag of Ireland.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1200 600\"><path fill=\"#169b62\" d=\"M0 0h1200v600H0z\"/><path fill=\"#fff\" d=\"M400 0h800v600H400z\"/><path fill=\"#ff883e\" d=\"M800 0h400v600H800z\"/></svg>";
+const svg: string = "<svg data-hata=\"ie\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1200 600\"><path fill=\"#169b62\" d=\"M0 0h1200v600H0z\"/><path fill=\"#fff\" d=\"M400 0h800v600H400z\"/><path fill=\"#ff883e\" d=\"M800 0h400v600H800z\"/></svg>";
 
 export { svg };
 export default svg;

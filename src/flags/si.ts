@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_Slovenia.svg
 
 /**
- * The flag of Slovenia (スロベニア), SI, as an SVG string: viewBox 240 by 120 (2:1), 1.0 KB.
+ * The flag of Slovenia (スロベニア), SI, as an SVG string: viewBox 240 by 120 (2:1), 1.1 KB.
  * From Wikimedia Commons, "Flag of Slovenia.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"#00f\" viewBox=\"0 0 240 120\"><path fill=\"red\" d=\"M0 0h240v120H0Z\"/><path d=\"M0 0h240v80H0Z\"/><path fill=\"#fff\" d=\"M0 0h240v40H0Z\"/><g transform=\"matrix(.39140688 0 0 .39140688 60 60)\"><path d=\"M-37.2-94.4a92 92 0 0 1 74.4 0Q43-12 0-1q-43-11-37.2-93.4\"/><path id=\"hata-si-a\" fill=\"#ff0\" d=\"m0-84.5 1.1 2.6 2.8-.3L2.3-80l1.6 2.3-2.8-.4L0-75.5l-1.1-2.6-2.8.3 1.7-2.2-1.7-2.2 2.8.3\"/><use x=\"-10.5\" y=\"-14\" href=\"#hata-si-a\"/><use x=\"10.5\" y=\"-14\" href=\"#hata-si-a\"/><path fill=\"#fff\" d=\"m0-70 9 18 6-8 15 20-.4 2.7A46 46 0 0 1 0-6a46 46 0 0 1-29.6-31.2L-30-40l15-20 6 8z\"/><path id=\"hata-si-b\" d=\"M-29.6-37.3a10 10 0 0 0 14.6 6 10 10 0 0 1 10 0 10 10 0 0 0 10 0 10 10 0 0 1 10 0 10 10 0 0 0 14.6-6l.4.2v7.3a10 10 0 0 0-5 1.3 10 10 0 0 1-10 0 10 10 0 0 0-10 0 10 10 0 0 1-10 0 10 10 0 0 0-10 0 10 10 0 0 1-10 0 10 10 0 0 0-5-1.3V-37\"/><use y=\"5.8\" href=\"#hata-si-b\"/><path fill=\"red\" d=\"m-40-93 2.8-1.4 3 47.5A49 49 0 0 0 0-3a49 49 0 0 0 34.2-44l3-47.4L40-93l-2.9 46.4A52 52 0 0 1 0 0a52 52 0 0 1-37.1-46.7Z\"/></g></svg>";
+const svg: string = "<svg data-hata=\"si\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"#00f\" viewBox=\"0 0 240 120\"><path fill=\"red\" d=\"M0 0h240v120H0Z\"/><path d=\"M0 0h240v80H0Z\"/><path fill=\"#fff\" d=\"M0 0h240v40H0Z\"/><g transform=\"matrix(.39140688 0 0 .39140688 60 60)\"><path d=\"M-37.2-94.4a92 92 0 0 1 74.4 0Q43-12 0-1q-43-11-37.2-93.4\"/><path id=\"hata-si-a\" fill=\"#ff0\" d=\"m0-84.5 1.1 2.6 2.8-.3L2.3-80l1.6 2.3-2.8-.4L0-75.5l-1.1-2.6-2.8.3 1.7-2.2-1.7-2.2 2.8.3\"/><use x=\"-10.5\" y=\"-14\" href=\"#hata-si-a\"/><use x=\"10.5\" y=\"-14\" href=\"#hata-si-a\"/><path fill=\"#fff\" d=\"m0-70 9 18 6-8 15 20-.4 2.7A46 46 0 0 1 0-6a46 46 0 0 1-29.6-31.2L-30-40l15-20 6 8z\"/><path id=\"hata-si-b\" d=\"M-29.6-37.3a10 10 0 0 0 14.6 6 10 10 0 0 1 10 0 10 10 0 0 0 10 0 10 10 0 0 1 10 0 10 10 0 0 0 14.6-6l.4.2v7.3a10 10 0 0 0-5 1.3 10 10 0 0 1-10 0 10 10 0 0 0-10 0 10 10 0 0 1-10 0 10 10 0 0 0-10 0 10 10 0 0 1-10 0 10 10 0 0 0-5-1.3V-37\"/><use y=\"5.8\" href=\"#hata-si-b\"/><path fill=\"red\" d=\"m-40-93 2.8-1.4 3 47.5A49 49 0 0 0 0-3a49 49 0 0 0 34.2-44l3-47.4L40-93l-2.9 46.4A52 52 0 0 1 0 0a52 52 0 0 1-37.1-46.7Z\"/></g></svg>";
 
 export { svg };
 export default svg;

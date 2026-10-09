@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_Grenada.svg
 
 /**
- * The flag of Grenada (グレナダ), GD, as an SVG string: viewBox 500 by 300 (5:3), 915 B.
+ * The flag of Grenada (グレナダ), GD, as an SVG string: viewBox 500 by 300 (5:3), 930 B.
  * From Wikimedia Commons, "Flag of Grenada.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 500 300\"><path fill=\"#ce1126\" d=\"M0 0h500v300H0z\"/><path fill=\"#007a5e\" d=\"M42 42h416v216H42z\"/><path fill=\"#fcd116\" d=\"M42 42h416L42 258h416z\"/><circle cx=\"250\" cy=\"150\" r=\"36\" fill=\"#ce1126\"/><path fill=\"#ce1126\" d=\"M68 150.1a50 50 0 0 0 20.3 21.3c.3-8.5-2.4-19.5-6.3-28.3z\"/><path fill=\"#fcd116\" d=\"M60.3 121.5c6.3 13.7-17.5 45.8 21.4 54a40 40 0 0 1-6-26.5 40 40 0 0 1 19.4 19c13.4-37.5-26.5-34-34.8-46.5\"/><use fill=\"#fcd116\" href=\"#hata-gd-a\"/><use x=\"100\" fill=\"#fcd116\" href=\"#hata-gd-a\"/><use x=\"200\" fill=\"#fcd116\" href=\"#hata-gd-a\"/><use x=\"200\" y=\"-258\" fill=\"#fcd116\" href=\"#hata-gd-a\"/><use x=\"100\" y=\"-258\" fill=\"#fcd116\" href=\"#hata-gd-a\"/><use y=\"-258\" fill=\"#fcd116\" href=\"#hata-gd-a\"/><path fill=\"#fcd116\" d=\"m250 117-19.4 59.7 50.8-36.9h-62.8l50.8 36.9z\"/><defs><path id=\"hata-gd-a\" d=\"m150 259.5-11.5 35.3 30-21.8h-37l30 21.8z\"/></defs></svg>";
+const svg: string = "<svg data-hata=\"gd\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 500 300\"><path fill=\"#ce1126\" d=\"M0 0h500v300H0z\"/><path fill=\"#007a5e\" d=\"M42 42h416v216H42z\"/><path fill=\"#fcd116\" d=\"M42 42h416L42 258h416z\"/><circle cx=\"250\" cy=\"150\" r=\"36\" fill=\"#ce1126\"/><path fill=\"#ce1126\" d=\"M68 150.1a50 50 0 0 0 20.3 21.3c.3-8.5-2.4-19.5-6.3-28.3z\"/><path fill=\"#fcd116\" d=\"M60.3 121.5c6.3 13.7-17.5 45.8 21.4 54a40 40 0 0 1-6-26.5 40 40 0 0 1 19.4 19c13.4-37.5-26.5-34-34.8-46.5\"/><use fill=\"#fcd116\" href=\"#hata-gd-a\"/><use x=\"100\" fill=\"#fcd116\" href=\"#hata-gd-a\"/><use x=\"200\" fill=\"#fcd116\" href=\"#hata-gd-a\"/><use x=\"200\" y=\"-258\" fill=\"#fcd116\" href=\"#hata-gd-a\"/><use x=\"100\" y=\"-258\" fill=\"#fcd116\" href=\"#hata-gd-a\"/><use y=\"-258\" fill=\"#fcd116\" href=\"#hata-gd-a\"/><path fill=\"#fcd116\" d=\"m250 117-19.4 59.7 50.8-36.9h-62.8l50.8 36.9z\"/><defs><path id=\"hata-gd-a\" d=\"m150 259.5-11.5 35.3 30-21.8h-37l30 21.8z\"/></defs></svg>";
 
 export { svg };
 export default svg;

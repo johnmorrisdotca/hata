@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_Tokushima_Prefecture.svg
 
 /**
- * The flag of Tokushima (徳島県), JP-36, as an SVG string: viewBox 900 by 630 (10:7), 305 B.
+ * The flag of Tokushima (徳島県), JP-36, as an SVG string: viewBox 900 by 630 (10:7), 323 B.
  * From Wikimedia Commons, "Flag of Tokushima Prefecture.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"#234794\" viewBox=\"0 0 900 630\"><path d=\"M0 0h900v630H0z\"/><g transform=\"translate(450 315) scale(4.2)\"><g fill=\"#fcd400\"><circle r=\"45\"/><path d=\"M-50-45h30l70 90H20zM0 45v-90h56z\"/></g><circle r=\"20\"/><path d=\"M0-20h50v4H0zm-1 38 21 27h-5L-6 18z\"/></g></svg>";
+const svg: string = "<svg data-hata=\"jp-36\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"#234794\" viewBox=\"0 0 900 630\"><path d=\"M0 0h900v630H0z\"/><g transform=\"translate(450 315) scale(4.2)\"><g fill=\"#fcd400\"><circle r=\"45\"/><path d=\"M-50-45h30l70 90H20zM0 45v-90h56z\"/></g><circle r=\"20\"/><path d=\"M0-20h50v4H0zm-1 38 21 27h-5L-6 18z\"/></g></svg>";
 
 export { svg };
 export default svg;

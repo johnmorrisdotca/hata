@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Bandeira_de_Mato_Grosso.svg
 
 /**
- * The flag of Mato Grosso (マットグロッソ州), BR-MT, as an SVG string: viewBox 2000 by 1400 (10:7), 648 B.
+ * The flag of Mato Grosso (マットグロッソ州), BR-MT, as an SVG string: viewBox 2000 by 1400 (10:7), 666 B.
  * From Wikimedia Commons, "Bandeira de Mato Grosso.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 2000 1400\"><rect width=\"100%\" height=\"100%\" fill=\"#28166f\"/><path fill=\"#fff\" d=\"m170 700 830 530 830-530-830-530z\"/><circle cx=\"1000\" cy=\"700\" r=\"350\" fill=\"#00923f\"/><g transform=\"matrix(350 0 0 350 1000 700)\"><g id=\"hata-br-mt-b\"><path id=\"hata-br-mt-a\" fill=\"#f8c300\" d=\"M0 0v1h.5z\" transform=\"rotate(18 3.15687576 -.5)\"/><use href=\"#hata-br-mt-a\" transform=\"scale(-1 1)\"/></g><use href=\"#hata-br-mt-b\" transform=\"rotate(72)\"/><use href=\"#hata-br-mt-b\" transform=\"rotate(-72)\"/><use href=\"#hata-br-mt-b\" transform=\"rotate(144)\"/><use href=\"#hata-br-mt-b\" transform=\"rotate(-144)\"/></g></svg>";
+const svg: string = "<svg data-hata=\"br-mt\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 2000 1400\"><rect width=\"100%\" height=\"100%\" fill=\"#28166f\"/><path fill=\"#fff\" d=\"m170 700 830 530 830-530-830-530z\"/><circle cx=\"1000\" cy=\"700\" r=\"350\" fill=\"#00923f\"/><g transform=\"matrix(350 0 0 350 1000 700)\"><g id=\"hata-br-mt-b\"><path id=\"hata-br-mt-a\" fill=\"#f8c300\" d=\"M0 0v1h.5z\" transform=\"rotate(18 3.15687576 -.5)\"/><use href=\"#hata-br-mt-a\" transform=\"scale(-1 1)\"/></g><use href=\"#hata-br-mt-b\" transform=\"rotate(72)\"/><use href=\"#hata-br-mt-b\" transform=\"rotate(-72)\"/><use href=\"#hata-br-mt-b\" transform=\"rotate(144)\"/><use href=\"#hata-br-mt-b\" transform=\"rotate(-144)\"/></g></svg>";
 
 export { svg };
 export default svg;

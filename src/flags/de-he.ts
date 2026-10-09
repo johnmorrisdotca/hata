@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_Hesse.svg
 
 /**
- * The flag of Hesse (ヘッセン州), DE-HE, as an SVG string: viewBox 10 by 6 (5:3), 172 B.
+ * The flag of Hesse (ヘッセン州), DE-HE, as an SVG string: viewBox 10 by 6 (5:3), 190 B.
  * From Wikimedia Commons, "Flag of Hesse.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -13,7 +13,7 @@
  * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
  * ```
  */
-const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 10 6\"><desc>Civil flag of Hesse</desc><path fill=\"#e10000\" d=\"M0 0h10v3H0z\"/><path fill=\"#fff\" d=\"M0 3h10v3H0z\"/></svg>";
+const svg: string = "<svg data-hata=\"de-he\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 10 6\"><desc>Civil flag of Hesse</desc><path fill=\"#e10000\" d=\"M0 0h10v3H0z\"/><path fill=\"#fff\" d=\"M0 3h10v3H0z\"/></svg>";
 
 export { svg };
 export default svg;
