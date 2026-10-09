@@ -92,7 +92,8 @@ describe("every flag's picture", () => {
       expect(root, one.code).not.toMatch(/\s(width|height|preserveAspectRatio)=/);
       expect(Buffer.byteLength(svg), one.code).toBe(one.bytes);
     }
-  });
+    // The first test to import every flag's module pays for transforming them all.
+  }, 60_000);
 
   it("holds nothing that runs, loads or reaches outside the picture", async () => {
     for (const code of FLAG_CODES) {
@@ -101,7 +102,7 @@ describe("every flag's picture", () => {
       expect(svg, code).not.toMatch(/(href|src)\s*=\s*["'](?!#|data:image\/(png|jpeg|gif|webp);base64,)/i);
       expect(svg, code).not.toMatch(/url\(\s*["']?(?!#)/i);
     }
-  });
+  }, 60_000);
 
   it("names every id and class with its own flag's prefix, so flags in one page cannot collide", async () => {
     for (const one of MANIFEST.filter((record) => record.sameAs === null)) {
@@ -110,7 +111,7 @@ describe("every flag's picture", () => {
       for (const [, id] of svg.matchAll(/\sid="([^"]+)"/g)) expect(id, one.code).toMatch(new RegExp(`^${prefix}`));
       for (const [, names] of svg.matchAll(/\sclass="([^"]+)"/g)) for (const name of names.split(/\s+/)) expect(name, one.code).toMatch(new RegExp(`^${prefix}`));
     }
-  });
+  }, 60_000);
 
   it("is the generated module's own: one file in src/flags for each code, none other", () => {
     const files = readdirSync("src/flags").map((file) => file.replace(/\.ts$/, "").toUpperCase()).sort();

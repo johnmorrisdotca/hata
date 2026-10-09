@@ -1,0 +1,44 @@
+// What a page pays for each entry, measured on the built files (pnpm check builds before it tests): the main entry
+// and /load carry no flag; each flag is its own small file; the flags over the budget are the ones docs/sizes.md
+// lists, and none is over the ceiling.
+import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
+
+import { describe, expect, it } from "vitest";
+
+import { BUDGET_BYTES, CEILING_BYTES } from "../scripts/data-config";
+import { MANIFEST } from "./manifest";
+
+const KB = 1024;
+const size = (path: string): number => {
+  if (!existsSync(path)) throw new Error(`${path} is not built: run pnpm build first (pnpm check does)`);
+
+  return statSync(path).size;
+};
+
+describe("the built entries", () => {
+  it("keep the main entry under 12 KB and /load under 24 KB, with no flag in either", () => {
+    expect(size("dist/index.js")).toBeLessThan(12 * KB);
+    expect(size("dist/load.js")).toBeLessThan(24 * KB);
+    for (const file of ["dist/index.js", "dist/load.js"]) expect(readFileSync(file, "utf8"), file).not.toContain("<path");
+  });
+
+  it("make each flag's module its SVG and a line, no larger than the ceiling, and a shared flag's a line alone", () => {
+    const files = readdirSync("dist/flags").filter((file) => file.endsWith(".js"));
+    expect(files).toHaveLength(MANIFEST.length);
+    for (const record of MANIFEST) {
+      const bytes = size(`dist/flags/${record.code.toLowerCase()}.js`);
+      if (record.sameAs === null) {
+        expect(bytes, record.code).toBeLessThan(record.bytes + 200);
+        expect(bytes, record.code).toBeLessThan(CEILING_BYTES + 200);
+      } else expect(bytes, record.code).toBeLessThan(200);
+    }
+  });
+
+  it("list in docs/sizes.md exactly the flags over the budget", () => {
+    const doc = readFileSync("docs/sizes.md", "utf8");
+    const section = doc.slice(doc.indexOf("## Over the budget"), doc.indexOf("## Worth knowing"));
+    const listed = [...section.matchAll(/^\| `([A-Z-]+)` /gm)].map((match) => match[1]).sort();
+    const over = MANIFEST.filter((record) => record.sameAs === null && record.bytes > BUDGET_BYTES).map((record) => record.code).sort();
+    expect(listed).toEqual(over);
+  });
+});

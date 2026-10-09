@@ -16,7 +16,8 @@ describe("flag", () => {
 
   it("loads every flag there is", async () => {
     for (const code of FLAG_CODES) expect((await flag(code))?.startsWith("<svg"), code).toBe(true);
-  });
+    // Every one of the 358 modules is transformed on first import, which takes longer than a test's usual five seconds.
+  }, 60_000);
 
   it("frames it when asked, as frame() does", async () => {
     expect(await flag("JP", { shape: "round", label: "Japan" })).toBe(frame(japan, { shape: "round", label: "Japan" }));
