@@ -76,7 +76,16 @@ jobs:
             echo "::notice title=Already on npm::$NAME@$VERSION is already on npm, so it is not published again."
             exit 0
           fi
-          npm publish --provenance --access public --ignore-scripts
+          # npm's listing can lag a publish made by hand from the Mac by minutes, so the check above can miss it;
+          # npm then refuses with "cannot publish over the previously published versions", which means done.
+          if ! npm publish --provenance --access public --ignore-scripts 2> publish.log; then
+            cat publish.log
+            if grep -q "cannot publish over the previously published versions" publish.log; then
+              echo "::notice title=Already on npm::$NAME@$VERSION was already published, so it is not published again."
+              exit 0
+            fi
+            exit 1
+          fi
 
   release:
     name: GitHub release
