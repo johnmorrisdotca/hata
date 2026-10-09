@@ -94,21 +94,34 @@ licence check, the same comparison with the flag sets and the same pixel proof a
 - **India**: no state has an official flag (Jammu and Kashmir's ended in 2019); Wikidata names two, Karnataka's
   proposed one and Delhi's, and neither is adopted.
 
-## For the maintainer: seven flags left out for their licence
+## For the maintainer: six flags left out for their licence
 
 Each is on Commons under a licence that is not public domain, CC0 or CC BY, and no MIT set draws it at its true
 proportions. Bringing one in is a line in `ACCEPTED` in `scripts/data-config.ts`, with the decision in words.
-Brittany's joined them in 1.1.0.
+Brittany's joined them in 1.1.0, and Mississippi's left them on 2026-10-09 (below).
 
 | Code | Place | What Commons states | Recommendation |
 | --- | --- | --- | --- |
-| `US-MS` | Mississippi | "Copyrighted free use": the holder allows any use for any purpose, with no condition | **Accept.** It is freer than CC BY; it was left out only because it is not one of the three named licences. |
-| `OM` | Oman | Open Government Licence – Oman 1.0, attribution required | **Accept with credit**, once someone has read the licence's terms (oman.om); it is meant to work like CC BY. |
-| `JP-34` | Hiroshima | No licence template at all: the page carries only `{{Insignia}}` | **Fix at the source**: the drawing is a 1966 prefectural emblem, like the 44 others that Commons marks PD-Japan-organization or PD-ineligible. A licence template added on Commons brings it in with the next `pnpm data:commons`. |
-| `CA-MB` | Manitoba | CC BY-SA 4.0 (a drawing from the Canadian Heraldic Authority's register) | **Leave out**, or name a public-domain drawing of the same flag on Commons if one is made. Share-alike would bind every user of the package. |
-| `CC` | Cocos (Keeling) Islands | CC BY-SA 4.0 | **Leave out**, as Manitoba. |
-| `JP-37` | Kagawa | CC BY-SA 3.0 and GFDL, with the note "If you will use this file, you must get Kagawa Prefecture approval" | **Leave out.** |
-| `FR-BRE` | Brittany | CC BY-SA 4.0 | **Fix at the source**: the Gwenn-ha-du is nine stripes and eleven ermine spots, a 1923 design; a public-domain drawing on Commons (or a PD template on this one, which its author could add) brings it in. Until then, leave out. |
+| `OM` | Oman | Open Government Licence – Oman 1.0, attribution required | **Left out: the licence could not be confirmed to cover a flag** (read 2026-10-09, below). |
+| `JP-34` | Hiroshima | No licence template at all: the page carries only `{{Insignia}}` | **Fix at the source**: the drawing is a 1966 prefectural emblem, like the 44 others that Commons marks PD-Japan-organization or PD-ineligible. A licence template added on Commons brings it in with the next `pnpm data:commons`. Still out on 2026-10-09: Commons carries no licence tag for it. |
+| `CA-MB` | Manitoba | CC BY-SA 4.0 (a drawing from the Canadian Heraldic Authority's register) | **Leave out** (John, 2026-10-09), or name a public-domain drawing of the same flag on Commons if one is made. Share-alike would bind every user of the package. |
+| `CC` | Cocos (Keeling) Islands | CC BY-SA 4.0 | **Leave out** (John, 2026-10-09), as Manitoba. |
+| `JP-37` | Kagawa | CC BY-SA 3.0 and GFDL, with the note "If you will use this file, you must get Kagawa Prefecture approval" | **Leave out** (John, 2026-10-09). |
+| `FR-BRE` | Brittany | CC BY-SA 4.0 | **Leave out** (John, 2026-10-09). **A public-domain drawing exists**: "Flag of Brittany (Gwenn ha du).svg" is marked Public domain (CC0, PD-old, PD-France) on Commons as of 2026-10-09, so naming it in `NAMED` brings Brittany in with no share-alike. John asked to keep Brittany out; this is for him to reopen. |
+
+**Mississippi** came in on 2026-10-09 ("include Mississippi (copyrighted free use)"): Commons gives the licence as
+"Copyrighted free use", under which the holder allows any use for any purpose with no condition, freer than CC BY. It is the one
+line in `ACCEPTED`, its licence kind in the manifest is `accepted`, and the decision is written in the licence's name and credited in
+NOTICE.md.
+
+**Oman was read and is left out.** On 2026-10-09 the Open Government Licence – Oman 1.0 was read in full (oman.om's certificate
+does not verify, so from the Internet Archive's copy of the page). It lets anyone use "the data available on this website" for any
+commercial or non-commercial purpose, asking only that the source be acknowledged, with a link to the licence where possible, and
+that nothing be done that would harm the Data Provider's honour or reputation. **But Article 6 excludes "official government
+emblems"**, and the national flag is one; and the licence covers data on oman.om, while the Commons file was vectorised from
+qanoon.om, the legal gazette, which is another site. So the licence cannot be confirmed to cover this drawing, and Oman is left
+out, as John asked ("if it cannot be confirmed, leave it out"). Asking the Omani government for a statement, or finding a
+public-domain drawing on Commons, would settle it.
 
 ## For the maintainer: places where the sources show different flags
 
@@ -118,15 +131,16 @@ same flag drawn simplified or laid out again at another shape. These are not:
 
 - **Afghanistan (AF).** Wikidata's preferred flag, since 2021-08-15, is the Taliban's white flag with the
   shahada; every flag set draws the Islamic Republic's black, red and green tricolour, which is still the flag
-  at the United Nations. The package ships Wikidata's. Choosing the tricolour is `CHOSEN` with a reason.
+  at the United Nations. **Decided 2026-10-09: the tricolour is the default and the Taliban's flag is the `de-facto` variant**
+  (below).
 - **Saint Helena, Ascension and Tristan da Cunha (SH).** Wikidata gives the Union Flag, the territory's
-  official flag as a whole; the sets draw Saint Helena's own blue ensign. The package ships the Union Flag.
-- **The French overseas territories.** Wikidata is not consistent: it gives France's tricolour for Guadeloupe
+  official flag as a whole; the sets draw Saint Helena's own blue ensign. **Decided 2026-10-09: Saint Helena's own flag is the
+  default and the Union Flag is the `union-flag` variant.**
+- **The French overseas territories.** Wikidata is not consistent: it gave France's tricolour for Guadeloupe
   (chosen here, `CHOSEN`), Réunion, French Guiana and Saint Martin, and a local flag for Saint Barthélemy,
   Saint-Pierre and Miquelon, Wallis and Futuna, Mayotte and Martinique. For New Caledonia it gives the FLNKS
-  (Kanak) flag, which has flown beside France's there since 2010. The sets disagree among themselves too.
-  The package ships Wikidata's answer for each. One rule for all (France's flag everywhere, as the official
-  flag; or the local flag wherever there is one) would be a handful of `CHOSEN` lines.
+  (Kanak) flag, which has flown beside France's there since 2010. **Decided 2026-10-09: each territory's official flag, else
+  France's**, with the local flag a variant (below).
 - **Caribbean Netherlands (BQ)** has no flag of its own: Bonaire, Sint Eustatius and Saba each have one, and
   the Netherlands' is the official flag. flag-icons draws the Netherlands', country-flag-icons Bonaire's. The
   package ships none. (Wikidata's other item with the code BQ is the British Antarctic Territory, which had it
@@ -135,6 +149,61 @@ same flag drawn simplified or laid out again at another shape. These are not:
   Commons), on another item; the package ships none.
 - **Western Sahara (EH).** Wikidata gives the territory no flag. flag-icons draws the Sahrawi Arab Democratic
   Republic's, which is one claimant's flag. The package ships none.
+
+## Disputed and alternative flags
+
+John, 2026-10-09: "yes" to the recommendations, and "do we have properties that say disputed flag or an option to choose regular
+vs disputed? if so that's better". Hata had one flag for each code. Since then a place with more than one flag in real use has
+them all as **variants** (`variantsOf(code)`, `flag(code, { variant })`, `<hata-flag variant>`, a module `/flags/<code>--<id>`
+for each), each with a `status`, `from` and `until`, a `why` and a `source`, one marked the default, and a `disputed` mark on
+the place. [variants.md](variants.md) lists them all with their drawings and licences. The package takes no side: a status says
+what authority a flag has, and a default is the flag of the authority the world recognises, or the place's own flag where it
+has one, never a flag chosen for being the one most flown.
+
+- **Afghanistan** (`disputed`): default `republic`, the Islamic Republic's tricolour (2013 to 2021, official; still the flag at the
+  United Nations, and flown by its representatives abroad and by those who oppose the new rulers); `de-facto`, the Taliban's flag
+  (since 2021-08-15; Wikidata's preferred flag; no government outside it recognises it at the United Nations). The Commons file
+  for the Taliban's flag carries the restriction "terrorism" and "noresize"; the manifest records it as Commons gives it.
+- **Saint Helena**: default `saint-helena`, the island's own blue ensign; `union-flag`, the flag of the territory (Saint Helena,
+  Ascension and Tristan da Cunha) as a whole, as Wikidata gives it.
+- **The French territories**: each territory's official flag, else France's. **France's tricolour is the default** for
+  Guadeloupe, Martinique, French Guiana, Réunion, Mayotte, Saint-Barthélemy, Saint-Martin, Saint-Pierre and Miquelon, Wallis and
+  Futuna and Clipperton, none of which has an official flag of its own, with the local flag a `local` variant where a drawing
+  can ship: Guadeloupe's (red, with the sun and the fleurs-de-lis; the black-field one belongs to the independence movement and is
+  not offered), Martinique's red, green and black flag, French Guiana's green and yellow diagonal with a red star, Réunion's Lofo,
+  Mayotte's, Saint-Barthélemy's, Saint-Pierre and Miquelon's and Wallis and Futuna's. **New Caledonia** and **French Polynesia**
+  have flags of their own that are official (the Kanak flag beside France's since 2010; French Polynesia's since its statute
+  of 1984), so those are the defaults and France's tricolour is the `france` variant. The French Southern and Antarctic Lands
+  keep the TAAF's own flag. **Not offered**: Saint-Martin's local flag ("Local flag of the Collectivity of Saint Martin.svg" is
+  under the Licence Ouverte, which is not one of the licences John approved), Guadeloupe's "Flag of Guadeloupe (Local).svg" and
+  Martinique's collectivity flag (CC BY-SA 4.0). Which territories' local flags count as "official" is a judgement from
+  Wikipedia's articles on each flag; it is for John to confirm.
+- **Bavaria**: `lozenges` (default, as before) and `stripes`, both official and of equal standing.
+- **Northern Ireland** (`disputed`): no default, since it has had no flag of its own since 1973, as before; the variants are
+  `union-flag` (official, the only flag its government flies, flown by many unionists and not by many nationalists) and
+  `ulster-banner` (historical, 1953 to 1972, flown by many unionists and some sports teams, not by nationalists). John asked that
+  Northern Ireland stay without a flag unless he says otherwise: `flag("GB-NIR")` is still `null` and it is still in
+  `LEFT_OUT`; its flags are only for those who ask for one by name. Saint Patrick's Saltire is not offered (Wikidata does not
+  give it and its use is not documented as the territory's flag).
+- **Syria**: default `2025`, the green, white and black flag with three red stars (Wikidata's preferred flag since 2024-12-08);
+  `assad-era`, the red, white and black flag with two green stars (historical, 1980 to 2024, still flown by supporters of the
+  former governments and in some communities).
+
+**Considered and not offered**, each because no old flag is in common use today or the flag is not a place's flag:
+**Libya's** 1977 to 2011 green flag (no flag used by more than a few); **Myanmar's** 1974 to 2010 flag; **Mississippi's, Utah's
+and Minnesota's** flags before their recent changes (the old ones are replaced everywhere they are official); **civil and state
+flags** that differ only by the arms on them (Belgium's civil flag, Bolivia's, Costa Rica's and Peru's state or war flags,
+Saxony's state flag, Tyrol's and Vienna's state flags, Switzerland's civil ensign, Baden-Württemberg's banner); military ensigns
+and standards, which are out of scope (README); the **Caribbean Netherlands** (`BQ`: the Netherlands' flag is official, Bonaire's
+is public domain, and Sint Eustatius's and Saba's are CC BY-SA, so a partial set would mislead). Each could be a few lines in
+`VARIANTS` in `scripts/data-config.ts` if John wants it.
+
+How a variant is built: `VARIANTS` in `scripts/data-config.ts` names, for each place, the default and each variant's id, names,
+status, dates, reason, source and Commons file; `pnpm data:commons` fetches the files, `pnpm data` checks each licence like any
+flag's (a variant whose licence cannot ship is left out and listed in variants.md), optimises it, and writes its module (the module
+of the flag it shares a drawing with, where there is one, such as France's tricolour), and `pnpm data:framing <code>--<id>`
+measures its frames. A build that finds a new picture unmeasured writes everything as cropped from the centre and stops at the end,
+naming what to measure; run `pnpm data:framing` for it and `pnpm data` again.
 
 ## Frames: no frame may misrepresent a flag
 
