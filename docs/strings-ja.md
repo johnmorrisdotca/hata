@@ -45,6 +45,8 @@ open a *Fix a translation* issue with the string's name. `{name}` and the other 
 | `fit_crop` | Cropped | 切り抜き |
 | `count` | {shown} of {total} flags | {total} 件中 {shown} 件 |
 | `download_list` | List (TXT) | 一覧（TXT） |
+| `download_list_md` | List (Markdown) | 一覧（Markdown） |
+| `download_list_sql` | List (SQL) | 一覧（SQL） |
 | `download_manifest` | Manifest (JSON) | マニフェスト（JSON） |
 | `empty` | No flag matches. Try a code, or another spelling. | 該当する旗がありません。コードや別の表記もお試しください。 |
 | `left_out_title` | Places with no flag here ({n}) | 旗を収録していない地域（{n}） |

@@ -6,6 +6,10 @@ All notable changes to this project are written here. The format follows
 
 ## [Unreleased]
 
+### Added
+
+- **The demo's list of flags also downloads as a Markdown table and as SQL**, beside the TXT list: the flags shown, with their code, names, source, licence and file. The Markdown is a GitHub table (`|` escaped, a line break `<br>`); the SQL is a `CREATE TABLE flags` and an `INSERT` a row, with double-quoted names, single-quoted text and NULL for what is missing, and runs in SQLite, PostgreSQL and MySQL (MySQL needs `ANSI_QUOTES` and `NO_BACKSLASH_ESCAPES`, which the file's second line says). The writers are `demo/downloads.js`, the same file in kuni, chizu and hata, held to one hash and tested by loading the SQL into SQLite.
+
 ## [1.3.0] - 2026-10-09
 
 ### Added

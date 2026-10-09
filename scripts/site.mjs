@@ -71,6 +71,8 @@ const gallery = `<section class="fam-panels" id="gallery-panel" role="tabpanel" 
             <p class="count" id="count" data-testid="count" aria-live="polite"></p>
             <div class="fam-actions">
               <button type="button" class="fam-button" id="download-list" data-testid="download-list" data-say="download_list" data-tip-en="A text file listing the flags shown: code, English name, Japanese name, source and licence." data-tip-ja="表示中の旗の一覧（コード、英語名、日本語名、出典、ライセンス）をテキストファイルで保存します。"></button>
+              <button type="button" class="fam-button" id="download-list-md" data-testid="download-list-md" data-say="download_list_md" data-tip-en="The flags shown as a Markdown table, for a README or a note: code, English name, Japanese name, source and licence." data-tip-ja="表示中の旗の一覧（コード、英語名、日本語名、出典、ライセンス）をREADMEやメモ用のMarkdownの表で保存します。"></button>
+              <button type="button" class="fam-button" id="download-list-sql" data-testid="download-list-sql" data-say="download_list_sql" data-tip-en="The flags shown as SQL, a table named flags to load into a database: code, English name, Japanese name, source, licence and file." data-tip-ja="表示中の旗の一覧を、データベースに読み込める flags テーブルのSQLで保存します（コード、英語名、日本語名、出典、ライセンス、ファイル）。"></button>
               <button type="button" class="fam-button" id="download-manifest" data-testid="download-manifest" data-say="download_manifest" data-tip-en="The whole manifest as JSON: every flag's source, licence, author and size, and the codes with no flag." data-tip-ja="マニフェスト全体を JSON で保存します。各旗の出典・ライセンス・作者・サイズと、旗のないコードが含まれます。"></button>
             </div>
           </div>

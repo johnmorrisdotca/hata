@@ -1,6 +1,7 @@
 // The gallery: every flag, found by name in either language or by code, narrowed by set and continent, framed
 // four ways, and the list and the manifest saved as files. The address keeps the choices.
 import { readFileSync } from "node:fs";
+import { DatabaseSync } from "node:sqlite";
 
 import { expect, test } from "@playwright/test";
 
@@ -123,6 +124,23 @@ test("saves the list of the flags shown, and the whole manifest", async ({ page 
   const manifest = JSON.parse(readFileSync(await json.path(), "utf8"));
   expect(manifest.flags).toHaveLength(FLAG_CODES.length);
   expect(manifest.leftOut.map((one) => one.code)).toContain("EH");
+});
+
+test("saves the list of the flags shown as a Markdown table and as SQL that loads into a database", async ({ page }, testInfo) => {
+  await open(page, "?lang=en&set=jp");
+  const [md] = await Promise.all([page.waitForEvent("download"), tap(page, at("download-list-md"), testInfo)]);
+  expect(md.suggestedFilename()).toBe("hata-flags.md");
+  const table = readFileSync(await md.path(), "utf8").trim().split("\n");
+  expect(table).toHaveLength(2 + 45);
+  expect(table[0]).toBe("| code | english | japanese | source | licence | file |");
+  expect(table.find((line) => line.startsWith("| JP-13 |"))).toContain("| Tokyo | 東京都 | commons | Public domain |");
+  const [sql] = await Promise.all([page.waitForEvent("download"), tap(page, at("download-list-sql"), testInfo)]);
+  expect(sql.suggestedFilename()).toBe("hata-flags.sql");
+  const database = new DatabaseSync(":memory:");
+  database.exec(readFileSync(await sql.path(), "utf8"));
+  expect(database.prepare('SELECT COUNT(*) AS n FROM "flags"').get().n).toBe(45);
+  expect(database.prepare('SELECT "japanese" AS name FROM "flags" WHERE "code" = ?').get("JP-13").name).toBe("東京都");
+  database.close();
 });
 
 test("lists the places with no flag, each with its reason", async ({ page }, testInfo) => {

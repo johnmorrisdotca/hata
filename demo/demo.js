@@ -5,6 +5,7 @@
 // Kuni's, written into names.js when the site is built. The page's words are set as text, never as HTML.
 import "./dist/element-define.js";
 import { aspectOf, FLAG_CODES, flagUrl, toDataUri } from "./dist/index.js";
+import { toMarkdown, toSql } from "./downloads.js";
 import { flag } from "./dist/load.js";
 import { LEFT_OUT, manifest, MANIFEST } from "./dist/manifest.js";
 import { mountEmbedBuilder } from "./embed-builder.js";
@@ -266,15 +267,19 @@ $("region").addEventListener("change", () => {
   drawGallery();
   remember();
 });
-$("download-list").addEventListener("click", () => {
-  const lines = ["code\tenglish\tjapanese\tsource\tlicence\tfile"];
-  for (const code of FLAG_CODES) {
-    if (tiles.get(code).item.hidden) continue;
+/** The flags shown, a row each: what the list downloads (TXT, Markdown and SQL) hold. */
+const LIST_COLUMNS = ["code", "english", "japanese", "source", "licence", "file"];
+const listRows = () =>
+  FLAG_CODES.filter((code) => !tiles.get(code).item.hidden).map((code) => {
     const record = records.get(code);
-    lines.push([code, NAMES[code].en, NAMES[code].ja, record.source, record.licence.name, record.file].join("\t"));
-  }
+    return { code, english: NAMES[code].en, japanese: NAMES[code].ja, source: record.source, licence: record.licence.name, file: record.file };
+  });
+$("download-list").addEventListener("click", () => {
+  const lines = [LIST_COLUMNS.join("\t"), ...listRows().map((row) => LIST_COLUMNS.map((column) => row[column]).join("\t"))];
   save("hata-flags.txt", `${lines.join("\n")}\n`, "text/plain;charset=utf-8");
 });
+$("download-list-md").addEventListener("click", () => save("hata-flags.md", toMarkdown(LIST_COLUMNS, listRows()), "text/markdown;charset=utf-8"));
+$("download-list-sql").addEventListener("click", () => save("hata-flags.sql", toSql("flags", LIST_COLUMNS, listRows()), "application/sql;charset=utf-8"));
 $("download-manifest").addEventListener("click", () => save("hata-manifest.json", `${JSON.stringify({ flags: MANIFEST, leftOut: LEFT_OUT }, null, 1)}\n`, "application/json"));
 
 // ----- The detail panel ----------------------------------------------------------------------------------------
