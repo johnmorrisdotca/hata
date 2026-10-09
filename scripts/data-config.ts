@@ -125,10 +125,75 @@ const NO_FLAG: Readonly<Record<string, string>> = {
   EH: "Western Sahara has no flag of its own on Wikidata. The flag often shown for it is the Sahrawi Arab Democratic Republic's, one claimant's; it is left out rather than chosen for the territory (see docs/decisions.md).",
 };
 
-// Flags whose meaning is at the hoist, by the pole, so that a frame that must crop them may crop from the fly and
-// keep the hoist (scripts/framing.mjs; a crop is used only where it also keeps the flag's colours). Empty: no flag
-// needs it yet. Every flag a centre crop would misrepresent is shown whole, or drawn again by flag-icons.
-const FOCUS: Readonly<Record<string, "hoist">> = {};
+// Where a square, 4:3 or round crop of a flag should sit, judged flag by flag (scripts/framing.mjs reads it). A crop
+// from the centre passes the colour test for most flags, and is right for the ones whose meaning is in the middle
+// (Japan's disc, a coat of arms, a plain tricolour), so those have no line here. A line says the centre is wrong: the
+// meaning sits at the hoist or in a canton (the United States' stars and its stripes, Uruguay's Sun of May), at the
+// fly (Rwanda's sun), or is spread across the flag so that no square crop shows it ("whole").
+//
+//   at: "left" | "right" | "top" | "bottom"  the side a crop keeps; the crop fills the frame and loses the other side.
+//   at: "whole"                              no crop shows this flag: `auto` shows all of it. A crop asked for by name
+//                                            (fit: "crop") is still the centre crop, because that is what was asked.
+//   why                                      written beside every line, and listed in docs/framing.md.
+//   loses                                    a colour the crop may drop, with the reason. A crop that drops a colour
+//                                            covering 5% of the flag is used only where this is written; otherwise the
+//                                            flag is shown whole.
+//
+// Judged on 2026-10-09 by looking at every flag's whole picture beside its centre crop (docs/framing.md).
+type Anchor = "left" | "right" | "top" | "bottom" | "centre";
+interface Focus {
+  at: Exclude<Anchor, "centre"> | "whole";
+  why: string;
+  loses?: string;
+}
+
+const group = (at: Focus["at"], why: string, codes: readonly string[]): Record<string, Focus> => Object.fromEntries(codes.map((code) => [code, { at, why }]));
+
+const SIDES: Readonly<Record<string, Focus>> = {
+  ...group("left", "An emblem sits in a canton at the hoist and the flag's body runs on from it, so a crop from the left keeps the emblem and a slice of the body, as a hand-drawn square of the flag does; the centre crop shows only the body.", [
+    "US", "UM", "LR", "MY", "TW", "CL", "CN", "AW", "CW", "SB", "UZ", "WS", "TG", "TO", "MT", "SG", "UY", "GR", "US-HI", "US-GA", "BR-AC", "BR-AM", "BR-GO", "BR-MA", "BR-PI", "BR-SE", "BR-SP",
+  ]),
+  ...group("left", "A triangle, chevron or wedge at the hoist holds the flag's emblem or its meaning, and a crop from the left keeps it with the stripes it points into; the centre crop shows the stripes and loses it.", [
+    "CU", "CZ", "DJ", "ER", "GQ", "JO", "KM", "KW", "MQ", "MZ", "PH", "PR", "PS", "SD", "SS", "ST", "SX", "TL", "VU", "ZA", "ZW", "BR-BA", "US-OH", "BH",
+  ]),
+  ...group("left", "A bar or band at the hoist (a different colour or a pattern) is part of what makes the flag this one, and a crop from the left keeps it beside the main field; the centre crop drops it.", ["AE", "BJ", "MG", "BY", "DE-HB", "TM"]),
+  ...group("left", "The flag's emblem sits nearer the hoist than the middle, so a crop from the left shows all of it where the centre crop cuts it.", [
+    "CD", "CF", "GW", "MH", "MN", "NA", "NR", "TR", "KP", "SC", "US-CO", "US-MN", "US-NC", "US-NV", "US-SC", "US-TX", "DE-RP",
+  ]),
+  ...group("left", "The cross is set towards the hoist, as on the other Nordic flags, so a crop from the centre puts it in the wrong place; a crop from the left keeps its shape and its place.", ["DK", "FI", "FO", "IS", "NO", "SE", "AX"]),
+  ...group("right", "The emblem sits in the fly, away from the pole, so a crop from the right keeps it with the stripes beside it.", ["RW", "ZM"]),
+  ...group("whole", "A Blue or Red Ensign: the Union Flag in the canton and a badge or stars in the fly make the flag, and no square crop holds both, so a crop would show one half of it.", [
+    "AI", "AU", "AU-NSW", "AU-QLD", "AU-SA", "AU-TAS", "AU-VIC", "AU-WA", "BM", "CK", "FJ", "FK", "GS", "IO", "KY", "MS", "NU", "NZ", "PN", "TC", "TV", "VG", "CA-ON",
+  ]),
+  ...group("whole", "The meaning is spread across the whole flag (two emblems, or a design that runs from one end to the other), so any square crop is a part of it that another flag could share.", [
+    "AS", "AU-NT", "BR-MS", "CA-SK", "CA-NL", "CA-NU", "CX", "TF", "TK", "WF", "US-AK", "US-DC", "LK",
+  ]),
+  QA: {
+    at: "whole",
+    why: "The serrated white band covers the hoist for more than a third of the flag, so a square at the hoist is white and a square from the centre is plain maroon; neither is the flag, which is both.",
+  },
+  // A crop that keeps the hoist and drops a colour covering 5% of the flag, with the reason it is still the better frame.
+  BS: {
+    at: "left",
+    why: "The black triangle at the hoist is the Bahamas' flag at a glance, and a crop from the left keeps it with the three stripes it points into; the centre crop shows only the stripes.",
+    loses: "The gold band is shorter in the crop because the triangle takes most of its width, and it still reads as a band between two aqua ones.",
+  },
+};
+
+// Crops that keep the hoist and drop a colour covering 5% of the flag, each with the reason it is still the better frame.
+// Seen beside the whole flag on 2026-10-09: the colour is still on the frame, only smaller, and what the crop
+// keeps is what a person would draw if asked for the flag in a square.
+const ALLOWED: Readonly<Record<string, string>> = {
+  ER: "The green and blue fields are cut to the corners above and below the red triangle, and the triangle with its emblem is what makes the flag.",
+  GW: "The green band is half as long, and the red bar with its black star and the yellow and green bands are all there.",
+  JO: "The white band is shorter because the red triangle takes most of the width, and the three bands and the triangle with its star are all there.",
+  MT: "The red field is narrower in the crop, and the white field with the George Cross in its corner, which is what makes the flag, is whole.",
+  NA: "The green triangle is cut short, and the sun, the red diagonal and the blue field are all there.",
+  SB: "The green triangle is cut short, and the stars on the blue field and the yellow diagonal are all there, large.",
+  SC: "The white and green rays are shorter, and the five rays fanning from the hoist, which is the flag, are all there.",
+  SS: "The red and green stripes are shorter because the triangle takes most of the width, and the black stripe, the triangle and its star are all there.",
+};
+const FOCUS: Readonly<Record<string, Focus>> = { ...SIDES, ...Object.fromEntries(Object.entries(ALLOWED).map(([code, loses]) => [code, { ...SIDES[code]!, loses }])) };
 
 // The size budget of one optimised flag, in bytes of SVG. Flags carrying a detailed coat of arms or seal go over
 // it; the build lists them in docs/sizes.md and the size test holds the list, so a new one is a decision.
@@ -138,3 +203,4 @@ const BUDGET_BYTES = 40 * 1024;
 const CEILING_BYTES = 400 * 1024;
 
 export { ACCEPTED, BUDGET_BYTES, CEILING_BYTES, CHOSEN, FOCUS, ITEM, NAMED, NO_FLAG, REVIEWED, SAME_PLACE, SUBDIVISION_COUNTRIES };
+export type { Anchor, Focus };

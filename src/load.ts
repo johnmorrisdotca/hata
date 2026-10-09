@@ -12,8 +12,10 @@ const codeOf = (code: string): string => mustBeString(code, "code").trim().toUpp
  * is framed: at 4:3, square or round, the frame measured for that flag so that none misrepresents it. Where
  * flag-icons draws the flag again by hand for that shape (Canada's square, with narrower bars), that drawing is
  * loaded instead (`/flags/<code>.1x1`, `.4x3`; round is the square in a circle); otherwise it is framed as
- * `frame()` frames it, cropped where a crop keeps every colour and whole where it would not. A `fit` other than
- * `auto` asks for that fit of the flag's own drawing.
+ * `frame()` frames it: cropped at the side chosen for the flag where one was, cropped from the centre where that keeps
+ * every colour, and whole where neither does. `fit: "crop"` asks for the crop: the hand-drawn frame where there is one,
+ * else the flag's own drawing cropped at its chosen side, even where `auto` would show the whole flag. `fit: "whole"`
+ * asks for all of the flag, and any other `fit` asks for that fit of the flag's own drawing.
  *
  * @param code - A country's alpha-2 code or a subdivision's ISO 3166-2 code, in any case: "JP", "jp-13", "CA-ON".
  * @param options - How to frame it: `shape`, `fit` and `label`, as for `frame()`; the flag as it is when left out.
@@ -26,6 +28,8 @@ const codeOf = (code: string): string => mustBeString(code, "code").trim().toUpp
  *
  * const tokyo = await flag("JP-13");                       // "<svg …>"
  * const round = await flag("ca", { shape: "round", label: "Canada" }); // flag-icons' square of Canada, in a circle
+ * const whole = await flag("us", { shape: "1:1", fit: "whole" });      // all of the stars and stripes, in a square
+ * const canton = await flag("us", { shape: "1:1", fit: "crop" });      // the canton and a slice of the stripes
  * await flag("XX");                                        // null
  * ```
  */
@@ -35,7 +39,8 @@ const flag = (code: string, options?: FrameOptions): Promise<string | null> => {
   if (loader === undefined) return Promise.resolve(null);
   const shape = options?.shape ?? "flag";
   const own = (): Promise<string | null> => loader().then((module) => (options === undefined ? module.svg : frame(module.svg, options)));
-  if (shape === "flag" || (options?.fit ?? "auto") !== "auto") return own();
+  const asked = options?.fit ?? "auto";
+  if (shape === "flag" || (asked !== "auto" && asked !== "crop")) return own();
 
   // A frame: the drawing made for it by hand where there is one (its table is its own small file), else the flag's own.
   return import("./data/adapted.data.js").then(({ ADAPTED }) => {

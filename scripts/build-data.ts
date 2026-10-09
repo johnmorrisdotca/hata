@@ -25,7 +25,8 @@ import { subdivision as kuniSubdivision } from "@johnmorrisdotca/kuni/subdivisio
 
 import { setCandidates, setNamed } from "./candidates.ts";
 import type { SourceName } from "./candidates.ts";
-import { ACCEPTED, BUDGET_BYTES, CEILING_BYTES, NO_FLAG, REVIEWED, SUBDIVISION_COUNTRIES } from "./data-config.ts";
+import { ACCEPTED, BUDGET_BYTES, CEILING_BYTES, FOCUS, NO_FLAG, REVIEWED, SUBDIVISION_COUNTRIES } from "./data-config.ts";
+import type { Anchor } from "./data-config.ts";
 import { classify, restrictionsOf } from "./licence.ts";
 import type { Licence } from "./licence.ts";
 import { optimiseFlag } from "./optimise.ts";
@@ -260,8 +261,9 @@ const owners = shipped.filter((one) => one.owner === one.place.code);
 type FramedShape = "4:3" | "1:1" | "round";
 const FRAMED_SHAPES: FramedShape[] = ["4:3", "1:1", "round"];
 interface Framing {
-  method: "own" | "adapted" | "cover" | "hoist" | "contain";
-  fit: "cover" | "hoist" | "contain";
+  method: "own" | "adapted" | "cover" | "crop" | "contain";
+  fit: "cover" | "crop" | "contain";
+  crop: { rule: "own" | "curated" | "centre" | "whole"; at: Anchor; loses?: string[] };
   source?: "flag-icons";
   file?: string;
   precision?: number;
@@ -454,22 +456,56 @@ export { NAMES };
 );
 
 // What frame() does with each picture at 4:3, square and round, where it is not a crop from the centre: a letter for
-// each (c cover, h hoist, w the whole flag), keyed by the name the picture carries (data-hata).
-const LETTER: Record<Framing["fit"], string> = { cover: "c", hoist: "h", contain: "w" };
+// each (c cover, a a crop kept at the side CROPS names, w the whole flag), keyed by the name the picture carries
+// (data-hata). CROPS is every picture's side for `fit: "crop"` asked for by name, wherever it is not the centre.
+const LETTER: Record<Framing["fit"], string> = { cover: "c", crop: "a", contain: "w" };
+const cropRows = owners
+  .map((one) => [moduleName(one.place.code), FOCUS[one.place.code]?.at] as const)
+  .filter((row): row is readonly [string, "left" | "right" | "top" | "bottom"] => row[1] !== undefined && row[1] !== "whole");
 const framingRows = owners.map((one) => [moduleName(one.place.code), FRAMED_SHAPES.map((shape) => LETTER[framingOf(one)[shape].fit]).join(",")] as const).filter(([, letters]) => letters !== "c,c,c");
+// Written as lists of names under the value they share, so that the tables stay small in the main entry.
+const grouped = (rows: readonly (readonly [string, string])[]): string => {
+  const byValue = new Map<string, string[]>();
+  for (const [name, value] of rows) byValue.set(value, [...(byValue.get(value) ?? []), name]);
+
+  return [...byValue].map(([value, names]) => `  ${quote(value)}: ${quote(names.join(" "))},`).join("\n");
+};
 writeFileSync(
   join(DATA_DIR, "framings.data.ts"),
   `${HEADER}
 // How frame() fits each flag at 4:3, square and round by default, where a crop from the centre would lose a colour:
-// c a crop from the centre, h a crop from the hoist, w the whole flag. Measured by pnpm data:framing.
-
-const FRAMINGS: Readonly<Record<string, string>> = {
-${framingRows.map(([name, letters]) => `  ${quote(name)}: ${quote(letters)},`).join("\n")}
+// c a crop from the centre, a a crop kept at the side CROPS names, w the whole flag. Measured by pnpm data:framing.
+// Each row is the three letters and the names of the flags that share them.
+const PACKED: Readonly<Record<string, string>> = {
+${grouped(framingRows)}
 };
 
-export { FRAMINGS };
+// The side a crop of each flag keeps where it is not the centre, judged by hand (FOCUS in scripts/data-config.ts):
+// what \`fit: "crop"\` asked for by name does, and \`fit: "auto"\` where FRAMINGS says "a". Each row is a side and the
+// names of the flags that keep it.
+const SIDES: Readonly<Record<string, string>> = {
+${grouped(cropRows)}
+};
+
+const unpack = <Value extends string>(rows: Readonly<Record<string, string>>): Readonly<Record<string, Value>> =>
+  Object.fromEntries(Object.entries(rows).flatMap(([value, names]) => names.split(" ").map((name) => [name, value as Value])));
+
+const FRAMINGS: Readonly<Record<string, string>> = unpack(PACKED);
+const CROPS: Readonly<Record<string, "left" | "right" | "top" | "bottom">> = unpack(SIDES);
+
+export { CROPS, FRAMINGS };
 `,
 );
+
+// The crop a record gives for one frame: which crop `fit: "auto"` does (own, curated, centre, or none because the flag is
+// shown whole), the side `fit: "crop"` keeps, why a person chose it, and the colours it drops.
+const cropOf = (one: Shipped, framing: Framing): { rule: string; at: Anchor; why: string | null; loses: string[] } => {
+  const { rule, at, loses } = framing.crop;
+  const focus = FOCUS[one.owner];
+  const why = rule === "own" || focus === undefined ? null : `${focus.why}${rule === "curated" && focus.loses !== undefined ? ` ${focus.loses}` : ""}`;
+
+  return { rule, at, why, loses: loses ?? (rule === "whole" && focus === undefined ? framing.coverLoses ?? [] : []) };
+};
 
 // The manifest: one row a flag, and one a code left out.
 const row = (one: Shipped): string => {
@@ -511,6 +547,7 @@ const row = (one: Shipped): string => {
             page: found?.page ?? null,
             bytes: found === undefined ? null : Buffer.byteLength(found.optimised.svg),
             coverLoses: framing.coverLoses ?? [],
+            crop: cropOf(one, framing),
           },
         ];
       }),
@@ -639,6 +676,62 @@ difference is the design itself, [decisions.md](decisions.md) says which ships a
 ${lookAt.map((one) => `| \`${one.place.code}\` | ${cell(one.place.en)} | ${one.drawing.source} | ${one.designDiffers.map((source) => `${source} ${Math.round(Math.min(...Object.entries(one.compared).filter(([label]) => label.startsWith(`${source} `)).map(([, entry]) => entry.design)) * 100)}%`).join(", ")} | ${cell(REVIEWED[one.place.code] ?? "not yet")} |`).join("\n")}
 `;
 writeFileSync(join(ROOT, "docs", "compared.md"), comparedDoc);
+
+// Every flag a person judged where a crop should sit, with the reason, and every flag shown whole by default only because
+// the measure says a crop loses a colour: docs/framing.md.
+const SIDE_WORDS: Record<string, string> = { left: "kept at the hoist (left)", right: "kept at the fly (right)", top: "kept at the top", bottom: "kept at the bottom" };
+const curated = owners.filter((one) => FOCUS[one.place.code] !== undefined);
+const measuredWhole = owners.filter((one) => FOCUS[one.place.code] === undefined && FRAMED_SHAPES.some((shape) => framingOf(one)[shape].crop.rule === "whole"));
+const framingDoc = `# How a crop of each flag is chosen
+
+Made by \`pnpm data\`; a test fails if this list and the data differ. Every flag is offered both whole
+(\`fit: "whole"\`: all of the flag, with clear bands, on a neutral disc when round) and cropped (\`fit: "crop"\`), at 4:3,
+square and round. \`fit: "auto"\`, the default, picks the crop where one shows the flag fairly, and the whole flag where not.
+
+What the crop is, in the order \`auto\` tries:
+
+1. **The flag is that shape already**: nothing to crop.
+2. **\`flag(code, { shape })\`, not \`frame()\`: the drawing flag-icons made by hand for the shape**, where it keeps the flag's
+   colours and flag-icons does not draw another design. A person drew it for the shape, so it is a good crop; \`frame()\` works
+   on one SVG and cannot use it, so for \`frame()\` the rows below are what a crop is.
+3. **A crop kept at the side a person chose** (the table below). A flag whose meaning is in a canton or at the hoist (the United
+   States' stars and stripes, Uruguay's Sun of May, the Bahamas' triangle) is cropped there, so that the emblem and a slice of
+   the body show; a flag whose meaning is at the fly (Rwanda's sun) is cropped there. The crop must keep every colour that covers
+   5% of the flag at no less than half its share, unless the reason beside the flag says why a colour may shrink.
+4. **A crop from the centre** where nobody chose a side and the crop keeps the colours: Japan's disc, a coat of arms, a tricolour.
+5. **The whole flag** where no crop keeps it true.
+
+A crop asked for by name (\`fit: "crop"\`) always crops, at the chosen side, and from the centre where there is none: it is
+yours to ask for even where the default is the whole flag. The side of every flag is in \`manifest(code).framings[shape].crop\`.
+
+Judged on 2026-10-09 by looking at every flag's whole picture beside its centre crop, and again at the chosen crop beside the whole flag.
+
+## Flags with a side chosen by hand (${curated.length})
+
+"Default" is what \`frame()\` does with \`auto\` at the square: the crop at the side, or the whole flag where the measure says the crop loses a colour
+no reason excuses, or where a person judged that no crop shows the flag.
+
+| Code | Place | Crop | Default of \`frame()\` at the square | Why |
+| --- | --- | --- | --- | --- |
+${curated
+  .map((one) => {
+    const focus = FOCUS[one.place.code]!;
+    const crop = framingOf(one)["1:1"].crop;
+    const how = focus.at === "whole" ? "centre, on request only" : SIDE_WORDS[focus.at]!;
+    const fallback = crop.rule === "curated" ? (crop.loses !== undefined && crop.loses.length > 0 ? "the crop, a colour shrunk (see why)" : "the crop") : crop.rule === "own" ? "its own shape" : "the whole flag";
+    return `| \`${one.place.code}\` | ${cell(one.place.en)} | ${how} | ${fallback} | ${cell(`${focus.why}${focus.loses === undefined ? "" : ` ${focus.loses}`}`)} |`;
+  })
+  .join("\n")}
+
+## Flags shown whole by default because a crop loses a colour (${measuredWhole.length})
+
+Nobody chose a side for these, and the measure found that a centre crop drops a colour covering 5% of the flag.
+
+| Code | Place | The centre crop at the square loses |
+| --- | --- | --- |
+${measuredWhole.map((one) => `| \`${one.place.code}\` | ${cell(one.place.en)} | ${cell(framingOf(one)["1:1"].coverLoses?.join(", ") || framingOf(one).round.coverLoses?.join(", ") || framingOf(one)["4:3"].coverLoses?.join(", "))} |`).join("\n")}
+`;
+writeFileSync(join(ROOT, "docs", "framing.md"), framingDoc);
 
 const totals = { bytes: owners.reduce((sum, one) => sum + size(one), 0), gzip: owners.reduce((sum, one) => sum + one.gzip, 0), raw: owners.reduce((sum, one) => sum + one.drawing.bytes, 0) };
 const sizes = owners.map(size).sort((a, b) => a - b);

@@ -1,7 +1,7 @@
 // The helpers that work on a flag's SVG string: its aspect ratio, a frame at another shape, and a data: URI.
 // Pure string work, no DOM, so they run the same on a server and in a browser.
 
-import { FRAMINGS } from "./data/framings.data";
+import { CROPS, FRAMINGS } from "./data/framings.data";
 
 /**
  * The shapes a flag can be framed in. `flag` is its own aspect ratio; `4:3` and `1:1` are the icon sizes most
@@ -19,34 +19,40 @@ import { FRAMINGS } from "./data/framings.data";
 type Shape = "flag" | "4:3" | "1:1" | "round";
 
 /**
- * How a flag sits in a frame of another shape:
+ * How a flag sits in a frame of another shape. Every flag offers both a whole and a cropped square (and 4:3, and
+ * round): `whole` and `crop` choose one, `auto` chooses the better for the flag.
  *
- * - `auto` (the default): the way measured for this flag, so that the frame keeps every colour of the flag. A
- *   flag's own SVG from this package names its flag (`data-hata`), and `pnpm data:framing` measured, for each
- *   frame, whether a crop from the centre keeps every colour that covers 5% of the flag at no less than half its
- *   share; if not, whether a crop from the hoist (the side by the pole) does; if not, the whole flag is shown.
- *   An SVG that names no flag of this package is shown whole.
+ * - `auto` (the default): the way measured for this flag, so that the frame never misrepresents it. A flag's own
+ *   SVG from this package names its flag (`data-hata`), and `pnpm data:framing` recorded, for each frame, what to do:
+ *   a crop kept at the side a person chose for the flag where there is one (the United States' canton and a slice
+ *   of its stripes, kept at the left, rather than the middle stripes a centre crop shows), else a crop from the
+ *   centre where that keeps every colour that covers 5% of the flag, else the whole flag. An SVG that names no flag
+ *   of this package is shown whole.
+ * - `whole`: shows the entire flag, with clear bands where the shapes differ, and a neutral disc behind it in a
+ *   round frame. (`contain` is the same, under its CSS name.)
+ * - `crop`: crops the flag to fill the frame, at the side chosen for it (see `manifest(code).framings[shape].crop`:
+ *   `at` is where, `why` is the reason), and from the centre for a flag nobody chose a side for. Asked for by name,
+ *   it crops even where `auto` would show the whole flag, so a crop that drops a colour is yours to ask for.
  * - `cover`: fills the frame and crops what is outside it, centred, as CSS's `object-fit: cover` does.
- * - `hoist`: fills the frame and crops from the fly, keeping the side by the pole, where many flags put their
- *   emblem (Portugal's arms, a canton's stars).
- * - `contain`: shows the whole flag, with clear bands where the shapes differ, and a neutral disc behind it in a
- *   round frame.
+ * - `hoist`: fills the frame and crops from the fly, keeping the side by the pole, whatever the flag.
  *
  * Where a flag set draws a hand-adapted square or 4:3 version of the flag (flag-icons redraws Canada's square
- * with narrower red bars), `flag(code, { shape })` from `/load` uses that drawing instead; `frame()` works on the
- * one SVG it is given, so it can only crop or fit it.
+ * with narrower red bars), `flag(code, { shape })` from `/load` uses that drawing for `auto` and `crop`, because a
+ * person made it for the shape; `frame()` works on the one SVG it is given, so it can only crop or fit it.
  *
  * @example
  * ```ts
  * import { frame, type Fit } from "@johnmorrisdotca/hata";
+ * import usa from "@johnmorrisdotca/hata/flags/us";
  * import canada from "@johnmorrisdotca/hata/flags/ca";
  *
- * const fit: Fit = "contain";
- * frame(canada, { shape: "1:1", fit }); // all of Canada's 1:2 flag, centred in a square
- * frame(canada, { shape: "1:1" });      // the same: a centred crop would lose the red bars
+ * const fit: Fit = "whole";
+ * frame(usa, { shape: "1:1", fit });              // all of the US flag, centred in a square
+ * frame(usa, { shape: "1:1", fit: "crop" });      // the canton and a slice of the stripes, kept at the left
+ * frame(canada, { shape: "1:1" });                // auto: the whole flag, because no crop of Canada keeps its red bars
  * ```
  */
-type Fit = "auto" | "cover" | "hoist" | "contain";
+type Fit = "auto" | "whole" | "crop" | "cover" | "hoist" | "contain";
 
 /**
  * How to frame a flag: its shape, how it fits, and a label for assistive technology. Every field may be left out.
@@ -63,21 +69,26 @@ type Fit = "auto" | "cover" | "hoist" | "contain";
 interface FrameOptions {
   /** The frame's shape: `flag` (the default, the flag's own aspect ratio), `4:3`, `1:1` or `round`. */
   shape?: Shape;
-  /** `auto` (the default) frames each flag the way measured to keep its colours; `cover` and `hoist` crop to fill the frame; `contain` shows all of the flag inside it. */
+  /** `auto` (the default) frames each flag the way measured to keep it true; `crop` crops it at the side chosen for it; `whole` (or `contain`) shows all of the flag inside the frame; `cover` and `hoist` crop from the centre and from the hoist. */
   fit?: Fit;
   /** A name for assistive technology. With one, the SVG gets `role="img"`, `aria-label` and a `<title>`. */
   label?: string;
 }
 
 const SHAPES: readonly Shape[] = ["flag", "4:3", "1:1", "round"];
-const FITS: readonly Fit[] = ["auto", "cover", "hoist", "contain"];
+const FITS: readonly Fit[] = ["auto", "whole", "crop", "cover", "hoist", "contain"];
 const FRAMED_SHAPES = ["4:3", "1:1", "round"] as const;
-const LETTER_FIT: Readonly<Record<string, Exclude<Fit, "auto">>> = { c: "cover", h: "hoist", w: "contain" };
+const LETTER_FIT: Readonly<Record<string, "cover" | "crop" | "contain">> = { c: "cover", a: "crop", w: "contain" };
+// Where a crop is kept, as the SVG's own preserveAspectRatio says it: the first word is the side across, the second the side down.
+const ANCHOR_PLACEMENT: Readonly<Record<"left" | "right" | "top" | "bottom" | "centre", string>> = { centre: "xMidYMid", left: "xMinYMid", right: "xMaxYMid", top: "xMidYMin", bottom: "xMidYMax" };
+
+// The name a picture carries (data-hata="us"), or undefined for an SVG that is not one of this package's.
+const nameOf = (svg: string): string | undefined => /\sdata-hata="([a-z0-9-]+)"/.exec(ROOT.exec(svg)?.[0] ?? "")?.[1];
 
 // The fit `auto` means for one picture and shape: the one measured for the flag it names, cover where nothing
 // was recorded against it, and contain for a picture that names no flag of this package.
-const autoFit = (svg: string, shape: Exclude<Shape, "flag">): Exclude<Fit, "auto"> => {
-  const named = /\sdata-hata="([a-z0-9-]+)"/.exec(ROOT.exec(svg)?.[0] ?? "")?.[1];
+const autoFit = (svg: string, shape: Exclude<Shape, "flag">): "cover" | "crop" | "contain" => {
+  const named = nameOf(svg);
   if (named === undefined) return "contain";
   const letters = (FRAMINGS[named] ?? "c,c,c").split(",");
 
@@ -153,14 +164,15 @@ const aspectOf = (svg: string): number | null => {
  * circle. The flag is nested, whole, inside a new SVG of the frame's shape, and its own viewBox and
  * `preserveAspectRatio` place it: by default (`fit: "auto"`) the way measured for that flag to keep its colours,
  * so Canada's square shows the whole flag rather than a crop that drops its red bars, and Japan's is cropped
- * to the disc; `cover` crops from the centre, `hoist` from the fly, and `contain` shows all of it.
+ * to the disc; `crop` crops at the side chosen for the flag, `cover` from the centre, `hoist` from the pole, and
+ * `whole` (or `contain`) shows all of it.
  * The result is an SVG string like any flag's, with no width or height, so it fills the box it is put in.
  *
  * With `shape: "flag"` and no `label`, the flag is handed back as it was.
  *
  * @param svg - A flag's SVG string, from `/flags/<code>` or `flag()`.
  * @param options - `shape` (`"flag"`, `"4:3"`, `"1:1"` or `"round"`; `"flag"` when left out), `fit` (`"auto"`,
- *   `"cover"`, `"hoist"` or `"contain"`; `"auto"` when left out) and `label`, a name for assistive technology.
+ *   `"whole"`, `"crop"`, `"cover"`, `"hoist"` or `"contain"`; `"auto"` when left out) and `label`, a name for assistive technology.
  * @returns The framed SVG string, or `null` when `svg` is not an SVG with a viewBox.
  * @throws TypeError when `svg` is not a string, or `options` names a shape or a fit that is not one.
  *
@@ -171,7 +183,8 @@ const aspectOf = (svg: string): number | null => {
  *
  * frame(canada, { shape: "round" });                    // the whole flag on a neutral disc: a crop would lose its bars
  * frame(canada, { shape: "round", fit: "cover" });      // a circle, the maple leaf in the middle
- * frame(canada, { shape: "4:3", fit: "contain" });      // all of the 1:2 flag, with bands above and below
+ * frame(canada, { shape: "4:3", fit: "whole" });        // all of the 1:2 flag, with bands above and below
+ * frame(canada, { shape: "1:1", fit: "crop" });         // the centre crop, because a crop was asked for by name
  * frame(canada, { label: "Canada" });                   // the flag, with role="img" and a title
  * ```
  */
@@ -187,9 +200,13 @@ const frame = (svg: string, options: FrameOptions = {}): string | null => {
     if (options.label === undefined) return text;
     return text.replace(ROOT, (root) => `${root.slice(0, -1)}${label}>${title}`);
   }
-  const fit = asked === "auto" ? autoFit(text, shape) : asked;
+  const chosen = asked === "auto" ? autoFit(text, shape) : asked;
+  const fit = chosen === "whole" ? "contain" : chosen;
   const [width, height] = shape === "4:3" ? [640, 480] : [512, 512];
-  const placement = fit === "cover" ? "xMidYMid slice" : fit === "hoist" ? "xMinYMid slice" : "xMidYMid meet";
+  const name = nameOf(text);
+  // A crop asked for by name is kept at the side chosen for the flag, and from the centre where nobody chose.
+  const side = fit === "hoist" ? "left" : fit === "crop" ? (name === undefined ? undefined : CROPS[name]) ?? "centre" : "centre";
+  const placement = fit === "contain" ? "xMidYMid meet" : `${ANCHOR_PLACEMENT[side]} slice`;
   // In a circle, the whole flag is the rectangle of its own shape whose corners touch the circle.
   const aspect = box[2] / box[3];
   const [x, y, w, h] =
@@ -200,7 +217,7 @@ const frame = (svg: string, options: FrameOptions = {}): string | null => {
   const inner = text.replace(ROOT, (root) => `${root.slice(0, -1).replace(/\s(width|height|x|y|preserveAspectRatio)\s*=\s*["'][^"']*["']/g, "")} x="${x}" y="${y}" width="${w}" height="${h}" preserveAspectRatio="${placement}">`);
   const open = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}"${label}>${title}`;
   if (shape !== "round") return `${open}${inner}</svg>`;
-  const id = `hata-round-${hashOf(`${fit}|${text}`)}`;
+  const id = `hata-round-${hashOf(`${placement}|${text}`)}`;
   const disc = fit === "contain" ? `<circle cx="256" cy="256" r="256" fill="#e6e6e6"/>` : "";
 
   return `${open}<defs><clipPath id="${id}"><circle cx="256" cy="256" r="256"/></clipPath></defs><g clip-path="url(#${id})">${disc}${inner}</g></svg>`;

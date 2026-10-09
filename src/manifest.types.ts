@@ -98,8 +98,10 @@ interface FlagRecord {
  * - `adapted`: a drawing made for that shape by hand, by flag-icons (MIT): Canada's square, with narrower bars.
  *   It is its own module, `/flags/<code>.1x1` or `/flags/<code>.4x3`; round uses the square one in a circle.
  * - `cover`: the flag cropped from the centre, which keeps its colours.
- * - `hoist`: the flag cropped from the fly, keeping the side by the pole, where that was recorded by hand.
- * - `contain`: the whole flag, with clear bands (on a neutral disc when round), because a crop would lose a colour.
+ * - `crop`: the flag cropped at the side a person chose for it (`crop.at`), keeping its colours: the United States'
+ *   canton and a slice of its stripes, kept at the left. See `crop` for why.
+ * - `contain`: the whole flag, with clear bands (on a neutral disc when round), because a crop would lose a colour
+ *   or misrepresent the flag.
  *
  * @example
  * ```ts
@@ -108,13 +110,19 @@ interface FlagRecord {
  * const square: Framing | undefined = manifest("CA")?.framings["1:1"];
  * square?.method; // "adapted"
  * square?.fit;    // "contain": what frame() does with the flag's own SVG, which cannot use the adapted drawing
+ *
+ * const us = manifest("US")?.framings["1:1"];
+ * us?.fit;         // "crop"
+ * us?.crop;        // { rule: "curated", at: "left", why: "An emblem sits in a canton at the hoist …", loses: [] }
  * ```
  */
 interface Framing {
   /** How `flag(code, { shape })` frames it: `own`, `adapted`, `cover`, `hoist` or `contain`. */
-  method: "own" | "adapted" | "cover" | "hoist" | "contain";
-  /** What `frame()` does with the flag's own SVG at this shape when its `fit` is `auto`: `cover`, `hoist` or `contain`. */
-  fit: "cover" | "hoist" | "contain";
+  method: "own" | "adapted" | "cover" | "crop" | "contain";
+  /** What `frame()` does with the flag's own SVG at this shape when its `fit` is `auto`: `cover` (a centre crop), `crop` (a crop kept at `crop.at`) or `contain` (the whole flag). */
+  fit: "cover" | "crop" | "contain";
+  /** The crop of this flag at this shape, and how it was chosen; see `FramingCrop`. */
+  crop: FramingCrop;
   /** Where an adapted drawing comes from (`flag-icons`); null otherwise. */
   source: "flag-icons" | null;
   /** The adapted drawing's path in the set ("flags/1x1/ca.svg"); null otherwise. */
@@ -125,6 +133,33 @@ interface Framing {
   bytes: number | null;
   /** The colours a crop from the centre would lose, as measured ("red 55% to 15%"); empty where it loses none. */
   coverLoses: string[];
+}
+
+/**
+ * The crop of a flag at one shape: which crop `fit: "auto"` chooses, and the side `fit: "crop"` asked for by name keeps.
+ * Both the whole flag and a crop are offered for every flag: `fit: "whole"` shows all of it, `fit: "crop"` crops it.
+ *
+ * @example
+ * ```ts
+ * import { manifest, type FramingCrop } from "@johnmorrisdotca/hata/manifest";
+ *
+ * const crop: FramingCrop | undefined = manifest("US-HI")?.framings["1:1"].crop;
+ * crop?.rule; // "curated": a person chose the side
+ * crop?.at;   // "left": the canton and the stripes beside it
+ * ```
+ */
+interface FramingCrop {
+  /**
+   * What `auto` does: `own` (the flag is this shape, so there is nothing to crop), `curated` (a crop kept at `at`, chosen by hand and
+   * checked), `centre` (a crop from the centre that keeps every colour) or `whole` (no crop shows the flag fairly, so `auto` shows all of it).
+   */
+  rule: "own" | "curated" | "centre" | "whole";
+  /** The side `fit: "crop"` keeps: `left` (the hoist), `right`, `top`, `bottom`, or `centre` where nobody chose another. */
+  at: "left" | "right" | "top" | "bottom" | "centre";
+  /** Why a person chose this side, or chose to show the flag whole; null where nobody chose (a centre crop, or a flag that is already this shape). */
+  why: string | null;
+  /** The colours (each covering 5% or more of the flag) that a crop at `at` drops: empty where it keeps them all, and explained in `why` where `rule` is `curated`. */
+  loses: string[];
 }
 
 /**
@@ -153,4 +188,4 @@ interface LeftOutRecord {
   licence: string | null;
 }
 
-export type { FlagRecord, FlagSource, Framing, LeftOutRecord, LicenceKind };
+export type { FlagRecord, FlagSource, Framing, FramingCrop, LeftOutRecord, LicenceKind };

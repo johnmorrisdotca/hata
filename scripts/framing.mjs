@@ -16,15 +16,20 @@
 //      is not one docs/compared.md lists as another design. Shipped as its own module, optimised and checked
 //      pixel by pixel like every flag.
 //   3. COVER: a crop from the centre keeps the colours.
-//   4. HOIST: a crop from the fly, keeping the side by the pole, only where FOCUS in data-config.ts records that the
-//      flag's meaning is at the hoist, and the crop keeps the colours. Never chosen by measure alone: a crop of
-//      Canada's hoist keeps its colours and half its leaf.
+//   4. CROP: where FOCUS in data-config.ts says where a crop of this flag should sit (the hoist, the fly), a crop kept
+//      at that side, when it keeps the colours or FOCUS gives a reason for the colour it drops. Never chosen by measure
+//      alone: a crop of Canada's hoist keeps its colours and half its leaf. A FOCUS of "whole" says no crop shows the
+//      flag, and it is shown whole.
 //   5. CONTAIN: the whole flag, with clear bands.
+//
+// This order is what `fit: "auto"` does, and the records say which crop it was (`crop.rule`: own, adapted, curated,
+// centre or whole). `fit: "crop"` asked for by name always crops: at the FOCUS side where there is one, else from
+// the centre, whether or not the crop keeps the colours.
 //
 // Round is the square's choice in a circle, checked again: an adapted square, else a crop where the square too may
 // be cropped, else the whole flag on a neutral disc. Every shape also records `fit`, what `frame()` does with the flag's own SVG (it cannot use an
-// adapted drawing, which is another file): cover where it keeps the colours, hoist where FOCUS allows it and it
-// keeps them, else contain.
+// adapted drawing, which is another file): crop where FOCUS names a side and the crop passes, cover where nothing is
+// named and the centre keeps the colours, else contain.
 import { readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import process from "node:process";
@@ -56,9 +61,10 @@ const viewBoxOf = (svg) => {
   return { width, height };
 };
 
-/** A picture framed at a size, as frame() frames it: nested whole, placed by preserveAspectRatio, maybe in a circle. */
-export function framed(svg, width, height, fit, round = false) {
-  const placement = fit === "cover" ? "xMidYMid slice" : fit === "hoist" ? "xMinYMid slice" : "xMidYMid meet";
+/** A picture framed at a size, as frame() frames it: nested whole, placed by preserveAspectRatio, maybe in a circle; `at` is the side a crop keeps. */
+export const PLACEMENT = { centre: "xMidYMid", left: "xMinYMid", right: "xMaxYMid", top: "xMidYMin", bottom: "xMidYMax" };
+export function framed(svg, width, height, fit, round = false, at = "centre") {
+  const placement = fit === "contain" ? "xMidYMid meet" : `${PLACEMENT[at]} slice`;
   const box = viewBoxOf(svg);
   const aspect = box.width / box.height;
   const [x, y, w, h] = round && fit === "contain" ? [width / 2 - (width / 2) * (aspect / Math.hypot(aspect, 1)), height / 2 - height / 2 / Math.hypot(aspect, 1), width * (aspect / Math.hypot(aspect, 1)), height / Math.hypot(aspect, 1)] : [0, 0, width, height];
@@ -99,6 +105,7 @@ const kept = JSON.parse((() => {
   }
 })());
 const asked = process.argv.slice(2).map((code) => code.toUpperCase());
+for (const code of Object.keys(FOCUS)) if (!RECORDS.some((record) => record.code === code && record.sameAs === null)) throw new Error(`FOCUS names ${code}, which is not a flag's own picture (see scripts/data-config.ts)`);
 const owners = RECORDS.filter((record) => record.sameAs === null && (asked.length === 0 || asked.includes(record.code)));
 for (const record of owners) {
   const svg = shipped(record.code);
@@ -106,18 +113,25 @@ for (const record of owners) {
   const fullHeight = Math.round(MEASURE / aspect);
   const full = await comparer.shares(svg, MEASURE, fullHeight);
   const entry = {};
+  const focus = FOCUS[record.code];
+  const sharesOf = async (fit, width, height, round, at) => comparer.shares(framed(svg, width, height, fit, round, at), MEASURE, Math.round((MEASURE * height) / width));
+  // What `fit: "auto"` does with the flag's own SVG at a size, and which crop that is.
   const fitFor = async (width, height, round) => {
-    for (const fit of FOCUS[record.code] === "hoist" ? ["cover", "hoist"] : ["cover"]) {
-      const result = judge(full, await comparer.shares(framed(svg, width, height, fit, round), MEASURE, Math.round((MEASURE * height) / width)));
-      if (result.keeps) return { fit, lost: [] };
+    const cover = judge(full, await sharesOf("cover", width, height, round));
+    if (focus !== undefined && focus.at !== "whole") {
+      const result = judge(full, await sharesOf("crop", width, height, round, focus.at));
+      if (result.keeps) return { fit: "crop", crop: { rule: "curated", at: focus.at }, lost: cover.lost };
+      if (focus.loses !== undefined) return { fit: "crop", crop: { rule: "curated", at: focus.at, loses: [...result.lost, ...result.brought.map((one) => `brings ${one}`)] }, lost: cover.lost };
+      process.stdout.write(`\n${record.code}: the crop kept at the ${focus.at} drops ${result.lost.join(", ")} and FOCUS gives no reason, so it is shown whole\n`);
+      return { fit: "contain", crop: { rule: "whole", at: focus.at, loses: result.lost }, lost: cover.lost };
     }
-    const cover = judge(full, await comparer.shares(framed(svg, width, height, "cover", round), MEASURE, Math.round((MEASURE * height) / width)));
-    return { fit: "contain", lost: cover.lost };
+    if (focus === undefined && cover.keeps) return { fit: "cover", crop: { rule: "centre", at: "centre" }, lost: [] };
+    return { fit: "contain", crop: { rule: "whole", at: "centre" }, lost: cover.lost };
   };
   for (const [shape, { width, height, set }] of Object.entries(SHAPES)) {
     const target = width / height;
     if (Math.abs(aspect - target) / target < 0.01) {
-      entry[shape] = { method: "own", fit: "cover" };
+      entry[shape] = { method: "own", fit: "cover", crop: { rule: "own", at: "centre" } };
       continue;
     }
     const fallback = await fitFor(width, height, false);
@@ -126,13 +140,13 @@ for (const record of owners) {
     if (candidate !== undefined && !differs) {
       const result = judge(full, await comparer.shares(candidate.text, MEASURE, Math.round(MEASURE / target)));
       if (result.keeps) {
-        entry[shape] = { method: "adapted", source: "flag-icons", file: candidate.file, ...(await tune(candidate.text, `${record.code}-${shape.replace(":", "x")}`)), fit: fallback.fit, ...(fallback.lost.length > 0 ? { coverLoses: fallback.lost } : {}) };
+        entry[shape] = { method: "adapted", source: "flag-icons", file: candidate.file, ...(await tune(candidate.text, `${record.code}-${shape.replace(":", "x")}`)), fit: fallback.fit, crop: fallback.crop, ...(fallback.lost.length > 0 ? { coverLoses: fallback.lost } : {}) };
         continue;
       }
-      entry[shape] = { method: fallback.fit, fit: fallback.fit, ...(fallback.lost.length > 0 ? { coverLoses: fallback.lost } : {}), refused: `flag-icons' ${shape} drawing ${[...result.lost.map((one) => `loses ${one}`), ...result.brought.map((one) => `brings ${one}`)].join(", ")}` };
+      entry[shape] = { method: fallback.fit, fit: fallback.fit, crop: fallback.crop, ...(fallback.lost.length > 0 ? { coverLoses: fallback.lost } : {}), refused: `flag-icons' ${shape} drawing ${[...result.lost.map((one) => `loses ${one}`), ...result.brought.map((one) => `brings ${one}`)].join(", ")}` };
       continue;
     }
-    entry[shape] = { method: fallback.fit, fit: fallback.fit, ...(fallback.lost.length > 0 ? { coverLoses: fallback.lost } : {}) };
+    entry[shape] = { method: fallback.fit, fit: fallback.fit, crop: fallback.crop, ...(fallback.lost.length > 0 ? { coverLoses: fallback.lost } : {}) };
   }
   // Round: the square's choice, in a circle.
   const square = entry["1:1"];
@@ -143,9 +157,9 @@ for (const record of owners) {
     if (result.keeps) round = { method: "adapted", source: "flag-icons", file: candidate.file };
   }
   // A circle is the square crop clipped again, so it may crop only where the square may.
-  const roundFallback = entry["1:1"].fit === "contain" ? { fit: "contain", lost: entry["1:1"].coverLoses } : await fitFor(512, 512, true);
-  round ??= { method: square.method === "own" && roundFallback.fit === "cover" ? "own" : roundFallback.fit, ...(roundFallback.lost.length > 0 ? { coverLoses: roundFallback.lost } : {}) };
-  entry.round = { ...round, fit: roundFallback.fit };
+  const roundFallback = entry["1:1"].fit === "contain" ? { fit: "contain", crop: entry["1:1"].crop, lost: entry["1:1"].coverLoses ?? [] } : await fitFor(512, 512, true);
+  round ??= { method: square.method === "own" && roundFallback.fit === "cover" ? "own" : roundFallback.fit };
+  entry.round = { ...round, ...(roundFallback.lost.length > 0 ? { coverLoses: roundFallback.lost } : {}), fit: roundFallback.fit, crop: square.method === "own" && roundFallback.fit === "cover" ? { rule: "own", at: "centre" } : roundFallback.crop };
   kept[record.code] = entry;
   process.stdout.write(`${record.code}:${entry["4:3"].method}/${entry["1:1"].method}/${entry.round.method} `);
 }

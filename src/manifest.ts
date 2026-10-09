@@ -3,7 +3,7 @@
 // page, a licence check in a build, or the demo's detail panel. The same data is in manifest.json.
 
 import { LEFT_OUT as LEFT_OUT_ROWS, RECORDS } from "./data/manifest.data";
-import type { FlagRecord, FlagSource, Framing, LeftOutRecord, LicenceKind } from "./manifest.types";
+import type { FlagRecord, FlagSource, Framing, FramingCrop, LeftOutRecord, LicenceKind } from "./manifest.types";
 import { mustBeString } from "./svg";
 
 const deepFreeze = <T>(value: T): T => {
@@ -81,4 +81,4 @@ const manifest = (code: string): FlagRecord | null => BY_CODE.get(normal(code)) 
 const leftOut = (code: string): LeftOutRecord | null => LEFT_BY_CODE.get(normal(code)) ?? null;
 
 export { LEFT_OUT, leftOut, manifest, MANIFEST };
-export type { FlagRecord, FlagSource, Framing, LeftOutRecord, LicenceKind };
+export type { FlagRecord, FlagSource, Framing, FramingCrop, LeftOutRecord, LicenceKind };

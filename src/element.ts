@@ -22,7 +22,8 @@ import type { Shape } from "./svg";
  * - `size`: its height in CSS pixels (`48`). Left out, it is `1em`, the height of the text around it, and the page's
  *   CSS may set any height; the width follows from the shape.
  * - `fit`: `auto` (the default: the frame measured for that flag, or the drawing flag-icons made for the shape),
- *   `cover`, `hoist` or `contain`, as `frame()` takes them.
+ *   `whole` (all of the flag), `crop` (a crop at the side chosen for the flag), `cover`, `hoist` or `contain`, as
+ *   `frame()` takes them.
  * - `label`: what a screen reader says. Left out, the place's name, in English or Japanese by `lang`.
  * - `lang`: `en` or `ja`, the language of the name read out. Left out, the page's language where the element is.
  * - `theme`: `auto` (the default), `light` or `dark`: the colour of the border on a light or a dark page.
@@ -114,7 +115,7 @@ interface FlagElementEventDetail {
 }
 
 const SHAPES = ["own", "4:3", "1:1", "round"] as const;
-const FITS = ["auto", "cover", "hoist", "contain"] as const;
+const FITS = ["auto", "whole", "crop", "cover", "hoist", "contain"] as const;
 // The styles every <hata-flag> starts from, put once at the head of the document so that the page's own CSS,
 // which comes after, can change any of them.
 const BASE_CSS = `${FLAG_ELEMENT_NAME}{display:inline-block;height:1em;vertical-align:-0.125em;line-height:0;box-sizing:border-box;--hata-flag-border-light:rgba(0,0,0,.22);--hata-flag-border-dark:rgba(255,255,255,.32);--hata-flag-shadow:0 1px 3px rgba(0,0,0,.28)}${FLAG_ELEMENT_NAME}>img{display:block;width:100%;height:100%;-webkit-user-drag:none;user-select:none}`;
