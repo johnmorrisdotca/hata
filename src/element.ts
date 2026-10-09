@@ -11,7 +11,7 @@
 
 import { flag } from "./load.js";
 import { reflectAttributes } from "./reflect";
-import { toDataUri } from "./svg";
+import { aspectOf, toDataUri } from "./svg";
 import type { Shape } from "./svg";
 
 /**
@@ -24,6 +24,9 @@ import type { Shape } from "./svg";
  * - `fit`: `auto` (the default: the frame measured for that flag, or the drawing flag-icons made for the shape),
  *   `whole` (all of the flag), `crop` (a crop at the side chosen for the flag), `cover`, `hoist` or `contain`, as
  *   `frame()` takes them.
+ * - `variant`: which of the place's flags in real use to draw, by its `id` from `variantsOf(code)`: Afghanistan's `de-facto`,
+ *   Bavaria's `stripes`, Guadeloupe's `local`. Left out, the default; a place with no flag of its own by default
+ *   (Northern Ireland: `union-flag`, `ulster-banner`) draws only when one is named.
  * - `label`: what a screen reader says. Left out, the place's name, in English or Japanese by `lang`.
  * - `lang`: `en` or `ja`, the language of the name read out. Left out, the page's language where the element is.
  * - `theme`: `auto` (the default), `light` or `dark`: the colour of the border on a light or a dark page.
@@ -38,7 +41,7 @@ import type { Shape } from "./svg";
  * FLAG_ELEMENT_ATTRIBUTES.includes("shape"); // true
  * ```
  */
-const FLAG_ELEMENT_ATTRIBUTES = ["code", "shape", "size", "fit", "label", "lang", "theme", "border", "shadow", "loading"] as const;
+const FLAG_ELEMENT_ATTRIBUTES = ["code", "shape", "size", "fit", "variant", "label", "lang", "theme", "border", "shadow", "loading"] as const;
 
 /**
  * The name the element is registered under.
@@ -78,6 +81,8 @@ type HataFlagElement = HTMLElement & {
   set size(value: string | number | null | undefined);
   get fit(): string | null;
   set fit(value: string | null | undefined);
+  get variant(): string | null;
+  set variant(value: string | null | undefined);
   get label(): string | null;
   set label(value: string | null | undefined);
   get theme(): string | null;
@@ -169,6 +174,7 @@ const build = (): CustomElementConstructor => {
       const shape = asked === "flag" ? "own" : (SHAPES as readonly string[]).includes(asked) ? asked : "own";
       const fitAsked = (this.getAttribute("fit") ?? "auto").trim();
       const fit = (FITS as readonly string[]).includes(fitAsked) ? (fitAsked as (typeof FITS)[number]) : "auto";
+      const variant = (this.getAttribute("variant") ?? "").trim();
       const size = Number(this.getAttribute("size"));
       const on = (name: string): boolean => this.hasAttribute(name) && this.getAttribute(name) !== "false" && this.getAttribute(name) !== "0";
       this.style.height = Number.isFinite(size) && size > 0 ? `${size}px` : "";
@@ -193,10 +199,13 @@ const build = (): CustomElementConstructor => {
         }
         this.style.aspectRatio = String(aspect);
         this.setAttribute("aria-label", this.getAttribute("label") ?? name);
-        const svg = await flag(code, shape === "own" ? undefined : { shape: shape as Shape, fit });
+        const options = { ...(shape === "own" ? {} : { shape: shape as Shape, fit }), ...(variant === "" ? {} : { variant }) };
+        const svg = await flag(code, Object.keys(options).length === 0 ? undefined : options);
         if (turn !== this.drawing) return;
+        // A variant is drawn at its own proportions, which are not always the place's default flag's.
+        if (svg !== null && variant !== "" && shape === "own") this.style.aspectRatio = String(aspectOf(svg) ?? aspect);
         if (svg === null) {
-          this.missing(code, shape, `no flag for the code "${code}"`);
+          this.missing(code, shape, variant === "" ? `no flag for the code "${code}"` : `no variant "${variant}" of the flag for the code "${code}"`);
           return;
         }
         const image = this.querySelector(":scope > img") ?? Object.assign(document.createElement("img"), { alt: "", draggable: false, decoding: "async" });

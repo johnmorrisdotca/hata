@@ -25,7 +25,7 @@ describe("the built entries", () => {
   });
 
   it("make each flag's module its SVG and a line, no larger than the ceiling, and a shared flag's a line alone", () => {
-    const files = readdirSync("dist/flags").filter((file) => file.endsWith(".js") && !/\.(4x3|1x1)\.js$/.test(file));
+    const files = readdirSync("dist/flags").filter((file) => file.endsWith(".js") && !/\.(4x3|1x1)\.js$/.test(file) && !file.includes("--"));
     expect(files).toHaveLength(MANIFEST.length);
     for (const record of MANIFEST) {
       const bytes = size(`dist/flags/${record.code.toLowerCase()}.js`);

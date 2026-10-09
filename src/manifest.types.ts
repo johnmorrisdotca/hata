@@ -3,7 +3,8 @@
 /**
  * The kinds of licence a shipped drawing can be under: for a Wikimedia Commons file, as Commons states it,
  * `public-domain` (PD-… templates: a government work, or a design too simple to be copyrighted), `cc0`, or `cc-by`
- * (credit asked; NOTICE.md gives it); for a flag set's drawing, `mit` (the set's notice is in NOTICE.md).
+ * (credit asked; NOTICE.md gives it), or `accepted` (another licence the maintainer decided to accept, written in the
+ * licence's name: Mississippi's "Copyrighted free use"); for a flag set's drawing, `mit` (the set's notice is in NOTICE.md).
  *
  * @example
  * ```ts
@@ -13,7 +14,7 @@
  * MANIFEST.filter((one) => credit.includes(one.licence.kind));
  * ```
  */
-type LicenceKind = "public-domain" | "cc0" | "cc-by" | "mit";
+type LicenceKind = "public-domain" | "cc0" | "cc-by" | "accepted" | "mit";
 
 /**
  * Where a drawing comes from: Wikimedia Commons (the file Wikidata names as the place's flag), or one of the MIT
@@ -86,8 +87,73 @@ interface FlagRecord {
   gzip: number;
   /** Things worth knowing about the picture: text drawn with a font, an embedded raster picture. */
   notes: string[];
+  /** True where more than one authority or community claims the place's flag at the same time (Afghanistan, Northern Ireland); this package takes no side, and says why each default was chosen (README). */
+  disputed: boolean;
+  /** The `id` of the variant `flag(code)` gives; null where the place has one flag (`variants` is then empty) or none of its own by default. */
+  defaultVariant: string | null;
+  /** Every flag of the place in real use, the default's included, each with its status and reason; empty where the place has one flag. See `Variant`. */
+  variants: Variant[];
   /** How the flag is framed at 4:3, square and round by `flag(code, { shape })`, and by `frame()`; see `Framing`. */
   framings: Record<"4:3" | "1:1" | "round", Framing>;
+}
+
+/**
+ * One of a place's flags in real use, for `flag(code, { variant })` and `variantsOf(code)`: Afghanistan's Republic tricolour and
+ * the Taliban's flag, Bavaria's lozenges and stripes, Guadeloupe's French tricolour and its local flag.
+ *
+ * - `official`: adopted by the authority that has the right to.
+ * - `de-facto`: flown by whoever holds the territory, without that recognition.
+ * - `historical`: no longer official, and still flown.
+ * - `local`: in use there, and not made the place's own flag by its authority.
+ *
+ * @example
+ * ```ts
+ * import { variantsOf, type Variant } from "@johnmorrisdotca/hata/manifest";
+ *
+ * const taliban: Variant | undefined = variantsOf("AF").find((one) => one.status === "de-facto");
+ * taliban?.id;     // "de-facto"
+ * taliban?.from;   // "2021-08-15"
+ * taliban?.module; // "af--de-facto": import it from "@johnmorrisdotca/hata/flags/af--de-facto"
+ * ```
+ */
+interface Variant {
+  /** Kebab case, unique within the place: "de-facto", "stripes", "local". */
+  id: string;
+  /** A name for a menu, in English. */
+  name: string;
+  /** The same in Japanese. */
+  nameJa: string;
+  /** Its standing: see above. */
+  status: "official" | "de-facto" | "historical" | "local";
+  /** When it came into use, as precisely as is known (`"2021-08-15"`, `"1953"`); null where it is not known or not dated. */
+  from: string | null;
+  /** When it went out of official use; null where it has not. */
+  until: string | null;
+  /** Why it is offered, and (for the default) why it is the default, in a sentence or two. */
+  why: string;
+  /** Where the claim above is documented: a web page. */
+  source: string;
+  /** True for the one `flag(code)` gives. At most one per place; none where the place has no flag of its own by default. */
+  default: boolean;
+  /** The module that has its SVG: `/flags/<module>`, the place's own for the default and `<code>--<id>` for the others. */
+  module: string;
+  /** What `frame()` does with this variant's SVG at each shape by default: `cover` (a centre crop), `crop` (a crop at a chosen side) or `contain` (the whole flag). */
+  frames: Record<"4:3" | "1:1" | "round", "cover" | "crop" | "contain">;
+  /** Where this drawing comes from: its Commons file, page, licence, author and size, as for a flag's record. */
+  drawing: {
+    source: FlagSource;
+    file: string;
+    page: string;
+    licence: { kind: LicenceKind; name: string; url: string | null };
+    author: string | null;
+    credit: string | null;
+    attributionRequired: boolean;
+    restrictions: string[];
+    uploaded: string | null;
+    width: number;
+    height: number;
+    bytes: number;
+  };
 }
 
 /**
@@ -186,6 +252,12 @@ interface LeftOutRecord {
   page: string | null;
   /** The licence Commons gives the file, where it was the reason; null otherwise. */
   licence: string | null;
+  /** True where the place's flag is claimed by more than one authority or community (Northern Ireland). */
+  disputed: boolean;
+  /** The `id` of the variant a place with no flag of its own gives by default: always null here, since a code in this list has no default flag. */
+  defaultVariant: string | null;
+  /** The flags in real use at a place with none of its own (Northern Ireland: the Union Flag, the former Ulster Banner), each asked for by name; empty for the rest. */
+  variants: Variant[];
 }
 
-export type { FlagRecord, FlagSource, Framing, FramingCrop, LeftOutRecord, LicenceKind };
+export type { FlagRecord, FlagSource, Framing, FramingCrop, LeftOutRecord, LicenceKind, Variant };

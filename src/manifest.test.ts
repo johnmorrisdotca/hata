@@ -39,10 +39,12 @@ describe("the manifest", () => {
     expect(MANIFEST.map((one) => one.code)).toEqual([...FLAG_CODES]);
   });
 
-  it("ships only public domain, CC0 and CC BY from Commons, and MIT from the flag sets", () => {
+  it("ships only public domain, CC0 and CC BY from Commons (and what the maintainer accepted), and MIT from the flag sets", () => {
     for (const one of MANIFEST) {
       if (one.source === "commons") {
-        expect(["public-domain", "cc0", "cc-by"], one.code).toContain(one.licence.kind);
+        expect(["public-domain", "cc0", "cc-by", "accepted"], one.code).toContain(one.licence.kind);
+        // The only licence accepted by a decision is Mississippi's, whose decision is written in its name.
+        if (one.licence.kind === "accepted") expect([one.code, one.licence.name]).toEqual(["US-MS", expect.stringContaining("accepted:")]);
         expect(one.page, one.code).toMatch(/^https:\/\/commons\.wikimedia\.org\/wiki\/File:/);
         expect(one.reference, one.code).toBeNull();
         expect(one.uploaded, one.code).toMatch(/^\d{4}-\d{2}-\d{2}$/);
@@ -118,7 +120,10 @@ describe("every flag's picture", () => {
 
   it("is the generated module's own: one file in src/flags for each code and each drawing made for a frame, none other", () => {
     const files = readdirSync("src/flags").map((file) => file.replace(/\.ts$/, ""));
-    expect(files.filter((file) => !file.includes(".")).map((file) => file.toUpperCase()).sort()).toEqual([...FLAG_CODES].sort());
+    // A variant's module is "<code>--<id>": one for each variant that is not the place's own flag.
+    const variants = [...MANIFEST, ...LEFT_OUT].flatMap((one) => one.variants.filter((variant) => !variant.default).map((variant) => variant.module));
+    expect(files.filter((file) => !file.includes(".") && !file.includes("--")).map((file) => file.toUpperCase()).sort()).toEqual([...FLAG_CODES].sort());
+    expect(files.filter((file) => file.includes("--")).sort()).toEqual([...new Set(variants)].sort());
     const framed = MANIFEST.filter((one) => one.sameAs === null).flatMap((one) => (["4:3", "1:1"] as const).filter((shape) => one.framings[shape].method === "adapted").map((shape) => `${one.code.toLowerCase()}.${shape.replace(":", "x")}`));
     expect(files.filter((file) => file.includes(".")).sort()).toEqual(framed.sort());
   });

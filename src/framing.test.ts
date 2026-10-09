@@ -113,12 +113,12 @@ describe("the framings", () => {
 
   it("are the table frame() reads, one row for each picture that is not cropped from the centre at every shape", () => {
     const letter = { cover: "c", crop: "a", contain: "w" } as const;
-    const expected = Object.fromEntries(
-      MANIFEST.filter((one) => one.sameAs === null)
-        .map((one) => [one.code.toLowerCase(), SHAPES.map((shape) => letter[one.framings[shape].fit]).join(",")] as const)
-        .filter(([, letters]) => letters !== "c,c,c"),
-    );
-    expect(FRAMINGS).toEqual(expected);
+    const flags = MANIFEST.filter((one) => one.sameAs === null).map((one) => [one.code.toLowerCase(), SHAPES.map((shape) => letter[one.framings[shape].fit]).join(",")] as const);
+    // A variant with a picture of its own is measured under "<code>--<id>" and framed like a flag.
+    const variants = Object.keys(measured)
+      .filter((key) => key.includes("--"))
+      .map((key) => [key.toLowerCase(), SHAPES.map((shape) => letter[measured[key]![shape].fit as keyof typeof letter]).join(",")] as const);
+    expect(FRAMINGS).toEqual(Object.fromEntries([...flags, ...variants].filter(([, letters]) => letters !== "c,c,c")));
   });
 
   it("are listed in docs/framing.md, every flag a person chose a side for with its reason", () => {

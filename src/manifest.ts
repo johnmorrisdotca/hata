@@ -3,7 +3,7 @@
 // page, a licence check in a build, or the demo's detail panel. The same data is in manifest.json.
 
 import { LEFT_OUT as LEFT_OUT_ROWS, RECORDS } from "./data/manifest.data";
-import type { FlagRecord, FlagSource, Framing, FramingCrop, LeftOutRecord, LicenceKind } from "./manifest.types";
+import type { FlagRecord, FlagSource, Framing, FramingCrop, LeftOutRecord, LicenceKind, Variant } from "./manifest.types";
 import { mustBeString } from "./svg";
 
 const deepFreeze = <T>(value: T): T => {
@@ -80,5 +80,27 @@ const manifest = (code: string): FlagRecord | null => BY_CODE.get(normal(code)) 
  */
 const leftOut = (code: string): LeftOutRecord | null => LEFT_BY_CODE.get(normal(code)) ?? null;
 
-export { LEFT_OUT, leftOut, manifest, MANIFEST };
-export type { FlagRecord, FlagSource, Framing, FramingCrop, LeftOutRecord, LicenceKind };
+/**
+ * Every flag of a place that has more than one in real use, with its status, dates, reason and drawing: Afghanistan's
+ * Republic tricolour (the default) and the Taliban's flag, Bavaria's lozenges and stripes, Northern Ireland's Union Flag
+ * and former Ulster Banner (it has no flag of its own by default), the French tricolour and the local flag of each French
+ * territory. The package takes no side between them: each has a status, and the default's reason is in its `why`.
+ * Load one with `flag(code, { variant: id })` from `/load`, or import its module.
+ *
+ * @param code - A code in any case: "AF", "de-by", "GB_NIR". A code that is the same place as another (Guadeloupe's "FR-971" and "GP") gives the same list.
+ * @returns The place's variants, the default's first where there is one; an empty list where the place has one flag, or the code is not one Kuni knows here.
+ * @throws TypeError when `code` is not a string.
+ *
+ * @example
+ * ```ts
+ * import { variantsOf } from "@johnmorrisdotca/hata/manifest";
+ *
+ * variantsOf("AF").map((one) => `${one.id}: ${one.status}`); // ["republic: official", "de-facto: de-facto"]
+ * variantsOf("GB-NIR").map((one) => one.id);                  // ["union-flag", "ulster-banner"]
+ * variantsOf("JP");                                           // []: Japan has one flag
+ * ```
+ */
+const variantsOf = (code: string): readonly Variant[] => (manifest(code) ?? leftOut(code))?.variants ?? [];
+
+export { LEFT_OUT, leftOut, manifest, MANIFEST, variantsOf };
+export type { FlagRecord, FlagSource, Framing, FramingCrop, LeftOutRecord, LicenceKind, Variant };
