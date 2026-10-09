@@ -5,11 +5,11 @@ Made by `pnpm data`; a test fails if this list and the data differ. Sizes are of
 
 | | Pictures | SVG | Gzipped |
 | --- | --- | --- | --- |
-| Every flag | 434 (463 codes; 29 share another's picture) | 8407.3 KB | 2933.9 KB |
-| The same drawings as their sources have them | 434 | 14594.2 KB | |
-| The median flag | | 755 B | |
-| The countries alone | 238 | 1996.9 KB | 668.5 KB |
-| Drawings made for a frame (flag-icons' 4:3 and square, `/flags/<code>.4x3`, `.1x1`) | 425 | 2792.2 KB | 934.7 KB |
+| Every flag | 430 (464 codes; 34 share another's picture) | 8492.8 KB | 2976.9 KB |
+| The same drawings as their sources have them | 430 | 14664.9 KB | |
+| The median flag | | 756 B | |
+| The countries alone | 233 | 2067.6 KB | 704.9 KB |
+| Drawings made for a frame (flag-icons' 4:3 and square, `/flags/<code>.4x3`, `.1x1`) | 423 | 2827.1 KB | 948.7 KB |
 
 ## Over the budget
 
@@ -25,6 +25,7 @@ and listed here so a new one is noticed (the size test holds this list).
 | `US-ID` | Idaho | 333.1 KB | 126.8 KB | 620.8 KB |
 | `CA-PE` | Prince Edward Island | 239.6 KB | 81.8 KB | 465.5 KB |
 | `US-LA` | Louisiana | 225.8 KB | 88.6 KB | 629.3 KB |
+| `AF` | Afghanistan | 216.6 KB | 90.3 KB | 227.0 KB |
 | `US-FL` | Florida | 215.4 KB | 90.7 KB | 210.7 KB |
 | `US-VT` | Vermont | 202.3 KB | 76.1 KB | 357.6 KB |
 | `US-WV` | West Virginia | 200.8 KB | 55.5 KB | 568.2 KB |
@@ -60,7 +61,6 @@ and listed here so a new one is noticed (the size test holds this list).
 | `SM` | San Marino | 74.2 KB | 28.0 KB | 129.7 KB |
 | `BR-RN` | Rio Grande do Norte | 72.4 KB | 12.2 KB | 109.7 KB |
 | `BR-RS` | Rio Grande do Sul | 71.7 KB | 25.3 KB | 203.3 KB |
-| `PM` | St. Pierre & Miquelon | 67.8 KB | 23.1 KB | 103.5 KB |
 | `US-MA` | Massachusetts | 65.4 KB | 21.9 KB | 125.0 KB |
 | `US-KS` | Kansas | 64.9 KB | 17.0 KB | 240.5 KB |
 | `BR-PR` | Paraná | 62.1 KB | 21.9 KB | 177.1 KB |
@@ -68,7 +68,6 @@ and listed here so a new one is noticed (the size test holds this list).
 | `ME` | Montenegro | 56.8 KB | 22.2 KB | 120.9 KB |
 | `BR-RJ` | Rio de Janeiro | 56.7 KB | 21.5 KB | 343.5 KB |
 | `US-OK` | Oklahoma | 56.7 KB | 20.1 KB | 96.0 KB |
-| `YT` | Mayotte | 52.5 KB | 20.5 KB | 85.7 KB |
 | `BR-SC` | Santa Catarina | 47.9 KB | 17.1 KB | 77.1 KB |
 | `US-NV` | Nevada | 45.5 KB | 17.4 KB | 128.6 KB |
 | `GS` | South Georgia & South Sandwich Islands | 41.4 KB | 15.4 KB | 51.7 KB |

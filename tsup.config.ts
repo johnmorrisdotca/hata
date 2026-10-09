@@ -5,11 +5,11 @@ import type { Plugin } from "esbuild";
 import { defineConfig } from "tsup";
 
 // One entry for each flag (src/flags/<code>.ts, written by scripts/build-data.ts), and for each drawing made for a
-// frame (src/flags/<code>.4x3.ts, <code>.1x1.ts). Their types are written by
+// frame (src/flags/<code>.4x3.ts, <code>.1x1.ts), and for each variant (<code>--<id>.ts). Their types are written by
 // scripts/build-extras.ts, one small file each, rather than by a TypeScript build per flag.
 const flagEntries: Record<string, string> = Object.fromEntries(
   readdirSync("src/flags")
-    .filter((file) => /^[a-z]{2}(-[a-z0-9]{1,3})?(\.(4x3|1x1))?\.ts$/.test(file))
+    .filter((file) => /^[a-z]{2}(-[a-z0-9]{1,3})?(--[a-z0-9]+(-[a-z0-9]+)*)?(\.(4x3|1x1))?\.ts$/.test(file))
     .map((file) => [`flags/${basename(file, ".ts")}`, `src/flags/${file}`]),
 );
 
@@ -23,6 +23,8 @@ const flagImports: Plugin = {
     build.onResolve({ filter: /^\.\/(load|names|element)\.js$/ }, (args) => ({ path: args.path, external: true }));
     // /load's table of the drawings made for a frame is an entry of its own, loaded when a frame is asked for.
     build.onResolve({ filter: /^\.\/data\/adapted\.data\.js$/ }, () => ({ path: "./adapted.js", external: true }));
+    // So is its table of variants, loaded when a variant is asked for.
+    build.onResolve({ filter: /^\.\/data\/variants\.data\.js$/ }, () => ({ path: "./variants.js", external: true }));
     build.onResolve({ filter: /^\.\.\/flags\/[a-z0-9.-]+\.js$/ }, (args) => ({ path: `./flags/${basename(args.path)}`, external: true }));
     build.onResolve({ filter: /^\.\/[a-z]{2}(-[a-z0-9]{1,3})?$/ }, (args) => (args.importer.includes("/src/flags/") ? { path: `${args.path}.js`, external: true } : undefined));
   },
@@ -41,7 +43,7 @@ const shared = {
 export default defineConfig([
   {
     ...shared,
-    entry: { index: "src/index.ts", load: "src/load.ts", manifest: "src/manifest.ts", adapted: "src/data/adapted.data.ts", names: "src/names.ts", element: "src/element.ts", "element-define": "src/element-define.ts" },
+    entry: { index: "src/index.ts", load: "src/load.ts", manifest: "src/manifest.ts", adapted: "src/data/adapted.data.ts", variants: "src/data/variants.data.ts", names: "src/names.ts", element: "src/element.ts", "element-define": "src/element-define.ts" },
     dts: true,
     minify: false,
     esbuildOptions(options) {

@@ -21,7 +21,7 @@ import { join } from "node:path";
 import { COUNTRY_CODES } from "@johnmorrisdotca/kuni";
 import { subdivisions } from "@johnmorrisdotca/kuni/subdivisions";
 
-import { NO_FLAG, SUBDIVISION_COUNTRIES } from "./data-config.ts";
+import { NO_FLAG, SUBDIVISION_COUNTRIES, VARIANTS } from "./data-config.ts";
 import { selectPlace } from "./select.ts";
 import type { WikidataSnapshot } from "./select.ts";
 import { readManifest, readSource, recordFile, sha256, SOURCES_DIR, USER_AGENT, writeManifest } from "./sources.ts";
@@ -126,7 +126,9 @@ const snapshot = JSON.parse(readSource(manifest, wikidataEntry.path).text) as Wi
 
 // A code with a reason in NO_FLAG needs no file: Wikidata's, where it names one, is not the place's flag.
 const codes = [...COUNTRY_CODES, ...SUBDIVISION_COUNTRIES.flatMap((country) => (subdivisions(country) ?? []).filter((one) => one.level === 1).map((one) => one.code))].filter((code) => NO_FLAG[code] === undefined);
-const wanted = [...new Set(codes.map((code) => selectPlace(code, snapshot).file).filter((file): file is string => file !== null))].sort();
+// And the drawings of each place's other flags in real use (VARIANTS in data-config.ts).
+const variantFiles = Object.values(VARIANTS).flatMap((set) => set.variants.map((variant) => variant.file).filter((file): file is string => file !== null));
+const wanted = [...new Set([...codes.map((code) => selectPlace(code, snapshot).file).filter((file): file is string => file !== null), ...variantFiles])].sort();
 console.log(`${codes.length} codes, ${wanted.length} distinct files to fetch`);
 
 const read = new Date().toISOString().slice(0, 10);

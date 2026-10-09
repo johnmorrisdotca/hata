@@ -41,7 +41,9 @@ const ROOT = join(import.meta.dirname, "..");
 const FILE = join(ROOT, "scripts", "framings.data.json");
 const { optimiseFlag } = await import(join(ROOT, "scripts", "optimise.ts"));
 const { setCandidates } = await import(join(ROOT, "scripts", "candidates.ts"));
-const { RECORDS } = await import(join(ROOT, "src", "data", "manifest.data.ts"));
+const { RECORDS: FLAG_RECORDS, VARIANT_PICTURES } = await import(join(ROOT, "src", "data", "manifest.data.ts"));
+// A variant with a picture of its own is measured like a flag, under "<code>--<id>" ("AF--de-facto").
+const RECORDS = [...FLAG_RECORDS, ...VARIANT_PICTURES.map((one) => ({ code: one.code, sameAs: null, width: one.width, height: one.height, source: "commons" }))];
 const { FOCUS } = await import(join(ROOT, "scripts", "data-config.ts"));
 
 /** A colour must cover this share of the flag to count, and keep at least KEEP of its share in a frame. */
@@ -104,9 +106,9 @@ const kept = JSON.parse((() => {
     return "{}";
   }
 })());
-const asked = process.argv.slice(2).map((code) => code.toUpperCase());
+const asked = process.argv.slice(2).map((code) => code.toLowerCase());
 for (const code of Object.keys(FOCUS)) if (!RECORDS.some((record) => record.code === code && record.sameAs === null)) throw new Error(`FOCUS names ${code}, which is not a flag's own picture (see scripts/data-config.ts)`);
-const owners = RECORDS.filter((record) => record.sameAs === null && (asked.length === 0 || asked.includes(record.code)));
+const owners = RECORDS.filter((record) => record.sameAs === null && (asked.length === 0 || asked.includes(record.code.toLowerCase())));
 for (const record of owners) {
   const svg = shipped(record.code);
   const aspect = record.width / record.height;

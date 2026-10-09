@@ -4,7 +4,7 @@
 const NAMES: Readonly<Record<string, readonly [en: string, ja: string, aspect: number]>> = {
   "AD": ["Andorra", "アンドラ", 1.4286],
   "AE": ["United Arab Emirates", "アラブ首長国連邦", 2],
-  "AF": ["Afghanistan", "アフガニスタン", 2],
+  "AF": ["Afghanistan", "アフガニスタン", 1.5],
   "AG": ["Antigua & Barbuda", "アンティグア・バーブーダ", 1.5],
   "AI": ["Anguilla", "アンギラ", 2],
   "AL": ["Albania", "アルバニア", 1.4],
@@ -437,6 +437,7 @@ const NAMES: Readonly<Record<string, readonly [en: string, ja: string, aspect: n
   "US-MN": ["Minnesota", "ミネソタ州", 1.6667],
   "US-MO": ["Missouri", "ミズーリ州", 1.7143],
   "US-MP": ["Northern Mariana Islands", "北マリアナ諸島", 2],
+  "US-MS": ["Mississippi", "ミシシッピ州", 1.6667],
   "US-MT": ["Montana", "モンタナ州", 1.5],
   "US-NC": ["North Carolina", "ノースカロライナ州", 1.5],
   "US-ND": ["North Dakota", "ノースダコタ州", 1.2692],
@@ -465,6 +466,7 @@ const NAMES: Readonly<Record<string, readonly [en: string, ja: string, aspect: n
   "US-WI": ["Wisconsin", "ウィスコンシン州", 1.5],
   "US-WV": ["West Virginia", "ウェストバージニア州", 1.9],
   "US-WY": ["Wyoming", "ワイオミング州", 1.4286],
+  "GB-NIR": ["Northern Ireland", "北アイルランド", 1.6667],
 };
 
 export { NAMES };

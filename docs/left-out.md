@@ -22,10 +22,9 @@ The decisions behind the reasons are in [decisions.md](decisions.md).
 | `FR-OCC` | Occitanie | Occitanie has no flag: its regional council uses a logo joining the cross of Toulouse and the Catalan stripes, and the flag Wikidata names is one variant of it. The Occitan cross flag belongs to the wider cultural region of Occitania, not to this administrative one. |  |
 | `FR-PAC` | Provence-Alpes-Côte-d’Azur | Provence-Alpes-Côte d'Azur has no flag: its regional council uses a logo, and the flag on Commons that Wikidata names joins the arms of Provence, the Dauphiné and Nice in a design that no authority adopted. Provence's own flag covers only part of the region. |  |
 | `FR-PDL` | Pays-de-la-Loire | Pays de la Loire has no flag: its regional council uses a logo, and the flag that Wikidata names is a cultural flag that no authority adopted. |  |
-| `GB-NIR` | Northern Ireland | Northern Ireland has had no official flag of its own since 1973: the Union Flag is the only flag its government flies. The Ulster Banner (the former Government of Northern Ireland's, 1953 to 1972) and St Patrick's Saltire are flown by some and not by others, and Wikidata gives neither (see docs/decisions.md). |  |
+| `GB-NIR` | Northern Ireland | Northern Ireland has had no official flag of its own since 1973: the Union Flag is the only flag its government flies. The Ulster Banner (the former Government of Northern Ireland's, 1953 to 1972) and St Patrick's Saltire are flown by some and not by others, and Wikidata gives neither. It has no default flag here; the Union Flag and the Ulster Banner are its variants, asked for by name (`flag("GB-NIR", { variant: "union-flag" })`, docs/decisions.md). |  |
 | `JP-34` | Hiroshima | Commons gives its licence as not stated, which is not public domain, CC0 or CC BY, and no MIT flag set draws the same flag at its proportions | [Flag of Hiroshima Prefecture.svg](https://commons.wikimedia.org/wiki/File:Flag_of_Hiroshima_Prefecture.svg) |
 | `JP-37` | Kagawa | Commons gives its licence as CC BY-SA 3.0, which is not public domain, CC0 or CC BY, and no MIT flag set draws the same flag at its proportions | [Flag of Kagawa Prefecture.svg](https://commons.wikimedia.org/wiki/File:Flag_of_Kagawa_Prefecture.svg) |
-| `US-MS` | Mississippi | Commons gives its licence as Copyrighted free use, which is not public domain, CC0 or CC BY, and no MIT flag set draws the same flag at its proportions | [Flag of Mississippi.svg](https://commons.wikimedia.org/wiki/File:Flag_of_Mississippi.svg) |
 
 ## Left out for their licence, for the maintainer to decide
 
@@ -42,4 +41,3 @@ package to share alike), or naming a public-domain drawing of the same flag on C
 | `FR-BRE` | Brittany | [Flag of Brittany.svg](https://commons.wikimedia.org/wiki/File:Flag_of_Brittany.svg) | CC BY-SA 4.0 | no |
 | `JP-34` | Hiroshima | [Flag of Hiroshima Prefecture.svg](https://commons.wikimedia.org/wiki/File:Flag_of_Hiroshima_Prefecture.svg) | not stated | no |
 | `JP-37` | Kagawa | [Flag of Kagawa Prefecture.svg](https://commons.wikimedia.org/wiki/File:Flag_of_Kagawa_Prefecture.svg) | CC BY-SA 3.0 | no |
-| `US-MS` | Mississippi | [Flag of Mississippi.svg](https://commons.wikimedia.org/wiki/File:Flag_of_Mississippi.svg) | Copyrighted free use | no |

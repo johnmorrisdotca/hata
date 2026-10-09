@@ -32,6 +32,34 @@ const SAME_PLACE: Readonly<Record<string, string>> = {
 // everyday use, or a drawing at other proportions than the law's. The file need not be one of the item's
 // statements; it is fetched from Commons and checked like any other, and its reason goes into the manifest.
 const NAMED: Readonly<Record<string, { file: string; why: string }>> = {
+  AF: {
+    file: "Flag of Afghanistan (2013–2021).svg",
+    why: "John, 2026-10-09: Afghanistan's flag is the Islamic Republic's black, red and green tricolour, still the flag at the United Nations and the one every flag set draws. Wikidata's preferred flag since 2021-08-15 is the Taliban's, which is the de-facto variant (`variants`, docs/decisions.md: Disputed and alternative flags).",
+  },
+  SH: {
+    file: "Flag of Saint Helena.svg",
+    why: "John, 2026-10-09: Saint Helena's own flag, the blue ensign with the island's badge. Wikidata gives the Union Flag for the territory as a whole, which is the `union-flag` variant.",
+  },
+  MQ: {
+    file: "Flag of France.svg",
+    why: "John, 2026-10-09: each French territory's official flag, else France's. Martinique has no official flag of its own; the red, green and black flag (Wikidata's choice) is a local, unofficial one, flown by many people there and by the independence movement: the `local` variant.",
+  },
+  YT: {
+    file: "Flag of France.svg",
+    why: "John, 2026-10-09: each French territory's official flag, else France's. Mayotte's flag with the hibiscus and the lettering (Wikidata's choice) is a local one used by the departmental council, the `local` variant.",
+  },
+  BL: {
+    file: "Flag of France.svg",
+    why: "John, 2026-10-09: each French territory's official flag, else France's. Saint-Barthélemy's flag with its arms (Wikidata's choice) is a local one, the `local` variant.",
+  },
+  PM: {
+    file: "Flag of France.svg",
+    why: "John, 2026-10-09: each French territory's official flag, else France's. The flag of Saint-Pierre and Miquelon with its three ships (Wikidata's choice) is a local, unofficial one, the `local` variant.",
+  },
+  WF: {
+    file: "Flag of France.svg",
+    why: "John, 2026-10-09: each French territory's official flag, else France's. The red flag with the saltire and the tricolour canton (Wikidata's choice) is a local, unofficial one, the `local` variant.",
+  },
   "AT-4": {
     file: "Flag of Tirol and Upper Austria.svg",
     why: "Upper Austria's flag (Landesflagge) is white over red, plain; Wikidata gives only the government's service flag (Landesdienstflagge), which adds the arms. Tyrol's flag is the same white over red.",
@@ -70,7 +98,10 @@ const ITEM: Readonly<Record<string, { item: string; why: string }>> = {
 
 // Files whose licence is not public domain, CC0 or CC BY, brought in by the maintainer's decision, with the
 // decision in words. Empty: every such file is left out and listed in docs/left-out.md until somebody decides.
-const ACCEPTED: Readonly<Record<string, string>> = {};
+const ACCEPTED: Readonly<Record<string, string>> = {
+  "Flag of Mississippi.svg":
+    "the holder allows any use for any purpose with no condition, freer than CC BY; John, 2026-10-09: include Mississippi",
+};
 
 // What a person found on looking at each place where a flag set draws something quite different from Commons
 // (docs/compared.md, and the pictures from `pnpm data:sheet`). "same design" means the difference is a
@@ -78,18 +109,19 @@ const ACCEPTED: Readonly<Record<string, string>> = {};
 // means the sources show different flags, and docs/decisions.md says which ships and why. A test holds every
 // flagged place to a line here, so a new difference is looked at.
 const REVIEWED: Readonly<Record<string, string>> = {
-  AF: "design: Wikidata's preferred flag is the Taliban's (since 2021-08-15); every set draws the Islamic Republic's tricolour.",
-  BL: "design: Commons' drawing is the collectivity's local flag; flag-icons draws France's.",
+  AF: "design: Wikidata's preferred flag is the Taliban's (since 2021-08-15); every set draws the Islamic Republic's tricolour, which ships as the default (NAMED) and the Taliban's is the de-facto variant.",
+  BL: "design: France's flag ships (NAMED, each French territory's official flag else France's); Commons' and the sets' local flag is the `local` variant.",
   "FR-CP": "design: Wikidata gives France's flag, the only one flown on Clipperton Island; circle-flags draws an unofficial local design.",
   GF: "design: Wikidata gives France's flag; country-flag-icons and circle-flags draw the regional flag of French Guiana.",
   GP: "design: Commons gives France's flag (data-config CHOSEN); circle-flags draws a local flag.",
   MF: "design: Wikidata gives France's flag; the sets draw Saint Martin's local flag.",
   NC: "same design: every source draws the FLNKS (Kanak) flag, Wikidata's choice; which of New Caledonia's two flags to ship is in docs/decisions.md.",
-  PM: "design: Commons' drawing is the local flag of Saint-Pierre and Miquelon; flag-icons and country-flag-icons draw France's.",
+  MQ: "design: France's flag ships (NAMED); Commons' red, green and black flag is the `local` variant, and the sets draw France's or that one.",
+  PM: "design: France's flag ships (NAMED); Commons' local flag is the `local` variant, and flag-icons and country-flag-icons draw France's.",
   RE: "design: Wikidata gives France's flag; circle-flags draws the Lofo, a flag proposed for Réunion.",
-  SH: "design: Wikidata gives the Union Flag for Saint Helena, Ascension and Tristan da Cunha; the sets draw Saint Helena's own flag.",
-  WF: "design: Commons' drawing is Wallis and Futuna's local flag; flag-icons draws France's.",
-  YT: "design: Commons' drawing is Mayotte's local flag, with its lettering; flag-icons draws France's.",
+  SH: "design: Wikidata gives the Union Flag for Saint Helena, Ascension and Tristan da Cunha; the sets draw Saint Helena's own flag, which ships as the default (NAMED) and the Union Flag is a variant.",
+  WF: "design: France's flag ships (NAMED); Commons' local flag is the `local` variant, and flag-icons draws France's.",
+  YT: "design: France's flag ships (NAMED); Commons' local flag, with its lettering, is the `local` variant, and flag-icons draws France's.",
 };
 const SAME_DESIGN = "same design: the sets draw it simplified, in other shades, or laid out again at their shape; Commons' drawing is the full one";
 for (const code of ["AU-ACT", "BB", "BS", "BZ", "CA-BC", "DJ", "DM", "ES", "ET", "GS", "GY", "IO", "JM", "KI", "KN", "KY", "LK", "LT", "MP", "MU", "MY", "MZ", "NP", "PK", "PN", "SB", "SZ", "TM", "UM", "US", "US-DC", "US-MS", "US-SC", "US-UM", "US-VI", "US-WY", "UY", "VI", "ZW"]) {
@@ -100,7 +132,7 @@ for (const code of ["AU-ACT", "BB", "BS", "BZ", "CA-BC", "DJ", "DM", "ES", "ET",
 // line here (or a line the build writes itself, such as a licence that is not free).
 const NO_FLAG: Readonly<Record<string, string>> = {
   "GB-NIR":
-    "Northern Ireland has had no official flag of its own since 1973: the Union Flag is the only flag its government flies. The Ulster Banner (the former Government of Northern Ireland's, 1953 to 1972) and St Patrick's Saltire are flown by some and not by others, and Wikidata gives neither (see docs/decisions.md).",
+    "Northern Ireland has had no official flag of its own since 1973: the Union Flag is the only flag its government flies. The Ulster Banner (the former Government of Northern Ireland's, 1953 to 1972) and St Patrick's Saltire are flown by some and not by others, and Wikidata gives neither. It has no default flag here; the Union Flag and the Ulster Banner are its variants, asked for by name (`flag(\"GB-NIR\", { variant: \"union-flag\" })`, docs/decisions.md).",
   // France's regions: only those with a flag of their own in public use. Most regional councils use a logo, and the
   // banners on Commons for those regions are combinations of old provinces' arms that nobody adopted.
   "FR-ARA":
@@ -154,7 +186,7 @@ const SIDES: Readonly<Record<string, Focus>> = {
     "US", "UM", "LR", "MY", "TW", "CL", "CN", "AW", "CW", "SB", "UZ", "WS", "TG", "TO", "MT", "SG", "UY", "GR", "US-HI", "US-GA", "BR-AC", "BR-AM", "BR-GO", "BR-MA", "BR-PI", "BR-SE", "BR-SP",
   ]),
   ...group("left", "A triangle, chevron or wedge at the hoist holds the flag's emblem or its meaning, and a crop from the left keeps it with the stripes it points into; the centre crop shows the stripes and loses it.", [
-    "CU", "CZ", "DJ", "ER", "GQ", "JO", "KM", "KW", "MQ", "MZ", "PH", "PR", "PS", "SD", "SS", "ST", "SX", "TL", "VU", "ZA", "ZW", "BR-BA", "US-OH", "BH",
+    "CU", "CZ", "DJ", "ER", "GQ", "JO", "KM", "KW", "MZ", "PH", "PR", "PS", "SD", "SS", "ST", "SX", "TL", "VU", "ZA", "ZW", "BR-BA", "US-OH", "BH",
   ]),
   ...group("left", "A bar or band at the hoist (a different colour or a pattern) is part of what makes the flag this one, and a crop from the left keeps it beside the main field; the centre crop drops it.", ["AE", "BJ", "MG", "BY", "DE-HB", "TM"]),
   ...group("left", "The flag's emblem sits nearer the hoist than the middle, so a crop from the left shows all of it where the centre crop cuts it.", [
@@ -166,7 +198,7 @@ const SIDES: Readonly<Record<string, Focus>> = {
     "AI", "AU", "AU-NSW", "AU-QLD", "AU-SA", "AU-TAS", "AU-VIC", "AU-WA", "BM", "CK", "FJ", "FK", "GS", "IO", "KY", "MS", "NU", "NZ", "PN", "TC", "TV", "VG", "CA-ON",
   ]),
   ...group("whole", "The meaning is spread across the whole flag (two emblems, or a design that runs from one end to the other), so any square crop is a part of it that another flag could share.", [
-    "AS", "AU-NT", "BR-MS", "CA-SK", "CA-NL", "CA-NU", "CX", "TF", "TK", "WF", "US-AK", "US-DC", "LK",
+    "AS", "AU-NT", "BR-MS", "CA-SK", "CA-NL", "CA-NU", "CX", "TF", "TK", "US-AK", "US-DC", "LK",
   ]),
   QA: {
     at: "whole",
@@ -195,6 +227,372 @@ const ALLOWED: Readonly<Record<string, string>> = {
 };
 const FOCUS: Readonly<Record<string, Focus>> = { ...SIDES, ...Object.fromEntries(Object.entries(ALLOWED).map(([code, loses]) => [code, { ...SIDES[code]!, loses }])) };
 
+// A place's other flags in real use, each with its status and the reason, for `flag(code, { variant })`,
+// `variantsOf(code)` and the manifest. Where a place has more than one flag in real use, `default` names the one
+// `flag(code)` gives (its drawing is the place's own selection: NAMED, CHOSEN or Wikidata's), and every variant with a
+// `file` is another Commons drawing, fetched, licence-checked and shipped as `/flags/<code>--<id>`. A variant whose
+// `file` is null is the place's own flag. `default: null` means the place has no flag of its own here (Northern
+// Ireland): `flag(code)` is null and the variants are asked for by name. `disputed` is true where more than one
+// authority or community claims its flag at the same time; the package takes no side (README, Disputed and
+// alternative flags). `status`: official (adopted by the authority that has the right to), de-facto (flown by whoever
+// holds the territory, without that recognition), historical (no longer official, still flown) or local (a flag in
+// use there that its authority has not made the place's own). A variant whose drawing's licence cannot ship is left
+// out, and the build says so.
+// `name`/`nameJa` are for a menu; the Japanese is marked for review (docs/strings-ja.md).
+type VariantStatus = "official" | "de-facto" | "historical" | "local";
+interface VariantSpec {
+  id: string;
+  name: string;
+  nameJa: string;
+  status: VariantStatus;
+  from: string | null;
+  until: string | null;
+  why: string;
+  source: string;
+  file: string | null;
+}
+interface VariantSet {
+  disputed: boolean;
+  default: string | null;
+  variants: readonly VariantSpec[];
+}
+
+const FRANCE_FILE = "Flag of France.svg";
+const france = (place: string, article: string): VariantSpec => ({
+  id: "france",
+  name: "France's flag",
+  nameJa: "フランスの国旗",
+  status: "official",
+  from: null,
+  until: null,
+  why: `The French tricolour is ${place}'s official flag: it is part of France, and its law gives it no flag of its own.`,
+  source: article,
+  file: FRANCE_FILE,
+});
+
+const VARIANTS: Readonly<Record<string, VariantSet>> = {
+  AF: {
+    disputed: true,
+    default: "republic",
+    variants: [
+      {
+        id: "republic",
+        name: "The Islamic Republic's tricolour",
+        nameJa: "アフガニスタン・イスラム共和国の三色旗",
+        status: "official",
+        from: "2013",
+        until: null,
+        why: "The flag of the Islamic Republic of Afghanistan (2013 to 2021) in black, red and green: still the flag at the United Nations and the one every flag set draws, so it is the default. Its government fell on 2021-08-15; it is still flown by its representatives abroad and by the people who oppose the new rulers.",
+        source: "https://en.wikipedia.org/wiki/Flag_of_Afghanistan",
+        file: null,
+      },
+      {
+        id: "de-facto",
+        name: "The Taliban's flag",
+        nameJa: "タリバンの旗",
+        status: "de-facto",
+        from: "2021-08-15",
+        until: null,
+        why: "The white flag with the shahada, flown by the Islamic Emirate of Afghanistan since it took the government on 2021-08-15. Wikidata's preferred flag for the country. The United Nations has not recognised the Taliban government, and its seat is not theirs.",
+        source: "https://en.wikipedia.org/wiki/Flag_of_the_Taliban",
+        file: "Flag of the Taliban.svg",
+      },
+    ],
+  },
+  SH: {
+    disputed: false,
+    default: "saint-helena",
+    variants: [
+      {
+        id: "saint-helena",
+        name: "Saint Helena's flag",
+        nameJa: "セントヘレナの旗",
+        status: "official",
+        from: null,
+        until: null,
+        why: "Saint Helena's own flag, the blue ensign with the island's badge: what the island flies.",
+        source: "https://en.wikipedia.org/wiki/Flag_of_Saint_Helena",
+        file: null,
+      },
+      {
+        id: "union-flag",
+        name: "The Union Flag",
+        nameJa: "ユニオンフラッグ（英国旗）",
+        status: "official",
+        from: null,
+        until: null,
+        why: "Wikidata gives the Union Flag as the flag of Saint Helena, Ascension and Tristan da Cunha as a whole, the British Overseas Territory that these three islands form.",
+        source: "https://en.wikipedia.org/wiki/Saint_Helena,_Ascension_and_Tristan_da_Cunha",
+        file: "Flag of the United Kingdom (1-2).svg",
+      },
+    ],
+  },
+  "DE-BY": {
+    disputed: false,
+    default: "lozenges",
+    variants: [
+      {
+        id: "lozenges",
+        name: "White and blue lozenges",
+        nameJa: "白と青の菱形模様",
+        status: "official",
+        from: null,
+        until: null,
+        why: "One of Bavaria's two flags of equal standing, the one the state government and most people fly: the default.",
+        source: "https://en.wikipedia.org/wiki/Flag_of_Bavaria",
+        file: null,
+      },
+      {
+        id: "stripes",
+        name: "White and blue stripes",
+        nameJa: "白と青の縞模様",
+        status: "official",
+        from: null,
+        until: null,
+        why: "Bavaria's other flag of equal standing, in two horizontal stripes. Wikidata ranks neither first.",
+        source: "https://en.wikipedia.org/wiki/Flag_of_Bavaria",
+        file: "Flag of Bavaria (striped).svg",
+      },
+    ],
+  },
+  "GB-NIR": {
+    disputed: true,
+    default: null,
+    variants: [
+      {
+        id: "union-flag",
+        name: "The Union Flag",
+        nameJa: "ユニオンフラッグ（英国旗）",
+        status: "official",
+        from: "1973",
+        until: null,
+        why: "The only flag Northern Ireland's government flies, and the only official one there since the Parliament of Northern Ireland was abolished in 1973. Flown by many unionists, and not by many nationalists, who prefer the Irish tricolour.",
+        source: "https://en.wikipedia.org/wiki/Flags_in_Northern_Ireland",
+        file: "Flag of the United Kingdom (3-5).svg",
+      },
+      {
+        id: "ulster-banner",
+        name: "The Ulster Banner",
+        nameJa: "アルスター旗",
+        status: "historical",
+        from: "1953",
+        until: "1972",
+        why: "The flag of the former Government of Northern Ireland (1953 to 1972), with the Red Hand of Ulster under a crown. No longer official, and still flown by many unionists, and by some sports teams. Nationalists do not fly it.",
+        source: "https://en.wikipedia.org/wiki/Ulster_Banner",
+        file: "Ulster Banner.svg",
+      },
+    ],
+  },
+  SY: {
+    disputed: false,
+    default: "2025",
+    variants: [
+      {
+        id: "2025",
+        name: "The green, white and black flag",
+        nameJa: "緑・白・黒の旗",
+        status: "official",
+        from: "2024-12-08",
+        until: null,
+        why: "Green, white and black with three red stars: the flag of the Syrian opposition from 2011, and the flag of the government that took Damascus on 2024-12-08. Wikidata's preferred flag.",
+        source: "https://en.wikipedia.org/wiki/Flag_of_Syria",
+        file: null,
+      },
+      {
+        id: "assad-era",
+        name: "The red, white and black flag",
+        nameJa: "赤・白・黒の旗（アサド政権時代）",
+        status: "historical",
+        from: "1980",
+        until: "2024-12-08",
+        why: "Red, white and black with two green stars: Syria's flag under the Assad governments (1980 to 2024), and still flown by their supporters and in some communities.",
+        source: "https://en.wikipedia.org/wiki/Flag_of_Syria",
+        file: "Flag of Syria (1980–2024).svg",
+      },
+    ],
+  },
+  GP: {
+    disputed: false,
+    default: "france",
+    variants: [
+      { ...france("Guadeloupe", "https://en.wikipedia.org/wiki/Flag_of_Guadeloupe"), file: null },
+      {
+        id: "local",
+        name: "Guadeloupe's local flag",
+        nameJa: "グアドループの地域旗",
+        status: "local",
+        from: null,
+        until: null,
+        why: "A red flag with a golden sun and a palm branch under three fleurs-de-lis, flown by the regional authorities and many people in Guadeloupe, without official status.",
+        source: "https://en.wikipedia.org/wiki/Flag_of_Guadeloupe",
+        file: "Flag of Guadeloupe (local) variant.svg",
+      },
+    ],
+  },
+  MQ: {
+    disputed: false,
+    default: "france",
+    variants: [
+      { ...france("Martinique", "https://en.wikipedia.org/wiki/Flag_of_Martinique"), file: null },
+      {
+        id: "local",
+        name: "The red, green and black flag",
+        nameJa: "赤・緑・黒の旗",
+        status: "local",
+        from: null,
+        until: null,
+        why: "The red, green and black flag of the independence movement, flown by many people in Martinique and chosen by Wikidata as the place's flag, without official status.",
+        source: "https://en.wikipedia.org/wiki/Flag_of_Martinique",
+        file: "Flag-of-Martinique.svg",
+      },
+    ],
+  },
+  GF: {
+    disputed: false,
+    default: "france",
+    variants: [
+      { ...france("French Guiana", "https://en.wikipedia.org/wiki/Flag_of_French_Guiana"), file: null },
+      {
+        id: "local",
+        name: "French Guiana's local flag",
+        nameJa: "フランス領ギアナの地域旗",
+        status: "local",
+        from: null,
+        until: null,
+        why: "A green and yellow flag divided on the diagonal, with a red star, flown by many people in French Guiana, without official status.",
+        source: "https://en.wikipedia.org/wiki/Flag_of_French_Guiana",
+        file: "Flag of French Guiana.svg",
+      },
+    ],
+  },
+  RE: {
+    disputed: false,
+    default: "france",
+    variants: [
+      { ...france("Réunion", "https://en.wikipedia.org/wiki/Flag_of_R%C3%A9union"), file: null },
+      {
+        id: "local",
+        name: "The Lofo",
+        nameJa: "ロフォ（レユニオンの旗案）",
+        status: "local",
+        from: null,
+        until: null,
+        why: "The Lofo, a flag proposed for Réunion, with the volcano and the rays of the island's name, flown by many people there, without official status.",
+        source: "https://en.wikipedia.org/wiki/Flag_of_R%C3%A9union",
+        file: "Proposed flag of Réunion (VAR).svg",
+      },
+    ],
+  },
+  YT: {
+    disputed: false,
+    default: "france",
+    variants: [
+      { ...france("Mayotte", "https://en.wikipedia.org/wiki/Flag_of_Mayotte"), file: null },
+      {
+        id: "local",
+        name: "Mayotte's local flag",
+        nameJa: "マヨットの地域旗",
+        status: "local",
+        from: null,
+        until: null,
+        why: "A flag with the hibiscus and the lettering, used by the departmental council, without official status. Wikidata's choice for the place.",
+        source: "https://en.wikipedia.org/wiki/Flag_of_Mayotte",
+        file: "Flag of Mayotte (Local).svg",
+      },
+    ],
+  },
+  BL: {
+    disputed: false,
+    default: "france",
+    variants: [
+      { ...france("Saint-Barthélemy", "https://en.wikipedia.org/wiki/Flag_of_Saint_Barth%C3%A9lemy"), file: null },
+      {
+        id: "local",
+        name: "Saint-Barthélemy's local flag",
+        nameJa: "サン・バルテルミーの地域旗",
+        status: "local",
+        from: null,
+        until: null,
+        why: "A flag with the island's arms, used by the territorial collectivity, without official status. Wikidata's choice for the place.",
+        source: "https://en.wikipedia.org/wiki/Flag_of_Saint_Barth%C3%A9lemy",
+        file: "Flag of Saint Barthélemy (local).svg",
+      },
+    ],
+  },
+  PM: {
+    disputed: false,
+    default: "france",
+    variants: [
+      { ...france("Saint-Pierre and Miquelon", "https://en.wikipedia.org/wiki/Flag_of_Saint_Pierre_and_Miquelon"), file: null },
+      {
+        id: "local",
+        name: "The local flag of Saint-Pierre and Miquelon",
+        nameJa: "サンピエール・ミクロンの地域旗",
+        status: "local",
+        from: null,
+        until: null,
+        why: "A flag with three ships, one for each of the cultures of the islands (the Basque, Breton and Norman ones), flown by the territorial council, without official status. Wikidata's choice for the place.",
+        source: "https://en.wikipedia.org/wiki/Flag_of_Saint_Pierre_and_Miquelon",
+        file: "Flag of Saint-Pierre and Miquelon.svg",
+      },
+    ],
+  },
+  WF: {
+    disputed: false,
+    default: "france",
+    variants: [
+      { ...france("Wallis and Futuna", "https://en.wikipedia.org/wiki/Flag_of_Wallis_and_Futuna"), file: null },
+      {
+        id: "local",
+        name: "The local flag of Wallis and Futuna",
+        nameJa: "ウォリス・フツナの地域旗",
+        status: "local",
+        from: null,
+        until: null,
+        why: "A red flag with a white saltire and the French tricolour in the canton, flown by the territory, without official status. Wikidata's choice for the place.",
+        source: "https://en.wikipedia.org/wiki/Flag_of_Wallis_and_Futuna",
+        file: "Flag of Wallis and Futuna.svg",
+      },
+    ],
+  },
+  NC: {
+    disputed: false,
+    default: "kanak",
+    variants: [
+      {
+        id: "kanak",
+        name: "The Kanak flag",
+        nameJa: "カナク旗",
+        status: "official",
+        from: "2010",
+        until: null,
+        why: "The flag of the FLNKS, the Kanak independence movement, which has flown beside France's in New Caledonia since 2010, by agreement between the French State and the territory's institutions: the territory's own flag and Wikidata's choice.",
+        source: "https://en.wikipedia.org/wiki/Flag_of_New_Caledonia",
+        file: null,
+      },
+      france("New Caledonia", "https://en.wikipedia.org/wiki/Flag_of_New_Caledonia"),
+    ],
+  },
+  PF: {
+    disputed: false,
+    default: "french-polynesia",
+    variants: [
+      {
+        id: "french-polynesia",
+        name: "French Polynesia's flag",
+        nameJa: "仏領ポリネシアの旗",
+        status: "official",
+        from: "1984",
+        until: null,
+        why: "French Polynesia's own flag, official since the territory's statute of 1984, and Wikidata's preferred flag.",
+        source: "https://en.wikipedia.org/wiki/Flag_of_French_Polynesia",
+        file: null,
+      },
+      france("French Polynesia", "https://en.wikipedia.org/wiki/Flag_of_French_Polynesia"),
+    ],
+  },
+};
+
 // The size budget of one optimised flag, in bytes of SVG. Flags carrying a detailed coat of arms or seal go over
 // it; the build lists them in docs/sizes.md and the size test holds the list, so a new one is a decision.
 const BUDGET_BYTES = 40 * 1024;
@@ -202,5 +600,5 @@ const BUDGET_BYTES = 40 * 1024;
 // Flags may go over the budget only up to this, after which the build fails: a picture this large is not an icon.
 const CEILING_BYTES = 400 * 1024;
 
-export { ACCEPTED, BUDGET_BYTES, CEILING_BYTES, CHOSEN, FOCUS, ITEM, NAMED, NO_FLAG, REVIEWED, SAME_PLACE, SUBDIVISION_COUNTRIES };
-export type { Anchor, Focus };
+export { ACCEPTED, BUDGET_BYTES, CEILING_BYTES, CHOSEN, FOCUS, ITEM, NAMED, NO_FLAG, REVIEWED, SAME_PLACE, SUBDIVISION_COUNTRIES, VARIANTS };
+export type { Anchor, Focus, VariantSet, VariantSpec, VariantStatus };

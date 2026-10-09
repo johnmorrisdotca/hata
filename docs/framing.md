@@ -22,7 +22,7 @@ yours to ask for even where the default is the whole flag. The side of every fla
 
 Judged on 2026-10-09 by looking at every flag's whole picture beside its centre crop, and again at the chosen crop beside the whole flag.
 
-## Flags with a side chosen by hand (121)
+## Flags with a side chosen by hand (119)
 
 "Default" is what `frame()` does with `auto` at the square: the crop at the side, or the whole flag where the measure says the crop loses a colour
 no reason excuses, or where a person judged that no crop shows the flag.
@@ -72,7 +72,6 @@ no reason excuses, or where a person judged that no crop shows the flag.
 | `MG` | Madagascar | kept at the hoist (left) | the crop | A bar or band at the hoist (a different colour or a pattern) is part of what makes the flag this one, and a crop from the left keeps it beside the main field; the centre crop drops it. |
 | `MH` | Marshall Islands | kept at the hoist (left) | the crop | The flag's emblem sits nearer the hoist than the middle, so a crop from the left shows all of it where the centre crop cuts it. |
 | `MN` | Mongolia | kept at the hoist (left) | the crop | The flag's emblem sits nearer the hoist than the middle, so a crop from the left shows all of it where the centre crop cuts it. |
-| `MQ` | Martinique | kept at the hoist (left) | the crop | A triangle, chevron or wedge at the hoist holds the flag's emblem or its meaning, and a crop from the left keeps it with the stripes it points into; the centre crop shows the stripes and loses it. |
 | `MS` | Montserrat | centre, on request only | the whole flag | A Blue or Red Ensign: the Union Flag in the canton and a badge or stars in the fly make the flag, and no square crop holds both, so a crop would show one half of it. |
 | `MT` | Malta | kept at the hoist (left) | the crop | An emblem sits in a canton at the hoist and the flag's body runs on from it, so a crop from the left keeps the emblem and a slice of the body, as a hand-drawn square of the flag does; the centre crop shows only the body. The red field is narrower in the crop, and the white field with the George Cross in its corner, which is what makes the flag, is whole. |
 | `MY` | Malaysia | kept at the hoist (left) | the crop | An emblem sits in a canton at the hoist and the flag's body runs on from it, so a crop from the left keeps the emblem and a slice of the body, as a hand-drawn square of the flag does; the centre crop shows only the body. |
@@ -112,7 +111,6 @@ no reason excuses, or where a person judged that no crop shows the flag.
 | `UZ` | Uzbekistan | kept at the hoist (left) | the crop | An emblem sits in a canton at the hoist and the flag's body runs on from it, so a crop from the left keeps the emblem and a slice of the body, as a hand-drawn square of the flag does; the centre crop shows only the body. |
 | `VG` | British Virgin Islands | centre, on request only | the whole flag | A Blue or Red Ensign: the Union Flag in the canton and a badge or stars in the fly make the flag, and no square crop holds both, so a crop would show one half of it. |
 | `VU` | Vanuatu | kept at the hoist (left) | the crop | A triangle, chevron or wedge at the hoist holds the flag's emblem or its meaning, and a crop from the left keeps it with the stripes it points into; the centre crop shows the stripes and loses it. |
-| `WF` | Wallis & Futuna | centre, on request only | the whole flag | The meaning is spread across the whole flag (two emblems, or a design that runs from one end to the other), so any square crop is a part of it that another flag could share. |
 | `WS` | Samoa | kept at the hoist (left) | the crop | An emblem sits in a canton at the hoist and the flag's body runs on from it, so a crop from the left keeps the emblem and a slice of the body, as a hand-drawn square of the flag does; the centre crop shows only the body. |
 | `ZA` | South Africa | kept at the hoist (left) | the crop | A triangle, chevron or wedge at the hoist holds the flag's emblem or its meaning, and a crop from the left keeps it with the stripes it points into; the centre crop shows the stripes and loses it. |
 | `ZM` | Zambia | kept at the fly (right) | the crop | The emblem sits in the fly, away from the pole, so a crop from the right keeps it with the stripes beside it. |
@@ -151,12 +149,13 @@ no reason excuses, or where a person judged that no crop shows the flag.
 | `US-SC` | South Carolina | kept at the hoist (left) | the crop | The flag's emblem sits nearer the hoist than the middle, so a crop from the left shows all of it where the centre crop cuts it. |
 | `US-TX` | Texas | kept at the hoist (left) | the crop | The flag's emblem sits nearer the hoist than the middle, so a crop from the left shows all of it where the centre crop cuts it. |
 
-## Flags shown whole by default because a crop loses a colour (19)
+## Flags shown whole by default because a crop loses a colour (20)
 
 Nobody chose a side for these, and the measure found that a centre crop drops a colour covering 5% of the flag.
 
 | Code | Place | The centre crop at the square loses |
 | --- | --- | --- |
+| `AF` | Afghanistan | black 31% to 15% |
 | `BI` | Burundi | green 36% to 15% |
 | `CA` | Canada | red 65% to 29% |
 | `GD` | Grenada | red 39% to 19% |
@@ -167,12 +166,12 @@ Nobody chose a side for these, and the measure found that a centre crop drops a 
 | `MX` | Mexico | green 34% to 16%, red 34% to 16% |
 | `NF` | Norfolk Island | green 71% to 36% |
 | `NG` | Nigeria | green 68% to 22% |
-| `PM` | St. Pierre & Miquelon | red 9% to 3% |
 | `VC` | St. Vincent & Grenadines | blue 25% to 7% |
 | `BR-SC` | Santa Catarina | white 12% to 5% |
 | `CA-NB` | New Brunswick | blue 9% to 4% |
 | `CA-NT` | Northwest Territories | blue 51% to 2% |
 | `CA-YT` | Yukon | green 30% to 9%, blue 31% to 12% |
 | `US-IA` | Iowa | red 27% to 10% |
+| `US-MS` | Mississippi | red 41% to 3% |
 | `US-WV` | West Virginia | blue 27% to 10% |
 | `US-WY` | Wyoming | red 23% to 7% |

@@ -14,7 +14,8 @@
 // form read here. A file whose first licence is share-alike but whose page also carries a public-domain
 // template is still left out, and listed apart, because which of the two covers the drawing is a judgement.
 
-type LicenceKind = "public-domain" | "cc0" | "cc-by";
+// "accepted": a licence outside these, brought in by the maintainer's decision (ACCEPTED in data-config.ts), with the decision in its name.
+type LicenceKind = "public-domain" | "cc0" | "cc-by" | "accepted";
 
 type Licence =
   | { shipped: true; kind: LicenceKind; name: string; url: string | null }

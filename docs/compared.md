@@ -10,9 +10,8 @@ difference is the design itself, [decisions.md](decisions.md) says which ships a
 
 | Code | Place | Shipped | Sets that differ (closest drawing, share of pixels) | Looked at |
 | --- | --- | --- | --- | --- |
-| `AF` | Afghanistan | commons | flag-icons 96%, country-flag-icons 93%, circle-flags 76% | design: Wikidata's preferred flag is the Taliban's (since 2021-08-15); every set draws the Islamic Republic's tricolour. |
 | `BB` | Barbados | commons | circle-flags 41% | same design: the sets draw it simplified, in other shades, or laid out again at their shape; Commons' drawing is the full one |
-| `BL` | St. Barthélemy | commons | flag-icons 89%, country-flag-icons 45%, circle-flags 29% | design: Commons' drawing is the collectivity's local flag; flag-icons draws France's. |
+| `BL` | St. Barthélemy | commons | country-flag-icons 86%, circle-flags 57% | design: France's flag ships (NAMED, each French territory's official flag else France's); Commons' and the sets' local flag is the `local` variant. |
 | `BS` | Bahamas | commons | flag-icons 25% | same design: the sets draw it simplified, in other shades, or laid out again at their shape; Commons' drawing is the full one |
 | `BZ` | Belize | commons | flag-icons 35% | same design: the sets draw it simplified, in other shades, or laid out again at their shape; Commons' drawing is the full one |
 | `DJ` | Djibouti | commons | flag-icons 25% | same design: the sets draw it simplified, in other shades, or laid out again at their shape; Commons' drawing is the full one |
@@ -32,30 +31,32 @@ difference is the design itself, [decisions.md](decisions.md) says which ships a
 | `LT` | Lithuania | commons | country-flag-icons 33% | same design: the sets draw it simplified, in other shades, or laid out again at their shape; Commons' drawing is the full one |
 | `MF` | St. Martin | commons | country-flag-icons 55%, circle-flags 42% | design: Wikidata gives France's flag; the sets draw Saint Martin's local flag. |
 | `MP` | Northern Mariana Islands | commons | flag-icons 28%, country-flag-icons 31% | same design: the sets draw it simplified, in other shades, or laid out again at their shape; Commons' drawing is the full one |
+| `MQ` | Martinique | commons | flag-icons 100%, country-flag-icons 100%, circle-flags 80% | design: France's flag ships (NAMED); Commons' red, green and black flag is the `local` variant, and the sets draw France's or that one. |
 | `MU` | Mauritius | commons | circle-flags 26% | same design: the sets draw it simplified, in other shades, or laid out again at their shape; Commons' drawing is the full one |
 | `MY` | Malaysia | commons | circle-flags 38% | same design: the sets draw it simplified, in other shades, or laid out again at their shape; Commons' drawing is the full one |
 | `MZ` | Mozambique | commons | flag-icons 36%, circle-flags 32% | same design: the sets draw it simplified, in other shades, or laid out again at their shape; Commons' drawing is the full one |
 | `NC` | New Caledonia | commons | circle-flags 28% | same design: every source draws the FLNKS (Kanak) flag, Wikidata's choice; which of New Caledonia's two flags to ship is in docs/decisions.md. |
 | `NP` | Nepal | commons | country-flag-icons 26%, circle-flags 28% | same design: the sets draw it simplified, in other shades, or laid out again at their shape; Commons' drawing is the full one |
 | `PK` | Pakistan | commons | flag-icons 76%, circle-flags 60% | same design: the sets draw it simplified, in other shades, or laid out again at their shape; Commons' drawing is the full one |
-| `PM` | St. Pierre & Miquelon | commons | flag-icons 82%, country-flag-icons 90%, circle-flags 29% | design: Commons' drawing is the local flag of Saint-Pierre and Miquelon; flag-icons and country-flag-icons draw France's. |
+| `PM` | St. Pierre & Miquelon | commons | circle-flags 77% | design: France's flag ships (NAMED); Commons' local flag is the `local` variant, and flag-icons and country-flag-icons draw France's. |
 | `PN` | Pitcairn Islands | commons | circle-flags 26% | same design: the sets draw it simplified, in other shades, or laid out again at their shape; Commons' drawing is the full one |
 | `RE` | Réunion | commons | circle-flags 63% | design: Wikidata gives France's flag; circle-flags draws the Lofo, a flag proposed for Réunion. |
 | `SB` | Solomon Islands | commons | flag-icons 29% | same design: the sets draw it simplified, in other shades, or laid out again at their shape; Commons' drawing is the full one |
-| `SH` | St. Helena | commons | country-flag-icons 69%, circle-flags 58% | design: Wikidata gives the Union Flag for Saint Helena, Ascension and Tristan da Cunha; the sets draw Saint Helena's own flag. |
+| `SH` | St. Helena | commons | flag-icons 75% | design: Wikidata gives the Union Flag for Saint Helena, Ascension and Tristan da Cunha; the sets draw Saint Helena's own flag, which ships as the default (NAMED) and the Union Flag is a variant. |
 | `SZ` | Eswatini | commons | circle-flags 40% | same design: the sets draw it simplified, in other shades, or laid out again at their shape; Commons' drawing is the full one |
 | `TM` | Turkmenistan | commons | circle-flags 25% | same design: the sets draw it simplified, in other shades, or laid out again at their shape; Commons' drawing is the full one |
 | `UM` | U.S. Outlying Islands | commons | flag-icons 52%, country-flag-icons 51%, circle-flags 55% | same design: the sets draw it simplified, in other shades, or laid out again at their shape; Commons' drawing is the full one |
 | `US` | United States | commons | circle-flags 38% | same design: the sets draw it simplified, in other shades, or laid out again at their shape; Commons' drawing is the full one |
 | `UY` | Uruguay | commons | circle-flags 34% | same design: the sets draw it simplified, in other shades, or laid out again at their shape; Commons' drawing is the full one |
 | `VI` | U.S. Virgin Islands | commons | country-flag-icons 36%, circle-flags 36% | same design: the sets draw it simplified, in other shades, or laid out again at their shape; Commons' drawing is the full one |
-| `WF` | Wallis & Futuna | commons | flag-icons 62% | design: Commons' drawing is Wallis and Futuna's local flag; flag-icons draws France's. |
-| `YT` | Mayotte | commons | flag-icons 83%, country-flag-icons 38%, circle-flags 29% | design: Commons' drawing is Mayotte's local flag, with its lettering; flag-icons draws France's. |
+| `WF` | Wallis & Futuna | commons | country-flag-icons 63%, circle-flags 53% | design: France's flag ships (NAMED); Commons' local flag is the `local` variant, and flag-icons draws France's. |
+| `YT` | Mayotte | commons | country-flag-icons 74%, circle-flags 45% | design: France's flag ships (NAMED); Commons' local flag, with its lettering, is the `local` variant, and flag-icons draws France's. |
 | `ZW` | Zimbabwe | commons | country-flag-icons 26% | same design: the sets draw it simplified, in other shades, or laid out again at their shape; Commons' drawing is the full one |
 | `AU-ACT` | Australian Capital Territory | commons | circle-flags 55% | same design: the sets draw it simplified, in other shades, or laid out again at their shape; Commons' drawing is the full one |
 | `CA-BC` | British Columbia | commons | circle-flags 40% | same design: the sets draw it simplified, in other shades, or laid out again at their shape; Commons' drawing is the full one |
 | `FR-CP` | Clipperton Island | commons | circle-flags 51% | design: Wikidata gives France's flag, the only one flown on Clipperton Island; circle-flags draws an unofficial local design. |
 | `US-DC` | Washington DC | commons | circle-flags 27% | same design: the sets draw it simplified, in other shades, or laid out again at their shape; Commons' drawing is the full one |
+| `US-MS` | Mississippi | commons | circle-flags 45% | same design: the sets draw it simplified, in other shades, or laid out again at their shape; Commons' drawing is the full one |
 | `US-SC` | South Carolina | commons | circle-flags 73% | same design: the sets draw it simplified, in other shades, or laid out again at their shape; Commons' drawing is the full one |
 | `US-UM` | U.S. Outlying Islands | commons | circle-flags 55% | same design: the sets draw it simplified, in other shades, or laid out again at their shape; Commons' drawing is the full one |
 | `US-VI` | U.S. Virgin Islands | commons | circle-flags 36% | same design: the sets draw it simplified, in other shades, or laid out again at their shape; Commons' drawing is the full one |

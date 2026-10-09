@@ -25,7 +25,7 @@ import { subdivision as kuniSubdivision } from "@johnmorrisdotca/kuni/subdivisio
 
 import { setCandidates, setNamed } from "./candidates.ts";
 import type { SourceName } from "./candidates.ts";
-import { ACCEPTED, BUDGET_BYTES, CEILING_BYTES, FOCUS, NO_FLAG, REVIEWED, SUBDIVISION_COUNTRIES } from "./data-config.ts";
+import { ACCEPTED, BUDGET_BYTES, CEILING_BYTES, FOCUS, NO_FLAG, REVIEWED, SAME_PLACE, SUBDIVISION_COUNTRIES, VARIANTS } from "./data-config.ts";
 import type { Anchor } from "./data-config.ts";
 import { classify, restrictionsOf } from "./licence.ts";
 import type { Licence } from "./licence.ts";
@@ -69,7 +69,7 @@ interface Choice {
   designDiffers?: string[];
 }
 
-type ShippedLicence = { kind: "public-domain" | "cc0" | "cc-by" | "mit"; name: string; url: string | null };
+type ShippedLicence = { kind: "public-domain" | "cc0" | "cc-by" | "mit" | "accepted"; name: string; url: string | null };
 
 interface Drawing {
   key: string; // "commons:Flag of Japan.svg", "country-flag-icons:3x2/YE.svg"
@@ -150,7 +150,7 @@ const licenceOf = (file: CommonsFile): Licence => {
   const decision = ACCEPTED[file.file];
   if (classified.shipped || decision === undefined) return classified;
 
-  return { shipped: true, kind: classified.publicDomainTemplate ? "public-domain" : "cc-by", name: `${classified.name} (accepted: ${decision})`, url: classified.url };
+  return { shipped: true, kind: classified.publicDomainTemplate ? "public-domain" : "accepted", name: `${classified.name} (accepted: ${decision})`, url: classified.url };
 };
 
 // The drawing a choice names, with what is known about where it comes from and its terms.
@@ -253,7 +253,7 @@ for (const { place, drawing, reference, referenceLicence, item, choice, named } 
   shipped.push({ place, drawing, reference, referenceLicence, item, optimised, owner, gzip: gzipSync(optimised.svg, { level: 9 }).length, why: named === undefined ? choice.why : `Named by hand: ${named} ${choice.why}`, compared: choice.compared, designDiffers: choice.designDiffers ?? [] });
 }
 shipped.sort(byCode);
-leftOut.sort(byCode);
+
 const owners = shipped.filter((one) => one.owner === one.place.code);
 
 // How each picture is framed at 4:3, square and round (scripts/framing.mjs, `pnpm data:framing`), and the
@@ -284,9 +284,17 @@ interface Adapted {
   raw: number;
 }
 const adapted: Adapted[] = [];
+const unmeasuredFlags: string[] = [];
 for (const one of owners) {
   const framing = FRAMINGS_FILE[one.place.code];
-  if (framing === undefined || FRAMED_SHAPES.some((shape) => framing[shape] === undefined)) throw new Error(`${one.place.code} has no line in scripts/framings.data.json: run pnpm data:framing ${one.place.code}`);
+  if (framing === undefined || FRAMED_SHAPES.some((shape) => framing[shape] === undefined)) {
+    // Not measured yet (a flag new to this build: scripts/framing.mjs reads this build's records, so it cannot measure it before). Everything is
+    // written as if it were cropped from the centre, and the build stops at its end, naming what to measure.
+    unmeasuredFlags.push(one.place.code);
+    const placeholder: Framing = { method: "cover", fit: "cover", crop: { rule: "centre", at: "centre" } };
+    FRAMINGS_FILE[one.place.code] = { "4:3": placeholder, "1:1": placeholder, round: placeholder };
+    continue;
+  }
   for (const shape of ["4:3", "1:1"] as const) {
     const entry = framing[shape];
     if (entry.method !== "adapted") continue;
@@ -300,6 +308,100 @@ for (const one of owners) {
 }
 const framingOf = (one: Shipped): Record<FramedShape, Framing> => FRAMINGS_FILE[one.owner]!;
 const adaptedFor = (one: Shipped, shape: FramedShape): Adapted | undefined => adapted.find((entry) => entry.owner === one.owner && entry.shape === (shape === "round" ? "1:1" : shape) && framingOf(one)[shape].method === "adapted");
+
+// 3b. Each place's other flags in real use (VARIANTS in data-config.ts): the drawing of each is fetched and licence-checked
+// like any flag's, shipped as its own module (`<code>--<id>`), or as the module of the picture it shares with a flag.
+interface VariantRecord {
+  id: string;
+  name: string;
+  nameJa: string;
+  status: string;
+  from: string | null;
+  until: string | null;
+  why: string;
+  source: string;
+  default: boolean;
+  module: string;
+  frames: Record<"4:3" | "1:1" | "round", "cover" | "crop" | "contain">;
+  drawing: { source: string; file: string; page: string; licence: ShippedLicence; author: string | null; credit: string | null; attributionRequired: boolean; restrictions: string[]; uploaded: string | null; width: number; height: number; bytes: number };
+}
+interface VariantModule {
+  module: string; // "af--de-facto"
+  owner: string | null; // the module whose picture it is, where a flag has the same drawing
+  drawing: Drawing;
+  optimised: Optimised | null;
+  name: string;
+  spec: string;
+}
+const variantSets = new Map<string, { disputed: boolean; default: string | null; variants: VariantRecord[] }>();
+const variantModules: VariantModule[] = [];
+const variantsLeftOut: { code: string; id: string; file: string; reason: string }[] = [];
+const shippedByCode = new Map(shipped.map((one) => [one.place.code, one]));
+const variantKeyFor = (code: string): string | null => (VARIANTS[code] !== undefined ? code : SAME_PLACE[code] !== undefined && VARIANTS[SAME_PLACE[code]!] !== undefined ? SAME_PLACE[code]! : null);
+const commonsDrawing = (file: CommonsFile, licence: Licence): Drawing => {
+  if (!licence.shipped) throw new Error(`${file.file}: licence ${licence.name} is not one that ships`);
+
+  return {
+    key: `commons:${file.file}`,
+    source: "commons",
+    file: file.file,
+    page: file.page,
+    version: null,
+    licence: { kind: licence.kind, name: licence.name, url: licence.url },
+    author: file.metadata.Artist ?? null,
+    credit: file.metadata.Credit ?? null,
+    attributionRequired: file.metadata.AttributionRequired === "true",
+    templates: file.templates.map((template) => template.replace(/^Template:/, "")),
+    uploaded: file.uploaded.slice(0, 10),
+    bytes: file.bytes,
+    text: commonsText(file),
+  };
+};
+for (const [code, set] of Object.entries(VARIANTS)) {
+  const ids = set.variants.map((variant) => variant.id);
+  if (new Set(ids).size !== ids.length) throw new Error(`VARIANTS ${code}: two variants share an id`);
+  if (!ids.every((id) => /^[a-z0-9]+(-[a-z0-9]+)*$/.test(id))) throw new Error(`VARIANTS ${code}: an id is not kebab case`);
+  if (set.default !== null && !ids.includes(set.default)) throw new Error(`VARIANTS ${code}: default ${set.default} is not one of its variants`);
+  const own = set.variants.filter((variant) => variant.file === null);
+  const place = shippedByCode.get(code);
+  if (set.default === null) {
+    if (own.length > 0 || place !== undefined) throw new Error(`VARIANTS ${code}: no default means the place has no flag of its own, and every variant names a file`);
+  } else if (place === undefined || own.length !== 1 || own[0]!.id !== set.default) throw new Error(`VARIANTS ${code}: its default must be its one variant with no file, and the place must have a flag here`);
+  const records: VariantRecord[] = [];
+  for (const spec of set.variants) {
+    const base = { id: spec.id, name: spec.name, nameJa: spec.nameJa, status: spec.status, from: spec.from, until: spec.until, why: spec.why, source: spec.source, default: spec.id === set.default };
+    if (spec.file === null) {
+      const one = place!;
+      const measured = FRAMINGS_FILE[one.owner]!;
+      records.push({ ...base, module: moduleName(code), frames: { "4:3": measured["4:3"].fit, "1:1": measured["1:1"].fit, round: measured.round.fit }, drawing: { source: one.drawing.source, file: one.drawing.file, page: one.drawing.page, licence: one.drawing.licence, author: one.drawing.author, credit: one.drawing.credit, attributionRequired: one.drawing.attributionRequired, restrictions: restrictionsOf(one.reference.metadata), uploaded: one.drawing.uploaded, width: one.optimised.width, height: one.optimised.height, bytes: size(one) } });
+      continue;
+    }
+    const file = commonsByFile.get(spec.file);
+    if (file === undefined) throw new Error(`VARIANTS ${code} ${spec.id}: ${spec.file} is not in the Commons snapshot: run pnpm data:commons`);
+    const licence = licenceOf(file);
+    if (file.mime !== "image/svg+xml" || !licence.shipped) {
+      variantsLeftOut.push({ code, id: spec.id, file: spec.file, reason: file.mime !== "image/svg+xml" ? `a ${file.mime} file, not an SVG` : `licence ${licence.name}` });
+      continue;
+    }
+    const drawing = commonsDrawing(file, licence);
+    const module = `${moduleName(code)}--${spec.id}`;
+    const sharer = shipped.find((one) => one.drawing.key === drawing.key);
+    let optimised: Optimised | null = null;
+    if (sharer === undefined) {
+      optimised = optimiseFlag(drawing.text, `${code}--${spec.id}`, {});
+      optimised = { ...optimised, svg: optimised.svg.replace(/^<svg\b/, `<svg data-hata="${module}"`) };
+      if (Buffer.byteLength(optimised.svg) > CEILING_BYTES) throw new Error(`${module}: ${KB(Buffer.byteLength(optimised.svg))} after optimising, over the ceiling of ${KB(CEILING_BYTES)}`);
+    }
+    const picture = sharer?.optimised ?? optimised!;
+    variantModules.push({ module, owner: sharer === undefined ? null : moduleName(sharer.owner), drawing, optimised, name: spec.name, spec: `${code} ${spec.id}` });
+    const measured = FRAMINGS_FILE[sharer?.owner ?? `${code}--${spec.id}`];
+    const frames = measured === undefined ? ({ "4:3": "cover", "1:1": "cover", round: "cover" } as const) : ({ "4:3": measured["4:3"].fit, "1:1": measured["1:1"].fit, round: measured.round.fit } as const);
+    records.push({ ...base, module, frames, drawing: { source: "commons", file: drawing.file, page: drawing.page, licence: drawing.licence, author: drawing.author, credit: drawing.credit, attributionRequired: drawing.attributionRequired, restrictions: restrictionsOf(file.metadata), uploaded: drawing.uploaded, width: picture.width, height: picture.height, bytes: Buffer.byteLength(picture.svg) } });
+  }
+  variantSets.set(code, { disputed: set.disputed, default: set.default, variants: records });
+}
+const variantsOfCode = (code: string): { disputed: boolean; default: string | null; variants: VariantRecord[] } => variantSets.get(variantKeyFor(code) ?? "") ?? { disputed: false, default: null, variants: [] };
+leftOut.sort(byCode);
 
 // 4. The source files.
 const quote = (text: string): string => JSON.stringify(text);
@@ -361,6 +463,29 @@ for (const one of adapted) {
  */`;
   writeFileSync(join(FLAGS_DIR, name), `${HEADER}\n// Source: ${one.page}\n\n${doc}\nconst svg: string = ${quote(one.optimised.svg)};\n\nexport { svg };\nexport default svg;\n`);
 }
+for (const one of variantModules) {
+  const name = `${one.module}.ts`;
+  written.add(name);
+  const [code, id] = one.spec.split(" ") as [string, string];
+  const place = places.find((candidate) => candidate.code === code)!;
+  const picture = one.optimised ?? shipped.find((candidate) => moduleName(candidate.owner) === one.owner)!.optimised;
+  const doc = `/**
+ * ${one.name}: one of the flags of ${place.en}${place.ja ? ` (${place.ja})` : ""}, ${code}, in real use, as an SVG string: viewBox ${picture.width} by ${picture.height} (${ratio(picture.width, picture.height)}), ${KB(Buffer.byteLength(picture.svg))}.${one.owner === null ? "" : ` The same picture as ${one.owner.toUpperCase()}'s.`}
+ * From ${sourceWords(one.drawing)} (${licenceWords(one.drawing.licence)}). \`flag("${code}", { variant: "${id}" })\` loads it, and \`variantsOf("${code}")\` says its status, dates and why it is offered.
+ *
+ * @example
+ * \`\`\`ts
+ * import flag from "@johnmorrisdotca/hata/flags/${one.module}";
+ *
+ * element.innerHTML = flag;
+ * \`\`\`
+ */`;
+  const body =
+    one.owner === null
+      ? `${HEADER}\n// Source: ${one.drawing.page}\n\n${doc}\nconst svg: string = ${quote(one.optimised!.svg)};\n\nexport { svg };\nexport default svg;\n`
+      : `${HEADER}\n// Source: ${one.drawing.page}, the same drawing as ${one.owner.toUpperCase()}'s flag.\n\nimport { svg as shared } from "./${one.owner}";\n\n${doc}\nconst svg: string = shared;\n\nexport { svg };\nexport default svg;\n`;
+  writeFileSync(join(FLAGS_DIR, name), body);
+}
 for (const old of readdirSync(FLAGS_DIR)) if (!written.has(old)) rmSync(join(FLAGS_DIR, old));
 
 const codes = shipped.map((one) => one.place.code);
@@ -409,6 +534,10 @@ export type { FlagCode };
 `,
 );
 
+const variantLoaderLines = [...new Set([...codes, ...places.map((place) => place.code).filter((code) => variantKeyFor(code) !== null)])]
+  .filter((code) => variantsOfCode(code).variants.length > 0)
+  .sort()
+  .flatMap((code) => variantsOfCode(code).variants.map((variant) => `  ${quote(`${code}--${variant.id}`)}: () => import("../flags/${variant.module}.js"),`));
 writeFileSync(
   join(DATA_DIR, "loaders.data.ts"),
   `${HEADER}
@@ -421,6 +550,23 @@ ${codes.map((code) => `  ${quote(code)}: () => import("../flags/${moduleName(cod
 };
 
 export { LOADERS };
+`,
+);
+
+writeFileSync(
+  join(DATA_DIR, "variants.data.ts"),
+  `${HEADER}
+// Every variant of every code with one, by "<code>--<id>" (the default's included, and a code that is the same place as
+// another with that place's variants), so \`flag(code, { variant })\` is one lookup. Its own entry (dist/variants.js),
+// loaded only when a variant is asked for, so /load stays small.
+
+type Loader = () => Promise<{ svg: string }>;
+
+const VARIANT_LOADERS: Readonly<Record<string, Loader>> = {
+${variantLoaderLines.join("\n")}
+};
+
+export { VARIANT_LOADERS };
 `,
 );
 
@@ -449,6 +595,7 @@ writeFileSync(
 
 const NAMES: Readonly<Record<string, readonly [en: string, ja: string, aspect: number]>> = {
 ${shipped.map((one) => `  ${quote(one.place.code)}: [${quote(one.place.en)}, ${quote(one.place.ja ?? one.place.en)}, ${Number((one.optimised.width / one.optimised.height).toFixed(4))}],`).join("\n")}
+${places.filter((place) => shippedByCode.get(place.code) === undefined && variantsOfCode(place.code).variants.length > 0).map((place) => `  ${quote(place.code)}: [${quote(place.en)}, ${quote(place.ja ?? place.en)}, ${Number((variantsOfCode(place.code).variants[0]!.drawing.width / variantsOfCode(place.code).variants[0]!.drawing.height).toFixed(4))}],`).join("\n")}
 };
 
 export { NAMES };
@@ -462,7 +609,13 @@ const LETTER: Record<Framing["fit"], string> = { cover: "c", crop: "a", contain:
 const cropRows = owners
   .map((one) => [moduleName(one.place.code), FOCUS[one.place.code]?.at] as const)
   .filter((row): row is readonly [string, "left" | "right" | "top" | "bottom"] => row[1] !== undefined && row[1] !== "whole");
-const framingRows = owners.map((one) => [moduleName(one.place.code), FRAMED_SHAPES.map((shape) => LETTER[framingOf(one)[shape].fit]).join(",")] as const).filter(([, letters]) => letters !== "c,c,c");
+// A variant with a picture of its own is framed like any flag (scripts/framing.mjs measures it under "<code>--<id>").
+const variantPictures = variantModules.filter((one) => one.optimised !== null).map((one) => ({ module: one.module, key: one.spec.replace(" ", "--"), optimised: one.optimised! }));
+const unmeasured = variantPictures.filter((one) => FRAMINGS_FILE[one.key] === undefined);
+const framingRows = [
+  ...owners.map((one) => [moduleName(one.place.code), FRAMED_SHAPES.map((shape) => LETTER[framingOf(one)[shape].fit]).join(",")] as const),
+  ...variantPictures.filter((one) => FRAMINGS_FILE[one.key] !== undefined).map((one) => [one.module, FRAMED_SHAPES.map((shape) => LETTER[FRAMINGS_FILE[one.key]![shape].fit]).join(",")] as const),
+].filter(([, letters]) => letters !== "c,c,c");
 // Written as lists of names under the value they share, so that the tables stay small in the main entry.
 const grouped = (rows: readonly (readonly [string, string])[]): string => {
   const byValue = new Map<string, string[]>();
@@ -533,6 +686,9 @@ const row = (one: Shipped): string => {
     bytes: size(one),
     gzip: one.gzip,
     notes: one.optimised.notes,
+    disputed: variantsOfCode(one.place.code).disputed,
+    defaultVariant: variantsOfCode(one.place.code).default,
+    variants: variantsOfCode(one.place.code).variants,
     framings: Object.fromEntries(
       FRAMED_SHAPES.map((shape) => {
         const framing = framingOf(one)[shape];
@@ -564,15 +720,20 @@ writeFileSync(
 
 import type { FlagRecord, LeftOutRecord } from "../manifest.types";
 
+// The pictures that only a variant has, for scripts/framing.mjs to measure: "<code>--<id>" and the picture's box.
+const VARIANT_PICTURES: readonly { code: string; width: number; height: number }[] = [
+${variantPictures.map((one) => `  ${JSON.stringify({ code: one.key, width: one.optimised.width, height: one.optimised.height })},`).join("\n")}
+];
+
 const RECORDS: readonly FlagRecord[] = [
 ${shipped.map(row).join("\n")}
 ];
 
 const LEFT_OUT: readonly LeftOutRecord[] = [
-${leftOut.map((one) => `  ${JSON.stringify({ code: one.place.code, kind: one.kind, reason: one.reason, file: one.file?.file ?? null, page: one.file?.page ?? null, licence: one.licence?.name ?? null })},`).join("\n")}
+${leftOut.map((one) => `  ${JSON.stringify({ code: one.place.code, kind: one.kind, reason: one.reason, file: one.file?.file ?? null, page: one.file?.page ?? null, licence: one.licence?.name ?? null, disputed: variantsOfCode(one.place.code).disputed, defaultVariant: variantsOfCode(one.place.code).default, variants: variantsOfCode(one.place.code).variants })},`).join("\n")}
 ];
 
-export { LEFT_OUT, RECORDS };
+export { LEFT_OUT, RECORDS, VARIANT_PICTURES };
 `,
 );
 
@@ -733,6 +894,33 @@ ${measuredWhole.map((one) => `| \`${one.place.code}\` | ${cell(one.place.en)} | 
 `;
 writeFileSync(join(ROOT, "docs", "framing.md"), framingDoc);
 
+// Every place with more than one flag in real use: docs/variants.md.
+const variantsDoc = `# Disputed and alternative flags
+
+Made by \`pnpm data\`; a test fails if this list and the data differ. A place with more than one flag in real use has them
+all here, each with its status, its dates, the reason it is offered and a source, and one of them is the default
+(\`flag(code)\`), except where the place has no flag of its own (Northern Ireland). Hata takes no side: the status says what
+authority a flag has, and the default is the flag of the authority the world recognises, or the place's own flag where it has one.
+The decisions behind the defaults are in [decisions.md](decisions.md).
+
+\`flag(code, { variant: id })\` loads one; \`variantsOf(code)\` from \`/manifest\` lists them; \`<hata-flag code variant>\` draws one; each is its
+own module, \`/flags/<code>--<id>\`, and file, \`svg/<code>--<id>.svg\`.
+
+| Code | Place | Id | Status | Dates | Default | Why | Source | Drawing | Licence |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+${[...variantSets]
+  .flatMap(([code, set]) => {
+    const place = places.find((candidate) => candidate.code === code)!;
+    return set.variants.map((variant) => `| \`${code}\`${set.disputed ? " (disputed)" : ""} | ${cell(place.en)} | \`${variant.id}\` | ${variant.status} | ${cell([variant.from, variant.until].filter((one) => one !== null).join(" to ") || "")} | ${variant.default ? "yes" : ""} | ${cell(variant.why)} | [source](${variant.source}) | ${linkTo(variant.drawing.file, variant.drawing.page)} | ${cell(variant.drawing.licence.name)} |`);
+  })
+  .join("\n")}
+
+## Offered in the data and left out
+
+${variantsLeftOut.length === 0 ? "None: every drawing named in VARIANTS ships." : variantsLeftOut.map((one) => `- \`${one.code}\` \`${one.id}\`: ${cell(one.file)}, ${one.reason}.`).join("\n")}
+`;
+writeFileSync(join(ROOT, "docs", "variants.md"), variantsDoc);
+
 const totals = { bytes: owners.reduce((sum, one) => sum + size(one), 0), gzip: owners.reduce((sum, one) => sum + one.gzip, 0), raw: owners.reduce((sum, one) => sum + one.drawing.bytes, 0) };
 const sizes = owners.map(size).sort((a, b) => a - b);
 const median = sizes[Math.floor(sizes.length / 2)] ?? 0;
@@ -796,7 +984,7 @@ const between = (text: string, name: string, body: string): string => {
   if (!text.includes(start) || !text.includes(end)) throw new Error(`NOTICE.md has no ${name} markers`);
   return `${text.slice(0, text.indexOf(start))}${start}\n${body}\n${end}${text.slice(text.indexOf(end) + end.length)}`;
 };
-const credited = owners.filter((one) => one.drawing.source === "commons" && (one.drawing.licence.kind === "cc-by" || one.drawing.attributionRequired));
+const credited = owners.filter((one) => one.drawing.source === "commons" && (one.drawing.licence.kind === "cc-by" || one.drawing.licence.kind === "accepted" || one.drawing.attributionRequired));
 const creditOf = (one: Shipped): string => {
   const metadata = one.reference.metadata;
   const by = [metadata.Attribution ? `attributed as "${metadata.Attribution}"` : null, metadata.Artist ? `author as Commons gives it: ${metadata.Artist}` : null].filter(Boolean).join("; ");
@@ -815,9 +1003,14 @@ const setsBody =
           return `### ${name} ${set.version}\n\n${set.home}, on npm as \`${name}\`. ${[flags.length > 0 ? `The drawings of ${flags.join(", ")}.` : "", framed.length > 0 ? `The drawings made for a frame: ${framed.join(", ")}.` : ""].filter(Boolean).join(" ")}\n\n\`\`\`text\n${licence}\n\`\`\``;
         })
         .join("\n\n");
-writeFileSync(join(ROOT, "NOTICE.md"), between(between(notice, "attributions", credited.length === 0 ? "No Commons drawing in this version is under a licence that asks for credit." : credited.map(creditOf).join("\n")), "sets", setsBody));
+const variantCredits = [...variantSets]
+  .flatMap(([code, set]) => set.variants.filter((variant) => !variant.default && (variant.drawing.licence.kind === "cc-by" || variant.drawing.licence.kind === "accepted" || variant.drawing.attributionRequired)).map((variant) => ({ code, variant })))
+  .filter(({ variant }) => !credited.some((one) => one.drawing.file === variant.drawing.file))
+  .map(({ code, variant }) => `- \`${code}--${variant.id}\` ${places.find((place) => place.code === code)!.en}, ${variant.name}: "${variant.drawing.file}", ${variant.drawing.author ? `author as Commons gives it: ${variant.drawing.author}` : "no author named on Commons"}; ${variant.drawing.licence.name}${variant.drawing.licence.url ? ` (${variant.drawing.licence.url})` : ""}; ${variant.drawing.page}`);
+writeFileSync(join(ROOT, "NOTICE.md"), between(between(notice, "attributions", [...credited.map(creditOf), ...variantCredits].length === 0 ? "No Commons drawing in this version is under a licence that asks for credit." : [...credited.map(creditOf), ...variantCredits].join("\n")), "sets", setsBody));
 
 // 6. What happened.
+console.log(`variants: ${[...variantSets].map(([code, set]) => `${code} ${set.variants.length}`).join(", ")}${variantsLeftOut.length > 0 ? `; left out: ${variantsLeftOut.map((one) => `${one.code} ${one.id} (${one.reason})`).join(", ")}` : ""}`);
 const summary = groups.map((group) => `${group} ${count(group).flags}/${count(group).total}`).join(", ");
 console.log(`${shipped.length} flags (${owners.length} pictures): ${summary}`);
 console.log(`winners: ${JSON.stringify(tally(shipped, (one) => one.drawing.source))}`);
@@ -827,3 +1020,5 @@ console.log(`left out: ${leftOut.map((one) => `${one.place.code} (${one.kind})`)
 console.log(`over the ${KB(BUDGET_BYTES)} budget: ${over.length} flags`);
 console.log(`where a set draws something else: ${lookAt.length} flags${unreviewed.length > 0 ? `, not yet looked at: ${unreviewed.join(" ")}` : ", every one looked at"}`);
 if (report) for (const one of shipped) console.log(`${one.place.code.padEnd(6)} ${KB(size(one)).padStart(9)} ${one.drawing.source.padEnd(19)} ${one.drawing.licence.name.padEnd(16)} ${one.drawing.file}`);
+const toMeasure = [...unmeasuredFlags, ...unmeasured.map((one) => one.key)];
+if (toMeasure.length > 0) throw new Error(`${toMeasure.join(", ")} have no line in scripts/framings.data.json, so everything is written as cropped from the centre: run pnpm data:framing ${toMeasure.join(" ")}, then pnpm data again`);
