@@ -2,7 +2,7 @@
 // the code only Hata writes, a plain <img> of the CDN's SVG file framed by CSS, the same as a data: URI, and an ES
 // module. The preview is a live <hata-flag> drawn by the package's own element.
 import { flagDataUri } from "./dist/load.js";
-import { manifest } from "./dist/manifest.js";
+import { manifest, variantsOf } from "./dist/manifest.js";
 import { flagAspect, flagName } from "./dist/names.js";
 
 const PACKAGE = "@johnmorrisdotca/hata";
@@ -24,6 +24,14 @@ export const FLAG_OPTIONS = [
       { value: "1:1", label: { en: "Square", ja: "正方形" } },
       { value: "round", label: { en: "Round", ja: "円形" } },
     ],
+  },
+  {
+    id: "variant",
+    kind: "text",
+    attribute: "variant",
+    default: "",
+    label: { en: "Variant (optional)", ja: "別の旗（任意）" },
+    help: { en: "Which of the place's flags in real use to draw, by its id (the flag's panel above has the switch): de-facto, stripes, local. Left empty, the default.", ja: "その地域で実際に使われている旗のうち、どれを描くかを id で指定します（上の旗のパネルに切り替えがあります）。例：de-facto、stripes、local。空のままなら既定の旗です。" },
   },
   {
     id: "fit",
@@ -70,7 +78,12 @@ export const FLAG_OPTIONS = [
   },
 ];
 
-const aspectFor = (settings) => (settings.shape === "4:3" ? 4 / 3 : settings.shape === "own" ? (flagAspect(settings.code) ?? 1.5) : 1);
+// A variant is drawn at its own proportions, which are not always the default flag's (the Taliban's is 2:1, the Republic's 3:2).
+const variantAspect = (settings) => {
+  const drawing = variantsOf(settings.code).find((one) => one.id === settings.variant)?.drawing;
+  return drawing === undefined ? null : drawing.width / drawing.height;
+};
+const aspectFor = (settings) => (settings.shape === "4:3" ? 4 / 3 : settings.shape === "own" ? ((settings.variant ? variantAspect(settings) : null) ?? flagAspect(settings.code) ?? 1.5) : 1);
 const nameFor = (settings) => settings.label || flagName(settings.code, settings.lang || "en") || settings.code;
 const escapeAttribute = (text) => String(text).replaceAll("&", "&amp;").replaceAll('"', "&quot;").replaceAll("<", "&lt;");
 
@@ -85,7 +98,7 @@ function fitOf(settings, framing) {
 }
 
 // Whether the picture is the drawing made for the shape by hand, which `auto` and `crop` use and `whole` does not.
-const drawnFor = (settings, framing) => settings.shape !== "own" && framing?.method === "adapted" && (settings.fit || "auto") !== "whole";
+const drawnFor = (settings, framing) => settings.shape !== "own" && !settings.variant && framing?.method === "adapted" && (settings.fit || "auto") !== "whole";
 
 // The CSS an <img> needs to look as <hata-flag> does: framed by object-fit where no drawing was made for the shape.
 function imageStyle(settings, framing, adapted) {
@@ -112,8 +125,8 @@ export const HATA_PRODUCT = {
   embed: "https://johnmorrisdotca.github.io/hata/embed.html",
   formats: ["element", "img", "data", "iframe", "module", "react", "vue", "svelte", "angular"],
   async context(settings) {
-    const options = settings.shape === "own" ? undefined : { shape: settings.shape, ...(settings.fit && settings.fit !== "auto" ? { fit: settings.fit } : {}) };
-    return { uri: await flagDataUri(settings.code, options), framing: manifest(settings.code)?.framings[settings.shape] ?? null };
+    const options = { ...(settings.shape === "own" ? {} : { shape: settings.shape, ...(settings.fit && settings.fit !== "auto" ? { fit: settings.fit } : {}) }), ...(settings.variant ? { variant: settings.variant } : {}) };
+    return { uri: await flagDataUri(settings.code, Object.keys(options).length === 0 ? undefined : options), framing: settings.variant ? null : (manifest(settings.code)?.framings[settings.shape] ?? null) };
   },
   frameSize(settings) {
     const height = Number(settings.size);
@@ -142,7 +155,8 @@ export const HATA_PRODUCT = {
       write(settings, _attributes, context) {
         const size = Number(settings.size);
         const adapted = drawnFor(settings, context.framing);
-        const file = adapted ? `${settings.code.toLowerCase()}.${settings.shape === "4:3" ? "4x3" : "1x1"}.svg` : `${settings.code.toLowerCase()}.svg`;
+        const base = settings.variant ? `${settings.code.toLowerCase()}--${settings.variant}` : settings.code.toLowerCase();
+        const file = adapted ? `${base}.${settings.shape === "4:3" ? "4x3" : "1x1"}.svg` : `${base}.svg`;
         const width = Math.round(size * aspectFor(settings));
         return `<img src="${SVG_BASE}/${file}" alt="${escapeAttribute(nameFor(settings))}" width="${width}" height="${size}"${imageStyle(settings, context.framing, adapted)}>`;
       },
@@ -162,7 +176,9 @@ export const HATA_PRODUCT = {
       language: "js",
       write(settings) {
         const fit = settings.fit && settings.fit !== "auto" ? `, fit: ${JSON.stringify(settings.fit)}` : "";
-        const options = settings.shape === "own" ? "" : `, { shape: ${JSON.stringify(settings.shape)}${fit} }`;
+        const variant = settings.variant ? `variant: ${JSON.stringify(settings.variant)}` : "";
+        const framed = settings.shape === "own" ? "" : `shape: ${JSON.stringify(settings.shape)}${fit}`;
+        const options = framed === "" && variant === "" ? "" : `, { ${[variant, framed].filter(Boolean).join(", ")} }`;
         return `import { flagDataUri } from "${PACKAGE}/load";\n\nconst image = new Image();\nimage.src = (await flagDataUri(${JSON.stringify(settings.code)}${options})) ?? "";\nimage.alt = ${JSON.stringify(nameFor(settings))};\nimage.height = ${Number(settings.size)};\ndocument.body.append(image);`;
       },
     },

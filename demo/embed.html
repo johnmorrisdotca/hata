@@ -20,7 +20,7 @@
     <script type="module">
       import "./dist/element-define.js";
       const element = document.getElementById("flag");
-      const ATTRIBUTES = ["code", "shape", "size", "fit", "label", "theme", "border", "shadow"];
+      const ATTRIBUTES = ["code", "shape", "size", "fit", "variant", "label", "theme", "border", "shadow"];
       const FLAGS = ["border", "shadow"];
       const draw = () => {
         const query = new URLSearchParams(location.hash.length > 1 ? location.hash.slice(1) : location.search.slice(1));

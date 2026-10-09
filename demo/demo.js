@@ -136,9 +136,16 @@ for (const code of FLAG_CODES) {
   small.textContent = code;
   label.append(name, small);
   button.append(picture, label);
+  // A place whose flag is claimed by more than one authority or community says so, on the card.
+  let badge = null;
+  if (MANIFEST.find((record) => record.code === code)?.disputed) {
+    badge = Object.assign(document.createElement("span"), { className: "badge" });
+    badge.setAttribute("data-testid", `disputed-${code}`);
+    button.append(badge);
+  }
   button.addEventListener("click", () => showDetail(code));
   item.append(button);
-  tiles.set(code, { item, name });
+  tiles.set(code, { item, name, badge });
   $("grid").append(item);
 }
 const searchText = new Map(FLAG_CODES.map((code) => [code, [code, NAMES[code].en, NAMES[code].ja, NAMES[code].short, NAMES[code].shortJa, NAMES[code].reading].map(fold).join("|")]));
@@ -183,6 +190,7 @@ function drawGallery() {
     const tile = tiles.get(code);
     tile.name.textContent = nameOf(code);
     tile.name.lang = language.lang;
+    if (tile.badge !== null) tile.badge.textContent = say("disputed");
     tile.item.querySelector("button").setAttribute("aria-label", say("tile", { name: nameOf(code), code }));
     const group = groupOf(code);
     const visible = (state.set === "all" || state.set === group) && (state.region === "all" || (group === "country" && NAMES[code].continent === state.region)) && (wanted === "" || searchText.get(code).includes(wanted));
@@ -213,6 +221,13 @@ function drawLeftOut() {
       reason.lang = "en";
       reason.textContent = ` ${one.reason}`;
       item.append(head, reason);
+      // A place with no flag of its own can still have flags in real use: its panel shows them (Northern Ireland).
+      if (one.variants.length > 0) {
+        const button = Object.assign(document.createElement("button"), { type: "button", className: "fam-button", textContent: say("show_variants", { n: one.variants.length }) });
+        button.setAttribute("data-testid", `variants-${one.code}`);
+        button.addEventListener("click", () => showDetail(one.code));
+        item.append(" ", button);
+      }
       return item;
     }),
   );
@@ -280,46 +295,98 @@ const fact = (list, label, value, options = {}) => {
   list.append(term, detail);
 };
 
-async function showDetail(code) {
+// The flags of a place in real use besides, or instead of, the one its code gives (variantsOf): the panel's switch.
+const variantsOfPlace = (code) => (manifest(code) ?? LEFT_OUT.find((one) => one.code === code))?.variants ?? [];
+const MODULE_FILE = (module) => `dist/svg/${module}.svg`;
+let openedVariant = null;
+
+async function showDetail(code, variantId) {
   opened = code;
   const record = manifest(code);
+  const variants = variantsOfPlace(code);
+  const chosen = variants.length === 0 ? null : (variants.find((one) => one.id === variantId) ?? variants.find((one) => one.default) ?? variants[0]);
+  // A variant that is not the place's own flag has a drawing of its own; the default is the place's flag as the code gives it.
+  const own = chosen !== null && !chosen.default ? chosen : null;
+  openedVariant = own === null ? null : own.id;
   $("detail-title").textContent = nameOf(code);
   $("detail-title").lang = language.lang;
   $("detail-other").textContent = `${otherName(code)} · ${code}`;
-  $("detail-flag").src = fileOf(code);
+  $("detail-flag").src = own === null ? fileOf(code) : MODULE_FILE(own.module);
   $("detail-flag").alt = nameOf(code);
+  drawVariants(code, variants, chosen);
   const facts = $("facts");
   facts.replaceChildren();
-  fact(facts, say("fact_code"), code);
-  fact(facts, say("fact_ratio"), ratioOf(record));
-  fact(facts, say("fact_size"), say("fact_size_value", { bytes: KB(record.bytes), gzip: KB(record.gzip) }));
-  fact(facts, say("fact_source"), record.source === "commons" ? say("source_commons") : say("source_set", { source: record.source }));
-  fact(facts, say("fact_why"), record.why, { lang: "en" });
-  fact(facts, say("fact_file"), record.file, { href: record.page, lang: "en" });
-  fact(facts, say("fact_author"), record.author ?? say("none"), { lang: "en" });
-  fact(facts, say("fact_licence"), record.licence.name, record.licence.url ? { href: record.licence.url, lang: "en" } : { lang: "en" });
-  if (record.reference) fact(facts, say("fact_reference"), `${record.reference.file} (${record.reference.licence})`, { href: record.reference.page, lang: "en" });
-  fact(facts, say("fact_restrictions"), record.restrictions.length > 0 ? record.restrictions.join(", ") : say("none"), { lang: "en" });
-  if (record.sameAs) fact(facts, say("fact_shared"), `${record.sameAs} ${nameOf(record.sameAs)}`);
-  for (const note of record.notes) fact(facts, say("fact_notes"), note, { lang: "en" });
-  fact(facts, say("fact_dates"), record.uploaded ? say("fact_dates_value", { uploaded: record.uploaded, fetched: record.fetched }) : say("fact_dates_set", { source: record.source, version: record.version, fetched: record.fetched }));
+  if (own !== null) {
+    const drawing = own.drawing;
+    fact(facts, say("fact_code"), `${code} · ${own.id}`);
+    fact(facts, say("fact_ratio"), ratioOf(drawing));
+    fact(facts, say("fact_size"), say("fact_size_plain", { bytes: KB(drawing.bytes) }));
+    fact(facts, say("fact_source"), say("source_commons"));
+    fact(facts, say("fact_file"), drawing.file, { href: drawing.page, lang: "en" });
+    fact(facts, say("fact_author"), drawing.author ?? say("none"), { lang: "en" });
+    fact(facts, say("fact_licence"), drawing.licence.name, drawing.licence.url ? { href: drawing.licence.url, lang: "en" } : { lang: "en" });
+    fact(facts, say("fact_restrictions"), drawing.restrictions.length > 0 ? drawing.restrictions.join(", ") : say("none"), { lang: "en" });
+    fact(facts, say("fact_dates"), say("fact_dates_uploaded", { uploaded: drawing.uploaded ?? "" }));
+  } else {
+    fact(facts, say("fact_code"), code);
+    fact(facts, say("fact_ratio"), ratioOf(record));
+    fact(facts, say("fact_size"), say("fact_size_value", { bytes: KB(record.bytes), gzip: KB(record.gzip) }));
+    fact(facts, say("fact_source"), record.source === "commons" ? say("source_commons") : say("source_set", { source: record.source }));
+    fact(facts, say("fact_why"), record.why, { lang: "en" });
+    fact(facts, say("fact_file"), record.file, { href: record.page, lang: "en" });
+    fact(facts, say("fact_author"), record.author ?? say("none"), { lang: "en" });
+    fact(facts, say("fact_licence"), record.licence.name, record.licence.url ? { href: record.licence.url, lang: "en" } : { lang: "en" });
+    if (record.reference) fact(facts, say("fact_reference"), `${record.reference.file} (${record.reference.licence})`, { href: record.reference.page, lang: "en" });
+    fact(facts, say("fact_restrictions"), record.restrictions.length > 0 ? record.restrictions.join(", ") : say("none"), { lang: "en" });
+    if (record.sameAs) fact(facts, say("fact_shared"), `${record.sameAs} ${nameOf(record.sameAs)}`);
+    for (const note of record.notes) fact(facts, say("fact_notes"), note, { lang: "en" });
+    fact(facts, say("fact_dates"), record.uploaded ? say("fact_dates_value", { uploaded: record.uploaded, fetched: record.fetched }) : say("fact_dates_set", { source: record.source, version: record.version, fetched: record.fetched }));
+  }
   $("copied").textContent = "";
   const dialog = $("detail");
   if (!dialog.open) dialog.showModal();
   // The flag's own module, loaded the way a page would, then framed three ways.
-  const svg = await flag(code);
-  if (opened !== code) return;
+  const svg = await flag(code, own === null ? undefined : { variant: own.id });
+  if (opened !== code || openedVariant !== (own?.id ?? null)) return;
   openedSvg = svg;
-  await drawFrames(code);
-  if (opened !== code) return;
-  drawCopies(code, svg);
-  drawEmbed(code);
+  await drawFrames(code, own);
+  if (opened !== code || openedVariant !== (own?.id ?? null)) return;
+  drawCopies(code, svg, own);
+  drawEmbed(code, own);
+}
+
+// Which of a place's flags is shown: a switch with a button for each, and below it the chosen one's status, dates, reason
+// and source. Nothing shows for a place with one flag.
+function drawVariants(code, variants, chosen) {
+  const box = $("variants");
+  box.hidden = variants.length === 0;
+  const place = manifest(code) ?? LEFT_OUT.find((one) => one.code === code);
+  $("disputed-note").hidden = !place?.disputed;
+  if (variants.length === 0) return;
+  $("variant-switch").replaceChildren(
+    ...variants.map((one) => {
+      const button = Object.assign(document.createElement("button"), { type: "button", textContent: ja() ? one.nameJa : one.name });
+      button.dataset.value = one.id;
+      button.setAttribute("data-testid", `variant-${one.id}`);
+      button.setAttribute("aria-pressed", String(one.id === chosen.id));
+      button.lang = language.lang;
+      button.addEventListener("click", () => showDetail(code, one.id));
+      return button;
+    }),
+  );
+  const why = $("variant-why");
+  const dates = chosen.from !== null && chosen.until !== null ? say("variant_dates_between", { from: chosen.from, until: chosen.until }) : chosen.from !== null ? say("variant_dates_since", { from: chosen.from }) : chosen.until !== null ? say("variant_dates_until", { until: chosen.until }) : "";
+  const status = Object.assign(document.createElement("b"), { textContent: say(`status_${chosen.status.replace("-", "_")}`) });
+  status.dataset.status = chosen.status;
+  const reason = Object.assign(document.createElement("span"), { textContent: ` ${chosen.why}`, lang: "en" });
+  const source = Object.assign(document.createElement("a"), { href: chosen.source, textContent: say("variant_source"), rel: "noopener" });
+  why.replaceChildren(status, ...(dates === "" ? [] : [` · ${dates}`]), ...(chosen.default ? [` · ${say("variant_default")}`] : []), document.createElement("br"), reason, " ", source);
+  why.dataset.variant = chosen.id;
 }
 
 // What a crop of the flag is, in words: the drawing made for the shape by hand, the side a person chose, or the centre,
 // and, where the package shows the whole flag by default, why.
-function cropHow(record, shape) {
-  const framing = record.framings[shape];
+function cropHow(framing) {
   const { rule, at, loses } = framing.crop;
   if (rule === "own") return say("how_crop_own");
   if (framing.method === "adapted") return say("how_crop_adapted");
@@ -332,16 +399,17 @@ function cropHow(record, shape) {
 
 // Each shape's two frames side by side, the whole flag and the crop, each loaded the way a page would
 // (flag(code, { shape, fit })), and labelled with how it was made and which of the two is the default.
-async function drawFrames(code) {
-  const record = manifest(code);
+async function drawFrames(code, own) {
+  const record = own === null ? manifest(code) : null;
   const shapes = [["4:3", "frame_43"], ["1:1", "frame_11"], ["round", "frame_round"]];
-  const framed = await Promise.all(shapes.flatMap(([shape]) => [flag(code, { shape, fit: "whole" }), flag(code, { shape, fit: "crop" })]));
+  const framed = await Promise.all(shapes.flatMap(([shape]) => [flag(code, { shape, fit: "whole", ...(own === null ? {} : { variant: own.id }) }), flag(code, { shape, fit: "crop", ...(own === null ? {} : { variant: own.id }) })]));
   if (opened !== code) return;
   const heading = Object.assign(document.createElement("p"), { className: "fam-fine", textContent: say("frames_title") });
   $("frames").replaceChildren(
     heading,
     ...shapes.map(([shape, key], at) => {
-      const framing = record.framings[shape];
+      // A variant's picture has no side chosen by hand: its frames are measured, a centre crop or the whole flag.
+      const framing = own === null ? record.framings[shape] : { method: "cover", fit: own.frames[shape], crop: { rule: own.frames[shape] === "contain" ? "whole" : "centre", at: "centre", why: null, loses: [] } };
       const pair = document.createElement("div");
       pair.className = "frame-pair";
       pair.setAttribute("data-testid", `frame-${shape}`);
@@ -356,7 +424,7 @@ async function drawFrames(code) {
         const image = Object.assign(document.createElement("img"), { src: toDataUri(framed[at * 2 + offset]), alt: "" });
         image.dataset.shape = shape;
         const caption = Object.assign(document.createElement("figcaption"), { textContent: `${say(key)} · ${say(`frame_${which}`)}` });
-        const how = Object.assign(document.createElement("small"), { textContent: which === "whole" ? say("how_whole") : cropHow(record, shape) });
+        const how = Object.assign(document.createElement("small"), { textContent: which === "whole" ? say("how_whole") : cropHow(framing) });
         if (which === "crop" && framing.crop.why !== null) {
           how.title = framing.crop.why;
           how.dataset.why = "true";
@@ -378,17 +446,18 @@ async function drawFrames(code) {
 
 // "Embed this flag": the family's builder, given Hata's options and code writers, on the flag that is open.
 let builder = null;
-function drawEmbed(code) {
-  if (builder === null) builder = mountEmbedBuilder($("embed"), { product: HATA_PRODUCT, schema: FLAG_OPTIONS, values: { code }, lang: language.lang });
-  else builder.update({ code });
+function drawEmbed(code, own) {
+  const variant = own === null ? "" : own.id;
+  if (builder === null) builder = mountEmbedBuilder($("embed"), { product: HATA_PRODUCT, schema: FLAG_OPTIONS, values: { code, variant }, lang: language.lang });
+  else builder.update({ code, variant });
 }
 
-function drawCopies(code, svg) {
-  const lower = code.toLowerCase();
+function drawCopies(code, svg, own) {
+  const lower = own === null ? code.toLowerCase() : own.module;
   const rows = [
     ["copy_import", `import flag from "@johnmorrisdotca/hata/flags/${lower}";`],
-    ["copy_load", `import { flag } from "@johnmorrisdotca/hata/load";\nconst svg = await flag("${code}");`],
-    ["copy_img", `<img src="${flagUrl(code)}" alt="${NAMES[code].en.replace(/"/g, "&quot;")}" height="48">`],
+    ["copy_load", `import { flag } from "@johnmorrisdotca/hata/load";\nconst svg = await flag("${code}"${own === null ? "" : `, { variant: "${own.id}" }`});`],
+    ["copy_img", `<img src="${own === null ? flagUrl(code) : flagUrl("JP").replace("jp.svg", `${own.module}.svg`)}" alt="${NAMES[code].en.replace(/"/g, "&quot;")}" height="48">`],
     ["copy_svg", svg],
   ];
   $("copies").replaceChildren(
@@ -411,8 +480,9 @@ function drawCopies(code, svg) {
   );
 }
 
-$("download-svg").addEventListener("click", () => openedSvg && save(`${opened.toLowerCase()}.svg`, `${openedSvg}\n`, "image/svg+xml"));
-$("download-json").addEventListener("click", () => opened && save(`${opened.toLowerCase()}.json`, `${JSON.stringify({ ...manifest(opened), names: { en: NAMES[opened].en, ja: NAMES[opened].ja } }, null, 1)}\n`, "application/json"));
+const openedName = () => (openedVariant === null ? opened.toLowerCase() : `${opened.toLowerCase()}--${openedVariant}`);
+$("download-svg").addEventListener("click", () => openedSvg && save(`${openedName()}.svg`, `${openedSvg}\n`, "image/svg+xml"));
+$("download-json").addEventListener("click", () => opened && save(`${openedName()}.json`, `${JSON.stringify({ ...(manifest(opened) ?? LEFT_OUT.find((one) => one.code === opened)), names: { en: NAMES[opened].en, ja: NAMES[opened].ja } }, null, 1)}\n`, "application/json"));
 $("download-png").addEventListener("click", async () => {
   if (!openedSvg) return;
   const width = Number($("png-size").value);
@@ -424,10 +494,11 @@ $("download-png").addEventListener("click", async () => {
   canvas.width = width;
   canvas.height = height;
   canvas.getContext("2d").drawImage(image, 0, 0, width, height);
-  canvas.toBlob((blob) => save(`${opened.toLowerCase()}-${width}.png`, blob), "image/png");
+  canvas.toBlob((blob) => save(`${openedName()}-${width}.png`, blob), "image/png");
 });
 $("detail").addEventListener("close", () => {
   opened = null;
+  openedVariant = null;
   openedSvg = null;
 });
 // A tap on the backdrop, outside the panel, closes it.
@@ -587,7 +658,7 @@ function sayAll() {
   drawGallery();
   drawLeftOut();
   if (quiz.questions.length > 0) drawQuestion();
-  if (opened !== null) showDetail(opened);
+  if (opened !== null) showDetail(opened, openedVariant ?? undefined);
 }
 
 fillSets();

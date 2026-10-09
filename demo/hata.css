@@ -109,3 +109,12 @@ select.fam-field { appearance: none; -webkit-appearance: none; padding-right: 32
 .embed-tabs button { min-height: 36px; padding: 4px 10px; font-size: .85rem; }
 .embed-code-head { display: flex; justify-content: flex-end; margin-bottom: 4px; }
 .embed-code { width: 100%; min-height: 44px; font-family: var(--mono); font-size: 14px; line-height: 1.4; padding: 8px 10px; resize: vertical; white-space: pre; overflow-x: auto; }
+
+/* A place whose flag is claimed by more than one authority or community, and the switch between its flags. */
+.tile .badge { position: absolute; top: 4px; right: 4px; padding: 1px 6px; border-radius: 999px; font-size: .65rem; font-weight: 600; background: var(--ink); color: var(--surface); }
+.tile { position: relative; }
+.disputed-note { margin: 8px 0; padding: 8px 10px; border-left: 3px solid var(--ink); font-size: .85rem; background: color-mix(in srgb, var(--ink) 6%, transparent); }
+.variants { margin: 10px 0; }
+.variants .fam-seg { flex-wrap: wrap; }
+.variant-why { margin: 8px 0 0; font-size: .85rem; }
+.variant-why b[data-status="de-facto"], .variant-why b[data-status="historical"], .variant-why b[data-status="local"] { font-weight: 600; font-style: italic; }

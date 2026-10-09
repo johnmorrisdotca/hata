@@ -40,7 +40,7 @@ test("narrows to a country's regions, or the countries of one continent", async 
   await expect(shown(page)).toHaveCount(45);
   await expect(page.locator(at("count"))).toHaveText(`45 of ${total} flags`);
   await expect(page.locator(at("region"))).toBeHidden();
-  for (const [set, count, one] of [["ca", 12, "CA-ON"], ["us", 56, "US-TX"], ["au", 8, "AU-NSW"], ["gb", 3, "GB-SCT"], ["de", 16, "DE-BY"], ["fr", 16, "FR-20R"], ["ch", 26, "CH-ZH"], ["at", 9, "AT-9"], ["br", 27, "BR-SP"]]) {
+  for (const [set, count, one] of [["ca", 12, "CA-ON"], ["us", 57, "US-TX"], ["au", 8, "AU-NSW"], ["gb", 3, "GB-SCT"], ["de", 16, "DE-BY"], ["fr", 16, "FR-20R"], ["ch", 26, "CH-ZH"], ["at", 9, "AT-9"], ["br", 27, "BR-SP"]]) {
     await page.locator(at("set")).selectOption(set);
     await expect(shown(page), set).toHaveCount(count);
     await expect(page.locator(at(`tile-${one}`))).toBeVisible();

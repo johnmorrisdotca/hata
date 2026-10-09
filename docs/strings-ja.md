@@ -50,6 +50,21 @@ open a *Fix a translation* issue with the string's name. `{name}` and the other 
 | `left_out_title` | Places with no flag here ({n}) | 旗を収録していない地域（{n}） |
 | `left_out_blurb` | Every country and region Kuni knows has a flag here or is listed with the reason (in English, as the package gives it). | Kuni に含まれる国と地域は、すべて旗を収録しているか、ここに理由とともに載っています（理由は英語で、パッケージの記載のままです）。 |
 | `close` | Close | 閉じる |
+| `disputed` | disputed | 係争中 |
+| `disputed_note` | Disputed: more than one authority or community claims this place's flag. Hata takes no side; each flag below is shown with its status and the reason it is offered. | 係争中：複数の当局または集団が、この地域の旗を自らのものと主張しています。Hata はどちらの側にも立たず、以下の各旗を、その位置づけと掲載の理由とともに示します。 |
+| `variants_title` | Flags of this place in real use | 実際に使われているこの地域の旗 |
+| `status_official` | official | 公式 |
+| `status_de_facto` | de facto | 事実上 |
+| `status_historical` | historical | 歴史的 |
+| `status_local` | local | 地域旗 |
+| `variant_default` | the default | 既定の旗 |
+| `variant_dates_between` | {from} to {until} | {from} から {until} まで |
+| `variant_dates_since` | since {from} | {from} から |
+| `variant_dates_until` | until {until} | {until} まで |
+| `variant_source` | Source | 出典 |
+| `show_variants` | Show its {n} flags | 旗を{n}種類見る |
+| `fact_size_plain` | {bytes} of SVG | SVG {bytes} |
+| `fact_dates_uploaded` | Uploaded to Commons {uploaded} | Commons へのアップロード日 {uploaded} |
 | `frames_title` | The whole flag and a crop of it, at each shape, by flag(code, { shape, fit }) | 形ごとの旗の全体表示と切り抜き（flag(code, { shape, fit })） |
 | `frame_whole` | whole | 全体 |
 | `frame_crop` | cropped | 切り抜き |

@@ -109,6 +109,12 @@ const dialog = `<dialog id="detail" class="detail" data-testid="detail" aria-lab
       <form method="dialog" class="detail-close"><button type="submit" class="fam-button" data-testid="close" data-say="close"></button></form>
       <h2 id="detail-title" data-testid="detail-title"></h2>
       <p class="detail-other" id="detail-other" data-testid="detail-other"></p>
+      <p class="disputed-note" id="disputed-note" data-testid="disputed-note" data-say="disputed_note" hidden></p>
+      <div class="variants" id="variants" data-testid="variants" hidden>
+        <p class="fam-fine" data-say="variants_title"></p>
+        <div class="fam-seg" role="group" id="variant-switch" data-testid="variant-switch" data-say-label="variants_title"></div>
+        <p class="variant-why" id="variant-why" data-testid="variant-why"></p>
+      </div>
       <div class="detail-flag"><img id="detail-flag" data-testid="detail-flag" alt="" /></div>
       <div class="frames" id="frames" data-testid="frames"></div>
       <dl class="facts" id="facts" data-testid="facts"></dl>
