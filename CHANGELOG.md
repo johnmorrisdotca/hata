@@ -6,6 +6,8 @@ All notable changes to this project are written here. The format follows
 
 ## [Unreleased]
 
+## [1.1.0] - 2026-10-09
+
 ### Added
 
 - **105 more flags, 463 in all**: the first level of seven more countries, each whole (every code Kuni 1.1.0
