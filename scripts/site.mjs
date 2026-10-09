@@ -7,24 +7,12 @@ import { continentName, country } from "@johnmorrisdotca/kuni";
 import { subdivision } from "@johnmorrisdotca/kuni/subdivisions";
 
 import { API_CSS, apiBody, apiPage } from "./api.mjs";
-import { FAMILY, FAMILY_PITCH, FAMILY_SCRIPT, familyFooter, familyHead, familyHeader, familyUnreviewed } from "./family-template.mjs";
+import { FAMILY_SCRIPT, familyFooter, familyHead, familyHeader, familyUnreviewed } from "./family-template.mjs";
 
 const id = "hata";
 const { FLAG_CODES } = await import(new URL("../dist/index.js", import.meta.url).href);
 const { LEFT_OUT } = await import(new URL("../dist/manifest.js", import.meta.url).href);
 
-// Hata is not in the family's list yet: that list is changed in every repository at once, with a new template
-// version, and family-template.mjs is never edited in one. Until that sweep adds it, the demo joins the list here,
-// at its end, so the shared header and footer can name it. Once the template lists Hata this does nothing.
-for (const [one, pitch] of [
-  [{ id: "kuni", name: "Kuni", kana: "国" }, "every country and its subdivisions, with ISO 3166 codes and names in English and Japanese"],
-  [{ id, name: "Hata", kana: "旗" }, "flags as SVG for every country, and the regions of Japan, Canada, the United States, Australia, the United Kingdom, Germany, France, Switzerland, Austria and Brazil"],
-]) {
-  if (!FAMILY.some((member) => member.id === one.id)) {
-    FAMILY.push(one);
-    FAMILY_PITCH[one.id] = pitch;
-  }
-}
 
 // A flag on a pole, in the family's green.
 const ICON = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%232f5d4a'/%3E%3Cpath d='M28 84V16' stroke='%23f3efe4' stroke-width='6' stroke-linecap='round'/%3E%3Cpath d='M31 20h44l-9 14 9 14H31z' fill='%23f3efe4'/%3E%3Ccircle cx='50' cy='34' r='6' fill='%23b5452c'/%3E%3C/svg%3E";
