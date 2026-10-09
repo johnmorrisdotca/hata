@@ -1,6 +1,6 @@
 {
   "name": "@johnmorrisdotca/hata",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "Hata 旗, flags as SVG: every country, and the first-level regions of Japan, Canada, the United States, Australia, the United Kingdom, Germany, France, Switzerland, Austria and Brazil, keyed by the ISO 3166 codes Kuni uses. Optimised, sanitised, with the Wikimedia Commons file, author and licence of each. One module per flag, a lazy lookup, frames for 4:3, square and round that never misrepresent a flag, and a <hata-flag> custom element to embed one anywhere. Zero dependencies.",
   "keywords": [
     "flags",

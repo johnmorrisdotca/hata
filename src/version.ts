@@ -4,9 +4,9 @@
  * @example
  * ```ts
  * import { VERSION } from "@johnmorrisdotca/hata";
- * console.log(VERSION); // "1.3.0"
+ * console.log(VERSION); // "1.4.0"
  * ```
  */
-const VERSION = "1.3.0";
+const VERSION = "1.4.0";
 
 export { VERSION };
