@@ -72,7 +72,7 @@ const config = (prefix: string, precision: number, keepPaths: boolean): Config =
     "removeDimensions",
     "removeScripts",
     "removeXlink",
-    { name: "removeAttrs", params: { attrs: ["svg:preserveAspectRatio", "svg:version", "svg:id", "svg:x", "svg:y", "svg:xml:space", "svg:enable-background", "svg:baseProfile"], elemSeparator: ":" } },
+    { name: "removeAttrs", params: { attrs: ["svg:preserveAspectRatio", "svg:version", "svg:id", "svg:x", "svg:y", "svg:enable-background", "svg:baseProfile"], elemSeparator: ":" } },
     { name: "prefixIds", params: { prefix, delim: "-", prefixIds: true, prefixClassNames: true } },
   ],
 });

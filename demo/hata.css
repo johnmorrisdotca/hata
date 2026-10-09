@@ -1,0 +1,83 @@
+/* Hata's own look, after family.css: the tabs, the gallery of flags, the detail panel and the quiz. */
+:root { --intro-room: 15rem; --intro-room-wide: 7rem; --tile: 150px; --pic: 84px; }
+@media (max-width: 520px) { :root { --tile: 104px; --pic: 56px; } }
+
+.fam-tabs { margin: 0 0 12px; border-bottom: 0; gap: 4px; }
+.fam-tabs button { font-size: 1rem; }
+.blurb { color: var(--muted); font-size: .9rem; line-height: 1.5; max-width: 75ch; }
+.fam-panel > .fam-row .fam-field { flex: 1 1 14rem; width: 0; min-width: 11rem; font-size: 1rem; }
+select.fam-field { appearance: none; -webkit-appearance: none; padding-right: 32px; background-image: linear-gradient(45deg, transparent 50%, currentColor 50%), linear-gradient(135deg, currentColor 50%, transparent 50%); background-position: calc(100% - 17px) 50%, calc(100% - 12px) 50%; background-size: 5px 5px; background-repeat: no-repeat; font-size: 1rem; }
+.fam-label { min-width: 5.5rem; }
+@media (max-width: 520px) { .fam-panel > .fam-row .fam-label { min-width: 100%; } .fam-panel > .fam-row .fam-field { flex-basis: 100%; } }
+
+/* The gallery's tools: the count, and the two downloads. */
+.tools { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 12px; }
+.count { margin: 0; color: var(--muted); font-size: .9rem; font-variant-numeric: tabular-nums; min-width: 9rem; }
+
+/* The grid: every tile the same size, so filtering moves nothing but the tiles. */
+.grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(var(--tile), 1fr)); gap: 10px; }
+.grid li { min-width: 0; }
+.tile { width: 100%; height: 100%; min-height: 44px; display: grid; grid-template-rows: calc(var(--pic) + 16px) auto; gap: 6px; padding: 8px; border: 1px solid var(--rule); border-radius: 12px; background: var(--surface); color: inherit; text-align: center; cursor: pointer; }
+.tile:hover { border-color: var(--ink); }
+.pic { display: flex; align-items: center; justify-content: center; min-width: 0; padding: 8px 0; }
+/* Sized by its limits only, so the flag keeps its own proportions however wide it is: never stretched. */
+.pic img { display: block; max-width: 100%; max-height: var(--pic); width: auto; height: auto; min-height: 0; box-shadow: 0 0 0 1px color-mix(in srgb, var(--ink) 18%, transparent); background: color-mix(in srgb, var(--ink) 4%, transparent); }
+/* The frames, drawn in CSS as an <img> would be: object-fit crops without stretching, as frame() does. */
+.grid[data-shape="4:3"] .pic img { width: calc(var(--pic) * 4 / 3); height: var(--pic); object-fit: cover; }
+.grid[data-shape="1:1"] .pic img, .grid[data-shape="round"] .pic img { width: var(--pic); height: var(--pic); object-fit: cover; }
+.grid[data-shape="round"] .pic img { border-radius: 50%; }
+.label { display: grid; gap: 2px; min-width: 0; }
+.label .name { font-size: .85rem; font-weight: 600; line-height: 1.25; overflow-wrap: anywhere; }
+.label code { font-size: .72rem; color: var(--muted); }
+.left-out ul { margin: 6px 0 0; padding-left: 18px; font-size: .85rem; display: grid; gap: 6px; }
+.left-out span { color: var(--muted); }
+
+/* The detail panel: a sheet over the page, scrolling inside itself. */
+.detail { width: min(760px, calc(100vw - 16px)); max-height: calc(100dvh - 16px); padding: 18px; border: 1px solid var(--rule); border-radius: var(--radius); background: var(--surface); color: var(--ink); overflow-y: auto; overflow-x: hidden; }
+.detail::backdrop { background: rgba(0, 0, 0, .45); }
+.detail > * { min-width: 0; max-width: 100%; }
+.detail-close { float: right; margin: 0 0 6px 10px; }
+.detail h2 { margin: 6px 0 2px; font-size: 1.4rem; overflow-wrap: anywhere; }
+.detail h3 { margin: 18px 0 8px; font-size: .95rem; }
+.detail-other { margin: 0 0 12px; color: var(--muted); overflow-wrap: anywhere; }
+.detail-flag { clear: both; display: flex; justify-content: center; padding: 14px; border-radius: 12px; background: color-mix(in srgb, var(--ink) 5%, transparent); }
+.detail-flag img { display: block; max-width: 100%; max-height: 260px; width: auto; height: auto; min-height: 120px; box-shadow: 0 0 0 1px color-mix(in srgb, var(--ink) 18%, transparent); }
+.frames { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: flex-end; margin: 12px 0; }
+.frames > p { flex: 1 1 100%; }
+.frames figure { margin: 0; display: grid; gap: 4px; justify-items: center; }
+/* A light checkerboard behind each frame shows its shape where the flag leaves it clear. */
+.frames img { height: 64px; width: auto; display: block; background: repeating-conic-gradient(color-mix(in srgb, var(--ink) 10%, transparent) 0 25%, transparent 0 50%) 0 0 / 12px 12px; outline: 1px dashed color-mix(in srgb, var(--ink) 30%, transparent); }
+.frames img[data-shape="round"] { border-radius: 50%; }
+.frames figcaption { font-size: .75rem; color: var(--muted); }
+.facts { margin: 0; display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 6px 14px; align-items: baseline; font-size: .9rem; }
+.facts dt { font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.facts dd { margin: 0; overflow-wrap: anywhere; line-height: 1.4; }
+.copies { display: grid; gap: 10px; }
+.copy-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 4px; font-size: .85rem; font-weight: 600; }
+.copy textarea { width: 100%; min-height: 44px; font-family: var(--mono); font-size: 16px; line-height: 1.4; padding: 8px 10px; resize: vertical; overflow-wrap: anywhere; }
+.downloads { gap: 8px; }
+.png { display: inline-flex; gap: 6px; align-items: center; }
+.png select { width: 7.5rem; }
+@media (max-width: 520px) {
+  .detail { padding: 14px; }
+  .facts { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .facts dd { margin-bottom: 8px; }
+}
+
+/* The quiz: the scores, then the flag on the felt with its four names. */
+.scores { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.stage { display: grid; gap: 14px; justify-items: center; }
+.question { width: 100%; height: 220px; display: flex; align-items: center; justify-content: center; }
+.question img { max-width: min(100%, 420px); max-height: 100%; width: auto; height: auto; box-shadow: 0 4px 18px rgba(0, 0, 0, .35); background: #fff; }
+.choices { width: 100%; max-width: 640px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.choices .choice { width: 100%; min-height: 52px; padding: 6px 12px; font-size: .95rem; white-space: normal; overflow-wrap: anywhere; line-height: 1.25; }
+.fam-felt .choice[data-state="right"] { background: var(--good); color: #fff; box-shadow: none; opacity: 1; }
+.fam-felt .choice[data-state="wrong"] { background: var(--bad); color: #fff; box-shadow: none; opacity: 1; }
+.fam-felt .choice:disabled:not([data-state]) { opacity: .55; }
+.stage .fam-hint { min-height: 2.6em; max-width: 60ch; }
+.next { min-height: 46px; }
+#seed { min-width: 6.5em; text-align: center; }
+@media (max-width: 520px) {
+  .question { height: 150px; }
+  .choices { grid-template-columns: minmax(0, 1fr); }
+}
