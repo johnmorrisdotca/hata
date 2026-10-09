@@ -6,6 +6,46 @@ All notable changes to this project are written here. The format follows
 
 ## [Unreleased]
 
+### Added
+
+- **Disputed and alternative flags.** A place with more than one flag in real use has them all as variants, each with a
+  `status` (`official`, `de-facto`, `historical` or `local`), `from` and `until`, a `why`, a `source` and its Commons
+  drawing, one marked the default, and a `disputed` mark on the place where more than one authority claims its flag.
+  Hata takes no side; `docs/variants.md` lists them and `docs/decisions.md` says why each default was chosen.
+  - `variantsOf(code)` from `/manifest`, and the type `Variant`; `FlagRecord` and `LeftOutRecord` gain `disputed`,
+    `defaultVariant` and `variants`.
+  - `flag(code, { variant })` and `flagDataUri` from `/load` (the new type `FlagOptions`), `<hata-flag variant="…">`, and a
+    module and an SVG file for each variant: `/flags/af--de-facto`, `svg/af--de-facto.svg`. A variant is loaded from its own
+    table, so `/load` stays small.
+  - Offered: Afghanistan (the Islamic Republic's tricolour, the Taliban's flag), Saint Helena (its own flag, the Union
+    Flag), Bavaria (lozenges, stripes), Northern Ireland (the Union Flag, the former Ulster Banner), Syria (the flag since
+    2024-12-08, the Assad-era flag), New Caledonia and French Polynesia (their own flag, France's), and the local flag of
+    Guadeloupe, Martinique, French Guiana, Réunion, Mayotte, Saint-Barthélemy, Saint-Pierre and Miquelon and Wallis and
+    Futuna beside France's.
+  - The demo: a "disputed" mark on the card, a switch between a place's flags in its panel with the status, dates, reason
+    and source of the one shown, Northern Ireland's flags from the list of places with no flag, and a `variant` field in the
+    embed builder. The Japanese is not yet read by a native reader.
+- **Mississippi's flag** (`US-MS`, 464 flags in all), under Commons' "Copyrighted free use" licence, accepted by decision
+  (`ACCEPTED`); its licence kind in the manifest is `accepted`.
+
+### Changed
+
+- **Afghanistan's flag is the Islamic Republic's black, red and green tricolour**, as every flag set draws it and as it is
+  still at the United Nations; Wikidata's preferred flag, the Taliban's, is the `de-facto` variant.
+- **Saint Helena's flag is the island's own blue ensign**, not the Union Flag, which is its `union-flag` variant.
+- **Each French territory's flag is its official flag, else France's.** Martinique, Mayotte, Saint-Barthélemy,
+  Saint-Pierre and Miquelon and Wallis and Futuna now give France's tricolour, with the local flag they gave before as
+  their `local` variant; Guadeloupe, French Guiana, Réunion and Saint-Martin already gave France's, with a `local` variant
+  for the first three. New Caledonia keeps the Kanak flag and French Polynesia its own, with France's as a variant.
+- `pnpm data` stops at its end, naming what to measure, when a picture has no line in `scripts/framings.data.json`,
+  where it used to stop at the first.
+
+### Left out, on purpose
+
+- **Oman's flag**, again: the Open Government Licence – Oman 1.0 was read (2026-10-09) and does not cover an official government
+  emblem, and the drawing came from another site than the one the licence covers. Manitoba, Kagawa, Cocos and Brittany
+  stay out as John asked; Hiroshima waits for a licence tag on Commons. Northern Ireland has no default flag, as before.
+
 ## [1.2.0] - 2026-10-09
 
 ### Added
