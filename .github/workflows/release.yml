@@ -80,7 +80,7 @@ jobs:
           # npm then refuses with "cannot publish over the previously published versions", which means done.
           if ! npm publish --provenance --access public --ignore-scripts 2> publish.log; then
             cat publish.log
-            if grep -q "cannot publish over the previously published versions" publish.log; then
+            if grep -qiE "cannot publish over (the )?previously (published|staged)" publish.log; then
               echo "::notice title=Already on npm::$NAME@$VERSION was already published, so it is not published again."
               exit 0
             fi
