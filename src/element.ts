@@ -19,7 +19,8 @@ import type { Shape } from "./svg";
  *
  * - `code`: the flag's code, in any case ("JP", "jp-13", "CA-ON").
  * - `shape`: `own` (the default: the flag's own proportions), `4:3`, `1:1` or `round`. `flag` is the same as `own`.
- * - `size`: its height in CSS pixels (`48`). Left out, it is `1em`, the height of the text around it, and the page's
+ * - `width`: a pixel width, with the height following the flag's proportions.
+ * - `size`: small, medium or large (24, 48 or 96 pixels high), or a legacy pixel height (`48`). Left out, it is `1em`, the height of the text around it, and the page's
  *   CSS may set any height; the width follows from the shape.
  * - `fit`: `auto` (the default: the frame measured for that flag, or the drawing flag-icons made for the shape),
  *   `whole` (all of the flag), `crop` (a crop at the side chosen for the flag), `cover`, `hoist` or `contain`, as
@@ -41,7 +42,7 @@ import type { Shape } from "./svg";
  * FLAG_ELEMENT_ATTRIBUTES.includes("shape"); // true
  * ```
  */
-const FLAG_ELEMENT_ATTRIBUTES = ["code", "shape", "size", "fit", "variant", "label", "lang", "theme", "border", "shadow", "loading"] as const;
+const FLAG_ELEMENT_ATTRIBUTES = ["code", "shape", "size", "width", "fit", "variant", "label", "lang", "theme", "border", "shadow", "loading"] as const;
 
 /**
  * The name the element is registered under.
@@ -77,6 +78,9 @@ type HataFlagElement = HTMLElement & {
   set code(value: string | null | undefined);
   get shape(): string | null;
   set shape(value: string | null | undefined);
+  /** Width in CSS pixels, overriding the height-based size; null inherits the page. */
+  get width(): string | null;
+  set width(value: string | number | null | undefined);
   get size(): string | null;
   set size(value: string | number | null | undefined);
   get fit(): string | null;
@@ -143,9 +147,14 @@ const build = (): CustomElementConstructor => {
     ready: Promise<boolean> = new Promise((resolve) => (this.settle = resolve));
 
     connectedCallback(): void {
-      if (document.getElementById("hata-flag-style") === null) {
-        const style = Object.assign(document.createElement("style"), { id: "hata-flag-style", textContent: BASE_CSS });
-        document.head.prepend(style);
+      const root = this.getRootNode();
+      const into = root.nodeType === 11 && "host" in root ? root as ShadowRoot : this.ownerDocument.head;
+      const id = `${this.localName}-style`;
+      if (into.querySelector(`#${CSS.escape(id)}`) === null) {
+        const selector = CSS.escape(this.localName);
+        const css = BASE_CSS.replaceAll(`${FLAG_ELEMENT_NAME}{`, `${selector}{`).replaceAll(`${FLAG_ELEMENT_NAME}>`, `${selector}>`);
+        const style = Object.assign(this.ownerDocument.createElement("style"), { id, textContent: css });
+        into.prepend(style);
       }
       this.draw();
     }
@@ -175,10 +184,13 @@ const build = (): CustomElementConstructor => {
       const fitAsked = (this.getAttribute("fit") ?? "auto").trim();
       const fit = (FITS as readonly string[]).includes(fitAsked) ? (fitAsked as (typeof FITS)[number]) : "auto";
       const variant = (this.getAttribute("variant") ?? "").trim();
-      const size = Number(this.getAttribute("size"));
-      const on = (name: string): boolean => this.hasAttribute(name) && this.getAttribute(name) !== "false" && this.getAttribute(name) !== "0";
-      this.style.height = Number.isFinite(size) && size > 0 ? `${size}px` : "";
-      this.style.width = "";
+      const sizes: Record<string, number> = { small: 24, medium: 48, large: 96 };
+      const sizeText = this.getAttribute("size") ?? "";
+      const size = Object.hasOwn(sizes, sizeText) ? sizes[sizeText] : Number(sizeText);
+      const width = Number(this.getAttribute("width"));
+      const on = (name: string): boolean => this.hasAttribute(name) && !["false", "0", "off", "no"].includes((this.getAttribute(name) ?? "").trim().toLowerCase());
+      this.style.height = Number.isFinite(width) && width > 0 ? "auto" : Number.isFinite(size) && size > 0 ? `${size}px` : "";
+      this.style.width = Number.isFinite(width) && width > 0 ? `${width}px` : "";
       // The box is kept from the start: the shape's, or 3:2 until the flag's own proportions are read.
       this.style.aspectRatio = shape === "4:3" ? "4 / 3" : shape === "own" ? this.style.aspectRatio || "1.5" : "1";
       this.style.borderRadius = shape === "round" ? "50%" : "";
@@ -212,7 +224,7 @@ const build = (): CustomElementConstructor => {
         (image as HTMLImageElement).src = toDataUri(svg) ?? "";
         if (image.parentNode !== this) this.replaceChildren(image);
         this.removeAttribute("data-missing");
-        this.dispatchEvent(new CustomEvent<FlagElementEventDetail>("hata-load", { detail: { code, shape }, bubbles: true }));
+        this.dispatchEvent(new CustomEvent<FlagElementEventDetail>("hata-load", { detail: { code, shape }, bubbles: true, composed: true }));
         this.finish(true);
       };
       const start = (): void => {
@@ -252,7 +264,7 @@ const build = (): CustomElementConstructor => {
         warned.add(code);
         console.warn(`<${FLAG_ELEMENT_NAME}>: ${reason}. Nothing is drawn.`);
       }
-      this.dispatchEvent(new CustomEvent<FlagElementEventDetail>("hata-error", { detail: { code, shape, reason }, bubbles: true }));
+      this.dispatchEvent(new CustomEvent<FlagElementEventDetail>("hata-error", { detail: { code, shape, reason }, bubbles: true, composed: true }));
       this.finish(false);
     }
   };

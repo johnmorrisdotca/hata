@@ -10,6 +10,8 @@ All notable changes to this project are written here. The format follows
 
 ### Added
 
+- Add a shared standalone flag builder and standard embed/ page, compatible pixel-width and display-size attributes, composed load/error events, and styling inside shadow roots.
+
 - Share a package-independent embed builder for option controls, preview adapters, code tabs and shareable links.
 
 ### Changed

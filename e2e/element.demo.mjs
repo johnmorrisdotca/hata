@@ -101,7 +101,7 @@ test("the demo's builder writes the code for the flag that is open, as each form
   await page.locator(at("embed-option-border")).check();
   await expect(code).toHaveValue(/<hata-flag code="DE-BY" shape="round" size="48" border><\/hata-flag>/);
   await expect(page.locator(`${at("embed-preview")} hata-flag`)).toHaveAttribute("shape", "round");
-  for (const [tab, pattern] of [["img", /<img src="https:\/\/cdn\.jsdelivr\.net\/npm\/@johnmorrisdotca\/hata@1\/dist\/svg\/de-by\.svg" alt="Bavaria"/], ["iframe", /<iframe src="https:\/\/johnmorrisdotca\.github\.io\/hata\/embed\.html\?code=DE-BY&amp;shape=round&amp;size=48&amp;border=1"/], ["react", /return <hata-flag code="DE-BY" shape="round" size=\{48\} border \/>/], ["vue", /isCustomElement/], ["svelte", /import "@johnmorrisdotca\/hata\/element\/define";/], ["angular", /CUSTOM_ELEMENTS_SCHEMA/], ["module", /flagDataUri\("DE-BY", \{ shape: "round" \}\)/], ["data", /<img src="data:image\/svg\+xml,/]]) {
+  for (const [tab, pattern] of [["img", /<img src="https:\/\/cdn\.jsdelivr\.net\/npm\/@johnmorrisdotca\/hata@1\/dist\/svg\/de-by\.svg" alt="Bavaria"/], ["iframe", /<iframe src="https:\/\/johnmorrisdotca\.github\.io\/hata\/embed\/\?code=DE-BY&amp;shape=round&amp;size=48&amp;border=1"/], ["react", /return <hata-flag code="DE-BY" shape="round" size=\{48\} border \/>/], ["vue", /isCustomElement/], ["svelte", /import "@johnmorrisdotca\/hata\/element\/define";/], ["angular", /CUSTOM_ELEMENTS_SCHEMA/], ["module", /flagDataUri\("DE-BY", \{ shape: "round" \}\)/], ["data", /<img src="data:image\/svg\+xml,/]]) {
     await page.locator(at(`embed-tab-${tab}`)).click();
     await expect(code, tab).toHaveValue(pattern);
   }

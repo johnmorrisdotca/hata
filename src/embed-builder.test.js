@@ -46,7 +46,7 @@ describe("the code it writes", () => {
   const settings = settingsFrom(schema, { id: "B", shape: "round", border: true, label: "<b>" });
 
   it("writes the element after its script, escaping what an attribute must", () => {
-    expect(codeFor("element", product, schema, settings)).toBe('<script type="module" src="https://cdn.example/thing/element-define.js"></script>\n<ex-thing id-code="B" shape="round" size="48" label="&lt;b>" border></ex-thing>');
+    expect(codeFor("element", product, schema, settings)).toBe('<script type="module" src="https://cdn.example/thing/element-define.js"></script>\n<ex-thing\n  id-code="B"\n  shape="round"\n  size="48"\n  label="&lt;b&gt;"\n  border\n></ex-thing>');
   });
 
   it("writes an iframe at the product's size with its title, the address's & escaped", () => {
@@ -55,7 +55,7 @@ describe("the code it writes", () => {
 
   it("writes React with numbers in braces, and Vue, Svelte and Angular importing the element's definition", () => {
     const react = codeFor("react", product, schema, settings);
-    for (const prop of ['id-code="B"', 'shape="round"', "size={48}", 'label="<b>"', "      border\n"]) expect(react).toContain(prop);
+    for (const prop of ['id-code="B"', 'shape="round"', "size={48}", 'label={"\\u003cb>"}', "      border\n"]) expect(react).toContain(prop);
     expect(codeFor("react", product, schema, settingsFrom(schema, { id: "B" }))).toContain('return <ex-thing id-code="B" size={48} />;');
     expect(codeFor("vue", product, schema, settings)).toContain('isCustomElement: (tag) => tag.startsWith("ex-")');
     for (const format of ["react", "vue", "svelte", "angular"]) expect(codeFor(format, product, schema, settings), format).toContain('import "@example/thing/element/define";');

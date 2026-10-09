@@ -13,7 +13,7 @@ At their true proportions, optimised and safe to inline, with the source, author
   <img alt="TypeScript" src="https://img.shields.io/badge/types-TypeScript-3178c6">
 </p>
 
-<p align="center"><a href="https://johnmorrisdotca.github.io/hata/"><strong>Try it →</strong></a> · <a href="https://johnmorrisdotca.github.io/hata/api.html">API reference</a></p>
+<p align="center"><a href="https://johnmorrisdotca.github.io/hata/"><strong>Try it →</strong></a> · <a href="https://johnmorrisdotca.github.io/hata/builder.html">Build a flag</a> · <a href="https://johnmorrisdotca.github.io/hata/api.html">API reference</a></p>
 
 <table align="center">
 <tr>
@@ -111,6 +111,8 @@ Install the scoped name: an unscoped `hata` on npm, if there is one, is somebody
   example, checked against the build; no dependencies, no network, no DOM.
 
 ## Use it in your project
+
+The [flag builder](https://johnmorrisdotca.github.io/hata/builder.html) previews each choice and writes code for custom elements, images, iframes, framework components and website code blocks. Its link preserves the setup. See [embedding flags](./docs/embeds.md) for sizes, validated iframe parameters and event messages.
 
 ### Install
 

@@ -33,7 +33,7 @@ const reflectAttributes = (element: ElementClass, names: readonly string[], flag
         const text = this.getAttribute(name);
         if (!flag) return text;
 
-        return text !== null && text !== "false" && text !== "0";
+        return text !== null && !["false", "0", "off", "no"].includes(text.trim().toLowerCase());
       },
       set(this: Element, value: unknown) {
         if (value === null || value === undefined || value === false) this.removeAttribute(name);

@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex"><meta name="color-scheme" content="light dark"><title>Hata · a flag</title>
+<style>html,body{margin:0;width:100%;height:100%;background:transparent;overflow:hidden}body{box-sizing:border-box;display:flex;align-items:center;justify-content:center;padding:4px}hata-flag{max-width:100%;max-height:100%}</style>
+</head><body><hata-flag id="flag" loading="eager"></hata-flag>
+<script type="module">
+import "../dist/element-define.js";
+import { FLAG_CODES } from "../dist/index.js";
+const query = new URLSearchParams(location.search);
+const element = document.getElementById("flag");
+const code = query.get("code");
+element.setAttribute("code", FLAG_CODES.includes(code) ? code : "JP");
+const choices = { shape: ["own", "4:3", "1:1", "round"], size: ["small", "medium", "large"], theme: ["light", "dark", "auto"], fit: ["contain", "cover", "hoist"], lang: ["en", "ja"] };
+for (const [name, values] of Object.entries(choices)) {
+  const value = query.get(name);
+  if (values.includes(value)) element.setAttribute(name, value);
+}
+const numericSize = Number(query.get("size"));
+if (Number.isFinite(numericSize) && numericSize >= 12 && numericSize <= 2048) element.setAttribute("size", String(numericSize));
+const language = query.get("lang");
+if (choices.lang.includes(language)) document.documentElement.lang = language;
+const width = Number(query.get("width"));
+if (Number.isFinite(width) && width >= 12 && width <= 2048) element.setAttribute("width", String(width));
+const label = query.get("label");
+if (label !== null && label.length <= 200) element.setAttribute("label", label);
+for (const name of ["border", "shadow"]) {
+  const value = query.get(name);
+  if (value !== null && ["", "1", "true", "on"].includes(value.toLowerCase())) element.setAttribute(name, "");
+}
+const forward = (event) => { if (parent !== window) parent.postMessage({ type: event.type, detail: event.detail }, "*"); };
+element.addEventListener("hata-load", forward);
+element.addEventListener("hata-error", forward);
+</script></body></html>

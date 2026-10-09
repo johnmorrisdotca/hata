@@ -1,3 +1,4 @@
+import { VERSION } from "./dist/index.js";
 // Hata's side of the embed builder (demo/embed-builder.js, which names no product): the options of <hata-flag>, and
 // the code only Hata writes, a plain <img> of the CDN's SVG file framed by CSS, the same as a data: URI, and an ES
 // module. The preview is a live <hata-flag> drawn by the package's own element.
@@ -6,7 +7,8 @@ import { manifest, variantsOf } from "./dist/manifest.js";
 import { flagAspect, flagName } from "./dist/names.js";
 
 const PACKAGE = "@johnmorrisdotca/hata";
-const SVG_BASE = `https://cdn.jsdelivr.net/npm/${PACKAGE}@1/dist/svg`;
+const MAJOR = VERSION.split(".")[0];
+const SVG_BASE = `https://cdn.jsdelivr.net/npm/${PACKAGE}@${MAJOR}/dist/svg`;
 
 /** The options of <hata-flag>, as the builder reads them. The flag's code is the page's to choose, so it is fixed. */
 export const FLAG_OPTIONS = [
@@ -118,12 +120,13 @@ function imageStyle(settings, framing, adapted) {
 /** Hata as a product the builder can write code for. */
 export const HATA_PRODUCT = {
   name: "Hata",
+  major: MAJOR,
   package: PACKAGE,
   tag: "hata-flag",
   define: `${PACKAGE}/element/define`,
-  cdn: `https://cdn.jsdelivr.net/npm/${PACKAGE}@1/dist/element-define.js`,
-  embed: "https://johnmorrisdotca.github.io/hata/embed.html",
-  formats: ["element", "img", "data", "iframe", "module", "react", "vue", "svelte", "angular"],
+  cdn: `https://cdn.jsdelivr.net/npm/${PACKAGE}@${MAJOR}/dist/element-define.js`,
+  embed: "https://johnmorrisdotca.github.io/hata/embed/",
+  formats: ["element", "img", "data", "iframe", "module", "react", "vue", "svelte", "angular", "html", "url"],
   async context(settings) {
     const options = { ...(settings.shape === "own" ? {} : { shape: settings.shape, ...(settings.fit && settings.fit !== "auto" ? { fit: settings.fit } : {}) }), ...(settings.variant ? { variant: settings.variant } : {}) };
     return { uri: await flagDataUri(settings.code, Object.keys(options).length === 0 ? undefined : options), framing: settings.variant ? null : (manifest(settings.code)?.framings[settings.shape] ?? null) };

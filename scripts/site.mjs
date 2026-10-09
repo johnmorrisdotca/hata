@@ -1,13 +1,13 @@
 // Builds the static demo for GitHub Pages into ./site: the page, written here from the family's shared header and
 // footer, with the family's stylesheet, Hata's own, the page's script, its words, the names of the places (from
 // Kuni, at build time, so the page needs no network and no Kuni of its own) and the built package beside it.
-import { cpSync, mkdirSync, rmSync, writeFileSync } from "node:fs";
+import { cpSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 
 import { continentName, country } from "@johnmorrisdotca/kuni";
 import { subdivision } from "@johnmorrisdotca/kuni/subdivisions";
 
 import { API_CSS, apiBody, apiPage } from "./api.mjs";
-import { FAMILY_SCRIPT, familyFooter, familyHead, familyHeader, familyUnreviewed } from "./family-template.mjs";
+import { FAMILY_SCRIPT, familyEmbedBuilder, familyFooter, familyHead, familyHeader, familyUnreviewed } from "./family-template.mjs";
 
 const id = "hata";
 const { FLAG_CODES } = await import(new URL("../dist/index.js", import.meta.url).href);
@@ -179,3 +179,13 @@ import { svg as tokyo } from "@johnmorrisdotca/hata/flags/jp-13";</pre>
 writeFileSync("site/api.css", API_CSS);
 writeFileSync("site/api.html", apiPage({ id, name: "Hata", icon: ICON, api }));
 console.log("site/ is ready: serve it, or let the Pages workflow publish it.");
+
+writeFileSync("site/family-embed-builder.js", `export ${familyEmbedBuilder.toString()};\n`);
+writeFileSync("site/embed-builder.js", readFileSync("demo/embed-builder.js", "utf8").replace('from "../scripts/family-template.mjs"', 'from "./family-embed-builder.js"'));
+
+const builderWords = {
+  "builderHead": familyHead({ id, title: "Hata · build a flag", description: "Choose a flag, preview it and copy its embed code." }),
+  "builderHeader": familyHeader({ id, links: [{ href: "./", say: "toGallery" }] }),
+  "unreviewed": familyUnreviewed({ id }), "footer": familyFooter({ id }), "script": `<script>${FAMILY_SCRIPT}</script>`,
+};
+writeFileSync("site/builder.html", readFileSync("demo/builder.html", "utf8").replace(/<!-- family:([A-Za-z]+) -->/g, (_match, key) => builderWords[key]));
