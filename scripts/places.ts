@@ -6,7 +6,8 @@ import { subdivisions } from "@johnmorrisdotca/kuni/subdivisions";
 
 import { SUBDIVISION_COUNTRIES } from "./data-config.ts";
 
-type Group = "country" | "jp" | "ca" | "us";
+// "country", or the subdivisions' country code in lower case: "jp", "ca", "us", "au", "gb", "de", "fr", "ch", "at", "br".
+type Group = string;
 
 interface Place {
   code: string; // "JP", "JP-13"
@@ -21,7 +22,7 @@ const places = (): Place[] => [
     return { code, group: "country", en: one.name.en, ja: one.name.ja };
   }),
   ...SUBDIVISION_COUNTRIES.flatMap((code) =>
-    (subdivisions(code) ?? []).filter((one) => one.level === 1).map((one): Place => ({ code: one.code, group: code.toLowerCase() as Group, en: one.name.en, ja: one.name.ja })),
+    (subdivisions(code) ?? []).filter((one) => one.level === 1).map((one): Place => ({ code: one.code, group: code.toLowerCase(), en: one.name.en, ja: one.name.ja })),
   ),
 ];
 

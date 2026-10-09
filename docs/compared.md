@@ -52,7 +52,9 @@ difference is the design itself, [decisions.md](decisions.md) says which ships a
 | `WF` | Wallis & Futuna | commons | flag-icons 62% | design: Commons' drawing is Wallis and Futuna's local flag; flag-icons draws France's. |
 | `YT` | Mayotte | commons | flag-icons 83%, country-flag-icons 38%, circle-flags 29% | design: Commons' drawing is Mayotte's local flag, with its lettering; flag-icons draws France's. |
 | `ZW` | Zimbabwe | commons | country-flag-icons 26% | same design: the sets draw it simplified, in other shades, or laid out again at their shape; Commons' drawing is the full one |
+| `AU-ACT` | Australian Capital Territory | commons | circle-flags 55% | same design: the sets draw it simplified, in other shades, or laid out again at their shape; Commons' drawing is the full one |
 | `CA-BC` | British Columbia | commons | circle-flags 40% | same design: the sets draw it simplified, in other shades, or laid out again at their shape; Commons' drawing is the full one |
+| `FR-CP` | Clipperton Island | commons | circle-flags 51% | design: Wikidata gives France's flag, the only one flown on Clipperton Island; circle-flags draws an unofficial local design. |
 | `US-DC` | Washington DC | commons | circle-flags 27% | same design: the sets draw it simplified, in other shades, or laid out again at their shape; Commons' drawing is the full one |
 | `US-SC` | South Carolina | commons | circle-flags 73% | same design: the sets draw it simplified, in other shades, or laid out again at their shape; Commons' drawing is the full one |
 | `US-UM` | U.S. Outlying Islands | commons | circle-flags 55% | same design: the sets draw it simplified, in other shades, or laid out again at their shape; Commons' drawing is the full one |

@@ -11,8 +11,9 @@ describe("FLAG_CODES", () => {
     const countries = FLAG_CODES.filter((code) => code.length === 2);
     expect(FLAG_CODES.slice(0, countries.length)).toEqual(countries);
     for (const code of countries) expect(COUNTRY_CODES as readonly string[]).toContain(code);
-    for (const code of FLAG_CODES.slice(countries.length)) expect(code).toMatch(/^(JP|CA|US)-[A-Z0-9]{1,3}$/);
+    for (const code of FLAG_CODES.slice(countries.length)) expect(code).toMatch(/^(JP|CA|US|AU|GB|DE|FR|CH|AT|BR)-[A-Z0-9]{1,3}$/);
     expect(FLAG_CODES).toContain("JP-13");
+    for (const code of ["AU-NSW", "GB-SCT", "DE-BY", "FR-20R", "CH-ZH", "AT-9", "BR-SP"]) expect(FLAG_CODES).toContain(code);
     expect(FLAG_CODES).toContain("CA-ON");
     expect(FLAG_CODES).toContain("US-TX");
   });

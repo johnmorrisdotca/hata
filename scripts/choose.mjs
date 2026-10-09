@@ -35,7 +35,7 @@ const FILE = join(ROOT, "scripts", "choices.data.json");
 const { optimiseFlag } = await import(join(ROOT, "scripts", "optimise.ts"));
 const { setCandidates } = await import(join(ROOT, "scripts", "candidates.ts"));
 const { places } = await import(join(ROOT, "scripts", "places.ts"));
-const { select } = await import(join(ROOT, "scripts", "select.ts"));
+const { selectPlace } = await import(join(ROOT, "scripts", "select.ts"));
 const { classify } = await import(join(ROOT, "scripts", "licence.ts"));
 const { ACCEPTED, NO_FLAG } = await import(join(ROOT, "scripts", "data-config.ts"));
 
@@ -105,7 +105,7 @@ for (const place of places()) {
     delete kept[place.code];
     continue;
   }
-  const selection = select(place.code, (place.group === "country" ? wikidata.countries : wikidata.subdivisions)[place.code]);
+  const selection = selectPlace(place.code, wikidata);
   const commons = selection.file === null ? null : byFile.get(selection.file);
   const sets = setCandidates(place.code);
   if (commons === undefined) throw new Error(`${place.code}: ${selection.file} is not in the Commons snapshot: run pnpm data:commons`);

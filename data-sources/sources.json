@@ -4,15 +4,15 @@
       "path": "commons-2026-10-09.json",
       "url": "https://commons.wikimedia.org/w/api.php",
       "read": "2026-10-09",
-      "sha256": "50196a022eca26a821b6a10102e1724ad63473a329dd6b6e1312d2da79e5aaa5",
+      "sha256": "c219388ba0b5ba141539cbca28bd924352e82b98f472fa0ddb25734ac574598c",
       "note": "Wikimedia Commons, the description, licence and author of every chosen flag file, and the SHA-256 of each file kept in commons/ (each file under its own licence)"
     },
     {
       "path": "wikidata-2026-10-09.json",
       "url": "https://query.wikidata.org/sparql",
       "read": "2026-10-09",
-      "sha256": "3c2ea278fef3bb5d45cc0b6d6fd1381a38197133c8ca484dcf1c039154b93476",
-      "note": "Wikidata, the flag image (P41) of every country (P297) and of the subdivisions (P300) of Japan, Canada and the United States (CC0)"
+      "sha256": "03bb08de74031a7e373d3570a3ba065eb82301bde36d0d7c1e3c00da6e6f4258",
+      "note": "Wikidata, the flag image (P41) of every country (P297) and of the first-level subdivisions (P300) of JP, CA, US, AU, GB, DE, FR, CH, AT, BR (CC0)"
     }
   ]
 }

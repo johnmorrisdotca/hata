@@ -5,9 +5,9 @@ Made by `pnpm data`; a test fails if this list and the data differ. Sizes are of
 
 | | Pictures | SVG | Gzipped |
 | --- | --- | --- | --- |
-| Every flag | 345 (358 codes; 13 share another's picture) | 7239.6 KB | 2576.8 KB |
-| The same drawings as their sources have them | 345 | 12250.9 KB | |
-| The median flag | | 666 B | |
+| Every flag | 434 (463 codes; 29 share another's picture) | 8400.3 KB | 2928.7 KB |
+| The same drawings as their sources have them | 434 | 14594.2 KB | |
+| The median flag | | 738 B | |
 | The countries alone | 238 | 1993.4 KB | 666.0 KB |
 
 ## Over the budget
@@ -32,11 +32,13 @@ and listed here so a new one is noticed (the size test holds this list).
 | `US-ME` | Maine | 184.1 KB | 63.3 KB | 229.8 KB |
 | `US-MO` | Missouri | 173.2 KB | 47.0 KB | 177.1 KB |
 | `US-OR` | Oregon | 161.0 KB | 68.8 KB | 165.7 KB |
+| `BR-AL` | Alagoas | 153.5 KB | 29.8 KB | 265.9 KB |
 | `US-NE` | Nebraska | 147.0 KB | 54.0 KB | 329.5 KB |
 | `SV` | El Salvador | 143.6 KB | 32.6 KB | 274.1 KB |
 | `MP` | Northern Mariana Islands | 130.0 KB | 43.0 KB | 161.0 KB |
 | `US-WI` | Wisconsin | 127.0 KB | 48.8 KB | 201.0 KB |
 | `US-IA` | Iowa | 123.9 KB | 51.4 KB | 128.5 KB |
+| `DE-SL` | Saarland | 114.7 KB | 38.9 KB | 187.3 KB |
 | `ES` | Spain | 110.1 KB | 23.3 KB | 152.2 KB |
 | `US-NJ` | New Jersey | 105.4 KB | 34.9 KB | 202.4 KB |
 | `US-WY` | Wyoming | 105.2 KB | 42.7 KB | 182.9 KB |
@@ -55,12 +57,18 @@ and listed here so a new one is noticed (the size test holds this list).
 | `US-IL` | Illinois | 75.4 KB | 29.2 KB | 101.1 KB |
 | `HT` | Haiti | 75.4 KB | 11.1 KB | 172.6 KB |
 | `SM` | San Marino | 74.2 KB | 28.0 KB | 129.7 KB |
+| `BR-RN` | Rio Grande do Norte | 72.4 KB | 12.2 KB | 109.7 KB |
+| `BR-RS` | Rio Grande do Sul | 71.6 KB | 25.3 KB | 203.3 KB |
 | `PM` | St. Pierre & Miquelon | 67.8 KB | 23.1 KB | 103.5 KB |
 | `US-MA` | Massachusetts | 65.4 KB | 21.8 KB | 125.0 KB |
 | `US-KS` | Kansas | 64.9 KB | 17.0 KB | 240.5 KB |
+| `BR-PR` | Paraná | 62.1 KB | 21.9 KB | 177.1 KB |
+| `CH-GE` | Geneva | 61.5 KB | 12.7 KB | 76.4 KB |
 | `ME` | Montenegro | 56.7 KB | 22.2 KB | 120.9 KB |
+| `BR-RJ` | Rio de Janeiro | 56.7 KB | 21.5 KB | 343.5 KB |
 | `US-OK` | Oklahoma | 56.7 KB | 20.1 KB | 96.0 KB |
 | `YT` | Mayotte | 52.5 KB | 20.5 KB | 85.7 KB |
+| `BR-SC` | Santa Catarina | 47.9 KB | 17.0 KB | 77.1 KB |
 | `US-NV` | Nevada | 45.5 KB | 17.3 KB | 128.6 KB |
 | `GS` | South Georgia & South Sandwich Islands | 41.3 KB | 15.4 KB | 51.7 KB |
 | `BZ` | Belize | 40.8 KB | 14.8 KB | 70.2 KB |

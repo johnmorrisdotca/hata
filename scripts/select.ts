@@ -6,8 +6,12 @@
 //   2. If any statement left is ranked preferred, only the preferred ones count.
 //   3. If one file is left, it is the flag. If several are, CHOSEN in data-config.ts must name one of them.
 //   4. None left, or no item for the code: no flag, with that reason.
+//
+// Two lines of data-config.ts come first: SAME_PLACE (a subdivision code that is a country's code too, such as
+// FR-971 for Guadeloupe, takes the country's selection whole) and NAMED (a subdivision whose Commons file is named
+// by hand: its civil flag where Wikidata gives the service flag with the arms, or a drawing at the law's proportions).
 
-import { CHOSEN, ITEM } from "./data-config.ts";
+import { CHOSEN, ITEM, NAMED, SAME_PLACE } from "./data-config.ts";
 
 interface FlagStatement {
   file: string;
@@ -32,7 +36,7 @@ interface WikidataSnapshot {
 }
 
 type Selection =
-  | { code: string; file: string; item: string; rule: "only" | "preferred" | "chosen"; why?: string; others: string[] }
+  | { code: string; file: string; item: string; rule: "only" | "preferred" | "chosen" | "named"; why?: string; others: string[] }
   | { code: string; file: null; item: string | null; reason: string };
 
 const select = (code: string, items: readonly WikidataItem[] | undefined): Selection => {
@@ -44,6 +48,8 @@ const select = (code: string, items: readonly WikidataItem[] | undefined): Selec
     if (current.length === 0) throw new Error(`data-config.ts names ${named.item} for ${code}, which is not one of its current items`);
   }
   if (current.length === 0) return { code, file: null, item: null, reason: "Wikidata has no current item with this code" };
+  const named = NAMED[code];
+  if (named !== undefined) return { code, file: named.file, item: current[0]!.id, rule: "named", why: named.why, others: [...new Set(current.flatMap((item) => item.flags.filter((flag) => flag.end === undefined).map((flag) => flag.file)))] };
   const statements = current.flatMap((item) => item.flags.filter((flag) => flag.end === undefined).map((flag) => ({ ...flag, item: item.id })));
   if (statements.length === 0) return { code, file: null, item: current[0]!.id, reason: "Wikidata gives no current flag image (P41) for this place" };
   const preferred = statements.filter((flag) => flag.rank === "preferred");
@@ -63,5 +69,16 @@ const select = (code: string, items: readonly WikidataItem[] | undefined): Selec
   return { code, file: only.file, item: only.item, rule: preferred.length > 0 && statements.length > 1 ? "preferred" : "only", others: others.filter((file) => file !== only.file) };
 };
 
-export { select };
+/**
+ * One place's selection from the whole snapshot: a country by its code, a subdivision by its own, and a code in
+ * SAME_PLACE by the country it is the same place as (the selection keeps the subdivision's code).
+ */
+const selectPlace = (code: string, snapshot: Pick<WikidataSnapshot, "countries" | "subdivisions">): Selection => {
+  const same = SAME_PLACE[code];
+  if (same !== undefined) return { ...select(same, snapshot.countries[same]), code };
+
+  return select(code, (code.includes("-") ? snapshot.subdivisions : snapshot.countries)[code]);
+};
+
+export { select, selectPlace };
 export type { FlagStatement, Selection, WikidataItem, WikidataSnapshot };

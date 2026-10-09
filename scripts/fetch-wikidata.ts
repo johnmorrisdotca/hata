@@ -5,7 +5,9 @@
 //   - for every ISO 3166-1 alpha-2 code (P297): the item, its English label, whether it has ended (P576), and
 //     every flag image statement that is not deprecated, with its rank, its start and end (P580, P582) and what
 //     it applies to (P518) or is for (P3831);
-//   - the same for every ISO 3166-2 code (P300) of Japan, Canada and the United States.
+//   - the same for the ISO 3166-2 codes (P300) of the first-level subdivisions Kuni lists for the countries in
+//     SUBDIVISION_COUNTRIES (scripts/data-config.ts): only those codes, so the snapshot holds no county or
+//     département nobody reads.
 //
 //   pnpm data:wikidata
 //
@@ -15,12 +17,15 @@
 import { readdirSync, rmSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 
+import { subdivisions as kuniSubdivisions } from "@johnmorrisdotca/kuni/subdivisions";
+
+import { SUBDIVISION_COUNTRIES } from "./data-config.ts";
 import { readManifest, recordFile, sha256, SOURCES_DIR, USER_AGENT, writeManifest } from "./sources.ts";
 
 const ENDPOINT = "https://query.wikidata.org/sparql";
 
-// The subdivisions asked for: the first level of these three countries.
-const SUBDIVISION_COUNTRIES = ["JP", "CA", "US"];
+// The subdivisions asked for: the first level of each country in SUBDIVISION_COUNTRIES, as Kuni lists it.
+const SUBDIVISION_CODES = SUBDIVISION_COUNTRIES.flatMap((country) => (kuniSubdivisions(country) ?? []).filter((one) => one.level === 1).map((one) => one.code)).sort();
 
 const flagPart = `OPTIONAL {
     ?item p:P41 ?flagStatement .
@@ -45,7 +50,7 @@ const SUBDIVISION_QUERY = `SELECT ?code ?item ?label ?ended ?flag ?rank ?start ?
   ?item p:P300 ?statement .
   ?statement ps:P300 ?code ; wikibase:rank ?codeRank .
   FILTER(?codeRank != wikibase:DeprecatedRank)
-  FILTER(${SUBDIVISION_COUNTRIES.map((country) => `STRSTARTS(?code, "${country}-")`).join(" || ")})
+  VALUES ?code { ${SUBDIVISION_CODES.map((code) => `"${code}"`).join(" ")} }
   ${flagPart}
 }`;
 
@@ -165,7 +170,7 @@ const read = new Date().toISOString().slice(0, 10);
 console.log("asking Wikidata for the countries' flags");
 const countries = group(await ask(COUNTRY_QUERY));
 console.log(`  ${Object.keys(countries).length} codes`);
-console.log(`asking Wikidata for the flags of the subdivisions of ${SUBDIVISION_COUNTRIES.join(", ")}`);
+console.log(`asking Wikidata for the flags of ${SUBDIVISION_CODES.length} subdivisions of ${SUBDIVISION_COUNTRIES.join(", ")}`);
 const subdivisions = group(await ask(SUBDIVISION_QUERY));
 console.log(`  ${Object.keys(subdivisions).length} codes`);
 
@@ -189,7 +194,7 @@ writeManifest(
     url: ENDPOINT,
     read,
     sha256: sha256(text),
-    note: "Wikidata, the flag image (P41) of every country (P297) and of the subdivisions (P300) of Japan, Canada and the United States (CC0)",
+    note: `Wikidata, the flag image (P41) of every country (P297) and of the first-level subdivisions (P300) of ${SUBDIVISION_COUNTRIES.join(", ")} (CC0)`,
   }),
 );
 console.log(`wrote data-sources/${name}`);
