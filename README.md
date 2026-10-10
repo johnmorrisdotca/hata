@@ -611,7 +611,9 @@ which file each flag is.
 
 ### Used by
 
-Nothing yet: it is new. Using Hata in something? Open an *Add my project* issue and we will add you.
+- **[REST in Pieces](https://github.com/spxis/rest-in-pieces)**, a fake-data REST service, gives every country and region a `flag` link to Hata's SVG and draws `/flags/{code}.svg` (with Hata's shapes, crops and variants) when Hata is installed beside it.
+
+Using Hata in something? Open an *Add my project* issue and we will add you.
 
 ### The family
 
