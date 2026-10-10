@@ -6,6 +6,21 @@ All notable changes to this project are written here. The format follows
 
 ## [Unreleased]
 
+### Added
+
+- **Brittany's flag** (`FR-BRE`, 465 flags in all, 17 of France's 26 regions): the Gwenn-ha-du, from Commons' public-domain
+  drawing "Flag of Brittany (Gwenn ha du).svg" (Open Clip Art Library; PD-OpenClipart, CC0, PD-old and PD-France), not the CC BY-SA
+  file Wikidata names, which `NAMED` now replaces. It is the default and the only variant of `FR-BRE`, with the status `local`
+  (`variantsOf("FR-BRE")`): the flag in real use across the region, though the Région Bretagne's official symbol is a logo. Its
+  square, 4:3 and round frames keep the ermine canton at the hoist (`FOCUS`). The demo shows its status and reason in the panel.
+
+### Changed
+
+- **Brittany is no longer on the list of flags left out for their licence**: 18 codes have no flag (was 19), and
+  `docs/decisions.md` lists five flags left out for their licence (was six), with Brittany's decision dated 2026-10-10.
+- **The README's pictures are re-taken** (`docs/images`): the gallery's count (465 of 465 flags) and the Markdown and SQL list buttons were out of date
+  in the hero, and `pnpm screenshots:readme` stopped at the detail picture because two frames matched one selector; it waits on the first.
+
 ## [1.4.0] - 2026-10-09
 
 ### Added

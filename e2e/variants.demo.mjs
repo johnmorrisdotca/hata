@@ -56,6 +56,23 @@ test("shows no switch for a place with one flag", async ({ page }, testInfo) => 
   await expect(page.locator(at("disputed-note"))).toBeHidden();
 });
 
+test("shows Brittany's flag as the default, with its status local and the reason, and no \"disputed\" mark", async ({ page }, testInfo) => {
+  await open(page, "?lang=en&set=fr");
+  await tap(page, at("tile-FR-BRE"), testInfo);
+  await expect(page.locator(at("detail-title"))).toHaveText("Brittany");
+  await expect(page.locator(at("detail-flag"))).toHaveAttribute("src", "dist/svg/fr-bre.svg");
+  await expect(page.locator(at("variants"))).toBeVisible();
+  await expect(page.locator(at("disputed-note"))).toBeHidden();
+  await expect(page.locator(`${at("variant-switch")} button`)).toHaveCount(1);
+  await expect(page.locator(at("variant-gwenn-ha-du"))).toHaveAttribute("aria-pressed", "true");
+  await expect(page.locator(at("variant-why"))).toContainText("local");
+  await expect(page.locator(at("variant-why"))).toContainText("since 1923");
+  await expect(page.locator(at("variant-why"))).toContainText("official symbol is a logo");
+  await expect(page.locator(at("facts"))).toContainText("Flag of Brittany (Gwenn ha du).svg");
+  await expect(page.locator(at("facts"))).toContainText("Public domain");
+  await noSidewaysScroll(page);
+});
+
 test("offers Northern Ireland's flags from the list of places with no flag of its own", async ({ page }, testInfo) => {
   await open(page, "?lang=en");
   await tap(page, `${at("left-out")} summary`, testInfo);

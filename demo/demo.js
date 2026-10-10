@@ -361,7 +361,7 @@ async function showDetail(code, variantId) {
 }
 
 // Which of a place's flags is shown: a switch with a button for each, and below it the chosen one's status, dates, reason
-// and source. Nothing shows for a place with one flag.
+// and source. Nothing shows for a place that has no entry in VARIANTS; a place with one flag and a status (Brittany) shows it.
 function drawVariants(code, variants, chosen) {
   const box = $("variants");
   box.hidden = variants.length === 0;

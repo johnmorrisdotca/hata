@@ -61,16 +61,17 @@ licence check, the same comparison with the flag sets and the same pixel proof a
   Hamburg's castle are their civil flags. **Bavaria** has two of equal standing, white and blue in lozenges or in
   stripes; Wikidata ranks neither first, and `CHOSEN` takes the lozenges, the one the state government flies. For
   the maintainer: the stripes are one line, if they are preferred.
-- **France**: 16 of the 26 codes. **Overseas**, the 12 codes that are also country codes (FR-971 Guadeloupe and
+- **France**: 17 of the 26 codes. **Overseas**, the 12 codes that are also country codes (FR-971 Guadeloupe and
   GP, FR-972 and MQ, FR-973 and GF, FR-974 and RE, FR-976 and YT, and FR-BL, FR-MF, FR-NC, FR-PF, FR-PM, FR-TF,
   FR-WF) take their country code's flag through `SAME_PLACE`, so the open decision about the French territories
   below is made once and both codes follow it; Clipperton Island (FR-CP) flies France's flag, as Wikidata says.
   **The thirteen metropolitan regions**: a region has a flag here only where the flag is its own and in public use
   as the region's, adopted by its council or the established flag of the same territory. That is **Corsica**
   (the Moor's head, the Collectivity's flag), **Nouvelle-Aquitaine** (its council's flag since 2016, the lion and
-  the waves) and **Normandy** (the two leopards, the region's flag since the two Normandies were joined in 2016,
-  flown across it and the centre of the council's logo). **Brittany**'s Gwenn-ha-du is just such a flag, but
-  Commons' drawing is CC BY-SA 4.0, so it is left out for its licence (below). The other nine use a logo, and the
+  the waves), **Normandy** (the two leopards, the region's flag since the two Normandies were joined in 2016,
+  flown across it and the centre of the council's logo) and **Brittany** (the Gwenn-ha-du, flown across the region
+  though its official symbol is a logo; it came in on 2026-10-10 with a public-domain drawing, and its status is
+  `local`: see Brittany below). The other nine use a logo, and the
   banners on Commons for them join the arms of old provinces in designs nobody adopted: Auvergne-Rhône-Alpes,
   Bourgogne-Franche-Comté, Centre-Val de Loire, Grand Est, Hauts-de-France, Île-de-France, Occitanie (whose
   Occitan cross belongs to the wider cultural region), Pays de la Loire and Provence-Alpes-Côte d'Azur (Provence's
@@ -94,11 +95,11 @@ licence check, the same comparison with the flag sets and the same pixel proof a
 - **India**: no state has an official flag (Jammu and Kashmir's ended in 2019); Wikidata names two, Karnataka's
   proposed one and Delhi's, and neither is adopted.
 
-## For the maintainer: six flags left out for their licence
+## For the maintainer: five flags left out for their licence
 
 Each is on Commons under a licence that is not public domain, CC0 or CC BY, and no MIT set draws it at its true
 proportions. Bringing one in is a line in `ACCEPTED` in `scripts/data-config.ts`, with the decision in words.
-Brittany's joined them in 1.1.0, and Mississippi's left them on 2026-10-09 (below).
+Brittany's joined them in 1.1.0 and left them on 2026-10-10, and Mississippi's left them on 2026-10-09 (both below).
 
 | Code | Place | What Commons states | Recommendation |
 | --- | --- | --- | --- |
@@ -107,7 +108,19 @@ Brittany's joined them in 1.1.0, and Mississippi's left them on 2026-10-09 (belo
 | `CA-MB` | Manitoba | CC BY-SA 4.0 (a drawing from the Canadian Heraldic Authority's register) | **Leave out** (John, 2026-10-09), or name a public-domain drawing of the same flag on Commons if one is made. Share-alike would bind every user of the package. |
 | `CC` | Cocos (Keeling) Islands | CC BY-SA 4.0 | **Leave out** (John, 2026-10-09), as Manitoba. |
 | `JP-37` | Kagawa | CC BY-SA 3.0 and GFDL, with the note "If you will use this file, you must get Kagawa Prefecture approval" | **Leave out** (John, 2026-10-09). |
-| `FR-BRE` | Brittany | CC BY-SA 4.0 | **Leave out** (John, 2026-10-09). **A public-domain drawing exists**: "Flag of Brittany (Gwenn ha du).svg" is marked Public domain (CC0, PD-old, PD-France) on Commons as of 2026-10-09, so naming it in `NAMED` brings Brittany in with no share-alike. John asked to keep Brittany out; this is for him to reopen. |
+
+**Brittany** came in on 2026-10-10 (John: "Brittany. Why would I not want it?"). It was left out on 2026-10-09 because the
+drawing Wikidata names for `FR-BRE`, "Flag of Brittany.svg", is CC BY-SA 4.0 on Commons, and no flag set draws the Gwenn-ha-du
+at its proportions under a licence that ships. Commons has a second drawing of the same flag, "Flag of Brittany (Gwenn ha du).svg"
+(Gryffindor, 2012, from the Open Clip Art Library, which released it into the public domain), and its page, read on 2026-10-10,
+carries the licence tags PD-OpenClipart, CC0 (`Cc-zero`), PD-old and PD-France, with Commons' machine-readable licence "Public
+domain" and `Copyrighted: False`. It is one line in `NAMED`, so the build takes it instead of Wikidata's file, and the licence
+check passes it like any public-domain flag. Its **status is `local`**: the Gwenn-ha-du (designed in 1923) is the flag flown across
+Brittany, by its people, its towns and the buildings of the region's council, but the Région Bretagne's official symbol is a logo,
+so no authority has made it the region's flag. It is therefore the default and the only variant of `FR-BRE`
+(`variantsOf("FR-BRE")`, `status: "local"`), with the reason and a source, and the demo shows the status beside it. The CC BY-SA file
+is no longer kept in `data-sources/commons/`. What would change it: Commons' CC BY-SA file is not shipped, and a Région Bretagne
+statement making the flag official would make its status `official`.
 
 **Mississippi** came in on 2026-10-09 ("include Mississippi (copyrighted free use)"): Commons gives the licence as
 "Copyrighted free use", under which the holder allows any use for any purpose with no condition, freer than CC BY. It is the one
@@ -188,6 +201,10 @@ has one, never a flag chosen for being the one most flown.
 - **Syria**: default `2025`, the green, white and black flag with three red stars (Wikidata's preferred flag since 2024-12-08);
   `assad-era`, the red, white and black flag with two green stars (historical, 1980 to 2024, still flown by supporters of the
   former governments and in some communities).
+- **Brittany**: default and only variant `gwenn-ha-du`, status `local` (since 1923): the flag in real use across the region, though
+  not the region's official symbol, which is a logo. It is the one place whose status is stated for a flag that is also its
+  default, so that a user who needs to know whether a flag is official can ask (`variantsOf("FR-BRE")`); see Brittany above for the
+  drawing and its licence.
 
 **Considered and not offered**, each because no old flag is in common use today or the flag is not a place's flag:
 **Libya's** 1977 to 2011 green flag (no flag used by more than a few); **Myanmar's** 1974 to 2010 flag; **Mississippi's, Utah's
