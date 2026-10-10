@@ -352,6 +352,7 @@ const NAMES: Readonly<Record<string, readonly [en: string, ja: string, aspect: n
   "FR-974": ["La Réunion", "レユニオン", 1.5],
   "FR-976": ["Mayotte", "マヨット", 1.5],
   "FR-BL": ["St. Barthélemy", "サン・バルテルミー", 1.5],
+  "FR-BRE": ["Brittany", "ブルターニュ地域圏", 1.5],
   "FR-CP": ["Clipperton Island", "クリッパートン島", 1.5],
   "FR-MF": ["St. Martin", "サン・マルタン", 1.5],
   "FR-NAQ": ["Nouvelle-Aquitaine", "ヌーヴェル＝アキテーヌ地域圏", 1.5],

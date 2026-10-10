@@ -22,7 +22,7 @@ yours to ask for even where the default is the whole flag. The side of every fla
 
 Judged on 2026-10-09 by looking at every flag's whole picture beside its centre crop, and again at the chosen crop beside the whole flag.
 
-## Flags with a side chosen by hand (119)
+## Flags with a side chosen by hand (120)
 
 "Default" is what `frame()` does with `auto` at the square: the crop at the side, or the whole flag where the measure says the crop loses a colour
 no reason excuses, or where a person judged that no crop shows the flag.
@@ -137,6 +137,7 @@ no reason excuses, or where a person judged that no crop shows the flag.
 | `CA-SK` | Saskatchewan | centre, on request only | the whole flag | The meaning is spread across the whole flag (two emblems, or a design that runs from one end to the other), so any square crop is a part of it that another flag could share. |
 | `DE-HB` | Bremen | kept at the hoist (left) | the crop | A bar or band at the hoist (a different colour or a pattern) is part of what makes the flag this one, and a crop from the left keeps it beside the main field; the centre crop drops it. |
 | `DE-RP` | Rhineland-Palatinate | kept at the hoist (left) | the crop | The flag's emblem sits nearer the hoist than the middle, so a crop from the left shows all of it where the centre crop cuts it. |
+| `FR-BRE` | Brittany | kept at the hoist (left) | the crop | An emblem sits in a canton at the hoist and the flag's body runs on from it, so a crop from the left keeps the emblem and a slice of the body, as a hand-drawn square of the flag does; the centre crop shows only the body. |
 | `US-AK` | Alaska | centre, on request only | the whole flag | The meaning is spread across the whole flag (two emblems, or a design that runs from one end to the other), so any square crop is a part of it that another flag could share. |
 | `US-CO` | Colorado | kept at the hoist (left) | the crop | The flag's emblem sits nearer the hoist than the middle, so a crop from the left shows all of it where the centre crop cuts it. |
 | `US-DC` | Washington DC | centre, on request only | the whole flag | The meaning is spread across the whole flag (two emblems, or a design that runs from one end to the other), so any square crop is a part of it that another flag could share. |

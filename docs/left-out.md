@@ -14,7 +14,6 @@ The decisions behind the reasons are in [decisions.md](decisions.md).
 | `CA-MB` | Manitoba | Commons gives its licence as CC BY-SA 4.0, which is not public domain, CC0 or CC BY, and no MIT flag set draws the same flag at its proportions | [Flag of the Province of Manitoba.svg](https://commons.wikimedia.org/wiki/File:Flag_of_the_Province_of_Manitoba.svg) |
 | `FR-ARA` | Auvergne-Rhône-Alpes | Auvergne-Rhône-Alpes has no flag: its regional council uses a logo, and the flag on Commons that Wikidata names joins the arms of the old provinces in a design that no authority adopted. |  |
 | `FR-BFC` | Burgundy-Franche-Comté | Bourgogne-Franche-Comté has no flag: its regional council uses a logo, and the flag on Commons that Wikidata names joins the arms of Burgundy and Franche-Comté in a design that no authority adopted. |  |
-| `FR-BRE` | Brittany | Commons gives its licence as CC BY-SA 4.0, which is not public domain, CC0 or CC BY, and no MIT flag set draws the same flag at its proportions | [Flag of Brittany.svg](https://commons.wikimedia.org/wiki/File:Flag_of_Brittany.svg) |
 | `FR-CVL` | Centre-Val de Loire | Centre-Val de Loire has no flag: its regional council uses a logo, and the banner on Commons that Wikidata names is one no authority adopted. |  |
 | `FR-GES` | Grand-Est | Grand Est has no flag: its regional council uses a logo, and Wikidata names no flag for it. |  |
 | `FR-HDF` | Hauts-de-France | Hauts-de-France has no flag: its regional council uses a logo, and the flag on Commons that Wikidata names is a proposal that no authority adopted. |  |
@@ -38,6 +37,5 @@ package to share alike), or naming a public-domain drawing of the same flag on C
 | `CC` | Cocos (Keeling) Islands | [Flag of the Cocos (Keeling) Island.svg](https://commons.wikimedia.org/wiki/File:Flag_of_the_Cocos_(Keeling)_Island.svg) | CC BY-SA 4.0 | no |
 | `OM` | Oman | [Flag of Oman.svg](https://commons.wikimedia.org/wiki/File:Flag_of_Oman.svg) | OGL-om 1.0 | no |
 | `CA-MB` | Manitoba | [Flag of the Province of Manitoba.svg](https://commons.wikimedia.org/wiki/File:Flag_of_the_Province_of_Manitoba.svg) | CC BY-SA 4.0 | no |
-| `FR-BRE` | Brittany | [Flag of Brittany.svg](https://commons.wikimedia.org/wiki/File:Flag_of_Brittany.svg) | CC BY-SA 4.0 | no |
 | `JP-34` | Hiroshima | [Flag of Hiroshima Prefecture.svg](https://commons.wikimedia.org/wiki/File:Flag_of_Hiroshima_Prefecture.svg) | not stated | no |
 | `JP-37` | Kagawa | [Flag of Kagawa Prefecture.svg](https://commons.wikimedia.org/wiki/File:Flag_of_Kagawa_Prefecture.svg) | CC BY-SA 3.0 | no |

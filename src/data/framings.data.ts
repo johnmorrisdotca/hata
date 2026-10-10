@@ -3,7 +3,7 @@
 // c a crop from the centre, a a crop kept at the side CROPS names, w the whole flag. Measured by pnpm data:framing.
 // Each row is the three letters and the names of the flags that share them.
 const PACKED: Readonly<Record<string, string>> = {
-  "a,a,a": "ae aw ax bh bj bs by cf cl cn cu cw cz dj er fi fo gq gr gw is jo km kp kw lr mg mh mn mt my mz na no nr ph pr ps rw sb sc sd se sg ss st sx tg tl tm to tr tw um us uy uz vu ws za zm zw br-ac br-am br-ba br-go br-ma br-pi br-se br-sp de-hb de-rp us-co us-ga us-hi us-mn us-nc us-nv us-oh us-sc us-tx",
+  "a,a,a": "ae aw ax bh bj bs by cf cl cn cu cw cz dj er fi fo gq gr gw is jo km kp kw lr mg mh mn mt my mz na no nr ph pr ps rw sb sc sd se sg ss st sx tg tl tm to tr tw um us uy uz vu ws za zm zw br-ac br-am br-ba br-go br-ma br-pi br-se br-sp de-hb de-rp fr-bre us-co us-ga us-hi us-mn us-nc us-nv us-oh us-sc us-tx",
   "c,c,w": "af gd gu ie md mx nf ng vc ca-nb us-ia us-wv us-wy pm--local",
   "w,w,w": "ai as au bm ck cx fj fk gs io ky lk ms nu nz pn qa tc tf tk tv vg au-nsw au-nt au-qld au-sa au-tas au-vic au-wa br-ms ca-nl ca-nu ca-on ca-sk us-ak us-dc",
   "c,w,w": "bi ca jm br-sc ca-nt ca-yt us-ms wf--local",
@@ -14,7 +14,7 @@ const PACKED: Readonly<Record<string, string>> = {
 // what `fit: "crop"` asked for by name does, and `fit: "auto"` where FRAMINGS says "a". Each row is a side and the
 // names of the flags that keep it.
 const SIDES: Readonly<Record<string, string>> = {
-  "left": "ae aw ax bh bj bs by cd cf cl cn cu cw cz dj dk er fi fo gq gr gw is jo km kp kw lr mg mh mn mt my mz na no nr ph pr ps sb sc sd se sg ss st sx tg tl tm to tr tw um us uy uz vu ws za zw br-ac br-am br-ba br-go br-ma br-pi br-se br-sp de-hb de-rp us-co us-ga us-hi us-mn us-nc us-nv us-oh us-sc us-tx",
+  "left": "ae aw ax bh bj bs by cd cf cl cn cu cw cz dj dk er fi fo gq gr gw is jo km kp kw lr mg mh mn mt my mz na no nr ph pr ps sb sc sd se sg ss st sx tg tl tm to tr tw um us uy uz vu ws za zw br-ac br-am br-ba br-go br-ma br-pi br-se br-sp de-hb de-rp fr-bre us-co us-ga us-hi us-mn us-nc us-nv us-oh us-sc us-tx",
   "right": "rw zm",
 };
 

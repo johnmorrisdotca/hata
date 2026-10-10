@@ -60,6 +60,10 @@ const NAMED: Readonly<Record<string, { file: string; why: string }>> = {
     file: "Flag of France.svg",
     why: "John, 2026-10-09: each French territory's official flag, else France's. The red flag with the saltire and the tricolour canton (Wikidata's choice) is a local, unofficial one, the `local` variant.",
   },
+  "FR-BRE": {
+    file: "Flag of Brittany (Gwenn ha du).svg",
+    why: "John, 2026-10-09: \"Brittany. Why would I not want it?\" The Gwenn-ha-du is the flag flown across Brittany, by its people, its towns and its council's buildings, though the Région Bretagne's official symbol is a logo. Wikidata names \"Flag of Brittany.svg\", which Commons marks CC BY-SA 4.0; this drawing of the same flag is marked public domain (Open Clip Art Library, PD-OpenClipart, CC0, PD-old, PD-France), so it ships with no share-alike. Its status is `local` (`variants`).",
+  },
   "AT-4": {
     file: "Flag of Tirol and Upper Austria.svg",
     why: "Upper Austria's flag (Landesflagge) is white over red, plain; Wikidata gives only the government's service flag (Landesdienstflagge), which adds the arms. Tyrol's flag is the same white over red.",
@@ -183,7 +187,7 @@ const group = (at: Focus["at"], why: string, codes: readonly string[]): Record<s
 
 const SIDES: Readonly<Record<string, Focus>> = {
   ...group("left", "An emblem sits in a canton at the hoist and the flag's body runs on from it, so a crop from the left keeps the emblem and a slice of the body, as a hand-drawn square of the flag does; the centre crop shows only the body.", [
-    "US", "UM", "LR", "MY", "TW", "CL", "CN", "AW", "CW", "SB", "UZ", "WS", "TG", "TO", "MT", "SG", "UY", "GR", "US-HI", "US-GA", "BR-AC", "BR-AM", "BR-GO", "BR-MA", "BR-PI", "BR-SE", "BR-SP",
+    "US", "UM", "LR", "MY", "TW", "CL", "CN", "AW", "CW", "SB", "UZ", "WS", "TG", "TO", "MT", "SG", "UY", "GR", "US-HI", "US-GA", "BR-AC", "BR-AM", "BR-GO", "BR-MA", "BR-PI", "BR-SE", "BR-SP", "FR-BRE",
   ]),
   ...group("left", "A triangle, chevron or wedge at the hoist holds the flag's emblem or its meaning, and a crop from the left keeps it with the stripes it points into; the centre crop shows the stripes and loses it.", [
     "CU", "CZ", "DJ", "ER", "GQ", "JO", "KM", "KW", "MZ", "PH", "PR", "PS", "SD", "SS", "ST", "SX", "TL", "VU", "ZA", "ZW", "BR-BA", "US-OH", "BH",
@@ -589,6 +593,23 @@ const VARIANTS: Readonly<Record<string, VariantSet>> = {
         file: null,
       },
       france("French Polynesia", "https://en.wikipedia.org/wiki/Flag_of_French_Polynesia"),
+    ],
+  },
+  "FR-BRE": {
+    disputed: false,
+    default: "gwenn-ha-du",
+    variants: [
+      {
+        id: "gwenn-ha-du",
+        name: "The Gwenn-ha-du",
+        nameJa: "グウェン・ア・ドゥ（ブルターニュの旗）",
+        status: "local",
+        from: "1923",
+        until: null,
+        why: "The black and white flag of Brittany with its ermine canton, designed in 1923 and flown across the region by its people and its towns. It is the flag in real use, but not the region's official symbol: the Région Bretagne's official symbol is a logo.",
+        source: "https://en.wikipedia.org/wiki/Flag_of_Brittany",
+        file: null,
+      },
     ],
   },
 };

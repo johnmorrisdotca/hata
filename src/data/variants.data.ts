@@ -24,6 +24,7 @@ const VARIANT_LOADERS: Readonly<Record<string, Loader>> = {
   "FR-976--local": () => import("../flags/yt--local.js"),
   "FR-BL--france": () => import("../flags/bl.js"),
   "FR-BL--local": () => import("../flags/bl--local.js"),
+  "FR-BRE--gwenn-ha-du": () => import("../flags/fr-bre.js"),
   "FR-NC--kanak": () => import("../flags/nc.js"),
   "FR-NC--france": () => import("../flags/nc--france.js"),
   "FR-PF--french-polynesia": () => import("../flags/pf.js"),
