@@ -602,7 +602,7 @@ const VARIANTS: Readonly<Record<string, VariantSet>> = {
       {
         id: "gwenn-ha-du",
         name: "The Gwenn-ha-du",
-        nameJa: "グウェン・ア・ドゥ（ブルターニュの旗）",
+        nameJa: "グウェン・ハ・ドゥ（ブルターニュの旗）",
         status: "local",
         from: "1923",
         until: null,
