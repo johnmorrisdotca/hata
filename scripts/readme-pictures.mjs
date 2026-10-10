@@ -48,7 +48,7 @@ await takePictures({
       height: 1000,
       async prepare(page) {
         await page.locator('[data-testid="tile-JP-13"]').click();
-        await page.locator('#frames img[data-shape="round"]').waitFor();
+        await page.locator('#frames img[data-shape="round"]').first().waitFor();
         await pictures(page);
       },
     },
