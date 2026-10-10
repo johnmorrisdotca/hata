@@ -6,6 +6,8 @@ All notable changes to this project are written here. The format follows
 
 ## [Unreleased]
 
+## [1.5.0] - 2026-10-10
+
 ### Added
 
 - **Brittany's flag** (`FR-BRE`, 465 flags in all, 17 of France's 26 regions): the Gwenn-ha-du, from Commons' public-domain
