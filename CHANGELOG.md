@@ -8,8 +8,6 @@ All notable changes to this project are written here. The format follows
 
 - Reconcile standard embeds with the released flag variants, whole/crop choices and Brittany; validate variant ids in the canonical frame and keep variant proportions in copied code.
 
-
-
 ### Added
 
 - Add a shared standalone flag builder and standard embed/ page, compatible pixel-width and display-size attributes, composed load/error events, and styling inside shadow roots.
@@ -19,6 +17,8 @@ All notable changes to this project are written here. The format follows
 ### Changed
 
 - Group the package family by kind, alphabetize each group, and include the geography packages and REST in Pieces in the shared footer and README.
+
+- Update the shared family description for addresses in all seven supported countries, including France and Germany.
 
 ## [1.5.0] - 2026-10-10
 
