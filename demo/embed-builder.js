@@ -34,7 +34,7 @@ const rows = (schema) => schema.map((option) => ({
 const shared = (product, schema, settings, context = {}) => {
   const dimensions = product.frameSize?.(settings, context) ?? { width: 360, height: 360 };
   return familyEmbedBuilder({ packageName: product.package ?? "@example/embed", major: product.major ?? /@(\d+)\//.exec(product.cdn ?? "")?.[1] ?? 1,
-    site: product.embed ?? "https://example.test/", title: product.title?.(settings, context) ?? product.name,
+    site: product.embed ?? "https://example.test/", title: product.title?.(settings, context) ?? product.name, titleJa: product.title?.({ ...settings, lang: "ja" }, { ...context, lang: "ja" }) ?? product.name,
     component: "Embed", selector: "app-embed", options: rows(schema),
     makers: { embed: { names: "call", element: "element", tag: product.tag,
       embed: product.embed, width: dimensions.width, height: dimensions.height,

@@ -7,7 +7,7 @@ import { continentName, country } from "@johnmorrisdotca/kuni";
 import { subdivision } from "@johnmorrisdotca/kuni/subdivisions";
 
 import { API_CSS, apiBody, apiPage } from "./api.mjs";
-import { FAMILY_SCRIPT, familyEmbedBuilder, familyFooter, familyHead, familyHeader, familyUnreviewed } from "./family-template.mjs";
+import { FAMILY_SCRIPT, FAMILY_EMBED_BUILDER_WORDS, familyEmbedBuilder, familyFooter, familyHead, familyHeader, familyUnreviewed } from "./family-template.mjs";
 
 const id = "hata";
 const { FLAG_CODES } = await import(new URL("../dist/index.js", import.meta.url).href);
@@ -180,7 +180,7 @@ writeFileSync("site/api.css", API_CSS);
 writeFileSync("site/api.html", apiPage({ id, name: "Hata", icon: ICON, api }));
 console.log("site/ is ready: serve it, or let the Pages workflow publish it.");
 
-writeFileSync("site/family-embed-builder.js", `export ${familyEmbedBuilder.toString()};\n`);
+writeFileSync("site/family-embed-builder.js", `export const FAMILY_EMBED_BUILDER_WORDS = ${JSON.stringify(FAMILY_EMBED_BUILDER_WORDS)};\nexport ${familyEmbedBuilder.toString()};\n`);
 writeFileSync("site/embed-builder.js", readFileSync("demo/embed-builder.js", "utf8").replace('from "../scripts/family-template.mjs"', 'from "./family-embed-builder.js"'));
 
 const builderWords = {

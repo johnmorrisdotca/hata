@@ -4,18 +4,34 @@ import { flagAspect, flagName } from "./dist/names.js";
 import { FLAG_ELEMENT_ATTRIBUTES } from "./dist/element.js";
 import { manifest } from "./dist/manifest.js";
 import "./dist/element-define.js";
-import { familyEmbedBuilder } from "./family-embed-builder.js";
+import { familyEmbedBuilder, FAMILY_EMBED_BUILDER_WORDS } from "./family-embed-builder.js";
 import { FLAG_OPTIONS, HATA_PRODUCT } from "./embed-hata.js";
 
 const words = {
-  en: { pitch: "Choose a flag, preview it, and copy the code for your page.", name: "Hata is Japanese for flag.", nameLink: "About the name", foot: "The choices are in the link. The flag is drawn in your browser.",
-    previewTitle: "Your flag", makerLabel: "What to build", toGallery: "Flag gallery", makerFlag: "A flag", makerFlagSays: "A flag at its own proportions or in a frame.",
-    notSet: "Not set", on: "On", off: "Off", reset: "Reset", startAgain: "Start again", copy: "Copy", copied: "Copied.", copyLink: "Copy a link to this flag", linkCopied: "The link is copied.",
-    codeTitle: "The code", codeText: "Choose how to include this flag on your page.", onlyDifferent: "Only choices that differ from the package defaults are written.", defaultIs: "Default: {value}", loading: "Preparing the image code…" },
-  ja: { pitch: "旗を選んで表示を確認し、ページに載せるコードをコピーします。", name: "「旗」は英語の flag に当たります。", nameLink: "名前について", foot: "選択はリンクに入ります。旗はブラウザーで描画されます。",
-    previewTitle: "あなたの旗", makerLabel: "作るもの", toGallery: "旗の一覧", makerFlag: "旗", makerFlagSays: "本来の縦横比、または枠に収めた旗です。",
-    notSet: "指定なし", on: "オン", off: "オフ", reset: "元に戻す", startAgain: "最初からやり直す", copy: "コピー", copied: "コピーしました。", copyLink: "この旗へのリンクをコピー", linkCopied: "リンクをコピーしました。",
-    codeTitle: "コード", codeText: "ページへの載せ方を選びます。", onlyDifferent: "パッケージの初期値と異なる選択だけを書きます。", defaultIs: "初期値: {value}", loading: "画像のコードを準備しています…" },
+  en: {
+    ...FAMILY_EMBED_BUILDER_WORDS.en,
+    pitch: "Choose a flag, preview it, and copy the code for your page.",
+    name: "Hata is Japanese for flag.",
+    nameLink: "About the name",
+    foot: "The choices are in the link. The flag is drawn in your browser.",
+    toGallery: "Flag gallery",
+    makerFlag: "A flag",
+    makerFlagSays: "A flag at its own proportions or in a frame.",
+    copyLink: "Copy a link to this flag",
+    loading: "Preparing the image code…"
+  },
+  ja: {
+    ...FAMILY_EMBED_BUILDER_WORDS.ja,
+    pitch: "旗を選んで表示を確認し、ページに埋め込むコードをコピーできます。",
+    name: "「旗」は英語の flag に当たります。",
+    nameLink: "名前について",
+    foot: "選択はリンクに入ります。旗はブラウザで描画されます。",
+    toGallery: "旗の一覧",
+    makerFlag: "旗",
+    makerFlagSays: "本来の縦横比、または枠に収めた旗です。",
+    copyLink: "この旗へのリンクをコピー",
+    loading: "画像のコードを準備しています…"
+  },
 };
 const row = (id, kind, en, ja, extra = {}) => ({ id, group: "flag", kind, names: { call: id, element: id },
   say: { en: { label: en[0], help: en[1] }, ja: { label: ja[0], help: ja[1] } }, ...extra });
@@ -28,7 +44,7 @@ const options = [
   row("label", "text", ["Spoken name", "An optional name for a screen reader."], ["読み上げる名前", "スクリーンリーダー用の名前です。指定は任意です。"]),
   row("border", "boolean", ["Border", "Show a thin border around the flag."], ["枠線", "旗のまわりに細い線を表示します。"], { default: false }),
   row("shadow", "boolean", ["Shadow", "Show a soft shadow below the flag."], ["影", "旗の下にやわらかい影を表示します。"], { default: false }),
-  row("theme", "choice", ["Theme", "Use a light or dark border, or follow the device."], ["配色", "明るいページ用・暗いページ用、または端末の設定に合わせます。"], { default: "auto", choices: ["auto", "light", "dark"] }),
+  row("theme", "choice", ["Theme", "Use a light or dark border, or follow the device."], ["配色", "明るい枠線・暗い枠線、または端末の設定に合わせます。"], { default: "auto", choices: ["auto", "light", "dark"] }),
 ];
 for (const option of options.filter((one) => one.kind === "choice")) {
   const original = FLAG_OPTIONS.find((one) => one.id === option.id);
@@ -43,7 +59,7 @@ let context = {};
 let epoch = 0;
 let mounted;
 const page = globalThis.familyLanguage({ id: "hata", words, onChange: () => mounted?.draw() });
-const builder = familyEmbedBuilder({ id: "hata", packageName: "@johnmorrisdotca/hata", major: VERSION.split(".")[0], site: "https://johnmorrisdotca.github.io/hata/", title: "Hata · a flag", options,
+const builder = familyEmbedBuilder({ id: "hata", packageName: "@johnmorrisdotca/hata", major: VERSION.split(".")[0], site: "https://johnmorrisdotca.github.io/hata/", title: "Hata · a flag", titleJa: "旗の埋め込み", options,
   groups: { flag: { en: "The flag", ja: "旗の設定" } }, unit: (option) => option.id === "width" ? "px" : "",
   leftOut: { "element.fit": "Use the flag's curated framing rather than overriding its fit.", "element.loading": "The preview is eager; iframe snippets use lazy loading." },
   makers: { flag: { names: "call", element: "element", tag: "hata-flag", embed: "embed/", description: "makerFlagSays", required: ["code"], width: (settings) => Math.ceil(width(settings)) + 8, height: (settings) => Math.ceil(width(settings) / aspect(settings)) + 8,
