@@ -6,6 +6,8 @@ All notable changes to this project are written here. The format follows
 
 ## [Unreleased]
 
+- Reconcile standard embeds with the released flag variants, whole/crop choices and Brittany; validate variant ids in the canonical frame and keep variant proportions in copied code.
+
 
 
 ### Added

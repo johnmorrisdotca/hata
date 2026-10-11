@@ -6,15 +6,18 @@
 <script type="module">
 import "../dist/element-define.js";
 import { FLAG_CODES } from "../dist/index.js";
+import { variantsOf, LEFT_OUT } from "../dist/manifest.js";
 const query = new URLSearchParams(location.search);
 const element = document.getElementById("flag");
-const code = query.get("code");
-element.setAttribute("code", FLAG_CODES.includes(code) ? code : "JP");
-const choices = { shape: ["own", "4:3", "1:1", "round"], size: ["small", "medium", "large"], theme: ["light", "dark", "auto"], fit: ["contain", "cover", "hoist"], lang: ["en", "ja"] };
+const code = (query.get("code") ?? "JP").trim().toUpperCase();
+element.setAttribute("code", FLAG_CODES.includes(code) || LEFT_OUT.some(one => one.code === code && one.variants.length > 0) ? code : "JP");
+const choices = { shape: ["own", "4:3", "1:1", "round"], size: ["small", "medium", "large"], theme: ["light", "dark", "auto"], fit: ["auto", "whole", "crop", "contain", "cover", "hoist"], lang: ["en", "ja"] };
 for (const [name, values] of Object.entries(choices)) {
   const value = query.get(name);
   if (values.includes(value)) element.setAttribute(name, value);
 }
+const variant = query.get("variant");
+if (variant !== null && variantsOf(element.getAttribute("code")).some(one => one.id === variant)) element.setAttribute("variant", variant);
 const numericSize = Number(query.get("size"));
 if (Number.isFinite(numericSize) && numericSize >= 12 && numericSize <= 2048) element.setAttribute("size", String(numericSize));
 const language = query.get("lang");

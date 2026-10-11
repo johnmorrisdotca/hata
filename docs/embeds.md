@@ -55,3 +55,17 @@ The legacy embed.html message format remains available on that legacy page. New 
 ## Coverage
 
 The standalone builder checks the real FLAG_ELEMENT_ATTRIBUTES list against its rows and explicit reasons for excluded options. Fit follows each flag's curated framing; loading is eager in the preview and lazy on the host iframe. The browser checks cover language and URL restoration, every host format, phone layout, safe labels, query validation, reflected false flags, shadow-root rendering and native/message event agreement.
+
+## Released crops and flag variants
+
+The builder and canonical frame retain native fit choices auto, whole, crop,
+cover, hoist and contain. Variant ids come from variantsOf(code) and the gallery
+panel; an empty variant uses the native default. The frame validates ids for
+the chosen place. Image, data-URI and element previews use the variant's own
+proportions. Brittany FR-BRE uses the released public-domain Gwenn-ha-du drawing
+and its native local status. Existing square crops and disputed-place variants
+are preserved; nothing is redrawn by the builder.
+
+Places without a default flag, such as Northern Ireland, are available when a
+shipped variant is selected explicitly. The builder withholds code until a valid
+variant id is supplied, following the native package's decision to have no default.

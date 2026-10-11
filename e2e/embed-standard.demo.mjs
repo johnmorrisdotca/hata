@@ -75,3 +75,28 @@ test("the iframe posts the native JSON-safe event payload", async ({ page }) => 
   expect(message).toEqual({ type: "hata-load", detail: { code: "JP", shape: "own" } });
   expect(JSON.parse(JSON.stringify(message))).toEqual(message);
 });
+
+test("released variants and crop choices work in the canonical frame and builder", async ({ page }) => {
+  await serve(page);
+  await page.goto("https://hata.test/embed/?code=AF&variant=republic&shape=1:1&fit=whole&width=120");
+  await expect(page.locator("hata-flag")).toHaveAttribute("variant", "republic");
+  await expect(page.locator("hata-flag")).toHaveAttribute("fit", "whole");
+  await expect(page.locator("hata-flag img")).toBeVisible();
+  await page.goto("https://hata.test/embed/?code=GB-NIR&variant=union-flag&width=120");
+  await expect(page.locator("hata-flag")).toHaveAttribute("code", "GB-NIR");
+  await expect(page.locator("hata-flag img")).toBeVisible();
+  await page.goto("https://hata.test/embed/?code=FR-BRE&variant=bad&fit=crop&shape=1:1");
+  await expect(page.locator("hata-flag img")).toBeVisible();
+  await expect(page.locator("hata-flag")).not.toHaveAttribute("variant", /.*/);
+  await expect(page.locator("hata-flag")).toHaveAttribute("fit", "crop");
+  await page.goto("https://hata.test/builder.html?lang=en");
+  await expect(page.locator("#bld-stage hata-flag img")).toBeVisible();
+  await page.locator("#opt-code").selectOption("AF");
+  await page.locator("#opt-variant").fill("republic");
+  await page.locator('#opt-fit button[data-value="whole"]').click();
+  await expect(page.locator("#bld-stage hata-flag")).toHaveAttribute("variant", "republic");
+  await expect(page.locator("#bld-code")).toContainText('variant="republic"');
+  await expect(page.locator("#bld-stage hata-flag img")).toBeVisible();
+  await page.locator("#opt-variant").fill("not-a-variant");
+  await expect(page.locator("#bld-code")).toHaveText("");
+});
