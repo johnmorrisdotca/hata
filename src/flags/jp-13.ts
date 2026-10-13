@@ -7,10 +7,19 @@
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
  * @example
- * ```ts
+ * ```ts no-run
  * import flag from "@johnmorrisdotca/hata/flags/jp-13";
  *
- * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * const host=document.createElement("div");
+ * host.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * console.log(host.querySelector("svg")?.getAttribute("viewBox"));
+ * ```
+ 
+ *
+ * @example
+ * ```ts
+ * import { svg } from "@johnmorrisdotca/hata/flags/jp-13";
+ * console.log(svg.startsWith("<svg"),svg.length);
  * ```
  */
 const svg: string = "<svg data-hata=\"jp-13\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"#fff\" viewBox=\"-13.5 -9 27 18\"><path fill=\"indigo\" d=\"M-13.5-9h27V9h-27z\"/><g id=\"hata-jp-13-b\"><path id=\"hata-jp-13-a\" d=\"m0 6 .5-.5V2h-1v3.5z\"/><use href=\"#hata-jp-13-a\" transform=\"rotate(60)\"/><use href=\"#hata-jp-13-a\" transform=\"rotate(-60)\"/></g><use href=\"#hata-jp-13-b\" transform=\"scale(1-1)\"/><circle r=\"3\"/><circle r=\"2\" fill=\"indigo\"/><circle r=\"1\"/></svg>";

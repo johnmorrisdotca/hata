@@ -7,10 +7,19 @@
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
  * @example
- * ```ts
+ * ```ts no-run
  * import flag from "@johnmorrisdotca/hata/flags/jp-09";
  *
- * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * const host=document.createElement("div");
+ * host.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * console.log(host.querySelector("svg")?.getAttribute("viewBox"));
+ * ```
+ 
+ *
+ * @example
+ * ```ts
+ * import { svg } from "@johnmorrisdotca/hata/flags/jp-09";
+ * console.log(svg.startsWith("<svg"),svg.length);
  * ```
  */
 const svg: string = "<svg data-hata=\"jp-09\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"#fff\" viewBox=\"0 0 900 630\"><path fill=\"#76b138\" d=\"M0 0h900v630H0z\"/><g transform=\"translate(303 189) scale(2.1)\"><path d=\"M20 10h50v40H20zm70 0h40v25a27.5 27.5 0 0 1-25.1 26.4l-31.1 2.7A26 26 0 0 0 50 90v20H10V85a27.5 27.5 0 0 1 25.1-26.4l31.1-2.7A26 26 0 0 0 90 30zm40 60-28.5 4A25 25 0 0 0 80 95v15H56V90a20 20 0 0 1 20-20z\"/><path fill=\"none\" stroke=\"#76b138\" d=\"m15 33.4 30-24 30 24m0 10-30-24-30 24m0 10 30-24 30 24M45 9v42\"/><circle cx=\"105\" cy=\"95\" r=\"15.8\"/></g></svg>";

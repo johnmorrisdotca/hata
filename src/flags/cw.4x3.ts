@@ -6,10 +6,19 @@
  * The drawing `flag("CW", { shape: "4:3" })` uses, made for that shape by hand rather than cut from the flag. The /manifest entry's `framings` say how each frame was chosen.
  *
  * @example
- * ```ts
+ * ```ts no-run
  * import square from "@johnmorrisdotca/hata/flags/cw.4x3";
  *
- * element.innerHTML = square;
+ * const host=document.createElement("div");
+ * host.innerHTML = square;
+ * console.log(host.querySelector("svg")?.getAttribute("viewBox"));
+ * ```
+ 
+ *
+ * @example
+ * ```ts
+ * import { svg } from "@johnmorrisdotca/hata/flags/cw.4x3";
+ * console.log(svg.startsWith("<svg"),svg.length);
  * ```
  */
 const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 640 480\"><defs><clipPath id=\"hata-cw-4x3-a\"><path fill-opacity=\".7\" d=\"M0 0h682.7v512H0z\"/></clipPath><path id=\"hata-cw-4x3-b\" d=\"m0-1 .2.7H1L.3 0l.2.7L0 .4l-.6.4.2-.7-.5-.4h.7z\"/></defs><g clip-path=\"url(#hata-cw-4x3-a)\" transform=\"scale(.94)\"><path fill=\"#002b7f\" d=\"M0 0h768v512H0z\"/><path fill=\"#f9e814\" d=\"M0 320h768v64H0z\"/><use width=\"13500\" height=\"9000\" x=\"2\" y=\"2\" fill=\"#fff\" href=\"#hata-cw-4x3-b\" transform=\"scale(42.67)\"/><use width=\"13500\" height=\"9000\" x=\"3\" y=\"3\" fill=\"#fff\" href=\"#hata-cw-4x3-b\" transform=\"scale(56.9)\"/></g></svg>";

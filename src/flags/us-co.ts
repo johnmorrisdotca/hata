@@ -7,10 +7,19 @@
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
  * @example
- * ```ts
+ * ```ts no-run
  * import flag from "@johnmorrisdotca/hata/flags/us-co";
  *
- * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * const host=document.createElement("div");
+ * host.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * console.log(host.querySelector("svg")?.getAttribute("viewBox"));
+ * ```
+ 
+ *
+ * @example
+ * ```ts
+ * import { svg } from "@johnmorrisdotca/hata/flags/us-co";
+ * console.log(svg.startsWith("<svg"),svg.length);
  * ```
  */
 const svg: string = "<svg data-hata=\"us-co\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1800 1200\"><path fill=\"#00205b\" d=\"M0 0h1800v1200H0\"/><path fill=\"#fff\" d=\"M0 400h1800v400H0\"/><path fill=\"#bf0a30\" d=\"M1131 750a400 400 0 1 1 0-300L760 600\"/><circle cx=\"760\" cy=\"600\" r=\"200\" fill=\"gold\"/></svg>";

@@ -7,10 +7,19 @@
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
  * @example
- * ```ts
+ * ```ts no-run
  * import flag from "@johnmorrisdotca/hata/flags/sb";
  *
- * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * const host=document.createElement("div");
+ * host.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * console.log(host.querySelector("svg")?.getAttribute("viewBox"));
+ * ```
+ 
+ *
+ * @example
+ * ```ts
+ * import { svg } from "@johnmorrisdotca/hata/flags/sb";
+ * console.log(svg.startsWith("<svg"),svg.length);
  * ```
  */
 const svg: string = "<svg data-hata=\"sb\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-35 -30 200 100\"><clipPath id=\"hata-sb-a\"><path d=\"M-35-30h200V70H-35z\"/></clipPath><path fill=\"#215b33\" d=\"M-35-30h200V70H-35z\"/><path fill=\"#0051ba\" d=\"M-35 70V-30h200\"/><path stroke=\"#fcd116\" stroke-width=\"9\" d=\"M165-30-35 70\" clip-path=\"url(#hata-sb-a)\"/><g id=\"hata-sb-d\" fill=\"#fff\" transform=\"scale(10)\"><g id=\"hata-sb-c\"><path id=\"hata-sb-b\" d=\"m0-1-.3.95.47.16z\"/><use href=\"#hata-sb-b\" transform=\"scale(-1 1)\"/></g><use href=\"#hata-sb-c\" transform=\"rotate(72)\"/><use href=\"#hata-sb-c\" transform=\"rotate(288)\"/><use href=\"#hata-sb-c\" transform=\"rotate(144)\"/><use href=\"#hata-sb-c\" transform=\"rotate(216)\"/></g><use href=\"#hata-sb-d\" transform=\"matrix(1 0 0 1 19.741054 -16.92013)\"/><use href=\"#hata-sb-d\" transform=\"matrix(1 0 0 1 19.741054 16.92013)\"/><use href=\"#hata-sb-d\" transform=\"matrix(1 0 0 1 -19.741054 16.92013)\"/><use href=\"#hata-sb-d\" transform=\"matrix(1 0 0 1 -19.741054 -16.92013)\"/></svg>";

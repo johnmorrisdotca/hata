@@ -13,7 +13,7 @@ import type { FrameOptions } from "./svg";
  * import { flag, type FlagOptions } from "@johnmorrisdotca/hata/load";
  *
  * const taliban: FlagOptions = { variant: "de-facto", shape: "round", label: "Afghanistan" };
- * await flag("AF", taliban);
+ * console.log(await flag("AF", taliban));
  * ```
  */
 interface FlagOptions extends FrameOptions {
@@ -48,9 +48,9 @@ const codeOf = (code: string): string => mustBeString(code, "code").trim().toUpp
  * const round = await flag("ca", { shape: "round", label: "Canada" }); // flag-icons' square of Canada, in a circle
  * const whole = await flag("us", { shape: "1:1", fit: "whole" });      // all of the stars and stripes, in a square
  * const canton = await flag("us", { shape: "1:1", fit: "crop" });      // the canton and a slice of the stripes
- * await flag("AF", { variant: "de-facto" });             // the Taliban's flag; the Republic's tricolour is the default
- * await flag("GB-NIR", { variant: "union-flag" });        // Northern Ireland has no flag of its own: ask for one
- * await flag("XX");                                        // null
+ * console.log(await flag("AF", { variant: "de-facto" }));             // the Taliban's flag; the Republic's tricolour is the default
+ * console.log(await flag("GB-NIR", { variant: "union-flag" }));        // Northern Ireland has no flag of its own: ask for one
+ * console.log(await flag("XX"));                                        // null
  * ```
  */
 const flag = (code: string, options?: FlagOptions): Promise<string | null> => {
@@ -95,10 +95,11 @@ const place = (known: string, options: FlagOptions | undefined, loader: (() => P
  * @throws TypeError, synchronously, when `code` is not a string or `options` names a shape or fit that is not one.
  *
  * @example
- * ```ts
+ * ```ts no-run
  * import { flagDataUri } from "@johnmorrisdotca/hata/load";
  *
- * image.src = (await flagDataUri("US-TX", { shape: "4:3" })) ?? "";
+ * const previewImage=document.createElement("img");
+ * previewImage.src = (await flagDataUri("US-TX", { shape: "4:3" })) ?? "";
  * ```
  */
 const flagDataUri = (code: string, options?: FlagOptions): Promise<string | null> =>

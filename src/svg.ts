@@ -14,6 +14,7 @@ import { CROPS, FRAMINGS } from "./data/framings.data";
  *
  * const shapes: Shape[] = ["flag", "4:3", "1:1", "round"];
  * const icons = shapes.map((shape) => frame(japan, { shape }));
+ * console.log(icons);
  * ```
  */
 type Shape = "flag" | "4:3" | "1:1" | "round";
@@ -47,9 +48,9 @@ type Shape = "flag" | "4:3" | "1:1" | "round";
  * import canada from "@johnmorrisdotca/hata/flags/ca";
  *
  * const fit: Fit = "whole";
- * frame(usa, { shape: "1:1", fit });              // all of the US flag, centred in a square
- * frame(usa, { shape: "1:1", fit: "crop" });      // the canton and a slice of the stripes, kept at the left
- * frame(canada, { shape: "1:1" });                // auto: the whole flag, because no crop of Canada keeps its red bars
+ * console.log(frame(usa, { shape: "1:1", fit }));              // all of the US flag, centred in a square
+ * console.log(frame(usa, { shape: "1:1", fit: "crop" }));      // the canton and a slice of the stripes, kept at the left
+ * console.log(frame(canada, { shape: "1:1" }));                // auto: the whole flag, because no crop of Canada keeps its red bars
  * ```
  */
 type Fit = "auto" | "whole" | "crop" | "cover" | "hoist" | "contain";
@@ -63,7 +64,7 @@ type Fit = "auto" | "whole" | "crop" | "cover" | "hoist" | "contain";
  * import france from "@johnmorrisdotca/hata/flags/fr";
  *
  * const avatar: FrameOptions = { shape: "round", label: "France" };
- * frame(france, avatar);
+ * console.log(frame(france, avatar));
  * ```
  */
 interface FrameOptions {
@@ -149,8 +150,8 @@ const hashOf = (text: string): string => {
  * import { aspectOf } from "@johnmorrisdotca/hata";
  * import japan from "@johnmorrisdotca/hata/flags/jp";
  *
- * aspectOf(japan);         // 1.5
- * aspectOf("not an svg");  // null
+ * console.log(aspectOf(japan));         // 1.5
+ * console.log(aspectOf("not an svg"));  // null
  * ```
  */
 const aspectOf = (svg: string): number | null => {
@@ -181,11 +182,11 @@ const aspectOf = (svg: string): number | null => {
  * import { frame } from "@johnmorrisdotca/hata";
  * import canada from "@johnmorrisdotca/hata/flags/ca";
  *
- * frame(canada, { shape: "round" });                    // the whole flag on a neutral disc: a crop would lose its bars
- * frame(canada, { shape: "round", fit: "cover" });      // a circle, the maple leaf in the middle
- * frame(canada, { shape: "4:3", fit: "whole" });        // all of the 1:2 flag, with bands above and below
- * frame(canada, { shape: "1:1", fit: "crop" });         // the centre crop, because a crop was asked for by name
- * frame(canada, { label: "Canada" });                   // the flag, with role="img" and a title
+ * console.log(frame(canada, { shape: "round" }));                    // the whole flag on a neutral disc: a crop would lose its bars
+ * console.log(frame(canada, { shape: "round", fit: "cover" }));      // a circle, the maple leaf in the middle
+ * console.log(frame(canada, { shape: "4:3", fit: "whole" }));        // all of the 1:2 flag, with bands above and below
+ * console.log(frame(canada, { shape: "1:1", fit: "crop" }));         // the centre crop, because a crop was asked for by name
+ * console.log(frame(canada, { label: "Canada" }));                   // the flag, with role="img" and a title
  * ```
  */
 const frame = (svg: string, options: FrameOptions = {}): string | null => {
@@ -233,13 +234,14 @@ const frame = (svg: string, options: FrameOptions = {}): string | null => {
  * @throws TypeError when `svg` is not a string.
  *
  * @example
- * ```ts
+ * ```ts no-run
  * import { toDataUri } from "@johnmorrisdotca/hata";
  * import japan from "@johnmorrisdotca/hata/flags/jp";
  *
  * const img = document.createElement("img");
  * img.src = toDataUri(japan) ?? "";
  * img.alt = "Japan";
+ * console.log(img);
  * ```
  */
 const toDataUri = (svg: string): string | null => {

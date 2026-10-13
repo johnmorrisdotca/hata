@@ -6,10 +6,19 @@
  * The drawing `flag("TD", { shape: "1:1" })` uses (and the round frame, in a circle), made for that shape by hand rather than cut from the flag. The /manifest entry's `framings` say how each frame was chosen.
  *
  * @example
- * ```ts
+ * ```ts no-run
  * import square from "@johnmorrisdotca/hata/flags/td.1x1";
  *
- * element.innerHTML = square;
+ * const host=document.createElement("div");
+ * host.innerHTML = square;
+ * console.log(host.querySelector("svg")?.getAttribute("viewBox"));
+ * ```
+ 
+ *
+ * @example
+ * ```ts
+ * import { svg } from "@johnmorrisdotca/hata/flags/td.1x1";
+ * console.log(svg.startsWith("<svg"),svg.length);
  * ```
  */
 const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 512 512\"><g fill-rule=\"evenodd\"><path fill=\"#002664\" d=\"M0 0h171.2v512H0z\"/><path fill=\"#c60c30\" d=\"M340.8 0H512v512H340.8z\"/><path fill=\"#fecb00\" d=\"M171.2 0h169.6v512H171.2z\"/></g></svg>";

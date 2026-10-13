@@ -7,10 +7,19 @@
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
  * @example
- * ```ts
+ * ```ts no-run
  * import flag from "@johnmorrisdotca/hata/flags/ph";
  *
- * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * const host=document.createElement("div");
+ * host.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * console.log(host.querySelector("svg")?.getAttribute("viewBox"));
+ * ```
+ 
+ *
+ * @example
+ * ```ts
+ * import { svg } from "@johnmorrisdotca/hata/flags/ph";
+ * console.log(svg.startsWith("<svg"),svg.length);
  * ```
  */
 const svg: string = "<svg data-hata=\"ph\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"#fcd116\" viewBox=\"-28 -45 180 90\"><title>Flag of the Philippines</title><path fill=\"#0038a8\" d=\"M-28-45h180V0L0 44z\"/><path fill=\"#ce1126\" d=\"M0 0h152v45H-28z\"/><path fill=\"#fff\" d=\"m50 0-78 45v-90z\"/><circle r=\"9\"/><g id=\"hata-ph-c\"><g id=\"hata-ph-b\"><path id=\"hata-ph-a\" d=\"m0 0-3.2-16 1-.9zl-1.2-17.8L0-19l1.2 1.2zl2.2-16.9 1 1z\"/><use href=\"#hata-ph-a\" transform=\"scale(-1)\"/></g><use href=\"#hata-ph-b\" transform=\"rotate(90)\"/></g><use href=\"#hata-ph-c\" transform=\"rotate(45)\"/><path id=\"hata-ph-d\" d=\"m41 0-3.4 1.2-.1 3.6-2.2-2.9-3.4 1 2-2.9-2-3 3.4 1.1 2.2-2.9v3.6z\"/><use href=\"#hata-ph-d\" transform=\"rotate(120,-2.019,0)\"/><use href=\"#hata-ph-d\" transform=\"rotate(240,-2.019,0)\"/></svg>";

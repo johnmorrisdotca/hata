@@ -7,10 +7,19 @@
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
  * @example
- * ```ts
+ * ```ts no-run
  * import flag from "@johnmorrisdotca/hata/flags/us-mn";
  *
- * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * const host=document.createElement("div");
+ * host.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * console.log(host.querySelector("svg")?.getAttribute("viewBox"));
+ * ```
+ 
+ *
+ * @example
+ * ```ts
+ * import { svg } from "@johnmorrisdotca/hata/flags/us-mn";
+ * console.log(svg.startsWith("<svg"),svg.length);
  * ```
  */
 const svg: string = "<svg data-hata=\"us-mn\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1000 600\"><path fill=\"#52c9e8\" d=\"M0 0h1000v600H0z\"/><path fill=\"#002d5d\" d=\"M0 0h560L390 300l170 300H0Z\"/><g fill=\"#fff\"><g id=\"hata-us-mn-b\"><path id=\"hata-us-mn-a\" d=\"M210 190v90l45 20 45-20z\" transform=\"rotate(22.5 210 190)\"/><use href=\"#hata-us-mn-a\" transform=\"rotate(180 210, 300)\"/></g><use href=\"#hata-us-mn-b\" transform=\"rotate(45 210 300)\"/><use href=\"#hata-us-mn-b\" transform=\"rotate(135 210 300)\"/><use href=\"#hata-us-mn-b\" transform=\"rotate(270 210 300)\"/></g></svg>";

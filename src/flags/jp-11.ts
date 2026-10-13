@@ -7,10 +7,19 @@
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
  * @example
- * ```ts
+ * ```ts no-run
  * import flag from "@johnmorrisdotca/hata/flags/jp-11";
  *
- * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * const host=document.createElement("div");
+ * host.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * console.log(host.querySelector("svg")?.getAttribute("viewBox"));
+ * ```
+ 
+ *
+ * @example
+ * ```ts
+ * import { svg } from "@johnmorrisdotca/hata/flags/jp-11";
+ * console.log(svg.startsWith("<svg"),svg.length);
  * ```
  */
 const svg: string = "<svg data-hata=\"jp-11\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-247.5 -90 945 630\"><path fill=\"#fff\" d=\"M-247.5-90h945v630h-945z\"/><g id=\"hata-jp-11-c\"><g id=\"hata-jp-11-b\"><path id=\"hata-jp-11-a\" fill=\"#ed1c24\" d=\"M224.3 106.7c-38-18-46.2-72.4-16.8-98.4A32 32 0 0 1 231.8.2c16.7 2 29 16.4 26.6 33.8a31 31 0 0 1-18.7 24.5c-15.6 6.7-20.2 29-4.6 42 4.3 4 10.3 3.7 8.8 8.7-1.4 5-11.6 1.3-19.6-2.5m82.8-85.6c22.7 33.4 6.2 82-30.4 91-7.7 1.8-17.1.5-24-4.3a30.4 30.4 0 0 1 19.1-55.4c14-.2 24.7-14.7 23.5-28-.5-5.1-7.4-12.6-2.8-15.6 3.4-2.2 9.9 5.3 14.6 12.3\"/><use href=\"#hata-jp-11-a\" transform=\"rotate(180 225 225)\"/></g><use href=\"#hata-jp-11-b\" transform=\"rotate(90 225 225)\"/></g><use href=\"#hata-jp-11-c\" transform=\"rotate(45 225 225)\"/></svg>";

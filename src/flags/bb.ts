@@ -7,10 +7,19 @@
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
  * @example
- * ```ts
+ * ```ts no-run
  * import flag from "@johnmorrisdotca/hata/flags/bb";
  *
- * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * const host=document.createElement("div");
+ * host.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * console.log(host.querySelector("svg")?.getAttribute("viewBox"));
+ * ```
+ 
+ *
+ * @example
+ * ```ts
+ * import { svg } from "@johnmorrisdotca/hata/flags/bb";
+ * console.log(svg.startsWith("<svg"),svg.length);
  * ```
  */
 const svg: string = "<svg data-hata=\"bb\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24000 16000\"><path fill=\"#1f367c\" d=\"M0 0h24000v16000H0z\"/><path fill=\"#f3b100\" d=\"M8000 0h8000v16000H8000z\"/><path id=\"hata-bb-a\" fill=\"#000\" d=\"M12000 4124c-260 709-525 1447-1092 2012 176-58 484-110 682-105v2982l-842 125c-30-3-40-50-40-114-81-926-300-1704-552-2509-18-110-337-530-91-456 30 4 359 138 307 74a3185 3185 0 0 0-1739-897c-56-14-89 14-39 79 844 1299 1550 2832 1544 4651 328 0 1123-194 1452-194v2104h415l95-5876z\"/><use href=\"#hata-bb-a\" transform=\"matrix(-1 0 0 1 24000 0)\"/></svg>";

@@ -7,10 +7,19 @@
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
  * @example
- * ```ts
+ * ```ts no-run
  * import flag from "@johnmorrisdotca/hata/flags/tf";
  *
- * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * const host=document.createElement("div");
+ * host.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * console.log(host.querySelector("svg")?.getAttribute("viewBox"));
+ * ```
+ 
+ *
+ * @example
+ * ```ts
+ * import { svg } from "@johnmorrisdotca/hata/flags/tf";
+ * console.log(svg.startsWith("<svg"),svg.length);
  * ```
  */
 const svg: string = "<svg data-hata=\"tf\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 450 300\"><path d=\"M0 0h450v300H0z\" style=\"fill:#214d9b\"/><path d=\"M-1-1h226v151H-1z\" style=\"fill:#fff\"/><path d=\"M2 2h74v146H2z\" style=\"fill:#214d9b\"/><path d=\"M149 2h74v146h-74z\" style=\"fill:#eb2e2e\"/><path d=\"m313 160 4 9h16v53l-5 7 10 23 9-23-5-7v-37h10l3-9h-13v-7h16l4-9zm-23 20 5 4-2 6 5-4 5 4-2-6 5-4h-6l-2-6-2 6Zm79 0 5 4-2 6 5-4 5 4-2-6 5-4h-6l-2-6-2 6zm-55 70-2 6 5-4 5 4-2-6 5-4h-6l-2-6-2 6h-6zm41 0-2 6 5-4 5 4-2-6 5-4h-6l-2-6-2 6h-6zm-21 21-1 6 4-4 5 4-1-6 5-4h-7l-2-6-1 6h-7z\" style=\"fill:#fff\"/><path d=\"M312 223h14l2 6h12l-15-39h-12l-15 39h12zm2-9 5-15 5 15z\" style=\"fill:#fff\"/><path d=\"M349 223h14l2 6h12l-15-39h-12l-15 39h12zm2-9 5-15 5 15z\" style=\"fill:#fff\"/></svg>";

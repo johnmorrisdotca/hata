@@ -7,10 +7,19 @@
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
  * @example
- * ```ts
+ * ```ts no-run
  * import flag from "@johnmorrisdotca/hata/flags/ba";
  *
- * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * const host=document.createElement("div");
+ * host.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * console.log(host.querySelector("svg")?.getAttribute("viewBox"));
+ * ```
+ 
+ *
+ * @example
+ * ```ts
+ * import { svg } from "@johnmorrisdotca/hata/flags/ba";
+ * console.log(svg.startsWith("<svg"),svg.length);
  * ```
  */
 const svg: string = "<svg data-hata=\"ba\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 16 8\"><path fill=\"#002395\" d=\"M0 0h16v8H0z\"/><path fill=\"#fecb00\" d=\"M4.24 0h8v8z\"/><g id=\"hata-ba-b\"><path id=\"hata-ba-a\" fill=\"#fff\" d=\"M2.353.525 2.8-.85 3.247.525l-1.17-.85h1.446z\"/><use x=\"1\" y=\"1\" href=\"#hata-ba-a\"/><use x=\"2\" y=\"2\" href=\"#hata-ba-a\"/></g><use x=\"3\" y=\"3\" href=\"#hata-ba-b\"/><use x=\"6\" y=\"6\" href=\"#hata-ba-b\"/></svg>";

@@ -7,10 +7,19 @@
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
  * @example
- * ```ts
+ * ```ts no-run
  * import flag from "@johnmorrisdotca/hata/flags/et";
  *
- * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * const host=document.createElement("div");
+ * host.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * console.log(host.querySelector("svg")?.getAttribute("viewBox"));
+ * ```
+ 
+ *
+ * @example
+ * ```ts
+ * import { svg } from "@johnmorrisdotca/hata/flags/et";
+ * console.log(svg.startsWith("<svg"),svg.length);
  * ```
  */
 const svg: string = "<svg data-hata=\"et\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1200 600\"><path fill=\"#da121a\" d=\"M0 0h1200v600H0z\"/><path fill=\"#fcdd09\" d=\"M0 0h1200v400H0z\"/><path fill=\"#078930\" d=\"M0 0h1200v200H0z\"/><g transform=\"matrix(1.6666667,0,0,1.6666667,600,300)\"><circle r=\"120\" fill=\"#0f47af\"/><g id=\"hata-et-a\"><path fill=\"#fcdd09\" d=\"m0-96-4.2 13L13-29.8h-23l-2.7 8h74.2l11-8h-51Z\"/><path stroke=\"#fcdd09\" stroke-width=\"4\" d=\"m25.9-35.6 30.5-42\"/></g><use width=\"100%\" height=\"100%\" href=\"#hata-et-a\" transform=\"rotate(72)\"/><use width=\"100%\" height=\"100%\" href=\"#hata-et-a\" transform=\"rotate(144)\"/><use width=\"100%\" height=\"100%\" href=\"#hata-et-a\" transform=\"rotate(-144)\"/><use width=\"100%\" height=\"100%\" href=\"#hata-et-a\" transform=\"rotate(-72)\"/></g></svg>";

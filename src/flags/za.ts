@@ -7,10 +7,19 @@
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
  * @example
- * ```ts
+ * ```ts no-run
  * import flag from "@johnmorrisdotca/hata/flags/za";
  *
- * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * const host=document.createElement("div");
+ * host.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * console.log(host.querySelector("svg")?.getAttribute("viewBox"));
+ * ```
+ 
+ *
+ * @example
+ * ```ts
+ * import { svg } from "@johnmorrisdotca/hata/flags/za";
+ * console.log(svg.startsWith("<svg"),svg.length);
  * ```
  */
 const svg: string = "<svg data-hata=\"za\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 90 60\"><title>Flag of South Africa</title><defs><clipPath id=\"hata-za-b\"><path d=\"m0 0 45 30L0 60z\"/></clipPath><clipPath id=\"hata-za-a\"><path d=\"M0 0h90v60H0z\"/></clipPath></defs><path fill=\"#e03c31\" d=\"M0 0h90v30H45z\"/><path fill=\"#001489\" d=\"M0 60h90V30H45z\"/><g fill=\"none\" clip-path=\"url(#hata-za-a)\"><path stroke=\"#fff\" stroke-width=\"20\" d=\"M90 30H45L0 0v60l45-30\"/><path fill=\"#000\" stroke=\"#ffb81c\" stroke-width=\"20\" d=\"m0 0 45 30L0 60\" clip-path=\"url(#hata-za-b)\"/><path stroke=\"#007749\" stroke-width=\"12\" d=\"m0 0 45 30h45M0 60l45-30\"/></g></svg>";

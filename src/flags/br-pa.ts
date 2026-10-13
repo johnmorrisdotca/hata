@@ -7,10 +7,19 @@
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
  * @example
- * ```ts
+ * ```ts no-run
  * import flag from "@johnmorrisdotca/hata/flags/br-pa";
  *
- * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * const host=document.createElement("div");
+ * host.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * console.log(host.querySelector("svg")?.getAttribute("viewBox"));
+ * ```
+ 
+ *
+ * @example
+ * ```ts
+ * import { svg } from "@johnmorrisdotca/hata/flags/br-pa";
+ * console.log(svg.startsWith("<svg"),svg.length);
  * ```
  */
 const svg: string = "<svg data-hata=\"br-pa\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 900 600\"><path d=\"M0 0h900v600H0z\" style=\"fill:#fff;fill-opacity:1;stroke:none;stroke-width:5;stroke-miterlimit:4;stroke-dashoffset:0;stroke-opacity:1\"/><path d=\"M0 0h900v600H0z\" style=\"fill:#eb2939;fill-opacity:1;stroke:none;stroke-opacity:1\"/><path d=\"M0 0h180l720 507v93H720L0 92.6z\" style=\"fill:#fff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1\"/><path d=\"m497 364.7-47-34.1-47 34.1 18-55.3-47-34.1h58l18-55.3 18 55.3h58l-47 34.1z\" style=\"fill:#0071ce;fill-opacity:1;stroke:none;stroke-opacity:1\"/></svg>";

@@ -7,10 +7,19 @@
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
  * @example
- * ```ts
+ * ```ts no-run
  * import flag from "@johnmorrisdotca/hata/flags/tz";
  *
- * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * const host=document.createElement("div");
+ * host.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * console.log(host.querySelector("svg")?.getAttribute("viewBox"));
+ * ```
+ 
+ *
+ * @example
+ * ```ts
+ * import { svg } from "@johnmorrisdotca/hata/flags/tz";
+ * console.log(svg.startsWith("<svg"),svg.length);
  * ```
  */
 const svg: string = "<svg data-hata=\"tz\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 72 48\"><title>Flag of Tanzania</title><path fill=\"#1eb53a\" d=\"M0 48V0h72z\"/><path fill=\"#00a3dd\" d=\"M72 0v48H0z\"/><path stroke=\"#fcd116\" stroke-width=\"19\" d=\"M0 48 72 0\"/><path stroke=\"#000\" stroke-width=\"13\" d=\"M0 48 72 0\"/></svg>";

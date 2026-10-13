@@ -6,10 +6,19 @@
  * The drawing `flag("MM", { shape: "4:3" })` uses, made for that shape by hand rather than cut from the flag. The /manifest entry's `framings` say how each frame was chosen.
  *
  * @example
- * ```ts
+ * ```ts no-run
  * import square from "@johnmorrisdotca/hata/flags/mm.4x3";
  *
- * element.innerHTML = square;
+ * const host=document.createElement("div");
+ * host.innerHTML = square;
+ * console.log(host.querySelector("svg")?.getAttribute("viewBox"));
+ * ```
+ 
+ *
+ * @example
+ * ```ts
+ * import { svg } from "@johnmorrisdotca/hata/flags/mm.4x3";
+ * console.log(svg.startsWith("<svg"),svg.length);
  * ```
  */
 const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 640 480\"><path fill=\"#fecb00\" d=\"M0 0h640v480H0z\"/><path fill=\"#34b233\" d=\"M0 160h640v320H0z\"/><path fill=\"#ea2839\" d=\"M0 320h640v160H0z\"/><g transform=\"translate(320 256.9)scale(176.87999)\"><path id=\"hata-mm-4x3-a\" fill=\"#fff\" d=\"m0-1 .3 1h-.6z\"/><use width=\"100%\" height=\"100%\" href=\"#hata-mm-4x3-a\" transform=\"rotate(-144)\"/><use width=\"100%\" height=\"100%\" href=\"#hata-mm-4x3-a\" transform=\"rotate(-72)\"/><use width=\"100%\" height=\"100%\" href=\"#hata-mm-4x3-a\" transform=\"rotate(72)\"/><use width=\"100%\" height=\"100%\" href=\"#hata-mm-4x3-a\" transform=\"rotate(144)\"/></g></svg>";

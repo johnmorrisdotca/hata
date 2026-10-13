@@ -6,10 +6,19 @@
  * The drawing `flag("LC", { shape: "4:3" })` uses, made for that shape by hand rather than cut from the flag. The /manifest entry's `framings` say how each frame was chosen.
  *
  * @example
- * ```ts
+ * ```ts no-run
  * import square from "@johnmorrisdotca/hata/flags/lc.4x3";
  *
- * element.innerHTML = square;
+ * const host=document.createElement("div");
+ * host.innerHTML = square;
+ * console.log(host.querySelector("svg")?.getAttribute("viewBox"));
+ * ```
+ 
+ *
+ * @example
+ * ```ts
+ * import { svg } from "@johnmorrisdotca/hata/flags/lc.4x3";
+ * console.log(svg.startsWith("<svg"),svg.length);
  * ```
  */
 const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 640 480\"><g fill-rule=\"evenodd\"><path fill=\"#65cfff\" d=\"M0 0h640v480H0z\"/><path fill=\"#fff\" d=\"m318.9 42 162.7 395.3-322.6.9z\"/><path fill=\"#000001\" d=\"m319 96.5 140.8 340-279 .8z\"/><path fill=\"#ffce00\" d=\"m318.9 240.1 162.7 197.6-322.6.5z\"/></g></svg>";

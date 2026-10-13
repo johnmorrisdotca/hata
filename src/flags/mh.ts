@@ -7,10 +7,19 @@
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
  * @example
- * ```ts
+ * ```ts no-run
  * import flag from "@johnmorrisdotca/hata/flags/mh";
  *
- * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * const host=document.createElement("div");
+ * host.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * console.log(host.querySelector("svg")?.getAttribute("viewBox"));
+ * ```
+ 
+ *
+ * @example
+ * ```ts
+ * import { svg } from "@johnmorrisdotca/hata/flags/mh";
+ * console.log(svg.startsWith("<svg"),svg.length);
  * ```
  */
 const svg: string = "<svg data-hata=\"mh\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"#fff\" viewBox=\"0 0 475 250\"><title>Flag of the Marshall Islands</title><path d=\"M0 0h475v250H0z\"/><path fill=\"#dd7500\" d=\"M0 242V0h475v53z\"/><path fill=\"#003893\" d=\"M0 238V0h475v4zm0 8v4h475V102z\"/><path d=\"m91.28 13.78 3.2 53.21 11.16-29.32-4.99 30.97 18.38-25.43-12.84 28.63 24.33-19.81-19.8 24.33 28.62-12.83-25.43 18.37 30.98-4.99-29.32 11.17 53.21 3.2-53.21 3.2 29.32 11.16-30.98-4.99 25.43 18.38-28.62-12.84 19.8 24.33-24.33-19.8 12.84 28.62-18.38-25.43 4.99 30.98-11.16-29.32-3.2 53.21-3.2-53.21-11.17 29.32 4.99-30.98-18.37 25.43 12.83-28.62-24.33 19.8 19.81-24.33-28.63 12.84 25.43-18.38-30.97 4.99 29.32-11.16-53.21-3.2 53.21-3.2-29.32-11.17 30.97 4.99-25.43-18.37 28.63 12.83-19.81-24.33 24.33 19.81-12.83-28.63L81.9 68.64l-4.99-30.97 11.17 29.32z\"/></svg>";

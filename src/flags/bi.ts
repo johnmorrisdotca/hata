@@ -7,10 +7,19 @@
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
  * @example
- * ```ts
+ * ```ts no-run
  * import flag from "@johnmorrisdotca/hata/flags/bi";
  *
- * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * const host=document.createElement("div");
+ * host.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * console.log(host.querySelector("svg")?.getAttribute("viewBox"));
+ * ```
+ 
+ *
+ * @example
+ * ```ts
+ * import { svg } from "@johnmorrisdotca/hata/flags/bi";
+ * console.log(svg.startsWith("<svg"),svg.length);
  * ```
  */
 const svg: string = "<svg data-hata=\"bi\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"#c8102e\" viewBox=\"-50 -30 100 60\"><title>Flag of Burundi</title><defs><clipPath id=\"hata-bi-a\"><path d=\"M-50-30H50v60H-50z\"/></clipPath></defs><path d=\"M-50-30H50v60H-50z\"/><path fill=\"#43b02a\" stroke=\"#fff\" stroke-width=\"8\" d=\"M-55-33v66L55-33v66z\" clip-path=\"url(#hata-bi-a)\"/><circle r=\"17\" fill=\"#fff\"/><path id=\"hata-bi-b\" stroke=\"#43b02a\" stroke-width=\".36\" d=\"m0-12.44 1.05 1.82h2.1L2.1-8.8l1.05 1.82h-2.1L0-5.16l-1.05-1.82h-2.1L-2.1-8.8l-1.05-1.82h2.1z\"/><use href=\"#hata-bi-b\" transform=\"rotate(120)\"/><use href=\"#hata-bi-b\" transform=\"rotate(240)\"/></svg>";

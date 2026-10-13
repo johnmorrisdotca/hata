@@ -20,7 +20,7 @@ const CODE_SET: ReadonlySet<string> = new Set(FLAG_CODES);
  * import { flagUrl, type FlagUrlOptions } from "@johnmorrisdotca/hata";
  *
  * const own: FlagUrlOptions = { base: "/static/flags" };
- * flagUrl("JP", own); // "/static/flags/jp.svg"
+ * console.log(flagUrl("JP", own)); // "/static/flags/jp.svg"
  * ```
  */
 interface FlagUrlOptions {
@@ -45,9 +45,9 @@ const CDN = `https://cdn.jsdelivr.net/npm/@johnmorrisdotca/hata@${VERSION.split(
  * ```ts
  * import { isFlagCode } from "@johnmorrisdotca/hata";
  *
- * isFlagCode("JP-13"); // true
- * isFlagCode("jp-13"); // false: see flagCode
- * isFlagCode("EH");    // false: no flag in this version (see /manifest's leftOut)
+ * console.log(isFlagCode("JP-13")); // true
+ * console.log(isFlagCode("jp-13")); // false: see flagCode
+ * console.log(isFlagCode("EH"));    // false: no flag in this version (see /manifest's leftOut)
  * ```
  */
 const isFlagCode = (value: unknown): value is FlagCode => typeof value === "string" && CODE_SET.has(value);
@@ -65,10 +65,10 @@ const isFlagCode = (value: unknown): value is FlagCode => typeof value === "stri
  * ```ts
  * import { flagCode } from "@johnmorrisdotca/hata";
  *
- * flagCode("jp-13");  // "JP-13"
- * flagCode("ca_on");  // "CA-ON"
- * flagCode("JPN");    // null: alpha-3 codes are Kuni's to translate (country("JPN").alpha2)
- * flagCode("XX");     // null
+ * console.log(flagCode("jp-13"));  // "JP-13"
+ * console.log(flagCode("ca_on"));  // "CA-ON"
+ * console.log(flagCode("JPN"));    // null: alpha-3 codes are Kuni's to translate (country("JPN").alpha2)
+ * console.log(flagCode("XX"));     // null
  * ```
  */
 const flagCode = (input: string): FlagCode | null => {
@@ -90,9 +90,9 @@ const flagCode = (input: string): FlagCode | null => {
  * ```ts
  * import { flagUrl } from "@johnmorrisdotca/hata";
  *
- * flagUrl("JP-13");                      // "https://cdn.jsdelivr.net/npm/@johnmorrisdotca/hata@1/dist/svg/jp-13.svg"
- * flagUrl("us-tx", { base: "/flags/" }); // "/flags/us-tx.svg"
- * flagUrl("XX");                          // null
+ * console.log(flagUrl("JP-13"));                      // "https://cdn.jsdelivr.net/npm/@johnmorrisdotca/hata@1/dist/svg/jp-13.svg"
+ * console.log(flagUrl("us-tx", { base: "/flags/" })); // "/flags/us-tx.svg"
+ * console.log(flagUrl("XX"));                          // null
  * ```
  */
 const flagUrl = (code: string, options: FlagUrlOptions = {}): string | null => {

@@ -6,10 +6,19 @@
  * The drawing `flag("CM", { shape: "1:1" })` uses (and the round frame, in a circle), made for that shape by hand rather than cut from the flag. The /manifest entry's `framings` say how each frame was chosen.
  *
  * @example
- * ```ts
+ * ```ts no-run
  * import square from "@johnmorrisdotca/hata/flags/cm.1x1";
  *
- * element.innerHTML = square;
+ * const host=document.createElement("div");
+ * host.innerHTML = square;
+ * console.log(host.querySelector("svg")?.getAttribute("viewBox"));
+ * ```
+ 
+ *
+ * @example
+ * ```ts
+ * import { svg } from "@johnmorrisdotca/hata/flags/cm.1x1";
+ * console.log(svg.startsWith("<svg"),svg.length);
  * ```
  */
 const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 512 512\"><path fill=\"#007a5e\" d=\"M0 0h170.7v512H0z\"/><path fill=\"#ce1126\" d=\"M170.7 0h170.6v512H170.7z\"/><path fill=\"#fcd116\" d=\"M341.3 0H512v512H341.3z\"/><g fill=\"#fcd116\" transform=\"translate(256 256)scale(5.6889)\"><g id=\"hata-cm-1x1-b\"><path id=\"hata-cm-1x1-a\" d=\"M0-8-2.5-.4 1.3.9z\"/><use width=\"100%\" height=\"100%\" href=\"#hata-cm-1x1-a\" transform=\"scale(-1 1)\"/></g><use width=\"100%\" height=\"100%\" href=\"#hata-cm-1x1-b\" transform=\"rotate(72)\"/><use width=\"100%\" height=\"100%\" href=\"#hata-cm-1x1-b\" transform=\"rotate(144)\"/><use width=\"100%\" height=\"100%\" href=\"#hata-cm-1x1-b\" transform=\"rotate(-144)\"/><use width=\"100%\" height=\"100%\" href=\"#hata-cm-1x1-b\" transform=\"rotate(-72)\"/></g></svg>";

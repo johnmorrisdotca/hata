@@ -7,10 +7,19 @@
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
  * @example
- * ```ts
+ * ```ts no-run
  * import flag from "@johnmorrisdotca/hata/flags/ag";
  *
- * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * const host=document.createElement("div");
+ * host.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * console.log(host.querySelector("svg")?.getAttribute("viewBox"));
+ * ```
+ 
+ *
+ * @example
+ * ```ts
+ * import { svg } from "@johnmorrisdotca/hata/flags/ag";
+ * console.log(svg.startsWith("<svg"),svg.length);
  * ```
  */
 const svg: string = "<svg data-hata=\"ag\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 138 92\"><title>Flag of Antigua and Barbuda</title><path fill=\"#fff\" d=\"M0 0h138v92H0z\"/><path d=\"M0 0h138l-9 46H9z\"/><path fill=\"#fcd116\" d=\"M69 46 39 36l15.29-2.93-13-8.55 15.24 3.15-8.74-12.88 12.88 8.74-3.15-15.25 8.55 13L69 6l2.93 15.29 8.55-13-3.15 15.24 12.88-8.74-8.74 12.88 15.25-3.15-13 8.55L99 36z\"/><path fill=\"#0072c6\" d=\"M9 36h120v20H9z\"/><path fill=\"#ce1126\" d=\"m0 0 69 92 69-92v92H0z\"/></svg>";

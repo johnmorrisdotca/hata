@@ -6,10 +6,19 @@
  * From Wikimedia Commons, "Flag of Syria (1980–2024).svg" (public domain). `flag("SY", { variant: "assad-era" })` loads it, and `variantsOf("SY")` says its status, dates and why it is offered.
  *
  * @example
- * ```ts
+ * ```ts no-run
  * import flag from "@johnmorrisdotca/hata/flags/sy--assad-era";
  *
- * element.innerHTML = flag;
+ * const host=document.createElement("div");
+ * host.innerHTML = flag;
+ * console.log(host.querySelector("svg")?.getAttribute("viewBox"));
+ * ```
+ 
+ *
+ * @example
+ * ```ts
+ * import { svg } from "@johnmorrisdotca/hata/flags/sy--assad-era";
+ * console.log(svg.startsWith("<svg"),svg.length);
  * ```
  */
 const svg: string = "<svg data-hata=\"sy--assad-era\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 900 600\"><path d=\"M0 0h900v600H0z\"/><path fill=\"#fff\" d=\"M0 0h900v400H0z\"/><path fill=\"#ce1126\" d=\"M0 0h900v200H0z\"/><path fill=\"#007a3d\" d=\"m251.266 375 48.738-150 48.738 150-127.6-92.705h157.72M551.262 375 600 225l48.738 150-127.6-92.705h157.72\"/></svg>";

@@ -7,10 +7,19 @@
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
  * @example
- * ```ts
+ * ```ts no-run
  * import flag from "@johnmorrisdotca/hata/flags/jp-26";
  *
- * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * const host=document.createElement("div");
+ * host.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * console.log(host.querySelector("svg")?.getAttribute("viewBox"));
+ * ```
+ 
+ *
+ * @example
+ * ```ts
+ * import { svg } from "@johnmorrisdotca/hata/flags/jp-26";
+ * console.log(svg.startsWith("<svg"),svg.length);
  * ```
  */
 const svg: string = "<svg data-hata=\"jp-26\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 924 660\"><path fill=\"#942b9d\" d=\"M0 0h924v660H0z\"/><g transform=\"translate(462 330) scale(32.5)\"><g id=\"hata-jp-26-b\"><path id=\"hata-jp-26-a\" fill=\"#fff\" d=\"M-2.199-3.808a2.22 2.22 0 0 1 .926-1.51A5.1 5.1 0 0 0 0-6.6a5.1 5.1 0 0 0 1.273 1.281A2.22 2.22 0 0 1 2.2-3.808L0 1z\"/><use href=\"#hata-jp-26-a\" transform=\"rotate(180)\"/></g><use href=\"#hata-jp-26-b\" transform=\"rotate(60)\"/><use href=\"#hata-jp-26-b\" transform=\"rotate(120)\"/><g id=\"hata-jp-26-d\"><path id=\"hata-jp-26-c\" fill=\"#fc0\" d=\"m-.922-2.382-.307-.896a1.3 1.3 0 1 1 2.458 0l-.307.896a.4.4 0 0 0 .68.393L0 .2z\"/><use href=\"#hata-jp-26-c\" transform=\"rotate(180)\"/></g><use href=\"#hata-jp-26-d\" transform=\"rotate(60)\"/><use href=\"#hata-jp-26-d\" transform=\"rotate(120)\"/><g id=\"hata-jp-26-f\"><path id=\"hata-jp-26-e\" fill=\"#fff\" d=\"m-.405-1.812-.19-1.408a.6.6 0 1 1 1.19 0l-.19 1.408a.6.6 0 0 0 .962.555L0 .6z\"/><use href=\"#hata-jp-26-e\" transform=\"rotate(180)\"/></g><use href=\"#hata-jp-26-f\" transform=\"rotate(60)\"/><use href=\"#hata-jp-26-f\" transform=\"rotate(120)\"/><circle r=\"1\" fill=\"#fc0\"/></g></svg>";

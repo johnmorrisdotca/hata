@@ -8,10 +8,19 @@ import { svg as shared } from "./fr";
  * From Wikimedia Commons, "Flag of France.svg" (public domain). `flag("NC", { variant: "france" })` loads it, and `variantsOf("NC")` says its status, dates and why it is offered.
  *
  * @example
- * ```ts
+ * ```ts no-run
  * import flag from "@johnmorrisdotca/hata/flags/nc--france";
  *
- * element.innerHTML = flag;
+ * const host=document.createElement("div");
+ * host.innerHTML = flag;
+ * console.log(host.querySelector("svg")?.getAttribute("viewBox"));
+ * ```
+ 
+ *
+ * @example
+ * ```ts
+ * import { svg } from "@johnmorrisdotca/hata/flags/nc--france";
+ * console.log(svg.startsWith("<svg"),svg.length);
  * ```
  */
 const svg: string = shared;

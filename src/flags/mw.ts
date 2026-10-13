@@ -7,10 +7,19 @@
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
  * @example
- * ```ts
+ * ```ts no-run
  * import flag from "@johnmorrisdotca/hata/flags/mw";
  *
- * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * const host=document.createElement("div");
+ * host.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * console.log(host.querySelector("svg")?.getAttribute("viewBox"));
+ * ```
+ 
+ *
+ * @example
+ * ```ts
+ * import { svg } from "@johnmorrisdotca/hata/flags/mw";
+ * console.log(svg.startsWith("<svg"),svg.length);
  * ```
  */
 const svg: string = "<svg data-hata=\"mw\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-225 -114 450 300\"><path d=\"M-225-114h450v300h-450z\"/><circle r=\"64.5\" fill=\"#c7361e\"/><g id=\"hata-mw-e\"><g id=\"hata-mw-d\"><g id=\"hata-mw-c\"><g id=\"hata-mw-b\"><path id=\"hata-mw-a\" fill=\"#c7361e\" d=\"M0 0c-2.2 0-3 3.3-3 6.5 0 7.8 1 12 3 23.5C2 18.4 3 14.3 3 6.5 3 3.3 2.2 0 0 0\" transform=\"translate(0 -102)\"/><use href=\"#hata-mw-a\" transform=\"matrix(.9961947 .08715574 -.08715574 .9961947 0 0)\"/></g><use href=\"#hata-mw-b\" transform=\"matrix(.98480775 .17364818 -.17364818 .98480775 0 0)\"/></g><use href=\"#hata-mw-c\" transform=\"matrix(.93969262 .34202014 -.34202014 .93969262 0 0)\"/></g><use href=\"#hata-mw-d\" transform=\"matrix(.76604444 .64278761 -.64278761 .76604444 0 0)\"/></g><use href=\"#hata-mw-e\" transform=\"matrix(.17364818 -.98480775 .98480775 .17364818 0 0)\"/><path d=\"M-225-21.5h450V186h-450z\"/><path fill=\"#c7361e\" d=\"M-225-14h450v200h-450z\"/><path fill=\"#008c51\" d=\"M-225 86h450v100h-450z\"/></svg>";

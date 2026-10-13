@@ -6,10 +6,19 @@
  * The drawing `flag("SD", { shape: "4:3" })` uses, made for that shape by hand rather than cut from the flag. The /manifest entry's `framings` say how each frame was chosen.
  *
  * @example
- * ```ts
+ * ```ts no-run
  * import square from "@johnmorrisdotca/hata/flags/sd.4x3";
  *
- * element.innerHTML = square;
+ * const host=document.createElement("div");
+ * host.innerHTML = square;
+ * console.log(host.querySelector("svg")?.getAttribute("viewBox"));
+ * ```
+ 
+ *
+ * @example
+ * ```ts
+ * import { svg } from "@johnmorrisdotca/hata/flags/sd.4x3";
+ * console.log(svg.startsWith("<svg"),svg.length);
  * ```
  */
 const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 640 480\"><defs><clipPath id=\"hata-sd-4x3-a\"><path fill-opacity=\".7\" d=\"M0 0h682.7v512H0z\"/></clipPath></defs><g fill-rule=\"evenodd\" stroke-width=\"1pt\" clip-path=\"url(#hata-sd-4x3-a)\" transform=\"scale(.9375)\"><path fill=\"#000001\" d=\"M0 341.3h1024V512H0z\"/><path fill=\"#fff\" d=\"M0 170.6h1024v170.7H0z\"/><path fill=\"red\" d=\"M0 0h1024.8v170.7H0z\"/><path fill=\"#009a00\" d=\"M0 0v512l341.3-256z\"/></g></svg>";

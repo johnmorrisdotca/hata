@@ -7,10 +7,19 @@
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
  * @example
- * ```ts
+ * ```ts no-run
  * import flag from "@johnmorrisdotca/hata/flags/pk";
  *
- * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * const host=document.createElement("div");
+ * host.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * console.log(host.querySelector("svg")?.getAttribute("viewBox"));
+ * ```
+ 
+ *
+ * @example
+ * ```ts
+ * import { svg } from "@johnmorrisdotca/hata/flags/pk";
+ * console.log(svg.startsWith("<svg"),svg.length);
  * ```
  */
 const svg: string = "<svg data-hata=\"pk\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-75 -40 120 80\"><title>Flag of Pakistan</title><path fill=\"#fff\" d=\"M-75-40H45v80H-75z\"/><path fill=\"#01411c\" d=\"M-45-40h90v80h-90z\"/><circle r=\"24\" fill=\"#fff\"/><circle cx=\"-7\" cy=\"-40\" r=\"22\" fill=\"#01411c\" transform=\"rotate(-41.63354, 45, -40)\"/><path fill=\"#fff\" d=\"m8.8-18 10 11.4L4-9.8 18-16 10.1-3z\"/></svg>";

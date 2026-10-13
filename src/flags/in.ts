@@ -7,10 +7,19 @@
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
  * @example
- * ```ts
+ * ```ts no-run
  * import flag from "@johnmorrisdotca/hata/flags/in";
  *
- * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * const host=document.createElement("div");
+ * host.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * console.log(host.querySelector("svg")?.getAttribute("viewBox"));
+ * ```
+ 
+ *
+ * @example
+ * ```ts
+ * import { svg } from "@johnmorrisdotca/hata/flags/in";
+ * console.log(svg.startsWith("<svg"),svg.length);
  * ```
  */
 const svg: string = "<svg data-hata=\"in\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"#07038d\" viewBox=\"-45 -30 90 60\"><title>Flag of India</title><path fill=\"#fff\" d=\"M-45-30h90v60h-90z\"/><path fill=\"#ff6820\" d=\"M-45-30h90v20h-90z\"/><path fill=\"#046a38\" d=\"M-45 10h90v20h-90z\"/><circle r=\"9.25\"/><circle r=\"8\" fill=\"#fff\"/><circle r=\"1.6\"/><g id=\"hata-in-d\"><g id=\"hata-in-c\"><g id=\"hata-in-b\"><g id=\"hata-in-a\"><path d=\"m0-8 .3 4.81L0-.8l-.3-2.4z\"/><circle cy=\"-8\" r=\".35\" transform=\"rotate(7.5)\"/></g><use href=\"#hata-in-a\" transform=\"scale(-1)\"/></g><use href=\"#hata-in-b\" transform=\"rotate(15)\"/></g><use href=\"#hata-in-c\" transform=\"rotate(30)\"/></g><use href=\"#hata-in-d\" transform=\"rotate(60)\"/><use href=\"#hata-in-d\" transform=\"rotate(120)\"/></svg>";

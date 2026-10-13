@@ -7,10 +7,19 @@
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
  * @example
- * ```ts
+ * ```ts no-run
  * import flag from "@johnmorrisdotca/hata/flags/fr-bre";
  *
- * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * const host=document.createElement("div");
+ * host.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * console.log(host.querySelector("svg")?.getAttribute("viewBox"));
+ * ```
+ 
+ *
+ * @example
+ * ```ts
+ * import { svg } from "@johnmorrisdotca/hata/flags/fr-bre";
+ * console.log(svg.startsWith("<svg"),svg.length);
  * ```
  */
 const svg: string = "<svg data-hata=\"fr-bre\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1350 900\"><path fill=\"#fff\" d=\"M0 0h1350v900H0z\"/><path d=\"M600 0h1350v100H600zm0 200h1350v100H600zM0 400h1350v100H0zm0 200h1350v100H0zm0 200h1350v100H0z\"/><use x=\"-225\" y=\"-122.5\" href=\"#hata-fr-bre-a\"/><use x=\"-75\" y=\"-122.5\" href=\"#hata-fr-bre-a\"/><use x=\"75\" y=\"-122.5\" href=\"#hata-fr-bre-a\"/><use x=\"225\" y=\"-122.5\" href=\"#hata-fr-bre-a\"/><use x=\"-150\" href=\"#hata-fr-bre-a\"/><g id=\"hata-fr-bre-a\" fill=\"#000\"><use href=\"#hata-fr-bre-b\" transform=\"rotate(-90 300,167.5)\"/><path id=\"hata-fr-bre-b\" d=\"m300 167.5-9-13.5 9-22.5 9 22.5z\"/><use href=\"#hata-fr-bre-b\" transform=\"rotate(90 300,167.5)\"/><path d=\"m300 167.5 40.5 99L309 253l-9 18-9-18-31.5 13.5z\"/></g><use x=\"150\" href=\"#hata-fr-bre-a\"/><use x=\"-225\" y=\"122.5\" href=\"#hata-fr-bre-a\"/><use x=\"-75\" y=\"122.5\" href=\"#hata-fr-bre-a\"/><use x=\"75\" y=\"122.5\" href=\"#hata-fr-bre-a\"/><use x=\"225\" y=\"122.5\" href=\"#hata-fr-bre-a\"/></svg>";

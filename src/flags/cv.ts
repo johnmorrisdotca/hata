@@ -7,10 +7,19 @@
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
  * @example
- * ```ts
+ * ```ts no-run
  * import flag from "@johnmorrisdotca/hata/flags/cv";
  *
- * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * const host=document.createElement("div");
+ * host.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * console.log(host.querySelector("svg")?.getAttribute("viewBox"));
+ * ```
+ 
+ *
+ * @example
+ * ```ts
+ * import { svg } from "@johnmorrisdotca/hata/flags/cv";
+ * console.log(svg.startsWith("<svg"),svg.length);
  * ```
  */
 const svg: string = "<svg data-hata=\"cv\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1020 600\"><path fill=\"#003893\" d=\"M0 0h1020v600H0\"/><path fill=\"#fff\" d=\"M0 300h1020v150H0\"/><path fill=\"#cf2027\" d=\"M0 350h1020v50H0\"/><g id=\"hata-cv-c\"><g id=\"hata-cv-b\"><path id=\"hata-cv-a\" fill=\"#f7d116\" d=\"m382.5 197.4 16.2 50-42.5-31h52.6l-42.5 31\"/><use x=\"88.2\" y=\"28.6\" href=\"#hata-cv-a\"/></g><use href=\"#hata-cv-b\" transform=\"rotate(72 382.5 375)\"/></g><use href=\"#hata-cv-c\" transform=\"rotate(144 382.5 375)\"/><use href=\"#hata-cv-b\" transform=\"rotate(288 382.5 375)\"/></svg>";

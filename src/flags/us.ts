@@ -7,10 +7,19 @@
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
  * @example
- * ```ts
+ * ```ts no-run
  * import flag from "@johnmorrisdotca/hata/flags/us";
  *
- * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * const host=document.createElement("div");
+ * host.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * console.log(host.querySelector("svg")?.getAttribute("viewBox"));
+ * ```
+ 
+ *
+ * @example
+ * ```ts
+ * import { svg } from "@johnmorrisdotca/hata/flags/us";
+ * console.log(svg.startsWith("<svg"),svg.length);
  * ```
  */
 const svg: string = "<svg data-hata=\"us\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 7410 3900\"><path fill=\"#bf0a30\" d=\"M0 0h7410v3900H0\"/><path stroke=\"#fff\" stroke-width=\"300\" d=\"M0 450h7410m0 600H0m0 600h7410m0 600H0m0 600h7410m0 600H0\"/><path fill=\"#00205b\" d=\"M0 0h2964v2100H0\"/><g fill=\"#fff\"><g id=\"hata-us-d\"><g id=\"hata-us-c\"><g id=\"hata-us-e\"><g id=\"hata-us-b\"><path id=\"hata-us-a\" d=\"m247 90 71 217-185-134h228L176 307z\"/><use y=\"420\" href=\"#hata-us-a\"/><use y=\"840\" href=\"#hata-us-a\"/><use y=\"1260\" href=\"#hata-us-a\"/></g><use y=\"1680\" href=\"#hata-us-a\"/></g><use x=\"247\" y=\"210\" href=\"#hata-us-b\"/></g><use x=\"494\" href=\"#hata-us-c\"/></g><use x=\"988\" href=\"#hata-us-d\"/><use x=\"1976\" href=\"#hata-us-c\"/><use x=\"2470\" href=\"#hata-us-e\"/></g></svg>";

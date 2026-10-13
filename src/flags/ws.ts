@@ -7,10 +7,19 @@
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
  * @example
- * ```ts
+ * ```ts no-run
  * import flag from "@johnmorrisdotca/hata/flags/ws";
  *
- * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * const host=document.createElement("div");
+ * host.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * console.log(host.querySelector("svg")?.getAttribute("viewBox"));
+ * ```
+ 
+ *
+ * @example
+ * ```ts
+ * import { svg } from "@johnmorrisdotca/hata/flags/ws";
+ * console.log(svg.startsWith("<svg"),svg.length);
  * ```
  */
 const svg: string = "<svg data-hata=\"ws\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"#fff\" viewBox=\"0 0 288 144\"><title>Flag of Samoa</title><defs><path id=\"hata-ws-a\" d=\"M0-.95.3 0l-.8-.59h1L-.3 0z\"/><path id=\"hata-ws-b\" d=\"m0 0 .3.95-.8-.59h1l-.8.6z\"/></defs><path fill=\"#ce1126\" d=\"M0 0h288v144H0z\"/><path fill=\"#002b7f\" d=\"M0 0h144v72H0z\"/><use href=\"#hata-ws-a\" transform=\"matrix(20,0,0,20,72,69)\"/><use href=\"#hata-ws-b\" transform=\"matrix(16,0,0,16,50,21)\"/><use href=\"#hata-ws-b\" transform=\"matrix(16,0,0,16,72,3)\"/><use href=\"#hata-ws-b\" transform=\"matrix(15,0,0,15,94.5,18)\"/><use href=\"#hata-ws-a\" transform=\"matrix(10,0,0,10,83,46)\"/></svg>";

@@ -6,10 +6,19 @@
  * The drawing `flag("NE", { shape: "1:1" })` uses (and the round frame, in a circle), made for that shape by hand rather than cut from the flag. The /manifest entry's `framings` say how each frame was chosen.
  *
  * @example
- * ```ts
+ * ```ts no-run
  * import square from "@johnmorrisdotca/hata/flags/ne.1x1";
  *
- * element.innerHTML = square;
+ * const host=document.createElement("div");
+ * host.innerHTML = square;
+ * console.log(host.querySelector("svg")?.getAttribute("viewBox"));
+ * ```
+ 
+ *
+ * @example
+ * ```ts
+ * import { svg } from "@johnmorrisdotca/hata/flags/ne.1x1";
+ * console.log(svg.startsWith("<svg"),svg.length);
  * ```
  */
 const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 512 512\"><path fill=\"#0db02b\" d=\"M0 0h512v512H0z\"/><path fill=\"#fff\" d=\"M0 0h512v341.3H0z\"/><path fill=\"#e05206\" d=\"M0 0h512v170.7H0z\"/><circle cx=\"256\" cy=\"256\" r=\"72.5\" fill=\"#e05206\"/></svg>";

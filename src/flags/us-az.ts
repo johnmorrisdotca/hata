@@ -7,10 +7,19 @@
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
  * @example
- * ```ts
+ * ```ts no-run
  * import flag from "@johnmorrisdotca/hata/flags/us-az";
  *
- * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * const host=document.createElement("div");
+ * host.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * console.log(host.querySelector("svg")?.getAttribute("viewBox"));
+ * ```
+ 
+ *
+ * @example
+ * ```ts
+ * import { svg } from "@johnmorrisdotca/hata/flags/us-az";
+ * console.log(svg.startsWith("<svg"),svg.length);
  * ```
  */
 const svg: string = "<svg data-hata=\"us-az\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-288 -192 576 384\"><path fill=\"#00205b\" d=\"M-288-192h576v384h-576z\"/><path fill=\"#bf0a30\" d=\"M-288-192h576V0h-576z\"/><path id=\"hata-us-az-a\" fill=\"#fed700\" d=\"M288-147v80L0 0zm-149-45h83L0 0zm-112 0h48L0 0z\"/><use href=\"#hata-us-az-a\" transform=\"scale(-1 1)\"/><path fill=\"#ce5c17\" d=\"M0-96 62.4 96l-163-119.4h201.3L-62.3 96z\"/></svg>";

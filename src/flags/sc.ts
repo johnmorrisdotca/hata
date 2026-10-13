@@ -7,10 +7,19 @@
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
  * @example
- * ```ts
+ * ```ts no-run
  * import flag from "@johnmorrisdotca/hata/flags/sc";
  *
- * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * const host=document.createElement("div");
+ * host.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * console.log(host.querySelector("svg")?.getAttribute("viewBox"));
+ * ```
+ 
+ *
+ * @example
+ * ```ts
+ * import { svg } from "@johnmorrisdotca/hata/flags/sc";
+ * console.log(svg.startsWith("<svg"),svg.length);
  * ```
  */
 const svg: string = "<svg data-hata=\"sc\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 6 3\"><title>Flag of Seychelles</title><path fill=\"#fff\" d=\"M0 0h6v3H0z\"/><path fill=\"#d22730\" d=\"M0 3V0h6v1z\"/><path fill=\"#fed141\" d=\"M0 3V0h4z\"/><path fill=\"#002f6c\" d=\"M0 3V0h2z\"/><path fill=\"#007a33\" d=\"m0 3 6-1v1z\"/></svg>";

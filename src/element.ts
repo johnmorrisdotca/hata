@@ -39,7 +39,7 @@ import type { Shape } from "./svg";
  * ```ts
  * import { FLAG_ELEMENT_ATTRIBUTES } from "@johnmorrisdotca/hata/element";
  *
- * FLAG_ELEMENT_ATTRIBUTES.includes("shape"); // true
+ * console.log(FLAG_ELEMENT_ATTRIBUTES.includes("shape")); // true
  * ```
  */
 const FLAG_ELEMENT_ATTRIBUTES = ["code", "shape", "size", "width", "fit", "variant", "label", "lang", "theme", "border", "shadow", "loading"] as const;
@@ -48,10 +48,10 @@ const FLAG_ELEMENT_ATTRIBUTES = ["code", "shape", "size", "width", "fit", "varia
  * The name the element is registered under.
  *
  * @example
- * ```ts
+ * ```ts no-run
  * import { FLAG_ELEMENT_NAME } from "@johnmorrisdotca/hata/element";
  *
- * document.createElement(FLAG_ELEMENT_NAME); // <hata-flag>
+ * console.log(document.createElement(FLAG_ELEMENT_NAME)); // <hata-flag>
  * ```
  */
 const FLAG_ELEMENT_NAME = "hata-flag";
@@ -62,15 +62,15 @@ const FLAG_ELEMENT_NAME = "hata-flag";
  * found to have no flag (it is then `false`).
  *
  * @example
- * ```ts
+ * ```ts no-run
  * import "@johnmorrisdotca/hata/element/define";
  * import type { HataFlagElement } from "@johnmorrisdotca/hata/element";
  *
  * const tokyo = document.createElement("hata-flag") as HataFlagElement;
  * tokyo.code = "JP-13";
  * tokyo.size = 48;
- * document.body.append(tokyo);
- * await tokyo.ready; // true once drawn
+ * console.log(document.body.append(tokyo));
+ * console.log(await tokyo.ready); // true once drawn
  * ```
  */
 type HataFlagElement = HTMLElement & {
@@ -105,13 +105,13 @@ type HataFlagElement = HTMLElement & {
  * What `hata-load` and `hata-error` carry in `detail`: the code as asked, and for an error why nothing was drawn.
  *
  * @example
- * ```ts
+ * ```ts no-run
  * import type { FlagElementEventDetail } from "@johnmorrisdotca/hata/element";
  *
- * document.addEventListener("hata-error", (event) => {
+ * console.log(document.addEventListener("hata-error", (event) => {
  *   const { code, reason } = (event as CustomEvent<FlagElementEventDetail>).detail;
  *   console.log(code, reason);
- * });
+ * }));
  * ```
  */
 interface FlagElementEventDetail {
@@ -284,8 +284,8 @@ const build = (): CustomElementConstructor => {
  * ```ts
  * import { defineFlag } from "@johnmorrisdotca/hata/element";
  *
- * defineFlag();               // <hata-flag code="JP"></hata-flag>
- * defineFlag("my-flag");      // <my-flag code="JP"></my-flag> as well
+ * console.log(defineFlag());               // <hata-flag code="JP"></hata-flag>
+ * console.log(defineFlag("my-flag"));      // <my-flag code="JP"></my-flag> as well
  * ```
  */
 const defineFlag = (name: string = FLAG_ELEMENT_NAME): void => {

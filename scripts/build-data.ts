@@ -17,7 +17,7 @@
 // Places that share one drawing (Guadeloupe and France, Bouvet Island and Norway) share one picture: the flag's
 // own module carries it and the other re-exports it. Run twice, it leaves the tree as it was.
 
-import { mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { mkdirSync, readdirSync, readFileSync, rmSync } from "node:fs";
 import { join } from "node:path";
 import { gzipSync } from "node:zlib";
 
@@ -35,6 +35,8 @@ import { places as allPlaces } from "./places.ts";
 import type { Group, Place } from "./places.ts";
 import { selectPlace } from "./select.ts";
 import type { WikidataSnapshot } from "./select.ts";
+import { refreshGeneratedExamples, writeDocumentedFile } from "./data-docs.ts";
+
 import { readManifest, readSource, ROOT, sha256, SOURCES_DIR } from "./sources.ts";
 
 interface CommonsFile {
@@ -108,6 +110,8 @@ interface LeftOut {
   file?: CommonsFile;
   licence?: Licence;
 }
+
+if(process.argv.includes("--docs-only")){refreshGeneratedExamples();process.exit(0);}
 
 const report = process.argv.includes("--report");
 const FLAGS_DIR = join(ROOT, "src", "flags");
@@ -444,7 +448,7 @@ for (const one of shipped) {
     one.owner === one.place.code
       ? `${HEADER}\n// Source: ${one.drawing.page}\n\n${docOf(one)}\nconst svg: string = ${quote(one.optimised.svg)};\n\nexport { svg };\nexport default svg;\n`
       : `${HEADER}\n// Source: ${one.drawing.page}, the same drawing as ${one.owner}'s flag.\n\nimport { svg as shared } from "./${moduleName(one.owner)}";\n\n${docOf(one)}\nconst svg: string = shared;\n\nexport { svg };\nexport default svg;\n`;
-  writeFileSync(join(FLAGS_DIR, name), body);
+  writeDocumentedFile(join(FLAGS_DIR, name), body);
 }
 for (const one of adapted) {
   const name = `${one.module}.ts`;
@@ -461,7 +465,7 @@ for (const one of adapted) {
  * element.innerHTML = square;
  * \`\`\`
  */`;
-  writeFileSync(join(FLAGS_DIR, name), `${HEADER}\n// Source: ${one.page}\n\n${doc}\nconst svg: string = ${quote(one.optimised.svg)};\n\nexport { svg };\nexport default svg;\n`);
+  writeDocumentedFile(join(FLAGS_DIR, name), `${HEADER}\n// Source: ${one.page}\n\n${doc}\nconst svg: string = ${quote(one.optimised.svg)};\n\nexport { svg };\nexport default svg;\n`);
 }
 for (const one of variantModules) {
   const name = `${one.module}.ts`;
@@ -484,7 +488,7 @@ for (const one of variantModules) {
     one.owner === null
       ? `${HEADER}\n// Source: ${one.drawing.page}\n\n${doc}\nconst svg: string = ${quote(one.optimised!.svg)};\n\nexport { svg };\nexport default svg;\n`
       : `${HEADER}\n// Source: ${one.drawing.page}, the same drawing as ${one.owner.toUpperCase()}'s flag.\n\nimport { svg as shared } from "./${one.owner}";\n\n${doc}\nconst svg: string = shared;\n\nexport { svg };\nexport default svg;\n`;
-  writeFileSync(join(FLAGS_DIR, name), body);
+  writeDocumentedFile(join(FLAGS_DIR, name), body);
 }
 for (const old of readdirSync(FLAGS_DIR)) if (!written.has(old)) rmSync(join(FLAGS_DIR, old));
 
@@ -494,7 +498,7 @@ const columns = (list: string[], per: number): string => {
   for (let at = 0; at < list.length; at += per) lines.push(`  ${list.slice(at, at + per).map(quote).join(", ")},`);
   return lines.join("\n");
 };
-writeFileSync(
+writeDocumentedFile(
   join(DATA_DIR, "codes.data.ts"),
   `${HEADER}
 // The ${codes.length} codes with a flag: ISO 3166-1 alpha-2 for a country, ISO 3166-2 for a subdivision, as Kuni writes them.
@@ -538,7 +542,7 @@ const variantLoaderLines = [...new Set([...codes, ...places.map((place) => place
   .filter((code) => variantsOfCode(code).variants.length > 0)
   .sort()
   .flatMap((code) => variantsOfCode(code).variants.map((variant) => `  ${quote(`${code}--${variant.id}`)}: () => import("../flags/${variant.module}.js"),`));
-writeFileSync(
+writeDocumentedFile(
   join(DATA_DIR, "loaders.data.ts"),
   `${HEADER}
 // One dynamic import for each of the ${codes.length} flags, so a bundler makes a chunk of each and a page downloads only the flags it shows.
@@ -553,7 +557,7 @@ export { LOADERS };
 `,
 );
 
-writeFileSync(
+writeDocumentedFile(
   join(DATA_DIR, "variants.data.ts"),
   `${HEADER}
 // Every variant of every code with one, by "<code>--<id>" (the default's included, and a code that is the same place as
@@ -570,7 +574,7 @@ export { VARIANT_LOADERS };
 `,
 );
 
-writeFileSync(
+writeDocumentedFile(
   join(DATA_DIR, "adapted.data.ts"),
   `${HEADER}
 // The drawings made by hand for a frame that /load uses, by code and shape ("CA 1:1"; "CA round" is the square in a
@@ -588,7 +592,7 @@ export { ADAPTED };
 
 // Every flag's names in English and Japanese (Kuni's) and its aspect ratio, for /names and <hata-flag>: a name to
 // read aloud, and the box to keep before the picture arrives.
-writeFileSync(
+writeDocumentedFile(
   join(DATA_DIR, "names.data.ts"),
   `${HEADER}
 // From Kuni ${JSON.parse(readFileSync(join(ROOT, "node_modules", "@johnmorrisdotca", "kuni", "package.json"), "utf8")).version}: each flag's place in English and Japanese, and the flag's width over its height.
@@ -623,7 +627,7 @@ const grouped = (rows: readonly (readonly [string, string])[]): string => {
 
   return [...byValue].map(([value, names]) => `  ${quote(value)}: ${quote(names.join(" "))},`).join("\n");
 };
-writeFileSync(
+writeDocumentedFile(
   join(DATA_DIR, "framings.data.ts"),
   `${HEADER}
 // How frame() fits each flag at 4:3, square and round by default, where a crop from the centre would lose a colour:
@@ -711,7 +715,7 @@ const row = (one: Shipped): string => {
   };
   return `  ${JSON.stringify(record)},`;
 };
-writeFileSync(
+writeDocumentedFile(
   join(DATA_DIR, "manifest.data.ts"),
   `${HEADER}
 // Where each flag comes from, under what licence, and why that drawing was chosen; and the codes left out with why.
@@ -787,7 +791,7 @@ ${shipped
   })
   .join("\n\n")}
 `;
-writeFileSync(join(ROOT, "docs", "provenance.md"), provenance);
+writeDocumentedFile(join(ROOT, "docs", "provenance.md"), provenance);
 
 const lookAt = shipped.filter((one) => one.designDiffers.length > 0);
 const unreviewed = lookAt.filter((one) => REVIEWED[one.place.code] === undefined).map((one) => one.place.code);
@@ -820,7 +824,7 @@ package to share alike), or naming a public-domain drawing of the same flag on C
 ${list.map((one) => `| \`${one.place.code}\` | ${cell(one.place.en)} | ${linkTo(one.file!.file, one.file!.page)} | ${cell(one.licence?.name)} | ${one.licence && !one.licence.shipped && one.licence.publicDomainTemplate ? "yes" : "no"} |`).join("\n")}`;
 })()}
 `;
-writeFileSync(join(ROOT, "docs", "left-out.md"), leftOutDoc);
+writeDocumentedFile(join(ROOT, "docs", "left-out.md"), leftOutDoc);
 
 const comparedDoc = `# Where the flag sets draw something else
 
@@ -836,7 +840,7 @@ difference is the design itself, [decisions.md](decisions.md) says which ships a
 | --- | --- | --- | --- | --- |
 ${lookAt.map((one) => `| \`${one.place.code}\` | ${cell(one.place.en)} | ${one.drawing.source} | ${one.designDiffers.map((source) => `${source} ${Math.round(Math.min(...Object.entries(one.compared).filter(([label]) => label.startsWith(`${source} `)).map(([, entry]) => entry.design)) * 100)}%`).join(", ")} | ${cell(REVIEWED[one.place.code] ?? "not yet")} |`).join("\n")}
 `;
-writeFileSync(join(ROOT, "docs", "compared.md"), comparedDoc);
+writeDocumentedFile(join(ROOT, "docs", "compared.md"), comparedDoc);
 
 // Every flag a person judged where a crop should sit, with the reason, and every flag shown whole by default only because
 // the measure says a crop loses a colour: docs/framing.md.
@@ -892,7 +896,7 @@ Nobody chose a side for these, and the measure found that a centre crop drops a 
 | --- | --- | --- |
 ${measuredWhole.map((one) => `| \`${one.place.code}\` | ${cell(one.place.en)} | ${cell(framingOf(one)["1:1"].coverLoses?.join(", ") || framingOf(one).round.coverLoses?.join(", ") || framingOf(one)["4:3"].coverLoses?.join(", "))} |`).join("\n")}
 `;
-writeFileSync(join(ROOT, "docs", "framing.md"), framingDoc);
+writeDocumentedFile(join(ROOT, "docs", "framing.md"), framingDoc);
 
 // Every place with more than one flag in real use: docs/variants.md.
 const variantsDoc = `# Disputed and alternative flags
@@ -919,7 +923,7 @@ ${[...variantSets]
 
 ${variantsLeftOut.length === 0 ? "None: every drawing named in VARIANTS ships." : variantsLeftOut.map((one) => `- \`${one.code}\` \`${one.id}\`: ${cell(one.file)}, ${one.reason}.`).join("\n")}
 `;
-writeFileSync(join(ROOT, "docs", "variants.md"), variantsDoc);
+writeDocumentedFile(join(ROOT, "docs", "variants.md"), variantsDoc);
 
 const totals = { bytes: owners.reduce((sum, one) => sum + size(one), 0), gzip: owners.reduce((sum, one) => sum + one.gzip, 0), raw: owners.reduce((sum, one) => sum + one.drawing.bytes, 0) };
 const sizes = owners.map(size).sort((a, b) => a - b);
@@ -973,7 +977,7 @@ ${(() => {
   return noted.map((one) => `- \`${one.place.code}\` ${cell(one.place.en)}: ${one.optimised.notes.join("; ")}.`).join("\n");
 })()}
 `;
-writeFileSync(join(ROOT, "docs", "sizes.md"), sizesDoc);
+writeDocumentedFile(join(ROOT, "docs", "sizes.md"), sizesDoc);
 
 // The credits in NOTICE.md, between its markers: every Commons drawing whose licence asks for credit, and every
 // flag set a drawing was taken from, with the flags it gave and its licence in full, as MIT asks.
@@ -1007,7 +1011,7 @@ const variantCredits = [...variantSets]
   .flatMap(([code, set]) => set.variants.filter((variant) => !variant.default && (variant.drawing.licence.kind === "cc-by" || variant.drawing.licence.kind === "accepted" || variant.drawing.attributionRequired)).map((variant) => ({ code, variant })))
   .filter(({ variant }) => !credited.some((one) => one.drawing.file === variant.drawing.file))
   .map(({ code, variant }) => `- \`${code}--${variant.id}\` ${places.find((place) => place.code === code)!.en}, ${variant.name}: "${variant.drawing.file}", ${variant.drawing.author ? `author as Commons gives it: ${variant.drawing.author}` : "no author named on Commons"}; ${variant.drawing.licence.name}${variant.drawing.licence.url ? ` (${variant.drawing.licence.url})` : ""}; ${variant.drawing.page}`);
-writeFileSync(join(ROOT, "NOTICE.md"), between(between(notice, "attributions", [...credited.map(creditOf), ...variantCredits].length === 0 ? "No Commons drawing in this version is under a licence that asks for credit." : [...credited.map(creditOf), ...variantCredits].join("\n")), "sets", setsBody));
+writeDocumentedFile(join(ROOT, "NOTICE.md"), between(between(notice, "attributions", [...credited.map(creditOf), ...variantCredits].length === 0 ? "No Commons drawing in this version is under a licence that asks for credit." : [...credited.map(creditOf), ...variantCredits].join("\n")), "sets", setsBody));
 
 // 6. What happened.
 console.log(`variants: ${[...variantSets].map(([code, set]) => `${code} ${set.variants.length}`).join(", ")}${variantsLeftOut.length > 0 ? `; left out: ${variantsLeftOut.map((one) => `${one.code} ${one.id} (${one.reason})`).join(", ")}` : ""}`);

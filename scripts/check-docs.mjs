@@ -42,7 +42,7 @@ for (const [entry, file] of entries) {
     if (text(symbol.getDocumentationComment(checker)) === "") problems.push(`${where}: no summary`);
     const example = tags.filter((tag) => tag.name === "example").map((tag) => text(tag.text)).find((one) => one.includes("```"));
     if (example === undefined) problems.push(`${where}: no @example with a code block`);
-    else examples.set(example.replace(/^```\w*\n|```$/g, "").trim(), where);
+    else examples.set(example.replace(/^```\w*(?:[ \t]+(?:no-run|no-check))*\n|```[ \t]*$/gm, "").trim(), where);
     const declaration = symbol.declarations?.[0];
     if (declaration === undefined) continue;
     const calls = checker.getTypeOfSymbolAtLocation(symbol, declaration).getCallSignatures();
@@ -58,7 +58,8 @@ for (const [entry, file] of entries) {
 // The examples, type-checked against the built package. A flag's example differs from the next only in its code,
 // so one of them stands for all.
 const scratch = mkdtempSync(join(tmpdir(), "hata-examples-"));
-const unique = [...examples].filter(([code], at, all) => !/\/flags\/[a-z-]+";\n\nelement\.innerHTML/.test(code) || all.findIndex(([other]) => /\/flags\/[a-z-]+";\n\nelement\.innerHTML/.test(other)) === at);
+const flagDom = (code) => /\/flags\/[^"']+["']/.test(code) && /\b(?:element|host)\.innerHTML/.test(code);
+const unique = [...examples].filter(([code], at, all) => !flagDom(code) || all.findIndex(([other]) => flagDom(other)) === at);
 const files = unique.map(([code, where], at) => {
   const name = join(scratch, `example-${at}.ts`);
   writeFileSync(name, `// ${where}\ndeclare const element: HTMLElement;\ndeclare const image: HTMLImageElement;\ndeclare const form: { country: string };\n${code}\nexport {};\n`);

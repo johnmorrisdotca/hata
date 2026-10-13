@@ -7,10 +7,19 @@
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
  * @example
- * ```ts
+ * ```ts no-run
  * import flag from "@johnmorrisdotca/hata/flags/us-tn";
  *
- * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * const host=document.createElement("div");
+ * host.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * console.log(host.querySelector("svg")?.getAttribute("viewBox"));
+ * ```
+ 
+ *
+ * @example
+ * ```ts
+ * import { svg } from "@johnmorrisdotca/hata/flags/us-tn";
+ * console.log(svg.startsWith("<svg"),svg.length);
  * ```
  */
 const svg: string = "<svg data-hata=\"us-tn\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 240 144\"><path fill=\"#c00\" d=\"M0 0h240v144H0z\"/><path fill=\"#fff\" d=\"M222 0h18v144h-18z\"/><path fill=\"#002d65\" d=\"M225 0h15v144h-15z\"/><path fill=\"#002d65\" d=\"M225 0h15v144h-15z\"/><g transform=\"translate(111,72)\"><circle r=\"39\" fill=\"#fff\"/><circle r=\"36\" fill=\"#002d65\"/><g id=\"hata-us-tn-c\" fill=\"#fff\" transform=\"rotate(18) translate(0,18.5)\"><g id=\"hata-us-tn-b\"><path id=\"hata-us-tn-a\" d=\"M0-17V0h9\" transform=\"rotate(18 0,-17)\"/><use href=\"#hata-us-tn-a\" transform=\"scale(-1,1)\"/></g><use href=\"#hata-us-tn-b\" transform=\"rotate(72)\"/><use href=\"#hata-us-tn-b\" transform=\"rotate(144)\"/><use href=\"#hata-us-tn-b\" transform=\"rotate(216)\"/><use href=\"#hata-us-tn-b\" transform=\"rotate(288)\"/></g><use href=\"#hata-us-tn-c\" transform=\"rotate(120)\"/><use href=\"#hata-us-tn-c\" transform=\"rotate(240)\"/></g></svg>";

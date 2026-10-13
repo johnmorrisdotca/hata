@@ -6,10 +6,19 @@
  * From Wikimedia Commons, "Flag of French Guiana.svg" (public domain). `flag("GF", { variant: "local" })` loads it, and `variantsOf("GF")` says its status, dates and why it is offered.
  *
  * @example
- * ```ts
+ * ```ts no-run
  * import flag from "@johnmorrisdotca/hata/flags/gf--local";
  *
- * element.innerHTML = flag;
+ * const host=document.createElement("div");
+ * host.innerHTML = flag;
+ * console.log(host.querySelector("svg")?.getAttribute("viewBox"));
+ * ```
+ 
+ *
+ * @example
+ * ```ts
+ * import { svg } from "@johnmorrisdotca/hata/flags/gf--local";
+ * console.log(svg.startsWith("<svg"),svg.length);
  * ```
  */
 const svg: string = "<svg data-hata=\"gf--local\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 900 600\"><path fill=\"#078930\" d=\"M0 0h900v600z\"/><path fill=\"#fcdd09\" d=\"m0 0 900 600H0z\"/><path fill=\"#da121a\" d=\"m450 200 58.8 180.9-153.9-111.8h190.2L391.2 380.9z\"/></svg>";

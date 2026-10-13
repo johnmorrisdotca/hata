@@ -7,10 +7,19 @@
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
  * @example
- * ```ts
+ * ```ts no-run
  * import flag from "@johnmorrisdotca/hata/flags/np";
  *
- * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * const host=document.createElement("div");
+ * host.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * console.log(host.querySelector("svg")?.getAttribute("viewBox"));
+ * ```
+ 
+ *
+ * @example
+ * ```ts
+ * import { svg } from "@johnmorrisdotca/hata/flags/np";
+ * console.log(svg.startsWith("<svg"),svg.length);
  * ```
  */
 const svg: string = "<svg data-hata=\"np\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-17.582 -4.664 71.571 87.246\"><title>Flag of Nepal</title><use stroke=\"#003893\" stroke-width=\"5.165\" href=\"#hata-np-a\"/><path id=\"hata-np-a\" fill=\"#dc143c\" d=\"M-15 37.574h60L-15 0v80h60l-60-60z\"/><g fill=\"#fff\"><path d=\"M-11.95 23.483a12.84 12.84 0 0 0 23.9 0 11.95 11.95 0 0 1-23.9 0\"/><g transform=\"translate(0 29.045) scale(5.56106)\"><circle r=\"1\"/><g id=\"hata-np-d\"><g id=\"hata-np-c\"><path id=\"hata-np-b\" d=\"M.195-.98 0-1.39l-.195.408\" transform=\"rotate(11.25)\"/><use href=\"#hata-np-b\" transform=\"rotate(22.5)\"/><use href=\"#hata-np-b\" transform=\"rotate(45)\"/></g><use href=\"#hata-np-c\" transform=\"rotate(67.5)\"/></g><use href=\"#hata-np-d\" transform=\"scale(-1 1)\"/></g><g transform=\"matrix(8.1434 0 0 8.1434 0 58.787)\"><circle r=\"1\"/><g id=\"hata-np-g\"><g id=\"hata-np-f\"><path id=\"hata-np-e\" d=\"M.259.966 0 1.576l-.259-.61\"/><use href=\"#hata-np-e\" transform=\"rotate(180)\"/></g><use href=\"#hata-np-f\" transform=\"rotate(90)\"/></g><use href=\"#hata-np-g\" transform=\"rotate(30)\"/><use href=\"#hata-np-g\" transform=\"rotate(60)\"/></g></g></svg>";

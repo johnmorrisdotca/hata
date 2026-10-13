@@ -8,11 +8,11 @@ import { mustBeString } from "./svg";
  * The languages a flag's place is named in.
  *
  * @example
- * ```ts
+ * ```ts no-run
  * import { flagName, type NameLanguage } from "@johnmorrisdotca/hata/names";
  *
  * const lang: NameLanguage = navigator.language.startsWith("ja") ? "ja" : "en";
- * flagName("JP-13", lang);
+ * console.log(flagName("JP-13", lang));
  * ```
  */
 type NameLanguage = "en" | "ja";
@@ -32,10 +32,10 @@ const codeOf = (code: string): string => mustBeString(code, "code").trim().toUpp
  * ```ts
  * import { flagName } from "@johnmorrisdotca/hata/names";
  *
- * flagName("JP-13");        // "Tokyo"
- * flagName("jp-13", "ja");  // "東京都"
- * flagName("DE-BY", "ja-JP"); // "バイエルン自由州"
- * flagName("XX");           // null
+ * console.log(flagName("JP-13"));        // "Tokyo"
+ * console.log(flagName("jp-13", "ja"));  // "東京都"
+ * console.log(flagName("DE-BY", "ja-JP")); // "バイエルン自由州"
+ * console.log(flagName("XX"));           // null
  * ```
  */
 const flagName = (code: string, lang: string = "en"): string | null => {
@@ -57,8 +57,8 @@ const flagName = (code: string, lang: string = "en"): string | null => {
  * ```ts
  * import { flagAspect } from "@johnmorrisdotca/hata/names";
  *
- * flagAspect("CA");    // 2
- * flagAspect("CH");    // 1
+ * console.log(flagAspect("CA"));    // 2
+ * console.log(flagAspect("CH"));    // 1
  * ```
  */
 const flagAspect = (code: string): number | null => NAMES[codeOf(code)]?.[2] ?? null;

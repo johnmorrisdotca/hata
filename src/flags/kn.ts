@@ -7,10 +7,19 @@
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
  * @example
- * ```ts
+ * ```ts no-run
  * import flag from "@johnmorrisdotca/hata/flags/kn";
  *
- * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * const host=document.createElement("div");
+ * host.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * console.log(host.querySelector("svg")?.getAttribute("viewBox"));
+ * ```
+ 
+ *
+ * @example
+ * ```ts
+ * import { svg } from "@johnmorrisdotca/hata/flags/kn";
+ * console.log(svg.startsWith("<svg"),svg.length);
  * ```
  */
 const svg: string = "<svg data-hata=\"kn\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 75 50\"><title>Flag of Saint Kitts and Nevis</title><defs><clipPath id=\"hata-kn-a\"><path d=\"M0 0h75v50H0z\"/></clipPath></defs><path fill=\"#009739\" d=\"M0 50V0h75z\"/><path fill=\"#c8102e\" d=\"M75 0v50H0z\"/><g clip-path=\"url(#hata-kn-a)\"><path stroke=\"#ffcd00\" stroke-width=\"21\" d=\"M0 50 75 0\"/><path stroke=\"#000\" stroke-width=\"15\" d=\"M0 50 75 0\"/></g><path fill=\"#fff\" d=\"M19.57 29.35 30 37.6l-13.3-.54 11.08-7.38-4.62 12.49zM48.4 10.12l10.45 8.25-13.3-.54 11.07-7.38L52 22.94z\"/></svg>";

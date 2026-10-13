@@ -6,10 +6,19 @@
  * From Wikimedia Commons, "Flag of Wallis and Futuna.svg" (public domain). `flag("WF", { variant: "local" })` loads it, and `variantsOf("WF")` says its status, dates and why it is offered.
  *
  * @example
- * ```ts
+ * ```ts no-run
  * import flag from "@johnmorrisdotca/hata/flags/wf--local";
  *
- * element.innerHTML = flag;
+ * const host=document.createElement("div");
+ * host.innerHTML = flag;
+ * console.log(host.querySelector("svg")?.getAttribute("viewBox"));
+ * ```
+ 
+ *
+ * @example
+ * ```ts
+ * import { svg } from "@johnmorrisdotca/hata/flags/wf--local";
+ * console.log(svg.startsWith("<svg"),svg.length);
  * ```
  */
 const svg: string = "<svg data-hata=\"wf--local\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 150 100\"><path fill=\"#ce1126\" d=\"M0 0h150v100H0z\" style=\"fill:#ce1126;fill-opacity:1\"/><path fill=\"#fff\" d=\"M0 0h40v40H0z\"/><path fill=\"#002654\" d=\"M0 0h20v40H0z\" style=\"fill:#002654;fill-opacity:1\"/><path fill=\"none\" stroke=\"#fff\" d=\"M0 40h60V0\"/><path fill=\"#fff\" d=\"M105 46 93 34h24zm-4 4L89 38v24zm4 4L93 66h24zm4-4 12-12v24z\"/></svg>";

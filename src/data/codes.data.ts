@@ -11,8 +11,8 @@
  * ```ts
  * import { FLAG_CODES } from "@johnmorrisdotca/hata";
  *
- * FLAG_CODES.length;                                  // 465
- * FLAG_CODES.filter((code) => code.startsWith("JP-")); // the 45 prefectures with a flag
+ * console.log(FLAG_CODES.length);                                  // 465
+ * console.log(FLAG_CODES.filter((code) => code.startsWith("JP-"))); // the 45 prefectures with a flag
  * ```
  */
 const FLAG_CODES = [
@@ -65,6 +65,7 @@ const FLAG_CODES = [
  * import { flagCode, type FlagCode } from "@johnmorrisdotca/hata";
  *
  * const home: FlagCode | null = flagCode("jp-13"); // "JP-13"
+ * console.log(home);
  * ```
  */
 type FlagCode = (typeof FLAG_CODES)[number];

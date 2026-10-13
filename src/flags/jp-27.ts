@@ -7,10 +7,19 @@
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
  * @example
- * ```ts
+ * ```ts no-run
  * import flag from "@johnmorrisdotca/hata/flags/jp-27";
  *
- * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * const host=document.createElement("div");
+ * host.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * console.log(host.querySelector("svg")?.getAttribute("viewBox"));
+ * ```
+ 
+ *
+ * @example
+ * ```ts
+ * import { svg } from "@johnmorrisdotca/hata/flags/jp-27";
+ * console.log(svg.startsWith("<svg"),svg.length);
  * ```
  */
 const svg: string = "<svg data-hata=\"jp-27\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-15 -10 30 20\"><path fill=\"#33419a\" d=\"M-15-10h30v20h-30z\"/><g id=\"hata-jp-27-b\"><circle id=\"hata-jp-27-a\" cx=\"6\" r=\"2\" fill=\"none\" stroke=\"#fff\" stroke-width=\"2\"/><use href=\"#hata-jp-27-a\" transform=\"rotate(120 2 0)\"/></g><use href=\"#hata-jp-27-b\" transform=\"rotate(180)\"/><path id=\"hata-jp-27-c\" fill=\"#fff\" d=\"M6 0a1 1 0 0 0 0 1.7H3A1 1 0 0 0 3 0z\" transform=\"rotate(60 3 0)\"/><use href=\"#hata-jp-27-c\" transform=\"rotate(120 2 0)\"/><use href=\"#hata-jp-27-c\" transform=\"scale(-1 1)\"/></svg>";

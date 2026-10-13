@@ -11,7 +11,7 @@
  * import { MANIFEST, type LicenceKind } from "@johnmorrisdotca/hata/manifest";
  *
  * const credit: LicenceKind[] = ["cc-by", "mit"];
- * MANIFEST.filter((one) => credit.includes(one.licence.kind));
+ * console.log(MANIFEST.filter((one) => credit.includes(one.licence.kind)));
  * ```
  */
 type LicenceKind = "public-domain" | "cc0" | "cc-by" | "accepted" | "mit";
@@ -26,7 +26,7 @@ type LicenceKind = "public-domain" | "cc0" | "cc-by" | "accepted" | "mit";
  * import { MANIFEST, type FlagSource } from "@johnmorrisdotca/hata/manifest";
  *
  * const fromSets: FlagSource[] = ["flag-icons", "country-flag-icons"];
- * MANIFEST.filter((one) => fromSets.includes(one.source)).map((one) => one.code); // ["YE"]
+ * console.log(MANIFEST.filter((one) => fromSets.includes(one.source)).map((one) => one.code)); // ["YE"]
  * ```
  */
 type FlagSource = "commons" | "flag-icons" | "country-flag-icons";
@@ -111,9 +111,9 @@ interface FlagRecord {
  * import { variantsOf, type Variant } from "@johnmorrisdotca/hata/manifest";
  *
  * const taliban: Variant | undefined = variantsOf("AF").find((one) => one.status === "de-facto");
- * taliban?.id;     // "de-facto"
- * taliban?.from;   // "2021-08-15"
- * taliban?.module; // "af--de-facto": import it from "@johnmorrisdotca/hata/flags/af--de-facto"
+ * console.log(taliban?.id);     // "de-facto"
+ * console.log(taliban?.from);   // "2021-08-15"
+ * console.log(taliban?.module); // "af--de-facto": import it from "@johnmorrisdotca/hata/flags/af--de-facto"
  * ```
  */
 interface Variant {
@@ -174,12 +174,12 @@ interface Variant {
  * import { manifest, type Framing } from "@johnmorrisdotca/hata/manifest";
  *
  * const square: Framing | undefined = manifest("CA")?.framings["1:1"];
- * square?.method; // "adapted"
- * square?.fit;    // "contain": what frame() does with the flag's own SVG, which cannot use the adapted drawing
+ * console.log(square?.method); // "adapted"
+ * console.log(square?.fit);    // "contain": what frame() does with the flag's own SVG, which cannot use the adapted drawing
  *
  * const us = manifest("US")?.framings["1:1"];
- * us?.fit;         // "crop"
- * us?.crop;        // { rule: "curated", at: "left", why: "An emblem sits in a canton at the hoist …", loses: [] }
+ * console.log(us?.fit);         // "crop"
+ * console.log(us?.crop);        // { rule: "curated", at: "left", why: "An emblem sits in a canton at the hoist …", loses: [] }
  * ```
  */
 interface Framing {
@@ -210,8 +210,8 @@ interface Framing {
  * import { manifest, type FramingCrop } from "@johnmorrisdotca/hata/manifest";
  *
  * const crop: FramingCrop | undefined = manifest("US-HI")?.framings["1:1"].crop;
- * crop?.rule; // "curated": a person chose the side
- * crop?.at;   // "left": the canton and the stripes beside it
+ * console.log(crop?.rule); // "curated": a person chose the side
+ * console.log(crop?.at);   // "left": the canton and the stripes beside it
  * ```
  */
 interface FramingCrop {

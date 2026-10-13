@@ -7,10 +7,19 @@
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
  * @example
- * ```ts
+ * ```ts no-run
  * import flag from "@johnmorrisdotca/hata/flags/gb";
  *
- * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * const host=document.createElement("div");
+ * host.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * console.log(host.querySelector("svg")?.getAttribute("viewBox"));
+ * ```
+ 
+ *
+ * @example
+ * ```ts
+ * import { svg } from "@johnmorrisdotca/hata/flags/gb";
+ * console.log(svg.startsWith("<svg"),svg.length);
  * ```
  */
 const svg: string = "<svg data-hata=\"gb\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 50 30\"><clipPath id=\"hata-gb-a\"><path d=\"M25 15h25v15zv15H0zH0V0zV0h25z\"/></clipPath><path fill=\"#012169\" d=\"M0 0v30h50V0z\"/><path stroke=\"#fff\" stroke-width=\"6\" d=\"m0 0 50 30m0-30L0 30\"/><path stroke=\"#c8102e\" stroke-width=\"4\" d=\"m0 0 50 30m0-30L0 30\" clip-path=\"url(#hata-gb-a)\"/><path fill=\"#c8102e\" stroke=\"#fff\" stroke-width=\"2\" d=\"M-1 11h22V-1h8v12h22v8H29v12h-8V19H-1z\"/></svg>";

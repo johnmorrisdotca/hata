@@ -7,10 +7,19 @@
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
  * @example
- * ```ts
+ * ```ts no-run
  * import flag from "@johnmorrisdotca/hata/flags/jo";
  *
- * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * const host=document.createElement("div");
+ * host.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * console.log(host.querySelector("svg")?.getAttribute("viewBox"));
+ * ```
+ 
+ *
+ * @example
+ * ```ts
+ * import { svg } from "@johnmorrisdotca/hata/flags/jo";
+ * console.log(svg.startsWith("<svg"),svg.length);
  * ```
  */
 const svg: string = "<svg data-hata=\"jo\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 10080 5040\"><title>Flag of Jordan</title><path fill=\"#fff\" d=\"M0 0h10080v5040H0z\"/><path d=\"M0 0h10080v1680H0z\"/><path fill=\"#007a3d\" d=\"M0 3360h10080v1680H0z\"/><path fill=\"#ce1126\" d=\"M5040 2520 0 5040V0m1557 2160-78 198-203-62 106 184-176 120 211 32-16 212 156-144 157 144-16-212 210-32-175-120 106-184-203 62z\"/></svg>";

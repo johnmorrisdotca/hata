@@ -6,10 +6,19 @@
  * The drawing `flag("JP", { shape: "4:3" })` uses, made for that shape by hand rather than cut from the flag. The /manifest entry's `framings` say how each frame was chosen.
  *
  * @example
- * ```ts
+ * ```ts no-run
  * import square from "@johnmorrisdotca/hata/flags/jp.4x3";
  *
- * element.innerHTML = square;
+ * const host=document.createElement("div");
+ * host.innerHTML = square;
+ * console.log(host.querySelector("svg")?.getAttribute("viewBox"));
+ * ```
+ 
+ *
+ * @example
+ * ```ts
+ * import { svg } from "@johnmorrisdotca/hata/flags/jp.4x3";
+ * console.log(svg.startsWith("<svg"),svg.length);
  * ```
  */
 const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 640 480\"><defs><clipPath id=\"hata-jp-4x3-a\"><path d=\"M-88 32h640v480H-88z\"/></clipPath></defs><g fill-rule=\"evenodd\" clip-path=\"url(#hata-jp-4x3-a)\" transform=\"translate(88 -32)\"><path fill=\"#fff\" d=\"M-128 32h720v480h-720z\"/><circle cx=\"523\" cy=\"344\" r=\"195\" fill=\"#bc002d\" transform=\"translate(-168.4 8.6)scale(.76554)\"/></g></svg>";

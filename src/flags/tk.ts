@@ -7,10 +7,19 @@
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
  * @example
- * ```ts
+ * ```ts no-run
  * import flag from "@johnmorrisdotca/hata/flags/tk";
  *
- * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * const host=document.createElement("div");
+ * host.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * console.log(host.querySelector("svg")?.getAttribute("viewBox"));
+ * ```
+ 
+ *
+ * @example
+ * ```ts
+ * import { svg } from "@johnmorrisdotca/hata/flags/tk";
+ * console.log(svg.startsWith("<svg"),svg.length);
  * ```
  */
 const svg: string = "<svg data-hata=\"tk\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1800 900\"><defs><g id=\"hata-tk-b\"><g id=\"hata-tk-a\"><path d=\"M1-.32H0v.5z\"/><path d=\"M1-.32.2.26l-.3-.4z\"/></g><use href=\"#hata-tk-a\" transform=\"rotate(72)\"/><use href=\"#hata-tk-a\" transform=\"rotate(144)\"/><use href=\"#hata-tk-a\" transform=\"rotate(216)\"/><use href=\"#hata-tk-a\" transform=\"rotate(288)\"/></g></defs><path fill=\"#012169\" d=\"M0 0h1800v900H0z\"/><path fill=\"#ffd100\" d=\"M329.38 777.27c-17.94-.15 168.62-99.44 324.77-226.6C858.79 384 1299.55 117.16 1429.12 73.8c13.54-4.54-27.78 23.07-33.14 32.01-138.35 163.74-27.93 472.72 144.97 628.05 51.99 39.76 49.33 41.85 145.7 45.75v9zm-11.25 18.05s-13.17 9.4-13.13 16.41c.04 7.77 14.77 18.05 14.77 18.05l1338.74 14.76 24.61-16.4-34.45-21.33z\"/><g fill=\"#fff\"><use href=\"#hata-tk-b\" transform=\"translate(342.9565,112.5812) scale(45)\"/><use href=\"#hata-tk-b\" transform=\"translate(521.20459,267.53) scale(37.5)\"/><use href=\"#hata-tk-b\" transform=\"translate(135,321.8075) scale(45)\"/><use href=\"#hata-tk-b\" transform=\"translate(342.9565,652.5812) scale(52.5)\"/></g></svg>";

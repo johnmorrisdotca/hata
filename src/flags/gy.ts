@@ -7,10 +7,19 @@
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
  * @example
- * ```ts
+ * ```ts no-run
  * import flag from "@johnmorrisdotca/hata/flags/gy";
  *
- * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * const host=document.createElement("div");
+ * host.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * console.log(host.querySelector("svg")?.getAttribute("viewBox"));
+ * ```
+ 
+ *
+ * @example
+ * ```ts
+ * import { svg } from "@johnmorrisdotca/hata/flags/gy";
+ * console.log(svg.startsWith("<svg"),svg.length);
  * ```
  */
 const svg: string = "<svg data-hata=\"gy\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 60\"><title>Flag of Guyana</title><defs><clipPath id=\"hata-gy-a\"><path d=\"m0 0 100 30L0 60z\"/></clipPath><clipPath id=\"hata-gy-b\"><path d=\"m0 0 50 30L0 60z\"/></clipPath></defs><path fill=\"#2a936a\" d=\"M0 0h100v60H0z\"/><path fill=\"#ffc20e\" stroke=\"#fff\" stroke-width=\"4\" d=\"m0 0 100 30L0 60\" clip-path=\"url(#hata-gy-a)\"/><path fill=\"#be1e2d\" stroke=\"#000\" stroke-width=\"4\" d=\"m0 0 50 30L0 60\" clip-path=\"url(#hata-gy-b)\"/></svg>";

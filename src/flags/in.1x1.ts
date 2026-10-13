@@ -6,10 +6,19 @@
  * The drawing `flag("IN", { shape: "1:1" })` uses (and the round frame, in a circle), made for that shape by hand rather than cut from the flag. The /manifest entry's `framings` say how each frame was chosen.
  *
  * @example
- * ```ts
+ * ```ts no-run
  * import square from "@johnmorrisdotca/hata/flags/in.1x1";
  *
- * element.innerHTML = square;
+ * const host=document.createElement("div");
+ * host.innerHTML = square;
+ * console.log(host.querySelector("svg")?.getAttribute("viewBox"));
+ * ```
+ 
+ *
+ * @example
+ * ```ts
+ * import { svg } from "@johnmorrisdotca/hata/flags/in.1x1";
+ * console.log(svg.startsWith("<svg"),svg.length);
  * ```
  */
 const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 512 512\"><path fill=\"#f93\" d=\"M0 0h512v170.7H0z\"/><path fill=\"#fff\" d=\"M0 170.7h512v170.6H0z\"/><path fill=\"#128807\" d=\"M0 341.3h512V512H0z\"/><g transform=\"translate(256 256)scale(3.41333)\"><circle r=\"20\" fill=\"#008\"/><circle r=\"17.5\" fill=\"#fff\"/><circle r=\"3.5\" fill=\"#008\"/><g id=\"hata-in-1x1-d\"><g id=\"hata-in-1x1-c\"><g id=\"hata-in-1x1-b\"><g id=\"hata-in-1x1-a\" fill=\"#008\"><circle r=\".9\" transform=\"rotate(7.5 -8.8 133.5)\"/><path d=\"M0 17.5.6 7 0 2l-.6 5z\"/></g><use width=\"100%\" height=\"100%\" href=\"#hata-in-1x1-a\" transform=\"rotate(15)\"/></g><use width=\"100%\" height=\"100%\" href=\"#hata-in-1x1-b\" transform=\"rotate(30)\"/></g><use width=\"100%\" height=\"100%\" href=\"#hata-in-1x1-c\" transform=\"rotate(60)\"/></g><use width=\"100%\" height=\"100%\" href=\"#hata-in-1x1-d\" transform=\"rotate(120)\"/><use width=\"100%\" height=\"100%\" href=\"#hata-in-1x1-d\" transform=\"rotate(-120)\"/></g></svg>";

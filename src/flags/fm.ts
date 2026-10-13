@@ -7,10 +7,19 @@
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
  * @example
- * ```ts
+ * ```ts no-run
  * import flag from "@johnmorrisdotca/hata/flags/fm";
  *
- * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * const host=document.createElement("div");
+ * host.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * console.log(host.querySelector("svg")?.getAttribute("viewBox"));
+ * ```
+ 
+ *
+ * @example
+ * ```ts
+ * import { svg } from "@johnmorrisdotca/hata/flags/fm";
+ * console.log(svg.startsWith("<svg"),svg.length);
  * ```
  */
 const svg: string = "<svg data-hata=\"fm\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-19 -10 38 20\"><path fill=\"#75b2dd\" d=\"M-19-10h38v20h-38z\"/><g id=\"hata-fm-c\" fill=\"#fff\" transform=\"translate(0,-6)\"><g id=\"hata-fm-b\"><path id=\"hata-fm-a\" d=\"M0-2v2h1\" transform=\"rotate(18 0,-2)\"/><use href=\"#hata-fm-a\" transform=\"scale(-1,1)\"/></g><use href=\"#hata-fm-b\" transform=\"rotate(72)\"/><use href=\"#hata-fm-b\" transform=\"rotate(144)\"/><use href=\"#hata-fm-b\" transform=\"rotate(216)\"/><use href=\"#hata-fm-b\" transform=\"rotate(288)\"/></g><use href=\"#hata-fm-c\" transform=\"rotate(90)\"/><use href=\"#hata-fm-c\" transform=\"rotate(180)\"/><use href=\"#hata-fm-c\" transform=\"rotate(270)\"/></svg>";

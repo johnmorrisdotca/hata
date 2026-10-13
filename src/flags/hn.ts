@@ -7,10 +7,19 @@
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
  * @example
- * ```ts
+ * ```ts no-run
  * import flag from "@johnmorrisdotca/hata/flags/hn";
  *
- * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * const host=document.createElement("div");
+ * host.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * console.log(host.querySelector("svg")?.getAttribute("viewBox"));
+ * ```
+ 
+ *
+ * @example
+ * ```ts
+ * import { svg } from "@johnmorrisdotca/hata/flags/hn";
+ * console.log(svg.startsWith("<svg"),svg.length);
  * ```
  */
 const svg: string = "<svg data-hata=\"hn\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"#0d3b99\" viewBox=\"0 0 72 36\"><title>Flag of Honduras</title><path fill=\"#fff\" d=\"M0 0h72v36H0z\"/><path d=\"M0 0h72v12H0zm0 24h72v12H0z\"/><g id=\"hata-hn-b\"><path id=\"hata-hn-a\" d=\"m26 13 1.18 3.62-3.08-2.24h3.8l-3.08 2.24z\"/><use y=\"6\" href=\"#hata-hn-a\"/></g><use x=\"10\" y=\"3\" href=\"#hata-hn-a\"/><use x=\"20\" href=\"#hata-hn-b\"/></svg>";

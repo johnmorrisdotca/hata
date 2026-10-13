@@ -6,10 +6,19 @@
  * The drawing `flag("CL", { shape: "4:3" })` uses, made for that shape by hand rather than cut from the flag. The /manifest entry's `framings` say how each frame was chosen.
  *
  * @example
- * ```ts
+ * ```ts no-run
  * import square from "@johnmorrisdotca/hata/flags/cl.4x3";
  *
- * element.innerHTML = square;
+ * const host=document.createElement("div");
+ * host.innerHTML = square;
+ * console.log(host.querySelector("svg")?.getAttribute("viewBox"));
+ * ```
+ 
+ *
+ * @example
+ * ```ts
+ * import { svg } from "@johnmorrisdotca/hata/flags/cl.4x3";
+ * console.log(svg.startsWith("<svg"),svg.length);
  * ```
  */
 const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 640 480\"><defs><clipPath id=\"hata-cl-4x3-a\"><path d=\"M0 0h683v512H0z\"/></clipPath></defs><g fill-rule=\"evenodd\" clip-path=\"url(#hata-cl-4x3-a)\" transform=\"scale(.9375)\"><path fill=\"#fff\" d=\"M256 0h512v256H256z\"/><path fill=\"#0039a6\" d=\"M0 0h256v256H0z\"/><path fill=\"#fff\" d=\"m168 192-40-30-39 30 14-49-39-30h49l15-49 15 49h49l-39 30z\"/><path fill=\"#d52b1e\" d=\"M0 256h768v256H0z\"/></g></svg>";

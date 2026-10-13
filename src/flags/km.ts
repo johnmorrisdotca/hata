@@ -7,10 +7,19 @@
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
  * @example
- * ```ts
+ * ```ts no-run
  * import flag from "@johnmorrisdotca/hata/flags/km";
  *
- * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * const host=document.createElement("div");
+ * host.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * console.log(host.querySelector("svg")?.getAttribute("viewBox"));
+ * ```
+ 
+ *
+ * @example
+ * ```ts
+ * import { svg } from "@johnmorrisdotca/hata/flags/km";
+ * console.log(svg.startsWith("<svg"),svg.length);
  * ```
  */
 const svg: string = "<svg data-hata=\"km\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"#fff\" viewBox=\"0 0 60 36\"><title>Flag of the Comoros</title><path d=\"M0 0h60v36H0z\"/><path fill=\"#ffd100\" d=\"M0 0h60v9H0z\"/><path fill=\"#ef3340\" d=\"M0 18h60v18H0z\"/><path fill=\"#003da5\" d=\"M0 27h60v9H0z\"/><path fill=\"#009639\" d=\"M30 18 0 36V0z\"/><path d=\"M12.519 9.809a8.25 8.25 0 0 0 0 16.382 8.5 8.5 0 1 1 0-16.382\"/><g id=\"hata-km-b\"><path id=\"hata-km-a\" d=\"m12.519 10.75 1.029 3.166-2.693-1.957h3.329l-2.693 1.957z\"/><use y=\"3.75\" href=\"#hata-km-a\"/></g><use y=\"7.5\" href=\"#hata-km-b\"/></svg>";

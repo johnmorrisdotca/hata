@@ -7,10 +7,19 @@
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
  * @example
- * ```ts
+ * ```ts no-run
  * import flag from "@johnmorrisdotca/hata/flags/jp-07";
  *
- * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * const host=document.createElement("div");
+ * host.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * console.log(host.querySelector("svg")?.getAttribute("viewBox"));
+ * ```
+ 
+ *
+ * @example
+ * ```ts
+ * import { svg } from "@johnmorrisdotca/hata/flags/jp-07";
+ * console.log(svg.startsWith("<svg"),svg.length);
  * ```
  */
 const svg: string = "<svg data-hata=\"jp-07\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1500 1000\"><path fill=\"#d84b24\" d=\"M0 0h1500v1000H0z\"/><g fill=\"#fff\" transform=\"translate(600 440)\"><path d=\"M47.3-386.4a60 60 0 0 0 30.3 96.6A300 300 0 1 1-96.8-284 225 225 0 0 0-21-199a200 200 0 1 0 72.7 5.8A200 200 0 0 1-96.5-386.4z\"/><path id=\"hata-jp-07-a\" d=\"M293.3 140A100 100 0 0 0 402 202.3a450 450 0 0 1-64.4 95.2 200 200 0 0 1-107-68.5 325 325 0 0 0 62.7-89\"/><use href=\"#hata-jp-07-a\" transform=\"scale(-1 1)\"/></g></svg>";

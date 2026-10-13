@@ -7,10 +7,19 @@
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
  * @example
- * ```ts
+ * ```ts no-run
  * import flag from "@johnmorrisdotca/hata/flags/az";
  *
- * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * const host=document.createElement("div");
+ * host.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * console.log(host.querySelector("svg")?.getAttribute("viewBox"));
+ * ```
+ 
+ *
+ * @example
+ * ```ts
+ * import { svg } from "@johnmorrisdotca/hata/flags/az";
+ * console.log(svg.startsWith("<svg"),svg.length);
  * ```
  */
 const svg: string = "<svg data-hata=\"az\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1200 600\"><path fill=\"#509e2f\" d=\"M0 0h1200v600H0z\"/><path fill=\"#ef3340\" d=\"M0 0h1200v400H0z\"/><path fill=\"#00b5e2\" d=\"M0 0h1200v200H0z\"/><circle cx=\"570\" cy=\"300\" r=\"90\" fill=\"#fff\"/><circle cx=\"590\" cy=\"300\" r=\"75\" fill=\"#ef3340\"/><path fill=\"#fff\" d=\"m670 250 10 27 25-12-12 25 27 10-27 10 12 25-25-12-10 27-10-27-25 12 12-25-27-10 27-10-12-25 25 12z\"/></svg>";

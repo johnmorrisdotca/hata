@@ -7,10 +7,19 @@
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
  * @example
- * ```ts
+ * ```ts no-run
  * import flag from "@johnmorrisdotca/hata/flags/ve";
  *
- * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * const host=document.createElement("div");
+ * host.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * console.log(host.querySelector("svg")?.getAttribute("viewBox"));
+ * ```
+ 
+ *
+ * @example
+ * ```ts
+ * import { svg } from "@johnmorrisdotca/hata/flags/ve";
+ * console.log(svg.startsWith("<svg"),svg.length);
  * ```
  */
 const svg: string = "<svg data-hata=\"ve\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 180 120\"><defs><g id=\"hata-ve-d\" transform=\"translate(0 -36)\"><g id=\"hata-ve-c\"><g id=\"hata-ve-b\"><path id=\"hata-ve-a\" fill=\"#fff\" d=\"M0-5v5h3z\" transform=\"rotate(18 0 -5)\"/><use href=\"#hata-ve-a\" transform=\"scale(-1 1)\"/></g><use href=\"#hata-ve-b\" transform=\"rotate(72)\"/></g><use href=\"#hata-ve-b\" transform=\"rotate(-72)\"/><use href=\"#hata-ve-c\" transform=\"rotate(144)\"/></g></defs><path fill=\"#cf142b\" d=\"M0 0h180v120H0Z\"/><path fill=\"#00247d\" d=\"M0 80h180V0H0Z\"/><path fill=\"#fc0\" d=\"M0 0h180v40H0Z\"/><g transform=\"translate(0 .2422087)\"><use width=\"100%\" height=\"100%\" href=\"#hata-ve-d\" transform=\"rotate(-70 105.506451 -23.4739353) scale(1.0383988)\"/><use width=\"100%\" height=\"100%\" href=\"#hata-ve-d\" transform=\"rotate(-45.93376 147.3700758 -62.4017001) scale(1.0383988)\"/><use width=\"100%\" height=\"100%\" href=\"#hata-ve-d\" transform=\"rotate(-30 205.590447 -127.0402897) scale(1.0383988)\"/><use width=\"100%\" height=\"100%\" href=\"#hata-ve-d\" transform=\"rotate(-10 537.6970712 -472.5906531) scale(1.0383988)\"/><g transform=\"matrix(-1 0 0 1 180.05129 .0000092)\"><use width=\"100%\" height=\"100%\" href=\"#hata-ve-d\" transform=\"rotate(-70 105.506451 -23.4739353) scale(1.0383988)\"/><use width=\"100%\" height=\"100%\" href=\"#hata-ve-d\" transform=\"rotate(-45.93376 147.3700758 -62.4017001) scale(1.0383988)\"/><use width=\"100%\" height=\"100%\" href=\"#hata-ve-d\" transform=\"rotate(-30 205.590447 -127.0402897) scale(1.0383988)\"/><use width=\"100%\" height=\"100%\" href=\"#hata-ve-d\" transform=\"rotate(-10 537.6970712 -472.5906531) scale(1.0383988)\"/></g></g></svg>";

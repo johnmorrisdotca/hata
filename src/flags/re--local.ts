@@ -6,10 +6,19 @@
  * From Wikimedia Commons, "Proposed flag of Réunion (VAR).svg" (public domain). `flag("RE", { variant: "local" })` loads it, and `variantsOf("RE")` says its status, dates and why it is offered.
  *
  * @example
- * ```ts
+ * ```ts no-run
  * import flag from "@johnmorrisdotca/hata/flags/re--local";
  *
- * element.innerHTML = flag;
+ * const host=document.createElement("div");
+ * host.innerHTML = flag;
+ * console.log(host.querySelector("svg")?.getAttribute("viewBox"));
+ * ```
+ 
+ *
+ * @example
+ * ```ts
+ * import { svg } from "@johnmorrisdotca/hata/flags/re--local";
+ * console.log(svg.startsWith("<svg"),svg.length);
  * ```
  */
 const svg: string = "<svg data-hata=\"re--local\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 120 80\"><path fill=\"#36f\" d=\"M0 0h120v80H0z\"/><path fill=\"red\" d=\"M60 40 0 80h120z\"/><g fill=\"#ff0\"><path d=\"M0 37v6l120-6v6z\"/><path d=\"M60 40 0 5V0h5zl55-40h5v5z\"/><path d=\"M60 40 57 0h6z\"/></g></svg>";

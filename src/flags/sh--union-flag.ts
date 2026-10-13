@@ -6,10 +6,19 @@
  * From Wikimedia Commons, "Flag of the United Kingdom (1-2).svg" (public domain). `flag("SH", { variant: "union-flag" })` loads it, and `variantsOf("SH")` says its status, dates and why it is offered.
  *
  * @example
- * ```ts
+ * ```ts no-run
  * import flag from "@johnmorrisdotca/hata/flags/sh--union-flag";
  *
- * element.innerHTML = flag;
+ * const host=document.createElement("div");
+ * host.innerHTML = flag;
+ * console.log(host.querySelector("svg")?.getAttribute("viewBox"));
+ * ```
+ 
+ *
+ * @example
+ * ```ts
+ * import { svg } from "@johnmorrisdotca/hata/flags/sh--union-flag";
+ * console.log(svg.startsWith("<svg"),svg.length);
  * ```
  */
 const svg: string = "<svg data-hata=\"sh--union-flag\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 60 30\"><clipPath id=\"hata-sh--union-flag-a\"><path d=\"M0 0v30h60V0z\"/></clipPath><clipPath id=\"hata-sh--union-flag-b\"><path d=\"M30 15h30v15zv15H0zH0V0zV0h30z\"/></clipPath><g clip-path=\"url(#hata-sh--union-flag-a)\"><path fill=\"#012169\" d=\"M0 0v30h60V0z\"/><path stroke=\"#fff\" stroke-width=\"6\" d=\"m0 0 60 30m0-30L0 30\"/><path stroke=\"#c8102e\" stroke-width=\"4\" d=\"m0 0 60 30m0-30L0 30\" clip-path=\"url(#hata-sh--union-flag-b)\"/><path stroke=\"#fff\" stroke-width=\"10\" d=\"M30 0v30M0 15h60\"/><path stroke=\"#c8102e\" stroke-width=\"6\" d=\"M30 0v30M0 15h60\"/></g></svg>";

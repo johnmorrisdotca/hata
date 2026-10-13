@@ -7,10 +7,19 @@
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
  * @example
- * ```ts
+ * ```ts no-run
  * import flag from "@johnmorrisdotca/hata/flags/jp-21";
  *
- * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * const host=document.createElement("div");
+ * host.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * console.log(host.querySelector("svg")?.getAttribute("viewBox"));
+ * ```
+ 
+ *
+ * @example
+ * ```ts
+ * import { svg } from "@johnmorrisdotca/hata/flags/jp-21";
+ * console.log(svg.startsWith("<svg"),svg.length);
  * ```
  */
 const svg: string = "<svg data-hata=\"jp-21\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 900 600\"><path d=\"M0 0h900v600H0z\" style=\"fill:#fff\"/><path d=\"M617.9 300a167.9 167.9 0 0 1-335.8 0 167.9 167.9 0 1 1 335.8 0z\" style=\"fill:none;stroke:#00693f;stroke-width:24.26966286\"/><path d=\"M476.7 173.8v21h-44.5v179.7h-58.3V227.2h13v135.1h32.3V194.8h-77.6v212h123V227.2h12.1v45.3h44.4v102h-12v-89h-32.4v121.3h76.8V240.2h-44.4v-13h44.4V195h-44.4v-21z\" style=\"fill:#00693f\"/></svg>";

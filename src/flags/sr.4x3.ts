@@ -6,10 +6,19 @@
  * The drawing `flag("SR", { shape: "4:3" })` uses, made for that shape by hand rather than cut from the flag. The /manifest entry's `framings` say how each frame was chosen.
  *
  * @example
- * ```ts
+ * ```ts no-run
  * import square from "@johnmorrisdotca/hata/flags/sr.4x3";
  *
- * element.innerHTML = square;
+ * const host=document.createElement("div");
+ * host.innerHTML = square;
+ * console.log(host.querySelector("svg")?.getAttribute("viewBox"));
+ * ```
+ 
+ *
+ * @example
+ * ```ts
+ * import { svg } from "@johnmorrisdotca/hata/flags/sr.4x3";
+ * console.log(svg.startsWith("<svg"),svg.length);
  * ```
  */
 const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 640 480\"><path fill=\"#377e3f\" d=\"M.1 0h640v480H.1z\"/><path fill=\"#fff\" d=\"M.1 96h640v288H.1z\"/><path fill=\"#b40a2d\" d=\"M.1 144h640v192H.1z\"/><path fill=\"#ecc81d\" d=\"m320 153.2 56.4 173.6-147.7-107.3h182.6L263.6 326.8z\"/></svg>";

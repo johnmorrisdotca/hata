@@ -6,10 +6,19 @@
  * From Wikimedia Commons, "Flag of Bavaria (striped).svg" (public domain). `flag("DE-BY", { variant: "stripes" })` loads it, and `variantsOf("DE-BY")` says its status, dates and why it is offered.
  *
  * @example
- * ```ts
+ * ```ts no-run
  * import flag from "@johnmorrisdotca/hata/flags/de-by--stripes";
  *
- * element.innerHTML = flag;
+ * const host=document.createElement("div");
+ * host.innerHTML = flag;
+ * console.log(host.querySelector("svg")?.getAttribute("viewBox"));
+ * ```
+ 
+ *
+ * @example
+ * ```ts
+ * import { svg } from "@johnmorrisdotca/hata/flags/de-by--stripes";
+ * console.log(svg.startsWith("<svg"),svg.length);
  * ```
  */
 const svg: string = "<svg data-hata=\"de-by--stripes\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 10 6\"><path fill=\"#0098d4\" d=\"M0 0h10v6H0z\"/><path fill=\"#fff\" d=\"M0 0h10v3H0z\"/></svg>";

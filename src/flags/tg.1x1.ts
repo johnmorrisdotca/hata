@@ -6,10 +6,19 @@
  * The drawing `flag("TG", { shape: "1:1" })` uses (and the round frame, in a circle), made for that shape by hand rather than cut from the flag. The /manifest entry's `framings` say how each frame was chosen.
  *
  * @example
- * ```ts
+ * ```ts no-run
  * import square from "@johnmorrisdotca/hata/flags/tg.1x1";
  *
- * element.innerHTML = square;
+ * const host=document.createElement("div");
+ * host.innerHTML = square;
+ * console.log(host.querySelector("svg")?.getAttribute("viewBox"));
+ * ```
+ 
+ *
+ * @example
+ * ```ts
+ * import { svg } from "@johnmorrisdotca/hata/flags/tg.1x1";
+ * console.log(svg.startsWith("<svg"),svg.length);
  * ```
  */
 const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 512 512\"><defs><clipPath id=\"hata-tg-1x1-a\"><path fill-opacity=\".7\" d=\"M0-.2h496.3V496H0z\"/></clipPath></defs><g fill-rule=\"evenodd\" clip-path=\"url(#hata-tg-1x1-a)\" transform=\"translate(0 .3)scale(1.0316)\"><path fill=\"#ffe300\" d=\"M0-.2h744V496H0z\"/><path fill=\"#118600\" d=\"M0 201.5h744v99.7H0zM0 0h744v99.7H0z\"/><path fill=\"#d80000\" d=\"M0 0h297.1v301.2H0z\"/><path fill=\"#fff\" d=\"M130.3 124.3c0-.9 18.3-51.5 18.3-51.5l16.6 50.6s55.6 1.7 55.6.8-44 33.2-44 33.2 20.7 58.1 19.9 56.5-48.1-34.9-48.1-34.9-48.2 33.2-47.3 33.2 18.2-54.7 18.2-54.7L76.4 125z\"/><path fill=\"#118600\" d=\"M0 396.4h744v99.7H0z\"/></g></svg>";

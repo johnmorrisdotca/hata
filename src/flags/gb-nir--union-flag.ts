@@ -8,10 +8,19 @@ import { svg as shared } from "./gb";
  * From Wikimedia Commons, "Flag of the United Kingdom (3-5).svg" (public domain). `flag("GB-NIR", { variant: "union-flag" })` loads it, and `variantsOf("GB-NIR")` says its status, dates and why it is offered.
  *
  * @example
- * ```ts
+ * ```ts no-run
  * import flag from "@johnmorrisdotca/hata/flags/gb-nir--union-flag";
  *
- * element.innerHTML = flag;
+ * const host=document.createElement("div");
+ * host.innerHTML = flag;
+ * console.log(host.querySelector("svg")?.getAttribute("viewBox"));
+ * ```
+ 
+ *
+ * @example
+ * ```ts
+ * import { svg } from "@johnmorrisdotca/hata/flags/gb-nir--union-flag";
+ * console.log(svg.startsWith("<svg"),svg.length);
  * ```
  */
 const svg: string = shared;

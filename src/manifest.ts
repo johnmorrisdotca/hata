@@ -23,7 +23,7 @@ const deepFreeze = <T>(value: T): T => {
  * ```ts
  * import { MANIFEST } from "@johnmorrisdotca/hata/manifest";
  *
- * MANIFEST.filter((one) => one.licence.kind === "cc-by").map((one) => one.code); // the flags whose authors must be credited
+ * console.log(MANIFEST.filter((one) => one.licence.kind === "cc-by").map((one) => one.code)); // the flags whose authors must be credited
  * ```
  */
 const MANIFEST: readonly FlagRecord[] = deepFreeze(RECORDS);
@@ -36,7 +36,7 @@ const MANIFEST: readonly FlagRecord[] = deepFreeze(RECORDS);
  * ```ts
  * import { LEFT_OUT } from "@johnmorrisdotca/hata/manifest";
  *
- * LEFT_OUT.map((one) => `${one.code}: ${one.kind}`); // ["AQ: no-flag", "BQ: no-flag", "CA-MB: licence", …]
+ * console.log(LEFT_OUT.map((one) => `${one.code}: ${one.kind}`)); // ["AQ: no-flag", "BQ: no-flag", "CA-MB: licence", …]
  * ```
  */
 const LEFT_OUT: readonly LeftOutRecord[] = deepFreeze(LEFT_OUT_ROWS);
@@ -56,9 +56,9 @@ const normal = (code: string): string => mustBeString(code, "code").trim().toUpp
  * ```ts
  * import { manifest } from "@johnmorrisdotca/hata/manifest";
  *
- * manifest("JP-13")?.licence.name; // "Public domain"
- * manifest("YE")?.source;           // "country-flag-icons"
- * manifest("XX");                   // null
+ * console.log(manifest("JP-13")?.licence.name); // "Public domain"
+ * console.log(manifest("YE")?.source);           // "country-flag-icons"
+ * console.log(manifest("XX"));                   // null
  * ```
  */
 const manifest = (code: string): FlagRecord | null => BY_CODE.get(normal(code)) ?? null;
@@ -74,8 +74,8 @@ const manifest = (code: string): FlagRecord | null => BY_CODE.get(normal(code)) 
  * ```ts
  * import { leftOut } from "@johnmorrisdotca/hata/manifest";
  *
- * leftOut("EH")?.kind; // "no-flag"
- * leftOut("JP");       // null: Japan has a flag
+ * console.log(leftOut("EH")?.kind); // "no-flag"
+ * console.log(leftOut("JP"));       // null: Japan has a flag
  * ```
  */
 const leftOut = (code: string): LeftOutRecord | null => LEFT_BY_CODE.get(normal(code)) ?? null;
@@ -95,9 +95,9 @@ const leftOut = (code: string): LeftOutRecord | null => LEFT_BY_CODE.get(normal(
  * ```ts
  * import { variantsOf } from "@johnmorrisdotca/hata/manifest";
  *
- * variantsOf("AF").map((one) => `${one.id}: ${one.status}`); // ["republic: official", "de-facto: de-facto"]
- * variantsOf("GB-NIR").map((one) => one.id);                  // ["union-flag", "ulster-banner"]
- * variantsOf("JP");                                           // []: Japan has one flag
+ * console.log(variantsOf("AF").map((one) => `${one.id}: ${one.status}`)); // ["republic: official", "de-facto: de-facto"]
+ * console.log(variantsOf("GB-NIR").map((one) => one.id));                  // ["union-flag", "ulster-banner"]
+ * console.log(variantsOf("JP"));                                           // []: Japan has one flag
  * ```
  */
 const variantsOf = (code: string): readonly Variant[] => (manifest(code) ?? leftOut(code))?.variants ?? [];

@@ -7,10 +7,19 @@
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
  * @example
- * ```ts
+ * ```ts no-run
  * import flag from "@johnmorrisdotca/hata/flags/jp-25";
  *
- * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * const host=document.createElement("div");
+ * host.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * console.log(host.querySelector("svg")?.getAttribute("viewBox"));
+ * ```
+ 
+ *
+ * @example
+ * ```ts
+ * import { svg } from "@johnmorrisdotca/hata/flags/jp-25";
+ * console.log(svg.startsWith("<svg"),svg.length);
  * ```
  */
 const svg: string = "<svg data-hata=\"jp-25\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-495 -330 990 660\"><path fill=\"#3e88c0\" d=\"M-495-330h990v660h-990\"/><path fill=\"#fff\" d=\"m324-169-29 77-118 39a188 188 0 0 0-32-56zm-33 87L262 5l-74 15a188 188 0 0 0-9-65zm-615-87 273 91a54 54 0 0 0-29 17 108 108 0 0 0-21 34l-194-65zm33 87 187 62a108 108 0 0 0 3 69L-262-5zM-97 58a108 108 0 0 0 93 61v72A180 180 0 0 1-179 31zm-34-171a180 180 0 0 1 78-48 90 90 0 0 0 53-44 90 90 0 0 0 53 44A180 180 0 0 1 4 191v-72A108 108 0 0 0 80-61a54 54 0 0 0-80 0 54 54 0 0 0-23-16z\"/></svg>";

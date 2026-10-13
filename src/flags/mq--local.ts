@@ -6,10 +6,19 @@
  * From Wikimedia Commons, "Flag-of-Martinique.svg" (public domain). `flag("MQ", { variant: "local" })` loads it, and `variantsOf("MQ")` says its status, dates and why it is offered.
  *
  * @example
- * ```ts
+ * ```ts no-run
  * import flag from "@johnmorrisdotca/hata/flags/mq--local";
  *
- * element.innerHTML = flag;
+ * const host=document.createElement("div");
+ * host.innerHTML = flag;
+ * console.log(host.querySelector("svg")?.getAttribute("viewBox"));
+ * ```
+ 
+ *
+ * @example
+ * ```ts
+ * import { svg } from "@johnmorrisdotca/hata/flags/mq--local";
+ * console.log(svg.startsWith("<svg"),svg.length);
  * ```
  */
 const svg: string = "<svg data-hata=\"mq--local\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 900 600\"><path fill=\"#231f1e\" d=\"M0 0h900v600H0z\"/><path fill=\"#00a650\" d=\"M0 0h900v300H0z\"/><path fill=\"#ef1923\" d=\"m0 0 450 300L0 600z\"/></svg>";

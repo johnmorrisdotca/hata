@@ -6,10 +6,19 @@
  * The drawing `flag("CU", { shape: "1:1" })` uses (and the round frame, in a circle), made for that shape by hand rather than cut from the flag. The /manifest entry's `framings` say how each frame was chosen.
  *
  * @example
- * ```ts
+ * ```ts no-run
  * import square from "@johnmorrisdotca/hata/flags/cu.1x1";
  *
- * element.innerHTML = square;
+ * const host=document.createElement("div");
+ * host.innerHTML = square;
+ * console.log(host.querySelector("svg")?.getAttribute("viewBox"));
+ * ```
+ 
+ *
+ * @example
+ * ```ts
+ * import { svg } from "@johnmorrisdotca/hata/flags/cu.1x1";
+ * console.log(svg.startsWith("<svg"),svg.length);
  * ```
  */
 const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 512 512\"><defs><clipPath id=\"hata-cu-1x1-a\"><path fill-opacity=\".7\" d=\"M0 0h512v512H0z\"/></clipPath></defs><g fill-rule=\"evenodd\" clip-path=\"url(#hata-cu-1x1-a)\"><path fill=\"#002a8f\" d=\"M-32 0h768v512H-32z\"/><path fill=\"#fff\" d=\"M-32 102.4h768v102.4H-32zm0 204.8h768v102.4H-32z\"/><path fill=\"#cb1515\" d=\"m-32 0 440.7 255.7L-32 511z\"/><path fill=\"#fff\" d=\"M161.8 325.5 114.3 290l-47.2 35.8 17.6-58.1-47.2-36 58.3-.4 18.1-58 18.5 57.8 58.3.1-46.9 36.3z\"/></g></svg>";

@@ -6,10 +6,19 @@
  * The drawing `flag("IN", { shape: "4:3" })` uses, made for that shape by hand rather than cut from the flag. The /manifest entry's `framings` say how each frame was chosen.
  *
  * @example
- * ```ts
+ * ```ts no-run
  * import square from "@johnmorrisdotca/hata/flags/in.4x3";
  *
- * element.innerHTML = square;
+ * const host=document.createElement("div");
+ * host.innerHTML = square;
+ * console.log(host.querySelector("svg")?.getAttribute("viewBox"));
+ * ```
+ 
+ *
+ * @example
+ * ```ts
+ * import { svg } from "@johnmorrisdotca/hata/flags/in.4x3";
+ * console.log(svg.startsWith("<svg"),svg.length);
  * ```
  */
 const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 640 480\"><path fill=\"#f93\" d=\"M0 0h640v160H0z\"/><path fill=\"#fff\" d=\"M0 160h640v160H0z\"/><path fill=\"#128807\" d=\"M0 320h640v160H0z\"/><g transform=\"matrix(3.2 0 0 3.2 320 240)\"><circle r=\"20\" fill=\"#008\"/><circle r=\"17.5\" fill=\"#fff\"/><circle r=\"3.5\" fill=\"#008\"/><g id=\"hata-in-4x3-d\"><g id=\"hata-in-4x3-c\"><g id=\"hata-in-4x3-b\"><g id=\"hata-in-4x3-a\" fill=\"#008\"><circle r=\".9\" transform=\"rotate(7.5 -8.8 133.5)\"/><path d=\"M0 17.5.6 7 0 2l-.6 5z\"/></g><use width=\"100%\" height=\"100%\" href=\"#hata-in-4x3-a\" transform=\"rotate(15)\"/></g><use width=\"100%\" height=\"100%\" href=\"#hata-in-4x3-b\" transform=\"rotate(30)\"/></g><use width=\"100%\" height=\"100%\" href=\"#hata-in-4x3-c\" transform=\"rotate(60)\"/></g><use width=\"100%\" height=\"100%\" href=\"#hata-in-4x3-d\" transform=\"rotate(120)\"/><use width=\"100%\" height=\"100%\" href=\"#hata-in-4x3-d\" transform=\"rotate(-120)\"/></g></svg>";

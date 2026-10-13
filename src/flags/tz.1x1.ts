@@ -6,10 +6,19 @@
  * The drawing `flag("TZ", { shape: "1:1" })` uses (and the round frame, in a circle), made for that shape by hand rather than cut from the flag. The /manifest entry's `framings` say how each frame was chosen.
  *
  * @example
- * ```ts
+ * ```ts no-run
  * import square from "@johnmorrisdotca/hata/flags/tz.1x1";
  *
- * element.innerHTML = square;
+ * const host=document.createElement("div");
+ * host.innerHTML = square;
+ * console.log(host.querySelector("svg")?.getAttribute("viewBox"));
+ * ```
+ 
+ *
+ * @example
+ * ```ts
+ * import { svg } from "@johnmorrisdotca/hata/flags/tz.1x1";
+ * console.log(svg.startsWith("<svg"),svg.length);
  * ```
  */
 const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 512 512\"><defs><clipPath id=\"hata-tz-1x1-a\"><path d=\"M103 0h496v496H103z\"/></clipPath></defs><g clip-path=\"url(#hata-tz-1x1-a)\" transform=\"translate(-106.2)scale(1.0321)\"><g fill-rule=\"evenodd\"><path fill=\"#09f\" d=\"M0 0h744v496H0z\"/><path fill=\"#090\" d=\"M0 0h744L0 496z\"/><path fill=\"#000001\" d=\"M0 496h165l579-393V0H579L0 393z\"/><path fill=\"#ff0\" d=\"M0 378 567 0h56L0 415zm121 118L744 81v37L177 496z\"/></g></g></svg>";

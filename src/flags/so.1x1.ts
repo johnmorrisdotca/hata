@@ -6,10 +6,19 @@
  * The drawing `flag("SO", { shape: "1:1" })` uses (and the round frame, in a circle), made for that shape by hand rather than cut from the flag. The /manifest entry's `framings` say how each frame was chosen.
  *
  * @example
- * ```ts
+ * ```ts no-run
  * import square from "@johnmorrisdotca/hata/flags/so.1x1";
  *
- * element.innerHTML = square;
+ * const host=document.createElement("div");
+ * host.innerHTML = square;
+ * console.log(host.querySelector("svg")?.getAttribute("viewBox"));
+ * ```
+ 
+ *
+ * @example
+ * ```ts
+ * import { svg } from "@johnmorrisdotca/hata/flags/so.1x1";
+ * console.log(svg.startsWith("<svg"),svg.length);
  * ```
  */
 const svg: string = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 512 512\"><defs><clipPath id=\"hata-so-1x1-a\"><path d=\"M177 0h709v709H177z\"/></clipPath></defs><g fill-rule=\"evenodd\" clip-path=\"url(#hata-so-1x1-a)\" transform=\"translate(-128)scale(.72249)\"><path fill=\"#40a6ff\" d=\"M0 0h1063v709H0z\"/><path fill=\"#fff\" d=\"m643 528-114-74-114 74 42-121-113-75 140-1 44-121 44 121h141l-113 75z\"/></g></svg>";

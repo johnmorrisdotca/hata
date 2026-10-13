@@ -7,10 +7,19 @@
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
  * @example
- * ```ts
+ * ```ts no-run
  * import flag from "@johnmorrisdotca/hata/flags/jp-29";
  *
- * element.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * const host=document.createElement("div");
+ * host.innerHTML = flag; // or toDataUri(flag) from "@johnmorrisdotca/hata" for an <img src>
+ * console.log(host.querySelector("svg")?.getAttribute("viewBox"));
+ * ```
+ 
+ *
+ * @example
+ * ```ts
+ * import { svg } from "@johnmorrisdotca/hata/flags/jp-29";
+ * console.log(svg.startsWith("<svg"),svg.length);
  * ```
  */
 const svg: string = "<svg data-hata=\"jp-29\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1200 800\"><desc>Flag of Nara Prefecture</desc><path fill=\"#fff\" d=\"M0 0h1200v800H0z\"/><circle cx=\"570\" cy=\"400\" r=\"220\" fill=\"#5b1c1f\"/><circle cx=\"430\" cy=\"400\" r=\"76\" fill=\"#fff\"/><path stroke=\"#5b1c1f\" stroke-width=\"80\" d=\"M430 400h420\"/><path stroke=\"#fff\" stroke-width=\"10\" d=\"M340 400h25\"/></svg>";
