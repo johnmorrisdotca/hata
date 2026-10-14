@@ -118,3 +118,5 @@ select.fam-field { appearance: none; -webkit-appearance: none; padding-right: 32
 .variants .fam-seg { flex-wrap: wrap; }
 .variant-why { margin: 8px 0 0; font-size: .85rem; }
 .variant-why b[data-status="de-facto"], .variant-why b[data-status="historical"], .variant-why b[data-status="local"] { font-weight: 600; font-style: italic; }
+
+header nav a[data-say="pageDocs"] { inline-size: 8rem; justify-content: center; flex: none; }

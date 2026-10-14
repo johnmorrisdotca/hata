@@ -22,6 +22,10 @@ const pictures = (page) =>
 
 await takePictures({
   shots: [
+    { subject: "frames", views: ["desk"], url: "/?lang=en&help=off&set=jp", ready: READY, target: "#frames",
+      async prepare(page) { await page.locator('[data-testid="tile-JP-13"]').click(); await page.locator('#frames img[data-shape="round"]').first().waitFor(); await pictures(page); } },
+    { subject: "provenance", views: ["desk"], url: "/?lang=en&help=off&set=jp", ready: READY, target: "#facts",
+      async prepare(page) { await page.locator('[data-testid="tile-JP-13"]').click(); await page.locator('#frames img[data-shape="round"]').first().waitFor(); await pictures(page); } },
     // The gallery from the top of the page: the header, the tabs, the filters and the first rows of flags. On a
     // phone, in Japanese.
     {

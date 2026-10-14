@@ -1,0 +1,3654 @@
+{
+  "job": "Country and region flags as SVG",
+  "pitch": {
+    "en": "Load a native country or region flag, choose supported framing and keep each drawing’s source, author and licence.",
+    "ja": "国や地域の旗を読み込み、対応する表示の形を選び、絵ごとの資料・作者・ライセンスを保てます。"
+  },
+  "name": {
+    "en": "Hata (旗) is Japanese for a flag.",
+    "ja": "「旗（はた）」は、旗を表す日本語です。"
+  },
+  "icon": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%232f5d4a'/%3E%3Cpath d='M28 84V16' stroke='%23f3efe4' stroke-width='6' stroke-linecap='round'/%3E%3Cpath d='M31 20h44l-9 14 9 14H31z' fill='%23f3efe4'/%3E%3Ccircle cx='50' cy='34' r='6' fill='%23b5452c'/%3E%3C/svg%3E",
+  "entries": {
+    ".": {
+      "en": "Codes, URLs and SVG helpers",
+      "ja": "コード・URL・SVGの道具"
+    },
+    "./load": {
+      "en": "On-demand flag loading",
+      "ja": "必要なときの旗の読み込み"
+    },
+    "./manifest": {
+      "en": "Flag source and framing metadata",
+      "ja": "旗の資料と表示の情報"
+    },
+    "./names": {
+      "en": "Country and region names",
+      "ja": "国と地域の名前"
+    },
+    "./element": {
+      "en": "Native flag element",
+      "ja": "標準の旗の要素"
+    },
+    "./element/define": {
+      "en": "Register flag elements",
+      "ja": "旗の要素を登録する"
+    },
+    "./flags/ad.1x1": {
+      "en": "AD.1X1 flag SVG",
+      "ja": "AD.1X1の旗のSVG"
+    },
+    "./flags/ad.4x3": {
+      "en": "AD.4X3 flag SVG",
+      "ja": "AD.4X3の旗のSVG"
+    },
+    "./flags/ad": {
+      "en": "AD flag SVG",
+      "ja": "ADの旗のSVG"
+    },
+    "./flags/ae.1x1": {
+      "en": "AE.1X1 flag SVG",
+      "ja": "AE.1X1の旗のSVG"
+    },
+    "./flags/ae.4x3": {
+      "en": "AE.4X3 flag SVG",
+      "ja": "AE.4X3の旗のSVG"
+    },
+    "./flags/ae": {
+      "en": "AE flag SVG",
+      "ja": "AEの旗のSVG"
+    },
+    "./flags/af--de-facto": {
+      "en": "AF--DE-FACTO flag SVG",
+      "ja": "AF--DE-FACTOの旗のSVG"
+    },
+    "./flags/af.1x1": {
+      "en": "AF.1X1 flag SVG",
+      "ja": "AF.1X1の旗のSVG"
+    },
+    "./flags/af.4x3": {
+      "en": "AF.4X3 flag SVG",
+      "ja": "AF.4X3の旗のSVG"
+    },
+    "./flags/af": {
+      "en": "AF flag SVG",
+      "ja": "AFの旗のSVG"
+    },
+    "./flags/ag.1x1": {
+      "en": "AG.1X1 flag SVG",
+      "ja": "AG.1X1の旗のSVG"
+    },
+    "./flags/ag.4x3": {
+      "en": "AG.4X3 flag SVG",
+      "ja": "AG.4X3の旗のSVG"
+    },
+    "./flags/ag": {
+      "en": "AG flag SVG",
+      "ja": "AGの旗のSVG"
+    },
+    "./flags/ai.1x1": {
+      "en": "AI.1X1 flag SVG",
+      "ja": "AI.1X1の旗のSVG"
+    },
+    "./flags/ai.4x3": {
+      "en": "AI.4X3 flag SVG",
+      "ja": "AI.4X3の旗のSVG"
+    },
+    "./flags/ai": {
+      "en": "AI flag SVG",
+      "ja": "AIの旗のSVG"
+    },
+    "./flags/al.1x1": {
+      "en": "AL.1X1 flag SVG",
+      "ja": "AL.1X1の旗のSVG"
+    },
+    "./flags/al.4x3": {
+      "en": "AL.4X3 flag SVG",
+      "ja": "AL.4X3の旗のSVG"
+    },
+    "./flags/al": {
+      "en": "AL flag SVG",
+      "ja": "ALの旗のSVG"
+    },
+    "./flags/am.1x1": {
+      "en": "AM.1X1 flag SVG",
+      "ja": "AM.1X1の旗のSVG"
+    },
+    "./flags/am.4x3": {
+      "en": "AM.4X3 flag SVG",
+      "ja": "AM.4X3の旗のSVG"
+    },
+    "./flags/am": {
+      "en": "AM flag SVG",
+      "ja": "AMの旗のSVG"
+    },
+    "./flags/ao.1x1": {
+      "en": "AO.1X1 flag SVG",
+      "ja": "AO.1X1の旗のSVG"
+    },
+    "./flags/ao.4x3": {
+      "en": "AO.4X3 flag SVG",
+      "ja": "AO.4X3の旗のSVG"
+    },
+    "./flags/ao": {
+      "en": "AO flag SVG",
+      "ja": "AOの旗のSVG"
+    },
+    "./flags/ar.1x1": {
+      "en": "AR.1X1 flag SVG",
+      "ja": "AR.1X1の旗のSVG"
+    },
+    "./flags/ar.4x3": {
+      "en": "AR.4X3 flag SVG",
+      "ja": "AR.4X3の旗のSVG"
+    },
+    "./flags/ar": {
+      "en": "AR flag SVG",
+      "ja": "ARの旗のSVG"
+    },
+    "./flags/as.1x1": {
+      "en": "AS.1X1 flag SVG",
+      "ja": "AS.1X1の旗のSVG"
+    },
+    "./flags/as.4x3": {
+      "en": "AS.4X3 flag SVG",
+      "ja": "AS.4X3の旗のSVG"
+    },
+    "./flags/as": {
+      "en": "AS flag SVG",
+      "ja": "ASの旗のSVG"
+    },
+    "./flags/at-1": {
+      "en": "AT-1 flag SVG",
+      "ja": "AT-1の旗のSVG"
+    },
+    "./flags/at-2": {
+      "en": "AT-2 flag SVG",
+      "ja": "AT-2の旗のSVG"
+    },
+    "./flags/at-3": {
+      "en": "AT-3 flag SVG",
+      "ja": "AT-3の旗のSVG"
+    },
+    "./flags/at-4": {
+      "en": "AT-4 flag SVG",
+      "ja": "AT-4の旗のSVG"
+    },
+    "./flags/at-5": {
+      "en": "AT-5 flag SVG",
+      "ja": "AT-5の旗のSVG"
+    },
+    "./flags/at-6": {
+      "en": "AT-6 flag SVG",
+      "ja": "AT-6の旗のSVG"
+    },
+    "./flags/at-7": {
+      "en": "AT-7 flag SVG",
+      "ja": "AT-7の旗のSVG"
+    },
+    "./flags/at-8": {
+      "en": "AT-8 flag SVG",
+      "ja": "AT-8の旗のSVG"
+    },
+    "./flags/at-9": {
+      "en": "AT-9 flag SVG",
+      "ja": "AT-9の旗のSVG"
+    },
+    "./flags/at.1x1": {
+      "en": "AT.1X1 flag SVG",
+      "ja": "AT.1X1の旗のSVG"
+    },
+    "./flags/at.4x3": {
+      "en": "AT.4X3 flag SVG",
+      "ja": "AT.4X3の旗のSVG"
+    },
+    "./flags/at": {
+      "en": "AT flag SVG",
+      "ja": "ATの旗のSVG"
+    },
+    "./flags/au-act": {
+      "en": "AU-ACT flag SVG",
+      "ja": "AU-ACTの旗のSVG"
+    },
+    "./flags/au-nsw": {
+      "en": "AU-NSW flag SVG",
+      "ja": "AU-NSWの旗のSVG"
+    },
+    "./flags/au-nt": {
+      "en": "AU-NT flag SVG",
+      "ja": "AU-NTの旗のSVG"
+    },
+    "./flags/au-qld": {
+      "en": "AU-QLD flag SVG",
+      "ja": "AU-QLDの旗のSVG"
+    },
+    "./flags/au-sa": {
+      "en": "AU-SA flag SVG",
+      "ja": "AU-SAの旗のSVG"
+    },
+    "./flags/au-tas": {
+      "en": "AU-TAS flag SVG",
+      "ja": "AU-TASの旗のSVG"
+    },
+    "./flags/au-vic": {
+      "en": "AU-VIC flag SVG",
+      "ja": "AU-VICの旗のSVG"
+    },
+    "./flags/au-wa": {
+      "en": "AU-WA flag SVG",
+      "ja": "AU-WAの旗のSVG"
+    },
+    "./flags/au.1x1": {
+      "en": "AU.1X1 flag SVG",
+      "ja": "AU.1X1の旗のSVG"
+    },
+    "./flags/au.4x3": {
+      "en": "AU.4X3 flag SVG",
+      "ja": "AU.4X3の旗のSVG"
+    },
+    "./flags/au": {
+      "en": "AU flag SVG",
+      "ja": "AUの旗のSVG"
+    },
+    "./flags/aw.1x1": {
+      "en": "AW.1X1 flag SVG",
+      "ja": "AW.1X1の旗のSVG"
+    },
+    "./flags/aw.4x3": {
+      "en": "AW.4X3 flag SVG",
+      "ja": "AW.4X3の旗のSVG"
+    },
+    "./flags/aw": {
+      "en": "AW flag SVG",
+      "ja": "AWの旗のSVG"
+    },
+    "./flags/ax.1x1": {
+      "en": "AX.1X1 flag SVG",
+      "ja": "AX.1X1の旗のSVG"
+    },
+    "./flags/ax.4x3": {
+      "en": "AX.4X3 flag SVG",
+      "ja": "AX.4X3の旗のSVG"
+    },
+    "./flags/ax": {
+      "en": "AX flag SVG",
+      "ja": "AXの旗のSVG"
+    },
+    "./flags/az.1x1": {
+      "en": "AZ.1X1 flag SVG",
+      "ja": "AZ.1X1の旗のSVG"
+    },
+    "./flags/az.4x3": {
+      "en": "AZ.4X3 flag SVG",
+      "ja": "AZ.4X3の旗のSVG"
+    },
+    "./flags/az": {
+      "en": "AZ flag SVG",
+      "ja": "AZの旗のSVG"
+    },
+    "./flags/ba.1x1": {
+      "en": "BA.1X1 flag SVG",
+      "ja": "BA.1X1の旗のSVG"
+    },
+    "./flags/ba.4x3": {
+      "en": "BA.4X3 flag SVG",
+      "ja": "BA.4X3の旗のSVG"
+    },
+    "./flags/ba": {
+      "en": "BA flag SVG",
+      "ja": "BAの旗のSVG"
+    },
+    "./flags/bb.1x1": {
+      "en": "BB.1X1 flag SVG",
+      "ja": "BB.1X1の旗のSVG"
+    },
+    "./flags/bb.4x3": {
+      "en": "BB.4X3 flag SVG",
+      "ja": "BB.4X3の旗のSVG"
+    },
+    "./flags/bb": {
+      "en": "BB flag SVG",
+      "ja": "BBの旗のSVG"
+    },
+    "./flags/bd.1x1": {
+      "en": "BD.1X1 flag SVG",
+      "ja": "BD.1X1の旗のSVG"
+    },
+    "./flags/bd.4x3": {
+      "en": "BD.4X3 flag SVG",
+      "ja": "BD.4X3の旗のSVG"
+    },
+    "./flags/bd": {
+      "en": "BD flag SVG",
+      "ja": "BDの旗のSVG"
+    },
+    "./flags/be.1x1": {
+      "en": "BE.1X1 flag SVG",
+      "ja": "BE.1X1の旗のSVG"
+    },
+    "./flags/be.4x3": {
+      "en": "BE.4X3 flag SVG",
+      "ja": "BE.4X3の旗のSVG"
+    },
+    "./flags/be": {
+      "en": "BE flag SVG",
+      "ja": "BEの旗のSVG"
+    },
+    "./flags/bf.1x1": {
+      "en": "BF.1X1 flag SVG",
+      "ja": "BF.1X1の旗のSVG"
+    },
+    "./flags/bf.4x3": {
+      "en": "BF.4X3 flag SVG",
+      "ja": "BF.4X3の旗のSVG"
+    },
+    "./flags/bf": {
+      "en": "BF flag SVG",
+      "ja": "BFの旗のSVG"
+    },
+    "./flags/bg.1x1": {
+      "en": "BG.1X1 flag SVG",
+      "ja": "BG.1X1の旗のSVG"
+    },
+    "./flags/bg.4x3": {
+      "en": "BG.4X3 flag SVG",
+      "ja": "BG.4X3の旗のSVG"
+    },
+    "./flags/bg": {
+      "en": "BG flag SVG",
+      "ja": "BGの旗のSVG"
+    },
+    "./flags/bh.1x1": {
+      "en": "BH.1X1 flag SVG",
+      "ja": "BH.1X1の旗のSVG"
+    },
+    "./flags/bh.4x3": {
+      "en": "BH.4X3 flag SVG",
+      "ja": "BH.4X3の旗のSVG"
+    },
+    "./flags/bh": {
+      "en": "BH flag SVG",
+      "ja": "BHの旗のSVG"
+    },
+    "./flags/bi.4x3": {
+      "en": "BI.4X3 flag SVG",
+      "ja": "BI.4X3の旗のSVG"
+    },
+    "./flags/bi": {
+      "en": "BI flag SVG",
+      "ja": "BIの旗のSVG"
+    },
+    "./flags/bj.1x1": {
+      "en": "BJ.1X1 flag SVG",
+      "ja": "BJ.1X1の旗のSVG"
+    },
+    "./flags/bj.4x3": {
+      "en": "BJ.4X3 flag SVG",
+      "ja": "BJ.4X3の旗のSVG"
+    },
+    "./flags/bj": {
+      "en": "BJ flag SVG",
+      "ja": "BJの旗のSVG"
+    },
+    "./flags/bl--local": {
+      "en": "BL--LOCAL flag SVG",
+      "ja": "BL--LOCALの旗のSVG"
+    },
+    "./flags/bl": {
+      "en": "BL flag SVG",
+      "ja": "BLの旗のSVG"
+    },
+    "./flags/bm.1x1": {
+      "en": "BM.1X1 flag SVG",
+      "ja": "BM.1X1の旗のSVG"
+    },
+    "./flags/bm.4x3": {
+      "en": "BM.4X3 flag SVG",
+      "ja": "BM.4X3の旗のSVG"
+    },
+    "./flags/bm": {
+      "en": "BM flag SVG",
+      "ja": "BMの旗のSVG"
+    },
+    "./flags/bn.1x1": {
+      "en": "BN.1X1 flag SVG",
+      "ja": "BN.1X1の旗のSVG"
+    },
+    "./flags/bn.4x3": {
+      "en": "BN.4X3 flag SVG",
+      "ja": "BN.4X3の旗のSVG"
+    },
+    "./flags/bn": {
+      "en": "BN flag SVG",
+      "ja": "BNの旗のSVG"
+    },
+    "./flags/bo.1x1": {
+      "en": "BO.1X1 flag SVG",
+      "ja": "BO.1X1の旗のSVG"
+    },
+    "./flags/bo.4x3": {
+      "en": "BO.4X3 flag SVG",
+      "ja": "BO.4X3の旗のSVG"
+    },
+    "./flags/bo": {
+      "en": "BO flag SVG",
+      "ja": "BOの旗のSVG"
+    },
+    "./flags/br-ac": {
+      "en": "BR-AC flag SVG",
+      "ja": "BR-ACの旗のSVG"
+    },
+    "./flags/br-al": {
+      "en": "BR-AL flag SVG",
+      "ja": "BR-ALの旗のSVG"
+    },
+    "./flags/br-am": {
+      "en": "BR-AM flag SVG",
+      "ja": "BR-AMの旗のSVG"
+    },
+    "./flags/br-ap": {
+      "en": "BR-AP flag SVG",
+      "ja": "BR-APの旗のSVG"
+    },
+    "./flags/br-ba": {
+      "en": "BR-BA flag SVG",
+      "ja": "BR-BAの旗のSVG"
+    },
+    "./flags/br-ce": {
+      "en": "BR-CE flag SVG",
+      "ja": "BR-CEの旗のSVG"
+    },
+    "./flags/br-df": {
+      "en": "BR-DF flag SVG",
+      "ja": "BR-DFの旗のSVG"
+    },
+    "./flags/br-es": {
+      "en": "BR-ES flag SVG",
+      "ja": "BR-ESの旗のSVG"
+    },
+    "./flags/br-go": {
+      "en": "BR-GO flag SVG",
+      "ja": "BR-GOの旗のSVG"
+    },
+    "./flags/br-ma": {
+      "en": "BR-MA flag SVG",
+      "ja": "BR-MAの旗のSVG"
+    },
+    "./flags/br-mg": {
+      "en": "BR-MG flag SVG",
+      "ja": "BR-MGの旗のSVG"
+    },
+    "./flags/br-ms": {
+      "en": "BR-MS flag SVG",
+      "ja": "BR-MSの旗のSVG"
+    },
+    "./flags/br-mt": {
+      "en": "BR-MT flag SVG",
+      "ja": "BR-MTの旗のSVG"
+    },
+    "./flags/br-pa": {
+      "en": "BR-PA flag SVG",
+      "ja": "BR-PAの旗のSVG"
+    },
+    "./flags/br-pb": {
+      "en": "BR-PB flag SVG",
+      "ja": "BR-PBの旗のSVG"
+    },
+    "./flags/br-pe": {
+      "en": "BR-PE flag SVG",
+      "ja": "BR-PEの旗のSVG"
+    },
+    "./flags/br-pi": {
+      "en": "BR-PI flag SVG",
+      "ja": "BR-PIの旗のSVG"
+    },
+    "./flags/br-pr": {
+      "en": "BR-PR flag SVG",
+      "ja": "BR-PRの旗のSVG"
+    },
+    "./flags/br-rj": {
+      "en": "BR-RJ flag SVG",
+      "ja": "BR-RJの旗のSVG"
+    },
+    "./flags/br-rn": {
+      "en": "BR-RN flag SVG",
+      "ja": "BR-RNの旗のSVG"
+    },
+    "./flags/br-ro": {
+      "en": "BR-RO flag SVG",
+      "ja": "BR-ROの旗のSVG"
+    },
+    "./flags/br-rr": {
+      "en": "BR-RR flag SVG",
+      "ja": "BR-RRの旗のSVG"
+    },
+    "./flags/br-rs": {
+      "en": "BR-RS flag SVG",
+      "ja": "BR-RSの旗のSVG"
+    },
+    "./flags/br-sc": {
+      "en": "BR-SC flag SVG",
+      "ja": "BR-SCの旗のSVG"
+    },
+    "./flags/br-se": {
+      "en": "BR-SE flag SVG",
+      "ja": "BR-SEの旗のSVG"
+    },
+    "./flags/br-sp": {
+      "en": "BR-SP flag SVG",
+      "ja": "BR-SPの旗のSVG"
+    },
+    "./flags/br-to": {
+      "en": "BR-TO flag SVG",
+      "ja": "BR-TOの旗のSVG"
+    },
+    "./flags/br.1x1": {
+      "en": "BR.1X1 flag SVG",
+      "ja": "BR.1X1の旗のSVG"
+    },
+    "./flags/br.4x3": {
+      "en": "BR.4X3 flag SVG",
+      "ja": "BR.4X3の旗のSVG"
+    },
+    "./flags/br": {
+      "en": "BR flag SVG",
+      "ja": "BRの旗のSVG"
+    },
+    "./flags/bs": {
+      "en": "BS flag SVG",
+      "ja": "BSの旗のSVG"
+    },
+    "./flags/bt.1x1": {
+      "en": "BT.1X1 flag SVG",
+      "ja": "BT.1X1の旗のSVG"
+    },
+    "./flags/bt.4x3": {
+      "en": "BT.4X3 flag SVG",
+      "ja": "BT.4X3の旗のSVG"
+    },
+    "./flags/bt": {
+      "en": "BT flag SVG",
+      "ja": "BTの旗のSVG"
+    },
+    "./flags/bv": {
+      "en": "BV flag SVG",
+      "ja": "BVの旗のSVG"
+    },
+    "./flags/bw.1x1": {
+      "en": "BW.1X1 flag SVG",
+      "ja": "BW.1X1の旗のSVG"
+    },
+    "./flags/bw.4x3": {
+      "en": "BW.4X3 flag SVG",
+      "ja": "BW.4X3の旗のSVG"
+    },
+    "./flags/bw": {
+      "en": "BW flag SVG",
+      "ja": "BWの旗のSVG"
+    },
+    "./flags/by.1x1": {
+      "en": "BY.1X1 flag SVG",
+      "ja": "BY.1X1の旗のSVG"
+    },
+    "./flags/by.4x3": {
+      "en": "BY.4X3 flag SVG",
+      "ja": "BY.4X3の旗のSVG"
+    },
+    "./flags/by": {
+      "en": "BY flag SVG",
+      "ja": "BYの旗のSVG"
+    },
+    "./flags/bz": {
+      "en": "BZ flag SVG",
+      "ja": "BZの旗のSVG"
+    },
+    "./flags/ca-ab": {
+      "en": "CA-AB flag SVG",
+      "ja": "CA-ABの旗のSVG"
+    },
+    "./flags/ca-bc": {
+      "en": "CA-BC flag SVG",
+      "ja": "CA-BCの旗のSVG"
+    },
+    "./flags/ca-nb": {
+      "en": "CA-NB flag SVG",
+      "ja": "CA-NBの旗のSVG"
+    },
+    "./flags/ca-nl": {
+      "en": "CA-NL flag SVG",
+      "ja": "CA-NLの旗のSVG"
+    },
+    "./flags/ca-ns": {
+      "en": "CA-NS flag SVG",
+      "ja": "CA-NSの旗のSVG"
+    },
+    "./flags/ca-nt": {
+      "en": "CA-NT flag SVG",
+      "ja": "CA-NTの旗のSVG"
+    },
+    "./flags/ca-nu": {
+      "en": "CA-NU flag SVG",
+      "ja": "CA-NUの旗のSVG"
+    },
+    "./flags/ca-on": {
+      "en": "CA-ON flag SVG",
+      "ja": "CA-ONの旗のSVG"
+    },
+    "./flags/ca-pe": {
+      "en": "CA-PE flag SVG",
+      "ja": "CA-PEの旗のSVG"
+    },
+    "./flags/ca-qc": {
+      "en": "CA-QC flag SVG",
+      "ja": "CA-QCの旗のSVG"
+    },
+    "./flags/ca-sk": {
+      "en": "CA-SK flag SVG",
+      "ja": "CA-SKの旗のSVG"
+    },
+    "./flags/ca-yt": {
+      "en": "CA-YT flag SVG",
+      "ja": "CA-YTの旗のSVG"
+    },
+    "./flags/ca.1x1": {
+      "en": "CA.1X1 flag SVG",
+      "ja": "CA.1X1の旗のSVG"
+    },
+    "./flags/ca.4x3": {
+      "en": "CA.4X3 flag SVG",
+      "ja": "CA.4X3の旗のSVG"
+    },
+    "./flags/ca": {
+      "en": "CA flag SVG",
+      "ja": "CAの旗のSVG"
+    },
+    "./flags/cd.1x1": {
+      "en": "CD.1X1 flag SVG",
+      "ja": "CD.1X1の旗のSVG"
+    },
+    "./flags/cd": {
+      "en": "CD flag SVG",
+      "ja": "CDの旗のSVG"
+    },
+    "./flags/cf.1x1": {
+      "en": "CF.1X1 flag SVG",
+      "ja": "CF.1X1の旗のSVG"
+    },
+    "./flags/cf.4x3": {
+      "en": "CF.4X3 flag SVG",
+      "ja": "CF.4X3の旗のSVG"
+    },
+    "./flags/cf": {
+      "en": "CF flag SVG",
+      "ja": "CFの旗のSVG"
+    },
+    "./flags/cg.1x1": {
+      "en": "CG.1X1 flag SVG",
+      "ja": "CG.1X1の旗のSVG"
+    },
+    "./flags/cg.4x3": {
+      "en": "CG.4X3 flag SVG",
+      "ja": "CG.4X3の旗のSVG"
+    },
+    "./flags/cg": {
+      "en": "CG flag SVG",
+      "ja": "CGの旗のSVG"
+    },
+    "./flags/ch-ag": {
+      "en": "CH-AG flag SVG",
+      "ja": "CH-AGの旗のSVG"
+    },
+    "./flags/ch-ai": {
+      "en": "CH-AI flag SVG",
+      "ja": "CH-AIの旗のSVG"
+    },
+    "./flags/ch-ar": {
+      "en": "CH-AR flag SVG",
+      "ja": "CH-ARの旗のSVG"
+    },
+    "./flags/ch-be": {
+      "en": "CH-BE flag SVG",
+      "ja": "CH-BEの旗のSVG"
+    },
+    "./flags/ch-bl": {
+      "en": "CH-BL flag SVG",
+      "ja": "CH-BLの旗のSVG"
+    },
+    "./flags/ch-bs": {
+      "en": "CH-BS flag SVG",
+      "ja": "CH-BSの旗のSVG"
+    },
+    "./flags/ch-fr": {
+      "en": "CH-FR flag SVG",
+      "ja": "CH-FRの旗のSVG"
+    },
+    "./flags/ch-ge": {
+      "en": "CH-GE flag SVG",
+      "ja": "CH-GEの旗のSVG"
+    },
+    "./flags/ch-gl": {
+      "en": "CH-GL flag SVG",
+      "ja": "CH-GLの旗のSVG"
+    },
+    "./flags/ch-gr": {
+      "en": "CH-GR flag SVG",
+      "ja": "CH-GRの旗のSVG"
+    },
+    "./flags/ch-ju": {
+      "en": "CH-JU flag SVG",
+      "ja": "CH-JUの旗のSVG"
+    },
+    "./flags/ch-lu": {
+      "en": "CH-LU flag SVG",
+      "ja": "CH-LUの旗のSVG"
+    },
+    "./flags/ch-ne": {
+      "en": "CH-NE flag SVG",
+      "ja": "CH-NEの旗のSVG"
+    },
+    "./flags/ch-nw": {
+      "en": "CH-NW flag SVG",
+      "ja": "CH-NWの旗のSVG"
+    },
+    "./flags/ch-ow": {
+      "en": "CH-OW flag SVG",
+      "ja": "CH-OWの旗のSVG"
+    },
+    "./flags/ch-sg": {
+      "en": "CH-SG flag SVG",
+      "ja": "CH-SGの旗のSVG"
+    },
+    "./flags/ch-sh": {
+      "en": "CH-SH flag SVG",
+      "ja": "CH-SHの旗のSVG"
+    },
+    "./flags/ch-so": {
+      "en": "CH-SO flag SVG",
+      "ja": "CH-SOの旗のSVG"
+    },
+    "./flags/ch-sz": {
+      "en": "CH-SZ flag SVG",
+      "ja": "CH-SZの旗のSVG"
+    },
+    "./flags/ch-tg": {
+      "en": "CH-TG flag SVG",
+      "ja": "CH-TGの旗のSVG"
+    },
+    "./flags/ch-ti": {
+      "en": "CH-TI flag SVG",
+      "ja": "CH-TIの旗のSVG"
+    },
+    "./flags/ch-ur": {
+      "en": "CH-UR flag SVG",
+      "ja": "CH-URの旗のSVG"
+    },
+    "./flags/ch-vd": {
+      "en": "CH-VD flag SVG",
+      "ja": "CH-VDの旗のSVG"
+    },
+    "./flags/ch-vs": {
+      "en": "CH-VS flag SVG",
+      "ja": "CH-VSの旗のSVG"
+    },
+    "./flags/ch-zg": {
+      "en": "CH-ZG flag SVG",
+      "ja": "CH-ZGの旗のSVG"
+    },
+    "./flags/ch-zh": {
+      "en": "CH-ZH flag SVG",
+      "ja": "CH-ZHの旗のSVG"
+    },
+    "./flags/ch.4x3": {
+      "en": "CH.4X3 flag SVG",
+      "ja": "CH.4X3の旗のSVG"
+    },
+    "./flags/ch": {
+      "en": "CH flag SVG",
+      "ja": "CHの旗のSVG"
+    },
+    "./flags/ci.1x1": {
+      "en": "CI.1X1 flag SVG",
+      "ja": "CI.1X1の旗のSVG"
+    },
+    "./flags/ci.4x3": {
+      "en": "CI.4X3 flag SVG",
+      "ja": "CI.4X3の旗のSVG"
+    },
+    "./flags/ci": {
+      "en": "CI flag SVG",
+      "ja": "CIの旗のSVG"
+    },
+    "./flags/ck.1x1": {
+      "en": "CK.1X1 flag SVG",
+      "ja": "CK.1X1の旗のSVG"
+    },
+    "./flags/ck.4x3": {
+      "en": "CK.4X3 flag SVG",
+      "ja": "CK.4X3の旗のSVG"
+    },
+    "./flags/ck": {
+      "en": "CK flag SVG",
+      "ja": "CKの旗のSVG"
+    },
+    "./flags/cl.1x1": {
+      "en": "CL.1X1 flag SVG",
+      "ja": "CL.1X1の旗のSVG"
+    },
+    "./flags/cl.4x3": {
+      "en": "CL.4X3 flag SVG",
+      "ja": "CL.4X3の旗のSVG"
+    },
+    "./flags/cl": {
+      "en": "CL flag SVG",
+      "ja": "CLの旗のSVG"
+    },
+    "./flags/cm.1x1": {
+      "en": "CM.1X1 flag SVG",
+      "ja": "CM.1X1の旗のSVG"
+    },
+    "./flags/cm.4x3": {
+      "en": "CM.4X3 flag SVG",
+      "ja": "CM.4X3の旗のSVG"
+    },
+    "./flags/cm": {
+      "en": "CM flag SVG",
+      "ja": "CMの旗のSVG"
+    },
+    "./flags/cn.1x1": {
+      "en": "CN.1X1 flag SVG",
+      "ja": "CN.1X1の旗のSVG"
+    },
+    "./flags/cn.4x3": {
+      "en": "CN.4X3 flag SVG",
+      "ja": "CN.4X3の旗のSVG"
+    },
+    "./flags/cn": {
+      "en": "CN flag SVG",
+      "ja": "CNの旗のSVG"
+    },
+    "./flags/co.1x1": {
+      "en": "CO.1X1 flag SVG",
+      "ja": "CO.1X1の旗のSVG"
+    },
+    "./flags/co.4x3": {
+      "en": "CO.4X3 flag SVG",
+      "ja": "CO.4X3の旗のSVG"
+    },
+    "./flags/co": {
+      "en": "CO flag SVG",
+      "ja": "COの旗のSVG"
+    },
+    "./flags/cr.1x1": {
+      "en": "CR.1X1 flag SVG",
+      "ja": "CR.1X1の旗のSVG"
+    },
+    "./flags/cr.4x3": {
+      "en": "CR.4X3 flag SVG",
+      "ja": "CR.4X3の旗のSVG"
+    },
+    "./flags/cr": {
+      "en": "CR flag SVG",
+      "ja": "CRの旗のSVG"
+    },
+    "./flags/cu.1x1": {
+      "en": "CU.1X1 flag SVG",
+      "ja": "CU.1X1の旗のSVG"
+    },
+    "./flags/cu.4x3": {
+      "en": "CU.4X3 flag SVG",
+      "ja": "CU.4X3の旗のSVG"
+    },
+    "./flags/cu": {
+      "en": "CU flag SVG",
+      "ja": "CUの旗のSVG"
+    },
+    "./flags/cv.1x1": {
+      "en": "CV.1X1 flag SVG",
+      "ja": "CV.1X1の旗のSVG"
+    },
+    "./flags/cv.4x3": {
+      "en": "CV.4X3 flag SVG",
+      "ja": "CV.4X3の旗のSVG"
+    },
+    "./flags/cv": {
+      "en": "CV flag SVG",
+      "ja": "CVの旗のSVG"
+    },
+    "./flags/cw.1x1": {
+      "en": "CW.1X1 flag SVG",
+      "ja": "CW.1X1の旗のSVG"
+    },
+    "./flags/cw.4x3": {
+      "en": "CW.4X3 flag SVG",
+      "ja": "CW.4X3の旗のSVG"
+    },
+    "./flags/cw": {
+      "en": "CW flag SVG",
+      "ja": "CWの旗のSVG"
+    },
+    "./flags/cx": {
+      "en": "CX flag SVG",
+      "ja": "CXの旗のSVG"
+    },
+    "./flags/cy.1x1": {
+      "en": "CY.1X1 flag SVG",
+      "ja": "CY.1X1の旗のSVG"
+    },
+    "./flags/cy.4x3": {
+      "en": "CY.4X3 flag SVG",
+      "ja": "CY.4X3の旗のSVG"
+    },
+    "./flags/cy": {
+      "en": "CY flag SVG",
+      "ja": "CYの旗のSVG"
+    },
+    "./flags/cz.1x1": {
+      "en": "CZ.1X1 flag SVG",
+      "ja": "CZ.1X1の旗のSVG"
+    },
+    "./flags/cz.4x3": {
+      "en": "CZ.4X3 flag SVG",
+      "ja": "CZ.4X3の旗のSVG"
+    },
+    "./flags/cz": {
+      "en": "CZ flag SVG",
+      "ja": "CZの旗のSVG"
+    },
+    "./flags/de-bb": {
+      "en": "DE-BB flag SVG",
+      "ja": "DE-BBの旗のSVG"
+    },
+    "./flags/de-be": {
+      "en": "DE-BE flag SVG",
+      "ja": "DE-BEの旗のSVG"
+    },
+    "./flags/de-bw": {
+      "en": "DE-BW flag SVG",
+      "ja": "DE-BWの旗のSVG"
+    },
+    "./flags/de-by--stripes": {
+      "en": "DE-BY--STRIPES flag SVG",
+      "ja": "DE-BY--STRIPESの旗のSVG"
+    },
+    "./flags/de-by": {
+      "en": "DE-BY flag SVG",
+      "ja": "DE-BYの旗のSVG"
+    },
+    "./flags/de-hb": {
+      "en": "DE-HB flag SVG",
+      "ja": "DE-HBの旗のSVG"
+    },
+    "./flags/de-he": {
+      "en": "DE-HE flag SVG",
+      "ja": "DE-HEの旗のSVG"
+    },
+    "./flags/de-hh": {
+      "en": "DE-HH flag SVG",
+      "ja": "DE-HHの旗のSVG"
+    },
+    "./flags/de-mv": {
+      "en": "DE-MV flag SVG",
+      "ja": "DE-MVの旗のSVG"
+    },
+    "./flags/de-ni": {
+      "en": "DE-NI flag SVG",
+      "ja": "DE-NIの旗のSVG"
+    },
+    "./flags/de-nw": {
+      "en": "DE-NW flag SVG",
+      "ja": "DE-NWの旗のSVG"
+    },
+    "./flags/de-rp": {
+      "en": "DE-RP flag SVG",
+      "ja": "DE-RPの旗のSVG"
+    },
+    "./flags/de-sh": {
+      "en": "DE-SH flag SVG",
+      "ja": "DE-SHの旗のSVG"
+    },
+    "./flags/de-sl": {
+      "en": "DE-SL flag SVG",
+      "ja": "DE-SLの旗のSVG"
+    },
+    "./flags/de-sn": {
+      "en": "DE-SN flag SVG",
+      "ja": "DE-SNの旗のSVG"
+    },
+    "./flags/de-st": {
+      "en": "DE-ST flag SVG",
+      "ja": "DE-STの旗のSVG"
+    },
+    "./flags/de-th": {
+      "en": "DE-TH flag SVG",
+      "ja": "DE-THの旗のSVG"
+    },
+    "./flags/de.1x1": {
+      "en": "DE.1X1 flag SVG",
+      "ja": "DE.1X1の旗のSVG"
+    },
+    "./flags/de.4x3": {
+      "en": "DE.4X3 flag SVG",
+      "ja": "DE.4X3の旗のSVG"
+    },
+    "./flags/de": {
+      "en": "DE flag SVG",
+      "ja": "DEの旗のSVG"
+    },
+    "./flags/dj": {
+      "en": "DJ flag SVG",
+      "ja": "DJの旗のSVG"
+    },
+    "./flags/dk.1x1": {
+      "en": "DK.1X1 flag SVG",
+      "ja": "DK.1X1の旗のSVG"
+    },
+    "./flags/dk": {
+      "en": "DK flag SVG",
+      "ja": "DKの旗のSVG"
+    },
+    "./flags/dm.1x1": {
+      "en": "DM.1X1 flag SVG",
+      "ja": "DM.1X1の旗のSVG"
+    },
+    "./flags/dm.4x3": {
+      "en": "DM.4X3 flag SVG",
+      "ja": "DM.4X3の旗のSVG"
+    },
+    "./flags/dm": {
+      "en": "DM flag SVG",
+      "ja": "DMの旗のSVG"
+    },
+    "./flags/do.1x1": {
+      "en": "DO.1X1 flag SVG",
+      "ja": "DO.1X1の旗のSVG"
+    },
+    "./flags/do.4x3": {
+      "en": "DO.4X3 flag SVG",
+      "ja": "DO.4X3の旗のSVG"
+    },
+    "./flags/do": {
+      "en": "DO flag SVG",
+      "ja": "DOの旗のSVG"
+    },
+    "./flags/dz.1x1": {
+      "en": "DZ.1X1 flag SVG",
+      "ja": "DZ.1X1の旗のSVG"
+    },
+    "./flags/dz.4x3": {
+      "en": "DZ.4X3 flag SVG",
+      "ja": "DZ.4X3の旗のSVG"
+    },
+    "./flags/dz": {
+      "en": "DZ flag SVG",
+      "ja": "DZの旗のSVG"
+    },
+    "./flags/ec.1x1": {
+      "en": "EC.1X1 flag SVG",
+      "ja": "EC.1X1の旗のSVG"
+    },
+    "./flags/ec.4x3": {
+      "en": "EC.4X3 flag SVG",
+      "ja": "EC.4X3の旗のSVG"
+    },
+    "./flags/ec": {
+      "en": "EC flag SVG",
+      "ja": "ECの旗のSVG"
+    },
+    "./flags/ee.1x1": {
+      "en": "EE.1X1 flag SVG",
+      "ja": "EE.1X1の旗のSVG"
+    },
+    "./flags/ee.4x3": {
+      "en": "EE.4X3 flag SVG",
+      "ja": "EE.4X3の旗のSVG"
+    },
+    "./flags/ee": {
+      "en": "EE flag SVG",
+      "ja": "EEの旗のSVG"
+    },
+    "./flags/eg.1x1": {
+      "en": "EG.1X1 flag SVG",
+      "ja": "EG.1X1の旗のSVG"
+    },
+    "./flags/eg.4x3": {
+      "en": "EG.4X3 flag SVG",
+      "ja": "EG.4X3の旗のSVG"
+    },
+    "./flags/eg": {
+      "en": "EG flag SVG",
+      "ja": "EGの旗のSVG"
+    },
+    "./flags/er": {
+      "en": "ER flag SVG",
+      "ja": "ERの旗のSVG"
+    },
+    "./flags/es.1x1": {
+      "en": "ES.1X1 flag SVG",
+      "ja": "ES.1X1の旗のSVG"
+    },
+    "./flags/es.4x3": {
+      "en": "ES.4X3 flag SVG",
+      "ja": "ES.4X3の旗のSVG"
+    },
+    "./flags/es": {
+      "en": "ES flag SVG",
+      "ja": "ESの旗のSVG"
+    },
+    "./flags/et": {
+      "en": "ET flag SVG",
+      "ja": "ETの旗のSVG"
+    },
+    "./flags/fi.1x1": {
+      "en": "FI.1X1 flag SVG",
+      "ja": "FI.1X1の旗のSVG"
+    },
+    "./flags/fi.4x3": {
+      "en": "FI.4X3 flag SVG",
+      "ja": "FI.4X3の旗のSVG"
+    },
+    "./flags/fi": {
+      "en": "FI flag SVG",
+      "ja": "FIの旗のSVG"
+    },
+    "./flags/fj.1x1": {
+      "en": "FJ.1X1 flag SVG",
+      "ja": "FJ.1X1の旗のSVG"
+    },
+    "./flags/fj.4x3": {
+      "en": "FJ.4X3 flag SVG",
+      "ja": "FJ.4X3の旗のSVG"
+    },
+    "./flags/fj": {
+      "en": "FJ flag SVG",
+      "ja": "FJの旗のSVG"
+    },
+    "./flags/fk.1x1": {
+      "en": "FK.1X1 flag SVG",
+      "ja": "FK.1X1の旗のSVG"
+    },
+    "./flags/fk.4x3": {
+      "en": "FK.4X3 flag SVG",
+      "ja": "FK.4X3の旗のSVG"
+    },
+    "./flags/fk": {
+      "en": "FK flag SVG",
+      "ja": "FKの旗のSVG"
+    },
+    "./flags/fm.1x1": {
+      "en": "FM.1X1 flag SVG",
+      "ja": "FM.1X1の旗のSVG"
+    },
+    "./flags/fm.4x3": {
+      "en": "FM.4X3 flag SVG",
+      "ja": "FM.4X3の旗のSVG"
+    },
+    "./flags/fm": {
+      "en": "FM flag SVG",
+      "ja": "FMの旗のSVG"
+    },
+    "./flags/fo.1x1": {
+      "en": "FO.1X1 flag SVG",
+      "ja": "FO.1X1の旗のSVG"
+    },
+    "./flags/fo.4x3": {
+      "en": "FO.4X3 flag SVG",
+      "ja": "FO.4X3の旗のSVG"
+    },
+    "./flags/fo": {
+      "en": "FO flag SVG",
+      "ja": "FOの旗のSVG"
+    },
+    "./flags/fr-20r": {
+      "en": "FR-20R flag SVG",
+      "ja": "FR-20Rの旗のSVG"
+    },
+    "./flags/fr-971": {
+      "en": "FR-971 flag SVG",
+      "ja": "FR-971の旗のSVG"
+    },
+    "./flags/fr-972": {
+      "en": "FR-972 flag SVG",
+      "ja": "FR-972の旗のSVG"
+    },
+    "./flags/fr-973": {
+      "en": "FR-973 flag SVG",
+      "ja": "FR-973の旗のSVG"
+    },
+    "./flags/fr-974": {
+      "en": "FR-974 flag SVG",
+      "ja": "FR-974の旗のSVG"
+    },
+    "./flags/fr-976": {
+      "en": "FR-976 flag SVG",
+      "ja": "FR-976の旗のSVG"
+    },
+    "./flags/fr-bl": {
+      "en": "FR-BL flag SVG",
+      "ja": "FR-BLの旗のSVG"
+    },
+    "./flags/fr-bre": {
+      "en": "FR-BRE flag SVG",
+      "ja": "FR-BREの旗のSVG"
+    },
+    "./flags/fr-cp": {
+      "en": "FR-CP flag SVG",
+      "ja": "FR-CPの旗のSVG"
+    },
+    "./flags/fr-mf": {
+      "en": "FR-MF flag SVG",
+      "ja": "FR-MFの旗のSVG"
+    },
+    "./flags/fr-naq": {
+      "en": "FR-NAQ flag SVG",
+      "ja": "FR-NAQの旗のSVG"
+    },
+    "./flags/fr-nc": {
+      "en": "FR-NC flag SVG",
+      "ja": "FR-NCの旗のSVG"
+    },
+    "./flags/fr-nor": {
+      "en": "FR-NOR flag SVG",
+      "ja": "FR-NORの旗のSVG"
+    },
+    "./flags/fr-pf": {
+      "en": "FR-PF flag SVG",
+      "ja": "FR-PFの旗のSVG"
+    },
+    "./flags/fr-pm": {
+      "en": "FR-PM flag SVG",
+      "ja": "FR-PMの旗のSVG"
+    },
+    "./flags/fr-tf": {
+      "en": "FR-TF flag SVG",
+      "ja": "FR-TFの旗のSVG"
+    },
+    "./flags/fr-wf": {
+      "en": "FR-WF flag SVG",
+      "ja": "FR-WFの旗のSVG"
+    },
+    "./flags/fr.1x1": {
+      "en": "FR.1X1 flag SVG",
+      "ja": "FR.1X1の旗のSVG"
+    },
+    "./flags/fr.4x3": {
+      "en": "FR.4X3 flag SVG",
+      "ja": "FR.4X3の旗のSVG"
+    },
+    "./flags/fr": {
+      "en": "FR flag SVG",
+      "ja": "FRの旗のSVG"
+    },
+    "./flags/ga.1x1": {
+      "en": "GA.1X1 flag SVG",
+      "ja": "GA.1X1の旗のSVG"
+    },
+    "./flags/ga": {
+      "en": "GA flag SVG",
+      "ja": "GAの旗のSVG"
+    },
+    "./flags/gb-eng.1x1": {
+      "en": "GB-ENG.1X1 flag SVG",
+      "ja": "GB-ENG.1X1の旗のSVG"
+    },
+    "./flags/gb-eng.4x3": {
+      "en": "GB-ENG.4X3 flag SVG",
+      "ja": "GB-ENG.4X3の旗のSVG"
+    },
+    "./flags/gb-eng": {
+      "en": "GB-ENG flag SVG",
+      "ja": "GB-ENGの旗のSVG"
+    },
+    "./flags/gb-nir--ulster-banner": {
+      "en": "GB-NIR--ULSTER-BANNER flag SVG",
+      "ja": "GB-NIR--ULSTER-BANNERの旗のSVG"
+    },
+    "./flags/gb-nir--union-flag": {
+      "en": "GB-NIR--UNION-FLAG flag SVG",
+      "ja": "GB-NIR--UNION-FLAGの旗のSVG"
+    },
+    "./flags/gb-sct.1x1": {
+      "en": "GB-SCT.1X1 flag SVG",
+      "ja": "GB-SCT.1X1の旗のSVG"
+    },
+    "./flags/gb-sct.4x3": {
+      "en": "GB-SCT.4X3 flag SVG",
+      "ja": "GB-SCT.4X3の旗のSVG"
+    },
+    "./flags/gb-sct": {
+      "en": "GB-SCT flag SVG",
+      "ja": "GB-SCTの旗のSVG"
+    },
+    "./flags/gb-wls.1x1": {
+      "en": "GB-WLS.1X1 flag SVG",
+      "ja": "GB-WLS.1X1の旗のSVG"
+    },
+    "./flags/gb-wls.4x3": {
+      "en": "GB-WLS.4X3 flag SVG",
+      "ja": "GB-WLS.4X3の旗のSVG"
+    },
+    "./flags/gb-wls": {
+      "en": "GB-WLS flag SVG",
+      "ja": "GB-WLSの旗のSVG"
+    },
+    "./flags/gb.1x1": {
+      "en": "GB.1X1 flag SVG",
+      "ja": "GB.1X1の旗のSVG"
+    },
+    "./flags/gb.4x3": {
+      "en": "GB.4X3 flag SVG",
+      "ja": "GB.4X3の旗のSVG"
+    },
+    "./flags/gb": {
+      "en": "GB flag SVG",
+      "ja": "GBの旗のSVG"
+    },
+    "./flags/gd.1x1": {
+      "en": "GD.1X1 flag SVG",
+      "ja": "GD.1X1の旗のSVG"
+    },
+    "./flags/gd.4x3": {
+      "en": "GD.4X3 flag SVG",
+      "ja": "GD.4X3の旗のSVG"
+    },
+    "./flags/gd": {
+      "en": "GD flag SVG",
+      "ja": "GDの旗のSVG"
+    },
+    "./flags/ge.1x1": {
+      "en": "GE.1X1 flag SVG",
+      "ja": "GE.1X1の旗のSVG"
+    },
+    "./flags/ge.4x3": {
+      "en": "GE.4X3 flag SVG",
+      "ja": "GE.4X3の旗のSVG"
+    },
+    "./flags/ge": {
+      "en": "GE flag SVG",
+      "ja": "GEの旗のSVG"
+    },
+    "./flags/gf--local": {
+      "en": "GF--LOCAL flag SVG",
+      "ja": "GF--LOCALの旗のSVG"
+    },
+    "./flags/gf": {
+      "en": "GF flag SVG",
+      "ja": "GFの旗のSVG"
+    },
+    "./flags/gg.1x1": {
+      "en": "GG.1X1 flag SVG",
+      "ja": "GG.1X1の旗のSVG"
+    },
+    "./flags/gg.4x3": {
+      "en": "GG.4X3 flag SVG",
+      "ja": "GG.4X3の旗のSVG"
+    },
+    "./flags/gg": {
+      "en": "GG flag SVG",
+      "ja": "GGの旗のSVG"
+    },
+    "./flags/gh.1x1": {
+      "en": "GH.1X1 flag SVG",
+      "ja": "GH.1X1の旗のSVG"
+    },
+    "./flags/gh.4x3": {
+      "en": "GH.4X3 flag SVG",
+      "ja": "GH.4X3の旗のSVG"
+    },
+    "./flags/gh": {
+      "en": "GH flag SVG",
+      "ja": "GHの旗のSVG"
+    },
+    "./flags/gi.1x1": {
+      "en": "GI.1X1 flag SVG",
+      "ja": "GI.1X1の旗のSVG"
+    },
+    "./flags/gi.4x3": {
+      "en": "GI.4X3 flag SVG",
+      "ja": "GI.4X3の旗のSVG"
+    },
+    "./flags/gi": {
+      "en": "GI flag SVG",
+      "ja": "GIの旗のSVG"
+    },
+    "./flags/gl.1x1": {
+      "en": "GL.1X1 flag SVG",
+      "ja": "GL.1X1の旗のSVG"
+    },
+    "./flags/gl.4x3": {
+      "en": "GL.4X3 flag SVG",
+      "ja": "GL.4X3の旗のSVG"
+    },
+    "./flags/gl": {
+      "en": "GL flag SVG",
+      "ja": "GLの旗のSVG"
+    },
+    "./flags/gm.1x1": {
+      "en": "GM.1X1 flag SVG",
+      "ja": "GM.1X1の旗のSVG"
+    },
+    "./flags/gm.4x3": {
+      "en": "GM.4X3 flag SVG",
+      "ja": "GM.4X3の旗のSVG"
+    },
+    "./flags/gm": {
+      "en": "GM flag SVG",
+      "ja": "GMの旗のSVG"
+    },
+    "./flags/gn.1x1": {
+      "en": "GN.1X1 flag SVG",
+      "ja": "GN.1X1の旗のSVG"
+    },
+    "./flags/gn.4x3": {
+      "en": "GN.4X3 flag SVG",
+      "ja": "GN.4X3の旗のSVG"
+    },
+    "./flags/gn": {
+      "en": "GN flag SVG",
+      "ja": "GNの旗のSVG"
+    },
+    "./flags/gp--local": {
+      "en": "GP--LOCAL flag SVG",
+      "ja": "GP--LOCALの旗のSVG"
+    },
+    "./flags/gp": {
+      "en": "GP flag SVG",
+      "ja": "GPの旗のSVG"
+    },
+    "./flags/gq.1x1": {
+      "en": "GQ.1X1 flag SVG",
+      "ja": "GQ.1X1の旗のSVG"
+    },
+    "./flags/gq.4x3": {
+      "en": "GQ.4X3 flag SVG",
+      "ja": "GQ.4X3の旗のSVG"
+    },
+    "./flags/gq": {
+      "en": "GQ flag SVG",
+      "ja": "GQの旗のSVG"
+    },
+    "./flags/gr.1x1": {
+      "en": "GR.1X1 flag SVG",
+      "ja": "GR.1X1の旗のSVG"
+    },
+    "./flags/gr.4x3": {
+      "en": "GR.4X3 flag SVG",
+      "ja": "GR.4X3の旗のSVG"
+    },
+    "./flags/gr": {
+      "en": "GR flag SVG",
+      "ja": "GRの旗のSVG"
+    },
+    "./flags/gs.1x1": {
+      "en": "GS.1X1 flag SVG",
+      "ja": "GS.1X1の旗のSVG"
+    },
+    "./flags/gs.4x3": {
+      "en": "GS.4X3 flag SVG",
+      "ja": "GS.4X3の旗のSVG"
+    },
+    "./flags/gs": {
+      "en": "GS flag SVG",
+      "ja": "GSの旗のSVG"
+    },
+    "./flags/gt.1x1": {
+      "en": "GT.1X1 flag SVG",
+      "ja": "GT.1X1の旗のSVG"
+    },
+    "./flags/gt.4x3": {
+      "en": "GT.4X3 flag SVG",
+      "ja": "GT.4X3の旗のSVG"
+    },
+    "./flags/gt": {
+      "en": "GT flag SVG",
+      "ja": "GTの旗のSVG"
+    },
+    "./flags/gu.1x1": {
+      "en": "GU.1X1 flag SVG",
+      "ja": "GU.1X1の旗のSVG"
+    },
+    "./flags/gu.4x3": {
+      "en": "GU.4X3 flag SVG",
+      "ja": "GU.4X3の旗のSVG"
+    },
+    "./flags/gu": {
+      "en": "GU flag SVG",
+      "ja": "GUの旗のSVG"
+    },
+    "./flags/gw.1x1": {
+      "en": "GW.1X1 flag SVG",
+      "ja": "GW.1X1の旗のSVG"
+    },
+    "./flags/gw.4x3": {
+      "en": "GW.4X3 flag SVG",
+      "ja": "GW.4X3の旗のSVG"
+    },
+    "./flags/gw": {
+      "en": "GW flag SVG",
+      "ja": "GWの旗のSVG"
+    },
+    "./flags/gy": {
+      "en": "GY flag SVG",
+      "ja": "GYの旗のSVG"
+    },
+    "./flags/hk.1x1": {
+      "en": "HK.1X1 flag SVG",
+      "ja": "HK.1X1の旗のSVG"
+    },
+    "./flags/hk.4x3": {
+      "en": "HK.4X3 flag SVG",
+      "ja": "HK.4X3の旗のSVG"
+    },
+    "./flags/hk": {
+      "en": "HK flag SVG",
+      "ja": "HKの旗のSVG"
+    },
+    "./flags/hm": {
+      "en": "HM flag SVG",
+      "ja": "HMの旗のSVG"
+    },
+    "./flags/hn.1x1": {
+      "en": "HN.1X1 flag SVG",
+      "ja": "HN.1X1の旗のSVG"
+    },
+    "./flags/hn.4x3": {
+      "en": "HN.4X3 flag SVG",
+      "ja": "HN.4X3の旗のSVG"
+    },
+    "./flags/hn": {
+      "en": "HN flag SVG",
+      "ja": "HNの旗のSVG"
+    },
+    "./flags/hr.1x1": {
+      "en": "HR.1X1 flag SVG",
+      "ja": "HR.1X1の旗のSVG"
+    },
+    "./flags/hr.4x3": {
+      "en": "HR.4X3 flag SVG",
+      "ja": "HR.4X3の旗のSVG"
+    },
+    "./flags/hr": {
+      "en": "HR flag SVG",
+      "ja": "HRの旗のSVG"
+    },
+    "./flags/ht": {
+      "en": "HT flag SVG",
+      "ja": "HTの旗のSVG"
+    },
+    "./flags/hu.1x1": {
+      "en": "HU.1X1 flag SVG",
+      "ja": "HU.1X1の旗のSVG"
+    },
+    "./flags/hu.4x3": {
+      "en": "HU.4X3 flag SVG",
+      "ja": "HU.4X3の旗のSVG"
+    },
+    "./flags/hu": {
+      "en": "HU flag SVG",
+      "ja": "HUの旗のSVG"
+    },
+    "./flags/id.1x1": {
+      "en": "ID.1X1 flag SVG",
+      "ja": "ID.1X1の旗のSVG"
+    },
+    "./flags/id.4x3": {
+      "en": "ID.4X3 flag SVG",
+      "ja": "ID.4X3の旗のSVG"
+    },
+    "./flags/id": {
+      "en": "ID flag SVG",
+      "ja": "IDの旗のSVG"
+    },
+    "./flags/ie.1x1": {
+      "en": "IE.1X1 flag SVG",
+      "ja": "IE.1X1の旗のSVG"
+    },
+    "./flags/ie.4x3": {
+      "en": "IE.4X3 flag SVG",
+      "ja": "IE.4X3の旗のSVG"
+    },
+    "./flags/ie": {
+      "en": "IE flag SVG",
+      "ja": "IEの旗のSVG"
+    },
+    "./flags/il.1x1": {
+      "en": "IL.1X1 flag SVG",
+      "ja": "IL.1X1の旗のSVG"
+    },
+    "./flags/il.4x3": {
+      "en": "IL.4X3 flag SVG",
+      "ja": "IL.4X3の旗のSVG"
+    },
+    "./flags/il": {
+      "en": "IL flag SVG",
+      "ja": "ILの旗のSVG"
+    },
+    "./flags/im.1x1": {
+      "en": "IM.1X1 flag SVG",
+      "ja": "IM.1X1の旗のSVG"
+    },
+    "./flags/im.4x3": {
+      "en": "IM.4X3 flag SVG",
+      "ja": "IM.4X3の旗のSVG"
+    },
+    "./flags/im": {
+      "en": "IM flag SVG",
+      "ja": "IMの旗のSVG"
+    },
+    "./flags/in.1x1": {
+      "en": "IN.1X1 flag SVG",
+      "ja": "IN.1X1の旗のSVG"
+    },
+    "./flags/in.4x3": {
+      "en": "IN.4X3 flag SVG",
+      "ja": "IN.4X3の旗のSVG"
+    },
+    "./flags/in": {
+      "en": "IN flag SVG",
+      "ja": "INの旗のSVG"
+    },
+    "./flags/io.1x1": {
+      "en": "IO.1X1 flag SVG",
+      "ja": "IO.1X1の旗のSVG"
+    },
+    "./flags/io.4x3": {
+      "en": "IO.4X3 flag SVG",
+      "ja": "IO.4X3の旗のSVG"
+    },
+    "./flags/io": {
+      "en": "IO flag SVG",
+      "ja": "IOの旗のSVG"
+    },
+    "./flags/iq.1x1": {
+      "en": "IQ.1X1 flag SVG",
+      "ja": "IQ.1X1の旗のSVG"
+    },
+    "./flags/iq.4x3": {
+      "en": "IQ.4X3 flag SVG",
+      "ja": "IQ.4X3の旗のSVG"
+    },
+    "./flags/iq": {
+      "en": "IQ flag SVG",
+      "ja": "IQの旗のSVG"
+    },
+    "./flags/ir.1x1": {
+      "en": "IR.1X1 flag SVG",
+      "ja": "IR.1X1の旗のSVG"
+    },
+    "./flags/ir.4x3": {
+      "en": "IR.4X3 flag SVG",
+      "ja": "IR.4X3の旗のSVG"
+    },
+    "./flags/ir": {
+      "en": "IR flag SVG",
+      "ja": "IRの旗のSVG"
+    },
+    "./flags/is.1x1": {
+      "en": "IS.1X1 flag SVG",
+      "ja": "IS.1X1の旗のSVG"
+    },
+    "./flags/is.4x3": {
+      "en": "IS.4X3 flag SVG",
+      "ja": "IS.4X3の旗のSVG"
+    },
+    "./flags/is": {
+      "en": "IS flag SVG",
+      "ja": "ISの旗のSVG"
+    },
+    "./flags/it.1x1": {
+      "en": "IT.1X1 flag SVG",
+      "ja": "IT.1X1の旗のSVG"
+    },
+    "./flags/it.4x3": {
+      "en": "IT.4X3 flag SVG",
+      "ja": "IT.4X3の旗のSVG"
+    },
+    "./flags/it": {
+      "en": "IT flag SVG",
+      "ja": "ITの旗のSVG"
+    },
+    "./flags/je.1x1": {
+      "en": "JE.1X1 flag SVG",
+      "ja": "JE.1X1の旗のSVG"
+    },
+    "./flags/je.4x3": {
+      "en": "JE.4X3 flag SVG",
+      "ja": "JE.4X3の旗のSVG"
+    },
+    "./flags/je": {
+      "en": "JE flag SVG",
+      "ja": "JEの旗のSVG"
+    },
+    "./flags/jm": {
+      "en": "JM flag SVG",
+      "ja": "JMの旗のSVG"
+    },
+    "./flags/jo.1x1": {
+      "en": "JO.1X1 flag SVG",
+      "ja": "JO.1X1の旗のSVG"
+    },
+    "./flags/jo.4x3": {
+      "en": "JO.4X3 flag SVG",
+      "ja": "JO.4X3の旗のSVG"
+    },
+    "./flags/jo": {
+      "en": "JO flag SVG",
+      "ja": "JOの旗のSVG"
+    },
+    "./flags/jp-01": {
+      "en": "JP-01 flag SVG",
+      "ja": "JP-01の旗のSVG"
+    },
+    "./flags/jp-02": {
+      "en": "JP-02 flag SVG",
+      "ja": "JP-02の旗のSVG"
+    },
+    "./flags/jp-03": {
+      "en": "JP-03 flag SVG",
+      "ja": "JP-03の旗のSVG"
+    },
+    "./flags/jp-04": {
+      "en": "JP-04 flag SVG",
+      "ja": "JP-04の旗のSVG"
+    },
+    "./flags/jp-05": {
+      "en": "JP-05 flag SVG",
+      "ja": "JP-05の旗のSVG"
+    },
+    "./flags/jp-06": {
+      "en": "JP-06 flag SVG",
+      "ja": "JP-06の旗のSVG"
+    },
+    "./flags/jp-07": {
+      "en": "JP-07 flag SVG",
+      "ja": "JP-07の旗のSVG"
+    },
+    "./flags/jp-08": {
+      "en": "JP-08 flag SVG",
+      "ja": "JP-08の旗のSVG"
+    },
+    "./flags/jp-09": {
+      "en": "JP-09 flag SVG",
+      "ja": "JP-09の旗のSVG"
+    },
+    "./flags/jp-10": {
+      "en": "JP-10 flag SVG",
+      "ja": "JP-10の旗のSVG"
+    },
+    "./flags/jp-11": {
+      "en": "JP-11 flag SVG",
+      "ja": "JP-11の旗のSVG"
+    },
+    "./flags/jp-12": {
+      "en": "JP-12 flag SVG",
+      "ja": "JP-12の旗のSVG"
+    },
+    "./flags/jp-13": {
+      "en": "JP-13 flag SVG",
+      "ja": "JP-13の旗のSVG"
+    },
+    "./flags/jp-14": {
+      "en": "JP-14 flag SVG",
+      "ja": "JP-14の旗のSVG"
+    },
+    "./flags/jp-15": {
+      "en": "JP-15 flag SVG",
+      "ja": "JP-15の旗のSVG"
+    },
+    "./flags/jp-16": {
+      "en": "JP-16 flag SVG",
+      "ja": "JP-16の旗のSVG"
+    },
+    "./flags/jp-17": {
+      "en": "JP-17 flag SVG",
+      "ja": "JP-17の旗のSVG"
+    },
+    "./flags/jp-18": {
+      "en": "JP-18 flag SVG",
+      "ja": "JP-18の旗のSVG"
+    },
+    "./flags/jp-19": {
+      "en": "JP-19 flag SVG",
+      "ja": "JP-19の旗のSVG"
+    },
+    "./flags/jp-20": {
+      "en": "JP-20 flag SVG",
+      "ja": "JP-20の旗のSVG"
+    },
+    "./flags/jp-21": {
+      "en": "JP-21 flag SVG",
+      "ja": "JP-21の旗のSVG"
+    },
+    "./flags/jp-22": {
+      "en": "JP-22 flag SVG",
+      "ja": "JP-22の旗のSVG"
+    },
+    "./flags/jp-23": {
+      "en": "JP-23 flag SVG",
+      "ja": "JP-23の旗のSVG"
+    },
+    "./flags/jp-24": {
+      "en": "JP-24 flag SVG",
+      "ja": "JP-24の旗のSVG"
+    },
+    "./flags/jp-25": {
+      "en": "JP-25 flag SVG",
+      "ja": "JP-25の旗のSVG"
+    },
+    "./flags/jp-26": {
+      "en": "JP-26 flag SVG",
+      "ja": "JP-26の旗のSVG"
+    },
+    "./flags/jp-27": {
+      "en": "JP-27 flag SVG",
+      "ja": "JP-27の旗のSVG"
+    },
+    "./flags/jp-28": {
+      "en": "JP-28 flag SVG",
+      "ja": "JP-28の旗のSVG"
+    },
+    "./flags/jp-29": {
+      "en": "JP-29 flag SVG",
+      "ja": "JP-29の旗のSVG"
+    },
+    "./flags/jp-30": {
+      "en": "JP-30 flag SVG",
+      "ja": "JP-30の旗のSVG"
+    },
+    "./flags/jp-31": {
+      "en": "JP-31 flag SVG",
+      "ja": "JP-31の旗のSVG"
+    },
+    "./flags/jp-32": {
+      "en": "JP-32 flag SVG",
+      "ja": "JP-32の旗のSVG"
+    },
+    "./flags/jp-33": {
+      "en": "JP-33 flag SVG",
+      "ja": "JP-33の旗のSVG"
+    },
+    "./flags/jp-35": {
+      "en": "JP-35 flag SVG",
+      "ja": "JP-35の旗のSVG"
+    },
+    "./flags/jp-36": {
+      "en": "JP-36 flag SVG",
+      "ja": "JP-36の旗のSVG"
+    },
+    "./flags/jp-38": {
+      "en": "JP-38 flag SVG",
+      "ja": "JP-38の旗のSVG"
+    },
+    "./flags/jp-39": {
+      "en": "JP-39 flag SVG",
+      "ja": "JP-39の旗のSVG"
+    },
+    "./flags/jp-40": {
+      "en": "JP-40 flag SVG",
+      "ja": "JP-40の旗のSVG"
+    },
+    "./flags/jp-41": {
+      "en": "JP-41 flag SVG",
+      "ja": "JP-41の旗のSVG"
+    },
+    "./flags/jp-42": {
+      "en": "JP-42 flag SVG",
+      "ja": "JP-42の旗のSVG"
+    },
+    "./flags/jp-43": {
+      "en": "JP-43 flag SVG",
+      "ja": "JP-43の旗のSVG"
+    },
+    "./flags/jp-44": {
+      "en": "JP-44 flag SVG",
+      "ja": "JP-44の旗のSVG"
+    },
+    "./flags/jp-45": {
+      "en": "JP-45 flag SVG",
+      "ja": "JP-45の旗のSVG"
+    },
+    "./flags/jp-46": {
+      "en": "JP-46 flag SVG",
+      "ja": "JP-46の旗のSVG"
+    },
+    "./flags/jp-47": {
+      "en": "JP-47 flag SVG",
+      "ja": "JP-47の旗のSVG"
+    },
+    "./flags/jp.1x1": {
+      "en": "JP.1X1 flag SVG",
+      "ja": "JP.1X1の旗のSVG"
+    },
+    "./flags/jp.4x3": {
+      "en": "JP.4X3 flag SVG",
+      "ja": "JP.4X3の旗のSVG"
+    },
+    "./flags/jp": {
+      "en": "JP flag SVG",
+      "ja": "JPの旗のSVG"
+    },
+    "./flags/ke.1x1": {
+      "en": "KE.1X1 flag SVG",
+      "ja": "KE.1X1の旗のSVG"
+    },
+    "./flags/ke.4x3": {
+      "en": "KE.4X3 flag SVG",
+      "ja": "KE.4X3の旗のSVG"
+    },
+    "./flags/ke": {
+      "en": "KE flag SVG",
+      "ja": "KEの旗のSVG"
+    },
+    "./flags/kg.1x1": {
+      "en": "KG.1X1 flag SVG",
+      "ja": "KG.1X1の旗のSVG"
+    },
+    "./flags/kg.4x3": {
+      "en": "KG.4X3 flag SVG",
+      "ja": "KG.4X3の旗のSVG"
+    },
+    "./flags/kg": {
+      "en": "KG flag SVG",
+      "ja": "KGの旗のSVG"
+    },
+    "./flags/kh.1x1": {
+      "en": "KH.1X1 flag SVG",
+      "ja": "KH.1X1の旗のSVG"
+    },
+    "./flags/kh.4x3": {
+      "en": "KH.4X3 flag SVG",
+      "ja": "KH.4X3の旗のSVG"
+    },
+    "./flags/kh": {
+      "en": "KH flag SVG",
+      "ja": "KHの旗のSVG"
+    },
+    "./flags/ki": {
+      "en": "KI flag SVG",
+      "ja": "KIの旗のSVG"
+    },
+    "./flags/km.1x1": {
+      "en": "KM.1X1 flag SVG",
+      "ja": "KM.1X1の旗のSVG"
+    },
+    "./flags/km.4x3": {
+      "en": "KM.4X3 flag SVG",
+      "ja": "KM.4X3の旗のSVG"
+    },
+    "./flags/km": {
+      "en": "KM flag SVG",
+      "ja": "KMの旗のSVG"
+    },
+    "./flags/kn.1x1": {
+      "en": "KN.1X1 flag SVG",
+      "ja": "KN.1X1の旗のSVG"
+    },
+    "./flags/kn.4x3": {
+      "en": "KN.4X3 flag SVG",
+      "ja": "KN.4X3の旗のSVG"
+    },
+    "./flags/kn": {
+      "en": "KN flag SVG",
+      "ja": "KNの旗のSVG"
+    },
+    "./flags/kp.1x1": {
+      "en": "KP.1X1 flag SVG",
+      "ja": "KP.1X1の旗のSVG"
+    },
+    "./flags/kp.4x3": {
+      "en": "KP.4X3 flag SVG",
+      "ja": "KP.4X3の旗のSVG"
+    },
+    "./flags/kp": {
+      "en": "KP flag SVG",
+      "ja": "KPの旗のSVG"
+    },
+    "./flags/kr.1x1": {
+      "en": "KR.1X1 flag SVG",
+      "ja": "KR.1X1の旗のSVG"
+    },
+    "./flags/kr.4x3": {
+      "en": "KR.4X3 flag SVG",
+      "ja": "KR.4X3の旗のSVG"
+    },
+    "./flags/kr": {
+      "en": "KR flag SVG",
+      "ja": "KRの旗のSVG"
+    },
+    "./flags/kw.1x1": {
+      "en": "KW.1X1 flag SVG",
+      "ja": "KW.1X1の旗のSVG"
+    },
+    "./flags/kw.4x3": {
+      "en": "KW.4X3 flag SVG",
+      "ja": "KW.4X3の旗のSVG"
+    },
+    "./flags/kw": {
+      "en": "KW flag SVG",
+      "ja": "KWの旗のSVG"
+    },
+    "./flags/ky.1x1": {
+      "en": "KY.1X1 flag SVG",
+      "ja": "KY.1X1の旗のSVG"
+    },
+    "./flags/ky.4x3": {
+      "en": "KY.4X3 flag SVG",
+      "ja": "KY.4X3の旗のSVG"
+    },
+    "./flags/ky": {
+      "en": "KY flag SVG",
+      "ja": "KYの旗のSVG"
+    },
+    "./flags/kz.1x1": {
+      "en": "KZ.1X1 flag SVG",
+      "ja": "KZ.1X1の旗のSVG"
+    },
+    "./flags/kz.4x3": {
+      "en": "KZ.4X3 flag SVG",
+      "ja": "KZ.4X3の旗のSVG"
+    },
+    "./flags/kz": {
+      "en": "KZ flag SVG",
+      "ja": "KZの旗のSVG"
+    },
+    "./flags/la.1x1": {
+      "en": "LA.1X1 flag SVG",
+      "ja": "LA.1X1の旗のSVG"
+    },
+    "./flags/la.4x3": {
+      "en": "LA.4X3 flag SVG",
+      "ja": "LA.4X3の旗のSVG"
+    },
+    "./flags/la": {
+      "en": "LA flag SVG",
+      "ja": "LAの旗のSVG"
+    },
+    "./flags/lb.1x1": {
+      "en": "LB.1X1 flag SVG",
+      "ja": "LB.1X1の旗のSVG"
+    },
+    "./flags/lb.4x3": {
+      "en": "LB.4X3 flag SVG",
+      "ja": "LB.4X3の旗のSVG"
+    },
+    "./flags/lb": {
+      "en": "LB flag SVG",
+      "ja": "LBの旗のSVG"
+    },
+    "./flags/lc.1x1": {
+      "en": "LC.1X1 flag SVG",
+      "ja": "LC.1X1の旗のSVG"
+    },
+    "./flags/lc.4x3": {
+      "en": "LC.4X3 flag SVG",
+      "ja": "LC.4X3の旗のSVG"
+    },
+    "./flags/lc": {
+      "en": "LC flag SVG",
+      "ja": "LCの旗のSVG"
+    },
+    "./flags/li.1x1": {
+      "en": "LI.1X1 flag SVG",
+      "ja": "LI.1X1の旗のSVG"
+    },
+    "./flags/li.4x3": {
+      "en": "LI.4X3 flag SVG",
+      "ja": "LI.4X3の旗のSVG"
+    },
+    "./flags/li": {
+      "en": "LI flag SVG",
+      "ja": "LIの旗のSVG"
+    },
+    "./flags/lk": {
+      "en": "LK flag SVG",
+      "ja": "LKの旗のSVG"
+    },
+    "./flags/lr.1x1": {
+      "en": "LR.1X1 flag SVG",
+      "ja": "LR.1X1の旗のSVG"
+    },
+    "./flags/lr.4x3": {
+      "en": "LR.4X3 flag SVG",
+      "ja": "LR.4X3の旗のSVG"
+    },
+    "./flags/lr": {
+      "en": "LR flag SVG",
+      "ja": "LRの旗のSVG"
+    },
+    "./flags/ls.1x1": {
+      "en": "LS.1X1 flag SVG",
+      "ja": "LS.1X1の旗のSVG"
+    },
+    "./flags/ls.4x3": {
+      "en": "LS.4X3 flag SVG",
+      "ja": "LS.4X3の旗のSVG"
+    },
+    "./flags/ls": {
+      "en": "LS flag SVG",
+      "ja": "LSの旗のSVG"
+    },
+    "./flags/lt.1x1": {
+      "en": "LT.1X1 flag SVG",
+      "ja": "LT.1X1の旗のSVG"
+    },
+    "./flags/lt.4x3": {
+      "en": "LT.4X3 flag SVG",
+      "ja": "LT.4X3の旗のSVG"
+    },
+    "./flags/lt": {
+      "en": "LT flag SVG",
+      "ja": "LTの旗のSVG"
+    },
+    "./flags/lu.1x1": {
+      "en": "LU.1X1 flag SVG",
+      "ja": "LU.1X1の旗のSVG"
+    },
+    "./flags/lu.4x3": {
+      "en": "LU.4X3 flag SVG",
+      "ja": "LU.4X3の旗のSVG"
+    },
+    "./flags/lu": {
+      "en": "LU flag SVG",
+      "ja": "LUの旗のSVG"
+    },
+    "./flags/lv.1x1": {
+      "en": "LV.1X1 flag SVG",
+      "ja": "LV.1X1の旗のSVG"
+    },
+    "./flags/lv.4x3": {
+      "en": "LV.4X3 flag SVG",
+      "ja": "LV.4X3の旗のSVG"
+    },
+    "./flags/lv": {
+      "en": "LV flag SVG",
+      "ja": "LVの旗のSVG"
+    },
+    "./flags/ly.1x1": {
+      "en": "LY.1X1 flag SVG",
+      "ja": "LY.1X1の旗のSVG"
+    },
+    "./flags/ly.4x3": {
+      "en": "LY.4X3 flag SVG",
+      "ja": "LY.4X3の旗のSVG"
+    },
+    "./flags/ly": {
+      "en": "LY flag SVG",
+      "ja": "LYの旗のSVG"
+    },
+    "./flags/ma.1x1": {
+      "en": "MA.1X1 flag SVG",
+      "ja": "MA.1X1の旗のSVG"
+    },
+    "./flags/ma.4x3": {
+      "en": "MA.4X3 flag SVG",
+      "ja": "MA.4X3の旗のSVG"
+    },
+    "./flags/ma": {
+      "en": "MA flag SVG",
+      "ja": "MAの旗のSVG"
+    },
+    "./flags/mc.1x1": {
+      "en": "MC.1X1 flag SVG",
+      "ja": "MC.1X1の旗のSVG"
+    },
+    "./flags/mc.4x3": {
+      "en": "MC.4X3 flag SVG",
+      "ja": "MC.4X3の旗のSVG"
+    },
+    "./flags/mc": {
+      "en": "MC flag SVG",
+      "ja": "MCの旗のSVG"
+    },
+    "./flags/md.1x1": {
+      "en": "MD.1X1 flag SVG",
+      "ja": "MD.1X1の旗のSVG"
+    },
+    "./flags/md.4x3": {
+      "en": "MD.4X3 flag SVG",
+      "ja": "MD.4X3の旗のSVG"
+    },
+    "./flags/md": {
+      "en": "MD flag SVG",
+      "ja": "MDの旗のSVG"
+    },
+    "./flags/me.1x1": {
+      "en": "ME.1X1 flag SVG",
+      "ja": "ME.1X1の旗のSVG"
+    },
+    "./flags/me.4x3": {
+      "en": "ME.4X3 flag SVG",
+      "ja": "ME.4X3の旗のSVG"
+    },
+    "./flags/me": {
+      "en": "ME flag SVG",
+      "ja": "MEの旗のSVG"
+    },
+    "./flags/mf": {
+      "en": "MF flag SVG",
+      "ja": "MFの旗のSVG"
+    },
+    "./flags/mg.1x1": {
+      "en": "MG.1X1 flag SVG",
+      "ja": "MG.1X1の旗のSVG"
+    },
+    "./flags/mg.4x3": {
+      "en": "MG.4X3 flag SVG",
+      "ja": "MG.4X3の旗のSVG"
+    },
+    "./flags/mg": {
+      "en": "MG flag SVG",
+      "ja": "MGの旗のSVG"
+    },
+    "./flags/mh.1x1": {
+      "en": "MH.1X1 flag SVG",
+      "ja": "MH.1X1の旗のSVG"
+    },
+    "./flags/mh.4x3": {
+      "en": "MH.4X3 flag SVG",
+      "ja": "MH.4X3の旗のSVG"
+    },
+    "./flags/mh": {
+      "en": "MH flag SVG",
+      "ja": "MHの旗のSVG"
+    },
+    "./flags/mk.1x1": {
+      "en": "MK.1X1 flag SVG",
+      "ja": "MK.1X1の旗のSVG"
+    },
+    "./flags/mk.4x3": {
+      "en": "MK.4X3 flag SVG",
+      "ja": "MK.4X3の旗のSVG"
+    },
+    "./flags/mk": {
+      "en": "MK flag SVG",
+      "ja": "MKの旗のSVG"
+    },
+    "./flags/ml.1x1": {
+      "en": "ML.1X1 flag SVG",
+      "ja": "ML.1X1の旗のSVG"
+    },
+    "./flags/ml.4x3": {
+      "en": "ML.4X3 flag SVG",
+      "ja": "ML.4X3の旗のSVG"
+    },
+    "./flags/ml": {
+      "en": "ML flag SVG",
+      "ja": "MLの旗のSVG"
+    },
+    "./flags/mm.1x1": {
+      "en": "MM.1X1 flag SVG",
+      "ja": "MM.1X1の旗のSVG"
+    },
+    "./flags/mm.4x3": {
+      "en": "MM.4X3 flag SVG",
+      "ja": "MM.4X3の旗のSVG"
+    },
+    "./flags/mm": {
+      "en": "MM flag SVG",
+      "ja": "MMの旗のSVG"
+    },
+    "./flags/mn.1x1": {
+      "en": "MN.1X1 flag SVG",
+      "ja": "MN.1X1の旗のSVG"
+    },
+    "./flags/mn.4x3": {
+      "en": "MN.4X3 flag SVG",
+      "ja": "MN.4X3の旗のSVG"
+    },
+    "./flags/mn": {
+      "en": "MN flag SVG",
+      "ja": "MNの旗のSVG"
+    },
+    "./flags/mo.1x1": {
+      "en": "MO.1X1 flag SVG",
+      "ja": "MO.1X1の旗のSVG"
+    },
+    "./flags/mo.4x3": {
+      "en": "MO.4X3 flag SVG",
+      "ja": "MO.4X3の旗のSVG"
+    },
+    "./flags/mo": {
+      "en": "MO flag SVG",
+      "ja": "MOの旗のSVG"
+    },
+    "./flags/mp": {
+      "en": "MP flag SVG",
+      "ja": "MPの旗のSVG"
+    },
+    "./flags/mq--local": {
+      "en": "MQ--LOCAL flag SVG",
+      "ja": "MQ--LOCALの旗のSVG"
+    },
+    "./flags/mq": {
+      "en": "MQ flag SVG",
+      "ja": "MQの旗のSVG"
+    },
+    "./flags/mr.1x1": {
+      "en": "MR.1X1 flag SVG",
+      "ja": "MR.1X1の旗のSVG"
+    },
+    "./flags/mr.4x3": {
+      "en": "MR.4X3 flag SVG",
+      "ja": "MR.4X3の旗のSVG"
+    },
+    "./flags/mr": {
+      "en": "MR flag SVG",
+      "ja": "MRの旗のSVG"
+    },
+    "./flags/ms.1x1": {
+      "en": "MS.1X1 flag SVG",
+      "ja": "MS.1X1の旗のSVG"
+    },
+    "./flags/ms.4x3": {
+      "en": "MS.4X3 flag SVG",
+      "ja": "MS.4X3の旗のSVG"
+    },
+    "./flags/ms": {
+      "en": "MS flag SVG",
+      "ja": "MSの旗のSVG"
+    },
+    "./flags/mt.1x1": {
+      "en": "MT.1X1 flag SVG",
+      "ja": "MT.1X1の旗のSVG"
+    },
+    "./flags/mt.4x3": {
+      "en": "MT.4X3 flag SVG",
+      "ja": "MT.4X3の旗のSVG"
+    },
+    "./flags/mt": {
+      "en": "MT flag SVG",
+      "ja": "MTの旗のSVG"
+    },
+    "./flags/mu": {
+      "en": "MU flag SVG",
+      "ja": "MUの旗のSVG"
+    },
+    "./flags/mv.1x1": {
+      "en": "MV.1X1 flag SVG",
+      "ja": "MV.1X1の旗のSVG"
+    },
+    "./flags/mv.4x3": {
+      "en": "MV.4X3 flag SVG",
+      "ja": "MV.4X3の旗のSVG"
+    },
+    "./flags/mv": {
+      "en": "MV flag SVG",
+      "ja": "MVの旗のSVG"
+    },
+    "./flags/mw.1x1": {
+      "en": "MW.1X1 flag SVG",
+      "ja": "MW.1X1の旗のSVG"
+    },
+    "./flags/mw.4x3": {
+      "en": "MW.4X3 flag SVG",
+      "ja": "MW.4X3の旗のSVG"
+    },
+    "./flags/mw": {
+      "en": "MW flag SVG",
+      "ja": "MWの旗のSVG"
+    },
+    "./flags/mx.1x1": {
+      "en": "MX.1X1 flag SVG",
+      "ja": "MX.1X1の旗のSVG"
+    },
+    "./flags/mx.4x3": {
+      "en": "MX.4X3 flag SVG",
+      "ja": "MX.4X3の旗のSVG"
+    },
+    "./flags/mx": {
+      "en": "MX flag SVG",
+      "ja": "MXの旗のSVG"
+    },
+    "./flags/my.1x1": {
+      "en": "MY.1X1 flag SVG",
+      "ja": "MY.1X1の旗のSVG"
+    },
+    "./flags/my.4x3": {
+      "en": "MY.4X3 flag SVG",
+      "ja": "MY.4X3の旗のSVG"
+    },
+    "./flags/my": {
+      "en": "MY flag SVG",
+      "ja": "MYの旗のSVG"
+    },
+    "./flags/mz": {
+      "en": "MZ flag SVG",
+      "ja": "MZの旗のSVG"
+    },
+    "./flags/na.1x1": {
+      "en": "NA.1X1 flag SVG",
+      "ja": "NA.1X1の旗のSVG"
+    },
+    "./flags/na.4x3": {
+      "en": "NA.4X3 flag SVG",
+      "ja": "NA.4X3の旗のSVG"
+    },
+    "./flags/na": {
+      "en": "NA flag SVG",
+      "ja": "NAの旗のSVG"
+    },
+    "./flags/nc--france": {
+      "en": "NC--FRANCE flag SVG",
+      "ja": "NC--FRANCEの旗のSVG"
+    },
+    "./flags/nc.1x1": {
+      "en": "NC.1X1 flag SVG",
+      "ja": "NC.1X1の旗のSVG"
+    },
+    "./flags/nc.4x3": {
+      "en": "NC.4X3 flag SVG",
+      "ja": "NC.4X3の旗のSVG"
+    },
+    "./flags/nc": {
+      "en": "NC flag SVG",
+      "ja": "NCの旗のSVG"
+    },
+    "./flags/ne.1x1": {
+      "en": "NE.1X1 flag SVG",
+      "ja": "NE.1X1の旗のSVG"
+    },
+    "./flags/ne.4x3": {
+      "en": "NE.4X3 flag SVG",
+      "ja": "NE.4X3の旗のSVG"
+    },
+    "./flags/ne": {
+      "en": "NE flag SVG",
+      "ja": "NEの旗のSVG"
+    },
+    "./flags/nf.1x1": {
+      "en": "NF.1X1 flag SVG",
+      "ja": "NF.1X1の旗のSVG"
+    },
+    "./flags/nf.4x3": {
+      "en": "NF.4X3 flag SVG",
+      "ja": "NF.4X3の旗のSVG"
+    },
+    "./flags/nf": {
+      "en": "NF flag SVG",
+      "ja": "NFの旗のSVG"
+    },
+    "./flags/ng.1x1": {
+      "en": "NG.1X1 flag SVG",
+      "ja": "NG.1X1の旗のSVG"
+    },
+    "./flags/ng.4x3": {
+      "en": "NG.4X3 flag SVG",
+      "ja": "NG.4X3の旗のSVG"
+    },
+    "./flags/ng": {
+      "en": "NG flag SVG",
+      "ja": "NGの旗のSVG"
+    },
+    "./flags/ni.1x1": {
+      "en": "NI.1X1 flag SVG",
+      "ja": "NI.1X1の旗のSVG"
+    },
+    "./flags/ni.4x3": {
+      "en": "NI.4X3 flag SVG",
+      "ja": "NI.4X3の旗のSVG"
+    },
+    "./flags/ni": {
+      "en": "NI flag SVG",
+      "ja": "NIの旗のSVG"
+    },
+    "./flags/nl.1x1": {
+      "en": "NL.1X1 flag SVG",
+      "ja": "NL.1X1の旗のSVG"
+    },
+    "./flags/nl.4x3": {
+      "en": "NL.4X3 flag SVG",
+      "ja": "NL.4X3の旗のSVG"
+    },
+    "./flags/nl": {
+      "en": "NL flag SVG",
+      "ja": "NLの旗のSVG"
+    },
+    "./flags/no.1x1": {
+      "en": "NO.1X1 flag SVG",
+      "ja": "NO.1X1の旗のSVG"
+    },
+    "./flags/no.4x3": {
+      "en": "NO.4X3 flag SVG",
+      "ja": "NO.4X3の旗のSVG"
+    },
+    "./flags/no": {
+      "en": "NO flag SVG",
+      "ja": "NOの旗のSVG"
+    },
+    "./flags/np.1x1": {
+      "en": "NP.1X1 flag SVG",
+      "ja": "NP.1X1の旗のSVG"
+    },
+    "./flags/np.4x3": {
+      "en": "NP.4X3 flag SVG",
+      "ja": "NP.4X3の旗のSVG"
+    },
+    "./flags/np": {
+      "en": "NP flag SVG",
+      "ja": "NPの旗のSVG"
+    },
+    "./flags/nr.1x1": {
+      "en": "NR.1X1 flag SVG",
+      "ja": "NR.1X1の旗のSVG"
+    },
+    "./flags/nr.4x3": {
+      "en": "NR.4X3 flag SVG",
+      "ja": "NR.4X3の旗のSVG"
+    },
+    "./flags/nr": {
+      "en": "NR flag SVG",
+      "ja": "NRの旗のSVG"
+    },
+    "./flags/nu.1x1": {
+      "en": "NU.1X1 flag SVG",
+      "ja": "NU.1X1の旗のSVG"
+    },
+    "./flags/nu.4x3": {
+      "en": "NU.4X3 flag SVG",
+      "ja": "NU.4X3の旗のSVG"
+    },
+    "./flags/nu": {
+      "en": "NU flag SVG",
+      "ja": "NUの旗のSVG"
+    },
+    "./flags/nz.1x1": {
+      "en": "NZ.1X1 flag SVG",
+      "ja": "NZ.1X1の旗のSVG"
+    },
+    "./flags/nz.4x3": {
+      "en": "NZ.4X3 flag SVG",
+      "ja": "NZ.4X3の旗のSVG"
+    },
+    "./flags/nz": {
+      "en": "NZ flag SVG",
+      "ja": "NZの旗のSVG"
+    },
+    "./flags/pa.1x1": {
+      "en": "PA.1X1 flag SVG",
+      "ja": "PA.1X1の旗のSVG"
+    },
+    "./flags/pa.4x3": {
+      "en": "PA.4X3 flag SVG",
+      "ja": "PA.4X3の旗のSVG"
+    },
+    "./flags/pa": {
+      "en": "PA flag SVG",
+      "ja": "PAの旗のSVG"
+    },
+    "./flags/pe.1x1": {
+      "en": "PE.1X1 flag SVG",
+      "ja": "PE.1X1の旗のSVG"
+    },
+    "./flags/pe.4x3": {
+      "en": "PE.4X3 flag SVG",
+      "ja": "PE.4X3の旗のSVG"
+    },
+    "./flags/pe": {
+      "en": "PE flag SVG",
+      "ja": "PEの旗のSVG"
+    },
+    "./flags/pf--france": {
+      "en": "PF--FRANCE flag SVG",
+      "ja": "PF--FRANCEの旗のSVG"
+    },
+    "./flags/pf.1x1": {
+      "en": "PF.1X1 flag SVG",
+      "ja": "PF.1X1の旗のSVG"
+    },
+    "./flags/pf.4x3": {
+      "en": "PF.4X3 flag SVG",
+      "ja": "PF.4X3の旗のSVG"
+    },
+    "./flags/pf": {
+      "en": "PF flag SVG",
+      "ja": "PFの旗のSVG"
+    },
+    "./flags/pg.1x1": {
+      "en": "PG.1X1 flag SVG",
+      "ja": "PG.1X1の旗のSVG"
+    },
+    "./flags/pg": {
+      "en": "PG flag SVG",
+      "ja": "PGの旗のSVG"
+    },
+    "./flags/ph.1x1": {
+      "en": "PH.1X1 flag SVG",
+      "ja": "PH.1X1の旗のSVG"
+    },
+    "./flags/ph.4x3": {
+      "en": "PH.4X3 flag SVG",
+      "ja": "PH.4X3の旗のSVG"
+    },
+    "./flags/ph": {
+      "en": "PH flag SVG",
+      "ja": "PHの旗のSVG"
+    },
+    "./flags/pk": {
+      "en": "PK flag SVG",
+      "ja": "PKの旗のSVG"
+    },
+    "./flags/pl.1x1": {
+      "en": "PL.1X1 flag SVG",
+      "ja": "PL.1X1の旗のSVG"
+    },
+    "./flags/pl.4x3": {
+      "en": "PL.4X3 flag SVG",
+      "ja": "PL.4X3の旗のSVG"
+    },
+    "./flags/pl": {
+      "en": "PL flag SVG",
+      "ja": "PLの旗のSVG"
+    },
+    "./flags/pm--local": {
+      "en": "PM--LOCAL flag SVG",
+      "ja": "PM--LOCALの旗のSVG"
+    },
+    "./flags/pm": {
+      "en": "PM flag SVG",
+      "ja": "PMの旗のSVG"
+    },
+    "./flags/pn.1x1": {
+      "en": "PN.1X1 flag SVG",
+      "ja": "PN.1X1の旗のSVG"
+    },
+    "./flags/pn.4x3": {
+      "en": "PN.4X3 flag SVG",
+      "ja": "PN.4X3の旗のSVG"
+    },
+    "./flags/pn": {
+      "en": "PN flag SVG",
+      "ja": "PNの旗のSVG"
+    },
+    "./flags/pr.1x1": {
+      "en": "PR.1X1 flag SVG",
+      "ja": "PR.1X1の旗のSVG"
+    },
+    "./flags/pr.4x3": {
+      "en": "PR.4X3 flag SVG",
+      "ja": "PR.4X3の旗のSVG"
+    },
+    "./flags/pr": {
+      "en": "PR flag SVG",
+      "ja": "PRの旗のSVG"
+    },
+    "./flags/ps.1x1": {
+      "en": "PS.1X1 flag SVG",
+      "ja": "PS.1X1の旗のSVG"
+    },
+    "./flags/ps.4x3": {
+      "en": "PS.4X3 flag SVG",
+      "ja": "PS.4X3の旗のSVG"
+    },
+    "./flags/ps": {
+      "en": "PS flag SVG",
+      "ja": "PSの旗のSVG"
+    },
+    "./flags/pt.1x1": {
+      "en": "PT.1X1 flag SVG",
+      "ja": "PT.1X1の旗のSVG"
+    },
+    "./flags/pt.4x3": {
+      "en": "PT.4X3 flag SVG",
+      "ja": "PT.4X3の旗のSVG"
+    },
+    "./flags/pt": {
+      "en": "PT flag SVG",
+      "ja": "PTの旗のSVG"
+    },
+    "./flags/pw.1x1": {
+      "en": "PW.1X1 flag SVG",
+      "ja": "PW.1X1の旗のSVG"
+    },
+    "./flags/pw.4x3": {
+      "en": "PW.4X3 flag SVG",
+      "ja": "PW.4X3の旗のSVG"
+    },
+    "./flags/pw": {
+      "en": "PW flag SVG",
+      "ja": "PWの旗のSVG"
+    },
+    "./flags/py.1x1": {
+      "en": "PY.1X1 flag SVG",
+      "ja": "PY.1X1の旗のSVG"
+    },
+    "./flags/py.4x3": {
+      "en": "PY.4X3 flag SVG",
+      "ja": "PY.4X3の旗のSVG"
+    },
+    "./flags/py": {
+      "en": "PY flag SVG",
+      "ja": "PYの旗のSVG"
+    },
+    "./flags/qa.1x1": {
+      "en": "QA.1X1 flag SVG",
+      "ja": "QA.1X1の旗のSVG"
+    },
+    "./flags/qa.4x3": {
+      "en": "QA.4X3 flag SVG",
+      "ja": "QA.4X3の旗のSVG"
+    },
+    "./flags/qa": {
+      "en": "QA flag SVG",
+      "ja": "QAの旗のSVG"
+    },
+    "./flags/re--local": {
+      "en": "RE--LOCAL flag SVG",
+      "ja": "RE--LOCALの旗のSVG"
+    },
+    "./flags/re": {
+      "en": "RE flag SVG",
+      "ja": "REの旗のSVG"
+    },
+    "./flags/ro.1x1": {
+      "en": "RO.1X1 flag SVG",
+      "ja": "RO.1X1の旗のSVG"
+    },
+    "./flags/ro.4x3": {
+      "en": "RO.4X3 flag SVG",
+      "ja": "RO.4X3の旗のSVG"
+    },
+    "./flags/ro": {
+      "en": "RO flag SVG",
+      "ja": "ROの旗のSVG"
+    },
+    "./flags/rs.1x1": {
+      "en": "RS.1X1 flag SVG",
+      "ja": "RS.1X1の旗のSVG"
+    },
+    "./flags/rs.4x3": {
+      "en": "RS.4X3 flag SVG",
+      "ja": "RS.4X3の旗のSVG"
+    },
+    "./flags/rs": {
+      "en": "RS flag SVG",
+      "ja": "RSの旗のSVG"
+    },
+    "./flags/ru.1x1": {
+      "en": "RU.1X1 flag SVG",
+      "ja": "RU.1X1の旗のSVG"
+    },
+    "./flags/ru.4x3": {
+      "en": "RU.4X3 flag SVG",
+      "ja": "RU.4X3の旗のSVG"
+    },
+    "./flags/ru": {
+      "en": "RU flag SVG",
+      "ja": "RUの旗のSVG"
+    },
+    "./flags/rw.1x1": {
+      "en": "RW.1X1 flag SVG",
+      "ja": "RW.1X1の旗のSVG"
+    },
+    "./flags/rw.4x3": {
+      "en": "RW.4X3 flag SVG",
+      "ja": "RW.4X3の旗のSVG"
+    },
+    "./flags/rw": {
+      "en": "RW flag SVG",
+      "ja": "RWの旗のSVG"
+    },
+    "./flags/sa.1x1": {
+      "en": "SA.1X1 flag SVG",
+      "ja": "SA.1X1の旗のSVG"
+    },
+    "./flags/sa.4x3": {
+      "en": "SA.4X3 flag SVG",
+      "ja": "SA.4X3の旗のSVG"
+    },
+    "./flags/sa": {
+      "en": "SA flag SVG",
+      "ja": "SAの旗のSVG"
+    },
+    "./flags/sb": {
+      "en": "SB flag SVG",
+      "ja": "SBの旗のSVG"
+    },
+    "./flags/sc.1x1": {
+      "en": "SC.1X1 flag SVG",
+      "ja": "SC.1X1の旗のSVG"
+    },
+    "./flags/sc.4x3": {
+      "en": "SC.4X3 flag SVG",
+      "ja": "SC.4X3の旗のSVG"
+    },
+    "./flags/sc": {
+      "en": "SC flag SVG",
+      "ja": "SCの旗のSVG"
+    },
+    "./flags/sd.1x1": {
+      "en": "SD.1X1 flag SVG",
+      "ja": "SD.1X1の旗のSVG"
+    },
+    "./flags/sd.4x3": {
+      "en": "SD.4X3 flag SVG",
+      "ja": "SD.4X3の旗のSVG"
+    },
+    "./flags/sd": {
+      "en": "SD flag SVG",
+      "ja": "SDの旗のSVG"
+    },
+    "./flags/se.1x1": {
+      "en": "SE.1X1 flag SVG",
+      "ja": "SE.1X1の旗のSVG"
+    },
+    "./flags/se.4x3": {
+      "en": "SE.4X3 flag SVG",
+      "ja": "SE.4X3の旗のSVG"
+    },
+    "./flags/se": {
+      "en": "SE flag SVG",
+      "ja": "SEの旗のSVG"
+    },
+    "./flags/sg.1x1": {
+      "en": "SG.1X1 flag SVG",
+      "ja": "SG.1X1の旗のSVG"
+    },
+    "./flags/sg.4x3": {
+      "en": "SG.4X3 flag SVG",
+      "ja": "SG.4X3の旗のSVG"
+    },
+    "./flags/sg": {
+      "en": "SG flag SVG",
+      "ja": "SGの旗のSVG"
+    },
+    "./flags/sh--union-flag": {
+      "en": "SH--UNION-FLAG flag SVG",
+      "ja": "SH--UNION-FLAGの旗のSVG"
+    },
+    "./flags/sh": {
+      "en": "SH flag SVG",
+      "ja": "SHの旗のSVG"
+    },
+    "./flags/si.1x1": {
+      "en": "SI.1X1 flag SVG",
+      "ja": "SI.1X1の旗のSVG"
+    },
+    "./flags/si.4x3": {
+      "en": "SI.4X3 flag SVG",
+      "ja": "SI.4X3の旗のSVG"
+    },
+    "./flags/si": {
+      "en": "SI flag SVG",
+      "ja": "SIの旗のSVG"
+    },
+    "./flags/sj": {
+      "en": "SJ flag SVG",
+      "ja": "SJの旗のSVG"
+    },
+    "./flags/sk.1x1": {
+      "en": "SK.1X1 flag SVG",
+      "ja": "SK.1X1の旗のSVG"
+    },
+    "./flags/sk.4x3": {
+      "en": "SK.4X3 flag SVG",
+      "ja": "SK.4X3の旗のSVG"
+    },
+    "./flags/sk": {
+      "en": "SK flag SVG",
+      "ja": "SKの旗のSVG"
+    },
+    "./flags/sl.1x1": {
+      "en": "SL.1X1 flag SVG",
+      "ja": "SL.1X1の旗のSVG"
+    },
+    "./flags/sl.4x3": {
+      "en": "SL.4X3 flag SVG",
+      "ja": "SL.4X3の旗のSVG"
+    },
+    "./flags/sl": {
+      "en": "SL flag SVG",
+      "ja": "SLの旗のSVG"
+    },
+    "./flags/sm.1x1": {
+      "en": "SM.1X1 flag SVG",
+      "ja": "SM.1X1の旗のSVG"
+    },
+    "./flags/sm": {
+      "en": "SM flag SVG",
+      "ja": "SMの旗のSVG"
+    },
+    "./flags/sn.1x1": {
+      "en": "SN.1X1 flag SVG",
+      "ja": "SN.1X1の旗のSVG"
+    },
+    "./flags/sn.4x3": {
+      "en": "SN.4X3 flag SVG",
+      "ja": "SN.4X3の旗のSVG"
+    },
+    "./flags/sn": {
+      "en": "SN flag SVG",
+      "ja": "SNの旗のSVG"
+    },
+    "./flags/so.1x1": {
+      "en": "SO.1X1 flag SVG",
+      "ja": "SO.1X1の旗のSVG"
+    },
+    "./flags/so.4x3": {
+      "en": "SO.4X3 flag SVG",
+      "ja": "SO.4X3の旗のSVG"
+    },
+    "./flags/so": {
+      "en": "SO flag SVG",
+      "ja": "SOの旗のSVG"
+    },
+    "./flags/sr.1x1": {
+      "en": "SR.1X1 flag SVG",
+      "ja": "SR.1X1の旗のSVG"
+    },
+    "./flags/sr.4x3": {
+      "en": "SR.4X3 flag SVG",
+      "ja": "SR.4X3の旗のSVG"
+    },
+    "./flags/sr": {
+      "en": "SR flag SVG",
+      "ja": "SRの旗のSVG"
+    },
+    "./flags/ss.4x3": {
+      "en": "SS.4X3 flag SVG",
+      "ja": "SS.4X3の旗のSVG"
+    },
+    "./flags/ss": {
+      "en": "SS flag SVG",
+      "ja": "SSの旗のSVG"
+    },
+    "./flags/st.1x1": {
+      "en": "ST.1X1 flag SVG",
+      "ja": "ST.1X1の旗のSVG"
+    },
+    "./flags/st.4x3": {
+      "en": "ST.4X3 flag SVG",
+      "ja": "ST.4X3の旗のSVG"
+    },
+    "./flags/st": {
+      "en": "ST flag SVG",
+      "ja": "STの旗のSVG"
+    },
+    "./flags/sv.1x1": {
+      "en": "SV.1X1 flag SVG",
+      "ja": "SV.1X1の旗のSVG"
+    },
+    "./flags/sv.4x3": {
+      "en": "SV.4X3 flag SVG",
+      "ja": "SV.4X3の旗のSVG"
+    },
+    "./flags/sv": {
+      "en": "SV flag SVG",
+      "ja": "SVの旗のSVG"
+    },
+    "./flags/sx.1x1": {
+      "en": "SX.1X1 flag SVG",
+      "ja": "SX.1X1の旗のSVG"
+    },
+    "./flags/sx.4x3": {
+      "en": "SX.4X3 flag SVG",
+      "ja": "SX.4X3の旗のSVG"
+    },
+    "./flags/sx": {
+      "en": "SX flag SVG",
+      "ja": "SXの旗のSVG"
+    },
+    "./flags/sy--assad-era": {
+      "en": "SY--ASSAD-ERA flag SVG",
+      "ja": "SY--ASSAD-ERAの旗のSVG"
+    },
+    "./flags/sy.1x1": {
+      "en": "SY.1X1 flag SVG",
+      "ja": "SY.1X1の旗のSVG"
+    },
+    "./flags/sy.4x3": {
+      "en": "SY.4X3 flag SVG",
+      "ja": "SY.4X3の旗のSVG"
+    },
+    "./flags/sy": {
+      "en": "SY flag SVG",
+      "ja": "SYの旗のSVG"
+    },
+    "./flags/sz.1x1": {
+      "en": "SZ.1X1 flag SVG",
+      "ja": "SZ.1X1の旗のSVG"
+    },
+    "./flags/sz.4x3": {
+      "en": "SZ.4X3 flag SVG",
+      "ja": "SZ.4X3の旗のSVG"
+    },
+    "./flags/sz": {
+      "en": "SZ flag SVG",
+      "ja": "SZの旗のSVG"
+    },
+    "./flags/tc.1x1": {
+      "en": "TC.1X1 flag SVG",
+      "ja": "TC.1X1の旗のSVG"
+    },
+    "./flags/tc.4x3": {
+      "en": "TC.4X3 flag SVG",
+      "ja": "TC.4X3の旗のSVG"
+    },
+    "./flags/tc": {
+      "en": "TC flag SVG",
+      "ja": "TCの旗のSVG"
+    },
+    "./flags/td.1x1": {
+      "en": "TD.1X1 flag SVG",
+      "ja": "TD.1X1の旗のSVG"
+    },
+    "./flags/td.4x3": {
+      "en": "TD.4X3 flag SVG",
+      "ja": "TD.4X3の旗のSVG"
+    },
+    "./flags/td": {
+      "en": "TD flag SVG",
+      "ja": "TDの旗のSVG"
+    },
+    "./flags/tf.1x1": {
+      "en": "TF.1X1 flag SVG",
+      "ja": "TF.1X1の旗のSVG"
+    },
+    "./flags/tf.4x3": {
+      "en": "TF.4X3 flag SVG",
+      "ja": "TF.4X3の旗のSVG"
+    },
+    "./flags/tf": {
+      "en": "TF flag SVG",
+      "ja": "TFの旗のSVG"
+    },
+    "./flags/tg.1x1": {
+      "en": "TG.1X1 flag SVG",
+      "ja": "TG.1X1の旗のSVG"
+    },
+    "./flags/tg.4x3": {
+      "en": "TG.4X3 flag SVG",
+      "ja": "TG.4X3の旗のSVG"
+    },
+    "./flags/tg": {
+      "en": "TG flag SVG",
+      "ja": "TGの旗のSVG"
+    },
+    "./flags/th.1x1": {
+      "en": "TH.1X1 flag SVG",
+      "ja": "TH.1X1の旗のSVG"
+    },
+    "./flags/th.4x3": {
+      "en": "TH.4X3 flag SVG",
+      "ja": "TH.4X3の旗のSVG"
+    },
+    "./flags/th": {
+      "en": "TH flag SVG",
+      "ja": "THの旗のSVG"
+    },
+    "./flags/tj.1x1": {
+      "en": "TJ.1X1 flag SVG",
+      "ja": "TJ.1X1の旗のSVG"
+    },
+    "./flags/tj.4x3": {
+      "en": "TJ.4X3 flag SVG",
+      "ja": "TJ.4X3の旗のSVG"
+    },
+    "./flags/tj": {
+      "en": "TJ flag SVG",
+      "ja": "TJの旗のSVG"
+    },
+    "./flags/tk.1x1": {
+      "en": "TK.1X1 flag SVG",
+      "ja": "TK.1X1の旗のSVG"
+    },
+    "./flags/tk.4x3": {
+      "en": "TK.4X3 flag SVG",
+      "ja": "TK.4X3の旗のSVG"
+    },
+    "./flags/tk": {
+      "en": "TK flag SVG",
+      "ja": "TKの旗のSVG"
+    },
+    "./flags/tl": {
+      "en": "TL flag SVG",
+      "ja": "TLの旗のSVG"
+    },
+    "./flags/tm.1x1": {
+      "en": "TM.1X1 flag SVG",
+      "ja": "TM.1X1の旗のSVG"
+    },
+    "./flags/tm.4x3": {
+      "en": "TM.4X3 flag SVG",
+      "ja": "TM.4X3の旗のSVG"
+    },
+    "./flags/tm": {
+      "en": "TM flag SVG",
+      "ja": "TMの旗のSVG"
+    },
+    "./flags/tn.1x1": {
+      "en": "TN.1X1 flag SVG",
+      "ja": "TN.1X1の旗のSVG"
+    },
+    "./flags/tn.4x3": {
+      "en": "TN.4X3 flag SVG",
+      "ja": "TN.4X3の旗のSVG"
+    },
+    "./flags/tn": {
+      "en": "TN flag SVG",
+      "ja": "TNの旗のSVG"
+    },
+    "./flags/to.1x1": {
+      "en": "TO.1X1 flag SVG",
+      "ja": "TO.1X1の旗のSVG"
+    },
+    "./flags/to.4x3": {
+      "en": "TO.4X3 flag SVG",
+      "ja": "TO.4X3の旗のSVG"
+    },
+    "./flags/to": {
+      "en": "TO flag SVG",
+      "ja": "TOの旗のSVG"
+    },
+    "./flags/tr.1x1": {
+      "en": "TR.1X1 flag SVG",
+      "ja": "TR.1X1の旗のSVG"
+    },
+    "./flags/tr.4x3": {
+      "en": "TR.4X3 flag SVG",
+      "ja": "TR.4X3の旗のSVG"
+    },
+    "./flags/tr": {
+      "en": "TR flag SVG",
+      "ja": "TRの旗のSVG"
+    },
+    "./flags/tt.1x1": {
+      "en": "TT.1X1 flag SVG",
+      "ja": "TT.1X1の旗のSVG"
+    },
+    "./flags/tt.4x3": {
+      "en": "TT.4X3 flag SVG",
+      "ja": "TT.4X3の旗のSVG"
+    },
+    "./flags/tt": {
+      "en": "TT flag SVG",
+      "ja": "TTの旗のSVG"
+    },
+    "./flags/tv.1x1": {
+      "en": "TV.1X1 flag SVG",
+      "ja": "TV.1X1の旗のSVG"
+    },
+    "./flags/tv.4x3": {
+      "en": "TV.4X3 flag SVG",
+      "ja": "TV.4X3の旗のSVG"
+    },
+    "./flags/tv": {
+      "en": "TV flag SVG",
+      "ja": "TVの旗のSVG"
+    },
+    "./flags/tw.1x1": {
+      "en": "TW.1X1 flag SVG",
+      "ja": "TW.1X1の旗のSVG"
+    },
+    "./flags/tw.4x3": {
+      "en": "TW.4X3 flag SVG",
+      "ja": "TW.4X3の旗のSVG"
+    },
+    "./flags/tw": {
+      "en": "TW flag SVG",
+      "ja": "TWの旗のSVG"
+    },
+    "./flags/tz.1x1": {
+      "en": "TZ.1X1 flag SVG",
+      "ja": "TZ.1X1の旗のSVG"
+    },
+    "./flags/tz.4x3": {
+      "en": "TZ.4X3 flag SVG",
+      "ja": "TZ.4X3の旗のSVG"
+    },
+    "./flags/tz": {
+      "en": "TZ flag SVG",
+      "ja": "TZの旗のSVG"
+    },
+    "./flags/ua.1x1": {
+      "en": "UA.1X1 flag SVG",
+      "ja": "UA.1X1の旗のSVG"
+    },
+    "./flags/ua.4x3": {
+      "en": "UA.4X3 flag SVG",
+      "ja": "UA.4X3の旗のSVG"
+    },
+    "./flags/ua": {
+      "en": "UA flag SVG",
+      "ja": "UAの旗のSVG"
+    },
+    "./flags/ug.1x1": {
+      "en": "UG.1X1 flag SVG",
+      "ja": "UG.1X1の旗のSVG"
+    },
+    "./flags/ug.4x3": {
+      "en": "UG.4X3 flag SVG",
+      "ja": "UG.4X3の旗のSVG"
+    },
+    "./flags/ug": {
+      "en": "UG flag SVG",
+      "ja": "UGの旗のSVG"
+    },
+    "./flags/um": {
+      "en": "UM flag SVG",
+      "ja": "UMの旗のSVG"
+    },
+    "./flags/us-ak": {
+      "en": "US-AK flag SVG",
+      "ja": "US-AKの旗のSVG"
+    },
+    "./flags/us-al": {
+      "en": "US-AL flag SVG",
+      "ja": "US-ALの旗のSVG"
+    },
+    "./flags/us-ar": {
+      "en": "US-AR flag SVG",
+      "ja": "US-ARの旗のSVG"
+    },
+    "./flags/us-as": {
+      "en": "US-AS flag SVG",
+      "ja": "US-ASの旗のSVG"
+    },
+    "./flags/us-az": {
+      "en": "US-AZ flag SVG",
+      "ja": "US-AZの旗のSVG"
+    },
+    "./flags/us-ca": {
+      "en": "US-CA flag SVG",
+      "ja": "US-CAの旗のSVG"
+    },
+    "./flags/us-co": {
+      "en": "US-CO flag SVG",
+      "ja": "US-COの旗のSVG"
+    },
+    "./flags/us-ct": {
+      "en": "US-CT flag SVG",
+      "ja": "US-CTの旗のSVG"
+    },
+    "./flags/us-dc": {
+      "en": "US-DC flag SVG",
+      "ja": "US-DCの旗のSVG"
+    },
+    "./flags/us-de": {
+      "en": "US-DE flag SVG",
+      "ja": "US-DEの旗のSVG"
+    },
+    "./flags/us-fl": {
+      "en": "US-FL flag SVG",
+      "ja": "US-FLの旗のSVG"
+    },
+    "./flags/us-ga": {
+      "en": "US-GA flag SVG",
+      "ja": "US-GAの旗のSVG"
+    },
+    "./flags/us-gu": {
+      "en": "US-GU flag SVG",
+      "ja": "US-GUの旗のSVG"
+    },
+    "./flags/us-hi": {
+      "en": "US-HI flag SVG",
+      "ja": "US-HIの旗のSVG"
+    },
+    "./flags/us-ia": {
+      "en": "US-IA flag SVG",
+      "ja": "US-IAの旗のSVG"
+    },
+    "./flags/us-id": {
+      "en": "US-ID flag SVG",
+      "ja": "US-IDの旗のSVG"
+    },
+    "./flags/us-il": {
+      "en": "US-IL flag SVG",
+      "ja": "US-ILの旗のSVG"
+    },
+    "./flags/us-in": {
+      "en": "US-IN flag SVG",
+      "ja": "US-INの旗のSVG"
+    },
+    "./flags/us-ks": {
+      "en": "US-KS flag SVG",
+      "ja": "US-KSの旗のSVG"
+    },
+    "./flags/us-ky": {
+      "en": "US-KY flag SVG",
+      "ja": "US-KYの旗のSVG"
+    },
+    "./flags/us-la": {
+      "en": "US-LA flag SVG",
+      "ja": "US-LAの旗のSVG"
+    },
+    "./flags/us-ma": {
+      "en": "US-MA flag SVG",
+      "ja": "US-MAの旗のSVG"
+    },
+    "./flags/us-md": {
+      "en": "US-MD flag SVG",
+      "ja": "US-MDの旗のSVG"
+    },
+    "./flags/us-me": {
+      "en": "US-ME flag SVG",
+      "ja": "US-MEの旗のSVG"
+    },
+    "./flags/us-mi": {
+      "en": "US-MI flag SVG",
+      "ja": "US-MIの旗のSVG"
+    },
+    "./flags/us-mn": {
+      "en": "US-MN flag SVG",
+      "ja": "US-MNの旗のSVG"
+    },
+    "./flags/us-mo": {
+      "en": "US-MO flag SVG",
+      "ja": "US-MOの旗のSVG"
+    },
+    "./flags/us-mp": {
+      "en": "US-MP flag SVG",
+      "ja": "US-MPの旗のSVG"
+    },
+    "./flags/us-ms": {
+      "en": "US-MS flag SVG",
+      "ja": "US-MSの旗のSVG"
+    },
+    "./flags/us-mt": {
+      "en": "US-MT flag SVG",
+      "ja": "US-MTの旗のSVG"
+    },
+    "./flags/us-nc": {
+      "en": "US-NC flag SVG",
+      "ja": "US-NCの旗のSVG"
+    },
+    "./flags/us-nd": {
+      "en": "US-ND flag SVG",
+      "ja": "US-NDの旗のSVG"
+    },
+    "./flags/us-ne": {
+      "en": "US-NE flag SVG",
+      "ja": "US-NEの旗のSVG"
+    },
+    "./flags/us-nh": {
+      "en": "US-NH flag SVG",
+      "ja": "US-NHの旗のSVG"
+    },
+    "./flags/us-nj": {
+      "en": "US-NJ flag SVG",
+      "ja": "US-NJの旗のSVG"
+    },
+    "./flags/us-nm": {
+      "en": "US-NM flag SVG",
+      "ja": "US-NMの旗のSVG"
+    },
+    "./flags/us-nv": {
+      "en": "US-NV flag SVG",
+      "ja": "US-NVの旗のSVG"
+    },
+    "./flags/us-ny": {
+      "en": "US-NY flag SVG",
+      "ja": "US-NYの旗のSVG"
+    },
+    "./flags/us-oh": {
+      "en": "US-OH flag SVG",
+      "ja": "US-OHの旗のSVG"
+    },
+    "./flags/us-ok": {
+      "en": "US-OK flag SVG",
+      "ja": "US-OKの旗のSVG"
+    },
+    "./flags/us-or": {
+      "en": "US-OR flag SVG",
+      "ja": "US-ORの旗のSVG"
+    },
+    "./flags/us-pa": {
+      "en": "US-PA flag SVG",
+      "ja": "US-PAの旗のSVG"
+    },
+    "./flags/us-pr": {
+      "en": "US-PR flag SVG",
+      "ja": "US-PRの旗のSVG"
+    },
+    "./flags/us-ri": {
+      "en": "US-RI flag SVG",
+      "ja": "US-RIの旗のSVG"
+    },
+    "./flags/us-sc": {
+      "en": "US-SC flag SVG",
+      "ja": "US-SCの旗のSVG"
+    },
+    "./flags/us-sd": {
+      "en": "US-SD flag SVG",
+      "ja": "US-SDの旗のSVG"
+    },
+    "./flags/us-tn": {
+      "en": "US-TN flag SVG",
+      "ja": "US-TNの旗のSVG"
+    },
+    "./flags/us-tx": {
+      "en": "US-TX flag SVG",
+      "ja": "US-TXの旗のSVG"
+    },
+    "./flags/us-um": {
+      "en": "US-UM flag SVG",
+      "ja": "US-UMの旗のSVG"
+    },
+    "./flags/us-ut": {
+      "en": "US-UT flag SVG",
+      "ja": "US-UTの旗のSVG"
+    },
+    "./flags/us-va": {
+      "en": "US-VA flag SVG",
+      "ja": "US-VAの旗のSVG"
+    },
+    "./flags/us-vi": {
+      "en": "US-VI flag SVG",
+      "ja": "US-VIの旗のSVG"
+    },
+    "./flags/us-vt": {
+      "en": "US-VT flag SVG",
+      "ja": "US-VTの旗のSVG"
+    },
+    "./flags/us-wa": {
+      "en": "US-WA flag SVG",
+      "ja": "US-WAの旗のSVG"
+    },
+    "./flags/us-wi": {
+      "en": "US-WI flag SVG",
+      "ja": "US-WIの旗のSVG"
+    },
+    "./flags/us-wv": {
+      "en": "US-WV flag SVG",
+      "ja": "US-WVの旗のSVG"
+    },
+    "./flags/us-wy": {
+      "en": "US-WY flag SVG",
+      "ja": "US-WYの旗のSVG"
+    },
+    "./flags/us.1x1": {
+      "en": "US.1X1 flag SVG",
+      "ja": "US.1X1の旗のSVG"
+    },
+    "./flags/us.4x3": {
+      "en": "US.4X3 flag SVG",
+      "ja": "US.4X3の旗のSVG"
+    },
+    "./flags/us": {
+      "en": "US flag SVG",
+      "ja": "USの旗のSVG"
+    },
+    "./flags/uy.1x1": {
+      "en": "UY.1X1 flag SVG",
+      "ja": "UY.1X1の旗のSVG"
+    },
+    "./flags/uy.4x3": {
+      "en": "UY.4X3 flag SVG",
+      "ja": "UY.4X3の旗のSVG"
+    },
+    "./flags/uy": {
+      "en": "UY flag SVG",
+      "ja": "UYの旗のSVG"
+    },
+    "./flags/uz.1x1": {
+      "en": "UZ.1X1 flag SVG",
+      "ja": "UZ.1X1の旗のSVG"
+    },
+    "./flags/uz.4x3": {
+      "en": "UZ.4X3 flag SVG",
+      "ja": "UZ.4X3の旗のSVG"
+    },
+    "./flags/uz": {
+      "en": "UZ flag SVG",
+      "ja": "UZの旗のSVG"
+    },
+    "./flags/va.4x3": {
+      "en": "VA.4X3 flag SVG",
+      "ja": "VA.4X3の旗のSVG"
+    },
+    "./flags/va": {
+      "en": "VA flag SVG",
+      "ja": "VAの旗のSVG"
+    },
+    "./flags/vc.1x1": {
+      "en": "VC.1X1 flag SVG",
+      "ja": "VC.1X1の旗のSVG"
+    },
+    "./flags/vc.4x3": {
+      "en": "VC.4X3 flag SVG",
+      "ja": "VC.4X3の旗のSVG"
+    },
+    "./flags/vc": {
+      "en": "VC flag SVG",
+      "ja": "VCの旗のSVG"
+    },
+    "./flags/ve.1x1": {
+      "en": "VE.1X1 flag SVG",
+      "ja": "VE.1X1の旗のSVG"
+    },
+    "./flags/ve.4x3": {
+      "en": "VE.4X3 flag SVG",
+      "ja": "VE.4X3の旗のSVG"
+    },
+    "./flags/ve": {
+      "en": "VE flag SVG",
+      "ja": "VEの旗のSVG"
+    },
+    "./flags/vg.1x1": {
+      "en": "VG.1X1 flag SVG",
+      "ja": "VG.1X1の旗のSVG"
+    },
+    "./flags/vg.4x3": {
+      "en": "VG.4X3 flag SVG",
+      "ja": "VG.4X3の旗のSVG"
+    },
+    "./flags/vg": {
+      "en": "VG flag SVG",
+      "ja": "VGの旗のSVG"
+    },
+    "./flags/vi.1x1": {
+      "en": "VI.1X1 flag SVG",
+      "ja": "VI.1X1の旗のSVG"
+    },
+    "./flags/vi.4x3": {
+      "en": "VI.4X3 flag SVG",
+      "ja": "VI.4X3の旗のSVG"
+    },
+    "./flags/vi": {
+      "en": "VI flag SVG",
+      "ja": "VIの旗のSVG"
+    },
+    "./flags/vn.1x1": {
+      "en": "VN.1X1 flag SVG",
+      "ja": "VN.1X1の旗のSVG"
+    },
+    "./flags/vn.4x3": {
+      "en": "VN.4X3 flag SVG",
+      "ja": "VN.4X3の旗のSVG"
+    },
+    "./flags/vn": {
+      "en": "VN flag SVG",
+      "ja": "VNの旗のSVG"
+    },
+    "./flags/vu.1x1": {
+      "en": "VU.1X1 flag SVG",
+      "ja": "VU.1X1の旗のSVG"
+    },
+    "./flags/vu.4x3": {
+      "en": "VU.4X3 flag SVG",
+      "ja": "VU.4X3の旗のSVG"
+    },
+    "./flags/vu": {
+      "en": "VU flag SVG",
+      "ja": "VUの旗のSVG"
+    },
+    "./flags/wf--local": {
+      "en": "WF--LOCAL flag SVG",
+      "ja": "WF--LOCALの旗のSVG"
+    },
+    "./flags/wf": {
+      "en": "WF flag SVG",
+      "ja": "WFの旗のSVG"
+    },
+    "./flags/ws.1x1": {
+      "en": "WS.1X1 flag SVG",
+      "ja": "WS.1X1の旗のSVG"
+    },
+    "./flags/ws.4x3": {
+      "en": "WS.4X3 flag SVG",
+      "ja": "WS.4X3の旗のSVG"
+    },
+    "./flags/ws": {
+      "en": "WS flag SVG",
+      "ja": "WSの旗のSVG"
+    },
+    "./flags/xk.1x1": {
+      "en": "XK.1X1 flag SVG",
+      "ja": "XK.1X1の旗のSVG"
+    },
+    "./flags/xk.4x3": {
+      "en": "XK.4X3 flag SVG",
+      "ja": "XK.4X3の旗のSVG"
+    },
+    "./flags/xk": {
+      "en": "XK flag SVG",
+      "ja": "XKの旗のSVG"
+    },
+    "./flags/ye": {
+      "en": "YE flag SVG",
+      "ja": "YEの旗のSVG"
+    },
+    "./flags/yt--local": {
+      "en": "YT--LOCAL flag SVG",
+      "ja": "YT--LOCALの旗のSVG"
+    },
+    "./flags/yt": {
+      "en": "YT flag SVG",
+      "ja": "YTの旗のSVG"
+    },
+    "./flags/za.1x1": {
+      "en": "ZA.1X1 flag SVG",
+      "ja": "ZA.1X1の旗のSVG"
+    },
+    "./flags/za.4x3": {
+      "en": "ZA.4X3 flag SVG",
+      "ja": "ZA.4X3の旗のSVG"
+    },
+    "./flags/za": {
+      "en": "ZA flag SVG",
+      "ja": "ZAの旗のSVG"
+    },
+    "./flags/zm.1x1": {
+      "en": "ZM.1X1 flag SVG",
+      "ja": "ZM.1X1の旗のSVG"
+    },
+    "./flags/zm.4x3": {
+      "en": "ZM.4X3 flag SVG",
+      "ja": "ZM.4X3の旗のSVG"
+    },
+    "./flags/zm": {
+      "en": "ZM flag SVG",
+      "ja": "ZMの旗のSVG"
+    },
+    "./flags/zw.1x1": {
+      "en": "ZW.1X1 flag SVG",
+      "ja": "ZW.1X1の旗のSVG"
+    },
+    "./flags/zw.4x3": {
+      "en": "ZW.4X3 flag SVG",
+      "ja": "ZW.4X3の旗のSVG"
+    },
+    "./flags/zw": {
+      "en": "ZW flag SVG",
+      "ja": "ZWの旗のSVG"
+    }
+  }
+}

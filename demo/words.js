@@ -3,6 +3,7 @@
 export const WORDS = {
   en: {
     pageApi: "API reference",
+    pageDocs: "Docs",
     pitch: "Flags as SVG for every country, and the regions of Japan, Canada, the United States, Australia, the United Kingdom, Germany, France, Switzerland, Austria and Brazil, at their true proportions, keyed by ISO 3166 code. Tap a flag for where it comes from, its licence, the code to embed it and downloads; or play the quiz.",
     name: "Hata (旗) is Japanese for “flag”.",
     nameLink: "About the name",
@@ -152,6 +153,7 @@ export const WORDS = {
   },
   ja: {
     pageApi: "API（英語）",
+    pageDocs: "ドキュメント",
     pitch: "世界の国々と、日本・カナダ・アメリカ・オーストラリア・イギリス・ドイツ・フランス・スイス・オーストリア・ブラジルの地域の旗を、本来の縦横比の SVG で収録し、ISO 3166 のコードで引けるようにしたパッケージです。旗をタップすると、出典、ライセンス、埋め込み用のコード、ダウンロードが表示されます。クイズもあります。",
     name: "Hata は、国や地域のしるしとして掲げる「旗（はた）」のことです。",
     nameLink: "名前について（英語）",

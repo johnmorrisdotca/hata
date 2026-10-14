@@ -17,6 +17,7 @@ const words = {
     nameLink: "About the name",
     foot: "The choices are in the link. The flag is drawn in your browser.",
     toGallery: "Flag gallery",
+    pageDocs: "Docs", pageApi: "API reference",
     makerFlag: "A flag",
     makerFlagSays: "A flag at its own proportions or in a frame.",
     copyLink: "Copy a link to this flag",
@@ -30,6 +31,7 @@ const words = {
     nameLink: "名前について",
     foot: "選択はリンクに入ります。旗はブラウザで描画されます。",
     toGallery: "旗の一覧",
+    pageDocs: "ドキュメント", pageApi: "API（英語）",
     makerFlag: "旗",
     makerFlagSays: "本来の縦横比、または枠に収めた旗です。",
     copyLink: "この旗へのリンクをコピー",
@@ -64,7 +66,7 @@ const legacy = (settings) => ({ code: "JP", shape: "own", lang: document.documen
 let context = {};
 let epoch = 0;
 let mounted;
-const page = globalThis.familyLanguage({ id: "hata", words, onChange: () => mounted?.draw() });
+const page = globalThis.familyLanguage({ id: "hata", words, onChange: () => { docsLink(); mounted?.draw(); } });
 const builder = familyEmbedBuilder({ id: "hata", packageName: "@johnmorrisdotca/hata", major: VERSION.split(".")[0], site: "https://johnmorrisdotca.github.io/hata/", title: "Hata · a flag", titleJa: "旗の埋め込み", options,
   groups: { flag: { en: "The flag", ja: "旗の設定" } }, unit: (option) => option.id === "width" ? "px" : "",
   leftOut: { "element.loading": "The preview is eager; iframe snippets use lazy loading." },
@@ -98,3 +100,6 @@ mounted = builder.mount({ words, language: () => page, initial: { flag: { size: 
   }).catch(() => { if (current === epoch) note.textContent = ""; });
   return { destroy() { epoch += 1; element.remove(); } };
 } });
+
+function docsLink() { document.querySelector('[data-say="pageDocs"]')?.setAttribute("href", page.lang === "ja" ? "docs/ja/index.html" : "docs/index.html"); }
+docsLink();

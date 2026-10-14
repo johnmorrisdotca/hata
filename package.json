@@ -1,7 +1,7 @@
 {
   "name": "@johnmorrisdotca/hata",
   "version": "1.5.0",
-  "description": "Hata 旗, flags as SVG: every country, and the first-level regions of Japan, Canada, the United States, Australia, the United Kingdom, Germany, France, Switzerland, Austria and Brazil, keyed by the ISO 3166 codes Kuni uses. Optimised, sanitised, with the Wikimedia Commons file, author and licence of each. One module per flag, a lazy lookup, frames for 4:3, square and round that never misrepresent a flag, and a <hata-flag> custom element to embed one anywhere. Zero dependencies.",
+  "description": "Hata 旗 — Country and region flags as SVG: country and regional flags, native ratios and curated frames, source/author/licence metadata, one module per flag, lazy loading and an optional custom element. Zero dependencies.",
   "keywords": [
     "flags",
     "flag-icons",
@@ -89,7 +89,3623 @@
       "default": "./dist/element-define.js"
     },
     "./svg/*": "./dist/svg/*",
-    "./package.json": "./package.json"
+    "./package.json": "./package.json",
+    "./flags/ad.1x1": {
+      "types": "./dist/flags/ad.1x1.d.ts",
+      "default": "./dist/flags/ad.1x1.js"
+    },
+    "./flags/ad.4x3": {
+      "types": "./dist/flags/ad.4x3.d.ts",
+      "default": "./dist/flags/ad.4x3.js"
+    },
+    "./flags/ad": {
+      "types": "./dist/flags/ad.d.ts",
+      "default": "./dist/flags/ad.js"
+    },
+    "./flags/ae.1x1": {
+      "types": "./dist/flags/ae.1x1.d.ts",
+      "default": "./dist/flags/ae.1x1.js"
+    },
+    "./flags/ae.4x3": {
+      "types": "./dist/flags/ae.4x3.d.ts",
+      "default": "./dist/flags/ae.4x3.js"
+    },
+    "./flags/ae": {
+      "types": "./dist/flags/ae.d.ts",
+      "default": "./dist/flags/ae.js"
+    },
+    "./flags/af--de-facto": {
+      "types": "./dist/flags/af--de-facto.d.ts",
+      "default": "./dist/flags/af--de-facto.js"
+    },
+    "./flags/af.1x1": {
+      "types": "./dist/flags/af.1x1.d.ts",
+      "default": "./dist/flags/af.1x1.js"
+    },
+    "./flags/af.4x3": {
+      "types": "./dist/flags/af.4x3.d.ts",
+      "default": "./dist/flags/af.4x3.js"
+    },
+    "./flags/af": {
+      "types": "./dist/flags/af.d.ts",
+      "default": "./dist/flags/af.js"
+    },
+    "./flags/ag.1x1": {
+      "types": "./dist/flags/ag.1x1.d.ts",
+      "default": "./dist/flags/ag.1x1.js"
+    },
+    "./flags/ag.4x3": {
+      "types": "./dist/flags/ag.4x3.d.ts",
+      "default": "./dist/flags/ag.4x3.js"
+    },
+    "./flags/ag": {
+      "types": "./dist/flags/ag.d.ts",
+      "default": "./dist/flags/ag.js"
+    },
+    "./flags/ai.1x1": {
+      "types": "./dist/flags/ai.1x1.d.ts",
+      "default": "./dist/flags/ai.1x1.js"
+    },
+    "./flags/ai.4x3": {
+      "types": "./dist/flags/ai.4x3.d.ts",
+      "default": "./dist/flags/ai.4x3.js"
+    },
+    "./flags/ai": {
+      "types": "./dist/flags/ai.d.ts",
+      "default": "./dist/flags/ai.js"
+    },
+    "./flags/al.1x1": {
+      "types": "./dist/flags/al.1x1.d.ts",
+      "default": "./dist/flags/al.1x1.js"
+    },
+    "./flags/al.4x3": {
+      "types": "./dist/flags/al.4x3.d.ts",
+      "default": "./dist/flags/al.4x3.js"
+    },
+    "./flags/al": {
+      "types": "./dist/flags/al.d.ts",
+      "default": "./dist/flags/al.js"
+    },
+    "./flags/am.1x1": {
+      "types": "./dist/flags/am.1x1.d.ts",
+      "default": "./dist/flags/am.1x1.js"
+    },
+    "./flags/am.4x3": {
+      "types": "./dist/flags/am.4x3.d.ts",
+      "default": "./dist/flags/am.4x3.js"
+    },
+    "./flags/am": {
+      "types": "./dist/flags/am.d.ts",
+      "default": "./dist/flags/am.js"
+    },
+    "./flags/ao.1x1": {
+      "types": "./dist/flags/ao.1x1.d.ts",
+      "default": "./dist/flags/ao.1x1.js"
+    },
+    "./flags/ao.4x3": {
+      "types": "./dist/flags/ao.4x3.d.ts",
+      "default": "./dist/flags/ao.4x3.js"
+    },
+    "./flags/ao": {
+      "types": "./dist/flags/ao.d.ts",
+      "default": "./dist/flags/ao.js"
+    },
+    "./flags/ar.1x1": {
+      "types": "./dist/flags/ar.1x1.d.ts",
+      "default": "./dist/flags/ar.1x1.js"
+    },
+    "./flags/ar.4x3": {
+      "types": "./dist/flags/ar.4x3.d.ts",
+      "default": "./dist/flags/ar.4x3.js"
+    },
+    "./flags/ar": {
+      "types": "./dist/flags/ar.d.ts",
+      "default": "./dist/flags/ar.js"
+    },
+    "./flags/as.1x1": {
+      "types": "./dist/flags/as.1x1.d.ts",
+      "default": "./dist/flags/as.1x1.js"
+    },
+    "./flags/as.4x3": {
+      "types": "./dist/flags/as.4x3.d.ts",
+      "default": "./dist/flags/as.4x3.js"
+    },
+    "./flags/as": {
+      "types": "./dist/flags/as.d.ts",
+      "default": "./dist/flags/as.js"
+    },
+    "./flags/at-1": {
+      "types": "./dist/flags/at-1.d.ts",
+      "default": "./dist/flags/at-1.js"
+    },
+    "./flags/at-2": {
+      "types": "./dist/flags/at-2.d.ts",
+      "default": "./dist/flags/at-2.js"
+    },
+    "./flags/at-3": {
+      "types": "./dist/flags/at-3.d.ts",
+      "default": "./dist/flags/at-3.js"
+    },
+    "./flags/at-4": {
+      "types": "./dist/flags/at-4.d.ts",
+      "default": "./dist/flags/at-4.js"
+    },
+    "./flags/at-5": {
+      "types": "./dist/flags/at-5.d.ts",
+      "default": "./dist/flags/at-5.js"
+    },
+    "./flags/at-6": {
+      "types": "./dist/flags/at-6.d.ts",
+      "default": "./dist/flags/at-6.js"
+    },
+    "./flags/at-7": {
+      "types": "./dist/flags/at-7.d.ts",
+      "default": "./dist/flags/at-7.js"
+    },
+    "./flags/at-8": {
+      "types": "./dist/flags/at-8.d.ts",
+      "default": "./dist/flags/at-8.js"
+    },
+    "./flags/at-9": {
+      "types": "./dist/flags/at-9.d.ts",
+      "default": "./dist/flags/at-9.js"
+    },
+    "./flags/at.1x1": {
+      "types": "./dist/flags/at.1x1.d.ts",
+      "default": "./dist/flags/at.1x1.js"
+    },
+    "./flags/at.4x3": {
+      "types": "./dist/flags/at.4x3.d.ts",
+      "default": "./dist/flags/at.4x3.js"
+    },
+    "./flags/at": {
+      "types": "./dist/flags/at.d.ts",
+      "default": "./dist/flags/at.js"
+    },
+    "./flags/au-act": {
+      "types": "./dist/flags/au-act.d.ts",
+      "default": "./dist/flags/au-act.js"
+    },
+    "./flags/au-nsw": {
+      "types": "./dist/flags/au-nsw.d.ts",
+      "default": "./dist/flags/au-nsw.js"
+    },
+    "./flags/au-nt": {
+      "types": "./dist/flags/au-nt.d.ts",
+      "default": "./dist/flags/au-nt.js"
+    },
+    "./flags/au-qld": {
+      "types": "./dist/flags/au-qld.d.ts",
+      "default": "./dist/flags/au-qld.js"
+    },
+    "./flags/au-sa": {
+      "types": "./dist/flags/au-sa.d.ts",
+      "default": "./dist/flags/au-sa.js"
+    },
+    "./flags/au-tas": {
+      "types": "./dist/flags/au-tas.d.ts",
+      "default": "./dist/flags/au-tas.js"
+    },
+    "./flags/au-vic": {
+      "types": "./dist/flags/au-vic.d.ts",
+      "default": "./dist/flags/au-vic.js"
+    },
+    "./flags/au-wa": {
+      "types": "./dist/flags/au-wa.d.ts",
+      "default": "./dist/flags/au-wa.js"
+    },
+    "./flags/au.1x1": {
+      "types": "./dist/flags/au.1x1.d.ts",
+      "default": "./dist/flags/au.1x1.js"
+    },
+    "./flags/au.4x3": {
+      "types": "./dist/flags/au.4x3.d.ts",
+      "default": "./dist/flags/au.4x3.js"
+    },
+    "./flags/au": {
+      "types": "./dist/flags/au.d.ts",
+      "default": "./dist/flags/au.js"
+    },
+    "./flags/aw.1x1": {
+      "types": "./dist/flags/aw.1x1.d.ts",
+      "default": "./dist/flags/aw.1x1.js"
+    },
+    "./flags/aw.4x3": {
+      "types": "./dist/flags/aw.4x3.d.ts",
+      "default": "./dist/flags/aw.4x3.js"
+    },
+    "./flags/aw": {
+      "types": "./dist/flags/aw.d.ts",
+      "default": "./dist/flags/aw.js"
+    },
+    "./flags/ax.1x1": {
+      "types": "./dist/flags/ax.1x1.d.ts",
+      "default": "./dist/flags/ax.1x1.js"
+    },
+    "./flags/ax.4x3": {
+      "types": "./dist/flags/ax.4x3.d.ts",
+      "default": "./dist/flags/ax.4x3.js"
+    },
+    "./flags/ax": {
+      "types": "./dist/flags/ax.d.ts",
+      "default": "./dist/flags/ax.js"
+    },
+    "./flags/az.1x1": {
+      "types": "./dist/flags/az.1x1.d.ts",
+      "default": "./dist/flags/az.1x1.js"
+    },
+    "./flags/az.4x3": {
+      "types": "./dist/flags/az.4x3.d.ts",
+      "default": "./dist/flags/az.4x3.js"
+    },
+    "./flags/az": {
+      "types": "./dist/flags/az.d.ts",
+      "default": "./dist/flags/az.js"
+    },
+    "./flags/ba.1x1": {
+      "types": "./dist/flags/ba.1x1.d.ts",
+      "default": "./dist/flags/ba.1x1.js"
+    },
+    "./flags/ba.4x3": {
+      "types": "./dist/flags/ba.4x3.d.ts",
+      "default": "./dist/flags/ba.4x3.js"
+    },
+    "./flags/ba": {
+      "types": "./dist/flags/ba.d.ts",
+      "default": "./dist/flags/ba.js"
+    },
+    "./flags/bb.1x1": {
+      "types": "./dist/flags/bb.1x1.d.ts",
+      "default": "./dist/flags/bb.1x1.js"
+    },
+    "./flags/bb.4x3": {
+      "types": "./dist/flags/bb.4x3.d.ts",
+      "default": "./dist/flags/bb.4x3.js"
+    },
+    "./flags/bb": {
+      "types": "./dist/flags/bb.d.ts",
+      "default": "./dist/flags/bb.js"
+    },
+    "./flags/bd.1x1": {
+      "types": "./dist/flags/bd.1x1.d.ts",
+      "default": "./dist/flags/bd.1x1.js"
+    },
+    "./flags/bd.4x3": {
+      "types": "./dist/flags/bd.4x3.d.ts",
+      "default": "./dist/flags/bd.4x3.js"
+    },
+    "./flags/bd": {
+      "types": "./dist/flags/bd.d.ts",
+      "default": "./dist/flags/bd.js"
+    },
+    "./flags/be.1x1": {
+      "types": "./dist/flags/be.1x1.d.ts",
+      "default": "./dist/flags/be.1x1.js"
+    },
+    "./flags/be.4x3": {
+      "types": "./dist/flags/be.4x3.d.ts",
+      "default": "./dist/flags/be.4x3.js"
+    },
+    "./flags/be": {
+      "types": "./dist/flags/be.d.ts",
+      "default": "./dist/flags/be.js"
+    },
+    "./flags/bf.1x1": {
+      "types": "./dist/flags/bf.1x1.d.ts",
+      "default": "./dist/flags/bf.1x1.js"
+    },
+    "./flags/bf.4x3": {
+      "types": "./dist/flags/bf.4x3.d.ts",
+      "default": "./dist/flags/bf.4x3.js"
+    },
+    "./flags/bf": {
+      "types": "./dist/flags/bf.d.ts",
+      "default": "./dist/flags/bf.js"
+    },
+    "./flags/bg.1x1": {
+      "types": "./dist/flags/bg.1x1.d.ts",
+      "default": "./dist/flags/bg.1x1.js"
+    },
+    "./flags/bg.4x3": {
+      "types": "./dist/flags/bg.4x3.d.ts",
+      "default": "./dist/flags/bg.4x3.js"
+    },
+    "./flags/bg": {
+      "types": "./dist/flags/bg.d.ts",
+      "default": "./dist/flags/bg.js"
+    },
+    "./flags/bh.1x1": {
+      "types": "./dist/flags/bh.1x1.d.ts",
+      "default": "./dist/flags/bh.1x1.js"
+    },
+    "./flags/bh.4x3": {
+      "types": "./dist/flags/bh.4x3.d.ts",
+      "default": "./dist/flags/bh.4x3.js"
+    },
+    "./flags/bh": {
+      "types": "./dist/flags/bh.d.ts",
+      "default": "./dist/flags/bh.js"
+    },
+    "./flags/bi.4x3": {
+      "types": "./dist/flags/bi.4x3.d.ts",
+      "default": "./dist/flags/bi.4x3.js"
+    },
+    "./flags/bi": {
+      "types": "./dist/flags/bi.d.ts",
+      "default": "./dist/flags/bi.js"
+    },
+    "./flags/bj.1x1": {
+      "types": "./dist/flags/bj.1x1.d.ts",
+      "default": "./dist/flags/bj.1x1.js"
+    },
+    "./flags/bj.4x3": {
+      "types": "./dist/flags/bj.4x3.d.ts",
+      "default": "./dist/flags/bj.4x3.js"
+    },
+    "./flags/bj": {
+      "types": "./dist/flags/bj.d.ts",
+      "default": "./dist/flags/bj.js"
+    },
+    "./flags/bl--local": {
+      "types": "./dist/flags/bl--local.d.ts",
+      "default": "./dist/flags/bl--local.js"
+    },
+    "./flags/bl": {
+      "types": "./dist/flags/bl.d.ts",
+      "default": "./dist/flags/bl.js"
+    },
+    "./flags/bm.1x1": {
+      "types": "./dist/flags/bm.1x1.d.ts",
+      "default": "./dist/flags/bm.1x1.js"
+    },
+    "./flags/bm.4x3": {
+      "types": "./dist/flags/bm.4x3.d.ts",
+      "default": "./dist/flags/bm.4x3.js"
+    },
+    "./flags/bm": {
+      "types": "./dist/flags/bm.d.ts",
+      "default": "./dist/flags/bm.js"
+    },
+    "./flags/bn.1x1": {
+      "types": "./dist/flags/bn.1x1.d.ts",
+      "default": "./dist/flags/bn.1x1.js"
+    },
+    "./flags/bn.4x3": {
+      "types": "./dist/flags/bn.4x3.d.ts",
+      "default": "./dist/flags/bn.4x3.js"
+    },
+    "./flags/bn": {
+      "types": "./dist/flags/bn.d.ts",
+      "default": "./dist/flags/bn.js"
+    },
+    "./flags/bo.1x1": {
+      "types": "./dist/flags/bo.1x1.d.ts",
+      "default": "./dist/flags/bo.1x1.js"
+    },
+    "./flags/bo.4x3": {
+      "types": "./dist/flags/bo.4x3.d.ts",
+      "default": "./dist/flags/bo.4x3.js"
+    },
+    "./flags/bo": {
+      "types": "./dist/flags/bo.d.ts",
+      "default": "./dist/flags/bo.js"
+    },
+    "./flags/br-ac": {
+      "types": "./dist/flags/br-ac.d.ts",
+      "default": "./dist/flags/br-ac.js"
+    },
+    "./flags/br-al": {
+      "types": "./dist/flags/br-al.d.ts",
+      "default": "./dist/flags/br-al.js"
+    },
+    "./flags/br-am": {
+      "types": "./dist/flags/br-am.d.ts",
+      "default": "./dist/flags/br-am.js"
+    },
+    "./flags/br-ap": {
+      "types": "./dist/flags/br-ap.d.ts",
+      "default": "./dist/flags/br-ap.js"
+    },
+    "./flags/br-ba": {
+      "types": "./dist/flags/br-ba.d.ts",
+      "default": "./dist/flags/br-ba.js"
+    },
+    "./flags/br-ce": {
+      "types": "./dist/flags/br-ce.d.ts",
+      "default": "./dist/flags/br-ce.js"
+    },
+    "./flags/br-df": {
+      "types": "./dist/flags/br-df.d.ts",
+      "default": "./dist/flags/br-df.js"
+    },
+    "./flags/br-es": {
+      "types": "./dist/flags/br-es.d.ts",
+      "default": "./dist/flags/br-es.js"
+    },
+    "./flags/br-go": {
+      "types": "./dist/flags/br-go.d.ts",
+      "default": "./dist/flags/br-go.js"
+    },
+    "./flags/br-ma": {
+      "types": "./dist/flags/br-ma.d.ts",
+      "default": "./dist/flags/br-ma.js"
+    },
+    "./flags/br-mg": {
+      "types": "./dist/flags/br-mg.d.ts",
+      "default": "./dist/flags/br-mg.js"
+    },
+    "./flags/br-ms": {
+      "types": "./dist/flags/br-ms.d.ts",
+      "default": "./dist/flags/br-ms.js"
+    },
+    "./flags/br-mt": {
+      "types": "./dist/flags/br-mt.d.ts",
+      "default": "./dist/flags/br-mt.js"
+    },
+    "./flags/br-pa": {
+      "types": "./dist/flags/br-pa.d.ts",
+      "default": "./dist/flags/br-pa.js"
+    },
+    "./flags/br-pb": {
+      "types": "./dist/flags/br-pb.d.ts",
+      "default": "./dist/flags/br-pb.js"
+    },
+    "./flags/br-pe": {
+      "types": "./dist/flags/br-pe.d.ts",
+      "default": "./dist/flags/br-pe.js"
+    },
+    "./flags/br-pi": {
+      "types": "./dist/flags/br-pi.d.ts",
+      "default": "./dist/flags/br-pi.js"
+    },
+    "./flags/br-pr": {
+      "types": "./dist/flags/br-pr.d.ts",
+      "default": "./dist/flags/br-pr.js"
+    },
+    "./flags/br-rj": {
+      "types": "./dist/flags/br-rj.d.ts",
+      "default": "./dist/flags/br-rj.js"
+    },
+    "./flags/br-rn": {
+      "types": "./dist/flags/br-rn.d.ts",
+      "default": "./dist/flags/br-rn.js"
+    },
+    "./flags/br-ro": {
+      "types": "./dist/flags/br-ro.d.ts",
+      "default": "./dist/flags/br-ro.js"
+    },
+    "./flags/br-rr": {
+      "types": "./dist/flags/br-rr.d.ts",
+      "default": "./dist/flags/br-rr.js"
+    },
+    "./flags/br-rs": {
+      "types": "./dist/flags/br-rs.d.ts",
+      "default": "./dist/flags/br-rs.js"
+    },
+    "./flags/br-sc": {
+      "types": "./dist/flags/br-sc.d.ts",
+      "default": "./dist/flags/br-sc.js"
+    },
+    "./flags/br-se": {
+      "types": "./dist/flags/br-se.d.ts",
+      "default": "./dist/flags/br-se.js"
+    },
+    "./flags/br-sp": {
+      "types": "./dist/flags/br-sp.d.ts",
+      "default": "./dist/flags/br-sp.js"
+    },
+    "./flags/br-to": {
+      "types": "./dist/flags/br-to.d.ts",
+      "default": "./dist/flags/br-to.js"
+    },
+    "./flags/br.1x1": {
+      "types": "./dist/flags/br.1x1.d.ts",
+      "default": "./dist/flags/br.1x1.js"
+    },
+    "./flags/br.4x3": {
+      "types": "./dist/flags/br.4x3.d.ts",
+      "default": "./dist/flags/br.4x3.js"
+    },
+    "./flags/br": {
+      "types": "./dist/flags/br.d.ts",
+      "default": "./dist/flags/br.js"
+    },
+    "./flags/bs": {
+      "types": "./dist/flags/bs.d.ts",
+      "default": "./dist/flags/bs.js"
+    },
+    "./flags/bt.1x1": {
+      "types": "./dist/flags/bt.1x1.d.ts",
+      "default": "./dist/flags/bt.1x1.js"
+    },
+    "./flags/bt.4x3": {
+      "types": "./dist/flags/bt.4x3.d.ts",
+      "default": "./dist/flags/bt.4x3.js"
+    },
+    "./flags/bt": {
+      "types": "./dist/flags/bt.d.ts",
+      "default": "./dist/flags/bt.js"
+    },
+    "./flags/bv": {
+      "types": "./dist/flags/bv.d.ts",
+      "default": "./dist/flags/bv.js"
+    },
+    "./flags/bw.1x1": {
+      "types": "./dist/flags/bw.1x1.d.ts",
+      "default": "./dist/flags/bw.1x1.js"
+    },
+    "./flags/bw.4x3": {
+      "types": "./dist/flags/bw.4x3.d.ts",
+      "default": "./dist/flags/bw.4x3.js"
+    },
+    "./flags/bw": {
+      "types": "./dist/flags/bw.d.ts",
+      "default": "./dist/flags/bw.js"
+    },
+    "./flags/by.1x1": {
+      "types": "./dist/flags/by.1x1.d.ts",
+      "default": "./dist/flags/by.1x1.js"
+    },
+    "./flags/by.4x3": {
+      "types": "./dist/flags/by.4x3.d.ts",
+      "default": "./dist/flags/by.4x3.js"
+    },
+    "./flags/by": {
+      "types": "./dist/flags/by.d.ts",
+      "default": "./dist/flags/by.js"
+    },
+    "./flags/bz": {
+      "types": "./dist/flags/bz.d.ts",
+      "default": "./dist/flags/bz.js"
+    },
+    "./flags/ca-ab": {
+      "types": "./dist/flags/ca-ab.d.ts",
+      "default": "./dist/flags/ca-ab.js"
+    },
+    "./flags/ca-bc": {
+      "types": "./dist/flags/ca-bc.d.ts",
+      "default": "./dist/flags/ca-bc.js"
+    },
+    "./flags/ca-nb": {
+      "types": "./dist/flags/ca-nb.d.ts",
+      "default": "./dist/flags/ca-nb.js"
+    },
+    "./flags/ca-nl": {
+      "types": "./dist/flags/ca-nl.d.ts",
+      "default": "./dist/flags/ca-nl.js"
+    },
+    "./flags/ca-ns": {
+      "types": "./dist/flags/ca-ns.d.ts",
+      "default": "./dist/flags/ca-ns.js"
+    },
+    "./flags/ca-nt": {
+      "types": "./dist/flags/ca-nt.d.ts",
+      "default": "./dist/flags/ca-nt.js"
+    },
+    "./flags/ca-nu": {
+      "types": "./dist/flags/ca-nu.d.ts",
+      "default": "./dist/flags/ca-nu.js"
+    },
+    "./flags/ca-on": {
+      "types": "./dist/flags/ca-on.d.ts",
+      "default": "./dist/flags/ca-on.js"
+    },
+    "./flags/ca-pe": {
+      "types": "./dist/flags/ca-pe.d.ts",
+      "default": "./dist/flags/ca-pe.js"
+    },
+    "./flags/ca-qc": {
+      "types": "./dist/flags/ca-qc.d.ts",
+      "default": "./dist/flags/ca-qc.js"
+    },
+    "./flags/ca-sk": {
+      "types": "./dist/flags/ca-sk.d.ts",
+      "default": "./dist/flags/ca-sk.js"
+    },
+    "./flags/ca-yt": {
+      "types": "./dist/flags/ca-yt.d.ts",
+      "default": "./dist/flags/ca-yt.js"
+    },
+    "./flags/ca.1x1": {
+      "types": "./dist/flags/ca.1x1.d.ts",
+      "default": "./dist/flags/ca.1x1.js"
+    },
+    "./flags/ca.4x3": {
+      "types": "./dist/flags/ca.4x3.d.ts",
+      "default": "./dist/flags/ca.4x3.js"
+    },
+    "./flags/ca": {
+      "types": "./dist/flags/ca.d.ts",
+      "default": "./dist/flags/ca.js"
+    },
+    "./flags/cd.1x1": {
+      "types": "./dist/flags/cd.1x1.d.ts",
+      "default": "./dist/flags/cd.1x1.js"
+    },
+    "./flags/cd": {
+      "types": "./dist/flags/cd.d.ts",
+      "default": "./dist/flags/cd.js"
+    },
+    "./flags/cf.1x1": {
+      "types": "./dist/flags/cf.1x1.d.ts",
+      "default": "./dist/flags/cf.1x1.js"
+    },
+    "./flags/cf.4x3": {
+      "types": "./dist/flags/cf.4x3.d.ts",
+      "default": "./dist/flags/cf.4x3.js"
+    },
+    "./flags/cf": {
+      "types": "./dist/flags/cf.d.ts",
+      "default": "./dist/flags/cf.js"
+    },
+    "./flags/cg.1x1": {
+      "types": "./dist/flags/cg.1x1.d.ts",
+      "default": "./dist/flags/cg.1x1.js"
+    },
+    "./flags/cg.4x3": {
+      "types": "./dist/flags/cg.4x3.d.ts",
+      "default": "./dist/flags/cg.4x3.js"
+    },
+    "./flags/cg": {
+      "types": "./dist/flags/cg.d.ts",
+      "default": "./dist/flags/cg.js"
+    },
+    "./flags/ch-ag": {
+      "types": "./dist/flags/ch-ag.d.ts",
+      "default": "./dist/flags/ch-ag.js"
+    },
+    "./flags/ch-ai": {
+      "types": "./dist/flags/ch-ai.d.ts",
+      "default": "./dist/flags/ch-ai.js"
+    },
+    "./flags/ch-ar": {
+      "types": "./dist/flags/ch-ar.d.ts",
+      "default": "./dist/flags/ch-ar.js"
+    },
+    "./flags/ch-be": {
+      "types": "./dist/flags/ch-be.d.ts",
+      "default": "./dist/flags/ch-be.js"
+    },
+    "./flags/ch-bl": {
+      "types": "./dist/flags/ch-bl.d.ts",
+      "default": "./dist/flags/ch-bl.js"
+    },
+    "./flags/ch-bs": {
+      "types": "./dist/flags/ch-bs.d.ts",
+      "default": "./dist/flags/ch-bs.js"
+    },
+    "./flags/ch-fr": {
+      "types": "./dist/flags/ch-fr.d.ts",
+      "default": "./dist/flags/ch-fr.js"
+    },
+    "./flags/ch-ge": {
+      "types": "./dist/flags/ch-ge.d.ts",
+      "default": "./dist/flags/ch-ge.js"
+    },
+    "./flags/ch-gl": {
+      "types": "./dist/flags/ch-gl.d.ts",
+      "default": "./dist/flags/ch-gl.js"
+    },
+    "./flags/ch-gr": {
+      "types": "./dist/flags/ch-gr.d.ts",
+      "default": "./dist/flags/ch-gr.js"
+    },
+    "./flags/ch-ju": {
+      "types": "./dist/flags/ch-ju.d.ts",
+      "default": "./dist/flags/ch-ju.js"
+    },
+    "./flags/ch-lu": {
+      "types": "./dist/flags/ch-lu.d.ts",
+      "default": "./dist/flags/ch-lu.js"
+    },
+    "./flags/ch-ne": {
+      "types": "./dist/flags/ch-ne.d.ts",
+      "default": "./dist/flags/ch-ne.js"
+    },
+    "./flags/ch-nw": {
+      "types": "./dist/flags/ch-nw.d.ts",
+      "default": "./dist/flags/ch-nw.js"
+    },
+    "./flags/ch-ow": {
+      "types": "./dist/flags/ch-ow.d.ts",
+      "default": "./dist/flags/ch-ow.js"
+    },
+    "./flags/ch-sg": {
+      "types": "./dist/flags/ch-sg.d.ts",
+      "default": "./dist/flags/ch-sg.js"
+    },
+    "./flags/ch-sh": {
+      "types": "./dist/flags/ch-sh.d.ts",
+      "default": "./dist/flags/ch-sh.js"
+    },
+    "./flags/ch-so": {
+      "types": "./dist/flags/ch-so.d.ts",
+      "default": "./dist/flags/ch-so.js"
+    },
+    "./flags/ch-sz": {
+      "types": "./dist/flags/ch-sz.d.ts",
+      "default": "./dist/flags/ch-sz.js"
+    },
+    "./flags/ch-tg": {
+      "types": "./dist/flags/ch-tg.d.ts",
+      "default": "./dist/flags/ch-tg.js"
+    },
+    "./flags/ch-ti": {
+      "types": "./dist/flags/ch-ti.d.ts",
+      "default": "./dist/flags/ch-ti.js"
+    },
+    "./flags/ch-ur": {
+      "types": "./dist/flags/ch-ur.d.ts",
+      "default": "./dist/flags/ch-ur.js"
+    },
+    "./flags/ch-vd": {
+      "types": "./dist/flags/ch-vd.d.ts",
+      "default": "./dist/flags/ch-vd.js"
+    },
+    "./flags/ch-vs": {
+      "types": "./dist/flags/ch-vs.d.ts",
+      "default": "./dist/flags/ch-vs.js"
+    },
+    "./flags/ch-zg": {
+      "types": "./dist/flags/ch-zg.d.ts",
+      "default": "./dist/flags/ch-zg.js"
+    },
+    "./flags/ch-zh": {
+      "types": "./dist/flags/ch-zh.d.ts",
+      "default": "./dist/flags/ch-zh.js"
+    },
+    "./flags/ch.4x3": {
+      "types": "./dist/flags/ch.4x3.d.ts",
+      "default": "./dist/flags/ch.4x3.js"
+    },
+    "./flags/ch": {
+      "types": "./dist/flags/ch.d.ts",
+      "default": "./dist/flags/ch.js"
+    },
+    "./flags/ci.1x1": {
+      "types": "./dist/flags/ci.1x1.d.ts",
+      "default": "./dist/flags/ci.1x1.js"
+    },
+    "./flags/ci.4x3": {
+      "types": "./dist/flags/ci.4x3.d.ts",
+      "default": "./dist/flags/ci.4x3.js"
+    },
+    "./flags/ci": {
+      "types": "./dist/flags/ci.d.ts",
+      "default": "./dist/flags/ci.js"
+    },
+    "./flags/ck.1x1": {
+      "types": "./dist/flags/ck.1x1.d.ts",
+      "default": "./dist/flags/ck.1x1.js"
+    },
+    "./flags/ck.4x3": {
+      "types": "./dist/flags/ck.4x3.d.ts",
+      "default": "./dist/flags/ck.4x3.js"
+    },
+    "./flags/ck": {
+      "types": "./dist/flags/ck.d.ts",
+      "default": "./dist/flags/ck.js"
+    },
+    "./flags/cl.1x1": {
+      "types": "./dist/flags/cl.1x1.d.ts",
+      "default": "./dist/flags/cl.1x1.js"
+    },
+    "./flags/cl.4x3": {
+      "types": "./dist/flags/cl.4x3.d.ts",
+      "default": "./dist/flags/cl.4x3.js"
+    },
+    "./flags/cl": {
+      "types": "./dist/flags/cl.d.ts",
+      "default": "./dist/flags/cl.js"
+    },
+    "./flags/cm.1x1": {
+      "types": "./dist/flags/cm.1x1.d.ts",
+      "default": "./dist/flags/cm.1x1.js"
+    },
+    "./flags/cm.4x3": {
+      "types": "./dist/flags/cm.4x3.d.ts",
+      "default": "./dist/flags/cm.4x3.js"
+    },
+    "./flags/cm": {
+      "types": "./dist/flags/cm.d.ts",
+      "default": "./dist/flags/cm.js"
+    },
+    "./flags/cn.1x1": {
+      "types": "./dist/flags/cn.1x1.d.ts",
+      "default": "./dist/flags/cn.1x1.js"
+    },
+    "./flags/cn.4x3": {
+      "types": "./dist/flags/cn.4x3.d.ts",
+      "default": "./dist/flags/cn.4x3.js"
+    },
+    "./flags/cn": {
+      "types": "./dist/flags/cn.d.ts",
+      "default": "./dist/flags/cn.js"
+    },
+    "./flags/co.1x1": {
+      "types": "./dist/flags/co.1x1.d.ts",
+      "default": "./dist/flags/co.1x1.js"
+    },
+    "./flags/co.4x3": {
+      "types": "./dist/flags/co.4x3.d.ts",
+      "default": "./dist/flags/co.4x3.js"
+    },
+    "./flags/co": {
+      "types": "./dist/flags/co.d.ts",
+      "default": "./dist/flags/co.js"
+    },
+    "./flags/cr.1x1": {
+      "types": "./dist/flags/cr.1x1.d.ts",
+      "default": "./dist/flags/cr.1x1.js"
+    },
+    "./flags/cr.4x3": {
+      "types": "./dist/flags/cr.4x3.d.ts",
+      "default": "./dist/flags/cr.4x3.js"
+    },
+    "./flags/cr": {
+      "types": "./dist/flags/cr.d.ts",
+      "default": "./dist/flags/cr.js"
+    },
+    "./flags/cu.1x1": {
+      "types": "./dist/flags/cu.1x1.d.ts",
+      "default": "./dist/flags/cu.1x1.js"
+    },
+    "./flags/cu.4x3": {
+      "types": "./dist/flags/cu.4x3.d.ts",
+      "default": "./dist/flags/cu.4x3.js"
+    },
+    "./flags/cu": {
+      "types": "./dist/flags/cu.d.ts",
+      "default": "./dist/flags/cu.js"
+    },
+    "./flags/cv.1x1": {
+      "types": "./dist/flags/cv.1x1.d.ts",
+      "default": "./dist/flags/cv.1x1.js"
+    },
+    "./flags/cv.4x3": {
+      "types": "./dist/flags/cv.4x3.d.ts",
+      "default": "./dist/flags/cv.4x3.js"
+    },
+    "./flags/cv": {
+      "types": "./dist/flags/cv.d.ts",
+      "default": "./dist/flags/cv.js"
+    },
+    "./flags/cw.1x1": {
+      "types": "./dist/flags/cw.1x1.d.ts",
+      "default": "./dist/flags/cw.1x1.js"
+    },
+    "./flags/cw.4x3": {
+      "types": "./dist/flags/cw.4x3.d.ts",
+      "default": "./dist/flags/cw.4x3.js"
+    },
+    "./flags/cw": {
+      "types": "./dist/flags/cw.d.ts",
+      "default": "./dist/flags/cw.js"
+    },
+    "./flags/cx": {
+      "types": "./dist/flags/cx.d.ts",
+      "default": "./dist/flags/cx.js"
+    },
+    "./flags/cy.1x1": {
+      "types": "./dist/flags/cy.1x1.d.ts",
+      "default": "./dist/flags/cy.1x1.js"
+    },
+    "./flags/cy.4x3": {
+      "types": "./dist/flags/cy.4x3.d.ts",
+      "default": "./dist/flags/cy.4x3.js"
+    },
+    "./flags/cy": {
+      "types": "./dist/flags/cy.d.ts",
+      "default": "./dist/flags/cy.js"
+    },
+    "./flags/cz.1x1": {
+      "types": "./dist/flags/cz.1x1.d.ts",
+      "default": "./dist/flags/cz.1x1.js"
+    },
+    "./flags/cz.4x3": {
+      "types": "./dist/flags/cz.4x3.d.ts",
+      "default": "./dist/flags/cz.4x3.js"
+    },
+    "./flags/cz": {
+      "types": "./dist/flags/cz.d.ts",
+      "default": "./dist/flags/cz.js"
+    },
+    "./flags/de-bb": {
+      "types": "./dist/flags/de-bb.d.ts",
+      "default": "./dist/flags/de-bb.js"
+    },
+    "./flags/de-be": {
+      "types": "./dist/flags/de-be.d.ts",
+      "default": "./dist/flags/de-be.js"
+    },
+    "./flags/de-bw": {
+      "types": "./dist/flags/de-bw.d.ts",
+      "default": "./dist/flags/de-bw.js"
+    },
+    "./flags/de-by--stripes": {
+      "types": "./dist/flags/de-by--stripes.d.ts",
+      "default": "./dist/flags/de-by--stripes.js"
+    },
+    "./flags/de-by": {
+      "types": "./dist/flags/de-by.d.ts",
+      "default": "./dist/flags/de-by.js"
+    },
+    "./flags/de-hb": {
+      "types": "./dist/flags/de-hb.d.ts",
+      "default": "./dist/flags/de-hb.js"
+    },
+    "./flags/de-he": {
+      "types": "./dist/flags/de-he.d.ts",
+      "default": "./dist/flags/de-he.js"
+    },
+    "./flags/de-hh": {
+      "types": "./dist/flags/de-hh.d.ts",
+      "default": "./dist/flags/de-hh.js"
+    },
+    "./flags/de-mv": {
+      "types": "./dist/flags/de-mv.d.ts",
+      "default": "./dist/flags/de-mv.js"
+    },
+    "./flags/de-ni": {
+      "types": "./dist/flags/de-ni.d.ts",
+      "default": "./dist/flags/de-ni.js"
+    },
+    "./flags/de-nw": {
+      "types": "./dist/flags/de-nw.d.ts",
+      "default": "./dist/flags/de-nw.js"
+    },
+    "./flags/de-rp": {
+      "types": "./dist/flags/de-rp.d.ts",
+      "default": "./dist/flags/de-rp.js"
+    },
+    "./flags/de-sh": {
+      "types": "./dist/flags/de-sh.d.ts",
+      "default": "./dist/flags/de-sh.js"
+    },
+    "./flags/de-sl": {
+      "types": "./dist/flags/de-sl.d.ts",
+      "default": "./dist/flags/de-sl.js"
+    },
+    "./flags/de-sn": {
+      "types": "./dist/flags/de-sn.d.ts",
+      "default": "./dist/flags/de-sn.js"
+    },
+    "./flags/de-st": {
+      "types": "./dist/flags/de-st.d.ts",
+      "default": "./dist/flags/de-st.js"
+    },
+    "./flags/de-th": {
+      "types": "./dist/flags/de-th.d.ts",
+      "default": "./dist/flags/de-th.js"
+    },
+    "./flags/de.1x1": {
+      "types": "./dist/flags/de.1x1.d.ts",
+      "default": "./dist/flags/de.1x1.js"
+    },
+    "./flags/de.4x3": {
+      "types": "./dist/flags/de.4x3.d.ts",
+      "default": "./dist/flags/de.4x3.js"
+    },
+    "./flags/de": {
+      "types": "./dist/flags/de.d.ts",
+      "default": "./dist/flags/de.js"
+    },
+    "./flags/dj": {
+      "types": "./dist/flags/dj.d.ts",
+      "default": "./dist/flags/dj.js"
+    },
+    "./flags/dk.1x1": {
+      "types": "./dist/flags/dk.1x1.d.ts",
+      "default": "./dist/flags/dk.1x1.js"
+    },
+    "./flags/dk": {
+      "types": "./dist/flags/dk.d.ts",
+      "default": "./dist/flags/dk.js"
+    },
+    "./flags/dm.1x1": {
+      "types": "./dist/flags/dm.1x1.d.ts",
+      "default": "./dist/flags/dm.1x1.js"
+    },
+    "./flags/dm.4x3": {
+      "types": "./dist/flags/dm.4x3.d.ts",
+      "default": "./dist/flags/dm.4x3.js"
+    },
+    "./flags/dm": {
+      "types": "./dist/flags/dm.d.ts",
+      "default": "./dist/flags/dm.js"
+    },
+    "./flags/do.1x1": {
+      "types": "./dist/flags/do.1x1.d.ts",
+      "default": "./dist/flags/do.1x1.js"
+    },
+    "./flags/do.4x3": {
+      "types": "./dist/flags/do.4x3.d.ts",
+      "default": "./dist/flags/do.4x3.js"
+    },
+    "./flags/do": {
+      "types": "./dist/flags/do.d.ts",
+      "default": "./dist/flags/do.js"
+    },
+    "./flags/dz.1x1": {
+      "types": "./dist/flags/dz.1x1.d.ts",
+      "default": "./dist/flags/dz.1x1.js"
+    },
+    "./flags/dz.4x3": {
+      "types": "./dist/flags/dz.4x3.d.ts",
+      "default": "./dist/flags/dz.4x3.js"
+    },
+    "./flags/dz": {
+      "types": "./dist/flags/dz.d.ts",
+      "default": "./dist/flags/dz.js"
+    },
+    "./flags/ec.1x1": {
+      "types": "./dist/flags/ec.1x1.d.ts",
+      "default": "./dist/flags/ec.1x1.js"
+    },
+    "./flags/ec.4x3": {
+      "types": "./dist/flags/ec.4x3.d.ts",
+      "default": "./dist/flags/ec.4x3.js"
+    },
+    "./flags/ec": {
+      "types": "./dist/flags/ec.d.ts",
+      "default": "./dist/flags/ec.js"
+    },
+    "./flags/ee.1x1": {
+      "types": "./dist/flags/ee.1x1.d.ts",
+      "default": "./dist/flags/ee.1x1.js"
+    },
+    "./flags/ee.4x3": {
+      "types": "./dist/flags/ee.4x3.d.ts",
+      "default": "./dist/flags/ee.4x3.js"
+    },
+    "./flags/ee": {
+      "types": "./dist/flags/ee.d.ts",
+      "default": "./dist/flags/ee.js"
+    },
+    "./flags/eg.1x1": {
+      "types": "./dist/flags/eg.1x1.d.ts",
+      "default": "./dist/flags/eg.1x1.js"
+    },
+    "./flags/eg.4x3": {
+      "types": "./dist/flags/eg.4x3.d.ts",
+      "default": "./dist/flags/eg.4x3.js"
+    },
+    "./flags/eg": {
+      "types": "./dist/flags/eg.d.ts",
+      "default": "./dist/flags/eg.js"
+    },
+    "./flags/er": {
+      "types": "./dist/flags/er.d.ts",
+      "default": "./dist/flags/er.js"
+    },
+    "./flags/es.1x1": {
+      "types": "./dist/flags/es.1x1.d.ts",
+      "default": "./dist/flags/es.1x1.js"
+    },
+    "./flags/es.4x3": {
+      "types": "./dist/flags/es.4x3.d.ts",
+      "default": "./dist/flags/es.4x3.js"
+    },
+    "./flags/es": {
+      "types": "./dist/flags/es.d.ts",
+      "default": "./dist/flags/es.js"
+    },
+    "./flags/et": {
+      "types": "./dist/flags/et.d.ts",
+      "default": "./dist/flags/et.js"
+    },
+    "./flags/fi.1x1": {
+      "types": "./dist/flags/fi.1x1.d.ts",
+      "default": "./dist/flags/fi.1x1.js"
+    },
+    "./flags/fi.4x3": {
+      "types": "./dist/flags/fi.4x3.d.ts",
+      "default": "./dist/flags/fi.4x3.js"
+    },
+    "./flags/fi": {
+      "types": "./dist/flags/fi.d.ts",
+      "default": "./dist/flags/fi.js"
+    },
+    "./flags/fj.1x1": {
+      "types": "./dist/flags/fj.1x1.d.ts",
+      "default": "./dist/flags/fj.1x1.js"
+    },
+    "./flags/fj.4x3": {
+      "types": "./dist/flags/fj.4x3.d.ts",
+      "default": "./dist/flags/fj.4x3.js"
+    },
+    "./flags/fj": {
+      "types": "./dist/flags/fj.d.ts",
+      "default": "./dist/flags/fj.js"
+    },
+    "./flags/fk.1x1": {
+      "types": "./dist/flags/fk.1x1.d.ts",
+      "default": "./dist/flags/fk.1x1.js"
+    },
+    "./flags/fk.4x3": {
+      "types": "./dist/flags/fk.4x3.d.ts",
+      "default": "./dist/flags/fk.4x3.js"
+    },
+    "./flags/fk": {
+      "types": "./dist/flags/fk.d.ts",
+      "default": "./dist/flags/fk.js"
+    },
+    "./flags/fm.1x1": {
+      "types": "./dist/flags/fm.1x1.d.ts",
+      "default": "./dist/flags/fm.1x1.js"
+    },
+    "./flags/fm.4x3": {
+      "types": "./dist/flags/fm.4x3.d.ts",
+      "default": "./dist/flags/fm.4x3.js"
+    },
+    "./flags/fm": {
+      "types": "./dist/flags/fm.d.ts",
+      "default": "./dist/flags/fm.js"
+    },
+    "./flags/fo.1x1": {
+      "types": "./dist/flags/fo.1x1.d.ts",
+      "default": "./dist/flags/fo.1x1.js"
+    },
+    "./flags/fo.4x3": {
+      "types": "./dist/flags/fo.4x3.d.ts",
+      "default": "./dist/flags/fo.4x3.js"
+    },
+    "./flags/fo": {
+      "types": "./dist/flags/fo.d.ts",
+      "default": "./dist/flags/fo.js"
+    },
+    "./flags/fr-20r": {
+      "types": "./dist/flags/fr-20r.d.ts",
+      "default": "./dist/flags/fr-20r.js"
+    },
+    "./flags/fr-971": {
+      "types": "./dist/flags/fr-971.d.ts",
+      "default": "./dist/flags/fr-971.js"
+    },
+    "./flags/fr-972": {
+      "types": "./dist/flags/fr-972.d.ts",
+      "default": "./dist/flags/fr-972.js"
+    },
+    "./flags/fr-973": {
+      "types": "./dist/flags/fr-973.d.ts",
+      "default": "./dist/flags/fr-973.js"
+    },
+    "./flags/fr-974": {
+      "types": "./dist/flags/fr-974.d.ts",
+      "default": "./dist/flags/fr-974.js"
+    },
+    "./flags/fr-976": {
+      "types": "./dist/flags/fr-976.d.ts",
+      "default": "./dist/flags/fr-976.js"
+    },
+    "./flags/fr-bl": {
+      "types": "./dist/flags/fr-bl.d.ts",
+      "default": "./dist/flags/fr-bl.js"
+    },
+    "./flags/fr-bre": {
+      "types": "./dist/flags/fr-bre.d.ts",
+      "default": "./dist/flags/fr-bre.js"
+    },
+    "./flags/fr-cp": {
+      "types": "./dist/flags/fr-cp.d.ts",
+      "default": "./dist/flags/fr-cp.js"
+    },
+    "./flags/fr-mf": {
+      "types": "./dist/flags/fr-mf.d.ts",
+      "default": "./dist/flags/fr-mf.js"
+    },
+    "./flags/fr-naq": {
+      "types": "./dist/flags/fr-naq.d.ts",
+      "default": "./dist/flags/fr-naq.js"
+    },
+    "./flags/fr-nc": {
+      "types": "./dist/flags/fr-nc.d.ts",
+      "default": "./dist/flags/fr-nc.js"
+    },
+    "./flags/fr-nor": {
+      "types": "./dist/flags/fr-nor.d.ts",
+      "default": "./dist/flags/fr-nor.js"
+    },
+    "./flags/fr-pf": {
+      "types": "./dist/flags/fr-pf.d.ts",
+      "default": "./dist/flags/fr-pf.js"
+    },
+    "./flags/fr-pm": {
+      "types": "./dist/flags/fr-pm.d.ts",
+      "default": "./dist/flags/fr-pm.js"
+    },
+    "./flags/fr-tf": {
+      "types": "./dist/flags/fr-tf.d.ts",
+      "default": "./dist/flags/fr-tf.js"
+    },
+    "./flags/fr-wf": {
+      "types": "./dist/flags/fr-wf.d.ts",
+      "default": "./dist/flags/fr-wf.js"
+    },
+    "./flags/fr.1x1": {
+      "types": "./dist/flags/fr.1x1.d.ts",
+      "default": "./dist/flags/fr.1x1.js"
+    },
+    "./flags/fr.4x3": {
+      "types": "./dist/flags/fr.4x3.d.ts",
+      "default": "./dist/flags/fr.4x3.js"
+    },
+    "./flags/fr": {
+      "types": "./dist/flags/fr.d.ts",
+      "default": "./dist/flags/fr.js"
+    },
+    "./flags/ga.1x1": {
+      "types": "./dist/flags/ga.1x1.d.ts",
+      "default": "./dist/flags/ga.1x1.js"
+    },
+    "./flags/ga": {
+      "types": "./dist/flags/ga.d.ts",
+      "default": "./dist/flags/ga.js"
+    },
+    "./flags/gb-eng.1x1": {
+      "types": "./dist/flags/gb-eng.1x1.d.ts",
+      "default": "./dist/flags/gb-eng.1x1.js"
+    },
+    "./flags/gb-eng.4x3": {
+      "types": "./dist/flags/gb-eng.4x3.d.ts",
+      "default": "./dist/flags/gb-eng.4x3.js"
+    },
+    "./flags/gb-eng": {
+      "types": "./dist/flags/gb-eng.d.ts",
+      "default": "./dist/flags/gb-eng.js"
+    },
+    "./flags/gb-nir--ulster-banner": {
+      "types": "./dist/flags/gb-nir--ulster-banner.d.ts",
+      "default": "./dist/flags/gb-nir--ulster-banner.js"
+    },
+    "./flags/gb-nir--union-flag": {
+      "types": "./dist/flags/gb-nir--union-flag.d.ts",
+      "default": "./dist/flags/gb-nir--union-flag.js"
+    },
+    "./flags/gb-sct.1x1": {
+      "types": "./dist/flags/gb-sct.1x1.d.ts",
+      "default": "./dist/flags/gb-sct.1x1.js"
+    },
+    "./flags/gb-sct.4x3": {
+      "types": "./dist/flags/gb-sct.4x3.d.ts",
+      "default": "./dist/flags/gb-sct.4x3.js"
+    },
+    "./flags/gb-sct": {
+      "types": "./dist/flags/gb-sct.d.ts",
+      "default": "./dist/flags/gb-sct.js"
+    },
+    "./flags/gb-wls.1x1": {
+      "types": "./dist/flags/gb-wls.1x1.d.ts",
+      "default": "./dist/flags/gb-wls.1x1.js"
+    },
+    "./flags/gb-wls.4x3": {
+      "types": "./dist/flags/gb-wls.4x3.d.ts",
+      "default": "./dist/flags/gb-wls.4x3.js"
+    },
+    "./flags/gb-wls": {
+      "types": "./dist/flags/gb-wls.d.ts",
+      "default": "./dist/flags/gb-wls.js"
+    },
+    "./flags/gb.1x1": {
+      "types": "./dist/flags/gb.1x1.d.ts",
+      "default": "./dist/flags/gb.1x1.js"
+    },
+    "./flags/gb.4x3": {
+      "types": "./dist/flags/gb.4x3.d.ts",
+      "default": "./dist/flags/gb.4x3.js"
+    },
+    "./flags/gb": {
+      "types": "./dist/flags/gb.d.ts",
+      "default": "./dist/flags/gb.js"
+    },
+    "./flags/gd.1x1": {
+      "types": "./dist/flags/gd.1x1.d.ts",
+      "default": "./dist/flags/gd.1x1.js"
+    },
+    "./flags/gd.4x3": {
+      "types": "./dist/flags/gd.4x3.d.ts",
+      "default": "./dist/flags/gd.4x3.js"
+    },
+    "./flags/gd": {
+      "types": "./dist/flags/gd.d.ts",
+      "default": "./dist/flags/gd.js"
+    },
+    "./flags/ge.1x1": {
+      "types": "./dist/flags/ge.1x1.d.ts",
+      "default": "./dist/flags/ge.1x1.js"
+    },
+    "./flags/ge.4x3": {
+      "types": "./dist/flags/ge.4x3.d.ts",
+      "default": "./dist/flags/ge.4x3.js"
+    },
+    "./flags/ge": {
+      "types": "./dist/flags/ge.d.ts",
+      "default": "./dist/flags/ge.js"
+    },
+    "./flags/gf--local": {
+      "types": "./dist/flags/gf--local.d.ts",
+      "default": "./dist/flags/gf--local.js"
+    },
+    "./flags/gf": {
+      "types": "./dist/flags/gf.d.ts",
+      "default": "./dist/flags/gf.js"
+    },
+    "./flags/gg.1x1": {
+      "types": "./dist/flags/gg.1x1.d.ts",
+      "default": "./dist/flags/gg.1x1.js"
+    },
+    "./flags/gg.4x3": {
+      "types": "./dist/flags/gg.4x3.d.ts",
+      "default": "./dist/flags/gg.4x3.js"
+    },
+    "./flags/gg": {
+      "types": "./dist/flags/gg.d.ts",
+      "default": "./dist/flags/gg.js"
+    },
+    "./flags/gh.1x1": {
+      "types": "./dist/flags/gh.1x1.d.ts",
+      "default": "./dist/flags/gh.1x1.js"
+    },
+    "./flags/gh.4x3": {
+      "types": "./dist/flags/gh.4x3.d.ts",
+      "default": "./dist/flags/gh.4x3.js"
+    },
+    "./flags/gh": {
+      "types": "./dist/flags/gh.d.ts",
+      "default": "./dist/flags/gh.js"
+    },
+    "./flags/gi.1x1": {
+      "types": "./dist/flags/gi.1x1.d.ts",
+      "default": "./dist/flags/gi.1x1.js"
+    },
+    "./flags/gi.4x3": {
+      "types": "./dist/flags/gi.4x3.d.ts",
+      "default": "./dist/flags/gi.4x3.js"
+    },
+    "./flags/gi": {
+      "types": "./dist/flags/gi.d.ts",
+      "default": "./dist/flags/gi.js"
+    },
+    "./flags/gl.1x1": {
+      "types": "./dist/flags/gl.1x1.d.ts",
+      "default": "./dist/flags/gl.1x1.js"
+    },
+    "./flags/gl.4x3": {
+      "types": "./dist/flags/gl.4x3.d.ts",
+      "default": "./dist/flags/gl.4x3.js"
+    },
+    "./flags/gl": {
+      "types": "./dist/flags/gl.d.ts",
+      "default": "./dist/flags/gl.js"
+    },
+    "./flags/gm.1x1": {
+      "types": "./dist/flags/gm.1x1.d.ts",
+      "default": "./dist/flags/gm.1x1.js"
+    },
+    "./flags/gm.4x3": {
+      "types": "./dist/flags/gm.4x3.d.ts",
+      "default": "./dist/flags/gm.4x3.js"
+    },
+    "./flags/gm": {
+      "types": "./dist/flags/gm.d.ts",
+      "default": "./dist/flags/gm.js"
+    },
+    "./flags/gn.1x1": {
+      "types": "./dist/flags/gn.1x1.d.ts",
+      "default": "./dist/flags/gn.1x1.js"
+    },
+    "./flags/gn.4x3": {
+      "types": "./dist/flags/gn.4x3.d.ts",
+      "default": "./dist/flags/gn.4x3.js"
+    },
+    "./flags/gn": {
+      "types": "./dist/flags/gn.d.ts",
+      "default": "./dist/flags/gn.js"
+    },
+    "./flags/gp--local": {
+      "types": "./dist/flags/gp--local.d.ts",
+      "default": "./dist/flags/gp--local.js"
+    },
+    "./flags/gp": {
+      "types": "./dist/flags/gp.d.ts",
+      "default": "./dist/flags/gp.js"
+    },
+    "./flags/gq.1x1": {
+      "types": "./dist/flags/gq.1x1.d.ts",
+      "default": "./dist/flags/gq.1x1.js"
+    },
+    "./flags/gq.4x3": {
+      "types": "./dist/flags/gq.4x3.d.ts",
+      "default": "./dist/flags/gq.4x3.js"
+    },
+    "./flags/gq": {
+      "types": "./dist/flags/gq.d.ts",
+      "default": "./dist/flags/gq.js"
+    },
+    "./flags/gr.1x1": {
+      "types": "./dist/flags/gr.1x1.d.ts",
+      "default": "./dist/flags/gr.1x1.js"
+    },
+    "./flags/gr.4x3": {
+      "types": "./dist/flags/gr.4x3.d.ts",
+      "default": "./dist/flags/gr.4x3.js"
+    },
+    "./flags/gr": {
+      "types": "./dist/flags/gr.d.ts",
+      "default": "./dist/flags/gr.js"
+    },
+    "./flags/gs.1x1": {
+      "types": "./dist/flags/gs.1x1.d.ts",
+      "default": "./dist/flags/gs.1x1.js"
+    },
+    "./flags/gs.4x3": {
+      "types": "./dist/flags/gs.4x3.d.ts",
+      "default": "./dist/flags/gs.4x3.js"
+    },
+    "./flags/gs": {
+      "types": "./dist/flags/gs.d.ts",
+      "default": "./dist/flags/gs.js"
+    },
+    "./flags/gt.1x1": {
+      "types": "./dist/flags/gt.1x1.d.ts",
+      "default": "./dist/flags/gt.1x1.js"
+    },
+    "./flags/gt.4x3": {
+      "types": "./dist/flags/gt.4x3.d.ts",
+      "default": "./dist/flags/gt.4x3.js"
+    },
+    "./flags/gt": {
+      "types": "./dist/flags/gt.d.ts",
+      "default": "./dist/flags/gt.js"
+    },
+    "./flags/gu.1x1": {
+      "types": "./dist/flags/gu.1x1.d.ts",
+      "default": "./dist/flags/gu.1x1.js"
+    },
+    "./flags/gu.4x3": {
+      "types": "./dist/flags/gu.4x3.d.ts",
+      "default": "./dist/flags/gu.4x3.js"
+    },
+    "./flags/gu": {
+      "types": "./dist/flags/gu.d.ts",
+      "default": "./dist/flags/gu.js"
+    },
+    "./flags/gw.1x1": {
+      "types": "./dist/flags/gw.1x1.d.ts",
+      "default": "./dist/flags/gw.1x1.js"
+    },
+    "./flags/gw.4x3": {
+      "types": "./dist/flags/gw.4x3.d.ts",
+      "default": "./dist/flags/gw.4x3.js"
+    },
+    "./flags/gw": {
+      "types": "./dist/flags/gw.d.ts",
+      "default": "./dist/flags/gw.js"
+    },
+    "./flags/gy": {
+      "types": "./dist/flags/gy.d.ts",
+      "default": "./dist/flags/gy.js"
+    },
+    "./flags/hk.1x1": {
+      "types": "./dist/flags/hk.1x1.d.ts",
+      "default": "./dist/flags/hk.1x1.js"
+    },
+    "./flags/hk.4x3": {
+      "types": "./dist/flags/hk.4x3.d.ts",
+      "default": "./dist/flags/hk.4x3.js"
+    },
+    "./flags/hk": {
+      "types": "./dist/flags/hk.d.ts",
+      "default": "./dist/flags/hk.js"
+    },
+    "./flags/hm": {
+      "types": "./dist/flags/hm.d.ts",
+      "default": "./dist/flags/hm.js"
+    },
+    "./flags/hn.1x1": {
+      "types": "./dist/flags/hn.1x1.d.ts",
+      "default": "./dist/flags/hn.1x1.js"
+    },
+    "./flags/hn.4x3": {
+      "types": "./dist/flags/hn.4x3.d.ts",
+      "default": "./dist/flags/hn.4x3.js"
+    },
+    "./flags/hn": {
+      "types": "./dist/flags/hn.d.ts",
+      "default": "./dist/flags/hn.js"
+    },
+    "./flags/hr.1x1": {
+      "types": "./dist/flags/hr.1x1.d.ts",
+      "default": "./dist/flags/hr.1x1.js"
+    },
+    "./flags/hr.4x3": {
+      "types": "./dist/flags/hr.4x3.d.ts",
+      "default": "./dist/flags/hr.4x3.js"
+    },
+    "./flags/hr": {
+      "types": "./dist/flags/hr.d.ts",
+      "default": "./dist/flags/hr.js"
+    },
+    "./flags/ht": {
+      "types": "./dist/flags/ht.d.ts",
+      "default": "./dist/flags/ht.js"
+    },
+    "./flags/hu.1x1": {
+      "types": "./dist/flags/hu.1x1.d.ts",
+      "default": "./dist/flags/hu.1x1.js"
+    },
+    "./flags/hu.4x3": {
+      "types": "./dist/flags/hu.4x3.d.ts",
+      "default": "./dist/flags/hu.4x3.js"
+    },
+    "./flags/hu": {
+      "types": "./dist/flags/hu.d.ts",
+      "default": "./dist/flags/hu.js"
+    },
+    "./flags/id.1x1": {
+      "types": "./dist/flags/id.1x1.d.ts",
+      "default": "./dist/flags/id.1x1.js"
+    },
+    "./flags/id.4x3": {
+      "types": "./dist/flags/id.4x3.d.ts",
+      "default": "./dist/flags/id.4x3.js"
+    },
+    "./flags/id": {
+      "types": "./dist/flags/id.d.ts",
+      "default": "./dist/flags/id.js"
+    },
+    "./flags/ie.1x1": {
+      "types": "./dist/flags/ie.1x1.d.ts",
+      "default": "./dist/flags/ie.1x1.js"
+    },
+    "./flags/ie.4x3": {
+      "types": "./dist/flags/ie.4x3.d.ts",
+      "default": "./dist/flags/ie.4x3.js"
+    },
+    "./flags/ie": {
+      "types": "./dist/flags/ie.d.ts",
+      "default": "./dist/flags/ie.js"
+    },
+    "./flags/il.1x1": {
+      "types": "./dist/flags/il.1x1.d.ts",
+      "default": "./dist/flags/il.1x1.js"
+    },
+    "./flags/il.4x3": {
+      "types": "./dist/flags/il.4x3.d.ts",
+      "default": "./dist/flags/il.4x3.js"
+    },
+    "./flags/il": {
+      "types": "./dist/flags/il.d.ts",
+      "default": "./dist/flags/il.js"
+    },
+    "./flags/im.1x1": {
+      "types": "./dist/flags/im.1x1.d.ts",
+      "default": "./dist/flags/im.1x1.js"
+    },
+    "./flags/im.4x3": {
+      "types": "./dist/flags/im.4x3.d.ts",
+      "default": "./dist/flags/im.4x3.js"
+    },
+    "./flags/im": {
+      "types": "./dist/flags/im.d.ts",
+      "default": "./dist/flags/im.js"
+    },
+    "./flags/in.1x1": {
+      "types": "./dist/flags/in.1x1.d.ts",
+      "default": "./dist/flags/in.1x1.js"
+    },
+    "./flags/in.4x3": {
+      "types": "./dist/flags/in.4x3.d.ts",
+      "default": "./dist/flags/in.4x3.js"
+    },
+    "./flags/in": {
+      "types": "./dist/flags/in.d.ts",
+      "default": "./dist/flags/in.js"
+    },
+    "./flags/io.1x1": {
+      "types": "./dist/flags/io.1x1.d.ts",
+      "default": "./dist/flags/io.1x1.js"
+    },
+    "./flags/io.4x3": {
+      "types": "./dist/flags/io.4x3.d.ts",
+      "default": "./dist/flags/io.4x3.js"
+    },
+    "./flags/io": {
+      "types": "./dist/flags/io.d.ts",
+      "default": "./dist/flags/io.js"
+    },
+    "./flags/iq.1x1": {
+      "types": "./dist/flags/iq.1x1.d.ts",
+      "default": "./dist/flags/iq.1x1.js"
+    },
+    "./flags/iq.4x3": {
+      "types": "./dist/flags/iq.4x3.d.ts",
+      "default": "./dist/flags/iq.4x3.js"
+    },
+    "./flags/iq": {
+      "types": "./dist/flags/iq.d.ts",
+      "default": "./dist/flags/iq.js"
+    },
+    "./flags/ir.1x1": {
+      "types": "./dist/flags/ir.1x1.d.ts",
+      "default": "./dist/flags/ir.1x1.js"
+    },
+    "./flags/ir.4x3": {
+      "types": "./dist/flags/ir.4x3.d.ts",
+      "default": "./dist/flags/ir.4x3.js"
+    },
+    "./flags/ir": {
+      "types": "./dist/flags/ir.d.ts",
+      "default": "./dist/flags/ir.js"
+    },
+    "./flags/is.1x1": {
+      "types": "./dist/flags/is.1x1.d.ts",
+      "default": "./dist/flags/is.1x1.js"
+    },
+    "./flags/is.4x3": {
+      "types": "./dist/flags/is.4x3.d.ts",
+      "default": "./dist/flags/is.4x3.js"
+    },
+    "./flags/is": {
+      "types": "./dist/flags/is.d.ts",
+      "default": "./dist/flags/is.js"
+    },
+    "./flags/it.1x1": {
+      "types": "./dist/flags/it.1x1.d.ts",
+      "default": "./dist/flags/it.1x1.js"
+    },
+    "./flags/it.4x3": {
+      "types": "./dist/flags/it.4x3.d.ts",
+      "default": "./dist/flags/it.4x3.js"
+    },
+    "./flags/it": {
+      "types": "./dist/flags/it.d.ts",
+      "default": "./dist/flags/it.js"
+    },
+    "./flags/je.1x1": {
+      "types": "./dist/flags/je.1x1.d.ts",
+      "default": "./dist/flags/je.1x1.js"
+    },
+    "./flags/je.4x3": {
+      "types": "./dist/flags/je.4x3.d.ts",
+      "default": "./dist/flags/je.4x3.js"
+    },
+    "./flags/je": {
+      "types": "./dist/flags/je.d.ts",
+      "default": "./dist/flags/je.js"
+    },
+    "./flags/jm": {
+      "types": "./dist/flags/jm.d.ts",
+      "default": "./dist/flags/jm.js"
+    },
+    "./flags/jo.1x1": {
+      "types": "./dist/flags/jo.1x1.d.ts",
+      "default": "./dist/flags/jo.1x1.js"
+    },
+    "./flags/jo.4x3": {
+      "types": "./dist/flags/jo.4x3.d.ts",
+      "default": "./dist/flags/jo.4x3.js"
+    },
+    "./flags/jo": {
+      "types": "./dist/flags/jo.d.ts",
+      "default": "./dist/flags/jo.js"
+    },
+    "./flags/jp-01": {
+      "types": "./dist/flags/jp-01.d.ts",
+      "default": "./dist/flags/jp-01.js"
+    },
+    "./flags/jp-02": {
+      "types": "./dist/flags/jp-02.d.ts",
+      "default": "./dist/flags/jp-02.js"
+    },
+    "./flags/jp-03": {
+      "types": "./dist/flags/jp-03.d.ts",
+      "default": "./dist/flags/jp-03.js"
+    },
+    "./flags/jp-04": {
+      "types": "./dist/flags/jp-04.d.ts",
+      "default": "./dist/flags/jp-04.js"
+    },
+    "./flags/jp-05": {
+      "types": "./dist/flags/jp-05.d.ts",
+      "default": "./dist/flags/jp-05.js"
+    },
+    "./flags/jp-06": {
+      "types": "./dist/flags/jp-06.d.ts",
+      "default": "./dist/flags/jp-06.js"
+    },
+    "./flags/jp-07": {
+      "types": "./dist/flags/jp-07.d.ts",
+      "default": "./dist/flags/jp-07.js"
+    },
+    "./flags/jp-08": {
+      "types": "./dist/flags/jp-08.d.ts",
+      "default": "./dist/flags/jp-08.js"
+    },
+    "./flags/jp-09": {
+      "types": "./dist/flags/jp-09.d.ts",
+      "default": "./dist/flags/jp-09.js"
+    },
+    "./flags/jp-10": {
+      "types": "./dist/flags/jp-10.d.ts",
+      "default": "./dist/flags/jp-10.js"
+    },
+    "./flags/jp-11": {
+      "types": "./dist/flags/jp-11.d.ts",
+      "default": "./dist/flags/jp-11.js"
+    },
+    "./flags/jp-12": {
+      "types": "./dist/flags/jp-12.d.ts",
+      "default": "./dist/flags/jp-12.js"
+    },
+    "./flags/jp-13": {
+      "types": "./dist/flags/jp-13.d.ts",
+      "default": "./dist/flags/jp-13.js"
+    },
+    "./flags/jp-14": {
+      "types": "./dist/flags/jp-14.d.ts",
+      "default": "./dist/flags/jp-14.js"
+    },
+    "./flags/jp-15": {
+      "types": "./dist/flags/jp-15.d.ts",
+      "default": "./dist/flags/jp-15.js"
+    },
+    "./flags/jp-16": {
+      "types": "./dist/flags/jp-16.d.ts",
+      "default": "./dist/flags/jp-16.js"
+    },
+    "./flags/jp-17": {
+      "types": "./dist/flags/jp-17.d.ts",
+      "default": "./dist/flags/jp-17.js"
+    },
+    "./flags/jp-18": {
+      "types": "./dist/flags/jp-18.d.ts",
+      "default": "./dist/flags/jp-18.js"
+    },
+    "./flags/jp-19": {
+      "types": "./dist/flags/jp-19.d.ts",
+      "default": "./dist/flags/jp-19.js"
+    },
+    "./flags/jp-20": {
+      "types": "./dist/flags/jp-20.d.ts",
+      "default": "./dist/flags/jp-20.js"
+    },
+    "./flags/jp-21": {
+      "types": "./dist/flags/jp-21.d.ts",
+      "default": "./dist/flags/jp-21.js"
+    },
+    "./flags/jp-22": {
+      "types": "./dist/flags/jp-22.d.ts",
+      "default": "./dist/flags/jp-22.js"
+    },
+    "./flags/jp-23": {
+      "types": "./dist/flags/jp-23.d.ts",
+      "default": "./dist/flags/jp-23.js"
+    },
+    "./flags/jp-24": {
+      "types": "./dist/flags/jp-24.d.ts",
+      "default": "./dist/flags/jp-24.js"
+    },
+    "./flags/jp-25": {
+      "types": "./dist/flags/jp-25.d.ts",
+      "default": "./dist/flags/jp-25.js"
+    },
+    "./flags/jp-26": {
+      "types": "./dist/flags/jp-26.d.ts",
+      "default": "./dist/flags/jp-26.js"
+    },
+    "./flags/jp-27": {
+      "types": "./dist/flags/jp-27.d.ts",
+      "default": "./dist/flags/jp-27.js"
+    },
+    "./flags/jp-28": {
+      "types": "./dist/flags/jp-28.d.ts",
+      "default": "./dist/flags/jp-28.js"
+    },
+    "./flags/jp-29": {
+      "types": "./dist/flags/jp-29.d.ts",
+      "default": "./dist/flags/jp-29.js"
+    },
+    "./flags/jp-30": {
+      "types": "./dist/flags/jp-30.d.ts",
+      "default": "./dist/flags/jp-30.js"
+    },
+    "./flags/jp-31": {
+      "types": "./dist/flags/jp-31.d.ts",
+      "default": "./dist/flags/jp-31.js"
+    },
+    "./flags/jp-32": {
+      "types": "./dist/flags/jp-32.d.ts",
+      "default": "./dist/flags/jp-32.js"
+    },
+    "./flags/jp-33": {
+      "types": "./dist/flags/jp-33.d.ts",
+      "default": "./dist/flags/jp-33.js"
+    },
+    "./flags/jp-35": {
+      "types": "./dist/flags/jp-35.d.ts",
+      "default": "./dist/flags/jp-35.js"
+    },
+    "./flags/jp-36": {
+      "types": "./dist/flags/jp-36.d.ts",
+      "default": "./dist/flags/jp-36.js"
+    },
+    "./flags/jp-38": {
+      "types": "./dist/flags/jp-38.d.ts",
+      "default": "./dist/flags/jp-38.js"
+    },
+    "./flags/jp-39": {
+      "types": "./dist/flags/jp-39.d.ts",
+      "default": "./dist/flags/jp-39.js"
+    },
+    "./flags/jp-40": {
+      "types": "./dist/flags/jp-40.d.ts",
+      "default": "./dist/flags/jp-40.js"
+    },
+    "./flags/jp-41": {
+      "types": "./dist/flags/jp-41.d.ts",
+      "default": "./dist/flags/jp-41.js"
+    },
+    "./flags/jp-42": {
+      "types": "./dist/flags/jp-42.d.ts",
+      "default": "./dist/flags/jp-42.js"
+    },
+    "./flags/jp-43": {
+      "types": "./dist/flags/jp-43.d.ts",
+      "default": "./dist/flags/jp-43.js"
+    },
+    "./flags/jp-44": {
+      "types": "./dist/flags/jp-44.d.ts",
+      "default": "./dist/flags/jp-44.js"
+    },
+    "./flags/jp-45": {
+      "types": "./dist/flags/jp-45.d.ts",
+      "default": "./dist/flags/jp-45.js"
+    },
+    "./flags/jp-46": {
+      "types": "./dist/flags/jp-46.d.ts",
+      "default": "./dist/flags/jp-46.js"
+    },
+    "./flags/jp-47": {
+      "types": "./dist/flags/jp-47.d.ts",
+      "default": "./dist/flags/jp-47.js"
+    },
+    "./flags/jp.1x1": {
+      "types": "./dist/flags/jp.1x1.d.ts",
+      "default": "./dist/flags/jp.1x1.js"
+    },
+    "./flags/jp.4x3": {
+      "types": "./dist/flags/jp.4x3.d.ts",
+      "default": "./dist/flags/jp.4x3.js"
+    },
+    "./flags/jp": {
+      "types": "./dist/flags/jp.d.ts",
+      "default": "./dist/flags/jp.js"
+    },
+    "./flags/ke.1x1": {
+      "types": "./dist/flags/ke.1x1.d.ts",
+      "default": "./dist/flags/ke.1x1.js"
+    },
+    "./flags/ke.4x3": {
+      "types": "./dist/flags/ke.4x3.d.ts",
+      "default": "./dist/flags/ke.4x3.js"
+    },
+    "./flags/ke": {
+      "types": "./dist/flags/ke.d.ts",
+      "default": "./dist/flags/ke.js"
+    },
+    "./flags/kg.1x1": {
+      "types": "./dist/flags/kg.1x1.d.ts",
+      "default": "./dist/flags/kg.1x1.js"
+    },
+    "./flags/kg.4x3": {
+      "types": "./dist/flags/kg.4x3.d.ts",
+      "default": "./dist/flags/kg.4x3.js"
+    },
+    "./flags/kg": {
+      "types": "./dist/flags/kg.d.ts",
+      "default": "./dist/flags/kg.js"
+    },
+    "./flags/kh.1x1": {
+      "types": "./dist/flags/kh.1x1.d.ts",
+      "default": "./dist/flags/kh.1x1.js"
+    },
+    "./flags/kh.4x3": {
+      "types": "./dist/flags/kh.4x3.d.ts",
+      "default": "./dist/flags/kh.4x3.js"
+    },
+    "./flags/kh": {
+      "types": "./dist/flags/kh.d.ts",
+      "default": "./dist/flags/kh.js"
+    },
+    "./flags/ki": {
+      "types": "./dist/flags/ki.d.ts",
+      "default": "./dist/flags/ki.js"
+    },
+    "./flags/km.1x1": {
+      "types": "./dist/flags/km.1x1.d.ts",
+      "default": "./dist/flags/km.1x1.js"
+    },
+    "./flags/km.4x3": {
+      "types": "./dist/flags/km.4x3.d.ts",
+      "default": "./dist/flags/km.4x3.js"
+    },
+    "./flags/km": {
+      "types": "./dist/flags/km.d.ts",
+      "default": "./dist/flags/km.js"
+    },
+    "./flags/kn.1x1": {
+      "types": "./dist/flags/kn.1x1.d.ts",
+      "default": "./dist/flags/kn.1x1.js"
+    },
+    "./flags/kn.4x3": {
+      "types": "./dist/flags/kn.4x3.d.ts",
+      "default": "./dist/flags/kn.4x3.js"
+    },
+    "./flags/kn": {
+      "types": "./dist/flags/kn.d.ts",
+      "default": "./dist/flags/kn.js"
+    },
+    "./flags/kp.1x1": {
+      "types": "./dist/flags/kp.1x1.d.ts",
+      "default": "./dist/flags/kp.1x1.js"
+    },
+    "./flags/kp.4x3": {
+      "types": "./dist/flags/kp.4x3.d.ts",
+      "default": "./dist/flags/kp.4x3.js"
+    },
+    "./flags/kp": {
+      "types": "./dist/flags/kp.d.ts",
+      "default": "./dist/flags/kp.js"
+    },
+    "./flags/kr.1x1": {
+      "types": "./dist/flags/kr.1x1.d.ts",
+      "default": "./dist/flags/kr.1x1.js"
+    },
+    "./flags/kr.4x3": {
+      "types": "./dist/flags/kr.4x3.d.ts",
+      "default": "./dist/flags/kr.4x3.js"
+    },
+    "./flags/kr": {
+      "types": "./dist/flags/kr.d.ts",
+      "default": "./dist/flags/kr.js"
+    },
+    "./flags/kw.1x1": {
+      "types": "./dist/flags/kw.1x1.d.ts",
+      "default": "./dist/flags/kw.1x1.js"
+    },
+    "./flags/kw.4x3": {
+      "types": "./dist/flags/kw.4x3.d.ts",
+      "default": "./dist/flags/kw.4x3.js"
+    },
+    "./flags/kw": {
+      "types": "./dist/flags/kw.d.ts",
+      "default": "./dist/flags/kw.js"
+    },
+    "./flags/ky.1x1": {
+      "types": "./dist/flags/ky.1x1.d.ts",
+      "default": "./dist/flags/ky.1x1.js"
+    },
+    "./flags/ky.4x3": {
+      "types": "./dist/flags/ky.4x3.d.ts",
+      "default": "./dist/flags/ky.4x3.js"
+    },
+    "./flags/ky": {
+      "types": "./dist/flags/ky.d.ts",
+      "default": "./dist/flags/ky.js"
+    },
+    "./flags/kz.1x1": {
+      "types": "./dist/flags/kz.1x1.d.ts",
+      "default": "./dist/flags/kz.1x1.js"
+    },
+    "./flags/kz.4x3": {
+      "types": "./dist/flags/kz.4x3.d.ts",
+      "default": "./dist/flags/kz.4x3.js"
+    },
+    "./flags/kz": {
+      "types": "./dist/flags/kz.d.ts",
+      "default": "./dist/flags/kz.js"
+    },
+    "./flags/la.1x1": {
+      "types": "./dist/flags/la.1x1.d.ts",
+      "default": "./dist/flags/la.1x1.js"
+    },
+    "./flags/la.4x3": {
+      "types": "./dist/flags/la.4x3.d.ts",
+      "default": "./dist/flags/la.4x3.js"
+    },
+    "./flags/la": {
+      "types": "./dist/flags/la.d.ts",
+      "default": "./dist/flags/la.js"
+    },
+    "./flags/lb.1x1": {
+      "types": "./dist/flags/lb.1x1.d.ts",
+      "default": "./dist/flags/lb.1x1.js"
+    },
+    "./flags/lb.4x3": {
+      "types": "./dist/flags/lb.4x3.d.ts",
+      "default": "./dist/flags/lb.4x3.js"
+    },
+    "./flags/lb": {
+      "types": "./dist/flags/lb.d.ts",
+      "default": "./dist/flags/lb.js"
+    },
+    "./flags/lc.1x1": {
+      "types": "./dist/flags/lc.1x1.d.ts",
+      "default": "./dist/flags/lc.1x1.js"
+    },
+    "./flags/lc.4x3": {
+      "types": "./dist/flags/lc.4x3.d.ts",
+      "default": "./dist/flags/lc.4x3.js"
+    },
+    "./flags/lc": {
+      "types": "./dist/flags/lc.d.ts",
+      "default": "./dist/flags/lc.js"
+    },
+    "./flags/li.1x1": {
+      "types": "./dist/flags/li.1x1.d.ts",
+      "default": "./dist/flags/li.1x1.js"
+    },
+    "./flags/li.4x3": {
+      "types": "./dist/flags/li.4x3.d.ts",
+      "default": "./dist/flags/li.4x3.js"
+    },
+    "./flags/li": {
+      "types": "./dist/flags/li.d.ts",
+      "default": "./dist/flags/li.js"
+    },
+    "./flags/lk": {
+      "types": "./dist/flags/lk.d.ts",
+      "default": "./dist/flags/lk.js"
+    },
+    "./flags/lr.1x1": {
+      "types": "./dist/flags/lr.1x1.d.ts",
+      "default": "./dist/flags/lr.1x1.js"
+    },
+    "./flags/lr.4x3": {
+      "types": "./dist/flags/lr.4x3.d.ts",
+      "default": "./dist/flags/lr.4x3.js"
+    },
+    "./flags/lr": {
+      "types": "./dist/flags/lr.d.ts",
+      "default": "./dist/flags/lr.js"
+    },
+    "./flags/ls.1x1": {
+      "types": "./dist/flags/ls.1x1.d.ts",
+      "default": "./dist/flags/ls.1x1.js"
+    },
+    "./flags/ls.4x3": {
+      "types": "./dist/flags/ls.4x3.d.ts",
+      "default": "./dist/flags/ls.4x3.js"
+    },
+    "./flags/ls": {
+      "types": "./dist/flags/ls.d.ts",
+      "default": "./dist/flags/ls.js"
+    },
+    "./flags/lt.1x1": {
+      "types": "./dist/flags/lt.1x1.d.ts",
+      "default": "./dist/flags/lt.1x1.js"
+    },
+    "./flags/lt.4x3": {
+      "types": "./dist/flags/lt.4x3.d.ts",
+      "default": "./dist/flags/lt.4x3.js"
+    },
+    "./flags/lt": {
+      "types": "./dist/flags/lt.d.ts",
+      "default": "./dist/flags/lt.js"
+    },
+    "./flags/lu.1x1": {
+      "types": "./dist/flags/lu.1x1.d.ts",
+      "default": "./dist/flags/lu.1x1.js"
+    },
+    "./flags/lu.4x3": {
+      "types": "./dist/flags/lu.4x3.d.ts",
+      "default": "./dist/flags/lu.4x3.js"
+    },
+    "./flags/lu": {
+      "types": "./dist/flags/lu.d.ts",
+      "default": "./dist/flags/lu.js"
+    },
+    "./flags/lv.1x1": {
+      "types": "./dist/flags/lv.1x1.d.ts",
+      "default": "./dist/flags/lv.1x1.js"
+    },
+    "./flags/lv.4x3": {
+      "types": "./dist/flags/lv.4x3.d.ts",
+      "default": "./dist/flags/lv.4x3.js"
+    },
+    "./flags/lv": {
+      "types": "./dist/flags/lv.d.ts",
+      "default": "./dist/flags/lv.js"
+    },
+    "./flags/ly.1x1": {
+      "types": "./dist/flags/ly.1x1.d.ts",
+      "default": "./dist/flags/ly.1x1.js"
+    },
+    "./flags/ly.4x3": {
+      "types": "./dist/flags/ly.4x3.d.ts",
+      "default": "./dist/flags/ly.4x3.js"
+    },
+    "./flags/ly": {
+      "types": "./dist/flags/ly.d.ts",
+      "default": "./dist/flags/ly.js"
+    },
+    "./flags/ma.1x1": {
+      "types": "./dist/flags/ma.1x1.d.ts",
+      "default": "./dist/flags/ma.1x1.js"
+    },
+    "./flags/ma.4x3": {
+      "types": "./dist/flags/ma.4x3.d.ts",
+      "default": "./dist/flags/ma.4x3.js"
+    },
+    "./flags/ma": {
+      "types": "./dist/flags/ma.d.ts",
+      "default": "./dist/flags/ma.js"
+    },
+    "./flags/mc.1x1": {
+      "types": "./dist/flags/mc.1x1.d.ts",
+      "default": "./dist/flags/mc.1x1.js"
+    },
+    "./flags/mc.4x3": {
+      "types": "./dist/flags/mc.4x3.d.ts",
+      "default": "./dist/flags/mc.4x3.js"
+    },
+    "./flags/mc": {
+      "types": "./dist/flags/mc.d.ts",
+      "default": "./dist/flags/mc.js"
+    },
+    "./flags/md.1x1": {
+      "types": "./dist/flags/md.1x1.d.ts",
+      "default": "./dist/flags/md.1x1.js"
+    },
+    "./flags/md.4x3": {
+      "types": "./dist/flags/md.4x3.d.ts",
+      "default": "./dist/flags/md.4x3.js"
+    },
+    "./flags/md": {
+      "types": "./dist/flags/md.d.ts",
+      "default": "./dist/flags/md.js"
+    },
+    "./flags/me.1x1": {
+      "types": "./dist/flags/me.1x1.d.ts",
+      "default": "./dist/flags/me.1x1.js"
+    },
+    "./flags/me.4x3": {
+      "types": "./dist/flags/me.4x3.d.ts",
+      "default": "./dist/flags/me.4x3.js"
+    },
+    "./flags/me": {
+      "types": "./dist/flags/me.d.ts",
+      "default": "./dist/flags/me.js"
+    },
+    "./flags/mf": {
+      "types": "./dist/flags/mf.d.ts",
+      "default": "./dist/flags/mf.js"
+    },
+    "./flags/mg.1x1": {
+      "types": "./dist/flags/mg.1x1.d.ts",
+      "default": "./dist/flags/mg.1x1.js"
+    },
+    "./flags/mg.4x3": {
+      "types": "./dist/flags/mg.4x3.d.ts",
+      "default": "./dist/flags/mg.4x3.js"
+    },
+    "./flags/mg": {
+      "types": "./dist/flags/mg.d.ts",
+      "default": "./dist/flags/mg.js"
+    },
+    "./flags/mh.1x1": {
+      "types": "./dist/flags/mh.1x1.d.ts",
+      "default": "./dist/flags/mh.1x1.js"
+    },
+    "./flags/mh.4x3": {
+      "types": "./dist/flags/mh.4x3.d.ts",
+      "default": "./dist/flags/mh.4x3.js"
+    },
+    "./flags/mh": {
+      "types": "./dist/flags/mh.d.ts",
+      "default": "./dist/flags/mh.js"
+    },
+    "./flags/mk.1x1": {
+      "types": "./dist/flags/mk.1x1.d.ts",
+      "default": "./dist/flags/mk.1x1.js"
+    },
+    "./flags/mk.4x3": {
+      "types": "./dist/flags/mk.4x3.d.ts",
+      "default": "./dist/flags/mk.4x3.js"
+    },
+    "./flags/mk": {
+      "types": "./dist/flags/mk.d.ts",
+      "default": "./dist/flags/mk.js"
+    },
+    "./flags/ml.1x1": {
+      "types": "./dist/flags/ml.1x1.d.ts",
+      "default": "./dist/flags/ml.1x1.js"
+    },
+    "./flags/ml.4x3": {
+      "types": "./dist/flags/ml.4x3.d.ts",
+      "default": "./dist/flags/ml.4x3.js"
+    },
+    "./flags/ml": {
+      "types": "./dist/flags/ml.d.ts",
+      "default": "./dist/flags/ml.js"
+    },
+    "./flags/mm.1x1": {
+      "types": "./dist/flags/mm.1x1.d.ts",
+      "default": "./dist/flags/mm.1x1.js"
+    },
+    "./flags/mm.4x3": {
+      "types": "./dist/flags/mm.4x3.d.ts",
+      "default": "./dist/flags/mm.4x3.js"
+    },
+    "./flags/mm": {
+      "types": "./dist/flags/mm.d.ts",
+      "default": "./dist/flags/mm.js"
+    },
+    "./flags/mn.1x1": {
+      "types": "./dist/flags/mn.1x1.d.ts",
+      "default": "./dist/flags/mn.1x1.js"
+    },
+    "./flags/mn.4x3": {
+      "types": "./dist/flags/mn.4x3.d.ts",
+      "default": "./dist/flags/mn.4x3.js"
+    },
+    "./flags/mn": {
+      "types": "./dist/flags/mn.d.ts",
+      "default": "./dist/flags/mn.js"
+    },
+    "./flags/mo.1x1": {
+      "types": "./dist/flags/mo.1x1.d.ts",
+      "default": "./dist/flags/mo.1x1.js"
+    },
+    "./flags/mo.4x3": {
+      "types": "./dist/flags/mo.4x3.d.ts",
+      "default": "./dist/flags/mo.4x3.js"
+    },
+    "./flags/mo": {
+      "types": "./dist/flags/mo.d.ts",
+      "default": "./dist/flags/mo.js"
+    },
+    "./flags/mp": {
+      "types": "./dist/flags/mp.d.ts",
+      "default": "./dist/flags/mp.js"
+    },
+    "./flags/mq--local": {
+      "types": "./dist/flags/mq--local.d.ts",
+      "default": "./dist/flags/mq--local.js"
+    },
+    "./flags/mq": {
+      "types": "./dist/flags/mq.d.ts",
+      "default": "./dist/flags/mq.js"
+    },
+    "./flags/mr.1x1": {
+      "types": "./dist/flags/mr.1x1.d.ts",
+      "default": "./dist/flags/mr.1x1.js"
+    },
+    "./flags/mr.4x3": {
+      "types": "./dist/flags/mr.4x3.d.ts",
+      "default": "./dist/flags/mr.4x3.js"
+    },
+    "./flags/mr": {
+      "types": "./dist/flags/mr.d.ts",
+      "default": "./dist/flags/mr.js"
+    },
+    "./flags/ms.1x1": {
+      "types": "./dist/flags/ms.1x1.d.ts",
+      "default": "./dist/flags/ms.1x1.js"
+    },
+    "./flags/ms.4x3": {
+      "types": "./dist/flags/ms.4x3.d.ts",
+      "default": "./dist/flags/ms.4x3.js"
+    },
+    "./flags/ms": {
+      "types": "./dist/flags/ms.d.ts",
+      "default": "./dist/flags/ms.js"
+    },
+    "./flags/mt.1x1": {
+      "types": "./dist/flags/mt.1x1.d.ts",
+      "default": "./dist/flags/mt.1x1.js"
+    },
+    "./flags/mt.4x3": {
+      "types": "./dist/flags/mt.4x3.d.ts",
+      "default": "./dist/flags/mt.4x3.js"
+    },
+    "./flags/mt": {
+      "types": "./dist/flags/mt.d.ts",
+      "default": "./dist/flags/mt.js"
+    },
+    "./flags/mu": {
+      "types": "./dist/flags/mu.d.ts",
+      "default": "./dist/flags/mu.js"
+    },
+    "./flags/mv.1x1": {
+      "types": "./dist/flags/mv.1x1.d.ts",
+      "default": "./dist/flags/mv.1x1.js"
+    },
+    "./flags/mv.4x3": {
+      "types": "./dist/flags/mv.4x3.d.ts",
+      "default": "./dist/flags/mv.4x3.js"
+    },
+    "./flags/mv": {
+      "types": "./dist/flags/mv.d.ts",
+      "default": "./dist/flags/mv.js"
+    },
+    "./flags/mw.1x1": {
+      "types": "./dist/flags/mw.1x1.d.ts",
+      "default": "./dist/flags/mw.1x1.js"
+    },
+    "./flags/mw.4x3": {
+      "types": "./dist/flags/mw.4x3.d.ts",
+      "default": "./dist/flags/mw.4x3.js"
+    },
+    "./flags/mw": {
+      "types": "./dist/flags/mw.d.ts",
+      "default": "./dist/flags/mw.js"
+    },
+    "./flags/mx.1x1": {
+      "types": "./dist/flags/mx.1x1.d.ts",
+      "default": "./dist/flags/mx.1x1.js"
+    },
+    "./flags/mx.4x3": {
+      "types": "./dist/flags/mx.4x3.d.ts",
+      "default": "./dist/flags/mx.4x3.js"
+    },
+    "./flags/mx": {
+      "types": "./dist/flags/mx.d.ts",
+      "default": "./dist/flags/mx.js"
+    },
+    "./flags/my.1x1": {
+      "types": "./dist/flags/my.1x1.d.ts",
+      "default": "./dist/flags/my.1x1.js"
+    },
+    "./flags/my.4x3": {
+      "types": "./dist/flags/my.4x3.d.ts",
+      "default": "./dist/flags/my.4x3.js"
+    },
+    "./flags/my": {
+      "types": "./dist/flags/my.d.ts",
+      "default": "./dist/flags/my.js"
+    },
+    "./flags/mz": {
+      "types": "./dist/flags/mz.d.ts",
+      "default": "./dist/flags/mz.js"
+    },
+    "./flags/na.1x1": {
+      "types": "./dist/flags/na.1x1.d.ts",
+      "default": "./dist/flags/na.1x1.js"
+    },
+    "./flags/na.4x3": {
+      "types": "./dist/flags/na.4x3.d.ts",
+      "default": "./dist/flags/na.4x3.js"
+    },
+    "./flags/na": {
+      "types": "./dist/flags/na.d.ts",
+      "default": "./dist/flags/na.js"
+    },
+    "./flags/nc--france": {
+      "types": "./dist/flags/nc--france.d.ts",
+      "default": "./dist/flags/nc--france.js"
+    },
+    "./flags/nc.1x1": {
+      "types": "./dist/flags/nc.1x1.d.ts",
+      "default": "./dist/flags/nc.1x1.js"
+    },
+    "./flags/nc.4x3": {
+      "types": "./dist/flags/nc.4x3.d.ts",
+      "default": "./dist/flags/nc.4x3.js"
+    },
+    "./flags/nc": {
+      "types": "./dist/flags/nc.d.ts",
+      "default": "./dist/flags/nc.js"
+    },
+    "./flags/ne.1x1": {
+      "types": "./dist/flags/ne.1x1.d.ts",
+      "default": "./dist/flags/ne.1x1.js"
+    },
+    "./flags/ne.4x3": {
+      "types": "./dist/flags/ne.4x3.d.ts",
+      "default": "./dist/flags/ne.4x3.js"
+    },
+    "./flags/ne": {
+      "types": "./dist/flags/ne.d.ts",
+      "default": "./dist/flags/ne.js"
+    },
+    "./flags/nf.1x1": {
+      "types": "./dist/flags/nf.1x1.d.ts",
+      "default": "./dist/flags/nf.1x1.js"
+    },
+    "./flags/nf.4x3": {
+      "types": "./dist/flags/nf.4x3.d.ts",
+      "default": "./dist/flags/nf.4x3.js"
+    },
+    "./flags/nf": {
+      "types": "./dist/flags/nf.d.ts",
+      "default": "./dist/flags/nf.js"
+    },
+    "./flags/ng.1x1": {
+      "types": "./dist/flags/ng.1x1.d.ts",
+      "default": "./dist/flags/ng.1x1.js"
+    },
+    "./flags/ng.4x3": {
+      "types": "./dist/flags/ng.4x3.d.ts",
+      "default": "./dist/flags/ng.4x3.js"
+    },
+    "./flags/ng": {
+      "types": "./dist/flags/ng.d.ts",
+      "default": "./dist/flags/ng.js"
+    },
+    "./flags/ni.1x1": {
+      "types": "./dist/flags/ni.1x1.d.ts",
+      "default": "./dist/flags/ni.1x1.js"
+    },
+    "./flags/ni.4x3": {
+      "types": "./dist/flags/ni.4x3.d.ts",
+      "default": "./dist/flags/ni.4x3.js"
+    },
+    "./flags/ni": {
+      "types": "./dist/flags/ni.d.ts",
+      "default": "./dist/flags/ni.js"
+    },
+    "./flags/nl.1x1": {
+      "types": "./dist/flags/nl.1x1.d.ts",
+      "default": "./dist/flags/nl.1x1.js"
+    },
+    "./flags/nl.4x3": {
+      "types": "./dist/flags/nl.4x3.d.ts",
+      "default": "./dist/flags/nl.4x3.js"
+    },
+    "./flags/nl": {
+      "types": "./dist/flags/nl.d.ts",
+      "default": "./dist/flags/nl.js"
+    },
+    "./flags/no.1x1": {
+      "types": "./dist/flags/no.1x1.d.ts",
+      "default": "./dist/flags/no.1x1.js"
+    },
+    "./flags/no.4x3": {
+      "types": "./dist/flags/no.4x3.d.ts",
+      "default": "./dist/flags/no.4x3.js"
+    },
+    "./flags/no": {
+      "types": "./dist/flags/no.d.ts",
+      "default": "./dist/flags/no.js"
+    },
+    "./flags/np.1x1": {
+      "types": "./dist/flags/np.1x1.d.ts",
+      "default": "./dist/flags/np.1x1.js"
+    },
+    "./flags/np.4x3": {
+      "types": "./dist/flags/np.4x3.d.ts",
+      "default": "./dist/flags/np.4x3.js"
+    },
+    "./flags/np": {
+      "types": "./dist/flags/np.d.ts",
+      "default": "./dist/flags/np.js"
+    },
+    "./flags/nr.1x1": {
+      "types": "./dist/flags/nr.1x1.d.ts",
+      "default": "./dist/flags/nr.1x1.js"
+    },
+    "./flags/nr.4x3": {
+      "types": "./dist/flags/nr.4x3.d.ts",
+      "default": "./dist/flags/nr.4x3.js"
+    },
+    "./flags/nr": {
+      "types": "./dist/flags/nr.d.ts",
+      "default": "./dist/flags/nr.js"
+    },
+    "./flags/nu.1x1": {
+      "types": "./dist/flags/nu.1x1.d.ts",
+      "default": "./dist/flags/nu.1x1.js"
+    },
+    "./flags/nu.4x3": {
+      "types": "./dist/flags/nu.4x3.d.ts",
+      "default": "./dist/flags/nu.4x3.js"
+    },
+    "./flags/nu": {
+      "types": "./dist/flags/nu.d.ts",
+      "default": "./dist/flags/nu.js"
+    },
+    "./flags/nz.1x1": {
+      "types": "./dist/flags/nz.1x1.d.ts",
+      "default": "./dist/flags/nz.1x1.js"
+    },
+    "./flags/nz.4x3": {
+      "types": "./dist/flags/nz.4x3.d.ts",
+      "default": "./dist/flags/nz.4x3.js"
+    },
+    "./flags/nz": {
+      "types": "./dist/flags/nz.d.ts",
+      "default": "./dist/flags/nz.js"
+    },
+    "./flags/pa.1x1": {
+      "types": "./dist/flags/pa.1x1.d.ts",
+      "default": "./dist/flags/pa.1x1.js"
+    },
+    "./flags/pa.4x3": {
+      "types": "./dist/flags/pa.4x3.d.ts",
+      "default": "./dist/flags/pa.4x3.js"
+    },
+    "./flags/pa": {
+      "types": "./dist/flags/pa.d.ts",
+      "default": "./dist/flags/pa.js"
+    },
+    "./flags/pe.1x1": {
+      "types": "./dist/flags/pe.1x1.d.ts",
+      "default": "./dist/flags/pe.1x1.js"
+    },
+    "./flags/pe.4x3": {
+      "types": "./dist/flags/pe.4x3.d.ts",
+      "default": "./dist/flags/pe.4x3.js"
+    },
+    "./flags/pe": {
+      "types": "./dist/flags/pe.d.ts",
+      "default": "./dist/flags/pe.js"
+    },
+    "./flags/pf--france": {
+      "types": "./dist/flags/pf--france.d.ts",
+      "default": "./dist/flags/pf--france.js"
+    },
+    "./flags/pf.1x1": {
+      "types": "./dist/flags/pf.1x1.d.ts",
+      "default": "./dist/flags/pf.1x1.js"
+    },
+    "./flags/pf.4x3": {
+      "types": "./dist/flags/pf.4x3.d.ts",
+      "default": "./dist/flags/pf.4x3.js"
+    },
+    "./flags/pf": {
+      "types": "./dist/flags/pf.d.ts",
+      "default": "./dist/flags/pf.js"
+    },
+    "./flags/pg.1x1": {
+      "types": "./dist/flags/pg.1x1.d.ts",
+      "default": "./dist/flags/pg.1x1.js"
+    },
+    "./flags/pg": {
+      "types": "./dist/flags/pg.d.ts",
+      "default": "./dist/flags/pg.js"
+    },
+    "./flags/ph.1x1": {
+      "types": "./dist/flags/ph.1x1.d.ts",
+      "default": "./dist/flags/ph.1x1.js"
+    },
+    "./flags/ph.4x3": {
+      "types": "./dist/flags/ph.4x3.d.ts",
+      "default": "./dist/flags/ph.4x3.js"
+    },
+    "./flags/ph": {
+      "types": "./dist/flags/ph.d.ts",
+      "default": "./dist/flags/ph.js"
+    },
+    "./flags/pk": {
+      "types": "./dist/flags/pk.d.ts",
+      "default": "./dist/flags/pk.js"
+    },
+    "./flags/pl.1x1": {
+      "types": "./dist/flags/pl.1x1.d.ts",
+      "default": "./dist/flags/pl.1x1.js"
+    },
+    "./flags/pl.4x3": {
+      "types": "./dist/flags/pl.4x3.d.ts",
+      "default": "./dist/flags/pl.4x3.js"
+    },
+    "./flags/pl": {
+      "types": "./dist/flags/pl.d.ts",
+      "default": "./dist/flags/pl.js"
+    },
+    "./flags/pm--local": {
+      "types": "./dist/flags/pm--local.d.ts",
+      "default": "./dist/flags/pm--local.js"
+    },
+    "./flags/pm": {
+      "types": "./dist/flags/pm.d.ts",
+      "default": "./dist/flags/pm.js"
+    },
+    "./flags/pn.1x1": {
+      "types": "./dist/flags/pn.1x1.d.ts",
+      "default": "./dist/flags/pn.1x1.js"
+    },
+    "./flags/pn.4x3": {
+      "types": "./dist/flags/pn.4x3.d.ts",
+      "default": "./dist/flags/pn.4x3.js"
+    },
+    "./flags/pn": {
+      "types": "./dist/flags/pn.d.ts",
+      "default": "./dist/flags/pn.js"
+    },
+    "./flags/pr.1x1": {
+      "types": "./dist/flags/pr.1x1.d.ts",
+      "default": "./dist/flags/pr.1x1.js"
+    },
+    "./flags/pr.4x3": {
+      "types": "./dist/flags/pr.4x3.d.ts",
+      "default": "./dist/flags/pr.4x3.js"
+    },
+    "./flags/pr": {
+      "types": "./dist/flags/pr.d.ts",
+      "default": "./dist/flags/pr.js"
+    },
+    "./flags/ps.1x1": {
+      "types": "./dist/flags/ps.1x1.d.ts",
+      "default": "./dist/flags/ps.1x1.js"
+    },
+    "./flags/ps.4x3": {
+      "types": "./dist/flags/ps.4x3.d.ts",
+      "default": "./dist/flags/ps.4x3.js"
+    },
+    "./flags/ps": {
+      "types": "./dist/flags/ps.d.ts",
+      "default": "./dist/flags/ps.js"
+    },
+    "./flags/pt.1x1": {
+      "types": "./dist/flags/pt.1x1.d.ts",
+      "default": "./dist/flags/pt.1x1.js"
+    },
+    "./flags/pt.4x3": {
+      "types": "./dist/flags/pt.4x3.d.ts",
+      "default": "./dist/flags/pt.4x3.js"
+    },
+    "./flags/pt": {
+      "types": "./dist/flags/pt.d.ts",
+      "default": "./dist/flags/pt.js"
+    },
+    "./flags/pw.1x1": {
+      "types": "./dist/flags/pw.1x1.d.ts",
+      "default": "./dist/flags/pw.1x1.js"
+    },
+    "./flags/pw.4x3": {
+      "types": "./dist/flags/pw.4x3.d.ts",
+      "default": "./dist/flags/pw.4x3.js"
+    },
+    "./flags/pw": {
+      "types": "./dist/flags/pw.d.ts",
+      "default": "./dist/flags/pw.js"
+    },
+    "./flags/py.1x1": {
+      "types": "./dist/flags/py.1x1.d.ts",
+      "default": "./dist/flags/py.1x1.js"
+    },
+    "./flags/py.4x3": {
+      "types": "./dist/flags/py.4x3.d.ts",
+      "default": "./dist/flags/py.4x3.js"
+    },
+    "./flags/py": {
+      "types": "./dist/flags/py.d.ts",
+      "default": "./dist/flags/py.js"
+    },
+    "./flags/qa.1x1": {
+      "types": "./dist/flags/qa.1x1.d.ts",
+      "default": "./dist/flags/qa.1x1.js"
+    },
+    "./flags/qa.4x3": {
+      "types": "./dist/flags/qa.4x3.d.ts",
+      "default": "./dist/flags/qa.4x3.js"
+    },
+    "./flags/qa": {
+      "types": "./dist/flags/qa.d.ts",
+      "default": "./dist/flags/qa.js"
+    },
+    "./flags/re--local": {
+      "types": "./dist/flags/re--local.d.ts",
+      "default": "./dist/flags/re--local.js"
+    },
+    "./flags/re": {
+      "types": "./dist/flags/re.d.ts",
+      "default": "./dist/flags/re.js"
+    },
+    "./flags/ro.1x1": {
+      "types": "./dist/flags/ro.1x1.d.ts",
+      "default": "./dist/flags/ro.1x1.js"
+    },
+    "./flags/ro.4x3": {
+      "types": "./dist/flags/ro.4x3.d.ts",
+      "default": "./dist/flags/ro.4x3.js"
+    },
+    "./flags/ro": {
+      "types": "./dist/flags/ro.d.ts",
+      "default": "./dist/flags/ro.js"
+    },
+    "./flags/rs.1x1": {
+      "types": "./dist/flags/rs.1x1.d.ts",
+      "default": "./dist/flags/rs.1x1.js"
+    },
+    "./flags/rs.4x3": {
+      "types": "./dist/flags/rs.4x3.d.ts",
+      "default": "./dist/flags/rs.4x3.js"
+    },
+    "./flags/rs": {
+      "types": "./dist/flags/rs.d.ts",
+      "default": "./dist/flags/rs.js"
+    },
+    "./flags/ru.1x1": {
+      "types": "./dist/flags/ru.1x1.d.ts",
+      "default": "./dist/flags/ru.1x1.js"
+    },
+    "./flags/ru.4x3": {
+      "types": "./dist/flags/ru.4x3.d.ts",
+      "default": "./dist/flags/ru.4x3.js"
+    },
+    "./flags/ru": {
+      "types": "./dist/flags/ru.d.ts",
+      "default": "./dist/flags/ru.js"
+    },
+    "./flags/rw.1x1": {
+      "types": "./dist/flags/rw.1x1.d.ts",
+      "default": "./dist/flags/rw.1x1.js"
+    },
+    "./flags/rw.4x3": {
+      "types": "./dist/flags/rw.4x3.d.ts",
+      "default": "./dist/flags/rw.4x3.js"
+    },
+    "./flags/rw": {
+      "types": "./dist/flags/rw.d.ts",
+      "default": "./dist/flags/rw.js"
+    },
+    "./flags/sa.1x1": {
+      "types": "./dist/flags/sa.1x1.d.ts",
+      "default": "./dist/flags/sa.1x1.js"
+    },
+    "./flags/sa.4x3": {
+      "types": "./dist/flags/sa.4x3.d.ts",
+      "default": "./dist/flags/sa.4x3.js"
+    },
+    "./flags/sa": {
+      "types": "./dist/flags/sa.d.ts",
+      "default": "./dist/flags/sa.js"
+    },
+    "./flags/sb": {
+      "types": "./dist/flags/sb.d.ts",
+      "default": "./dist/flags/sb.js"
+    },
+    "./flags/sc.1x1": {
+      "types": "./dist/flags/sc.1x1.d.ts",
+      "default": "./dist/flags/sc.1x1.js"
+    },
+    "./flags/sc.4x3": {
+      "types": "./dist/flags/sc.4x3.d.ts",
+      "default": "./dist/flags/sc.4x3.js"
+    },
+    "./flags/sc": {
+      "types": "./dist/flags/sc.d.ts",
+      "default": "./dist/flags/sc.js"
+    },
+    "./flags/sd.1x1": {
+      "types": "./dist/flags/sd.1x1.d.ts",
+      "default": "./dist/flags/sd.1x1.js"
+    },
+    "./flags/sd.4x3": {
+      "types": "./dist/flags/sd.4x3.d.ts",
+      "default": "./dist/flags/sd.4x3.js"
+    },
+    "./flags/sd": {
+      "types": "./dist/flags/sd.d.ts",
+      "default": "./dist/flags/sd.js"
+    },
+    "./flags/se.1x1": {
+      "types": "./dist/flags/se.1x1.d.ts",
+      "default": "./dist/flags/se.1x1.js"
+    },
+    "./flags/se.4x3": {
+      "types": "./dist/flags/se.4x3.d.ts",
+      "default": "./dist/flags/se.4x3.js"
+    },
+    "./flags/se": {
+      "types": "./dist/flags/se.d.ts",
+      "default": "./dist/flags/se.js"
+    },
+    "./flags/sg.1x1": {
+      "types": "./dist/flags/sg.1x1.d.ts",
+      "default": "./dist/flags/sg.1x1.js"
+    },
+    "./flags/sg.4x3": {
+      "types": "./dist/flags/sg.4x3.d.ts",
+      "default": "./dist/flags/sg.4x3.js"
+    },
+    "./flags/sg": {
+      "types": "./dist/flags/sg.d.ts",
+      "default": "./dist/flags/sg.js"
+    },
+    "./flags/sh--union-flag": {
+      "types": "./dist/flags/sh--union-flag.d.ts",
+      "default": "./dist/flags/sh--union-flag.js"
+    },
+    "./flags/sh": {
+      "types": "./dist/flags/sh.d.ts",
+      "default": "./dist/flags/sh.js"
+    },
+    "./flags/si.1x1": {
+      "types": "./dist/flags/si.1x1.d.ts",
+      "default": "./dist/flags/si.1x1.js"
+    },
+    "./flags/si.4x3": {
+      "types": "./dist/flags/si.4x3.d.ts",
+      "default": "./dist/flags/si.4x3.js"
+    },
+    "./flags/si": {
+      "types": "./dist/flags/si.d.ts",
+      "default": "./dist/flags/si.js"
+    },
+    "./flags/sj": {
+      "types": "./dist/flags/sj.d.ts",
+      "default": "./dist/flags/sj.js"
+    },
+    "./flags/sk.1x1": {
+      "types": "./dist/flags/sk.1x1.d.ts",
+      "default": "./dist/flags/sk.1x1.js"
+    },
+    "./flags/sk.4x3": {
+      "types": "./dist/flags/sk.4x3.d.ts",
+      "default": "./dist/flags/sk.4x3.js"
+    },
+    "./flags/sk": {
+      "types": "./dist/flags/sk.d.ts",
+      "default": "./dist/flags/sk.js"
+    },
+    "./flags/sl.1x1": {
+      "types": "./dist/flags/sl.1x1.d.ts",
+      "default": "./dist/flags/sl.1x1.js"
+    },
+    "./flags/sl.4x3": {
+      "types": "./dist/flags/sl.4x3.d.ts",
+      "default": "./dist/flags/sl.4x3.js"
+    },
+    "./flags/sl": {
+      "types": "./dist/flags/sl.d.ts",
+      "default": "./dist/flags/sl.js"
+    },
+    "./flags/sm.1x1": {
+      "types": "./dist/flags/sm.1x1.d.ts",
+      "default": "./dist/flags/sm.1x1.js"
+    },
+    "./flags/sm": {
+      "types": "./dist/flags/sm.d.ts",
+      "default": "./dist/flags/sm.js"
+    },
+    "./flags/sn.1x1": {
+      "types": "./dist/flags/sn.1x1.d.ts",
+      "default": "./dist/flags/sn.1x1.js"
+    },
+    "./flags/sn.4x3": {
+      "types": "./dist/flags/sn.4x3.d.ts",
+      "default": "./dist/flags/sn.4x3.js"
+    },
+    "./flags/sn": {
+      "types": "./dist/flags/sn.d.ts",
+      "default": "./dist/flags/sn.js"
+    },
+    "./flags/so.1x1": {
+      "types": "./dist/flags/so.1x1.d.ts",
+      "default": "./dist/flags/so.1x1.js"
+    },
+    "./flags/so.4x3": {
+      "types": "./dist/flags/so.4x3.d.ts",
+      "default": "./dist/flags/so.4x3.js"
+    },
+    "./flags/so": {
+      "types": "./dist/flags/so.d.ts",
+      "default": "./dist/flags/so.js"
+    },
+    "./flags/sr.1x1": {
+      "types": "./dist/flags/sr.1x1.d.ts",
+      "default": "./dist/flags/sr.1x1.js"
+    },
+    "./flags/sr.4x3": {
+      "types": "./dist/flags/sr.4x3.d.ts",
+      "default": "./dist/flags/sr.4x3.js"
+    },
+    "./flags/sr": {
+      "types": "./dist/flags/sr.d.ts",
+      "default": "./dist/flags/sr.js"
+    },
+    "./flags/ss.4x3": {
+      "types": "./dist/flags/ss.4x3.d.ts",
+      "default": "./dist/flags/ss.4x3.js"
+    },
+    "./flags/ss": {
+      "types": "./dist/flags/ss.d.ts",
+      "default": "./dist/flags/ss.js"
+    },
+    "./flags/st.1x1": {
+      "types": "./dist/flags/st.1x1.d.ts",
+      "default": "./dist/flags/st.1x1.js"
+    },
+    "./flags/st.4x3": {
+      "types": "./dist/flags/st.4x3.d.ts",
+      "default": "./dist/flags/st.4x3.js"
+    },
+    "./flags/st": {
+      "types": "./dist/flags/st.d.ts",
+      "default": "./dist/flags/st.js"
+    },
+    "./flags/sv.1x1": {
+      "types": "./dist/flags/sv.1x1.d.ts",
+      "default": "./dist/flags/sv.1x1.js"
+    },
+    "./flags/sv.4x3": {
+      "types": "./dist/flags/sv.4x3.d.ts",
+      "default": "./dist/flags/sv.4x3.js"
+    },
+    "./flags/sv": {
+      "types": "./dist/flags/sv.d.ts",
+      "default": "./dist/flags/sv.js"
+    },
+    "./flags/sx.1x1": {
+      "types": "./dist/flags/sx.1x1.d.ts",
+      "default": "./dist/flags/sx.1x1.js"
+    },
+    "./flags/sx.4x3": {
+      "types": "./dist/flags/sx.4x3.d.ts",
+      "default": "./dist/flags/sx.4x3.js"
+    },
+    "./flags/sx": {
+      "types": "./dist/flags/sx.d.ts",
+      "default": "./dist/flags/sx.js"
+    },
+    "./flags/sy--assad-era": {
+      "types": "./dist/flags/sy--assad-era.d.ts",
+      "default": "./dist/flags/sy--assad-era.js"
+    },
+    "./flags/sy.1x1": {
+      "types": "./dist/flags/sy.1x1.d.ts",
+      "default": "./dist/flags/sy.1x1.js"
+    },
+    "./flags/sy.4x3": {
+      "types": "./dist/flags/sy.4x3.d.ts",
+      "default": "./dist/flags/sy.4x3.js"
+    },
+    "./flags/sy": {
+      "types": "./dist/flags/sy.d.ts",
+      "default": "./dist/flags/sy.js"
+    },
+    "./flags/sz.1x1": {
+      "types": "./dist/flags/sz.1x1.d.ts",
+      "default": "./dist/flags/sz.1x1.js"
+    },
+    "./flags/sz.4x3": {
+      "types": "./dist/flags/sz.4x3.d.ts",
+      "default": "./dist/flags/sz.4x3.js"
+    },
+    "./flags/sz": {
+      "types": "./dist/flags/sz.d.ts",
+      "default": "./dist/flags/sz.js"
+    },
+    "./flags/tc.1x1": {
+      "types": "./dist/flags/tc.1x1.d.ts",
+      "default": "./dist/flags/tc.1x1.js"
+    },
+    "./flags/tc.4x3": {
+      "types": "./dist/flags/tc.4x3.d.ts",
+      "default": "./dist/flags/tc.4x3.js"
+    },
+    "./flags/tc": {
+      "types": "./dist/flags/tc.d.ts",
+      "default": "./dist/flags/tc.js"
+    },
+    "./flags/td.1x1": {
+      "types": "./dist/flags/td.1x1.d.ts",
+      "default": "./dist/flags/td.1x1.js"
+    },
+    "./flags/td.4x3": {
+      "types": "./dist/flags/td.4x3.d.ts",
+      "default": "./dist/flags/td.4x3.js"
+    },
+    "./flags/td": {
+      "types": "./dist/flags/td.d.ts",
+      "default": "./dist/flags/td.js"
+    },
+    "./flags/tf.1x1": {
+      "types": "./dist/flags/tf.1x1.d.ts",
+      "default": "./dist/flags/tf.1x1.js"
+    },
+    "./flags/tf.4x3": {
+      "types": "./dist/flags/tf.4x3.d.ts",
+      "default": "./dist/flags/tf.4x3.js"
+    },
+    "./flags/tf": {
+      "types": "./dist/flags/tf.d.ts",
+      "default": "./dist/flags/tf.js"
+    },
+    "./flags/tg.1x1": {
+      "types": "./dist/flags/tg.1x1.d.ts",
+      "default": "./dist/flags/tg.1x1.js"
+    },
+    "./flags/tg.4x3": {
+      "types": "./dist/flags/tg.4x3.d.ts",
+      "default": "./dist/flags/tg.4x3.js"
+    },
+    "./flags/tg": {
+      "types": "./dist/flags/tg.d.ts",
+      "default": "./dist/flags/tg.js"
+    },
+    "./flags/th.1x1": {
+      "types": "./dist/flags/th.1x1.d.ts",
+      "default": "./dist/flags/th.1x1.js"
+    },
+    "./flags/th.4x3": {
+      "types": "./dist/flags/th.4x3.d.ts",
+      "default": "./dist/flags/th.4x3.js"
+    },
+    "./flags/th": {
+      "types": "./dist/flags/th.d.ts",
+      "default": "./dist/flags/th.js"
+    },
+    "./flags/tj.1x1": {
+      "types": "./dist/flags/tj.1x1.d.ts",
+      "default": "./dist/flags/tj.1x1.js"
+    },
+    "./flags/tj.4x3": {
+      "types": "./dist/flags/tj.4x3.d.ts",
+      "default": "./dist/flags/tj.4x3.js"
+    },
+    "./flags/tj": {
+      "types": "./dist/flags/tj.d.ts",
+      "default": "./dist/flags/tj.js"
+    },
+    "./flags/tk.1x1": {
+      "types": "./dist/flags/tk.1x1.d.ts",
+      "default": "./dist/flags/tk.1x1.js"
+    },
+    "./flags/tk.4x3": {
+      "types": "./dist/flags/tk.4x3.d.ts",
+      "default": "./dist/flags/tk.4x3.js"
+    },
+    "./flags/tk": {
+      "types": "./dist/flags/tk.d.ts",
+      "default": "./dist/flags/tk.js"
+    },
+    "./flags/tl": {
+      "types": "./dist/flags/tl.d.ts",
+      "default": "./dist/flags/tl.js"
+    },
+    "./flags/tm.1x1": {
+      "types": "./dist/flags/tm.1x1.d.ts",
+      "default": "./dist/flags/tm.1x1.js"
+    },
+    "./flags/tm.4x3": {
+      "types": "./dist/flags/tm.4x3.d.ts",
+      "default": "./dist/flags/tm.4x3.js"
+    },
+    "./flags/tm": {
+      "types": "./dist/flags/tm.d.ts",
+      "default": "./dist/flags/tm.js"
+    },
+    "./flags/tn.1x1": {
+      "types": "./dist/flags/tn.1x1.d.ts",
+      "default": "./dist/flags/tn.1x1.js"
+    },
+    "./flags/tn.4x3": {
+      "types": "./dist/flags/tn.4x3.d.ts",
+      "default": "./dist/flags/tn.4x3.js"
+    },
+    "./flags/tn": {
+      "types": "./dist/flags/tn.d.ts",
+      "default": "./dist/flags/tn.js"
+    },
+    "./flags/to.1x1": {
+      "types": "./dist/flags/to.1x1.d.ts",
+      "default": "./dist/flags/to.1x1.js"
+    },
+    "./flags/to.4x3": {
+      "types": "./dist/flags/to.4x3.d.ts",
+      "default": "./dist/flags/to.4x3.js"
+    },
+    "./flags/to": {
+      "types": "./dist/flags/to.d.ts",
+      "default": "./dist/flags/to.js"
+    },
+    "./flags/tr.1x1": {
+      "types": "./dist/flags/tr.1x1.d.ts",
+      "default": "./dist/flags/tr.1x1.js"
+    },
+    "./flags/tr.4x3": {
+      "types": "./dist/flags/tr.4x3.d.ts",
+      "default": "./dist/flags/tr.4x3.js"
+    },
+    "./flags/tr": {
+      "types": "./dist/flags/tr.d.ts",
+      "default": "./dist/flags/tr.js"
+    },
+    "./flags/tt.1x1": {
+      "types": "./dist/flags/tt.1x1.d.ts",
+      "default": "./dist/flags/tt.1x1.js"
+    },
+    "./flags/tt.4x3": {
+      "types": "./dist/flags/tt.4x3.d.ts",
+      "default": "./dist/flags/tt.4x3.js"
+    },
+    "./flags/tt": {
+      "types": "./dist/flags/tt.d.ts",
+      "default": "./dist/flags/tt.js"
+    },
+    "./flags/tv.1x1": {
+      "types": "./dist/flags/tv.1x1.d.ts",
+      "default": "./dist/flags/tv.1x1.js"
+    },
+    "./flags/tv.4x3": {
+      "types": "./dist/flags/tv.4x3.d.ts",
+      "default": "./dist/flags/tv.4x3.js"
+    },
+    "./flags/tv": {
+      "types": "./dist/flags/tv.d.ts",
+      "default": "./dist/flags/tv.js"
+    },
+    "./flags/tw.1x1": {
+      "types": "./dist/flags/tw.1x1.d.ts",
+      "default": "./dist/flags/tw.1x1.js"
+    },
+    "./flags/tw.4x3": {
+      "types": "./dist/flags/tw.4x3.d.ts",
+      "default": "./dist/flags/tw.4x3.js"
+    },
+    "./flags/tw": {
+      "types": "./dist/flags/tw.d.ts",
+      "default": "./dist/flags/tw.js"
+    },
+    "./flags/tz.1x1": {
+      "types": "./dist/flags/tz.1x1.d.ts",
+      "default": "./dist/flags/tz.1x1.js"
+    },
+    "./flags/tz.4x3": {
+      "types": "./dist/flags/tz.4x3.d.ts",
+      "default": "./dist/flags/tz.4x3.js"
+    },
+    "./flags/tz": {
+      "types": "./dist/flags/tz.d.ts",
+      "default": "./dist/flags/tz.js"
+    },
+    "./flags/ua.1x1": {
+      "types": "./dist/flags/ua.1x1.d.ts",
+      "default": "./dist/flags/ua.1x1.js"
+    },
+    "./flags/ua.4x3": {
+      "types": "./dist/flags/ua.4x3.d.ts",
+      "default": "./dist/flags/ua.4x3.js"
+    },
+    "./flags/ua": {
+      "types": "./dist/flags/ua.d.ts",
+      "default": "./dist/flags/ua.js"
+    },
+    "./flags/ug.1x1": {
+      "types": "./dist/flags/ug.1x1.d.ts",
+      "default": "./dist/flags/ug.1x1.js"
+    },
+    "./flags/ug.4x3": {
+      "types": "./dist/flags/ug.4x3.d.ts",
+      "default": "./dist/flags/ug.4x3.js"
+    },
+    "./flags/ug": {
+      "types": "./dist/flags/ug.d.ts",
+      "default": "./dist/flags/ug.js"
+    },
+    "./flags/um": {
+      "types": "./dist/flags/um.d.ts",
+      "default": "./dist/flags/um.js"
+    },
+    "./flags/us-ak": {
+      "types": "./dist/flags/us-ak.d.ts",
+      "default": "./dist/flags/us-ak.js"
+    },
+    "./flags/us-al": {
+      "types": "./dist/flags/us-al.d.ts",
+      "default": "./dist/flags/us-al.js"
+    },
+    "./flags/us-ar": {
+      "types": "./dist/flags/us-ar.d.ts",
+      "default": "./dist/flags/us-ar.js"
+    },
+    "./flags/us-as": {
+      "types": "./dist/flags/us-as.d.ts",
+      "default": "./dist/flags/us-as.js"
+    },
+    "./flags/us-az": {
+      "types": "./dist/flags/us-az.d.ts",
+      "default": "./dist/flags/us-az.js"
+    },
+    "./flags/us-ca": {
+      "types": "./dist/flags/us-ca.d.ts",
+      "default": "./dist/flags/us-ca.js"
+    },
+    "./flags/us-co": {
+      "types": "./dist/flags/us-co.d.ts",
+      "default": "./dist/flags/us-co.js"
+    },
+    "./flags/us-ct": {
+      "types": "./dist/flags/us-ct.d.ts",
+      "default": "./dist/flags/us-ct.js"
+    },
+    "./flags/us-dc": {
+      "types": "./dist/flags/us-dc.d.ts",
+      "default": "./dist/flags/us-dc.js"
+    },
+    "./flags/us-de": {
+      "types": "./dist/flags/us-de.d.ts",
+      "default": "./dist/flags/us-de.js"
+    },
+    "./flags/us-fl": {
+      "types": "./dist/flags/us-fl.d.ts",
+      "default": "./dist/flags/us-fl.js"
+    },
+    "./flags/us-ga": {
+      "types": "./dist/flags/us-ga.d.ts",
+      "default": "./dist/flags/us-ga.js"
+    },
+    "./flags/us-gu": {
+      "types": "./dist/flags/us-gu.d.ts",
+      "default": "./dist/flags/us-gu.js"
+    },
+    "./flags/us-hi": {
+      "types": "./dist/flags/us-hi.d.ts",
+      "default": "./dist/flags/us-hi.js"
+    },
+    "./flags/us-ia": {
+      "types": "./dist/flags/us-ia.d.ts",
+      "default": "./dist/flags/us-ia.js"
+    },
+    "./flags/us-id": {
+      "types": "./dist/flags/us-id.d.ts",
+      "default": "./dist/flags/us-id.js"
+    },
+    "./flags/us-il": {
+      "types": "./dist/flags/us-il.d.ts",
+      "default": "./dist/flags/us-il.js"
+    },
+    "./flags/us-in": {
+      "types": "./dist/flags/us-in.d.ts",
+      "default": "./dist/flags/us-in.js"
+    },
+    "./flags/us-ks": {
+      "types": "./dist/flags/us-ks.d.ts",
+      "default": "./dist/flags/us-ks.js"
+    },
+    "./flags/us-ky": {
+      "types": "./dist/flags/us-ky.d.ts",
+      "default": "./dist/flags/us-ky.js"
+    },
+    "./flags/us-la": {
+      "types": "./dist/flags/us-la.d.ts",
+      "default": "./dist/flags/us-la.js"
+    },
+    "./flags/us-ma": {
+      "types": "./dist/flags/us-ma.d.ts",
+      "default": "./dist/flags/us-ma.js"
+    },
+    "./flags/us-md": {
+      "types": "./dist/flags/us-md.d.ts",
+      "default": "./dist/flags/us-md.js"
+    },
+    "./flags/us-me": {
+      "types": "./dist/flags/us-me.d.ts",
+      "default": "./dist/flags/us-me.js"
+    },
+    "./flags/us-mi": {
+      "types": "./dist/flags/us-mi.d.ts",
+      "default": "./dist/flags/us-mi.js"
+    },
+    "./flags/us-mn": {
+      "types": "./dist/flags/us-mn.d.ts",
+      "default": "./dist/flags/us-mn.js"
+    },
+    "./flags/us-mo": {
+      "types": "./dist/flags/us-mo.d.ts",
+      "default": "./dist/flags/us-mo.js"
+    },
+    "./flags/us-mp": {
+      "types": "./dist/flags/us-mp.d.ts",
+      "default": "./dist/flags/us-mp.js"
+    },
+    "./flags/us-ms": {
+      "types": "./dist/flags/us-ms.d.ts",
+      "default": "./dist/flags/us-ms.js"
+    },
+    "./flags/us-mt": {
+      "types": "./dist/flags/us-mt.d.ts",
+      "default": "./dist/flags/us-mt.js"
+    },
+    "./flags/us-nc": {
+      "types": "./dist/flags/us-nc.d.ts",
+      "default": "./dist/flags/us-nc.js"
+    },
+    "./flags/us-nd": {
+      "types": "./dist/flags/us-nd.d.ts",
+      "default": "./dist/flags/us-nd.js"
+    },
+    "./flags/us-ne": {
+      "types": "./dist/flags/us-ne.d.ts",
+      "default": "./dist/flags/us-ne.js"
+    },
+    "./flags/us-nh": {
+      "types": "./dist/flags/us-nh.d.ts",
+      "default": "./dist/flags/us-nh.js"
+    },
+    "./flags/us-nj": {
+      "types": "./dist/flags/us-nj.d.ts",
+      "default": "./dist/flags/us-nj.js"
+    },
+    "./flags/us-nm": {
+      "types": "./dist/flags/us-nm.d.ts",
+      "default": "./dist/flags/us-nm.js"
+    },
+    "./flags/us-nv": {
+      "types": "./dist/flags/us-nv.d.ts",
+      "default": "./dist/flags/us-nv.js"
+    },
+    "./flags/us-ny": {
+      "types": "./dist/flags/us-ny.d.ts",
+      "default": "./dist/flags/us-ny.js"
+    },
+    "./flags/us-oh": {
+      "types": "./dist/flags/us-oh.d.ts",
+      "default": "./dist/flags/us-oh.js"
+    },
+    "./flags/us-ok": {
+      "types": "./dist/flags/us-ok.d.ts",
+      "default": "./dist/flags/us-ok.js"
+    },
+    "./flags/us-or": {
+      "types": "./dist/flags/us-or.d.ts",
+      "default": "./dist/flags/us-or.js"
+    },
+    "./flags/us-pa": {
+      "types": "./dist/flags/us-pa.d.ts",
+      "default": "./dist/flags/us-pa.js"
+    },
+    "./flags/us-pr": {
+      "types": "./dist/flags/us-pr.d.ts",
+      "default": "./dist/flags/us-pr.js"
+    },
+    "./flags/us-ri": {
+      "types": "./dist/flags/us-ri.d.ts",
+      "default": "./dist/flags/us-ri.js"
+    },
+    "./flags/us-sc": {
+      "types": "./dist/flags/us-sc.d.ts",
+      "default": "./dist/flags/us-sc.js"
+    },
+    "./flags/us-sd": {
+      "types": "./dist/flags/us-sd.d.ts",
+      "default": "./dist/flags/us-sd.js"
+    },
+    "./flags/us-tn": {
+      "types": "./dist/flags/us-tn.d.ts",
+      "default": "./dist/flags/us-tn.js"
+    },
+    "./flags/us-tx": {
+      "types": "./dist/flags/us-tx.d.ts",
+      "default": "./dist/flags/us-tx.js"
+    },
+    "./flags/us-um": {
+      "types": "./dist/flags/us-um.d.ts",
+      "default": "./dist/flags/us-um.js"
+    },
+    "./flags/us-ut": {
+      "types": "./dist/flags/us-ut.d.ts",
+      "default": "./dist/flags/us-ut.js"
+    },
+    "./flags/us-va": {
+      "types": "./dist/flags/us-va.d.ts",
+      "default": "./dist/flags/us-va.js"
+    },
+    "./flags/us-vi": {
+      "types": "./dist/flags/us-vi.d.ts",
+      "default": "./dist/flags/us-vi.js"
+    },
+    "./flags/us-vt": {
+      "types": "./dist/flags/us-vt.d.ts",
+      "default": "./dist/flags/us-vt.js"
+    },
+    "./flags/us-wa": {
+      "types": "./dist/flags/us-wa.d.ts",
+      "default": "./dist/flags/us-wa.js"
+    },
+    "./flags/us-wi": {
+      "types": "./dist/flags/us-wi.d.ts",
+      "default": "./dist/flags/us-wi.js"
+    },
+    "./flags/us-wv": {
+      "types": "./dist/flags/us-wv.d.ts",
+      "default": "./dist/flags/us-wv.js"
+    },
+    "./flags/us-wy": {
+      "types": "./dist/flags/us-wy.d.ts",
+      "default": "./dist/flags/us-wy.js"
+    },
+    "./flags/us.1x1": {
+      "types": "./dist/flags/us.1x1.d.ts",
+      "default": "./dist/flags/us.1x1.js"
+    },
+    "./flags/us.4x3": {
+      "types": "./dist/flags/us.4x3.d.ts",
+      "default": "./dist/flags/us.4x3.js"
+    },
+    "./flags/us": {
+      "types": "./dist/flags/us.d.ts",
+      "default": "./dist/flags/us.js"
+    },
+    "./flags/uy.1x1": {
+      "types": "./dist/flags/uy.1x1.d.ts",
+      "default": "./dist/flags/uy.1x1.js"
+    },
+    "./flags/uy.4x3": {
+      "types": "./dist/flags/uy.4x3.d.ts",
+      "default": "./dist/flags/uy.4x3.js"
+    },
+    "./flags/uy": {
+      "types": "./dist/flags/uy.d.ts",
+      "default": "./dist/flags/uy.js"
+    },
+    "./flags/uz.1x1": {
+      "types": "./dist/flags/uz.1x1.d.ts",
+      "default": "./dist/flags/uz.1x1.js"
+    },
+    "./flags/uz.4x3": {
+      "types": "./dist/flags/uz.4x3.d.ts",
+      "default": "./dist/flags/uz.4x3.js"
+    },
+    "./flags/uz": {
+      "types": "./dist/flags/uz.d.ts",
+      "default": "./dist/flags/uz.js"
+    },
+    "./flags/va.4x3": {
+      "types": "./dist/flags/va.4x3.d.ts",
+      "default": "./dist/flags/va.4x3.js"
+    },
+    "./flags/va": {
+      "types": "./dist/flags/va.d.ts",
+      "default": "./dist/flags/va.js"
+    },
+    "./flags/vc.1x1": {
+      "types": "./dist/flags/vc.1x1.d.ts",
+      "default": "./dist/flags/vc.1x1.js"
+    },
+    "./flags/vc.4x3": {
+      "types": "./dist/flags/vc.4x3.d.ts",
+      "default": "./dist/flags/vc.4x3.js"
+    },
+    "./flags/vc": {
+      "types": "./dist/flags/vc.d.ts",
+      "default": "./dist/flags/vc.js"
+    },
+    "./flags/ve.1x1": {
+      "types": "./dist/flags/ve.1x1.d.ts",
+      "default": "./dist/flags/ve.1x1.js"
+    },
+    "./flags/ve.4x3": {
+      "types": "./dist/flags/ve.4x3.d.ts",
+      "default": "./dist/flags/ve.4x3.js"
+    },
+    "./flags/ve": {
+      "types": "./dist/flags/ve.d.ts",
+      "default": "./dist/flags/ve.js"
+    },
+    "./flags/vg.1x1": {
+      "types": "./dist/flags/vg.1x1.d.ts",
+      "default": "./dist/flags/vg.1x1.js"
+    },
+    "./flags/vg.4x3": {
+      "types": "./dist/flags/vg.4x3.d.ts",
+      "default": "./dist/flags/vg.4x3.js"
+    },
+    "./flags/vg": {
+      "types": "./dist/flags/vg.d.ts",
+      "default": "./dist/flags/vg.js"
+    },
+    "./flags/vi.1x1": {
+      "types": "./dist/flags/vi.1x1.d.ts",
+      "default": "./dist/flags/vi.1x1.js"
+    },
+    "./flags/vi.4x3": {
+      "types": "./dist/flags/vi.4x3.d.ts",
+      "default": "./dist/flags/vi.4x3.js"
+    },
+    "./flags/vi": {
+      "types": "./dist/flags/vi.d.ts",
+      "default": "./dist/flags/vi.js"
+    },
+    "./flags/vn.1x1": {
+      "types": "./dist/flags/vn.1x1.d.ts",
+      "default": "./dist/flags/vn.1x1.js"
+    },
+    "./flags/vn.4x3": {
+      "types": "./dist/flags/vn.4x3.d.ts",
+      "default": "./dist/flags/vn.4x3.js"
+    },
+    "./flags/vn": {
+      "types": "./dist/flags/vn.d.ts",
+      "default": "./dist/flags/vn.js"
+    },
+    "./flags/vu.1x1": {
+      "types": "./dist/flags/vu.1x1.d.ts",
+      "default": "./dist/flags/vu.1x1.js"
+    },
+    "./flags/vu.4x3": {
+      "types": "./dist/flags/vu.4x3.d.ts",
+      "default": "./dist/flags/vu.4x3.js"
+    },
+    "./flags/vu": {
+      "types": "./dist/flags/vu.d.ts",
+      "default": "./dist/flags/vu.js"
+    },
+    "./flags/wf--local": {
+      "types": "./dist/flags/wf--local.d.ts",
+      "default": "./dist/flags/wf--local.js"
+    },
+    "./flags/wf": {
+      "types": "./dist/flags/wf.d.ts",
+      "default": "./dist/flags/wf.js"
+    },
+    "./flags/ws.1x1": {
+      "types": "./dist/flags/ws.1x1.d.ts",
+      "default": "./dist/flags/ws.1x1.js"
+    },
+    "./flags/ws.4x3": {
+      "types": "./dist/flags/ws.4x3.d.ts",
+      "default": "./dist/flags/ws.4x3.js"
+    },
+    "./flags/ws": {
+      "types": "./dist/flags/ws.d.ts",
+      "default": "./dist/flags/ws.js"
+    },
+    "./flags/xk.1x1": {
+      "types": "./dist/flags/xk.1x1.d.ts",
+      "default": "./dist/flags/xk.1x1.js"
+    },
+    "./flags/xk.4x3": {
+      "types": "./dist/flags/xk.4x3.d.ts",
+      "default": "./dist/flags/xk.4x3.js"
+    },
+    "./flags/xk": {
+      "types": "./dist/flags/xk.d.ts",
+      "default": "./dist/flags/xk.js"
+    },
+    "./flags/ye": {
+      "types": "./dist/flags/ye.d.ts",
+      "default": "./dist/flags/ye.js"
+    },
+    "./flags/yt--local": {
+      "types": "./dist/flags/yt--local.d.ts",
+      "default": "./dist/flags/yt--local.js"
+    },
+    "./flags/yt": {
+      "types": "./dist/flags/yt.d.ts",
+      "default": "./dist/flags/yt.js"
+    },
+    "./flags/za.1x1": {
+      "types": "./dist/flags/za.1x1.d.ts",
+      "default": "./dist/flags/za.1x1.js"
+    },
+    "./flags/za.4x3": {
+      "types": "./dist/flags/za.4x3.d.ts",
+      "default": "./dist/flags/za.4x3.js"
+    },
+    "./flags/za": {
+      "types": "./dist/flags/za.d.ts",
+      "default": "./dist/flags/za.js"
+    },
+    "./flags/zm.1x1": {
+      "types": "./dist/flags/zm.1x1.d.ts",
+      "default": "./dist/flags/zm.1x1.js"
+    },
+    "./flags/zm.4x3": {
+      "types": "./dist/flags/zm.4x3.d.ts",
+      "default": "./dist/flags/zm.4x3.js"
+    },
+    "./flags/zm": {
+      "types": "./dist/flags/zm.d.ts",
+      "default": "./dist/flags/zm.js"
+    },
+    "./flags/zw.1x1": {
+      "types": "./dist/flags/zw.1x1.d.ts",
+      "default": "./dist/flags/zw.1x1.js"
+    },
+    "./flags/zw.4x3": {
+      "types": "./dist/flags/zw.4x3.d.ts",
+      "default": "./dist/flags/zw.4x3.js"
+    },
+    "./flags/zw": {
+      "types": "./dist/flags/zw.d.ts",
+      "default": "./dist/flags/zw.js"
+    }
   },
   "files": [
     "dist",
@@ -113,13 +3729,16 @@
     "data:wikidata": "node scripts/fetch-wikidata.ts",
     "data:commons": "node scripts/fetch-commons.ts",
     "site": "pnpm build && node scripts/site.mjs",
-    "test:demo": "pnpm site && playwright test",
+    "test:demo": "pnpm site && node scripts/docs-site.mjs build && playwright test",
     "screenshots:readme": "pnpm site && node scripts/readme-pictures.mjs",
     "docs:make": "node scripts/docs.mjs",
     "data:compare": "node scripts/compare.mjs",
     "data:choose": "node scripts/choose.mjs",
     "data:sheet": "node scripts/sheet.mjs",
-    "data:framing": "node scripts/framing.mjs"
+    "data:framing": "node scripts/framing.mjs",
+    "docs:site": "pnpm build && node scripts/docs-site.mjs build",
+    "docs:check": "pnpm build && node scripts/docs-site.mjs check",
+    "size": "node scripts/docs-site.mjs size"
   },
   "devDependencies": {
     "@eslint/js": "^9.0.0",
@@ -128,14 +3747,16 @@
     "@types/node": "^24.0.0",
     "circle-flags": "2.8.3",
     "country-flag-icons": "1.6.20",
-    "esbuild": "0.27.7",
+    "esbuild": "^0.28.0",
     "eslint": "^9.0.0",
     "flag-icons": "7.5.0",
     "svgo": "4.1.0",
     "tsup": "^8.5.0",
     "typescript": "~5.9.0",
     "typescript-eslint": "^8.0.0",
-    "vitest": "^5.0.0"
+    "vitest": "^5.0.0",
+    "pagefind": "^1.5.2",
+    "marked": "^18.0.0"
   },
   "publishConfig": {
     "access": "public"

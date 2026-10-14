@@ -656,7 +656,9 @@ $("share").addEventListener("click", async () => {
 
 // ----- Words, and the first drawing ---------------------------------------------------------------------------
 
+function docsLink() { document.querySelector('[data-say="pageDocs"]')?.setAttribute("href", language.lang === "ja" ? "docs/ja/index.html" : "docs/index.html"); }
 function sayAll() {
+  docsLink();
   fillSets();
   fillRegion();
   builder?.setLanguage(language.lang);
@@ -671,4 +673,5 @@ fillRegion();
 drawGallery();
 drawLeftOut();
 showTab(state.tab);
+docsLink();
 document.querySelector("main").dataset.ready = "true";

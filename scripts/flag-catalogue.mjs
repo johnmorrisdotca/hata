@@ -1,0 +1,8 @@
+import { readFileSync,writeFileSync,mkdirSync } from "node:fs";
+const pkg=JSON.parse(readFileSync("package.json","utf8"));
+const paths=Object.keys(pkg.exports).filter(key=>key.startsWith("./flags/")&&!key.includes("*"));
+for(const lang of ["en","ja"]){
+ const ja=lang==="ja";const dir=`docs/guides${ja?"/ja":""}`;mkdirSync(dir,{recursive:true});
+ const lines=["---",`title: ${ja?"旗のモジュールの全体の一覧":"Complete flag module catalogue"}`,"section: explanation","order: 12",`description: ${ja?"元の絵・枠用の絵・別の旗の固定の入口を一覧にします。":"Every fixed drawing, adapted frame and variant entry."}`,"---","",`## ${ja?"固定の絵を選ぶ":"Choose a fixed drawing"}`,"",ja?"これは package.json の公開の入口から作る一覧です。コードの数と、枠用の絵や別の旗を含むモジュールの数は別です。既定と名前付きの svg は同じ SVG の文章です。元の資料・ライセンス・寸法を保ちます。":"This catalogue is generated from the public package entries. Primary place codes and drawing modules are different counts: adaptations and variants add modules. Default and named svg exports refer to the same SVG string. Preserve each drawing’s source, licence and dimensions.","","```ts",`import japan, { svg } from "${pkg.name}/flags/jp";`,"console.log(japan===svg,svg.startsWith(\"<svg\"));","```","",`## ${ja?"すべての固定の入口":"Every fixed entry"}`,"","| Import | Drawing |","| --- | --- |",...paths.map(key=>`| \`${pkg.name}/${key.slice(2)}\` | \`${key.slice(8)}\` |`),"",`## ${ja?"動的なコードと元の素材":"Dynamic codes and raw assets"}`,"",ja?"動的なコードは /load で読み、未対応の結果は null です。旗のワイルドカードと元の SVG のパスも保ちます。一覧のモジュールの名前は、国の名前や政治上の状態ではありません。":"Use /load for a dynamic code and handle null for unsupported results. Existing wildcard flag and raw SVG paths remain available. A module filename is not a country name or a political-status claim.",""];
+ writeFileSync(`${dir}/flag-resources.md`,lines.join("\n"));
+}

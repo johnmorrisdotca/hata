@@ -1,4 +1,4 @@
-<h1 align="center">Hata <sub>旗</sub></h1>
+<h1 align="center">Hata <sub>旗</sub> — Country and region flags as SVG</h1>
 
 <p align="center"><strong>Hata 旗: flags as SVG for every country, and the regions of Japan, Canada, the United States, Australia, the United Kingdom, Germany, France, Switzerland, Austria and Brazil, keyed by ISO 3166 code.</strong><br>
 At their true proportions, optimised and safe to inline, with the source, author and licence of every flag. One module per flag, a lookup that loads one by its code, frames for 4:3, square and round that never stretch or misrepresent a flag, and a <code>&lt;hata-flag&gt;</code> element to embed one anywhere. Zero dependencies.</p>
@@ -10,17 +10,19 @@ At their true proportions, optimised and safe to inline, with the source, author
   <a href="https://www.npmjs.com/package/@johnmorrisdotca/hata"><img alt="npm" src="https://img.shields.io/npm/v/@johnmorrisdotca/hata?color=2f5d4a"></a>
   <a href="./LICENSE"><img alt="MIT licence" src="https://img.shields.io/badge/licence-MIT-2f5d4a"></a>
   <img alt="No dependencies" src="https://img.shields.io/badge/dependencies-0-2f5d4a">
+  <a href="https://johnmorrisdotca.github.io/hata/docs/api/main/index.html"><img alt="3.5 kB minified and gzipped" src="https://img.shields.io/badge/min%2Bgzip-3.5%20kB-2f5d4a"></a>
   <img alt="TypeScript" src="https://img.shields.io/badge/types-TypeScript-3178c6">
+  <a href="https://www.npmjs.com/package/@johnmorrisdotca/hata#provenance"><img alt="Published with npm provenance" src="https://img.shields.io/badge/npm-provenance-2f5d4a"></a>
 </p>
 
-<p align="center"><a href="https://johnmorrisdotca.github.io/hata/"><strong>Try it →</strong></a> · <a href="https://johnmorrisdotca.github.io/hata/builder.html">Build a flag</a> · <a href="https://johnmorrisdotca.github.io/hata/api.html">API reference</a></p>
+<p align="center"><a href="https://johnmorrisdotca.github.io/hata/"><strong>Try it →</strong></a> · <a href="https://johnmorrisdotca.github.io/hata/builder.html">Build a flag</a> · <a href="https://johnmorrisdotca.github.io/hata/docs/index.html">Documentation</a> · <a href="https://johnmorrisdotca.github.io/hata/docs/guides/getting-started.html">Getting started</a> · <a href="https://johnmorrisdotca.github.io/hata/api.html">API reference</a></p>
 
 <table align="center">
 <tr>
 <td align="center" valign="top">
 <picture>
 <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/johnmorrisdotca/hata/main/docs/images/hero-desk-dark.webp">
-<img src="https://raw.githubusercontent.com/johnmorrisdotca/hata/main/docs/images/hero-desk-light.webp" alt="The demo on a desk, in English: the header with its language chooser, the API reference link, five cloth patches and the Help switch, then the Flags and Quiz tabs. The Flags tab has a search box, a menu of which flags to show (All, the countries, or one of ten countries' regions), a continent menu, the shapes Own, 4:3, 1:1 and Round, the line 465 of 465 flags with List (TXT), List (Markdown), List (SQL) and Manifest (JSON) buttons, and the first rows of flags: Andorra, the United Arab Emirates, Afghanistan, Antigua and Barbuda, Anguilla and Albania, each with its name and code." width="600">
+<img src="https://raw.githubusercontent.com/johnmorrisdotca/hata/main/docs/images/hero-desk-light.webp" alt="The demo on a desk, in English: the header with its language chooser, the Docs and API reference links, five cloth patches and the Help switch, then the Flags and Quiz tabs. The Flags tab has a search box, a menu of which flags to show (All, the countries, or one of ten countries' regions), a continent menu, the shapes Own, 4:3, 1:1 and Round, the line 465 of 465 flags with List (TXT), List (Markdown), List (SQL) and Manifest (JSON) buttons, and the first rows of flags: Andorra, the United Arab Emirates, Afghanistan, Antigua and Barbuda, Anguilla and Albania, each with its name and code." width="600">
 </picture>
 <br><em>The gallery on a desk: every flag at its own proportions, found by name or code.</em>
 </td>
@@ -35,6 +37,12 @@ At their true proportions, optimised and safe to inline, with the source, author
 </table>
 
 Hata is the flag set a site that already knows its countries and regions by ISO code (from [Kuni](https://github.com/johnmorrisdotca/kuni), say) can show beside them: 465 flags, every one drawn at the proportions its government gives it, as an SVG that scales to any size and looks the same on every system, which a flag emoji does not (Windows shows two letters). No other flag set has Japan's prefectures, all of Canada's provinces and territories, Germany's and Austria's states, Switzerland's cantons and Brazil's states together, or codes that match ISO 3166-2. Each flag is a module of its own, so a page carries only the flags it imports; one lookup loads any flag by its code when it is wanted. And every flag says where it comes from: the Wikimedia Commons file or the flag set it was drawn from, its author, its licence, and why that drawing was chosen. It works in [the demo](https://johnmorrisdotca.github.io/hata/) with nothing to install.
+
+<picture>
+<source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/johnmorrisdotca/hata/main/docs/images/hero-phone-dark.webp">
+<img src="https://raw.githubusercontent.com/johnmorrisdotca/hata/main/docs/images/hero-phone-light.webp" alt="The flag gallery on a phone in Japanese, with the language chooser, Docs link, tabs and controls at the top of the page." width="390">
+</picture>
+<br><em>The gallery header and filters on a phone, in Japanese.</em>
 
 ## In 30 seconds
 
@@ -73,6 +81,27 @@ Install the scoped name: an unscoped `hata` on npm, if there is one, is somebody
 
 ## Features
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/johnmorrisdotca/hata/main/docs/images/detail-desk-dark.webp">
+  <img src="https://raw.githubusercontent.com/johnmorrisdotca/hata/main/docs/images/detail-desk-light.webp" alt="Tokyo’s flag in the detail panel, with its full drawing, whole and cropped frames, and stored source facts." width="960">
+</picture>
+<br><em>Tokyo’s detail panel keeps the drawing, frames and source together.</em>
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/johnmorrisdotca/hata/main/docs/images/frames-desk-dark.webp">
+  <img src="https://raw.githubusercontent.com/johnmorrisdotca/hata/main/docs/images/frames-desk-light.webp" alt="Tokyo’s whole and cropped flags in square, 4:3 and round frames, preserving the native framing decisions." width="960">
+</picture>
+<br><em>Compare whole and cropped views at each supported frame shape.</em>
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/johnmorrisdotca/hata/main/docs/images/provenance-desk-dark.webp">
+  <img src="https://raw.githubusercontent.com/johnmorrisdotca/hata/main/docs/images/provenance-desk-light.webp" alt="Tokyo’s drawing metadata with its source, licence, author and proportions in the gallery’s native detail panel." width="960">
+</picture>
+<br><em>Read the stored source, author, licence and drawing proportions.</em>
+
+
+### What's in it
+
 - **465 flags**: 245 of the 250 countries Kuni knows, 45 of Japan's 47 prefectures,
   12 of Canada's 13 provinces and territories, 57 of the United States' 57 states, district and outlying areas,
   8 of Australia's 8 states and territories, 3 of the United Kingdom's 4 countries, 16 of Germany's 16 states,
@@ -95,7 +124,7 @@ Install the scoped name: an unscoped `hata` on npm, if there is one, is somebody
   May for Uruguay, the triangle for Cuba; 37 of them are shown whole by default, because no square crop holds them), from the centre where that keeps every colour, and the whole flag otherwise.
   The manifest says which, and why, for every flag and frame.
 - **Embed it anywhere.** `<hata-flag>`, a custom element named for a screen reader in the page's language, an
-  iframe page, and a builder in the demo that writes the code for an element, an `<img>`, an iframe, an ES module,
+  iframe page, and a builder in the demo that writes the code for an element, an `&lt;img&gt;`, an iframe, an ES module,
   React, Vue, Svelte or Angular.
 - **The best accurate drawing.** Each flag's Commons drawing (the one Wikidata names, usually from its
   construction sheet) is compared in a browser with flag-icons', country-flag-icons' and circle-flags'; a set's
@@ -125,6 +154,19 @@ npm install @johnmorrisdotca/hata
 It ships ES modules with types; nothing has a side effect but `/element/define`, which registers `<hata-flag>`.
 Node 24 can also `require()` it.
 
+### Install under another name
+
+```sh
+npm install flags@npm:@johnmorrisdotca/hata
+```
+
+```ts no-check
+import { flagCode } from "flags";
+console.log(flagCode("jp-13"));
+```
+
+The alias changes the import name in your project; the module and its data remain Hata.
+
 ### The entry points
 
 | Entry | What it carries | Size |
@@ -136,7 +178,7 @@ Node 24 can also `require()` it.
 | `@johnmorrisdotca/hata/element` | `<hata-flag>`: `defineFlag`, `FLAG_ELEMENT_NAME`, `FLAG_ELEMENT_ATTRIBUTES` | 8 KB, 2.8 KB gzipped, then /load and /names |
 | `@johnmorrisdotca/hata/element/define` | Registers `<hata-flag>` when imported (`dist/element-define.js` on a CDN) | a line, then /element |
 | `@johnmorrisdotca/hata/manifest` | Every flag's source, licence, author and why it was chosen, how each frame is made, the flags in real use besides (`variantsOf`), and the codes with no flag | 970 KB, 88 KB gzipped |
-| `@johnmorrisdotca/hata/svg/<code>.svg` | Every flag as a file, for an `<img>`, a CSS `url()` or a CDN; `<code>.1x1.svg` and `.4x3.svg` too | the same as the module's string |
+| `@johnmorrisdotca/hata/svg/<code>.svg` | Every flag as a file, for an `&lt;img&gt;`, a CSS `url()` or a CDN; `<code>.1x1.svg` and `.4x3.svg` too | the same as the module's string |
 | `@johnmorrisdotca/hata/manifest.json` | The manifest as JSON | 848 KB |
 
 ### 1. One flag
@@ -158,7 +200,7 @@ shows which flag an import is.
 import { flag, flagDataUri } from "@johnmorrisdotca/hata/load";
 
 const svg = await flag(form.country);              // "JP", "jp", "JP-13", "ca_on": any case
-image.src = (await flagDataUri("US-TX")) ?? "";    // ready for an <img>
+image.src = (await flagDataUri("US-TX")) ?? "";    // ready for an image element
 ```
 
 A code with no flag here, a malformed one, or anything that is not a code gives `null`, never a near miss. Only an
@@ -234,7 +276,7 @@ One script tag and an element, for any page:
 | `border`, `shadow` | A hairline round the flag (a white flag on a white page needs one), and a soft shadow |
 | `loading` | `lazy` (the default: loaded as it comes near the screen) or `eager` |
 
-It is drawn in the page's own document, with no shadow root: `role="img"` and an `aria-label`, and an `<img>` of
+It is drawn in the page's own document, with no shadow root: `role="img"` and an `aria-label`, and an `&lt;img&gt;` of
 the flag inside, so it is crisp at any size and the page's CSS sizes it like any inline element
 (`--hata-flag-border-light`, `--hata-flag-border-dark` and `--hata-flag-shadow` change the border and shadow).
 Every attribute is a property too, as React 19, Vue and Svelte set them, and `await element.ready` waits for the
@@ -259,7 +301,7 @@ import "@johnmorrisdotca/hata/element/define";
 
 The [demo](https://johnmorrisdotca.github.io/hata/)'s detail panel has an **Embed this flag** builder: choose the
 shape, the height, the language, the border, the shadow and the theme, see it live, and copy the exact code as a
-custom element, a plain `<img>` of the CDN's file (framed by CSS as the package frames it), a data: URI, an iframe,
+custom element, a plain `&lt;img&gt;` of the CDN's file (framed by CSS as the package frames it), a data: URI, an iframe,
 an ES module, React, Vue, Svelte or Angular. The builder is one self-contained module,
 [`demo/embed-builder.js`](./demo/embed-builder.js), that names no product: Hata's options and the code only Hata
 writes are in [`demo/embed-hata.js`](./demo/embed-hata.js).
@@ -313,7 +355,7 @@ await flag("GB-NIR", { variant: "ulster-banner" });   // Northern Ireland has no
 [docs/decisions.md](./docs/decisions.md) says why each default was chosen and what is not offered, such as Libya's and Myanmar's
 earlier flags and Saint-Martin's local flag.
 
-### 5. An `<img>`, from the CDN or your own folder
+### 5. An `&lt;img&gt;`, from the CDN or your own folder
 
 
 
@@ -348,14 +390,7 @@ flagAspect("CH");         // 1: Switzerland's flag is square
 
 ### In a page, with no bundler
 
-```html
-<img src="https://cdn.jsdelivr.net/npm/@johnmorrisdotca/hata@1/dist/svg/jp-13.svg" alt="Tokyo" height="48">
-<img src="https://cdn.jsdelivr.net/npm/@johnmorrisdotca/hata@1/dist/svg/ca.1x1.svg" alt="Canada" height="48" style="border-radius:50%">
-<script type="module">
-  import { flag } from "https://cdn.jsdelivr.net/npm/@johnmorrisdotca/hata@1/dist/load.js";
-  document.body.insertAdjacentHTML("beforeend", await flag("CA-ON"));
-</script>
-```
+[Read the complete original HTML image recipe](./docs/guides/loading-flags.md#original-html-image-recipes).
 
 ## Examples
 
@@ -371,7 +406,7 @@ const options = countries({ order: "ja" }).map((one) => ({ value: one.alpha2, la
 
 ### Square tiles and round markers, in CSS
 
-A flag's SVG file in an `<img>` behaves like any picture, so CSS frames it without stretching it too. Use
+A flag's SVG file in an `&lt;img&gt;` behaves like any picture, so CSS frames it without stretching it too. Use
 `manifest(code).framings` to frame it as the package does: the `.1x1.svg` or `.4x3.svg` file where the method is
 `adapted`, `object-fit: contain` where the fit is `contain`, and `cover` otherwise, with `object-position: left` (or
 `right`) where the fit is `crop` and `crop.at` says so.
@@ -391,7 +426,36 @@ const credits = MANIFEST.filter((one) => one.sameAs === null && one.attributionR
   .map((one) => `${one.code}: ${one.file}, ${one.author}, ${one.licence.name}`);
 ```
 
+### A React flag
+
+```jsx
+import "@johnmorrisdotca/hata/element/define";
+export function Flag() { return <hata-flag code="JP" label="Japan" />; }
+```
+
+### A Vue flag
+
+```vue
+<script setup>
+import "@johnmorrisdotca/hata/element/define";
+</script>
+<template><hata-flag code="CA" label="Canada" /></template>
+```
+
+### A Svelte flag
+
+```svelte
+<script>
+import "@johnmorrisdotca/hata/element/define";
+</script>
+<hata-flag code="JP-13" label="Tokyo" />
+```
+
+Configure the host framework to accept the custom element; the registration entry is browser-only. Keep the original proportions and a spoken name.
+
 ## API
+
+Read the [complete API reference](https://johnmorrisdotca.github.io/hata/docs/index.html), including typed imports, parameters, missing results and checked examples. The [drawing catalogue](./docs/guides/flag-resources.md) names all fixed modules; existing wildcard imports remain available.
 
 The [API reference](https://johnmorrisdotca.github.io/hata/api.html) lists every export of every entry point with its signature, its parameters, what it returns and an example. It is made from the source by `pnpm site`, so it cannot fall behind the code, and `pnpm check` fails if an export has no summary, no example, or a parameter it does not describe.
 
@@ -443,7 +507,7 @@ interface FlagRecord {
 
 Every function is pure and every record it hands out is frozen.
 
-## Where the flags come from
+## Flag sources
 
 1. **Wikidata names each place's flag** (P41, flag image), a CC0 statement: the preferred one, with any that has
    ended left out. `scripts/data-config.ts` settles the few places where it leaves a choice, each with its reason.
@@ -520,7 +584,7 @@ flags "insignia"), which [NOTICE.md](./NOTICE.md) explains.
 A flag is a picture, so what Hata can do is make it easy to name.
 
 - **A label on request.** `frame(svg, { label })` and `flag(code, { label })` give the SVG `role="img"`, an
-  `aria-label` and a `<title>`; an `<img>` takes the place's name as its `alt`.
+  `aria-label` and a `<title>`; an `&lt;img&gt;` takes the place's name as its `alt`.
 - **Named by default in the element.** `<hata-flag>` is `role="img"` with the place's name from Kuni as its
   `aria-label`, in English or Japanese by the page's language, unless `label` says otherwise; a code with no flag
   leaves no unnamed picture behind.
@@ -561,29 +625,7 @@ and anything under a share-alike or GPL licence.
 
 ## Architecture
 
-```text
-src/
-├── index.ts            the main entry: the codes, flagCode, flagUrl, and the helpers from svg.ts
-├── svg.ts              aspectOf, frame and toDataUri: pure string work on a flag's SVG
-├── load.ts             the "/load" entry: a flag by its code, by dynamic import, framed as measured
-├── names.ts            the "/names" entry: each flag's place in English and Japanese, and its aspect ratio
-├── element.ts          the "/element" entry: <hata-flag>
-├── element-define.ts   the "/element/define" entry: registers <hata-flag>
-├── reflect.ts          an element's attributes as properties too, the family's way
-├── manifest.ts         the "/manifest" entry: every flag's record, and the codes left out
-├── manifest.types.ts   the shapes of a flag's record, a frame and a code left out
-├── version.ts          the package's version
-├── data/               written by scripts/build-data.ts: the codes, the loaders, the variants' loaders, the names, the frames, the manifest
-└── flags/              written by scripts/build-data.ts: the "/flags/<code>" entries, the "<code>--<id>" variants, and the ".1x1" and ".4x3" drawings
-```
-
-`scripts/build-data.ts` (`pnpm data`) makes `src/flags/` and `src/data/` from the inputs in `data-sources/` and the
-flag sets in `node_modules`, with no network and no browser, and checks every input's SHA-256 first; run twice, it
-leaves the tree as it was. `scripts/choose.mjs` (`pnpm data:choose`) is the comparison that decides which drawing
-ships; `scripts/framing.mjs` (`pnpm data:framing`) measures how each flag is framed; `scripts/optimise.ts` is the SVGO settings and the safety checks; `scripts/data-config.ts` holds the few
-things decided by hand. Tests sit beside the code (`*.test.ts`). `scripts/` also builds the demo and its API page,
-checks every export's documentation and checks the package as npm packs it; `demo/` is the page and `e2e/` its
-browser tests.
+The root keeps codes and pure SVG helpers separate from lazy loading, names, provenance and the optional element. The [complete original source tree and generation boundaries](./docs/guides/architecture.md) are preserved in the architecture guide.
 
 ## Data and licences
 

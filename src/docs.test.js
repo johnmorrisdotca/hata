@@ -15,6 +15,7 @@ import * as names from "./names.ts";
 
 const pkg = JSON.parse(readFileSync("package.json", "utf8"));
 const readme = readFileSync("README.md", "utf8");
+const documented = readme + readFileSync("docs/guides/flag-resources.md", "utf8");
 
 // A README section's text, from its heading to the next heading of the same level.
 const section = (heading, level = "##") => {
@@ -27,7 +28,7 @@ const section = (heading, level = "##") => {
 describe("the README", () => {
   it("names every entry package.json exports", () => {
     const exported = Object.keys(pkg.exports).filter((key) => key !== "." && key !== "./package.json").map((key) => `${pkg.name}/${key.slice(2).replace("*", "<code>")}`.replace("/svg/<code>", "/svg/<code>.svg"));
-    for (const entry of exported) expect(readme, entry).toContain(`\`${entry}\``);
+    for (const entry of exported) expect(documented, entry).toContain(`\`${entry}\``);
   });
 
   it("names in its API table every runtime export of every entry", () => {
@@ -40,7 +41,7 @@ describe("the README", () => {
   });
 
   it("names in its Architecture tree every hand-written source file, and nothing that is not one", () => {
-    const tree = section("Architecture");
+    const tree = readFileSync("docs/guides/architecture.md", "utf8");
     const named = [...tree.matchAll(/[├└]── ([\w.-]+\.ts)\b/g)].map((match) => match[1]).sort();
     const files = readdirSync("src").filter((file) => file.endsWith(".ts") && !file.endsWith(".test.ts")).sort();
     expect(named).toEqual(files);

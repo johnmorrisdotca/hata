@@ -127,9 +127,9 @@ const page = `<!doctype html>
   <head>
     ${familyHead({
       id,
-      title: "Hata · flags as SVG for every country and the regions of ten countries",
+      title: "Hata 旗 — Country and region flags as SVG",
       description: "Every country's flag, and the regions of Japan, Canada, the United States, Australia, the United Kingdom, Germany, France, Switzerland, Austria and Brazil, as optimised SVG keyed by ISO 3166 code, with each flag's source and licence. Search, embed anywhere, download as SVG or PNG, and play the flag quiz. Free and open source.",
-      ogTitle: "Hata: flags as SVG, keyed by ISO 3166 code",
+      ogTitle: "Hata 旗 — Country and region flags as SVG",
       ogDescription: `${FLAG_CODES.length} flags at their true proportions, from Wikimedia Commons and MIT flag sets, with provenance for each, an element to embed one anywhere, and a flag quiz in English and Japanese.`,
     })}
     <link rel="icon" href="${ICON}" />
@@ -138,7 +138,7 @@ const page = `<!doctype html>
   </head>
   <body>
     <main>
-      ${familyHeader({ id, links: [{ href: "api.html", say: "pageApi" }] })}
+      ${familyHeader({ id, links: [{ href: "docs/index.html", say: "pageDocs" }, { href: "api.html", say: "pageApi" }] })}
       <div class="fam-tabs" role="tablist" data-testid="tabs">
         <button type="button" role="tab" id="tab-gallery" aria-controls="gallery-panel" data-tab="gallery" data-say="tab_gallery"></button>
         <button type="button" role="tab" id="tab-quiz" aria-controls="quiz-panel" data-tab="quiz" data-say="tab_quiz"></button>
@@ -184,8 +184,8 @@ writeFileSync("site/family-embed-builder.js", `export const FAMILY_EMBED_BUILDER
 writeFileSync("site/embed-builder.js", readFileSync("demo/embed-builder.js", "utf8").replace('from "../scripts/family-template.mjs"', 'from "./family-embed-builder.js"'));
 
 const builderWords = {
-  "builderHead": familyHead({ id, title: "Hata · build a flag", description: "Choose a flag, preview it and copy its embed code." }),
-  "builderHeader": familyHeader({ id, links: [{ href: "./", say: "toGallery" }] }),
+  "builderHead": familyHead({ id, title: "Hata 旗 — Country and region flags as SVG · builder", description: "Choose a flag, preview it and copy its embed code." }),
+  "builderHeader": familyHeader({ id, links: [{ href: "./", say: "toGallery" }, { href: "docs/index.html", say: "pageDocs" }, { href: "api.html", say: "pageApi" }] }),
   "unreviewed": familyUnreviewed({ id }), "footer": familyFooter({ id }), "script": `<script>${FAMILY_SCRIPT}</script>`,
 };
 writeFileSync("site/builder.html", readFileSync("demo/builder.html", "utf8").replace(/<!-- family:([A-Za-z]+) -->/g, (_match, key) => builderWords[key]));
