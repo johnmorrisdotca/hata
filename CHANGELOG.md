@@ -6,6 +6,8 @@ All notable changes to this project are written here. The format follows
 
 ## [Unreleased]
 
+- Synchronize documentation tooling for repository layouts, generated type references, Node entry points and repository-specific README links.
+
 - Add English/Japanese documentation guides, a complete drawing catalogue, checked public-export examples, local search and Markdown/llms references. Keep API anchors, native drawing data, provenance and existing wildcard assets; add language-aware Docs links to the gallery and builder.
 
 - Reconcile standard embeds with the released flag variants, whole/crop choices and Brittany; validate variant ids in the canonical frame and keep variant proportions in copied code.
