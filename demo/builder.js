@@ -17,7 +17,7 @@ const words = {
     nameLink: "About the name",
     foot: "The choices are in the link. The flag is drawn in your browser.",
     toGallery: "Flag gallery",
-    pageDocs: "Docs", pageApi: "API reference",
+    pageDocs: "Docs", pageApi: "API",
     makerFlag: "A flag",
     makerFlagSays: "A flag at its own proportions or in a frame.",
     copyLink: "Copy a link to this flag",
@@ -27,7 +27,7 @@ const words = {
   ja: {
     ...FAMILY_EMBED_BUILDER_WORDS.ja,
     pitch: "旗を選んで表示を確認し、ページに埋め込むコードをコピーできます。",
-    name: "「旗」は英語の flag に当たります。",
+    name: "「旗」は英語のflagに当たります。",
     nameLink: "名前について",
     foot: "選択はリンクに入ります。旗はブラウザで描画されます。",
     toGallery: "旗の一覧",
@@ -35,7 +35,7 @@ const words = {
     makerFlag: "旗",
     makerFlagSays: "本来の縦横比、または枠に収めた旗です。",
     copyLink: "この旗へのリンクをコピー",
-    missingVariant: "一覧のパネルにある別の旗の id を指定してください。既定の旗がない地域では、指定が必要です。",
+    missingVariant: "一覧のパネルにある別の旗のidを指定してください。既定の旗がない地域では、指定が必要です。",
     loading: "画像のコードを準備しています…"
   },
 };
@@ -44,7 +44,7 @@ const row = (id, kind, en, ja, extra = {}) => ({ id, group: "flag", kind, names:
 const options = [
   row("code", "choice", ["Flag", "Choose a country or region."], ["旗", "国や地域を選びます。"], { default: "JP", choices: codeChoices, control: "select", choiceLabels: Object.fromEntries(["en", "ja"].map((lang) => [lang, Object.fromEntries(codeChoices.map((code) => [code, `${flagName(code, lang) ?? code} (${code})`]))])) }),
   row("shape", "choice", ["Shape", "Keep its proportions or choose a frame."], ["形", "本来の縦横比、または枠の形を選びます。"], { default: "own", choices: ["own", "4:3", "1:1", "round"] }),
-  row("variant", "text", ["Variant (optional)", "Choose a variant id from the flag's gallery panel; empty uses the default."], ["別の旗（任意）", "旗の一覧のパネルにある id で指定します。空のままなら既定の旗を描きます。"]),
+  row("variant", "text", ["Variant (optional)", "Choose a variant id from the flag's gallery panel; empty uses the default."], ["別の旗（任意）", "旗の一覧のパネルにあるidで指定します。空のままなら既定の旗を描きます。"]),
   row("fit", "choice", ["Whole or cropped", "Use the curated frame, the whole flag or a crop."], ["全体か切り抜きか", "旗に合わせた表示・旗の全体・切り抜きから選びます。"], { default: "auto", choices: ["auto", "whole", "crop", "cover", "hoist", "contain"] }),
   row("size", "choice", ["Display size", "Small, medium or large; width overrides it."], ["表示の大きさ", "小・中・大を選びます。幅の指定が優先されます。"], { choices: ["small", "medium", "large"] }),
   row("width", "number", ["Width", "Width in pixels, preserving the flag's proportions."], ["幅", "旗の縦横比を保った幅を、ピクセルで指定します。"], { range: { min: 12, max: 600, step: 4 } }),

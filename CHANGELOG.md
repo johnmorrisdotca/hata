@@ -6,22 +6,22 @@ All notable changes to this project are written here. The format follows
 
 ## [Unreleased]
 
-- Synchronize documentation tooling for repository layouts, generated type references, Node entry points and repository-specific README links.
+## [1.6.0] - 2026-10-14
 
-- Add English/Japanese documentation guides, a complete drawing catalogue, checked public-export examples, local search and Markdown/llms references. Keep API anchors, native drawing data, provenance and existing wildcard assets; add language-aware Docs links to the gallery and builder.
-
-- Reconcile standard embeds with the released flag variants, whole/crop choices and Brittany; validate variant ids in the canonical frame and keep variant proportions in copied code.
+The flag is a custom element with the family's standard embed attributes and a shared builder, and the package has an English and Japanese documentation site with a checked example for every export. The flags, the codes, the variants and the loaders are unchanged.
 
 ### Added
 
+- Add English/Japanese documentation guides, a complete drawing catalogue, checked public-export examples, local search and Markdown/llms references. Keep API anchors, native drawing data, provenance and existing wildcard assets; add language-aware Docs links to the gallery and builder.
 - Add a shared standalone flag builder and standard embed/ page, compatible pixel-width and display-size attributes, composed load/error events, and styling inside shadow roots.
-
 - Share a package-independent embed builder for option controls, preview adapters, code tabs and shareable links.
 
 ### Changed
 
+- The API link in the header reads "API" in English, so that the header takes the same number of rows in English and in Japanese on a phone, as the demo's test of a language change asks.
+- Synchronize documentation tooling for repository layouts, generated type references, Node entry points and repository-specific README links.
+- Reconcile standard embeds with the released flag variants, whole/crop choices and Brittany; validate variant ids in the canonical frame and keep variant proportions in copied code.
 - Group the package family by kind, alphabetize each group, and include the geography packages and REST in Pieces in the shared footer and README.
-
 - Update the shared family description for addresses in all seven supported countries, including France and Germany.
 
 ## [1.5.0] - 2026-10-10

@@ -3,43 +3,43 @@
   "entries": {
     ".": {
       "minified": 7457,
-      "gzip": 3468
+      "gzip": 3516
     },
     "./load": {
       "minified": 12031995,
-      "gzip": 3952355
+      "gzip": 3929380
     },
     "./manifest": {
       "minified": 858643,
-      "gzip": 87101
+      "gzip": 86902
     },
     "./names": {
       "minified": 29964,
-      "gzip": 8905
+      "gzip": 8928
     },
     "./element": {
       "minified": 12067628,
-      "gzip": 3964123
+      "gzip": 3941564
     },
     "./element/define": {
       "minified": 12067581,
-      "gzip": 3964085
+      "gzip": 3941534
     },
     "./flags/ad.1x1": {
       "minified": 28262,
-      "gzip": 10607
+      "gzip": 10503
     },
     "./flags/ad.4x3": {
       "minified": 29618,
-      "gzip": 11147
+      "gzip": 11051
     },
     "./flags/ad": {
       "minified": 32736,
-      "gzip": 12044
+      "gzip": 11932
     },
     "./flags/ae.1x1": {
       "minified": 289,
-      "gzip": 196
+      "gzip": 199
     },
     "./flags/ae.4x3": {
       "minified": 281,
@@ -47,119 +47,119 @@
     },
     "./flags/ae": {
       "minified": 265,
-      "gzip": 199
+      "gzip": 194
     },
     "./flags/af--de-facto": {
       "minified": 29581,
-      "gzip": 13820
+      "gzip": 13608
     },
     "./flags/af.1x1": {
       "minified": 18485,
-      "gzip": 7714
+      "gzip": 7648
     },
     "./flags/af.4x3": {
       "minified": 18693,
-      "gzip": 7801
+      "gzip": 7725
     },
     "./flags/af": {
       "minified": 221816,
-      "gzip": 93278
+      "gzip": 92517
     },
     "./flags/ag.1x1": {
       "minified": 742,
-      "gzip": 452
+      "gzip": 453
     },
     "./flags/ag.4x3": {
       "minified": 734,
-      "gzip": 439
+      "gzip": 443
     },
     "./flags/ag": {
       "minified": 523,
-      "gzip": 330
+      "gzip": 331
     },
     "./flags/ai.1x1": {
       "minified": 2237,
-      "gzip": 980
+      "gzip": 971
     },
     "./flags/ai.4x3": {
       "minified": 2227,
-      "gzip": 980
+      "gzip": 967
     },
     "./flags/ai": {
       "minified": 2625,
-      "gzip": 826
+      "gzip": 830
     },
     "./flags/al.1x1": {
       "minified": 3126,
-      "gzip": 1538
+      "gzip": 1513
     },
     "./flags/al.4x3": {
       "minified": 3113,
-      "gzip": 1526
+      "gzip": 1503
     },
     "./flags/al": {
       "minified": 5795,
-      "gzip": 2448
+      "gzip": 2416
     },
     "./flags/am.1x1": {
       "minified": 254,
-      "gzip": 190
+      "gzip": 193
     },
     "./flags/am.4x3": {
       "minified": 246,
-      "gzip": 180
+      "gzip": 181
     },
     "./flags/am": {
       "minified": 261,
-      "gzip": 187
+      "gzip": 186
     },
     "./flags/ao.1x1": {
       "minified": 1592,
-      "gzip": 753
+      "gzip": 747
     },
     "./flags/ao.4x3": {
       "minified": 1592,
-      "gzip": 753
+      "gzip": 747
     },
     "./flags/ao": {
       "minified": 1624,
-      "gzip": 831
+      "gzip": 828
     },
     "./flags/ar.1x1": {
       "minified": 3432,
-      "gzip": 1149
+      "gzip": 1135
     },
     "./flags/ar.4x3": {
       "minified": 3453,
-      "gzip": 1158
+      "gzip": 1143
     },
     "./flags/ar": {
       "minified": 2877,
-      "gzip": 1123
+      "gzip": 1109
     },
     "./flags/as.1x1": {
       "minified": 30790,
-      "gzip": 11760
+      "gzip": 11631
     },
     "./flags/as.4x3": {
       "minified": 30266,
-      "gzip": 11569
+      "gzip": 11462
     },
     "./flags/as": {
       "minified": 29608,
-      "gzip": 11399
+      "gzip": 11292
     },
     "./flags/at-1": {
       "minified": 219,
-      "gzip": 181
+      "gzip": 180
     },
     "./flags/at-2": {
       "minified": 260,
-      "gzip": 189
+      "gzip": 191
     },
     "./flags/at-3": {
       "minified": 205,
-      "gzip": 176
+      "gzip": 175
     },
     "./flags/at-4": {
       "minified": 216,
@@ -167,7 +167,7 @@
     },
     "./flags/at-5": {
       "minified": 216,
-      "gzip": 179
+      "gzip": 178
     },
     "./flags/at-6": {
       "minified": 258,
@@ -175,91 +175,91 @@
     },
     "./flags/at-7": {
       "minified": 224,
-      "gzip": 181
+      "gzip": 182
     },
     "./flags/at-8": {
       "minified": 224,
-      "gzip": 181
+      "gzip": 183
     },
     "./flags/at-9": {
       "minified": 224,
-      "gzip": 181
+      "gzip": 183
     },
     "./flags/at.1x1": {
       "minified": 224,
-      "gzip": 186
+      "gzip": 189
     },
     "./flags/at.4x3": {
       "minified": 216,
-      "gzip": 175
+      "gzip": 177
     },
     "./flags/at": {
       "minified": 214,
-      "gzip": 180
+      "gzip": 179
     },
     "./flags/au-act": {
       "minified": 39779,
-      "gzip": 12759
+      "gzip": 12593
     },
     "./flags/au-nsw": {
       "minified": 5910,
-      "gzip": 1875
+      "gzip": 1880
     },
     "./flags/au-nt": {
       "minified": 1585,
-      "gzip": 612
+      "gzip": 607
     },
     "./flags/au-qld": {
       "minified": 31888,
-      "gzip": 7810
+      "gzip": 7693
     },
     "./flags/au-sa": {
       "minified": 7819,
-      "gzip": 3462
+      "gzip": 3430
     },
     "./flags/au-tas": {
       "minified": 11151,
-      "gzip": 4799
+      "gzip": 4763
     },
     "./flags/au-vic": {
       "minified": 25516,
-      "gzip": 7283
+      "gzip": 7202
     },
     "./flags/au-wa": {
       "minified": 3205,
-      "gzip": 1430
+      "gzip": 1417
     },
     "./flags/au.1x1": {
       "minified": 1265,
-      "gzip": 662
+      "gzip": 668
     },
     "./flags/au.4x3": {
       "minified": 1305,
-      "gzip": 680
+      "gzip": 681
     },
     "./flags/au": {
       "minified": 1263,
-      "gzip": 578
+      "gzip": 585
     },
     "./flags/aw.1x1": {
       "minified": 9486,
-      "gzip": 1795
+      "gzip": 1783
     },
     "./flags/aw.4x3": {
       "minified": 8484,
-      "gzip": 1672
+      "gzip": 1665
     },
     "./flags/aw": {
       "minified": 459,
-      "gzip": 300
+      "gzip": 304
     },
     "./flags/ax.1x1": {
       "minified": 488,
-      "gzip": 305
+      "gzip": 307
     },
     "./flags/ax.4x3": {
       "minified": 495,
-      "gzip": 311
+      "gzip": 312
     },
     "./flags/ax": {
       "minified": 294,
@@ -267,35 +267,35 @@
     },
     "./flags/az.1x1": {
       "minified": 497,
-      "gzip": 287
+      "gzip": 290
     },
     "./flags/az.4x3": {
       "minified": 448,
-      "gzip": 272
+      "gzip": 274
     },
     "./flags/az": {
       "minified": 479,
-      "gzip": 278
+      "gzip": 279
     },
     "./flags/ba.1x1": {
       "minified": 1173,
-      "gzip": 530
+      "gzip": 535
     },
     "./flags/ba.4x3": {
       "minified": 1241,
-      "gzip": 585
+      "gzip": 589
     },
     "./flags/ba": {
       "minified": 456,
-      "gzip": 277
+      "gzip": 278
     },
     "./flags/bb.1x1": {
       "minified": 602,
-      "gzip": 400
+      "gzip": 402
     },
     "./flags/bb.4x3": {
       "minified": 612,
-      "gzip": 407
+      "gzip": 412
     },
     "./flags/bb": {
       "minified": 609,
@@ -303,35 +303,35 @@
     },
     "./flags/bd.1x1": {
       "minified": 210,
-      "gzip": 190
+      "gzip": 191
     },
     "./flags/bd.4x3": {
       "minified": 208,
-      "gzip": 188
+      "gzip": 190
     },
     "./flags/bd": {
       "minified": 213,
-      "gzip": 196
+      "gzip": 195
     },
     "./flags/be.1x1": {
       "minified": 308,
-      "gzip": 228
+      "gzip": 230
     },
     "./flags/be.4x3": {
       "minified": 308,
-      "gzip": 231
+      "gzip": 229
     },
     "./flags/be": {
       "minified": 242,
-      "gzip": 185
+      "gzip": 186
     },
     "./flags/bf.1x1": {
       "minified": 387,
-      "gzip": 266
+      "gzip": 267
     },
     "./flags/bf.4x3": {
       "minified": 359,
-      "gzip": 267
+      "gzip": 268
     },
     "./flags/bf": {
       "minified": 597,
@@ -339,107 +339,107 @@
     },
     "./flags/bg.1x1": {
       "minified": 251,
-      "gzip": 191
+      "gzip": 192
     },
     "./flags/bg.4x3": {
       "minified": 243,
-      "gzip": 179
+      "gzip": 180
     },
     "./flags/bg": {
       "minified": 238,
-      "gzip": 189
+      "gzip": 191
     },
     "./flags/bh.1x1": {
       "minified": 297,
-      "gzip": 190
+      "gzip": 191
     },
     "./flags/bh.4x3": {
       "minified": 263,
-      "gzip": 192
+      "gzip": 193
     },
     "./flags/bh": {
       "minified": 325,
-      "gzip": 197
+      "gzip": 200
     },
     "./flags/bi.4x3": {
       "minified": 1064,
-      "gzip": 516
+      "gzip": 517
     },
     "./flags/bi": {
       "minified": 674,
-      "gzip": 388
+      "gzip": 393
     },
     "./flags/bj.1x1": {
       "minified": 486,
-      "gzip": 321
+      "gzip": 325
     },
     "./flags/bj.4x3": {
       "minified": 484,
-      "gzip": 321
+      "gzip": 324
     },
     "./flags/bj": {
       "minified": 257,
-      "gzip": 192
+      "gzip": 195
     },
     "./flags/bl--local": {
       "minified": 36561,
-      "gzip": 13978
+      "gzip": 13779
     },
     "./flags/bl": {
       "minified": 259,
-      "gzip": 190
+      "gzip": 193
     },
     "./flags/bm.1x1": {
       "minified": 22132,
-      "gzip": 7224
+      "gzip": 7161
     },
     "./flags/bm.4x3": {
       "minified": 22206,
-      "gzip": 7233
+      "gzip": 7165
     },
     "./flags/bm": {
       "minified": 26848,
-      "gzip": 9886
+      "gzip": 9771
     },
     "./flags/bn.1x1": {
       "minified": 13297,
-      "gzip": 5748
+      "gzip": 5677
     },
     "./flags/bn.4x3": {
       "minified": 13166,
-      "gzip": 5703
+      "gzip": 5631
     },
     "./flags/bn": {
       "minified": 19693,
-      "gzip": 8030
+      "gzip": 7943
     },
     "./flags/bo.1x1": {
       "minified": 102751,
-      "gzip": 25100
+      "gzip": 24941
     },
     "./flags/bo.4x3": {
       "minified": 100918,
-      "gzip": 24759
+      "gzip": 24627
     },
     "./flags/bo": {
       "minified": 261,
-      "gzip": 191
+      "gzip": 195
     },
     "./flags/br-ac": {
       "minified": 271,
-      "gzip": 213
+      "gzip": 215
     },
     "./flags/br-al": {
       "minified": 157201,
-      "gzip": 30987
+      "gzip": 30636
     },
     "./flags/br-am": {
       "minified": 4333,
-      "gzip": 741
+      "gzip": 739
     },
     "./flags/br-ap": {
       "minified": 2048,
-      "gzip": 587
+      "gzip": 593
     },
     "./flags/br-ba": {
       "minified": 347,
@@ -447,31 +447,31 @@
     },
     "./flags/br-ce": {
       "minified": 8277,
-      "gzip": 3614
+      "gzip": 3527
     },
     "./flags/br-df": {
       "minified": 892,
-      "gzip": 475
+      "gzip": 482
     },
     "./flags/br-es": {
       "minified": 2485,
-      "gzip": 1259
+      "gzip": 1249
     },
     "./flags/br-go": {
       "minified": 804,
-      "gzip": 385
+      "gzip": 390
     },
     "./flags/br-ma": {
       "minified": 948,
-      "gzip": 359
+      "gzip": 358
     },
     "./flags/br-mg": {
       "minified": 6660,
-      "gzip": 1766
+      "gzip": 1760
     },
     "./flags/br-ms": {
       "minified": 350,
-      "gzip": 247
+      "gzip": 248
     },
     "./flags/br-mt": {
       "minified": 714,
@@ -479,31 +479,31 @@
     },
     "./flags/br-pa": {
       "minified": 703,
-      "gzip": 344
+      "gzip": 347
     },
     "./flags/br-pb": {
       "minified": 910,
-      "gzip": 575
+      "gzip": 574
     },
     "./flags/br-pe": {
       "minified": 983,
-      "gzip": 485
+      "gzip": 489
     },
     "./flags/br-pi": {
       "minified": 4448,
-      "gzip": 1923
+      "gzip": 1916
     },
     "./flags/br-pr": {
       "minified": 63649,
-      "gzip": 22723
+      "gzip": 22467
     },
     "./flags/br-rj": {
       "minified": 58136,
-      "gzip": 22337
+      "gzip": 22109
     },
     "./flags/br-rn": {
       "minified": 74187,
-      "gzip": 12749
+      "gzip": 12593
     },
     "./flags/br-ro": {
       "minified": 388,
@@ -511,55 +511,55 @@
     },
     "./flags/br-rr": {
       "minified": 415,
-      "gzip": 273
+      "gzip": 274
     },
     "./flags/br-rs": {
       "minified": 73424,
-      "gzip": 26158
+      "gzip": 25985
     },
     "./flags/br-sc": {
       "minified": 49107,
-      "gzip": 17658
+      "gzip": 17519
     },
     "./flags/br-se": {
       "minified": 890,
-      "gzip": 365
+      "gzip": 368
     },
     "./flags/br-sp": {
       "minified": 10593,
-      "gzip": 4079
+      "gzip": 4071
     },
     "./flags/br-to": {
       "minified": 543,
-      "gzip": 314
+      "gzip": 313
     },
     "./flags/br.1x1": {
       "minified": 6530,
-      "gzip": 2240
+      "gzip": 2222
     },
     "./flags/br.4x3": {
       "minified": 6924,
-      "gzip": 2450
+      "gzip": 2422
     },
     "./flags/br": {
       "minified": 4404,
-      "gzip": 1238
+      "gzip": 1230
     },
     "./flags/bs": {
       "minified": 264,
-      "gzip": 220
+      "gzip": 219
     },
     "./flags/bt.1x1": {
       "minified": 23947,
-      "gzip": 10027
+      "gzip": 9930
     },
     "./flags/bt.4x3": {
       "minified": 24228,
-      "gzip": 10172
+      "gzip": 10065
     },
     "./flags/bt": {
       "minified": 31226,
-      "gzip": 12973
+      "gzip": 12829
     },
     "./flags/bv": {
       "minified": 323,
@@ -567,87 +567,87 @@
     },
     "./flags/bw.1x1": {
       "minified": 272,
-      "gzip": 209
+      "gzip": 210
     },
     "./flags/bw.4x3": {
       "minified": 270,
-      "gzip": 201
+      "gzip": 205
     },
     "./flags/bw": {
       "minified": 230,
-      "gzip": 186
+      "gzip": 185
     },
     "./flags/by.1x1": {
       "minified": 2032,
-      "gzip": 915
+      "gzip": 919
     },
     "./flags/by.4x3": {
       "minified": 2028,
-      "gzip": 917
+      "gzip": 920
     },
     "./flags/by": {
       "minified": 2019,
-      "gzip": 917
+      "gzip": 920
     },
     "./flags/bz": {
       "minified": 41839,
-      "gzip": 15344
+      "gzip": 15233
     },
     "./flags/ca-ab": {
       "minified": 14532,
-      "gzip": 5890
+      "gzip": 5832
     },
     "./flags/ca-bc": {
       "minified": 15054,
-      "gzip": 6627
+      "gzip": 6491
     },
     "./flags/ca-nb": {
       "minified": 36668,
-      "gzip": 14275
+      "gzip": 14143
     },
     "./flags/ca-nl": {
       "minified": 578,
-      "gzip": 378
+      "gzip": 377
     },
     "./flags/ca-ns": {
       "minified": 6879,
-      "gzip": 3221
+      "gzip": 3147
     },
     "./flags/ca-nt": {
       "minified": 4914,
-      "gzip": 2212
+      "gzip": 2169
     },
     "./flags/ca-nu": {
       "minified": 1059,
-      "gzip": 649
+      "gzip": 641
     },
     "./flags/ca-on": {
       "minified": 2804,
-      "gzip": 956
+      "gzip": 945
     },
     "./flags/ca-pe": {
       "minified": 245388,
-      "gzip": 84359
+      "gzip": 83785
     },
     "./flags/ca-qc": {
       "minified": 865,
-      "gzip": 530
+      "gzip": 531
     },
     "./flags/ca-sk": {
       "minified": 18021,
-      "gzip": 5796
+      "gzip": 5734
     },
     "./flags/ca-yt": {
       "minified": 32931,
-      "gzip": 11270
+      "gzip": 11198
     },
     "./flags/ca.1x1": {
       "minified": 653,
-      "gzip": 424
+      "gzip": 423
     },
     "./flags/ca.4x3": {
       "minified": 646,
-      "gzip": 419
+      "gzip": 422
     },
     "./flags/ca": {
       "minified": 746,
@@ -655,59 +655,59 @@
     },
     "./flags/cd.1x1": {
       "minified": 499,
-      "gzip": 325
+      "gzip": 329
     },
     "./flags/cd": {
       "minified": 357,
-      "gzip": 255
+      "gzip": 256
     },
     "./flags/cf.1x1": {
       "minified": 621,
-      "gzip": 367
+      "gzip": 374
     },
     "./flags/cf.4x3": {
       "minified": 673,
-      "gzip": 394
+      "gzip": 400
     },
     "./flags/cf": {
       "minified": 409,
-      "gzip": 281
+      "gzip": 280
     },
     "./flags/cg.1x1": {
       "minified": 462,
-      "gzip": 321
+      "gzip": 327
     },
     "./flags/cg.4x3": {
       "minified": 471,
-      "gzip": 315
+      "gzip": 321
     },
     "./flags/cg": {
       "minified": 263,
-      "gzip": 198
+      "gzip": 202
     },
     "./flags/ch-ag": {
       "minified": 1811,
-      "gzip": 742
+      "gzip": 741
     },
     "./flags/ch-ai": {
       "minified": 9459,
-      "gzip": 4512
+      "gzip": 4417
     },
     "./flags/ch-ar": {
       "minified": 10334,
-      "gzip": 4833
+      "gzip": 4734
     },
     "./flags/ch-be": {
       "minified": 10671,
-      "gzip": 4991
+      "gzip": 4906
     },
     "./flags/ch-bl": {
       "minified": 2528,
-      "gzip": 1027
+      "gzip": 1014
     },
     "./flags/ch-bs": {
       "minified": 1174,
-      "gzip": 672
+      "gzip": 665
     },
     "./flags/ch-fr": {
       "minified": 200,
@@ -715,35 +715,35 @@
     },
     "./flags/ch-ge": {
       "minified": 63024,
-      "gzip": 13211
+      "gzip": 13102
     },
     "./flags/ch-gl": {
       "minified": 5783,
-      "gzip": 2416
+      "gzip": 2367
     },
     "./flags/ch-gr": {
       "minified": 21100,
-      "gzip": 7811
+      "gzip": 7747
     },
     "./flags/ch-ju": {
       "minified": 1726,
-      "gzip": 862
+      "gzip": 850
     },
     "./flags/ch-lu": {
       "minified": 272,
-      "gzip": 218
+      "gzip": 220
     },
     "./flags/ch-ne": {
       "minified": 392,
-      "gzip": 256
+      "gzip": 258
     },
     "./flags/ch-nw": {
       "minified": 16426,
-      "gzip": 4627
+      "gzip": 4563
     },
     "./flags/ch-ow": {
       "minified": 8530,
-      "gzip": 2769
+      "gzip": 2698
     },
     "./flags/ch-sg": {
       "minified": 1119,
@@ -751,35 +751,35 @@
     },
     "./flags/ch-sh": {
       "minified": 12681,
-      "gzip": 4549
+      "gzip": 4465
     },
     "./flags/ch-so": {
       "minified": 255,
-      "gzip": 201
+      "gzip": 206
     },
     "./flags/ch-sz": {
       "minified": 301,
-      "gzip": 231
+      "gzip": 236
     },
     "./flags/ch-tg": {
       "minified": 29500,
-      "gzip": 7986
+      "gzip": 7861
     },
     "./flags/ch-ti": {
       "minified": 309,
-      "gzip": 227
+      "gzip": 229
     },
     "./flags/ch-ur": {
       "minified": 6744,
-      "gzip": 2613
+      "gzip": 2540
     },
     "./flags/ch-vd": {
       "minified": 17528,
-      "gzip": 5973
+      "gzip": 5873
     },
     "./flags/ch-vs": {
       "minified": 4176,
-      "gzip": 782
+      "gzip": 777
     },
     "./flags/ch-zg": {
       "minified": 217,
@@ -787,119 +787,119 @@
     },
     "./flags/ch-zh": {
       "minified": 294,
-      "gzip": 230
+      "gzip": 233
     },
     "./flags/ch.4x3": {
       "minified": 263,
-      "gzip": 210
+      "gzip": 214
     },
     "./flags/ch": {
       "minified": 221,
-      "gzip": 193
+      "gzip": 194
     },
     "./flags/ci.1x1": {
       "minified": 286,
-      "gzip": 212
+      "gzip": 216
     },
     "./flags/ci.4x3": {
       "minified": 283,
-      "gzip": 212
+      "gzip": 216
     },
     "./flags/ci": {
       "minified": 246,
-      "gzip": 183
+      "gzip": 182
     },
     "./flags/ck.1x1": {
       "minified": 1863,
-      "gzip": 927
+      "gzip": 923
     },
     "./flags/ck.4x3": {
       "minified": 1904,
-      "gzip": 941
+      "gzip": 936
     },
     "./flags/ck": {
       "minified": 1149,
-      "gzip": 488
+      "gzip": 491
     },
     "./flags/cl.1x1": {
       "minified": 562,
-      "gzip": 357
+      "gzip": 362
     },
     "./flags/cl.4x3": {
       "minified": 491,
-      "gzip": 327
+      "gzip": 331
     },
     "./flags/cl": {
       "minified": 633,
-      "gzip": 305
+      "gzip": 306
     },
     "./flags/cm.1x1": {
       "minified": 798,
-      "gzip": 334
+      "gzip": 337
     },
     "./flags/cm.4x3": {
       "minified": 798,
-      "gzip": 335
+      "gzip": 336
     },
     "./flags/cm": {
       "minified": 312,
-      "gzip": 243
+      "gzip": 241
     },
     "./flags/cn.1x1": {
       "minified": 730,
-      "gzip": 337
+      "gzip": 339
     },
     "./flags/cn.4x3": {
       "minified": 792,
-      "gzip": 361
+      "gzip": 360
     },
     "./flags/cn": {
       "minified": 556,
-      "gzip": 328
+      "gzip": 327
     },
     "./flags/co.1x1": {
       "minified": 273,
-      "gzip": 205
+      "gzip": 211
     },
     "./flags/co.4x3": {
       "minified": 273,
-      "gzip": 204
+      "gzip": 207
     },
     "./flags/co": {
       "minified": 261,
-      "gzip": 196
+      "gzip": 194
     },
     "./flags/cr.1x1": {
       "minified": 296,
-      "gzip": 223
+      "gzip": 226
     },
     "./flags/cr.4x3": {
       "minified": 296,
-      "gzip": 225
+      "gzip": 226
     },
     "./flags/cr": {
       "minified": 242,
-      "gzip": 189
+      "gzip": 188
     },
     "./flags/cu.1x1": {
       "minified": 564,
-      "gzip": 354
+      "gzip": 360
     },
     "./flags/cu.4x3": {
       "minified": 606,
-      "gzip": 378
+      "gzip": 383
     },
     "./flags/cu": {
       "minified": 339,
-      "gzip": 258
+      "gzip": 259
     },
     "./flags/cv.1x1": {
       "minified": 1356,
-      "gzip": 562
+      "gzip": 564
     },
     "./flags/cv.4x3": {
       "minified": 1407,
-      "gzip": 593
+      "gzip": 592
     },
     "./flags/cv": {
       "minified": 601,
@@ -907,35 +907,35 @@
     },
     "./flags/cw.1x1": {
       "minified": 657,
-      "gzip": 364
+      "gzip": 363
     },
     "./flags/cw.4x3": {
       "minified": 650,
-      "gzip": 367
+      "gzip": 370
     },
     "./flags/cw": {
       "minified": 299,
-      "gzip": 236
+      "gzip": 238
     },
     "./flags/cx": {
       "minified": 4632,
-      "gzip": 1977
+      "gzip": 1961
     },
     "./flags/cy.1x1": {
       "minified": 5494,
-      "gzip": 2458
+      "gzip": 2433
     },
     "./flags/cy.4x3": {
       "minified": 5450,
-      "gzip": 2417
+      "gzip": 2385
     },
     "./flags/cy": {
       "minified": 9968,
-      "gzip": 4321
+      "gzip": 4274
     },
     "./flags/cz.1x1": {
       "minified": 244,
-      "gzip": 187
+      "gzip": 188
     },
     "./flags/cz.4x3": {
       "minified": 243,
@@ -943,63 +943,63 @@
     },
     "./flags/cz": {
       "minified": 256,
-      "gzip": 194
+      "gzip": 198
     },
     "./flags/de-bb": {
       "minified": 27357,
-      "gzip": 11835
+      "gzip": 11707
     },
     "./flags/de-be": {
       "minified": 2931,
-      "gzip": 1577
+      "gzip": 1523
     },
     "./flags/de-bw": {
       "minified": 203,
-      "gzip": 178
+      "gzip": 176
     },
     "./flags/de-by--stripes": {
       "minified": 215,
-      "gzip": 184
+      "gzip": 182
     },
     "./flags/de-by": {
       "minified": 360,
-      "gzip": 271
+      "gzip": 270
     },
     "./flags/de-hb": {
       "minified": 236,
-      "gzip": 187
+      "gzip": 186
     },
     "./flags/de-he": {
       "minified": 238,
-      "gzip": 197
+      "gzip": 199
     },
     "./flags/de-hh": {
       "minified": 1543,
-      "gzip": 790
+      "gzip": 783
     },
     "./flags/de-mv": {
       "minified": 303,
-      "gzip": 203
+      "gzip": 206
     },
     "./flags/de-ni": {
       "minified": 19192,
-      "gzip": 7504
+      "gzip": 7439
     },
     "./flags/de-nw": {
       "minified": 290,
-      "gzip": 223
+      "gzip": 220
     },
     "./flags/de-rp": {
       "minified": 23662,
-      "gzip": 7471
+      "gzip": 7378
     },
     "./flags/de-sh": {
       "minified": 265,
-      "gzip": 191
+      "gzip": 192
     },
     "./flags/de-sl": {
       "minified": 117510,
-      "gzip": 40130
+      "gzip": 39897
     },
     "./flags/de-sn": {
       "minified": 215,
@@ -1007,91 +1007,91 @@
     },
     "./flags/de-st": {
       "minified": 39370,
-      "gzip": 10869
+      "gzip": 10751
     },
     "./flags/de-th": {
       "minified": 217,
-      "gzip": 179
+      "gzip": 182
     },
     "./flags/de.1x1": {
       "minified": 247,
-      "gzip": 186
+      "gzip": 188
     },
     "./flags/de.4x3": {
       "minified": 239,
-      "gzip": 177
+      "gzip": 178
     },
     "./flags/de": {
       "minified": 251,
-      "gzip": 199
+      "gzip": 202
     },
     "./flags/dj": {
       "minified": 359,
-      "gzip": 248
+      "gzip": 249
     },
     "./flags/dk.1x1": {
       "minified": 250,
-      "gzip": 189
+      "gzip": 193
     },
     "./flags/dk": {
       "minified": 228,
-      "gzip": 198
+      "gzip": 201
     },
     "./flags/dm.1x1": {
       "minified": 15211,
-      "gzip": 3247
+      "gzip": 3202
     },
     "./flags/dm.4x3": {
       "minified": 14732,
-      "gzip": 3087
+      "gzip": 3052
     },
     "./flags/dm": {
       "minified": 4859,
-      "gzip": 1679
+      "gzip": 1644
     },
     "./flags/do.1x1": {
       "minified": 40658,
-      "gzip": 14755
+      "gzip": 14679
     },
     "./flags/do.4x3": {
       "minified": 39674,
-      "gzip": 14403
+      "gzip": 14321
     },
     "./flags/do": {
       "minified": 41674,
-      "gzip": 15236
+      "gzip": 15137
     },
     "./flags/dz.1x1": {
       "minified": 324,
-      "gzip": 237
+      "gzip": 238
     },
     "./flags/dz.4x3": {
       "minified": 304,
-      "gzip": 225
+      "gzip": 228
     },
     "./flags/dz": {
       "minified": 316,
-      "gzip": 232
+      "gzip": 233
     },
     "./flags/ec.1x1": {
       "minified": 28774,
-      "gzip": 6780
+      "gzip": 6690
     },
     "./flags/ec.4x3": {
       "minified": 28204,
-      "gzip": 6896
+      "gzip": 6806
     },
     "./flags/ec": {
       "minified": 104482,
-      "gzip": 35030
+      "gzip": 34818
     },
     "./flags/ee.1x1": {
       "minified": 251,
-      "gzip": 188
+      "gzip": 191
     },
     "./flags/ee.4x3": {
       "minified": 243,
-      "gzip": 179
+      "gzip": 180
     },
     "./flags/ee": {
       "minified": 243,
@@ -1099,167 +1099,167 @@
     },
     "./flags/eg.1x1": {
       "minified": 8530,
-      "gzip": 3577
+      "gzip": 3549
     },
     "./flags/eg.4x3": {
       "minified": 8517,
-      "gzip": 3565
+      "gzip": 3535
     },
     "./flags/eg": {
       "minified": 11640,
-      "gzip": 4924
+      "gzip": 4865
     },
     "./flags/er": {
       "minified": 3272,
-      "gzip": 1740
+      "gzip": 1685
     },
     "./flags/es.1x1": {
       "minified": 80534,
-      "gzip": 15480
+      "gzip": 15395
     },
     "./flags/es.4x3": {
       "minified": 79359,
-      "gzip": 14825
+      "gzip": 14734
     },
     "./flags/es": {
       "minified": 112816,
-      "gzip": 24145
+      "gzip": 23928
     },
     "./flags/et": {
       "minified": 811,
-      "gzip": 374
+      "gzip": 377
     },
     "./flags/fi.1x1": {
       "minified": 255,
-      "gzip": 190
+      "gzip": 193
     },
     "./flags/fi.4x3": {
       "minified": 252,
-      "gzip": 192
+      "gzip": 195
     },
     "./flags/fi": {
       "minified": 230,
-      "gzip": 198
+      "gzip": 202
     },
     "./flags/fj.1x1": {
       "minified": 23375,
-      "gzip": 9128
+      "gzip": 9069
     },
     "./flags/fj.4x3": {
       "minified": 23357,
-      "gzip": 9086
+      "gzip": 9024
     },
     "./flags/fj": {
       "minified": 23607,
-      "gzip": 9486
+      "gzip": 9411
     },
     "./flags/fk.1x1": {
       "minified": 28328,
-      "gzip": 8861
+      "gzip": 8805
     },
     "./flags/fk.4x3": {
       "minified": 28573,
-      "gzip": 9248
+      "gzip": 9186
     },
     "./flags/fk": {
       "minified": 83412,
-      "gzip": 20120
+      "gzip": 19927
     },
     "./flags/fm.1x1": {
       "minified": 766,
-      "gzip": 450
+      "gzip": 454
     },
     "./flags/fm.4x3": {
       "minified": 602,
-      "gzip": 381
+      "gzip": 390
     },
     "./flags/fm": {
       "minified": 707,
-      "gzip": 303
+      "gzip": 304
     },
     "./flags/fo.1x1": {
       "minified": 528,
-      "gzip": 355
+      "gzip": 364
     },
     "./flags/fo.4x3": {
       "minified": 556,
-      "gzip": 373
+      "gzip": 380
     },
     "./flags/fo": {
       "minified": 306,
-      "gzip": 219
+      "gzip": 218
     },
     "./flags/fr-20r": {
       "minified": 19137,
-      "gzip": 4293
+      "gzip": 4191
     },
     "./flags/fr-971": {
       "minified": 259,
-      "gzip": 190
+      "gzip": 193
     },
     "./flags/fr-972": {
       "minified": 259,
-      "gzip": 190
+      "gzip": 193
     },
     "./flags/fr-973": {
       "minified": 259,
-      "gzip": 190
+      "gzip": 193
     },
     "./flags/fr-974": {
       "minified": 259,
-      "gzip": 190
+      "gzip": 193
     },
     "./flags/fr-976": {
       "minified": 259,
-      "gzip": 190
+      "gzip": 193
     },
     "./flags/fr-bl": {
       "minified": 259,
-      "gzip": 190
+      "gzip": 193
     },
     "./flags/fr-bre": {
       "minified": 1011,
-      "gzip": 365
+      "gzip": 366
     },
     "./flags/fr-cp": {
       "minified": 259,
-      "gzip": 190
+      "gzip": 193
     },
     "./flags/fr-mf": {
       "minified": 259,
-      "gzip": 190
+      "gzip": 193
     },
     "./flags/fr-naq": {
       "minified": 31937,
-      "gzip": 5653
+      "gzip": 5565
     },
     "./flags/fr-nc": {
       "minified": 1144,
-      "gzip": 629
+      "gzip": 635
     },
     "./flags/fr-nor": {
       "minified": 17062,
-      "gzip": 6018
+      "gzip": 5888
     },
     "./flags/fr-pf": {
       "minified": 3762,
-      "gzip": 1752
+      "gzip": 1737
     },
     "./flags/fr-pm": {
       "minified": 259,
-      "gzip": 190
+      "gzip": 193
     },
     "./flags/fr-tf": {
       "minified": 809,
-      "gzip": 368
+      "gzip": 371
     },
     "./flags/fr-wf": {
       "minified": 259,
-      "gzip": 190
+      "gzip": 193
     },
     "./flags/fr.1x1": {
       "minified": 249,
-      "gzip": 188
+      "gzip": 189
     },
     "./flags/fr.4x3": {
       "minified": 249,
@@ -1267,23 +1267,23 @@
     },
     "./flags/fr": {
       "minified": 251,
-      "gzip": 186
+      "gzip": 187
     },
     "./flags/ga.1x1": {
       "minified": 281,
-      "gzip": 203
+      "gzip": 208
     },
     "./flags/ga": {
       "minified": 261,
-      "gzip": 191
+      "gzip": 193
     },
     "./flags/gb-eng.1x1": {
       "minified": 243,
-      "gzip": 185
+      "gzip": 188
     },
     "./flags/gb-eng.4x3": {
       "minified": 253,
-      "gzip": 191
+      "gzip": 194
     },
     "./flags/gb-eng": {
       "minified": 240,
@@ -1291,7 +1291,7 @@
     },
     "./flags/gb-nir--ulster-banner": {
       "minified": 53888,
-      "gzip": 8199
+      "gzip": 8016
     },
     "./flags/gb-nir--union-flag": {
       "minified": 508,
@@ -1299,31 +1299,31 @@
     },
     "./flags/gb-sct.1x1": {
       "minified": 253,
-      "gzip": 218
+      "gzip": 220
     },
     "./flags/gb-sct.4x3": {
       "minified": 245,
-      "gzip": 214
+      "gzip": 215
     },
     "./flags/gb-sct": {
       "minified": 256,
-      "gzip": 205
+      "gzip": 208
     },
     "./flags/gb-wls.1x1": {
       "minified": 9000,
-      "gzip": 4095
+      "gzip": 4044
     },
     "./flags/gb-wls.4x3": {
       "minified": 9092,
-      "gzip": 4214
+      "gzip": 4162
     },
     "./flags/gb-wls": {
       "minified": 13452,
-      "gzip": 6090
+      "gzip": 5976
     },
     "./flags/gb.1x1": {
       "minified": 517,
-      "gzip": 329
+      "gzip": 332
     },
     "./flags/gb.4x3": {
       "minified": 516,
@@ -1335,27 +1335,27 @@
     },
     "./flags/gd.1x1": {
       "minified": 1795,
-      "gzip": 559
+      "gzip": 560
     },
     "./flags/gd.4x3": {
       "minified": 1653,
-      "gzip": 559
+      "gzip": 558
     },
     "./flags/gd": {
       "minified": 978,
-      "gzip": 438
+      "gzip": 443
     },
     "./flags/ge.1x1": {
       "minified": 1457,
-      "gzip": 358
+      "gzip": 361
     },
     "./flags/ge.4x3": {
       "minified": 1328,
-      "gzip": 357
+      "gzip": 360
     },
     "./flags/ge": {
       "minified": 535,
-      "gzip": 324
+      "gzip": 325
     },
     "./flags/gf--local": {
       "minified": 297,
@@ -1363,99 +1363,99 @@
     },
     "./flags/gf": {
       "minified": 259,
-      "gzip": 190
+      "gzip": 193
     },
     "./flags/gg.1x1": {
       "minified": 615,
-      "gzip": 327
+      "gzip": 331
     },
     "./flags/gg.4x3": {
       "minified": 585,
-      "gzip": 297
+      "gzip": 301
     },
     "./flags/gg": {
       "minified": 322,
-      "gzip": 245
+      "gzip": 246
     },
     "./flags/gh.1x1": {
       "minified": 323,
-      "gzip": 222
+      "gzip": 224
     },
     "./flags/gh.4x3": {
       "minified": 304,
-      "gzip": 208
+      "gzip": 212
     },
     "./flags/gh": {
       "minified": 301,
-      "gzip": 216
+      "gzip": 217
     },
     "./flags/gi.1x1": {
       "minified": 2690,
-      "gzip": 1300
+      "gzip": 1292
     },
     "./flags/gi.4x3": {
       "minified": 2697,
-      "gzip": 1314
+      "gzip": 1308
     },
     "./flags/gi": {
       "minified": 3359,
-      "gzip": 1631
+      "gzip": 1610
     },
     "./flags/gl.1x1": {
       "minified": 258,
-      "gzip": 200
+      "gzip": 206
     },
     "./flags/gl.4x3": {
       "minified": 244,
-      "gzip": 194
+      "gzip": 197
     },
     "./flags/gl": {
       "minified": 237,
-      "gzip": 195
+      "gzip": 198
     },
     "./flags/gm.1x1": {
       "minified": 375,
-      "gzip": 241
+      "gzip": 245
     },
     "./flags/gm.4x3": {
       "minified": 534,
-      "gzip": 330
+      "gzip": 334
     },
     "./flags/gm": {
       "minified": 317,
-      "gzip": 225
+      "gzip": 223
     },
     "./flags/gn.1x1": {
       "minified": 298,
-      "gzip": 221
+      "gzip": 224
     },
     "./flags/gn.4x3": {
       "minified": 298,
-      "gzip": 223
+      "gzip": 224
     },
     "./flags/gn": {
       "minified": 265,
-      "gzip": 197
+      "gzip": 200
     },
     "./flags/gp--local": {
       "minified": 17485,
-      "gzip": 5892
+      "gzip": 5729
     },
     "./flags/gp": {
       "minified": 259,
-      "gzip": 190
+      "gzip": 193
     },
     "./flags/gq.1x1": {
       "minified": 5000,
-      "gzip": 2159
+      "gzip": 2131
     },
     "./flags/gq.4x3": {
       "minified": 4867,
-      "gzip": 2049
+      "gzip": 2031
     },
     "./flags/gq": {
       "minified": 4749,
-      "gzip": 2259
+      "gzip": 2214
     },
     "./flags/gr.1x1": {
       "minified": 842,
@@ -1463,87 +1463,87 @@
     },
     "./flags/gr.4x3": {
       "minified": 849,
-      "gzip": 299
+      "gzip": 298
     },
     "./flags/gr": {
       "minified": 269,
-      "gzip": 220
+      "gzip": 223
     },
     "./flags/gs.1x1": {
       "minified": 31611,
-      "gzip": 11121
+      "gzip": 11040
     },
     "./flags/gs.4x3": {
       "minified": 31188,
-      "gzip": 11448
+      "gzip": 11365
     },
     "./flags/gs": {
       "minified": 42400,
-      "gzip": 15994
+      "gzip": 15846
     },
     "./flags/gt.1x1": {
       "minified": 30096,
-      "gzip": 11292
+      "gzip": 11193
     },
     "./flags/gt.4x3": {
       "minified": 30096,
-      "gzip": 11296
+      "gzip": 11197
     },
     "./flags/gt": {
       "minified": 30207,
-      "gzip": 11466
+      "gzip": 11385
     },
     "./flags/gu.1x1": {
       "minified": 4166,
-      "gzip": 1812
+      "gzip": 1786
     },
     "./flags/gu.4x3": {
       "minified": 4303,
-      "gzip": 1895
+      "gzip": 1858
     },
     "./flags/gu": {
       "minified": 7029,
-      "gzip": 2901
+      "gzip": 2881
     },
     "./flags/gw.1x1": {
       "minified": 879,
-      "gzip": 350
+      "gzip": 353
     },
     "./flags/gw.4x3": {
       "minified": 826,
-      "gzip": 323
+      "gzip": 324
     },
     "./flags/gw": {
       "minified": 589,
-      "gzip": 295
+      "gzip": 292
     },
     "./flags/gy": {
       "minified": 545,
-      "gzip": 301
+      "gzip": 300
     },
     "./flags/hk.1x1": {
       "minified": 703,
-      "gzip": 375
+      "gzip": 381
     },
     "./flags/hk.4x3": {
       "minified": 714,
-      "gzip": 386
+      "gzip": 391
     },
     "./flags/hk": {
       "minified": 618,
-      "gzip": 357
+      "gzip": 363
     },
     "./flags/hm": {
       "minified": 1271,
-      "gzip": 583
+      "gzip": 587
     },
     "./flags/hn.1x1": {
       "minified": 1117,
-      "gzip": 341
+      "gzip": 346
     },
     "./flags/hn.4x3": {
       "minified": 1114,
-      "gzip": 341
+      "gzip": 343
     },
     "./flags/hn": {
       "minified": 440,
@@ -1551,63 +1551,63 @@
     },
     "./flags/hr.1x1": {
       "minified": 31044,
-      "gzip": 13451
+      "gzip": 13281
     },
     "./flags/hr.4x3": {
       "minified": 30482,
-      "gzip": 13281
+      "gzip": 13114
     },
     "./flags/hr": {
       "minified": 31828,
-      "gzip": 13818
+      "gzip": 13644
     },
     "./flags/ht": {
       "minified": 77240,
-      "gzip": 11515
+      "gzip": 11429
     },
     "./flags/hu.1x1": {
       "minified": 279,
-      "gzip": 208
+      "gzip": 210
     },
     "./flags/hu.4x3": {
       "minified": 277,
-      "gzip": 202
+      "gzip": 206
     },
     "./flags/hu": {
       "minified": 255,
-      "gzip": 188
+      "gzip": 187
     },
     "./flags/id.1x1": {
       "minified": 199,
-      "gzip": 170
+      "gzip": 172
     },
     "./flags/id.4x3": {
       "minified": 199,
-      "gzip": 170
+      "gzip": 171
     },
     "./flags/id": {
       "minified": 208,
-      "gzip": 174
+      "gzip": 173
     },
     "./flags/ie.1x1": {
       "minified": 295,
-      "gzip": 221
+      "gzip": 225
     },
     "./flags/ie.4x3": {
       "minified": 295,
-      "gzip": 224
+      "gzip": 225
     },
     "./flags/ie": {
       "minified": 264,
-      "gzip": 197
+      "gzip": 199
     },
     "./flags/il.1x1": {
       "minified": 779,
-      "gzip": 455
+      "gzip": 462
     },
     "./flags/il.4x3": {
       "minified": 825,
-      "gzip": 489
+      "gzip": 491
     },
     "./flags/il": {
       "minified": 353,
@@ -1615,23 +1615,23 @@
     },
     "./flags/im.1x1": {
       "minified": 9581,
-      "gzip": 3881
+      "gzip": 3832
     },
     "./flags/im.4x3": {
       "minified": 9011,
-      "gzip": 3587
+      "gzip": 3535
     },
     "./flags/im": {
       "minified": 4121,
-      "gzip": 2026
+      "gzip": 1986
     },
     "./flags/in.1x1": {
       "minified": 981,
-      "gzip": 381
+      "gzip": 383
     },
     "./flags/in.4x3": {
       "minified": 968,
-      "gzip": 368
+      "gzip": 369
     },
     "./flags/in": {
       "minified": 780,
@@ -1639,75 +1639,75 @@
     },
     "./flags/io.1x1": {
       "minified": 22208,
-      "gzip": 4135
+      "gzip": 4095
     },
     "./flags/io.4x3": {
       "minified": 22513,
-      "gzip": 4157
+      "gzip": 4102
     },
     "./flags/io": {
       "minified": 15710,
-      "gzip": 4762
+      "gzip": 4638
     },
     "./flags/iq.1x1": {
       "minified": 1422,
-      "gzip": 785
+      "gzip": 788
     },
     "./flags/iq.4x3": {
       "minified": 1417,
-      "gzip": 780
+      "gzip": 778
     },
     "./flags/iq": {
       "minified": 1226,
-      "gzip": 672
+      "gzip": 662
     },
     "./flags/ir.1x1": {
       "minified": 13945,
-      "gzip": 2275
+      "gzip": 2270
     },
     "./flags/ir.4x3": {
       "minified": 14045,
-      "gzip": 2245
+      "gzip": 2236
     },
     "./flags/ir": {
       "minified": 1370,
-      "gzip": 644
+      "gzip": 649
     },
     "./flags/is.1x1": {
       "minified": 499,
-      "gzip": 342
+      "gzip": 349
     },
     "./flags/is.4x3": {
       "minified": 510,
-      "gzip": 327
+      "gzip": 332
     },
     "./flags/is": {
       "minified": 286,
-      "gzip": 208
+      "gzip": 213
     },
     "./flags/it.1x1": {
       "minified": 295,
-      "gzip": 222
+      "gzip": 226
     },
     "./flags/it.4x3": {
       "minified": 295,
-      "gzip": 224
+      "gzip": 226
     },
     "./flags/it": {
       "minified": 238,
-      "gzip": 191
+      "gzip": 195
     },
     "./flags/je.1x1": {
       "minified": 34823,
-      "gzip": 10065
+      "gzip": 9996
     },
     "./flags/je.4x3": {
       "minified": 33986,
-      "gzip": 9825
+      "gzip": 9766
     },
     "./flags/je": {
       "minified": 37204,
-      "gzip": 10610
+      "gzip": 10540
     },
     "./flags/jm": {
       "minified": 357,
@@ -1715,11 +1715,11 @@
     },
     "./flags/jo.1x1": {
       "minified": 673,
-      "gzip": 407
+      "gzip": 409
     },
     "./flags/jo.4x3": {
       "minified": 698,
-      "gzip": 407
+      "gzip": 413
     },
     "./flags/jo": {
       "minified": 437,
@@ -1727,15 +1727,15 @@
     },
     "./flags/jp-01": {
       "minified": 878,
-      "gzip": 326
+      "gzip": 327
     },
     "./flags/jp-02": {
       "minified": 498,
-      "gzip": 351
+      "gzip": 356
     },
     "./flags/jp-03": {
       "minified": 429,
-      "gzip": 294
+      "gzip": 298
     },
     "./flags/jp-04": {
       "minified": 703,
@@ -1743,7 +1743,7 @@
     },
     "./flags/jp-05": {
       "minified": 471,
-      "gzip": 335
+      "gzip": 337
     },
     "./flags/jp-06": {
       "minified": 336,
@@ -1751,27 +1751,27 @@
     },
     "./flags/jp-07": {
       "minified": 552,
-      "gzip": 361
+      "gzip": 362
     },
     "./flags/jp-08": {
       "minified": 656,
-      "gzip": 417
+      "gzip": 415
     },
     "./flags/jp-09": {
       "minified": 590,
-      "gzip": 389
+      "gzip": 391
     },
     "./flags/jp-10": {
       "minified": 1041,
-      "gzip": 540
+      "gzip": 547
     },
     "./flags/jp-11": {
       "minified": 795,
-      "gzip": 450
+      "gzip": 456
     },
     "./flags/jp-12": {
       "minified": 469,
-      "gzip": 319
+      "gzip": 324
     },
     "./flags/jp-13": {
       "minified": 478,
@@ -1779,11 +1779,11 @@
     },
     "./flags/jp-14": {
       "minified": 418,
-      "gzip": 288
+      "gzip": 290
     },
     "./flags/jp-15": {
       "minified": 1466,
-      "gzip": 791
+      "gzip": 784
     },
     "./flags/jp-16": {
       "minified": 422,
@@ -1791,23 +1791,23 @@
     },
     "./flags/jp-17": {
       "minified": 654,
-      "gzip": 440
+      "gzip": 442
     },
     "./flags/jp-18": {
       "minified": 587,
-      "gzip": 328
+      "gzip": 329
     },
     "./flags/jp-19": {
       "minified": 562,
-      "gzip": 371
+      "gzip": 377
     },
     "./flags/jp-20": {
       "minified": 320,
-      "gzip": 246
+      "gzip": 247
     },
     "./flags/jp-21": {
       "minified": 504,
-      "gzip": 337
+      "gzip": 341
     },
     "./flags/jp-22": {
       "minified": 735,
@@ -1815,175 +1815,175 @@
     },
     "./flags/jp-23": {
       "minified": 736,
-      "gzip": 446
+      "gzip": 445
     },
     "./flags/jp-24": {
       "minified": 429,
-      "gzip": 317
+      "gzip": 321
     },
     "./flags/jp-25": {
       "minified": 593,
-      "gzip": 351
+      "gzip": 352
     },
     "./flags/jp-26": {
       "minified": 1182,
-      "gzip": 465
+      "gzip": 466
     },
     "./flags/jp-27": {
       "minified": 607,
-      "gzip": 327
+      "gzip": 329
     },
     "./flags/jp-28": {
       "minified": 1124,
-      "gzip": 669
+      "gzip": 662
     },
     "./flags/jp-29": {
       "minified": 421,
-      "gzip": 281
+      "gzip": 282
     },
     "./flags/jp-30": {
       "minified": 287,
-      "gzip": 233
+      "gzip": 234
     },
     "./flags/jp-31": {
       "minified": 386,
-      "gzip": 282
+      "gzip": 284
     },
     "./flags/jp-32": {
       "minified": 416,
-      "gzip": 275
+      "gzip": 280
     },
     "./flags/jp-33": {
       "minified": 618,
-      "gzip": 399
+      "gzip": 398
     },
     "./flags/jp-35": {
       "minified": 322,
-      "gzip": 243
+      "gzip": 246
     },
     "./flags/jp-36": {
       "minified": 371,
-      "gzip": 282
+      "gzip": 283
     },
     "./flags/jp-38": {
       "minified": 663,
-      "gzip": 379
+      "gzip": 381
     },
     "./flags/jp-39": {
       "minified": 363,
-      "gzip": 256
+      "gzip": 259
     },
     "./flags/jp-40": {
       "minified": 664,
-      "gzip": 377
+      "gzip": 381
     },
     "./flags/jp-41": {
       "minified": 665,
-      "gzip": 390
+      "gzip": 389
     },
     "./flags/jp-42": {
       "minified": 1018,
-      "gzip": 540
+      "gzip": 536
     },
     "./flags/jp-43": {
       "minified": 285,
-      "gzip": 226
+      "gzip": 227
     },
     "./flags/jp-44": {
       "minified": 485,
-      "gzip": 315
+      "gzip": 316
     },
     "./flags/jp-45": {
       "minified": 281,
-      "gzip": 232
+      "gzip": 234
     },
     "./flags/jp-46": {
       "minified": 377,
-      "gzip": 287
+      "gzip": 289
     },
     "./flags/jp-47": {
       "minified": 371,
-      "gzip": 255
+      "gzip": 257
     },
     "./flags/jp.1x1": {
       "minified": 438,
-      "gzip": 315
+      "gzip": 318
     },
     "./flags/jp.4x3": {
       "minified": 433,
-      "gzip": 313
+      "gzip": 316
     },
     "./flags/jp": {
       "minified": 220,
-      "gzip": 199
+      "gzip": 197
     },
     "./flags/ke.1x1": {
       "minified": 1491,
-      "gzip": 574
+      "gzip": 578
     },
     "./flags/ke.4x3": {
       "minified": 1383,
-      "gzip": 550
+      "gzip": 558
     },
     "./flags/ke": {
       "minified": 1037,
-      "gzip": 489
+      "gzip": 497
     },
     "./flags/kg.1x1": {
       "minified": 4814,
-      "gzip": 1997
+      "gzip": 1975
     },
     "./flags/kg.4x3": {
       "minified": 4764,
-      "gzip": 1968
+      "gzip": 1944
     },
     "./flags/kg": {
       "minified": 8119,
-      "gzip": 3296
+      "gzip": 3208
     },
     "./flags/kh.1x1": {
       "minified": 6784,
-      "gzip": 2737
+      "gzip": 2713
     },
     "./flags/kh.4x3": {
       "minified": 6783,
-      "gzip": 2728
+      "gzip": 2702
     },
     "./flags/kh": {
       "minified": 8759,
-      "gzip": 3504
+      "gzip": 3438
     },
     "./flags/ki": {
       "minified": 3708,
-      "gzip": 1468
+      "gzip": 1452
     },
     "./flags/km.1x1": {
       "minified": 1012,
-      "gzip": 475
+      "gzip": 478
     },
     "./flags/km.4x3": {
       "minified": 1034,
-      "gzip": 517
+      "gzip": 526
     },
     "./flags/km": {
       "minified": 605,
-      "gzip": 353
+      "gzip": 356
     },
     "./flags/kn.1x1": {
       "minified": 806,
-      "gzip": 475
+      "gzip": 477
     },
     "./flags/kn.4x3": {
       "minified": 787,
-      "gzip": 460
+      "gzip": 463
     },
     "./flags/kn": {
       "minified": 610,
-      "gzip": 384
+      "gzip": 387
     },
     "./flags/kp.1x1": {
       "minified": 833,
-      "gzip": 474
+      "gzip": 476
     },
     "./flags/kp.4x3": {
       "minified": 769,
@@ -1991,27 +1991,27 @@
     },
     "./flags/kp": {
       "minified": 352,
-      "gzip": 247
+      "gzip": 248
     },
     "./flags/kr.1x1": {
       "minified": 789,
-      "gzip": 408
+      "gzip": 411
     },
     "./flags/kr.4x3": {
       "minified": 925,
-      "gzip": 471
+      "gzip": 474
     },
     "./flags/kr": {
       "minified": 854,
-      "gzip": 427
+      "gzip": 426
     },
     "./flags/kw.1x1": {
       "minified": 517,
-      "gzip": 321
+      "gzip": 325
     },
     "./flags/kw.4x3": {
       "minified": 513,
-      "gzip": 330
+      "gzip": 332
     },
     "./flags/kw": {
       "minified": 269,
@@ -2019,31 +2019,31 @@
     },
     "./flags/ky.1x1": {
       "minified": 22794,
-      "gzip": 8594
+      "gzip": 8533
     },
     "./flags/ky.4x3": {
       "minified": 22808,
-      "gzip": 8580
+      "gzip": 8524
     },
     "./flags/ky": {
       "minified": 22279,
-      "gzip": 8643
+      "gzip": 8583
     },
     "./flags/kz.1x1": {
       "minified": 6906,
-      "gzip": 2929
+      "gzip": 2890
     },
     "./flags/kz.4x3": {
       "minified": 6904,
-      "gzip": 2938
+      "gzip": 2901
     },
     "./flags/kz": {
       "minified": 6516,
-      "gzip": 2911
+      "gzip": 2867
     },
     "./flags/la.1x1": {
       "minified": 506,
-      "gzip": 335
+      "gzip": 337
     },
     "./flags/la.4x3": {
       "minified": 457,
@@ -2051,71 +2051,71 @@
     },
     "./flags/la": {
       "minified": 293,
-      "gzip": 233
+      "gzip": 232
     },
     "./flags/lb.1x1": {
       "minified": 2701,
-      "gzip": 1344
+      "gzip": 1345
     },
     "./flags/lb.4x3": {
       "minified": 2752,
-      "gzip": 1363
+      "gzip": 1358
     },
     "./flags/lb": {
       "minified": 3888,
-      "gzip": 1978
+      "gzip": 1924
     },
     "./flags/lc.1x1": {
       "minified": 363,
-      "gzip": 253
+      "gzip": 254
     },
     "./flags/lc.4x3": {
       "minified": 353,
-      "gzip": 250
+      "gzip": 251
     },
     "./flags/lc": {
       "minified": 319,
-      "gzip": 246
+      "gzip": 245
     },
     "./flags/li.1x1": {
       "minified": 7083,
-      "gzip": 2999
+      "gzip": 2961
     },
     "./flags/li.4x3": {
       "minified": 7061,
-      "gzip": 2987
+      "gzip": 2949
     },
     "./flags/li": {
       "minified": 21342,
-      "gzip": 3651
+      "gzip": 3639
     },
     "./flags/lk": {
       "minified": 11782,
-      "gzip": 5178
+      "gzip": 5129
     },
     "./flags/lr.1x1": {
       "minified": 677,
-      "gzip": 377
+      "gzip": 386
     },
     "./flags/lr.4x3": {
       "minified": 704,
-      "gzip": 399
+      "gzip": 408
     },
     "./flags/lr": {
       "minified": 710,
-      "gzip": 342
+      "gzip": 344
     },
     "./flags/ls.1x1": {
       "minified": 1146,
-      "gzip": 625
+      "gzip": 619
     },
     "./flags/ls.4x3": {
       "minified": 1142,
-      "gzip": 615
+      "gzip": 614
     },
     "./flags/ls": {
       "minified": 1509,
-      "gzip": 753
+      "gzip": 736
     },
     "./flags/lt.1x1": {
       "minified": 445,
@@ -2127,27 +2127,27 @@
     },
     "./flags/lt": {
       "minified": 261,
-      "gzip": 190
+      "gzip": 193
     },
     "./flags/lu.1x1": {
       "minified": 251,
-      "gzip": 189
+      "gzip": 192
     },
     "./flags/lu.4x3": {
       "minified": 243,
-      "gzip": 179
+      "gzip": 180
     },
     "./flags/lu": {
       "minified": 238,
-      "gzip": 184
+      "gzip": 183
     },
     "./flags/lv.1x1": {
       "minified": 245,
-      "gzip": 197
+      "gzip": 201
     },
     "./flags/lv.4x3": {
       "minified": 241,
-      "gzip": 195
+      "gzip": 196
     },
     "./flags/lv": {
       "minified": 215,
@@ -2155,23 +2155,23 @@
     },
     "./flags/ly.1x1": {
       "minified": 543,
-      "gzip": 338
+      "gzip": 343
     },
     "./flags/ly.4x3": {
       "minified": 545,
-      "gzip": 342
+      "gzip": 345
     },
     "./flags/ly": {
       "minified": 377,
-      "gzip": 250
+      "gzip": 252
     },
     "./flags/ma.1x1": {
       "minified": 267,
-      "gzip": 222
+      "gzip": 227
     },
     "./flags/ma.4x3": {
       "minified": 268,
-      "gzip": 221
+      "gzip": 223
     },
     "./flags/ma": {
       "minified": 296,
@@ -2179,43 +2179,43 @@
     },
     "./flags/mc.1x1": {
       "minified": 226,
-      "gzip": 185
+      "gzip": 188
     },
     "./flags/mc.4x3": {
       "minified": 226,
-      "gzip": 186
+      "gzip": 187
     },
     "./flags/mc": {
       "minified": 215,
-      "gzip": 179
+      "gzip": 177
     },
     "./flags/md.1x1": {
       "minified": 11003,
-      "gzip": 2755
+      "gzip": 2708
     },
     "./flags/md.4x3": {
       "minified": 10893,
-      "gzip": 2886
+      "gzip": 2830
     },
     "./flags/md": {
       "minified": 20245,
-      "gzip": 8009
+      "gzip": 7932
     },
     "./flags/me.1x1": {
       "minified": 56632,
-      "gzip": 21736
+      "gzip": 21579
     },
     "./flags/me.4x3": {
       "minified": 56057,
-      "gzip": 21435
+      "gzip": 21287
     },
     "./flags/me": {
       "minified": 58162,
-      "gzip": 23002
+      "gzip": 22824
     },
     "./flags/mf": {
       "minified": 259,
-      "gzip": 190
+      "gzip": 193
     },
     "./flags/mg.1x1": {
       "minified": 305,
@@ -2223,7 +2223,7 @@
     },
     "./flags/mg.4x3": {
       "minified": 305,
-      "gzip": 225
+      "gzip": 224
     },
     "./flags/mg": {
       "minified": 254,
@@ -2231,47 +2231,47 @@
     },
     "./flags/mh.1x1": {
       "minified": 754,
-      "gzip": 466
+      "gzip": 471
     },
     "./flags/mh.4x3": {
       "minified": 735,
-      "gzip": 456
+      "gzip": 460
     },
     "./flags/mh": {
       "minified": 876,
-      "gzip": 440
+      "gzip": 441
     },
     "./flags/mk.1x1": {
       "minified": 425,
-      "gzip": 282
+      "gzip": 285
     },
     "./flags/mk.4x3": {
       "minified": 384,
-      "gzip": 266
+      "gzip": 270
     },
     "./flags/mk": {
       "minified": 400,
-      "gzip": 278
+      "gzip": 283
     },
     "./flags/ml.1x1": {
       "minified": 282,
-      "gzip": 211
+      "gzip": 215
     },
     "./flags/ml.4x3": {
       "minified": 270,
-      "gzip": 203
+      "gzip": 207
     },
     "./flags/ml": {
       "minified": 257,
-      "gzip": 189
+      "gzip": 188
     },
     "./flags/mm.1x1": {
       "minified": 688,
-      "gzip": 303
+      "gzip": 306
     },
     "./flags/mm.4x3": {
       "minified": 675,
-      "gzip": 308
+      "gzip": 309
     },
     "./flags/mm": {
       "minified": 549,
@@ -2279,239 +2279,239 @@
     },
     "./flags/mn.1x1": {
       "minified": 1355,
-      "gzip": 673
+      "gzip": 671
     },
     "./flags/mn.4x3": {
       "minified": 1382,
-      "gzip": 686
+      "gzip": 688
     },
     "./flags/mn": {
       "minified": 1286,
-      "gzip": 630
+      "gzip": 635
     },
     "./flags/mo.1x1": {
       "minified": 1356,
-      "gzip": 699
+      "gzip": 694
     },
     "./flags/mo.4x3": {
       "minified": 1341,
-      "gzip": 694
+      "gzip": 693
     },
     "./flags/mo": {
       "minified": 2472,
-      "gzip": 709
+      "gzip": 706
     },
     "./flags/mp": {
       "minified": 133219,
-      "gzip": 44507
+      "gzip": 44164
     },
     "./flags/mq--local": {
       "minified": 268,
-      "gzip": 202
+      "gzip": 205
     },
     "./flags/mq": {
       "minified": 259,
-      "gzip": 190
+      "gzip": 193
     },
     "./flags/mr.1x1": {
       "minified": 457,
-      "gzip": 288
+      "gzip": 289
     },
     "./flags/mr.4x3": {
       "minified": 464,
-      "gzip": 284
+      "gzip": 286
     },
     "./flags/mr": {
       "minified": 365,
-      "gzip": 258
+      "gzip": 260
     },
     "./flags/ms.1x1": {
       "minified": 5869,
-      "gzip": 2553
+      "gzip": 2505
     },
     "./flags/ms.4x3": {
       "minified": 5764,
-      "gzip": 2598
+      "gzip": 2560
     },
     "./flags/ms": {
       "minified": 5776,
-      "gzip": 2637
+      "gzip": 2608
     },
     "./flags/mt.1x1": {
       "minified": 12454,
-      "gzip": 5456
+      "gzip": 5366
     },
     "./flags/mt.4x3": {
       "minified": 13659,
-      "gzip": 5950
+      "gzip": 5854
     },
     "./flags/mt": {
       "minified": 15001,
-      "gzip": 7098
+      "gzip": 6920
     },
     "./flags/mu": {
       "minified": 299,
-      "gzip": 201
+      "gzip": 205
     },
     "./flags/mv.1x1": {
       "minified": 319,
-      "gzip": 237
+      "gzip": 242
     },
     "./flags/mv.4x3": {
       "minified": 301,
-      "gzip": 218
+      "gzip": 219
     },
     "./flags/mv": {
       "minified": 307,
-      "gzip": 233
+      "gzip": 234
     },
     "./flags/mw.1x1": {
       "minified": 3752,
-      "gzip": 1732
+      "gzip": 1713
     },
     "./flags/mw.4x3": {
       "minified": 3554,
-      "gzip": 1687
+      "gzip": 1659
     },
     "./flags/mw": {
       "minified": 1019,
-      "gzip": 448
+      "gzip": 447
     },
     "./flags/mx.1x1": {
       "minified": 79113,
-      "gzip": 27712
+      "gzip": 27604
     },
     "./flags/mx.4x3": {
       "minified": 83651,
-      "gzip": 29564
+      "gzip": 29400
     },
     "./flags/mx": {
       "minified": 85196,
-      "gzip": 31113
+      "gzip": 30923
     },
     "./flags/my.1x1": {
       "minified": 1140,
-      "gzip": 446
+      "gzip": 448
     },
     "./flags/my.4x3": {
       "minified": 1309,
-      "gzip": 493
+      "gzip": 494
     },
     "./flags/my": {
       "minified": 729,
-      "gzip": 394
+      "gzip": 398
     },
     "./flags/mz": {
       "minified": 1963,
-      "gzip": 983
+      "gzip": 974
     },
     "./flags/na.1x1": {
       "minified": 930,
-      "gzip": 501
+      "gzip": 510
     },
     "./flags/na.4x3": {
       "minified": 974,
-      "gzip": 510
+      "gzip": 516
     },
     "./flags/na": {
       "minified": 760,
-      "gzip": 431
+      "gzip": 434
     },
     "./flags/nc--france": {
       "minified": 259,
-      "gzip": 190
+      "gzip": 193
     },
     "./flags/nc.1x1": {
       "minified": 1315,
-      "gzip": 652
+      "gzip": 648
     },
     "./flags/nc.4x3": {
       "minified": 1322,
-      "gzip": 643
+      "gzip": 638
     },
     "./flags/nc": {
       "minified": 1136,
-      "gzip": 625
+      "gzip": 632
     },
     "./flags/ne.1x1": {
       "minified": 294,
-      "gzip": 209
+      "gzip": 212
     },
     "./flags/ne.4x3": {
       "minified": 288,
-      "gzip": 202
+      "gzip": 208
     },
     "./flags/ne": {
       "minified": 303,
-      "gzip": 213
+      "gzip": 214
     },
     "./flags/nf.1x1": {
       "minified": 5364,
-      "gzip": 2425
+      "gzip": 2390
     },
     "./flags/nf.4x3": {
       "minified": 5559,
-      "gzip": 2515
+      "gzip": 2486
     },
     "./flags/nf": {
       "minified": 10078,
-      "gzip": 4599
+      "gzip": 4504
     },
     "./flags/ng.1x1": {
       "minified": 268,
-      "gzip": 215
+      "gzip": 217
     },
     "./flags/ng.4x3": {
       "minified": 268,
-      "gzip": 217
+      "gzip": 218
     },
     "./flags/ng": {
       "minified": 230,
-      "gzip": 197
+      "gzip": 200
     },
     "./flags/ni.1x1": {
       "minified": 17000,
-      "gzip": 5423
+      "gzip": 5376
     },
     "./flags/ni.4x3": {
       "minified": 16956,
-      "gzip": 5364
+      "gzip": 5321
     },
     "./flags/ni": {
       "minified": 14342,
-      "gzip": 5227
+      "gzip": 5200
     },
     "./flags/nl.1x1": {
       "minified": 251,
-      "gzip": 190
+      "gzip": 193
     },
     "./flags/nl.4x3": {
       "minified": 243,
-      "gzip": 180
+      "gzip": 181
     },
     "./flags/nl": {
       "minified": 238,
-      "gzip": 185
+      "gzip": 184
     },
     "./flags/no.1x1": {
       "minified": 330,
-      "gzip": 210
+      "gzip": 218
     },
     "./flags/no.4x3": {
       "minified": 330,
-      "gzip": 206
+      "gzip": 207
     },
     "./flags/no": {
       "minified": 315,
-      "gzip": 230
+      "gzip": 229
     },
     "./flags/np.1x1": {
       "minified": 1107,
-      "gzip": 610
+      "gzip": 614
     },
     "./flags/np.4x3": {
       "minified": 997,
-      "gzip": 605
+      "gzip": 611
     },
     "./flags/np": {
       "minified": 1150,
@@ -2519,107 +2519,107 @@
     },
     "./flags/nr.1x1": {
       "minified": 670,
-      "gzip": 420
+      "gzip": 427
     },
     "./flags/nr.4x3": {
       "minified": 647,
-      "gzip": 415
+      "gzip": 421
     },
     "./flags/nr": {
       "minified": 540,
-      "gzip": 303
+      "gzip": 306
     },
     "./flags/nu.1x1": {
       "minified": 843,
-      "gzip": 471
+      "gzip": 475
     },
     "./flags/nu.4x3": {
       "minified": 867,
-      "gzip": 466
+      "gzip": 467
     },
     "./flags/nu": {
       "minified": 1077,
-      "gzip": 491
+      "gzip": 492
     },
     "./flags/nz.1x1": {
       "minified": 2033,
-      "gzip": 637
+      "gzip": 640
     },
     "./flags/nz.4x3": {
       "minified": 2052,
-      "gzip": 646
+      "gzip": 644
     },
     "./flags/nz": {
       "minified": 1819,
-      "gzip": 516
+      "gzip": 518
     },
     "./flags/pa.1x1": {
       "minified": 637,
-      "gzip": 387
+      "gzip": 394
     },
     "./flags/pa.4x3": {
       "minified": 735,
-      "gzip": 411
+      "gzip": 417
     },
     "./flags/pa": {
       "minified": 336,
-      "gzip": 247
+      "gzip": 249
     },
     "./flags/pe.1x1": {
       "minified": 207,
-      "gzip": 177
+      "gzip": 179
     },
     "./flags/pe.4x3": {
       "minified": 207,
-      "gzip": 178
+      "gzip": 180
     },
     "./flags/pe": {
       "minified": 216,
-      "gzip": 182
+      "gzip": 181
     },
     "./flags/pf--france": {
       "minified": 259,
-      "gzip": 190
+      "gzip": 193
     },
     "./flags/pf.1x1": {
       "minified": 3966,
-      "gzip": 1722
+      "gzip": 1707
     },
     "./flags/pf.4x3": {
       "minified": 3996,
-      "gzip": 1719
+      "gzip": 1706
     },
     "./flags/pf": {
       "minified": 3754,
-      "gzip": 1749
+      "gzip": 1734
     },
     "./flags/pg.1x1": {
       "minified": 2060,
-      "gzip": 1037
+      "gzip": 1038
     },
     "./flags/pg": {
       "minified": 2060,
-      "gzip": 1061
+      "gzip": 1059
     },
     "./flags/ph.1x1": {
       "minified": 1441,
-      "gzip": 685
+      "gzip": 684
     },
     "./flags/ph.4x3": {
       "minified": 1397,
-      "gzip": 696
+      "gzip": 694
     },
     "./flags/ph": {
       "minified": 803,
-      "gzip": 423
+      "gzip": 426
     },
     "./flags/pk": {
       "minified": 426,
-      "gzip": 302
+      "gzip": 304
     },
     "./flags/pl.1x1": {
       "minified": 230,
-      "gzip": 187
+      "gzip": 189
     },
     "./flags/pl.4x3": {
       "minified": 230,
@@ -2627,31 +2627,31 @@
     },
     "./flags/pl": {
       "minified": 202,
-      "gzip": 176
+      "gzip": 174
     },
     "./flags/pm--local": {
       "minified": 82948,
-      "gzip": 29453
+      "gzip": 29203
     },
     "./flags/pm": {
       "minified": 259,
-      "gzip": 190
+      "gzip": 193
     },
     "./flags/pn.1x1": {
       "minified": 13315,
-      "gzip": 5012
+      "gzip": 4930
     },
     "./flags/pn.4x3": {
       "minified": 13345,
-      "gzip": 5056
+      "gzip": 4980
     },
     "./flags/pn": {
       "minified": 10635,
-      "gzip": 4282
+      "gzip": 4243
     },
     "./flags/pr.1x1": {
       "minified": 604,
-      "gzip": 387
+      "gzip": 390
     },
     "./flags/pr.4x3": {
       "minified": 621,
@@ -2659,183 +2659,183 @@
     },
     "./flags/pr": {
       "minified": 311,
-      "gzip": 230
+      "gzip": 232
     },
     "./flags/ps.1x1": {
       "minified": 297,
-      "gzip": 217
+      "gzip": 218
     },
     "./flags/ps.4x3": {
       "minified": 291,
-      "gzip": 210
+      "gzip": 213
     },
     "./flags/ps": {
       "minified": 265,
-      "gzip": 199
+      "gzip": 198
     },
     "./flags/pt.1x1": {
       "minified": 8117,
-      "gzip": 3290
+      "gzip": 3244
     },
     "./flags/pt.4x3": {
       "minified": 7749,
-      "gzip": 3271
+      "gzip": 3223
     },
     "./flags/pt": {
       "minified": 9764,
-      "gzip": 3242
+      "gzip": 3184
     },
     "./flags/pw.1x1": {
       "minified": 517,
-      "gzip": 357
+      "gzip": 362
     },
     "./flags/pw.4x3": {
       "minified": 472,
-      "gzip": 326
+      "gzip": 329
     },
     "./flags/pw": {
       "minified": 217,
-      "gzip": 192
+      "gzip": 195
     },
     "./flags/py.1x1": {
       "minified": 15636,
-      "gzip": 5853
+      "gzip": 5809
     },
     "./flags/py.4x3": {
       "minified": 15454,
-      "gzip": 5789
+      "gzip": 5750
     },
     "./flags/py": {
       "minified": 18101,
-      "gzip": 7427
+      "gzip": 7311
     },
     "./flags/qa.1x1": {
       "minified": 372,
-      "gzip": 241
+      "gzip": 244
     },
     "./flags/qa.4x3": {
       "minified": 375,
-      "gzip": 216
+      "gzip": 220
     },
     "./flags/qa": {
       "minified": 274,
-      "gzip": 193
+      "gzip": 195
     },
     "./flags/re--local": {
       "minified": 325,
-      "gzip": 232
+      "gzip": 234
     },
     "./flags/re": {
       "minified": 259,
-      "gzip": 190
+      "gzip": 193
     },
     "./flags/ro.1x1": {
       "minified": 308,
-      "gzip": 228
+      "gzip": 230
     },
     "./flags/ro.4x3": {
       "minified": 308,
-      "gzip": 231
+      "gzip": 230
     },
     "./flags/ro": {
       "minified": 241,
-      "gzip": 192
+      "gzip": 196
     },
     "./flags/rs.1x1": {
       "minified": 179151,
-      "gzip": 49600
+      "gzip": 49408
     },
     "./flags/rs.4x3": {
       "minified": 179504,
-      "gzip": 49867
+      "gzip": 49680
     },
     "./flags/rs": {
       "minified": 22276,
-      "gzip": 8439
+      "gzip": 8349
     },
     "./flags/ru.1x1": {
       "minified": 251,
-      "gzip": 190
+      "gzip": 193
     },
     "./flags/ru.4x3": {
       "minified": 243,
-      "gzip": 180
+      "gzip": 181
     },
     "./flags/ru": {
       "minified": 238,
-      "gzip": 187
+      "gzip": 185
     },
     "./flags/rw.1x1": {
       "minified": 715,
-      "gzip": 395
+      "gzip": 399
     },
     "./flags/rw.4x3": {
       "minified": 714,
-      "gzip": 396
+      "gzip": 397
     },
     "./flags/rw": {
       "minified": 867,
-      "gzip": 491
+      "gzip": 490
     },
     "./flags/sa.1x1": {
       "minified": 9789,
-      "gzip": 4288
+      "gzip": 4223
     },
     "./flags/sa.4x3": {
       "minified": 9904,
-      "gzip": 4336
+      "gzip": 4274
     },
     "./flags/sa": {
       "minified": 19416,
-      "gzip": 8615
+      "gzip": 8487
     },
     "./flags/sb": {
       "minified": 1026,
-      "gzip": 400
+      "gzip": 404
     },
     "./flags/sc.1x1": {
       "minified": 333,
-      "gzip": 218
+      "gzip": 221
     },
     "./flags/sc.4x3": {
       "minified": 325,
-      "gzip": 215
+      "gzip": 217
     },
     "./flags/sc": {
       "minified": 343,
-      "gzip": 235
+      "gzip": 234
     },
     "./flags/sd.1x1": {
       "minified": 503,
-      "gzip": 318
+      "gzip": 323
     },
     "./flags/sd.4x3": {
       "minified": 501,
-      "gzip": 326
+      "gzip": 327
     },
     "./flags/sd": {
       "minified": 289,
-      "gzip": 201
+      "gzip": 203
     },
     "./flags/se.1x1": {
       "minified": 244,
-      "gzip": 201
+      "gzip": 208
     },
     "./flags/se.4x3": {
       "minified": 230,
-      "gzip": 196
+      "gzip": 202
     },
     "./flags/se": {
       "minified": 208,
-      "gzip": 188
+      "gzip": 190
     },
     "./flags/sg.1x1": {
       "minified": 944,
-      "gzip": 471
+      "gzip": 473
     },
     "./flags/sg.4x3": {
       "minified": 885,
-      "gzip": 453
+      "gzip": 458
     },
     "./flags/sg": {
       "minified": 554,
@@ -2847,19 +2847,19 @@
     },
     "./flags/sh": {
       "minified": 28210,
-      "gzip": 11443
+      "gzip": 11343
     },
     "./flags/si.1x1": {
       "minified": 1984,
-      "gzip": 932
+      "gzip": 930
     },
     "./flags/si.4x3": {
       "minified": 1964,
-      "gzip": 915
+      "gzip": 919
     },
     "./flags/si": {
       "minified": 1124,
-      "gzip": 535
+      "gzip": 537
     },
     "./flags/sj": {
       "minified": 323,
@@ -2867,55 +2867,55 @@
     },
     "./flags/sk.1x1": {
       "minified": 1167,
-      "gzip": 571
+      "gzip": 564
     },
     "./flags/sk.4x3": {
       "minified": 1188,
-      "gzip": 586
+      "gzip": 583
     },
     "./flags/sk": {
       "minified": 1287,
-      "gzip": 675
+      "gzip": 670
     },
     "./flags/sl.1x1": {
       "minified": 442,
-      "gzip": 307
+      "gzip": 312
     },
     "./flags/sl.4x3": {
       "minified": 278,
-      "gzip": 214
+      "gzip": 213
     },
     "./flags/sl": {
       "minified": 254,
-      "gzip": 187
+      "gzip": 190
     },
     "./flags/sm.1x1": {
       "minified": 15290,
-      "gzip": 5400
+      "gzip": 5342
     },
     "./flags/sm": {
       "minified": 76072,
-      "gzip": 29025
+      "gzip": 28774
     },
     "./flags/sn.1x1": {
       "minified": 414,
-      "gzip": 282
+      "gzip": 284
     },
     "./flags/sn.4x3": {
       "minified": 424,
-      "gzip": 276
+      "gzip": 277
     },
     "./flags/sn": {
       "minified": 288,
-      "gzip": 216
+      "gzip": 218
     },
     "./flags/so.1x1": {
       "minified": 436,
-      "gzip": 315
+      "gzip": 319
     },
     "./flags/so.4x3": {
       "minified": 489,
-      "gzip": 348
+      "gzip": 353
     },
     "./flags/so": {
       "minified": 274,
@@ -2923,23 +2923,23 @@
     },
     "./flags/sr.1x1": {
       "minified": 332,
-      "gzip": 239
+      "gzip": 241
     },
     "./flags/sr.4x3": {
       "minified": 327,
-      "gzip": 236
+      "gzip": 237
     },
     "./flags/sr": {
       "minified": 321,
-      "gzip": 231
+      "gzip": 232
     },
     "./flags/ss.4x3": {
       "minified": 394,
-      "gzip": 245
+      "gzip": 246
     },
     "./flags/ss": {
       "minified": 398,
-      "gzip": 250
+      "gzip": 251
     },
     "./flags/st.1x1": {
       "minified": 925,
@@ -2951,31 +2951,31 @@
     },
     "./flags/st": {
       "minified": 407,
-      "gzip": 301
+      "gzip": 304
     },
     "./flags/sv.1x1": {
       "minified": 73505,
-      "gzip": 21858
+      "gzip": 21739
     },
     "./flags/sv.4x3": {
       "minified": 73062,
-      "gzip": 21613
+      "gzip": 21498
     },
     "./flags/sv": {
       "minified": 147159,
-      "gzip": 33614
+      "gzip": 33448
     },
     "./flags/sx.1x1": {
       "minified": 11936,
-      "gzip": 4184
+      "gzip": 4136
     },
     "./flags/sx.4x3": {
       "minified": 11995,
-      "gzip": 4356
+      "gzip": 4317
     },
     "./flags/sx": {
       "minified": 19947,
-      "gzip": 4486
+      "gzip": 4435
     },
     "./flags/sy--assad-era": {
       "minified": 382,
@@ -2983,51 +2983,51 @@
     },
     "./flags/sy.1x1": {
       "minified": 407,
-      "gzip": 271
+      "gzip": 274
     },
     "./flags/sy.4x3": {
       "minified": 370,
-      "gzip": 234
+      "gzip": 236
     },
     "./flags/sy": {
       "minified": 394,
-      "gzip": 246
+      "gzip": 245
     },
     "./flags/sz.1x1": {
       "minified": 4509,
-      "gzip": 1909
+      "gzip": 1903
     },
     "./flags/sz.4x3": {
       "minified": 4539,
-      "gzip": 1914
+      "gzip": 1908
     },
     "./flags/sz": {
       "minified": 4580,
-      "gzip": 1968
+      "gzip": 1957
     },
     "./flags/tc.1x1": {
       "minified": 6743,
-      "gzip": 3024
+      "gzip": 2962
     },
     "./flags/tc.4x3": {
       "minified": 6767,
-      "gzip": 3033
+      "gzip": 2968
     },
     "./flags/tc": {
       "minified": 6294,
-      "gzip": 2895
+      "gzip": 2840
     },
     "./flags/td.1x1": {
       "minified": 289,
-      "gzip": 219
+      "gzip": 222
     },
     "./flags/td.4x3": {
       "minified": 277,
-      "gzip": 206
+      "gzip": 212
     },
     "./flags/td": {
       "minified": 257,
-      "gzip": 188
+      "gzip": 185
     },
     "./flags/tf.1x1": {
       "minified": 1167,
@@ -3035,115 +3035,115 @@
     },
     "./flags/tf.4x3": {
       "minified": 1066,
-      "gzip": 453
+      "gzip": 455
     },
     "./flags/tf": {
       "minified": 801,
-      "gzip": 364
+      "gzip": 366
     },
     "./flags/tg.1x1": {
       "minified": 709,
-      "gzip": 412
+      "gzip": 417
     },
     "./flags/tg.4x3": {
       "minified": 699,
-      "gzip": 408
+      "gzip": 412
     },
     "./flags/tg": {
       "minified": 653,
-      "gzip": 316
+      "gzip": 315
     },
     "./flags/th.1x1": {
       "minified": 291,
-      "gzip": 219
+      "gzip": 223
     },
     "./flags/th.4x3": {
       "minified": 290,
-      "gzip": 214
+      "gzip": 219
     },
     "./flags/th": {
       "minified": 261,
-      "gzip": 195
+      "gzip": 198
     },
     "./flags/tj.1x1": {
       "minified": 1717,
-      "gzip": 663
+      "gzip": 659
     },
     "./flags/tj.4x3": {
       "minified": 1816,
-      "gzip": 664
+      "gzip": 658
     },
     "./flags/tj": {
       "minified": 5597,
-      "gzip": 1367
+      "gzip": 1332
     },
     "./flags/tk.1x1": {
       "minified": 769,
-      "gzip": 439
+      "gzip": 440
     },
     "./flags/tk.4x3": {
       "minified": 779,
-      "gzip": 443
+      "gzip": 447
     },
     "./flags/tk": {
       "minified": 1134,
-      "gzip": 536
+      "gzip": 535
     },
     "./flags/tl": {
       "minified": 328,
-      "gzip": 247
+      "gzip": 246
     },
     "./flags/tm.1x1": {
       "minified": 37430,
-      "gzip": 12008
+      "gzip": 11945
     },
     "./flags/tm.4x3": {
       "minified": 37564,
-      "gzip": 12105
+      "gzip": 12035
     },
     "./flags/tm": {
       "minified": 28217,
-      "gzip": 9458
+      "gzip": 9393
     },
     "./flags/tn.1x1": {
       "minified": 324,
-      "gzip": 238
+      "gzip": 239
     },
     "./flags/tn.4x3": {
       "minified": 364,
-      "gzip": 255
+      "gzip": 257
     },
     "./flags/tn": {
       "minified": 306,
-      "gzip": 231
+      "gzip": 233
     },
     "./flags/to.1x1": {
       "minified": 345,
-      "gzip": 250
+      "gzip": 252
     },
     "./flags/to.4x3": {
       "minified": 339,
-      "gzip": 250
+      "gzip": 252
     },
     "./flags/to": {
       "minified": 265,
-      "gzip": 211
+      "gzip": 212
     },
     "./flags/tr.1x1": {
       "minified": 562,
-      "gzip": 345
+      "gzip": 347
     },
     "./flags/tr.4x3": {
       "minified": 550,
-      "gzip": 338
+      "gzip": 342
     },
     "./flags/tr": {
       "minified": 352,
-      "gzip": 265
+      "gzip": 264
     },
     "./flags/tt.1x1": {
       "minified": 320,
-      "gzip": 243
+      "gzip": 245
     },
     "./flags/tt.4x3": {
       "minified": 322,
@@ -3155,47 +3155,47 @@
     },
     "./flags/tv.1x1": {
       "minified": 1348,
-      "gzip": 533
+      "gzip": 536
     },
     "./flags/tv.4x3": {
       "minified": 1433,
-      "gzip": 595
+      "gzip": 593
     },
     "./flags/tv": {
       "minified": 1203,
-      "gzip": 499
+      "gzip": 503
     },
     "./flags/tw.1x1": {
       "minified": 1718,
-      "gzip": 751
+      "gzip": 753
     },
     "./flags/tw.4x3": {
       "minified": 1687,
-      "gzip": 743
+      "gzip": 747
     },
     "./flags/tw": {
       "minified": 459,
-      "gzip": 284
+      "gzip": 287
     },
     "./flags/tz.1x1": {
       "minified": 518,
-      "gzip": 338
+      "gzip": 344
     },
     "./flags/tz.4x3": {
       "minified": 544,
-      "gzip": 354
+      "gzip": 353
     },
     "./flags/tz": {
       "minified": 347,
-      "gzip": 241
+      "gzip": 242
     },
     "./flags/ua.1x1": {
       "minified": 224,
-      "gzip": 185
+      "gzip": 192
     },
     "./flags/ua.4x3": {
       "minified": 224,
-      "gzip": 187
+      "gzip": 190
     },
     "./flags/ua": {
       "minified": 217,
@@ -3203,15 +3203,15 @@
     },
     "./flags/ug.1x1": {
       "minified": 3903,
-      "gzip": 1374
+      "gzip": 1362
     },
     "./flags/ug.4x3": {
       "minified": 3840,
-      "gzip": 1362
+      "gzip": 1351
     },
     "./flags/ug": {
       "minified": 2526,
-      "gzip": 1169
+      "gzip": 1159
     },
     "./flags/um": {
       "minified": 790,
@@ -3219,27 +3219,27 @@
     },
     "./flags/us-ak": {
       "minified": 1338,
-      "gzip": 414
+      "gzip": 412
     },
     "./flags/us-al": {
       "minified": 244,
-      "gzip": 201
+      "gzip": 204
     },
     "./flags/us-ar": {
       "minified": 5277,
-      "gzip": 1582
+      "gzip": 1567
     },
     "./flags/us-as": {
       "minified": 29616,
-      "gzip": 11404
+      "gzip": 11297
     },
     "./flags/us-az": {
       "minified": 448,
-      "gzip": 301
+      "gzip": 305
     },
     "./flags/us-ca": {
       "minified": 88888,
-      "gzip": 32308
+      "gzip": 32127
     },
     "./flags/us-co": {
       "minified": 331,
@@ -3247,63 +3247,63 @@
     },
     "./flags/us-ct": {
       "minified": 85066,
-      "gzip": 27383
+      "gzip": 27072
     },
     "./flags/us-dc": {
       "minified": 762,
-      "gzip": 336
+      "gzip": 334
     },
     "./flags/us-de": {
       "minified": 91060,
-      "gzip": 28827
+      "gzip": 28592
     },
     "./flags/us-fl": {
       "minified": 220667,
-      "gzip": 93529
+      "gzip": 92986
     },
     "./flags/us-ga": {
       "minified": 15798,
-      "gzip": 5851
+      "gzip": 5750
     },
     "./flags/us-gu": {
       "minified": 7037,
-      "gzip": 2905
+      "gzip": 2886
     },
     "./flags/us-hi": {
       "minified": 759,
-      "gzip": 389
+      "gzip": 395
     },
     "./flags/us-ia": {
       "minified": 126918,
-      "gzip": 53153
+      "gzip": 52681
     },
     "./flags/us-id": {
       "minified": 341144,
-      "gzip": 130703
+      "gzip": 129933
     },
     "./flags/us-il": {
       "minified": 77289,
-      "gzip": 30232
+      "gzip": 29979
     },
     "./flags/us-in": {
       "minified": 4285,
-      "gzip": 1657
+      "gzip": 1640
     },
     "./flags/us-ks": {
       "minified": 66487,
-      "gzip": 17613
+      "gzip": 17435
     },
     "./flags/us-ky": {
       "minified": 103309,
-      "gzip": 40482
+      "gzip": 40197
     },
     "./flags/us-la": {
       "minified": 231256,
-      "gzip": 91600
+      "gzip": 90828
     },
     "./flags/us-ma": {
       "minified": 67056,
-      "gzip": 22621
+      "gzip": 22437
     },
     "./flags/us-md": {
       "minified": 853,
@@ -3311,11 +3311,11 @@
     },
     "./flags/us-me": {
       "minified": 188552,
-      "gzip": 65381
+      "gzip": 64915
     },
     "./flags/us-mi": {
       "minified": 191227,
-      "gzip": 75852
+      "gzip": 75342
     },
     "./flags/us-mn": {
       "minified": 599,
@@ -3323,83 +3323,83 @@
     },
     "./flags/us-mo": {
       "minified": 177452,
-      "gzip": 48740
+      "gzip": 48264
     },
     "./flags/us-mp": {
       "minified": 133227,
-      "gzip": 44514
+      "gzip": 44172
     },
     "./flags/us-ms": {
       "minified": 15138,
-      "gzip": 6895
+      "gzip": 6733
     },
     "./flags/us-mt": {
       "minified": 77379,
-      "gzip": 30951
+      "gzip": 30720
     },
     "./flags/us-nc": {
       "minified": 10454,
-      "gzip": 2165
+      "gzip": 2104
     },
     "./flags/us-nd": {
       "minified": 104282,
-      "gzip": 38310
+      "gzip": 38039
     },
     "./flags/us-ne": {
       "minified": 150645,
-      "gzip": 55649
+      "gzip": 55341
     },
     "./flags/us-nh": {
       "minified": 87532,
-      "gzip": 25504
+      "gzip": 25305
     },
     "./flags/us-nj": {
       "minified": 108004,
-      "gzip": 36069
+      "gzip": 35851
     },
     "./flags/us-nm": {
       "minified": 464,
-      "gzip": 305
+      "gzip": 306
     },
     "./flags/us-nv": {
       "minified": 46665,
-      "gzip": 17966
+      "gzip": 17839
     },
     "./flags/us-ny": {
       "minified": 364649,
-      "gzip": 102301
+      "gzip": 101782
     },
     "./flags/us-oh": {
       "minified": 1475,
-      "gzip": 524
+      "gzip": 526
     },
     "./flags/us-ok": {
       "minified": 58105,
-      "gzip": 20788
+      "gzip": 20636
     },
     "./flags/us-or": {
       "minified": 164922,
-      "gzip": 71078
+      "gzip": 70524
     },
     "./flags/us-pa": {
       "minified": 358619,
-      "gzip": 146646
+      "gzip": 145870
     },
     "./flags/us-pr": {
       "minified": 319,
-      "gzip": 234
+      "gzip": 236
     },
     "./flags/us-ri": {
       "minified": 4787,
-      "gzip": 2211
+      "gzip": 2158
     },
     "./flags/us-sc": {
       "minified": 12763,
-      "gzip": 5503
+      "gzip": 5459
     },
     "./flags/us-sd": {
       "minified": 204299,
-      "gzip": 78496
+      "gzip": 77964
     },
     "./flags/us-tn": {
       "minified": 928,
@@ -3415,99 +3415,99 @@
     },
     "./flags/us-ut": {
       "minified": 1530,
-      "gzip": 742
+      "gzip": 735
     },
     "./flags/us-va": {
       "minified": 381322,
-      "gzip": 152373
+      "gzip": 151614
     },
     "./flags/us-vi": {
       "minified": 14452,
-      "gzip": 4732
+      "gzip": 4663
     },
     "./flags/us-vt": {
       "minified": 207189,
-      "gzip": 78418
+      "gzip": 77963
     },
     "./flags/us-wa": {
       "minified": 95920,
-      "gzip": 35953
+      "gzip": 35716
     },
     "./flags/us-wi": {
       "minified": 130143,
-      "gzip": 50372
+      "gzip": 50067
     },
     "./flags/us-wv": {
       "minified": 205702,
-      "gzip": 57529
+      "gzip": 56895
     },
     "./flags/us-wy": {
       "minified": 107757,
-      "gzip": 44137
+      "gzip": 43791
     },
     "./flags/us.1x1": {
       "minified": 672,
-      "gzip": 361
+      "gzip": 363
     },
     "./flags/us.4x3": {
       "minified": 670,
-      "gzip": 360
+      "gzip": 363
     },
     "./flags/us": {
       "minified": 790,
-      "gzip": 355
+      "gzip": 354
     },
     "./flags/uy.1x1": {
       "minified": 1593,
-      "gzip": 766
+      "gzip": 762
     },
     "./flags/uy.4x3": {
       "minified": 1596,
-      "gzip": 772
+      "gzip": 770
     },
     "./flags/uy": {
       "minified": 5665,
-      "gzip": 1551
+      "gzip": 1534
     },
     "./flags/uz.1x1": {
       "minified": 1377,
-      "gzip": 435
+      "gzip": 438
     },
     "./flags/uz.4x3": {
       "minified": 1378,
-      "gzip": 432
+      "gzip": 434
     },
     "./flags/uz": {
       "minified": 1322,
-      "gzip": 420
+      "gzip": 421
     },
     "./flags/va.4x3": {
       "minified": 27784,
-      "gzip": 9715
+      "gzip": 9607
     },
     "./flags/va": {
       "minified": 94133,
-      "gzip": 21820
+      "gzip": 21595
     },
     "./flags/vc.1x1": {
       "minified": 480,
-      "gzip": 306
+      "gzip": 310
     },
     "./flags/vc.4x3": {
       "minified": 430,
-      "gzip": 267
+      "gzip": 266
     },
     "./flags/vc": {
       "minified": 390,
-      "gzip": 265
+      "gzip": 264
     },
     "./flags/ve.1x1": {
       "minified": 1147,
-      "gzip": 385
+      "gzip": 388
     },
     "./flags/ve.4x3": {
       "minified": 1128,
-      "gzip": 379
+      "gzip": 381
     },
     "./flags/ve": {
       "minified": 1663,
@@ -3515,35 +3515,35 @@
     },
     "./flags/vg.1x1": {
       "minified": 9716,
-      "gzip": 4168
+      "gzip": 4123
     },
     "./flags/vg.4x3": {
       "minified": 9739,
-      "gzip": 4167
+      "gzip": 4123
     },
     "./flags/vg": {
       "minified": 9317,
-      "gzip": 4037
+      "gzip": 4008
     },
     "./flags/vi.1x1": {
       "minified": 8341,
-      "gzip": 3605
+      "gzip": 3559
     },
     "./flags/vi.4x3": {
       "minified": 8414,
-      "gzip": 3638
+      "gzip": 3600
     },
     "./flags/vi": {
       "minified": 14444,
-      "gzip": 4727
+      "gzip": 4658
     },
     "./flags/vn.1x1": {
       "minified": 436,
-      "gzip": 315
+      "gzip": 321
     },
     "./flags/vn.4x3": {
       "minified": 496,
-      "gzip": 355
+      "gzip": 359
     },
     "./flags/vn": {
       "minified": 233,
@@ -3551,47 +3551,47 @@
     },
     "./flags/vu.1x1": {
       "minified": 1940,
-      "gzip": 950
+      "gzip": 955
     },
     "./flags/vu.4x3": {
       "minified": 1935,
-      "gzip": 945
+      "gzip": 949
     },
     "./flags/vu": {
       "minified": 1825,
-      "gzip": 882
+      "gzip": 881
     },
     "./flags/wf--local": {
       "minified": 461,
-      "gzip": 283
+      "gzip": 284
     },
     "./flags/wf": {
       "minified": 259,
-      "gzip": 190
+      "gzip": 193
     },
     "./flags/ws.1x1": {
       "minified": 705,
-      "gzip": 438
+      "gzip": 443
     },
     "./flags/ws.4x3": {
       "minified": 693,
-      "gzip": 439
+      "gzip": 446
     },
     "./flags/ws": {
       "minified": 675,
-      "gzip": 344
+      "gzip": 348
     },
     "./flags/xk.1x1": {
       "minified": 7753,
-      "gzip": 3099
+      "gzip": 3079
     },
     "./flags/xk.4x3": {
       "minified": 8285,
-      "gzip": 3301
+      "gzip": 3283
     },
     "./flags/xk": {
       "minified": 3064,
-      "gzip": 1322
+      "gzip": 1311
     },
     "./flags/ye": {
       "minified": 267,
@@ -3599,47 +3599,47 @@
     },
     "./flags/yt--local": {
       "minified": 66901,
-      "gzip": 26386
+      "gzip": 26131
     },
     "./flags/yt": {
       "minified": 259,
-      "gzip": 190
+      "gzip": 193
     },
     "./flags/za.1x1": {
       "minified": 820,
-      "gzip": 478
+      "gzip": 482
     },
     "./flags/za.4x3": {
       "minified": 824,
-      "gzip": 482
+      "gzip": 485
     },
     "./flags/za": {
       "minified": 671,
-      "gzip": 358
+      "gzip": 359
     },
     "./flags/zm.1x1": {
       "minified": 5214,
-      "gzip": 2305
+      "gzip": 2273
     },
     "./flags/zm.4x3": {
       "minified": 5323,
-      "gzip": 2315
+      "gzip": 2285
     },
     "./flags/zm": {
       "minified": 5246,
-      "gzip": 2731
+      "gzip": 2606
     },
     "./flags/zw.1x1": {
       "minified": 6090,
-      "gzip": 2493
+      "gzip": 2469
     },
     "./flags/zw.4x3": {
       "minified": 6111,
-      "gzip": 2511
+      "gzip": 2493
     },
     "./flags/zw": {
       "minified": 1825,
-      "gzip": 929
+      "gzip": 923
     }
   }
 }

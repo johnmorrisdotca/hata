@@ -19,7 +19,7 @@ export const FLAG_OPTIONS = [
     attribute: "shape",
     default: "own",
     label: { en: "Shape", ja: "形" },
-    help: { en: "Its own proportions, or framed at 4:3, square or round without stretching.", ja: "本来の縦横比のまま、または 4:3・正方形・円形の枠に、引き伸ばさずに収めます。" },
+    help: { en: "Its own proportions, or framed at 4:3, square or round without stretching.", ja: "本来の縦横比のまま、または4:3・正方形・円形の枠に、引き伸ばさずに収めます。" },
     choices: [
       { value: "own", label: { en: "Its own proportions", ja: "本来の縦横比" } },
       { value: "4:3", label: { en: "4:3", ja: "4:3" } },
@@ -33,7 +33,7 @@ export const FLAG_OPTIONS = [
     attribute: "variant",
     default: "",
     label: { en: "Variant (optional)", ja: "別の旗（任意）" },
-    help: { en: "Which of the place's flags in real use to draw, by its id (the flag's panel above has the switch): de-facto, stripes, local. Left empty, the default.", ja: "その地域で実際に使われている旗のうち、描く旗を id で指定します（切り替えは上の旗のパネルにあります）。例：de-facto、stripes、local。空のままなら既定の旗を描きます。" },
+    help: { en: "Which of the place's flags in real use to draw, by its id (the flag's panel above has the switch): de-facto, stripes, local. Left empty, the default.", ja: "その地域で実際に使われている旗のうち、描く旗をidで指定します（切り替えは上の旗のパネルにあります）。例：de-facto、stripes、local。空のままなら既定の旗を描きます。" },
   },
   {
     id: "fit",
@@ -48,7 +48,7 @@ export const FLAG_OPTIONS = [
       { value: "crop", label: { en: "Cropped", ja: "切り抜き" } },
     ],
   },
-  { id: "size", kind: "number", attribute: "size", default: 48, required: true, min: 12, max: 512, step: 4, label: { en: "Height in pixels", ja: "高さ（ピクセル）" }, help: { en: "Its height in CSS pixels; the width follows from the shape.", ja: "CSS ピクセルでの高さです。幅は形に合わせて決まります。" } },
+  { id: "size", kind: "number", attribute: "size", default: 48, required: true, min: 12, max: 512, step: 4, label: { en: "Height in pixels", ja: "高さ（ピクセル）" }, help: { en: "Its height in CSS pixels; the width follows from the shape.", ja: "CSSピクセルでの高さです。幅は形に合わせて決まります。" } },
   {
     id: "lang",
     kind: "choice",
@@ -175,7 +175,7 @@ export const HATA_PRODUCT = {
       },
     },
     module: {
-      label: { en: "ES module", ja: "ES モジュール" },
+      label: { en: "ES module", ja: "ESモジュール" },
       language: "js",
       write(settings) {
         const fit = settings.fit && settings.fit !== "auto" ? `, fit: ${JSON.stringify(settings.fit)}` : "";

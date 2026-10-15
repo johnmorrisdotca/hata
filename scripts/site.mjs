@@ -53,15 +53,15 @@ const gallery = `<section class="fam-panels" id="gallery-panel" role="tabpanel" 
           ${row(["Type a place's name in English or Japanese, or its code (JP-13, CA-ON, US-TX).", "地名（英語でも日本語でも）か、コード（JP-13、CA-ON、US-TX）を入力します。"], `<label class="fam-label" for="search" data-say="search"></label><input id="search" class="fam-field" data-testid="search" type="search" spellcheck="false" autocomplete="off" autocapitalize="off" data-say-placeholder="search_hint" />`)}
           ${row(["Show every flag, or only the countries, or one country's regions: Japan's prefectures, Canada's provinces, the American states, Australia's states, the United Kingdom's four countries, Germany's states, France's regions, Switzerland's cantons, Austria's states or Brazil's states.", "すべての旗を表示するか、国だけ、または一つの国の地域だけに絞り込みます。日本の都道府県、カナダの州と準州、アメリカの州、オーストラリアの州と準州、イギリスの4つの構成国、ドイツの州、フランスの地域圏、スイスの州、オーストリアの州、ブラジルの州から選べます。"], `<label class="fam-label" for="set" data-say="set"></label><select id="set" class="fam-field" data-testid="set"></select>`)}
           ${row(["Narrow the countries to one continent.", "国を大陸で絞り込みます。"], `<label class="fam-label" for="region" data-say="region"></label><select id="region" class="fam-field" data-testid="region"></select>`, ` id="region-row"`)}
-          ${seg("shape", "shape", [["flag", "shape_flag"], ["4:3", "shape_43"], ["1:1", "shape_11"], ["round", "shape_round"]], ["See every flag at its own proportions, or framed at 4:3, square or round as the package frames it: never stretched, cropped only where a crop keeps every colour, and drawn again for the shape where flag-icons has done so.", "旗を本来の縦横比のまま、またはこのパッケージと同じ方法で 4:3・正方形・円形の枠に収めて表示します。引き伸ばさず、切り抜くのはどの色も残る場合だけで、flag-icons がその形用に描いた図があればそれを使います。"])}
+          ${seg("shape", "shape", [["flag", "shape_flag"], ["4:3", "shape_43"], ["1:1", "shape_11"], ["round", "shape_round"]], ["See every flag at its own proportions, or framed at 4:3, square or round as the package frames it: never stretched, cropped only where a crop keeps every colour, and drawn again for the shape where flag-icons has done so.", "旗を本来の縦横比のまま、またはこのパッケージと同じ方法で4:3・正方形・円形の枠に収めて表示します。引き伸ばさず、切り抜くのはどの色も残る場合だけで、flag-iconsがその形用に描いた図があればそれを使います。"])}
           ${seg("fit", "fit", [["auto", "fit_auto"], ["whole", "fit_whole"], ["crop", "fit_crop"]], ["How a 4:3, square or round frame shows a flag: the best for the flag (a crop where one keeps it true, else the whole flag), always the whole flag, or a crop kept at the side chosen for it, such as the United States' stars and stripes rather than its middle stripes.", "4:3・正方形・円形の枠での旗の見せ方を選びます。旗に合わせた最適な表示（正しく表せる切り抜きがあれば切り抜き、なければ全体）、常に旗の全体、または旗ごとに選んだ側を残した切り抜き（アメリカなら、中央の縞ではなく星のある側）です。"]).replace('<div class="fam-seg"', '<div class="fam-seg" hidden')}
           <div class="tools">
             <p class="count" id="count" data-testid="count" aria-live="polite"></p>
             <div class="fam-actions">
               <button type="button" class="fam-button" id="download-list" data-testid="download-list" data-say="download_list" data-tip-en="A text file listing the flags shown: code, English name, Japanese name, source and licence." data-tip-ja="表示中の旗の一覧（コード、英語名、日本語名、出典、ライセンス）をテキストファイルで保存します。"></button>
               <button type="button" class="fam-button" id="download-list-md" data-testid="download-list-md" data-say="download_list_md" data-tip-en="The flags shown as a Markdown table, for a README or a note: code, English name, Japanese name, source and licence." data-tip-ja="表示中の旗の一覧（コード、英語名、日本語名、出典、ライセンス）をREADMEやメモ用のMarkdownの表で保存します。"></button>
-              <button type="button" class="fam-button" id="download-list-sql" data-testid="download-list-sql" data-say="download_list_sql" data-tip-en="The flags shown as SQL, a table named flags to load into a database: code, English name, Japanese name, source, licence and file." data-tip-ja="表示中の旗の一覧を、データベースに読み込める flags テーブルのSQLで保存します（コード、英語名、日本語名、出典、ライセンス、ファイル）。"></button>
-              <button type="button" class="fam-button" id="download-manifest" data-testid="download-manifest" data-say="download_manifest" data-tip-en="The whole manifest as JSON: every flag's source, licence, author and size, and the codes with no flag." data-tip-ja="マニフェスト全体を JSON で保存します。各旗の出典・ライセンス・作者・サイズと、旗のないコードが含まれます。"></button>
+              <button type="button" class="fam-button" id="download-list-sql" data-testid="download-list-sql" data-say="download_list_sql" data-tip-en="The flags shown as SQL, a table named flags to load into a database: code, English name, Japanese name, source, licence and file." data-tip-ja="表示中の旗の一覧を、データベースに読み込めるflagsテーブルのSQLで保存します（コード、英語名、日本語名、出典、ライセンス、ファイル）。"></button>
+              <button type="button" class="fam-button" id="download-manifest" data-testid="download-manifest" data-say="download_manifest" data-tip-en="The whole manifest as JSON: every flag's source, licence, author and size, and the codes with no flag." data-tip-ja="マニフェスト全体をJSONで保存します。各旗の出典・ライセンス・作者・サイズと、旗のないコードが含まれます。"></button>
             </div>
           </div>
           <ul class="grid" id="grid" data-testid="grid" data-shape="flag"></ul>
@@ -127,9 +127,9 @@ const page = `<!doctype html>
   <head>
     ${familyHead({
       id,
-      title: "Hata 旗 — Country and region flags as SVG",
+      title: "Hata旗 — Country and region flags as SVG",
       description: "Every country's flag, and the regions of Japan, Canada, the United States, Australia, the United Kingdom, Germany, France, Switzerland, Austria and Brazil, as optimised SVG keyed by ISO 3166 code, with each flag's source and licence. Search, embed anywhere, download as SVG or PNG, and play the flag quiz. Free and open source.",
-      ogTitle: "Hata 旗 — Country and region flags as SVG",
+      ogTitle: "Hata旗 — Country and region flags as SVG",
       ogDescription: `${FLAG_CODES.length} flags at their true proportions, from Wikimedia Commons and MIT flag sets, with provenance for each, an element to embed one anywhere, and a flag quiz in English and Japanese.`,
     })}
     <link rel="icon" href="${ICON}" />
@@ -184,7 +184,7 @@ writeFileSync("site/family-embed-builder.js", `export const FAMILY_EMBED_BUILDER
 writeFileSync("site/embed-builder.js", readFileSync("demo/embed-builder.js", "utf8").replace('from "../scripts/family-template.mjs"', 'from "./family-embed-builder.js"'));
 
 const builderWords = {
-  "builderHead": familyHead({ id, title: "Hata 旗 — Country and region flags as SVG · builder", description: "Choose a flag, preview it and copy its embed code." }),
+  "builderHead": familyHead({ id, title: "Hata旗 — Country and region flags as SVG · builder", description: "Choose a flag, preview it and copy its embed code." }),
   "builderHeader": familyHeader({ id, links: [{ href: "./", say: "toGallery" }, { href: "docs/index.html", say: "pageDocs" }, { href: "api.html", say: "pageApi" }] }),
   "unreviewed": familyUnreviewed({ id }), "footer": familyFooter({ id }), "script": `<script>${FAMILY_SCRIPT}</script>`,
 };

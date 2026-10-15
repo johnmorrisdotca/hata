@@ -7,14 +7,14 @@ open a *Fix a translation* issue with the string's name. `{name}` and the other 
 
 | Name | English | Japanese |
 | --- | --- | --- |
-| `pageApi` | API reference | API（英語） |
+| `pageApi` | API | API（英語） |
 | `pageDocs` | Docs | ドキュメント |
-| `pitch` | Flags as SVG for every country, and the regions of Japan, Canada, the United States, Australia, the United Kingdom, Germany, France, Switzerland, Austria and Brazil, at their true proportions, keyed by ISO 3166 code. Tap a flag for where it comes from, its licence, the code to embed it and downloads; or play the quiz. | 世界の国々と、日本・カナダ・アメリカ・オーストラリア・イギリス・ドイツ・フランス・スイス・オーストリア・ブラジルの地域の旗を、本来の縦横比の SVG で収録し、ISO 3166 のコードで引けるようにしたパッケージです。旗をタップすると、出典、ライセンス、埋め込み用のコード、ダウンロードが表示されます。クイズもあります。 |
-| `name` | Hata (旗) is Japanese for “flag”. | Hata は、国や地域のしるしとして掲げる「旗（はた）」のことです。 |
+| `pitch` | Flags as SVG for every country, and the regions of Japan, Canada, the United States, Australia, the United Kingdom, Germany, France, Switzerland, Austria and Brazil, at their true proportions, keyed by ISO 3166 code. Tap a flag for where it comes from, its licence, the code to embed it and downloads; or play the quiz. | 世界の国々と、日本・カナダ・アメリカ・オーストラリア・イギリス・ドイツ・フランス・スイス・オーストリア・ブラジルの地域の旗を、本来の縦横比のSVGで収録し、ISO 3166のコードで引けるようにしたパッケージです。旗をタップすると、出典、ライセンス、埋め込み用のコード、ダウンロードが表示されます。クイズもあります。 |
+| `name` | Hata (旗) is Japanese for “flag”. | Hataは、国や地域のしるしとして掲げる「旗（はた）」のことです。 |
 | `nameLink` | About the name | 名前について（英語） |
 | `foot` | Every flag is drawn from the package's own files in your browser. Nothing leaves this page. | 旗はすべて、パッケージ自身のファイルを使って、お使いのブラウザ上で表示しています。このページの外にデータが送られることはありません。 |
 | `moreTitle` | Using it | 使い方 |
-| `moreText` | Each flag is a module of its own, so a page carries only the flags it imports; the lookup loads one by its code when it is wanted. Each line below is all it takes. | 旗は一つずつ別のモジュールなので、ページには読み込んだ旗だけが含まれます。ISO コードで旗を引く関数は、必要になったときにその旗だけを読み込みます。下の各行がそのまま使えるコードです。 |
+| `moreText` | Each flag is a module of its own, so a page carries only the flags it imports; the lookup loads one by its code when it is wanted. Each line below is all it takes. | 旗は一つずつ別のモジュールなので、ページには読み込んだ旗だけが含まれます。ISOコードで旗を引く関数は、必要になったときにその旗だけを読み込みます。下の各行がそのまま使えるコードです。 |
 | `tab_gallery` | Flags | 旗の一覧 |
 | `tab_quiz` | Quiz | クイズ |
 | `gallery_blurb` | Every flag in the package. Search by name in English or Japanese, or by code; narrow it to a country's regions or a continent; and see the frames the package draws without stretching a flag. | パッケージに含まれるすべての旗です。英語名・日本語名・コードで検索し、国ごとの地域や大陸で絞り込めます。旗を引き伸ばさずに枠に収める表示も試せます。 |
@@ -51,10 +51,10 @@ open a *Fix a translation* issue with the string's name. `{name}` and the other 
 | `download_manifest` | Manifest (JSON) | マニフェスト（JSON） |
 | `empty` | No flag matches. Try a code, or another spelling. | 該当する旗がありません。コードや別の表記もお試しください。 |
 | `left_out_title` | Places with no flag here ({n}) | 旗を収録していない地域（{n}） |
-| `left_out_blurb` | Every country and region Kuni knows has a flag here or is listed with the reason (in English, as the package gives it). | Kuni に含まれる国と地域は、すべて旗を収録しているか、ここに理由とともに載っています（理由は英語で、パッケージの記載のままです）。 |
+| `left_out_blurb` | Every country and region Kuni knows has a flag here or is listed with the reason (in English, as the package gives it). | Kuniに含まれる国と地域は、すべて旗を収録しているか、ここに理由とともに載っています（理由は英語で、パッケージの記載のままです）。 |
 | `close` | Close | 閉じる |
 | `disputed` | disputed | 見解が分かれる |
-| `disputed_note` | Disputed: more than one authority or community claims this place's flag. Hata takes no side; each flag below is shown with its status and the reason it is offered. | 見解が分かれています：複数の当局や集団が、それぞれ別の旗をこの地域の旗だとしています。Hata はいずれの立場にも立たず、以下の各旗を、その位置づけと掲載の理由とともに示します。 |
+| `disputed_note` | Disputed: more than one authority or community claims this place's flag. Hata takes no side; each flag below is shown with its status and the reason it is offered. | 見解が分かれています：複数の当局や集団が、それぞれ別の旗をこの地域の旗だとしています。Hataはいずれの立場にも立たず、以下の各旗を、その位置づけと掲載の理由とともに示します。 |
 | `variants_title` | Flags of this place in real use | この地域で実際に使われている旗 |
 | `status_official` | official | 公式 |
 | `status_de_facto` | de facto | 事実上 |
@@ -67,14 +67,14 @@ open a *Fix a translation* issue with the string's name. `{name}` and the other 
 | `variant_source` | Source | 出典 |
 | `show_variants` | Show its {n} flags | {n}種類の旗を見る |
 | `fact_size_plain` | {bytes} of SVG | SVG {bytes} |
-| `fact_dates_uploaded` | Uploaded to Commons {uploaded} | {uploaded} に Commons へアップロード |
+| `fact_dates_uploaded` | Uploaded to Commons {uploaded} | {uploaded} にCommonsへアップロード |
 | `frames_title` | The whole flag and a crop of it, at each shape, by flag(code, { shape, fit }) | 形ごとの旗の全体表示と切り抜き（flag(code, { shape, fit })） |
 | `frame_whole` | whole | 全体 |
 | `frame_crop` | cropped | 切り抜き |
 | `frame_default` | the default | 既定の表示 |
 | `how_whole` | all of the flag | 旗の全体 |
 | `how_crop_own` | its own shape | 本来の形 |
-| `how_crop_adapted` | drawn for the shape by flag-icons | flag-icons がこの形用に描いた図 |
+| `how_crop_adapted` | drawn for the shape by flag-icons | flag-iconsがこの形用に描いた図 |
 | `how_crop_centre` | cropped from the centre | 中央で切り抜き |
 | `how_crop_allowed` | {side}, with a colour smaller than in the flag (reason on hover) | {side}（一部の色は元の旗より小さくなります。理由はカーソルを合わせると表示されます） |
 | `how_crop_side_loses` | {side}; whole by default because this crop loses a colour | {side}（この切り抜きでは色が欠けるため、既定は全体） |
@@ -89,11 +89,11 @@ open a *Fix a translation* issue with the string's name. `{name}` and the other 
 | `frame_11` | Square | 正方形 |
 | `frame_round` | Round | 円形 |
 | `embed_title` | Embed this flag | この旗を埋め込む |
-| `embed_blurb` | Choose how it looks, and copy the code for your page: a <hata-flag> element, an <img>, an iframe, or for React, Vue, Svelte or Angular. | 見た目を選ぶと、ページに貼るコードをコピーできます。<hata-flag> 要素、<img>、iframe のほか、React・Vue・Svelte・Angular 用のコードもあります。 |
+| `embed_blurb` | Choose how it looks, and copy the code for your page: a <hata-flag> element, an <img>, an iframe, or for React, Vue, Svelte or Angular. | 見た目を選ぶと、ページに貼るコードをコピーできます。<hata-flag> 要素、<img>、iframeのほか、React・Vue・Svelte・Angular用のコードもあります。 |
 | `fact_code` | Code | コード |
 | `fact_ratio` | Proportions | 縦横比 |
 | `fact_size` | Size | サイズ |
-| `fact_size_value` | {bytes} of SVG, {gzip} gzipped | SVG {bytes}、gzip 圧縮で {gzip} |
+| `fact_size_value` | {bytes} of SVG, {gzip} gzipped | SVG {bytes}、gzip圧縮で {gzip} |
 | `fact_source` | Drawing from | 図版の出典 |
 | `fact_why` | Why this drawing | この図版を選んだ理由 |
 | `fact_file` | File | ファイル |
@@ -108,18 +108,18 @@ open a *Fix a translation* issue with the string's name. `{name}` and the other 
 | `fact_notes` | Note | 備考 |
 | `none` | none | なし |
 | `source_commons` | Wikimedia Commons | ウィキメディア・コモンズ |
-| `source_set` | {source}, an MIT flag set | {source}（MIT ライセンスの旗のセット） |
+| `source_set` | {source}, an MIT flag set | {source}（MITライセンスの旗のセット） |
 | `copy_title` | Use it | 使い方 |
 | `copy_import` | Import the module | モジュールを読み込む |
-| `copy_load` | Load it by code | ISO コードで読み込む |
-| `copy_img` | An <img> from the CDN | CDN の画像を <img> で使う |
-| `copy_svg` | The SVG itself | SVG そのもの |
+| `copy_load` | Load it by code | ISOコードで読み込む |
+| `copy_img` | An <img> from the CDN | CDNの画像を <img> で使う |
+| `copy_svg` | The SVG itself | SVGそのもの |
 | `copy` | Copy | コピー |
 | `copied` | Copied to the clipboard. | クリップボードにコピーしました。 |
 | `copy_failed` | This browser would not copy; the text is selected, so copy it by hand. | このブラウザではコピーできませんでした。テキストを選択してあるので、手動でコピーしてください。 |
 | `download_title` | Download | ダウンロード |
 | `download_svg` | SVG | SVG |
-| `png_size` | PNG width | PNG の幅 |
+| `png_size` | PNG width | PNGの幅 |
 | `download_png` | PNG | PNG |
 | `download_json` | Record (JSON) | レコード（JSON） |
 | `tile` | {name}, {code} | {name}（{code}） |

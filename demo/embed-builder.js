@@ -5,7 +5,7 @@ export const FORMATS = familyEmbedBuilder({ packageName: "@example/embed", major
 /** The builder's own words; a page may pass others. */
 export const BUILDER_WORDS = {
   en: { copy: "Copy", copied: "Copied.", copyFailed: "Could not copy: the code is selected, so press Ctrl+C or ⌘C.", preview: "Preview", code: "Code", options: "Options" },
-  ja: { copy: "コピー", copied: "コピーしました。", copyFailed: "コピーできませんでした。コードを選択したので、Ctrl+C か ⌘C でコピーしてください。", preview: "プレビュー", code: "コード", options: "オプション" },
+  ja: { copy: "コピー", copied: "コピーしました。", copyFailed: "コピーできませんでした。コードを選択したので、Ctrl+Cか ⌘Cでコピーしてください。", preview: "プレビュー", code: "コード", options: "オプション" },
 };
 
 /** Every option's value: the one given where it is one of the option's, else its default. */
