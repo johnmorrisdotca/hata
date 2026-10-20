@@ -1,6 +1,6 @@
 {
   "name": "@johnmorrisdotca/hata",
-  "version": "1.6.3",
+  "version": "1.7.0",
   "description": "Hata 旗 — Country and region flags as SVG: country, regional and former-country flags (the Soviet Union, Yugoslavia and more), native ratios and curated frames, source/author/licence metadata, one module per flag, lazy loading and an optional custom element. Zero dependencies.",
   "keywords": [
     "flags",

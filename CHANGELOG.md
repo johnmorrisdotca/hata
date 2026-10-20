@@ -6,6 +6,8 @@ All notable changes to this project are written here. The format follows
 
 ## [Unreleased]
 
+## [1.7.0] - 2026-10-20
+
 Flags of former countries, for the medal tables and record books that still name them (`docs/historical.md`, `docs/decisions.md`, "Former countries").
 
 ### Added
