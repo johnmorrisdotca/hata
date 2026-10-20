@@ -1,6 +1,6 @@
 {
   "name": "@johnmorrisdotca/hata",
-  "version": "1.6.2",
+  "version": "1.6.3",
   "description": "Hata 旗 — Country and region flags as SVG: country and regional flags, native ratios and curated frames, source/author/licence metadata, one module per flag, lazy loading and an optional custom element. Zero dependencies.",
   "keywords": [
     "flags",

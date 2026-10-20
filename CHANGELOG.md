@@ -6,6 +6,23 @@ All notable changes to this project are written here. The format follows
 
 ## [Unreleased]
 
+## [1.6.3] - 2026-10-20
+
+The second batch from the October 2026 audit (`docs/audit-2026-10.md`): the Commons snapshot is refreshed, and every flag now names its author.
+
+### Changed
+
+- **Commons snapshot of 2026-10-20** (was 2026-10-09). Every chosen file was read again: 448 of the 449 are byte for byte the ones kept (same SHA-1), and thirteen of them changed only what Commons says about them, none of it touching a licence: licence sub-templates added (`PD-Japan-organization/layout` on Iwate, Kanagawa, Saitama, Shiga, Tochigi and Yamaguchi), footnote markers dropped from a credit line (British Columbia, Russia, Yamagata, the United Arab Emirates), the order of its two restrictions (Burkina Faso), and a re-upload of identical bytes (Christmas Island, Uzbekistan). The audit's fifteenth, the Philippines, reads as it did on 2026-10-09.
+- **Schleswig-Holstein (`DE-SH`)**: Commons re-uploaded the drawing on 2026-10-11 (362 B to 232 B, 5:3 as before). It is the same flag, blue, white and red stripes, still public domain (`PD-Flag-Germany`); its blue is `#0f47af` (was `#0039ad`) and its red `#da121a` (was `#d61810`), and it now carries an author on Commons. Re-tuned, rebuilt and compared with its source at 0.000% of pixels different.
+
+### Fixed
+
+- **Every flag names its author.** 38 flags had none in their record (Commons' `Artist` field was empty): `CK FM GN GS GW JE KW MG MP MS NF TM TZ AT-1 AT-2 AT-5 AT-8 AT-9 BR-GO BR-PA DE-BB DE-HB DE-HE DE-MV DE-NI DE-SH DE-SL DE-ST DE-TH US-AR US-GA US-IA US-ME US-MI US-MP US-NC US-NM US-WI`, and the variant drawings of Guadeloupe's local flag and Wallis and Futuna. Schleswig-Holstein's comes from Commons; the others are read from each file's description page into `scripts/authors.data.json`, each with where on the page it says so: a name where the page gives one ("Drawn by SKopp", "Written by Jon Harald Søby", "by Steve Hall", `{{PD-user|E2m}}`, the xrmap flag collection), and "Unknown author", Commons' own words, where it names nobody. No author is taken from the file history. `docs/decisions.md` says how, and the manifest's `author` is now filled for every flag.
+
+### Added
+
+- A test that every flag and variant has an author, that a recorded author is used only where Commons' own field is empty, and that an entry is dropped once Commons gives the file an author.
+
 ## [1.6.2] - 2026-10-20
 
 The first fixes from the October 2026 audit (`docs/audit-2026-10.md`): two flags were at the wrong shape.
