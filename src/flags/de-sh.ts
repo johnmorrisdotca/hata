@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_Schleswig-Holstein.svg
 
 /**
- * The flag of Schleswig-Holstein (シュレースヴィヒ＝ホルシュタイン州), DE-SH, as an SVG string: viewBox 1000 by 600 (5:3), 217 B.
+ * The flag of Schleswig-Holstein (シュレースヴィヒ＝ホルシュタイン州), DE-SH, as an SVG string: viewBox 5 by 3 (5:3), 193 B.
  * From Wikimedia Commons, "Flag of Schleswig-Holstein.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -22,7 +22,7 @@
  * console.log(svg.startsWith("<svg"),svg.length);
  * ```
  */
-const svg: string = "<svg data-hata=\"de-sh\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1000 600\"><path fill=\"#0039ad\" d=\"M0 0h1000v600H0z\"/><path fill=\"#fff\" d=\"M0 200h1000v600H0z\"/><path fill=\"#d61810\" d=\"M0 400h1000v600H0z\"/></svg>";
+const svg: string = "<svg data-hata=\"de-sh\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 5 3\"><path fill=\"#fff\" d=\"M0 0h5v3H0z\"/><path fill=\"#0f47af\" d=\"M0 0h5v1H0z\"/><path fill=\"#da121a\" d=\"M0 2h5v1H0z\"/></svg>";
 
 export { svg };
 export default svg;

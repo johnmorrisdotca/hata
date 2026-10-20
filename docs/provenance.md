@@ -1,6 +1,6 @@
 # Every flag: where it comes from, its licence, and why that drawing
 
-Made by `pnpm data` from the Wikidata snapshot of 2026-10-09, the Commons snapshot of 2026-10-09 and the choices
+Made by `pnpm data` from the Wikidata snapshot of 2026-10-09, the Commons snapshot of 2026-10-20 and the choices
 `pnpm data:choose` made; a test fails if this list and the data differ. Each drawing's licence is its own: a
 Commons file's is the one Commons states on its page, linked here, and a flag set's is the set's MIT licence.
 Authors are as Commons gives them. Commons notes on most flags that the use of an insignia may be restricted by
@@ -425,7 +425,7 @@ made is in `scripts/choose.mjs`; the reason for each flag is in its row.
 | `DE-NI` | Lower Saxony (ニーダーザクセン州) | [Flag of Lower Saxony.svg](https://commons.wikimedia.org/wiki/File:Flag_of_Lower_Saxony.svg) | public domain | not stated | 18.7 KB | Commons, the only drawing of it (1.53:1, 19126 bytes). |
 | `DE-NW` | North Rhine-Westphalia (ノルトライン＝ヴェストファーレン州) | [Flag of North Rhine-Westphalia.svg](https://commons.wikimedia.org/wiki/File:Flag_of_North_Rhine-Westphalia.svg) | public domain | Bundesland Nordrhein-Westfalen | 242 B | Commons, the only drawing of it (5:3, 224 bytes). |
 | `DE-RP` | Rhineland-Palatinate (ラインラント＝プファルツ州) | [Flag of Rhineland-Palatinate.svg](https://commons.wikimedia.org/wiki/File:Flag_of_Rhineland-Palatinate.svg) | public domain | Madden | 23.1 KB | Commons, the only drawing of it (3:2, 23596 bytes). |
-| `DE-SH` | Schleswig-Holstein (シュレースヴィヒ＝ホルシュタイン州) | [Flag of Schleswig-Holstein.svg](https://commons.wikimedia.org/wiki/File:Flag_of_Schleswig-Holstein.svg) | public domain | not stated | 217 B | Commons, the only drawing of it (5:3, 199 bytes). |
+| `DE-SH` | Schleswig-Holstein (シュレースヴィヒ＝ホルシュタイン州) | [Flag of Schleswig-Holstein.svg](https://commons.wikimedia.org/wiki/File:Flag_of_Schleswig-Holstein.svg) | public domain | Jon Harald Søby | 193 B | Commons, the only drawing of it (5:3, 175 bytes). |
 | `DE-SL` | Saarland (ザールラント州) | [Flag of Saarland.svg](https://commons.wikimedia.org/wiki/File:Flag_of_Saarland.svg) | public domain | not stated | 114.7 KB | Commons, the only drawing of it (5:3, 117444 bytes). |
 | `DE-SN` | Saxony (ザクセン州) | [Flag of Saxony.svg](https://commons.wikimedia.org/wiki/File:Flag_of_Saxony.svg) | public domain | Madden | 167 B | Commons, the only drawing of it (5:3, 149 bytes). |
 | `DE-ST` | Saxony-Anhalt (ザクセン＝アンハルト州) | [Flag of Saxony-Anhalt (state).svg](https://commons.wikimedia.org/wiki/File:Flag_of_Saxony-Anhalt_(state).svg) | public domain | not stated | 38.4 KB | Commons, the only drawing of it (5:3, 39304 bytes). |

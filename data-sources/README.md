@@ -8,8 +8,8 @@ bytes are not the recorded ones.
 | File | From | Read | Licence |
 | --- | --- | --- | --- |
 | `wikidata-2026-10-09.json` | https://query.wikidata.org/sparql, the two queries written in the file | 2026-10-09 | CC0 |
-| `commons-2026-10-09.json` | https://commons.wikimedia.org/w/api.php: each chosen file's address, size, SHA-1, upload time, licence and author fields, licence templates, and the SHA-256 of the copy kept here | 2026-10-09 | Facts about the files; each file's own licence is recorded in it |
-| `commons/<file name>` | Each file Wikidata names as a place's flag, or `NAMED` names by hand, as Commons serves it (441 files, 16 MB) | 2026-10-09 | Each file's own, as Commons states it: see `commons-2026-10-09.json` and the file's page |
+| `commons-2026-10-20.json` | https://commons.wikimedia.org/w/api.php: each chosen file's address, size, SHA-1, upload time, licence and author fields, licence templates, and the SHA-256 of the copy kept here | 2026-10-20 | Facts about the files; each file's own licence is recorded in it |
+| `commons/<file name>` | Each file Wikidata names as a place's flag, or `NAMED` names by hand, as Commons serves it (449 files, 16 MB) | 2026-10-20 | Each file's own, as Commons states it: see `commons-2026-10-09.json` and the file's page |
 
 The flag sets the build also reads (flag-icons, country-flag-icons and circle-flags) are npm packages, pinned
 to exact versions in `package.json` and checked by the lockfile's integrity hashes; they are not copied here.
@@ -22,7 +22,7 @@ CC BY (seven of them on 2026-10-09: CC BY-SA, a government licence, "copyrighted
 licence stated) is kept here as the reference the chooser compares other drawings with, and left out of the
 package (`docs/left-out.md`). A code with a reason in `NO_FLAG` has no file here, even where Wikidata names one.
 Each file stays under its own licence, with its author and page recorded in
-`commons-2026-10-09.json`; nothing here is relicensed by this repository's MIT licence.
+`commons-2026-10-20.json`; nothing here is relicensed by this repository's MIT licence.
 
 ## Refreshing them
 
