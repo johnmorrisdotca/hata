@@ -51,7 +51,13 @@ const fold = (text) =>
 
 // What the address says, and keeping it there: the tab, the gallery's choices and the quiz's game.
 const asked = new URLSearchParams(location.search);
+/** Play the frames: the gallery's flags go from their own proportions to 4:3, square and round and round again while the page is open, unless the address names a shape (or says play=0) or the reader prefers reduced motion. */
+const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
+const SHAPE_ORDER = ["flag", "4:3", "1:1", "round"];
+/** How long each shape stays, in milliseconds: 1900, or what `?gap=` says (the tests make it shorter). */
+const FRAME_MS = Math.min(Math.max(Number(asked.get("gap")) || 1900, 150), 20000);
 const state = {
+  playing: !reducedMotion.matches && !asked.has("shape") && asked.get("play") !== "0",
   tab: asked.get("tab") === "quiz" ? "quiz" : "gallery",
   query: asked.get("q") ?? "",
   set: ["all", ...GROUPS].includes(asked.get("set")) ? asked.get("set") : "all",
@@ -68,7 +74,8 @@ const remember = () => {
   put("q", state.query, "");
   put("set", state.set, "all");
   put("region", state.region, "all");
-  put("shape", state.shape, "flag");
+  put("shape", state.playing ? "" : state.shape, "flag");
+  put("play", state.playing || reducedMotion.matches ? "" : "0", "");
   put("fit", state.fit, "auto");
   put("mode", state.tab === "quiz" ? state.mode : null, null);
   put("seed", state.tab === "quiz" ? state.seed : null, null);
@@ -209,6 +216,8 @@ function drawGallery() {
   $("set").value = state.set;
   for (const button of $("shape").querySelectorAll("button")) button.setAttribute("aria-pressed", String(button.dataset.value === state.shape));
   $("fit").hidden = state.shape === "flag";
+  $("play").textContent = say(state.playing ? "pause_frames" : "play_frames");
+  $("play").setAttribute("aria-pressed", String(state.playing));
   $("grid").dataset.fit = state.fit;
   for (const button of $("fit").querySelectorAll("button")) button.setAttribute("aria-pressed", String(button.dataset.value === state.fit));
 }
@@ -242,8 +251,21 @@ $("search").addEventListener("input", () => {
   drawGallery();
   remember();
 });
+// One more shape: the grid is drawn again as it stands, and what the reader typed or chose is left alone.
+setInterval(() => {
+  if (!state.playing || document.hidden || state.tab !== "gallery") return;
+  state.shape = SHAPE_ORDER[(SHAPE_ORDER.indexOf(state.shape) + 1) % SHAPE_ORDER.length];
+  drawGallery();
+}, FRAME_MS);
+$("play").addEventListener("click", () => {
+  state.playing = !state.playing;
+  drawGallery();
+  remember();
+});
 for (const button of $("shape").querySelectorAll("button")) {
   button.addEventListener("click", () => {
+    // Choosing a shape is choosing to look at it: the frames stop on it.
+    state.playing = false;
     state.shape = button.dataset.value;
     drawGallery();
     remember();

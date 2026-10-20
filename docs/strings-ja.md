@@ -41,6 +41,8 @@ open a *Fix a translation* issue with the string's name. `{name}` and the other 
 | `shape_43` | 4:3 | 4:3 |
 | `shape_11` | 1:1 | 1:1 |
 | `shape_round` | Round | 円形 |
+| `play_frames` | Play the frames | 枠を再生 |
+| `pause_frames` | Pause | 一時停止 |
 | `fit` | Frame | 表示 |
 | `fit_auto` | Best | おまかせ |
 | `fit_whole` | Whole | 全体 |

@@ -120,3 +120,31 @@ select.fam-field { appearance: none; -webkit-appearance: none; padding-right: 32
 .variant-why b[data-status="de-facto"], .variant-why b[data-status="historical"], .variant-why b[data-status="local"] { font-weight: 600; font-style: italic; }
 
 header nav a[data-say="pageDocs"] { inline-size: 8rem; justify-content: center; flex: none; }
+
+/* The gallery opens on the frames: the shape bar and its Play button stay in view while the grid scrolls past, the three filters share a row, and a phone gets a shorter header. */
+:root { --intro-room: 15rem; }
+#gallery-panel { overflow: clip; }
+.framebar { position: sticky; top: 0; z-index: 3; display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; padding: 8px 0; background: var(--surface); border-bottom: 1px solid var(--rule); }
+.framebar .fam-button { min-width: 6.5rem; }
+.filters { display: grid; grid-template-columns: minmax(0, 2fr) repeat(2, minmax(0, 1fr)); gap: 8px 12px; align-items: end; }
+.filters .fam-row { display: grid; gap: 4px; align-content: end; }
+.filters .fam-label { min-width: 0; }
+.filters .fam-field { width: 100%; min-width: 0; flex: none; }
+.filters #region-row[hidden] { display: none; }
+.pic img { transition: width .45s ease, height .45s ease, border-radius .45s ease; }
+@media (prefers-reduced-motion: reduce) { .pic img { transition: none; } }
+@media (max-width: 700px) {
+  .filters { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .filters .fam-row:first-child { grid-column: 1 / -1; }
+}
+@media (max-width: 899px) {
+  :root { --intro-room: 0rem; --intro-room-wide: 0rem; }
+  main { padding-top: 12px; }
+  header { margin-bottom: 8px; gap: 4px 12px; }
+  header nav { gap: 6px 8px; }
+  .blurb { display: none; }
+  header .intro > p[data-say="pitch"] { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .tools { gap: 6px; }
+  .tools .fam-actions { flex-wrap: nowrap; overflow-x: auto; max-width: 100%; padding-bottom: 2px; }
+  .tools .fam-actions .fam-button { flex: none; }
+}
