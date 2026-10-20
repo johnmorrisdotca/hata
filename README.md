@@ -17,12 +17,20 @@ At their true proportions, optimised and safe to inline, with the source, author
 
 <p align="center"><a href="https://johnmorrisdotca.github.io/hata/"><strong>Try it →</strong></a> · <a href="https://johnmorrisdotca.github.io/hata/builder.html">Build a flag</a> · <a href="https://johnmorrisdotca.github.io/hata/docs/index.html">Documentation</a> · <a href="https://johnmorrisdotca.github.io/hata/docs/guides/getting-started.html">Getting started</a> · <a href="https://johnmorrisdotca.github.io/hata/api.html">API reference</a></p>
 
+<p align="center">
+<picture>
+<source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/johnmorrisdotca/hata/main/docs/images/hero-desk-dark.webp">
+<img src="https://raw.githubusercontent.com/johnmorrisdotca/hata/main/docs/images/hero-desk-light.webp" alt="Eight flags (Japan, Canada, the United States, Switzerland, Nepal, Brazil, Tokyo and Bavaria) moving through the four frames in turn: first at their own proportions, then every one in a 4:3 frame, a square one and a round one, with the name of the frame above them and each flag's code below." width="760">
+</picture>
+<br><em>Flags through the frames: their own proportions, 4:3, square and round, never stretched.</em>
+</p>
+
 <table align="center">
 <tr>
 <td align="center" valign="top">
 <picture>
-<source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/johnmorrisdotca/hata/main/docs/images/hero-desk-dark.webp">
-<img src="https://raw.githubusercontent.com/johnmorrisdotca/hata/main/docs/images/hero-desk-light.webp" alt="The demo on a desk, in English: the header with its language chooser, the Docs and API reference links, five cloth patches and the Help switch, then the Flags and Quiz tabs. The Flags tab has a search box, a menu of which flags to show (All, the countries, or one of ten countries' regions), a continent menu, the shapes Own, 4:3, 1:1 and Round, the line 465 of 465 flags with List (TXT), List (Markdown), List (SQL) and Manifest (JSON) buttons, and the first rows of flags: Andorra, the United Arab Emirates, Afghanistan, Antigua and Barbuda, Anguilla and Albania, each with its name and code." width="600">
+<source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/johnmorrisdotca/hata/main/docs/images/gallery-desk-dark.webp">
+<img src="https://raw.githubusercontent.com/johnmorrisdotca/hata/main/docs/images/gallery-desk-light.webp" alt="The demo on a desk, in English: the header with its language chooser, the Docs and API reference links, five cloth patches and the Help switch, then the Flags and Quiz tabs. The Flags tab has a search box, a menu of which flags to show (All, the countries, or one of ten countries' regions), a continent menu, the shapes Own, 4:3, 1:1 and Round, the line 465 of 465 flags with List (TXT), List (Markdown), List (SQL) and Manifest (JSON) buttons, and the first rows of flags: Andorra, the United Arab Emirates, Afghanistan, Antigua and Barbuda, Anguilla and Albania, each with its name and code." width="600">
 </picture>
 <br><em>The gallery on a desk: every flag at its own proportions, found by name or code.</em>
 </td>
@@ -43,6 +51,48 @@ Hata is the flag set a site that already knows its countries and regions by ISO 
 <img src="https://raw.githubusercontent.com/johnmorrisdotca/hata/main/docs/images/hero-phone-light.webp" alt="The flag gallery on a phone in Japanese, with the language chooser, Docs link, tabs and controls at the top of the page." width="390">
 </picture>
 <br><em>The gallery header and filters on a phone, in Japanese.</em>
+
+## The best of it
+
+- **Round and square frames that never stretch a flag.** `frame()` and `flag(code, { shape })` put a flag in a 4:3, square or round frame, cropped only where a crop keeps every colour, and drawn again for the shape where flag-icons has done so ([frames](#3-frames-that-never-stretch-and-never-misrepresent)).
+
+<p align="center">
+<picture>
+<source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/johnmorrisdotca/hata/main/docs/images/frames-desk-dark.webp">
+<img src="https://raw.githubusercontent.com/johnmorrisdotca/hata/main/docs/images/frames-desk-light.webp" alt="Tokyo’s whole and cropped flags in square, 4:3 and round frames, preserving the native framing decisions." width="960">
+</picture>
+<br><em>Compare whole and cropped views at each supported frame shape.</em>
+</p>
+
+- **Every province and territory of Canada**, and the regions of nine other countries: 13 of 13 here, keyed by ISO 3166-2 (`CA-BC`, `CA-ON`).
+
+<p align="center">
+<picture>
+<source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/johnmorrisdotca/hata/main/docs/images/provinces-desk-dark.webp">
+<img src="https://raw.githubusercontent.com/johnmorrisdotca/hata/main/docs/images/provinces-desk-light.webp" alt="The ten provinces and three territories of Canada as round flags with their names, in two rows, a red ring passing over one after another from British Columbia in the west to Nunavut in the north." width="760">
+</picture>
+<br><em>Canada's thirteen, in round frames, each loaded by its code.</em>
+</p>
+
+- **Former countries that a medal table still names**: the Soviet Union, East and West Germany, Czechoslovakia, Yugoslavia and seven more, with their years ([below](#former-countries)).
+
+<p align="center">
+<picture>
+<source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/johnmorrisdotca/hata/main/docs/images/former-desk-dark.webp">
+<img src="https://raw.githubusercontent.com/johnmorrisdotca/hata/main/docs/images/former-desk-light.webp" alt="The flags of the twelve former countries one after another, each beside its name, the years it existed and its code: the Netherlands Antilles, Bohemia, Burma, Czechoslovakia, Serbia and Montenegro, East Germany and the rest, with a row of twelve dots marking the place in the list." width="760">
+</picture>
+<br><em>Twelve countries that no longer exist, each under a code no present-day country uses.</em>
+</p>
+
+- **`<hata-flag>`, one tag in any page**: change `code`, `shape` or `size` and the flag follows, with no framework and no bundler ([embed it](#4-embed-it-anywhere)).
+
+<p align="center">
+<picture>
+<source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/johnmorrisdotca/hata/main/docs/images/element-desk-dark.webp">
+<img src="https://raw.githubusercontent.com/johnmorrisdotca/hata/main/docs/images/element-desk-light.webp" alt="The hata-flag element's attributes in a code box beside the flag the element draws: Japan at its own proportions, then British Columbia, Bavaria, Texas and the Soviet Union, with the attribute that changed in red, and the flag turning round, square or 4:3 as the shape changes." width="760">
+</picture>
+<br><em>The same tag with a different code and shape.</em>
+</p>
 
 ## In 30 seconds
 
@@ -86,12 +136,6 @@ Install the scoped name: an unscoped `hata` on npm, if there is one, is somebody
   <img src="https://raw.githubusercontent.com/johnmorrisdotca/hata/main/docs/images/detail-desk-light.webp" alt="Tokyo’s flag in the detail panel, with its full drawing, whole and cropped frames, and stored source facts." width="960">
 </picture>
 <br><em>Tokyo’s detail panel keeps the drawing, frames and source together.</em>
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/johnmorrisdotca/hata/main/docs/images/frames-desk-dark.webp">
-  <img src="https://raw.githubusercontent.com/johnmorrisdotca/hata/main/docs/images/frames-desk-light.webp" alt="Tokyo’s whole and cropped flags in square, 4:3 and round frames, preserving the native framing decisions." width="960">
-</picture>
-<br><em>Compare whole and cropped views at each supported frame shape.</em>
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/johnmorrisdotca/hata/main/docs/images/provenance-desk-dark.webp">
@@ -382,23 +426,7 @@ manifest("FRG")?.sameAs;                              // "DE": West Germany's fl
 manifest("SUHH")?.historical;                         // { from: "1922", until: "1991", aliases: ["SU", "SUN", "URS"] }
 ```
 
-- **A code two countries held finds neither.** `CS` was Czechoslovakia's until 1992 and Serbia and Montenegro's from
-  2003, so `flag("CS")` is `null`, and `leftOut("CS")` says to use `CSHH` or `TCH`, `CSXX` or `SCG`.
-- **West Germany and Czechoslovakia fly today's flags.** `FRG` and `CSHH` are separate codes with Germany's and Czechia's
-  one picture, so a table can keep the row apart and the page loads the drawing once.
-- **Yugoslavia's flag has dates.** The default is the Socialist Federal Republic's star flag (1946 to 1992), the one it
-  competed under at every Games from 1948 to 1988; the plain tricolour of the Federal Republic (`fry`, 1992 to 2003, the
-  flag of Serbia and Montenegro too) and the Kingdom's (`kingdom`, 1918 to 1941) are variants. The Soviet Union's flag of
-  1936 to 1955 (`1936`) and Burma's of 1948 to 1974 (`union`) are the same kind of variant. No flag is picked by year:
-  you ask for the one you mean.
-- **An Olympic team under the Olympic flag has no flag to ship.** The Unified Team of 1992 (`EUN`), the United Team of
-  Germany (`EUA`), the Russian Olympic Committee (`ROC`), Olympic Athletes from Russia (`OAR`), the Individual Neutral Athletes
-  (`AIN`), the Independent Olympic Participants (`IOP`) and the Refugee Olympic Team (`EOR`) marched under the IOC's rings or a
-  committee's emblem, which are marks and not a country's flag. They are in `LEFT_OUT` with that reason, so a page draws a
-  badge with the code. So are the Russian Empire (`RU1`) and Australasia (`ANZ`), which had no one flag in sport.
-- **Some restrictions are not about copyright.** Commons marks the Soviet Union's and other communist-era flags
-  `communist` and `insignia`: showing them is limited by law in some countries. The manifest records it as Commons
-  gives it (`manifest("SUHH")?.restrictions`).
+Five more notes on these flags (a code two countries held, West Germany's and Czechoslovakia's flags, Yugoslavia's dates, Olympic teams under the Olympic flag, and restrictions that are not about copyright) are in [docs/decisions.md](./docs/decisions.md#what-to-know-about-the-former-countries).
 
 [docs/historical.md](./docs/historical.md) has every code and alias, the years, and the reason for each choice.
 

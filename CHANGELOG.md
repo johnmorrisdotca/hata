@@ -6,6 +6,16 @@ All notable changes to this project are written here. The format follows
 
 ## [Unreleased]
 
+## [1.7.1] - 2026-10-20
+
+The npm page and the demo open on the best of it, in motion. No change to the package's code beyond its version.
+
+### Changed
+
+- **README: the first thing is flags moving through the frames.** Eight flags go from their own proportions to 4:3, square and round (`docs/images/hero-desk-*.webp`), then "The best of it", a picture each: the round and square frames, Canada's thirteen provinces and territories, the twelve former countries with their years, and the `<hata-flag>` element drawing a different flag as its attributes change. Each moving picture is an animated webp in a light and a dark twin, under 200 kB. The gallery's old hero is now `gallery-desk-*.webp`. The README is shorter than it would be: five notes on the former countries moved to `docs/decisions.md` (nothing removed).
+- **The pictures are made by a script from the built demo:** `pnpm animations` (`scripts/animations.mjs`) takes one frame per step with Playwright and joins them with `img2webp`. `pnpm screenshots:readme` leaves them alone and makes the gallery's and the phone's pictures.
+- **Demo: the gallery opens on the frames.** The shape bar (own proportions, 4:3, 1:1, round, with a Play button and the frame choice) is the first thing in the gallery and stays in view while the flags scroll past; the three filters share a row; on a phone the header is shorter, so flags are in the first screen. The flags go through the shapes by themselves (not for a reader who prefers reduced motion, nor for an address that names a shape or says `play=0`); searching and filtering leave them going, and choosing a shape or Pause stops them.
+
 ## [1.7.0] - 2026-10-20
 
 Flags of former countries, for the medal tables and record books that still name them (`docs/historical.md`, `docs/decisions.md`, "Former countries").

@@ -314,6 +314,26 @@ the Soviet Union, East and West Germany, Yugoslavia and the rest, and found none
 - **The Japanese names** (ソビエト連邦, 東ドイツ, 西ドイツ, チェコスロバキア, ユーゴスラビア, セルビア・モンテネグロ, オランダ領アンティル, ビルマ, ザイール,
   ローデシア, ボヘミア, 西インド連邦) are the usual ones, and share the Japanese's standing: not yet reviewed by a native reader.
 
+### What to know about the former countries
+
+- **A code two countries held finds neither.** `CS` was Czechoslovakia's until 1992 and Serbia and Montenegro's from
+  2003, so `flag("CS")` is `null`, and `leftOut("CS")` says to use `CSHH` or `TCH`, `CSXX` or `SCG`.
+- **West Germany and Czechoslovakia fly today's flags.** `FRG` and `CSHH` are separate codes with Germany's and Czechia's
+  one picture, so a table can keep the row apart and the page loads the drawing once.
+- **Yugoslavia's flag has dates.** The default is the Socialist Federal Republic's star flag (1946 to 1992), the one it
+  competed under at every Games from 1948 to 1988; the plain tricolour of the Federal Republic (`fry`, 1992 to 2003, the
+  flag of Serbia and Montenegro too) and the Kingdom's (`kingdom`, 1918 to 1941) are variants. The Soviet Union's flag of
+  1936 to 1955 (`1936`) and Burma's of 1948 to 1974 (`union`) are the same kind of variant. No flag is picked by year:
+  you ask for the one you mean.
+- **An Olympic team under the Olympic flag has no flag to ship.** The Unified Team of 1992 (`EUN`), the United Team of
+  Germany (`EUA`), the Russian Olympic Committee (`ROC`), Olympic Athletes from Russia (`OAR`), the Individual Neutral Athletes
+  (`AIN`), the Independent Olympic Participants (`IOP`) and the Refugee Olympic Team (`EOR`) marched under the IOC's rings or a
+  committee's emblem, which are marks and not a country's flag. They are in `LEFT_OUT` with that reason, so a page draws a
+  badge with the code. So are the Russian Empire (`RU1`) and Australasia (`ANZ`), which had no one flag in sport.
+- **Some restrictions are not about copyright.** Commons marks the Soviet Union's and other communist-era flags
+  `communist` and `insignia`: showing them is limited by law in some countries. The manifest records it as Commons
+  gives it (`manifest("SUHH")?.restrictions`).
+
 ## Frames: no frame may misrepresent a flag
 
 1.0.0 framed a flag at 4:3, square or round by cropping it from the centre unless asked otherwise. That turned

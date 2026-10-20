@@ -1,6 +1,6 @@
 {
   "name": "@johnmorrisdotca/hata",
-  "version": "1.7.0",
+  "version": "1.7.1",
   "description": "Hata 旗 — Country and region flags as SVG: country, regional and former-country flags (the Soviet Union, Yugoslavia and more), native ratios and curated frames, source/author/licence metadata, one module per flag, lazy loading and an optional custom element. Zero dependencies.",
   "keywords": [
     "flags",
@@ -3804,6 +3804,7 @@
     "site": "pnpm build && node scripts/site.mjs",
     "test:demo": "pnpm site && node scripts/docs-site.mjs build && playwright test",
     "screenshots:readme": "pnpm site && node scripts/readme-pictures.mjs",
+    "animations": "pnpm site && node scripts/animations.mjs",
     "docs:make": "node scripts/docs.mjs",
     "data:compare": "node scripts/compare.mjs",
     "data:choose": "node scripts/choose.mjs",
