@@ -6,6 +6,18 @@ All notable changes to this project are written here. The format follows
 
 ## [Unreleased]
 
+## [1.6.1] - 2026-10-20
+
+### Added
+
+- **Manitoba's flag** (`CA-MB`, 466 flags in all, 13 of Canada's 13 provinces and territories): the Red Ensign with the province's shield,
+  from Commons' public-domain drawing "Flag of Manitoba.svg" (Kooma, kept up to date by Echando una mano; PD-author and PD-Layout),
+  not the CC BY-SA file Wikidata names, which `NAMED` now replaces. It is 2:1, like the flag, and its square, 4:3 and round frames show
+  the whole flag, as Ontario's do. Manitoba is no longer on the list of flags left out for their licence: 17 codes have no flag (was 18),
+  and `docs/decisions.md` lists four flags left out for their licence (was five).
+- A test that all 13 of Canada's provinces and territories (10 provinces, 3 territories) have a flag that loads as a whole SVG with no
+  script, external reference or embedded picture.
+
 ## [1.6.0] - 2026-10-14
 
 The flag is a custom element with the family's standard embed attributes and a shared builder, and the package has an English and Japanese documentation site with a checked example for every export. The flags, the codes, the variants and the loaders are unchanged.
