@@ -136,6 +136,9 @@ const wikidata = JSON.parse(sourceNamed(/^wikidata-\d{4}-\d{2}-\d{2}\.json$/)) a
 const commons = JSON.parse(sourceNamed(/^commons-\d{4}-\d{2}-\d{2}\.json$/)) as CommonsSnapshot;
 const commonsByFile = new Map(commons.files.map((file) => [file.file, file]));
 const CHOICES = JSON.parse(readFileSync(join(ROOT, "scripts", "choices.data.json"), "utf8")) as Record<string, Choice>;
+// The author of a Commons file whose own Artist field is empty, as its description page names it (or "Unknown author",
+// Commons' own words, where it names none), each with where on the page that is said: scripts/authors.data.json.
+const AUTHORS = JSON.parse(readFileSync(join(ROOT, "scripts", "authors.data.json"), "utf8")) as Record<string, { author: string; from: string }>;
 // The flags whose drawing is not at their official ratio, and the ratio they are given (see optimise.ts).
 const OFFICIAL_RATIOS = JSON.parse(readFileSync(join(ROOT, "scripts", "official-ratios.data.json"), "utf8")) as Record<string, { ratio: [number, number]; source: string; why: string }>;
 
@@ -172,7 +175,7 @@ const drawingOf = (place: Place, choice: Choice, reference: CommonsFile, referen
       page: reference.page,
       version: null,
       licence: { kind: referenceLicence.kind, name: referenceLicence.name, url: referenceLicence.url },
-      author: metadata.Artist ?? null,
+      author: metadata.Artist ?? AUTHORS[reference.file]?.author ?? null,
       credit: metadata.Credit ?? null,
       attributionRequired: metadata.AttributionRequired === "true",
       templates: reference.templates.map((template) => template.replace(/^Template:/, "")),
@@ -355,7 +358,7 @@ const commonsDrawing = (file: CommonsFile, licence: Licence): Drawing => {
     page: file.page,
     version: null,
     licence: { kind: licence.kind, name: licence.name, url: licence.url },
-    author: file.metadata.Artist ?? null,
+    author: file.metadata.Artist ?? AUTHORS[file.file]?.author ?? null,
     credit: file.metadata.Credit ?? null,
     attributionRequired: file.metadata.AttributionRequired === "true",
     templates: file.templates.map((template) => template.replace(/^Template:/, "")),
@@ -774,7 +777,7 @@ const provenance = `# Every flag: where it comes from, its licence, and why that
 Made by \`pnpm data\` from the Wikidata snapshot of ${wikidata.read}, the Commons snapshot of ${commons.read} and the choices
 \`pnpm data:choose\` made; a test fails if this list and the data differ. Each drawing's licence is its own: a
 Commons file's is the one Commons states on its page, linked here, and a flag set's is the set's MIT licence.
-Authors are as Commons gives them. Commons notes on most flags that the use of an insignia may be restricted by
+Authors are as Commons gives them; where its Artist field is empty, the author the file's description page names, or "Unknown author" where it names none (decisions.md, "Authors Commons does not name"). Commons notes on most flags that the use of an insignia may be restricted by
 law, apart from copyright; see NOTICE.md.
 
 Which drawing won, of ${shipped.length} flags: ${Object.entries(tally(shipped, (one) => one.drawing.source)).map(([source, number]) => `${source} ${number}`).join(", ")}. How the choice is

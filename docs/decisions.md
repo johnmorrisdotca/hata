@@ -95,6 +95,25 @@ licence check, the same comparison with the flag sets and the same pixel proof a
 - **India**: no state has an official flag (Jammu and Kashmir's ended in 2019); Wikidata names two, Karnataka's
   proposed one and Delhi's, and neither is adopted.
 
+## Authors Commons does not name
+
+Every flag's record carries its author, as Commons' own `Artist` field gives it. On 2026-10-20 the audit
+(`docs/audit-2026-10.md`) found 38 flags whose field is empty, and for 37 of them (the 38th, Schleswig-Holstein,
+gained an author on Commons on 2026-10-11, in the new drawing it re-uploaded) the author is now read from the file's
+description page, as it stood on 2026-10-20, and kept in `scripts/authors.data.json` with where on the page it says so,
+one entry per Commons file. Two more flags' variant drawings (Guadeloupe's local flag and Wallis and Futuna's) were
+empty the same way and are filled the same way.
+
+- **A name the page gives is used as written**: "Drawn by SKopp", "Written by Jon Harald Søby … colours and ratio
+  adjusted by Mevsfotw", "by Steve Hall" (the Open Clip Art Library artist), "by Tobias Jakobs", a `{{PD-user|E2m}}`
+  licence (the user releasing the work as its author), the xrmap flag collection where the page says the drawing is
+  from it (as Commons' own field already says "Xrmap" on four other flags).
+- **Where the page names nobody, the author is "Unknown author"**, Commons' own words for some two dozen other flags. A source
+  the page gives but no person (the Open Clip Art Library, a state's CD manual) is added in brackets. Nobody is named
+  from the file history: an uploader is not an author unless the page says so.
+- **A stale entry is removed.** A test fails when Commons gives a file an `Artist` of its own, so the record then follows
+  Commons.
+
 ## For the maintainer: four flags left out for their licence
 
 Each is on Commons under a licence that is not public domain, CC0 or CC BY, and no MIT set draws it at its true

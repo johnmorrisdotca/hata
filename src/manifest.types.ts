@@ -57,7 +57,7 @@ interface FlagRecord {
   wikidata: string;
   /** The licence: its kind, its name ("Public domain", "CC BY 4.0", "MIT") and its address where it has one. */
   licence: { kind: LicenceKind; name: string; url: string | null };
-  /** The author: as Commons' Artist field gives it, in plain text, or the set's copyright line; null where none is named. */
+  /** The author: as Commons' Artist field gives it, in plain text, or the set's copyright line; where Commons' field is empty, the author the file's description page names, or "Unknown author" where it names none (docs/decisions.md). Every shipped flag has one; null is kept for a record that has none. */
   author: string | null;
   /** The credit line Commons gives, in plain text; null where there is none. */
   credit: string | null;
