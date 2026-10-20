@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_Qatar.svg
 
 /**
- * The flag of Qatar (カタール), QA, as an SVG string: viewBox 75 by 18 (4.167:1), 226 B.
+ * The flag of Qatar (カタール), QA, as an SVG string: viewBox 1400 by 550 (2.545:1), 286 B.
  * From Wikimedia Commons, "Flag of Qatar.svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *
@@ -22,7 +22,7 @@
  * console.log(svg.startsWith("<svg"),svg.length);
  * ```
  */
-const svg: string = "<svg data-hata=\"qa\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 75 18\"><path fill=\"#8a1538\" d=\"M0 0h75v18H0\"/><path fill=\"#fff\" d=\"M22 18H0V0h22l6 1-6 1 6 1-6 1 6 1-6 1 6 1-6 1 6 1-6 1 6 1-6 1 6 1-6 1 6 1-6 1 6 1z\"/></svg>";
+const svg: string = "<svg data-hata=\"qa\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1400 550\"><path fill=\"#8a1538\" d=\"M0 0h1400v550H0\"/><path fill=\"#fff\" d=\"M411 550H0V0h411l112 31-112 30 112 31-112 30 112 31-112 30 112 31-112 30 112 31-112 31 112 30-112 31 112 30-112 31 112 30-112 31 112 30z\"/></svg>";
 
 export { svg };
 export default svg;

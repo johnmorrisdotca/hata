@@ -136,6 +136,8 @@ const wikidata = JSON.parse(sourceNamed(/^wikidata-\d{4}-\d{2}-\d{2}\.json$/)) a
 const commons = JSON.parse(sourceNamed(/^commons-\d{4}-\d{2}-\d{2}\.json$/)) as CommonsSnapshot;
 const commonsByFile = new Map(commons.files.map((file) => [file.file, file]));
 const CHOICES = JSON.parse(readFileSync(join(ROOT, "scripts", "choices.data.json"), "utf8")) as Record<string, Choice>;
+// The flags whose drawing is not at their official ratio, and the ratio they are given (see optimise.ts).
+const OFFICIAL_RATIOS = JSON.parse(readFileSync(join(ROOT, "scripts", "official-ratios.data.json"), "utf8")) as Record<string, { ratio: [number, number]; source: string; why: string }>;
 
 // 2. The places, from Kuni.
 const places = allPlaces();
@@ -247,14 +249,15 @@ for (const { place, drawing, reference, referenceLicence, item, choice, named } 
   const owner = ownerByKey.get(drawing.key)!;
   let optimised = optimisedByKey.get(drawing.key);
   if (optimised === undefined) {
-    optimised = optimiseFlag(drawing.text, owner, { ...(choice.precision === undefined ? {} : { precision: choice.precision }), ...(choice.keepPaths ? { keepPaths: true } : {}) });
+    const official = OFFICIAL_RATIOS[owner]?.ratio;
+    optimised = optimiseFlag(drawing.text, owner, { ...(choice.precision === undefined ? {} : { precision: choice.precision }), ...(choice.keepPaths ? { keepPaths: true } : {}), ...(official === undefined ? {} : { ratio: official }) });
     // The picture names its flag, so that frame() can frame it the way measured for it (FRAMINGS).
     optimised = { ...optimised, svg: optimised.svg.replace(/^<svg\b/, `<svg data-hata="${owner.toLowerCase()}"`) };
     optimisedByKey.set(drawing.key, optimised);
   }
   const bytes = Buffer.byteLength(optimised.svg);
   if (bytes > CEILING_BYTES) throw new Error(`${place.code}: ${KB(bytes)} after optimising, over the ceiling of ${KB(CEILING_BYTES)}`);
-  shipped.push({ place, drawing, reference, referenceLicence, item, optimised, owner, gzip: gzipSync(optimised.svg, { level: 9 }).length, why: named === undefined ? choice.why : `Named by hand: ${named} ${choice.why}`, compared: choice.compared, designDiffers: choice.designDiffers ?? [] });
+  shipped.push({ place, drawing, reference, referenceLicence, item, optimised, owner, gzip: gzipSync(optimised.svg, { level: 9 }).length, why: `${named === undefined ? choice.why : `Named by hand: ${named} ${choice.why}`}${OFFICIAL_RATIOS[owner] === undefined ? "" : ` Shipped at its official ratio, ${OFFICIAL_RATIOS[owner].ratio.join(":")}. ${OFFICIAL_RATIOS[owner].why} Source: ${OFFICIAL_RATIOS[owner].source}.`}`, compared: choice.compared, designDiffers: choice.designDiffers ?? [] });
 }
 shipped.sort(byCode);
 

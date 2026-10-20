@@ -569,7 +569,7 @@ dark one on a dark page), and its size. The demo is the worked example: [`demo/d
 | Limit | Value | Where |
 | --- | --- | --- |
 | Countries | 245 of the 250 Kuni knows | `FLAG_CODES` |
-| Subdivisions | the first level of Japan (45 of 47), Canada (13 of 13), the United States (56 of 57), Australia (8 of 8), the United Kingdom (3 of 4), Germany (16 of 16), France (17 of 26), Switzerland (26 of 26), Austria (9 of 9) and Brazil (27 of 27) | `FLAG_CODES` |
+| Subdivisions | the first level of Japan (45 of 47), Canada (13 of 13), the United States (57 of 57), Australia (8 of 8), the United Kingdom (3 of 4), Germany (16 of 16), France (17 of 26), Switzerland (26 of 26), Austria (9 of 9) and Brazil (27 of 27) | `FLAG_CODES` |
 | Codes with no flag | 17 codes, each with its reason | `LEFT_OUT`, [docs/left-out.md](./docs/left-out.md) |
 | Licences | public domain, CC0, CC BY and MIT only | `manifest(code).licence` |
 | Largest flag | 372 KB (Virginia); 55 over the 40 KB budget | [docs/sizes.md](./docs/sizes.md) |

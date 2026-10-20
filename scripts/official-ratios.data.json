@@ -1,0 +1,7 @@
+{
+  "CA-PE": {
+    "ratio": [3, 2],
+    "source": "Provincial Flag Act, R.S.P.E.I. 1988, Cap. P-27, Schedule (https://www.princeedwardisland.ca/sites/default/files/legislation/P-27-Provincial%20Flag%20Act.pdf)",
+    "why": "The Schedule says the flag \"measures six feet in the fly and four feet in the hoist inclusive of the fringe or band\": 6:4, which is 3:2. The Commons drawing is 1750.909 by 1199.99 (1.459:1): its band tiles are the official ten inches (250 units) but it is about 2.8% too narrow, 7.0 tiles across the top where the Schedule's six feet is 7.2. It is stretched across to 3:2."
+  }
+}

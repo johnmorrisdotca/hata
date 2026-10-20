@@ -3,7 +3,10 @@
 //
 //   - The viewBox is kept, or made from width and height when the file has none; width, height and any
 //     preserveAspectRatio on the root are taken off, so the flag fills whatever box it is put in at its own
-//     aspect ratio, never stretched (a browser's default, xMidYMid meet).
+//     aspect ratio, never stretched (a browser's default, xMidYMid meet). The one exception is a file that asks
+//     to be stretched (preserveAspectRatio="none" over a viewBox of another shape than its width and height):
+//     it ships at width:height, its drawing scaled into that box (see `stretched`). So does a drawing that is not at
+//     its flag's official ratio, where scripts/official-ratios.data.json records that ratio and its source.
 //   - SVGO 4's default preset without convertTransform (which moved Niue's stars off the flag), with numbers
 //     rounded to the flag's own precision: the fewest decimals at which the optimised flag still draws the same
 //     as Commons' file, measured in Chromium by `pnpm data:tune` and kept in scripts/precision.data.json.
@@ -44,12 +47,51 @@ const viewBoxOf = (svg: string): { x: number; y: number; width: number; height: 
   return { x: 0, y: 0, width: Number(width), height: Number(height), made: true };
 };
 
+// Some drawings have to be given another shape than they were drawn at:
+//   - A file whose root says preserveAspectRatio="none" over a viewBox whose shape differs from its width and height
+//     is meant to be stretched to width:height (Qatar's: a 75 by 18 drawing for a 1400 by 550 picture, the official
+//     28:11). Dropping the attribute would ship the unstretched drawing.
+//   - A drawing whose own shape is not the flag's official one (Prince Edward Island's, drawn 1751 by 1200 for a flag
+//     of 6 by 4) is given the official ratio, recorded with its source in scripts/official-ratios.data.json.
+// Either way the picture gets a viewBox of the new shape and its drawing is scaled into it by a group. The source is
+// returned unchanged when its shape is already right.
+const stretched = (svg: string, official?: readonly [number, number]): string => {
+  const root = /<svg\b[^>]*>/.exec(svg)?.[0];
+  if (root === undefined || root.endsWith("/>")) return svg;
+  const attribute = (name: string): string | undefined => new RegExp(`\\s${name}\\s*=\\s*("([^"]*)"|'([^']*)')`).exec(root)?.slice(2).find((value) => value !== undefined);
+  const box = viewBoxOf(svg);
+  let width: number;
+  let height: number;
+  if (official !== undefined) {
+    height = box.height;
+    width = (box.height * official[0]) / official[1];
+  } else {
+    if (!/^\s*none\b/.test(attribute("preserveAspectRatio") ?? "") || attribute("viewBox") === undefined) return svg;
+    const w = NUMBER.exec(attribute("width") ?? "")?.[1];
+    const h = NUMBER.exec(attribute("height") ?? "")?.[1];
+    if (w === undefined || h === undefined) return svg;
+    [width, height] = [Number(w), Number(h)];
+  }
+  if (Math.abs(width / height - box.width / box.height) / (width / height) < 0.001) return svg;
+  const close = svg.lastIndexOf("</svg>");
+  if (close < 0) return svg;
+  const number = (value: number): string => String(Number(value.toPrecision(9)));
+  const move = box.x === 0 && box.y === 0 ? "" : ` translate(${number(-box.x)} ${number(-box.y)})`;
+  const scale = `scale(${number(width / box.width)} ${number(height / box.height)})${move}`;
+  const viewBox = ` viewBox="0 0 ${number(width)} ${number(height)}"`;
+  const head = /\sviewBox\s*=/.test(root) ? root.replace(/\sviewBox\s*=\s*("[^"]*"|'[^']*')/, viewBox) : root.replace(/<svg\b/, `<svg${viewBox}`);
+  const open = svg.indexOf(root);
+
+  return `${svg.slice(0, open)}${head}<g transform="${scale}">${svg.slice(open + root.length, close)}</g>${svg.slice(close)}`;
+};
+
 // The decimals a flag is rounded to when nothing has been measured for it: SVGO's own default.
 const DEFAULT_PRECISION = 3;
 
 interface OptimiseOptions {
   precision?: number; // Decimals numbers are rounded to; DEFAULT_PRECISION when left out
   keepPaths?: boolean; // Leave path data as drawn (convertPathData off)
+  ratio?: readonly [number, number]; // The flag's official width and height, when the drawing is not at them
 }
 
 const config = (prefix: string, precision: number, keepPaths: boolean): Config => ({
@@ -93,8 +135,9 @@ const FORBIDDEN: readonly [RegExp, string][] = [
 
 const optimiseFlag = (raw: string, code: string, options: OptimiseOptions = {}): Optimised => {
   const precision = options.precision ?? DEFAULT_PRECISION;
-  const box = viewBoxOf(raw);
-  let source = raw;
+  const stretchedRaw = stretched(raw, options.ratio);
+  const box = viewBoxOf(stretchedRaw);
+  let source = stretchedRaw;
   if (box.made) source = source.replace(/<svg\b/, `<svg viewBox="0 0 ${box.width} ${box.height}"`);
   const prefix = `hata-${code.toLowerCase()}`;
   const svg = optimize(source, config(prefix, precision, options.keepPaths === true)).data.replace(/\s+$/, "");
