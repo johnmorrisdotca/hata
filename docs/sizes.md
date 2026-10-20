@@ -5,9 +5,9 @@ Made by `pnpm data`; a test fails if this list and the data differ. Sizes are of
 
 | | Pictures | SVG | Gzipped |
 | --- | --- | --- | --- |
-| Every flag | 432 (466 codes; 34 share another's picture) | 8539.4 KB | 2989.6 KB |
-| The same drawings as their sources have them | 432 | 14736.0 KB | |
-| The median flag | | 763 B | |
+| Every flag | 442 (478 codes; 36 share another's picture) | 8846.0 KB | 3064.8 KB |
+| The same drawings as their sources have them | 442 | 15473.4 KB | |
+| The median flag | | 806 B | |
 | The countries alone | 233 | 2067.7 KB | 704.9 KB |
 | Drawings made for a frame (flag-icons' 4:3 and square, `/flags/<code>.4x3`, `.1x1`) | 423 | 2827.1 KB | 948.7 KB |
 
@@ -25,6 +25,7 @@ and listed here so a new one is noticed (the size test holds this list).
 | `US-ID` | Idaho | 333.1 KB | 126.8 KB | 620.8 KB |
 | `CA-PE` | Prince Edward Island | 239.6 KB | 81.8 KB | 465.5 KB |
 | `US-LA` | Louisiana | 225.8 KB | 88.6 KB | 629.3 KB |
+| `RHZW` | Rhodesia | 220.5 KB | 52.4 KB | 568.8 KB |
 | `AF` | Afghanistan | 216.6 KB | 90.3 KB | 227.0 KB |
 | `US-FL` | Florida | 215.4 KB | 90.7 KB | 210.7 KB |
 | `US-VT` | Vermont | 202.3 KB | 76.1 KB | 357.6 KB |
@@ -62,6 +63,7 @@ and listed here so a new one is noticed (the size test holds this list).
 | `BR-RN` | Rio Grande do Norte | 72.4 KB | 12.2 KB | 109.7 KB |
 | `BR-RS` | Rio Grande do Sul | 71.7 KB | 25.3 KB | 203.3 KB |
 | `US-MA` | Massachusetts | 65.4 KB | 21.9 KB | 125.0 KB |
+| `DDDE` | East Germany | 65.3 KB | 14.2 KB | 135.4 KB |
 | `US-KS` | Kansas | 64.9 KB | 17.0 KB | 240.5 KB |
 | `BR-PR` | Paraná | 62.1 KB | 21.9 KB | 177.1 KB |
 | `CH-GE` | Geneva | 61.5 KB | 12.7 KB | 76.4 KB |

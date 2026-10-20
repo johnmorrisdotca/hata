@@ -12,7 +12,7 @@
 // Polite by design: the metadata is asked for fifty files a request, the files are downloaded one at a time with
 // a pause between them, every request names this project in its User-Agent, and a file already here with the
 // right SHA-1 is not downloaded again. The codes are Kuni's: every country, and the first level of the countries
-// in SUBDIVISION_COUNTRIES.
+// in SUBDIVISION_COUNTRIES; and the former countries of HISTORICAL.
 
 import { createHash } from "node:crypto";
 import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
@@ -21,7 +21,7 @@ import { join } from "node:path";
 import { COUNTRY_CODES } from "@johnmorrisdotca/kuni";
 import { subdivisions } from "@johnmorrisdotca/kuni/subdivisions";
 
-import { NO_FLAG, SUBDIVISION_COUNTRIES, VARIANTS } from "./data-config.ts";
+import { HISTORICAL, NO_FLAG, SUBDIVISION_COUNTRIES, VARIANTS } from "./data-config.ts";
 import { selectPlace } from "./select.ts";
 import type { WikidataSnapshot } from "./select.ts";
 import { readManifest, readSource, recordFile, sha256, SOURCES_DIR, USER_AGENT, writeManifest } from "./sources.ts";
@@ -125,7 +125,7 @@ if (wikidataEntry === undefined) throw new Error("no Wikidata snapshot in source
 const snapshot = JSON.parse(readSource(manifest, wikidataEntry.path).text) as WikidataSnapshot;
 
 // A code with a reason in NO_FLAG needs no file: Wikidata's, where it names one, is not the place's flag.
-const codes = [...COUNTRY_CODES, ...SUBDIVISION_COUNTRIES.flatMap((country) => (subdivisions(country) ?? []).filter((one) => one.level === 1).map((one) => one.code))].filter((code) => NO_FLAG[code] === undefined);
+const codes = [...COUNTRY_CODES, ...SUBDIVISION_COUNTRIES.flatMap((country) => (subdivisions(country) ?? []).filter((one) => one.level === 1).map((one) => one.code)), ...Object.keys(HISTORICAL)].filter((code) => NO_FLAG[code] === undefined);
 // And the drawings of each place's other flags in real use (VARIANTS in data-config.ts).
 const variantFiles = Object.values(VARIANTS).flatMap((set) => set.variants.map((variant) => variant.file).filter((file): file is string => file !== null));
 const wanted = [...new Set([...codes.map((code) => selectPlace(code, snapshot).file).filter((file): file is string => file !== null), ...variantFiles])].sort();

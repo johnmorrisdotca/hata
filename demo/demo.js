@@ -22,13 +22,14 @@ const say = (key, values) => {
 const ja = () => language.lang === "ja";
 const nameOf = (code) => (ja() ? NAMES[code].ja : NAMES[code].en);
 const otherName = (code) => (ja() ? NAMES[code].en : NAMES[code].ja);
-const groupOf = (code) => (code.length === 2 ? "country" : code.slice(0, 2).toLowerCase());
-// The sets the gallery can show, in the order of the codes: the countries, then each country's first level.
+// A country is two letters, a region has a hyphen, and a former country (SUHH, FRG) is three or four letters without one.
+const groupOf = (code) => (code.length === 2 ? "country" : code.includes("-") ? code.slice(0, 2).toLowerCase() : "historical");
+// The sets the gallery can show, in the order of the codes: the countries, then each country's first level, then the former countries.
 const GROUPS = ["country", ...new Set(FLAG_CODES.filter((code) => code.length > 2).map(groupOf))];
 // The quiz's modes: a set with at least four flags of its own to ask about, and Europe's regions together, since the
 // United Kingdom, France and Austria each have fewer than four flags no other place flies.
 const EUROPE = ["gb", "de", "fr", "ch", "at"];
-const MODES = ["country", "jp", "ca", "us", "au", "br", "de", "ch", "europe"];
+const MODES = ["country", "jp", "ca", "us", "au", "br", "de", "ch", "europe", "historical"];
 const fileOf = (code) => `dist/svg/${code.toLowerCase()}.svg`;
 const KB = (bytes) => (bytes < 1024 ? `${bytes} B` : `${(bytes / 1024).toFixed(1)} KB`);
 const RATIOS = [[1, "1:1"], [4 / 3, "4:3"], [3 / 2, "3:2"], [5 / 3, "5:3"], [8 / 5, "8:5"], [5 / 4, "5:4"], [7 / 4, "7:4"], [13 / 7, "13:7"], [19 / 10, "19:10"], [2, "2:1"], [11 / 8, "11:8"], [7 / 5, "7:5"], [10 / 7, "10:7"], [9 / 7, "9:7"], [11 / 6, "11:6"], [5 / 2, "5:2"]];

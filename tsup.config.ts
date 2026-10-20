@@ -5,11 +5,11 @@ import type { Plugin } from "esbuild";
 import { defineConfig } from "tsup";
 
 // One entry for each flag (src/flags/<code>.ts, written by scripts/build-data.ts), and for each drawing made for a
-// frame (src/flags/<code>.4x3.ts, <code>.1x1.ts), and for each variant (<code>--<id>.ts). Their types are written by
+// frame (src/flags/<code>.4x3.ts, <code>.1x1.ts), and for each variant (<code>--<id>.ts); a former country's code is three or four letters (frg, suhh). Their types are written by
 // scripts/build-extras.ts, one small file each, rather than by a TypeScript build per flag.
 const flagEntries: Record<string, string> = Object.fromEntries(
   readdirSync("src/flags")
-    .filter((file) => /^[a-z]{2}(-[a-z0-9]{1,3})?(--[a-z0-9]+(-[a-z0-9]+)*)?(\.(4x3|1x1))?\.ts$/.test(file))
+    .filter((file) => /^([a-z]{2}(-[a-z0-9]{1,3})?|[a-z]{3,4})(--[a-z0-9]+(-[a-z0-9]+)*)?(\.(4x3|1x1))?\.ts$/.test(file))
     .map((file) => [`flags/${basename(file, ".ts")}`, `src/flags/${file}`]),
 );
 
@@ -26,7 +26,7 @@ const flagImports: Plugin = {
     // So is its table of variants, loaded when a variant is asked for.
     build.onResolve({ filter: /^\.\/data\/variants\.data\.js$/ }, () => ({ path: "./variants.js", external: true }));
     build.onResolve({ filter: /^\.\.\/flags\/[a-z0-9.-]+\.js$/ }, (args) => ({ path: `./flags/${basename(args.path)}`, external: true }));
-    build.onResolve({ filter: /^\.\/[a-z]{2}(-[a-z0-9]{1,3})?$/ }, (args) => (args.importer.includes("/src/flags/") ? { path: `${args.path}.js`, external: true } : undefined));
+    build.onResolve({ filter: /^\.\/([a-z]{2}(-[a-z0-9]{1,3})?|[a-z]{3,4})$/ }, (args) => (args.importer.includes("/src/flags/") ? { path: `${args.path}.js`, external: true } : undefined));
   },
 };
 

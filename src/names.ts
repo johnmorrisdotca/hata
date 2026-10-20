@@ -1,6 +1,7 @@
 // The entry @johnmorrisdotca/hata/names: each flag's place by name, in English or Japanese, as Kuni names it, and
 // the flag's aspect ratio. Data only, kept out of the main entry: <hata-flag> loads it for the name it reads aloud.
 
+import { FLAG_ALIASES } from "./data/aliases.data";
 import { NAMES } from "./data/names.data";
 import { mustBeString } from "./svg";
 
@@ -17,7 +18,11 @@ import { mustBeString } from "./svg";
  */
 type NameLanguage = "en" | "ja";
 
-const codeOf = (code: string): string => mustBeString(code, "code").trim().toUpperCase().replace(/_/g, "-");
+const codeOf = (code: string): string => {
+  const written = mustBeString(code, "code").trim().toUpperCase().replace(/_/g, "-");
+
+  return FLAG_ALIASES[written] ?? written;
+};
 
 /**
  * The name of a flag's place, in English or Japanese, as Kuni gives it: what a screen reader should say for the
@@ -35,6 +40,7 @@ const codeOf = (code: string): string => mustBeString(code, "code").trim().toUpp
  * console.log(flagName("JP-13"));        // "Tokyo"
  * console.log(flagName("jp-13", "ja"));  // "東京都"
  * console.log(flagName("DE-BY", "ja-JP")); // "バイエルン自由州"
+ * console.log(flagName("URS"));          // "Soviet Union"
  * console.log(flagName("XX"));           // null
  * ```
  */

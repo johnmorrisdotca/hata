@@ -6,31 +6,33 @@ import { COUNTRY_CODES } from "@johnmorrisdotca/kuni";
 import { subdivisions } from "@johnmorrisdotca/kuni/subdivisions";
 import { describe, expect, it } from "vitest";
 
-import { SUBDIVISION_COUNTRIES } from "../scripts/data-config";
+import { HISTORICAL, SUBDIVISION_COUNTRIES } from "../scripts/data-config";
 import { FLAG_CODES } from "./index";
 import { flag } from "./load";
 import { LEFT_OUT, leftOut, manifest, MANIFEST } from "./manifest";
 
 // Every code the package answers for: each country, and the first level of each country whose subdivisions it has.
 const kuniCodes = [...COUNTRY_CODES, ...SUBDIVISION_COUNTRIES.flatMap((country) => (subdivisions(country) ?? []).filter((one) => one.level === 1).map((one) => one.code))];
+// And the former countries and teams of sport Hata lists itself (HISTORICAL): Kuni knows the countries of today.
+const historicalCodes = Object.keys(HISTORICAL);
 const subdivisionsOf = (country: string): string[] => kuniCodes.filter((code) => code.startsWith(`${country}-`));
 
 describe("coverage against Kuni", () => {
   it("gives every country, and every first-level subdivision of each country it covers, a flag or a reason", () => {
     const flagged = new Set<string>(FLAG_CODES);
     const reasons = new Map(LEFT_OUT.map((one) => [one.code, one.reason]));
-    for (const code of kuniCodes) {
+    for (const code of [...kuniCodes, ...historicalCodes]) {
       expect(flagged.has(code) !== reasons.has(code), `${code} has ${flagged.has(code) ? "a flag and a reason" : "neither a flag nor a reason"}`).toBe(true);
       if (reasons.has(code)) expect(reasons.get(code)!.length, code).toBeGreaterThan(20);
     }
-    expect(FLAG_CODES.length + LEFT_OUT.length).toBe(kuniCodes.length);
+    expect(FLAG_CODES.length + LEFT_OUT.length).toBe(kuniCodes.length + historicalCodes.length);
   });
 
   it("has every country's whole first level accounted for, and names no code Kuni does not know", () => {
     const expected = { JP: 47, CA: 13, US: 57, AU: 8, GB: 4, DE: 16, FR: 26, CH: 26, AT: 9, BR: 27 };
     expect(Object.keys(expected)).toEqual([...SUBDIVISION_COUNTRIES]);
     for (const [country, count] of Object.entries(expected)) expect(subdivisionsOf(country), country).toHaveLength(count);
-    for (const code of [...FLAG_CODES, ...LEFT_OUT.map((one) => one.code)]) expect(kuniCodes, code).toContain(code);
+    for (const code of [...FLAG_CODES, ...LEFT_OUT.map((one) => one.code)]) expect([...kuniCodes, ...historicalCodes], code).toContain(code);
   });
 });
 

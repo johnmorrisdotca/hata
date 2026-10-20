@@ -10,6 +10,8 @@ const VARIANT_LOADERS: Readonly<Record<string, Loader>> = {
   "AF--de-facto": () => import("../flags/af--de-facto.js"),
   "BL--france": () => import("../flags/bl.js"),
   "BL--local": () => import("../flags/bl--local.js"),
+  "BUMM--socialist": () => import("../flags/bumm.js"),
+  "BUMM--union": () => import("../flags/bumm--union.js"),
   "DE-BY--lozenges": () => import("../flags/de-by.js"),
   "DE-BY--stripes": () => import("../flags/de-by--stripes.js"),
   "FR-971--france": () => import("../flags/gp.js"),
@@ -51,12 +53,17 @@ const VARIANT_LOADERS: Readonly<Record<string, Loader>> = {
   "RE--local": () => import("../flags/re--local.js"),
   "SH--saint-helena": () => import("../flags/sh.js"),
   "SH--union-flag": () => import("../flags/sh--union-flag.js"),
+  "SUHH--1955": () => import("../flags/suhh.js"),
+  "SUHH--1936": () => import("../flags/suhh--1936.js"),
   "SY--2025": () => import("../flags/sy.js"),
   "SY--assad-era": () => import("../flags/sy--assad-era.js"),
   "WF--france": () => import("../flags/wf.js"),
   "WF--local": () => import("../flags/wf--local.js"),
   "YT--france": () => import("../flags/yt.js"),
   "YT--local": () => import("../flags/yt--local.js"),
+  "YUCS--sfry": () => import("../flags/yucs.js"),
+  "YUCS--fry": () => import("../flags/yucs--fry.js"),
+  "YUCS--kingdom": () => import("../flags/yucs--kingdom.js"),
 };
 
 export { VARIANT_LOADERS };

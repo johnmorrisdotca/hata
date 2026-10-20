@@ -10,8 +10,12 @@
 // Two lines of data-config.ts come first: SAME_PLACE (a subdivision code that is a country's code too, such as
 // FR-971 for Guadeloupe, takes the country's selection whole) and NAMED (a subdivision whose Commons file is named
 // by hand: its civil flag where Wikidata gives the service flag with the arms, or a drawing at the law's proportions).
+//
+// A former country (HISTORICAL in data-config.ts) is not chosen by these rules: every one of its flag statements has an
+// end, so its Commons file is named by hand, and checked to be one of the flag images (P41) of the Wikidata item named
+// beside it, ended or not. A historical place with no file has the reason written there.
 
-import { CHOSEN, ITEM, NAMED, SAME_PLACE } from "./data-config.ts";
+import { CHOSEN, HISTORICAL, ITEM, NAMED, SAME_PLACE } from "./data-config.ts";
 
 interface FlagStatement {
   file: string;
@@ -33,6 +37,8 @@ interface WikidataSnapshot {
   read: string;
   countries: Record<string, WikidataItem[]>;
   subdivisions: Record<string, WikidataItem[]>;
+  // The former countries' items, by the code this package gives them (HISTORICAL in data-config.ts): ended items and ended statements stay.
+  historical: Record<string, WikidataItem[]>;
 }
 
 type Selection =
@@ -69,11 +75,24 @@ const select = (code: string, items: readonly WikidataItem[] | undefined): Selec
   return { code, file: only.file, item: only.item, rule: preferred.length > 0 && statements.length > 1 ? "preferred" : "only", others: others.filter((file) => file !== only.file) };
 };
 
+// A former country's flag: the file HISTORICAL names, which must be one of its Wikidata item's flag images.
+const selectHistorical = (code: string, items: readonly WikidataItem[] | undefined): Selection => {
+  const spec = HISTORICAL[code]!;
+  if (spec.file === null) return { code, file: null, item: spec.item, reason: spec.why };
+  const item = (items ?? []).find((one) => one.id === spec.item);
+  if (item === undefined) throw new Error(`${code}: the Wikidata snapshot has no item ${spec.item}: run pnpm data:wikidata -- --historical`);
+  const found = item.flags.find((flag) => flag.file === spec.file);
+  if (found === undefined) throw new Error(`${code}: data-config.ts names ${spec.file}, which is not one of ${spec.item}'s flag images: ${item.flags.map((flag) => flag.file).join(", ")}`);
+
+  return { code, file: spec.file, item: item.id, rule: "named", why: spec.why, others: [...new Set(item.flags.map((flag) => flag.file))].filter((file) => file !== spec.file) };
+};
+
 /**
  * One place's selection from the whole snapshot: a country by its code, a subdivision by its own, and a code in
  * SAME_PLACE by the country it is the same place as (the selection keeps the subdivision's code).
  */
-const selectPlace = (code: string, snapshot: Pick<WikidataSnapshot, "countries" | "subdivisions">): Selection => {
+const selectPlace = (code: string, snapshot: Pick<WikidataSnapshot, "countries" | "subdivisions" | "historical">): Selection => {
+  if (HISTORICAL[code] !== undefined) return selectHistorical(code, snapshot.historical[code]);
   const same = SAME_PLACE[code];
   if (same !== undefined) return { ...select(same, snapshot.countries[same]), code };
 

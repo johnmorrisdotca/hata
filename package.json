@@ -1,7 +1,7 @@
 {
   "name": "@johnmorrisdotca/hata",
   "version": "1.6.3",
-  "description": "Hata 旗 — Country and region flags as SVG: country and regional flags, native ratios and curated frames, source/author/licence metadata, one module per flag, lazy loading and an optional custom element. Zero dependencies.",
+  "description": "Hata 旗 — Country and region flags as SVG: country, regional and former-country flags (the Soviet Union, Yugoslavia and more), native ratios and curated frames, source/author/licence metadata, one module per flag, lazy loading and an optional custom element. Zero dependencies.",
   "keywords": [
     "flags",
     "flag-icons",
@@ -28,6 +28,11 @@
     "cantons",
     "austria",
     "brazil",
+    "former-countries",
+    "historical-flags",
+    "olympics",
+    "medal-table",
+    "iso-3166-3",
     "custom-element",
     "web-component",
     "embed",
@@ -177,6 +182,10 @@
     "./flags/am": {
       "types": "./dist/flags/am.d.ts",
       "default": "./dist/flags/am.js"
+    },
+    "./flags/anhh": {
+      "types": "./dist/flags/anhh.d.ts",
+      "default": "./dist/flags/anhh.js"
     },
     "./flags/ao.1x1": {
       "types": "./dist/flags/ao.1x1.d.ts",
@@ -490,6 +499,10 @@
       "types": "./dist/flags/bo.d.ts",
       "default": "./dist/flags/bo.js"
     },
+    "./flags/boh": {
+      "types": "./dist/flags/boh.d.ts",
+      "default": "./dist/flags/boh.js"
+    },
     "./flags/br-ac": {
       "types": "./dist/flags/br-ac.d.ts",
       "default": "./dist/flags/br-ac.js"
@@ -625,6 +638,14 @@
     "./flags/bt": {
       "types": "./dist/flags/bt.d.ts",
       "default": "./dist/flags/bt.js"
+    },
+    "./flags/bumm--union": {
+      "types": "./dist/flags/bumm--union.d.ts",
+      "default": "./dist/flags/bumm--union.js"
+    },
+    "./flags/bumm": {
+      "types": "./dist/flags/bumm.d.ts",
+      "default": "./dist/flags/bumm.js"
     },
     "./flags/bv": {
       "types": "./dist/flags/bv.d.ts",
@@ -950,6 +971,14 @@
       "types": "./dist/flags/cr.d.ts",
       "default": "./dist/flags/cr.js"
     },
+    "./flags/cshh": {
+      "types": "./dist/flags/cshh.d.ts",
+      "default": "./dist/flags/cshh.js"
+    },
+    "./flags/csxx": {
+      "types": "./dist/flags/csxx.d.ts",
+      "default": "./dist/flags/csxx.js"
+    },
     "./flags/cu.1x1": {
       "types": "./dist/flags/cu.1x1.d.ts",
       "default": "./dist/flags/cu.1x1.js"
@@ -1013,6 +1042,10 @@
     "./flags/cz": {
       "types": "./dist/flags/cz.d.ts",
       "default": "./dist/flags/cz.js"
+    },
+    "./flags/ddde": {
+      "types": "./dist/flags/ddde.d.ts",
+      "default": "./dist/flags/ddde.js"
     },
     "./flags/de-bb": {
       "types": "./dist/flags/de-bb.d.ts",
@@ -1337,6 +1370,10 @@
     "./flags/fr": {
       "types": "./dist/flags/fr.d.ts",
       "default": "./dist/flags/fr.js"
+    },
+    "./flags/frg": {
+      "types": "./dist/flags/frg.d.ts",
+      "default": "./dist/flags/frg.js"
     },
     "./flags/ga.1x1": {
       "types": "./dist/flags/ga.1x1.d.ts",
@@ -2798,6 +2835,10 @@
       "types": "./dist/flags/re.d.ts",
       "default": "./dist/flags/re.js"
     },
+    "./flags/rhzw": {
+      "types": "./dist/flags/rhzw.d.ts",
+      "default": "./dist/flags/rhzw.js"
+    },
     "./flags/ro.1x1": {
       "types": "./dist/flags/ro.1x1.d.ts",
       "default": "./dist/flags/ro.1x1.js"
@@ -3021,6 +3062,14 @@
     "./flags/st": {
       "types": "./dist/flags/st.d.ts",
       "default": "./dist/flags/st.js"
+    },
+    "./flags/suhh--1936": {
+      "types": "./dist/flags/suhh--1936.d.ts",
+      "default": "./dist/flags/suhh--1936.js"
+    },
+    "./flags/suhh": {
+      "types": "./dist/flags/suhh.d.ts",
+      "default": "./dist/flags/suhh.js"
     },
     "./flags/sv.1x1": {
       "types": "./dist/flags/sv.1x1.d.ts",
@@ -3638,6 +3687,10 @@
       "types": "./dist/flags/wf.d.ts",
       "default": "./dist/flags/wf.js"
     },
+    "./flags/wif": {
+      "types": "./dist/flags/wif.d.ts",
+      "default": "./dist/flags/wif.js"
+    },
     "./flags/ws.1x1": {
       "types": "./dist/flags/ws.1x1.d.ts",
       "default": "./dist/flags/ws.1x1.js"
@@ -3674,6 +3727,18 @@
       "types": "./dist/flags/yt.d.ts",
       "default": "./dist/flags/yt.js"
     },
+    "./flags/yucs--fry": {
+      "types": "./dist/flags/yucs--fry.d.ts",
+      "default": "./dist/flags/yucs--fry.js"
+    },
+    "./flags/yucs--kingdom": {
+      "types": "./dist/flags/yucs--kingdom.d.ts",
+      "default": "./dist/flags/yucs--kingdom.js"
+    },
+    "./flags/yucs": {
+      "types": "./dist/flags/yucs.d.ts",
+      "default": "./dist/flags/yucs.js"
+    },
     "./flags/za.1x1": {
       "types": "./dist/flags/za.1x1.d.ts",
       "default": "./dist/flags/za.1x1.js"
@@ -3697,6 +3762,10 @@
     "./flags/zm": {
       "types": "./dist/flags/zm.d.ts",
       "default": "./dist/flags/zm.js"
+    },
+    "./flags/zrcd": {
+      "types": "./dist/flags/zrcd.d.ts",
+      "default": "./dist/flags/zrcd.js"
     },
     "./flags/zw.1x1": {
       "types": "./dist/flags/zw.1x1.d.ts",

@@ -2,28 +2,28 @@
   "measured": "esbuild 0.28.2, bundled, minified, ES2020, gzip level 9",
   "entries": {
     ".": {
-      "minified": 7471,
-      "gzip": 3520
+      "minified": 7914,
+      "gzip": 3738
     },
     "./load": {
-      "minified": 12078890,
-      "gzip": 3943083
+      "minified": 12404686,
+      "gzip": 4023361
     },
     "./manifest": {
-      "minified": 860359,
-      "gzip": 87192
+      "minified": 896085,
+      "gzip": 93687
     },
     "./names": {
-      "minified": 30020,
-      "gzip": 8942
+      "minified": 31080,
+      "gzip": 9328
     },
     "./element": {
-      "minified": 12114579,
-      "gzip": 3955493
+      "minified": 12441217,
+      "gzip": 4035881
     },
     "./element/define": {
-      "minified": 12114532,
-      "gzip": 3955465
+      "minified": 12441170,
+      "gzip": 4035841
     },
     "./flags/ad.1x1": {
       "minified": 28262,
@@ -112,6 +112,10 @@
     "./flags/am": {
       "minified": 261,
       "gzip": 186
+    },
+    "./flags/anhh": {
+      "minified": 1063,
+      "gzip": 387
     },
     "./flags/ao.1x1": {
       "minified": 1592,
@@ -425,6 +429,10 @@
       "minified": 261,
       "gzip": 195
     },
+    "./flags/boh": {
+      "minified": 201,
+      "gzip": 176
+    },
     "./flags/br-ac": {
       "minified": 271,
       "gzip": 215
@@ -561,6 +569,14 @@
       "minified": 31226,
       "gzip": 12829
     },
+    "./flags/bumm--union": {
+      "minified": 1013,
+      "gzip": 371
+    },
+    "./flags/bumm": {
+      "minified": 10341,
+      "gzip": 4215
+    },
     "./flags/bv": {
       "minified": 323,
       "gzip": 233
@@ -630,8 +646,8 @@
       "gzip": 945
     },
     "./flags/ca-pe": {
-      "minified": 245388,
-      "gzip": 83785
+      "minified": 245425,
+      "gzip": 83812
     },
     "./flags/ca-qc": {
       "minified": 865,
@@ -885,6 +901,14 @@
       "minified": 242,
       "gzip": 188
     },
+    "./flags/cshh": {
+      "minified": 264,
+      "gzip": 202
+    },
+    "./flags/csxx": {
+      "minified": 254,
+      "gzip": 187
+    },
     "./flags/cu.1x1": {
       "minified": 564,
       "gzip": 360
@@ -949,6 +973,10 @@
       "minified": 256,
       "gzip": 198
     },
+    "./flags/ddde": {
+      "minified": 66937,
+      "gzip": 14629
+    },
     "./flags/de-bb": {
       "minified": 27357,
       "gzip": 11707
@@ -998,8 +1026,8 @@
       "gzip": 7378
     },
     "./flags/de-sh": {
-      "minified": 265,
-      "gzip": 192
+      "minified": 241,
+      "gzip": 183
     },
     "./flags/de-sl": {
       "minified": 117510,
@@ -1272,6 +1300,10 @@
     "./flags/fr": {
       "minified": 251,
       "gzip": 187
+    },
+    "./flags/frg": {
+      "minified": 259,
+      "gzip": 207
     },
     "./flags/ga.1x1": {
       "minified": 281,
@@ -2722,8 +2754,8 @@
       "gzip": 220
     },
     "./flags/qa": {
-      "minified": 274,
-      "gzip": 195
+      "minified": 334,
+      "gzip": 207
     },
     "./flags/re--local": {
       "minified": 325,
@@ -2732,6 +2764,10 @@
     "./flags/re": {
       "minified": 259,
       "gzip": 193
+    },
+    "./flags/rhzw": {
+      "minified": 225889,
+      "gzip": 53688
     },
     "./flags/ro.1x1": {
       "minified": 308,
@@ -2956,6 +2992,14 @@
     "./flags/st": {
       "minified": 407,
       "gzip": 304
+    },
+    "./flags/suhh--1936": {
+      "minified": 7329,
+      "gzip": 3519
+    },
+    "./flags/suhh": {
+      "minified": 1238,
+      "gzip": 577
     },
     "./flags/sv.1x1": {
       "minified": 73505,
@@ -3573,6 +3617,10 @@
       "minified": 259,
       "gzip": 193
     },
+    "./flags/wif": {
+      "minified": 1016,
+      "gzip": 447
+    },
     "./flags/ws.1x1": {
       "minified": 705,
       "gzip": 443
@@ -3609,6 +3657,18 @@
       "minified": 259,
       "gzip": 193
     },
+    "./flags/yucs--fry": {
+      "minified": 262,
+      "gzip": 193
+    },
+    "./flags/yucs--kingdom": {
+      "minified": 243,
+      "gzip": 188
+    },
+    "./flags/yucs": {
+      "minified": 430,
+      "gzip": 291
+    },
     "./flags/za.1x1": {
       "minified": 820,
       "gzip": 482
@@ -3632,6 +3692,10 @@
     "./flags/zm": {
       "minified": 5246,
       "gzip": 2606
+    },
+    "./flags/zrcd": {
+      "minified": 7098,
+      "gzip": 2888
     },
     "./flags/zw.1x1": {
       "minified": 6090,

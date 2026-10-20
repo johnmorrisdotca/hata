@@ -6,12 +6,18 @@ import * as main from "./index";
 import { FLAG_CODES, flagCode, flagUrl, isFlagCode, VERSION } from "./index";
 
 describe("FLAG_CODES", () => {
-  it("is every code once, countries first then subdivisions, each as Kuni writes it", () => {
+  it("is every code once, countries first, then subdivisions, then former countries, each as Kuni (or ISO 3166-3) writes it", () => {
     expect(new Set(FLAG_CODES).size).toBe(FLAG_CODES.length);
     const countries = FLAG_CODES.filter((code) => code.length === 2);
     expect(FLAG_CODES.slice(0, countries.length)).toEqual(countries);
     for (const code of countries) expect(COUNTRY_CODES as readonly string[]).toContain(code);
-    for (const code of FLAG_CODES.slice(countries.length)) expect(code).toMatch(/^(JP|CA|US|AU|GB|DE|FR|CH|AT|BR)-[A-Z0-9]{1,3}$/);
+    const regions = FLAG_CODES.filter((code) => code.includes("-"));
+    expect(FLAG_CODES.slice(countries.length, countries.length + regions.length)).toEqual(regions);
+    for (const code of regions) expect(code).toMatch(/^(JP|CA|US|AU|GB|DE|FR|CH|AT|BR)-[A-Z0-9]{1,3}$/);
+    const former = FLAG_CODES.slice(countries.length + regions.length);
+    expect(former.length).toBeGreaterThan(8);
+    for (const code of former) expect(code).toMatch(/^[A-Z]{3,4}$/);
+    for (const code of ["SUHH", "DDDE", "FRG", "CSHH", "YUCS", "CSXX", "ANHH", "BUMM", "ZRCD", "RHZW"]) expect(FLAG_CODES).toContain(code);
     expect(FLAG_CODES).toContain("JP-13");
     for (const code of ["AU-NSW", "GB-SCT", "DE-BY", "FR-20R", "CH-ZH", "AT-9", "BR-SP"]) expect(FLAG_CODES).toContain(code);
     expect(FLAG_CODES).toContain("CA-ON");
@@ -19,7 +25,7 @@ describe("FLAG_CODES", () => {
   });
 
   it("carries no flag in the main entry", () => {
-    expect(Object.keys(main).sort()).toEqual(["FLAG_CODES", "VERSION", "aspectOf", "flagCode", "flagUrl", "frame", "isFlagCode", "toDataUri"]);
+    expect(Object.keys(main).sort()).toEqual(["FLAG_ALIASES", "FLAG_CODES", "VERSION", "aspectOf", "flagCode", "flagUrl", "frame", "isFlagCode", "toDataUri"]);
   });
 });
 

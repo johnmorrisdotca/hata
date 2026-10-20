@@ -3,7 +3,8 @@
 // page, a licence check in a build, or the demo's detail panel. The same data is in manifest.json.
 
 import { LEFT_OUT as LEFT_OUT_ROWS, RECORDS } from "./data/manifest.data";
-import type { FlagRecord, FlagSource, Framing, FramingCrop, LeftOutRecord, LicenceKind, Variant } from "./manifest.types";
+import type { FlagRecord, FlagSource, Framing, FramingCrop, HistoricalEra, LeftOutRecord, LicenceKind, Variant } from "./manifest.types";
+import { FLAG_ALIASES } from "./data/aliases.data";
 import { mustBeString } from "./svg";
 
 const deepFreeze = <T>(value: T): T => {
@@ -43,12 +44,16 @@ const LEFT_OUT: readonly LeftOutRecord[] = deepFreeze(LEFT_OUT_ROWS);
 
 const BY_CODE: ReadonlyMap<string, FlagRecord> = new Map(MANIFEST.map((one) => [one.code, one]));
 const LEFT_BY_CODE: ReadonlyMap<string, LeftOutRecord> = new Map(LEFT_OUT.map((one) => [one.code, one]));
-const normal = (code: string): string => mustBeString(code, "code").trim().toUpperCase().replace(/_/g, "-");
+const normal = (code: string): string => {
+  const written = mustBeString(code, "code").trim().toUpperCase().replace(/_/g, "-");
+
+  return FLAG_ALIASES[written] ?? written;
+};
 
 /**
  * Where one flag's drawing comes from, its licence and author, and why it was chosen.
  *
- * @param code - A flag's code in any case: "JP", "jp-13", "CA_ON".
+ * @param code - A flag's code in any case: "JP", "jp-13", "CA_ON"; a former country by its code or by one of its aliases ("SU", "URS", "GDR").
  * @returns The flag's record, or `null` when the code has no flag here (see `leftOut` for why).
  * @throws TypeError when `code` is not a string.
  *
@@ -58,6 +63,7 @@ const normal = (code: string): string => mustBeString(code, "code").trim().toUpp
  *
  * console.log(manifest("JP-13")?.licence.name); // "Public domain"
  * console.log(manifest("YE")?.source);           // "country-flag-icons"
+ * console.log(manifest("URS")?.code);           // "SUHH": the Soviet Union, by the IOC's code
  * console.log(manifest("XX"));                   // null
  * ```
  */
@@ -103,4 +109,4 @@ const leftOut = (code: string): LeftOutRecord | null => LEFT_BY_CODE.get(normal(
 const variantsOf = (code: string): readonly Variant[] => (manifest(code) ?? leftOut(code))?.variants ?? [];
 
 export { LEFT_OUT, leftOut, manifest, MANIFEST, variantsOf };
-export type { FlagRecord, FlagSource, Framing, FramingCrop, LeftOutRecord, LicenceKind, Variant };
+export type { FlagRecord, FlagSource, Framing, FramingCrop, HistoricalEra, LeftOutRecord, LicenceKind, Variant };

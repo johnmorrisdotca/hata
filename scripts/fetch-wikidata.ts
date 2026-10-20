@@ -7,9 +7,12 @@
 //     it applies to (P518) or is for (P3831);
 //   - the same for the ISO 3166-2 codes (P300) of the first-level subdivisions Kuni lists for the countries in
 //     SUBDIVISION_COUNTRIES (scripts/data-config.ts): only those codes, so the snapshot holds no county or
-//     département nobody reads.
+//     département nobody reads;
+//   - the same again for the former countries (HISTORICAL in scripts/data-config.ts), asked for by their Wikidata items,
+//     whose ended items and ended statements are kept: every flag statement of a former country has an end.
 //
-//   pnpm data:wikidata
+//   pnpm data:wikidata                   everything, as a new day's snapshot
+//   pnpm data:wikidata -- --historical   only the former countries, put into today's snapshot (the rest is not asked for again)
 //
 // The answer is sorted and grouped by code, so a later run shows as a readable diff. A new file is a new day's
 // snapshot; the old one is removed and sources.json names the new one. Then `pnpm data:commons` fetches the files.
@@ -19,8 +22,8 @@ import { join } from "node:path";
 
 import { subdivisions as kuniSubdivisions } from "@johnmorrisdotca/kuni/subdivisions";
 
-import { SUBDIVISION_COUNTRIES } from "./data-config.ts";
-import { readManifest, recordFile, sha256, SOURCES_DIR, USER_AGENT, writeManifest } from "./sources.ts";
+import { HISTORICAL, SUBDIVISION_COUNTRIES } from "./data-config.ts";
+import { readManifest, readSource, recordFile, sha256, SOURCES_DIR, USER_AGENT, writeManifest } from "./sources.ts";
 
 const ENDPOINT = "https://query.wikidata.org/sparql";
 
@@ -54,6 +57,12 @@ const SUBDIVISION_QUERY = `SELECT ?code ?item ?label ?ended ?flag ?rank ?start ?
   ${flagPart}
 }`;
 
+// The former countries, asked for by Wikidata item: the code is this package's own.
+const HISTORICAL_QUERY = `SELECT ?code ?item ?label ?ended ?flag ?rank ?start ?end ?part ?role WHERE {
+  VALUES (?code ?item) { ${Object.entries(HISTORICAL).filter(([, spec]) => spec.item !== null).map(([code, spec]) => `("${code}" wd:${spec.item})`).join(" ")} }
+  ${flagPart}
+}`;
+
 interface Binding {
   [name: string]: { type: string; value: string } | undefined;
 }
@@ -78,9 +87,11 @@ interface WikidataSnapshot {
   source: string;
   licence: string;
   read: string;
-  queries: { countries: string; subdivisions: string };
+  historicalRead?: string;
+  queries: { countries: string; subdivisions: string; historical?: string };
   countries: Record<string, WikidataItem[]>;
   subdivisions: Record<string, WikidataItem[]>;
+  historical?: Record<string, WikidataItem[]>;
 }
 
 const ask = async (query: string): Promise<Binding[]> => {
@@ -155,46 +166,65 @@ const stringify = (snapshot: WikidataSnapshot): string => {
   "source": ${JSON.stringify(snapshot.source)},
   "licence": ${JSON.stringify(snapshot.licence)},
   "read": ${JSON.stringify(snapshot.read)},
+  "historicalRead": ${JSON.stringify(snapshot.historicalRead ?? snapshot.read)},
   "queries": ${JSON.stringify(snapshot.queries)},
   "countries": {
 ${block(snapshot.countries)}
   },
   "subdivisions": {
 ${block(snapshot.subdivisions)}
+  },
+  "historical": {
+${block(snapshot.historical ?? {})}
   }
 }
 `;
 };
 
 const read = new Date().toISOString().slice(0, 10);
-console.log("asking Wikidata for the countries' flags");
-const countries = group(await ask(COUNTRY_QUERY));
-console.log(`  ${Object.keys(countries).length} codes`);
-console.log(`asking Wikidata for the flags of ${SUBDIVISION_CODES.length} subdivisions of ${SUBDIVISION_COUNTRIES.join(", ")}`);
-const subdivisions = group(await ask(SUBDIVISION_QUERY));
-console.log(`  ${Object.keys(subdivisions).length} codes`);
+const historicalOnly = process.argv.includes("--historical");
+const note = `Wikidata, the flag image (P41) of every country (P297), of the first-level subdivisions (P300) of ${SUBDIVISION_COUNTRIES.join(", ")} and of the former countries named in HISTORICAL (CC0)`;
 
-const snapshot: WikidataSnapshot = {
-  source: ENDPOINT,
-  licence: "CC0-1.0 (https://www.wikidata.org/wiki/Wikidata:Licensing)",
-  read,
-  queries: { countries: COUNTRY_QUERY, subdivisions: SUBDIVISION_QUERY },
-  countries,
-  subdivisions,
-};
-const name = `wikidata-${read}.json`;
+let snapshot: WikidataSnapshot;
+let name: string;
+if (historicalOnly) {
+  // Only the former countries are asked for again: the rest of today's snapshot (or the last one) stays as it was read.
+  const manifest = readManifest();
+  const entry = manifest.files.find((file) => /^wikidata-\d{4}-\d{2}-\d{2}\.json$/.test(file.path));
+  if (entry === undefined) throw new Error("no Wikidata snapshot in sources.json: run pnpm data:wikidata first");
+  name = entry.path;
+  snapshot = JSON.parse(readSource(manifest, entry.path).text) as WikidataSnapshot;
+  console.log(`asking Wikidata for ${Object.keys(HISTORICAL).length} former countries (${Object.values(HISTORICAL).filter((spec) => spec.item !== null).length} items)`);
+  snapshot.historical = group(await ask(HISTORICAL_QUERY));
+  snapshot.historicalRead = read;
+  snapshot.queries.historical = HISTORICAL_QUERY;
+  console.log(`  ${Object.keys(snapshot.historical).length} codes`);
+} else {
+  console.log("asking Wikidata for the countries' flags");
+  const countries = group(await ask(COUNTRY_QUERY));
+  console.log(`  ${Object.keys(countries).length} codes`);
+  console.log(`asking Wikidata for the flags of ${SUBDIVISION_CODES.length} subdivisions of ${SUBDIVISION_COUNTRIES.join(", ")}`);
+  const subdivisions = group(await ask(SUBDIVISION_QUERY));
+  console.log(`  ${Object.keys(subdivisions).length} codes`);
+  console.log("asking Wikidata for the former countries' flags");
+  const historical = group(await ask(HISTORICAL_QUERY));
+  console.log(`  ${Object.keys(historical).length} codes`);
+  snapshot = {
+    source: ENDPOINT,
+    licence: "CC0-1.0 (https://www.wikidata.org/wiki/Wikidata:Licensing)",
+    read,
+    historicalRead: read,
+    queries: { countries: COUNTRY_QUERY, subdivisions: SUBDIVISION_QUERY, historical: HISTORICAL_QUERY },
+    countries,
+    subdivisions,
+    historical,
+  };
+  name = `wikidata-${read}.json`;
+}
 const text = stringify(snapshot);
 for (const old of readdirSync(SOURCES_DIR).filter((file) => /^wikidata-\d{4}-\d{2}-\d{2}\.json$/.test(file) && file !== name)) rmSync(join(SOURCES_DIR, old));
 writeFileSync(join(SOURCES_DIR, name), text);
 const manifest = readManifest();
 manifest.files = manifest.files.filter((file) => !/^wikidata-\d{4}-\d{2}-\d{2}\.json$/.test(file.path));
-writeManifest(
-  recordFile(manifest, {
-    path: name,
-    url: ENDPOINT,
-    read,
-    sha256: sha256(text),
-    note: `Wikidata, the flag image (P41) of every country (P297) and of the first-level subdivisions (P300) of ${SUBDIVISION_COUNTRIES.join(", ")} (CC0)`,
-  }),
-);
+writeManifest(recordFile(manifest, { path: name, url: ENDPOINT, read: snapshot.read, sha256: sha256(text), note }));
 console.log(`wrote data-sources/${name}`);

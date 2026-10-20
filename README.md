@@ -10,7 +10,7 @@ At their true proportions, optimised and safe to inline, with the source, author
   <a href="https://www.npmjs.com/package/@johnmorrisdotca/hata"><img alt="npm" src="https://img.shields.io/npm/v/@johnmorrisdotca/hata?color=2f5d4a"></a>
   <a href="./LICENSE"><img alt="MIT licence" src="https://img.shields.io/badge/licence-MIT-2f5d4a"></a>
   <img alt="No dependencies" src="https://img.shields.io/badge/dependencies-0-2f5d4a">
-  <a href="https://johnmorrisdotca.github.io/hata/docs/api/main/index.html"><img alt="3.5 kB minified and gzipped" src="https://img.shields.io/badge/min%2Bgzip-3.5%20kB-2f5d4a"></a>
+  <a href="https://johnmorrisdotca.github.io/hata/docs/api/main/index.html"><img alt="3.7 kB minified and gzipped" src="https://img.shields.io/badge/min%2Bgzip-3.7%20kB-2f5d4a"></a>
   <img alt="TypeScript" src="https://img.shields.io/badge/types-TypeScript-3178c6">
   <a href="https://www.npmjs.com/package/@johnmorrisdotca/hata#provenance"><img alt="Published with npm provenance" src="https://img.shields.io/badge/npm-provenance-2f5d4a"></a>
 </p>
@@ -36,7 +36,7 @@ At their true proportions, optimised and safe to inline, with the source, author
 </tr>
 </table>
 
-Hata is the flag set a site that already knows its countries and regions by ISO code (from [Kuni](https://github.com/johnmorrisdotca/kuni), say) can show beside them: 466 flags, every one drawn at the proportions its government gives it, as an SVG that scales to any size and looks the same on every system, which a flag emoji does not (Windows shows two letters). No other flag set has Japan's prefectures, all of Canada's provinces and territories, Germany's and Austria's states, Switzerland's cantons and Brazil's states together, or codes that match ISO 3166-2. Each flag is a module of its own, so a page carries only the flags it imports; one lookup loads any flag by its code when it is wanted. And every flag says where it comes from: the Wikimedia Commons file or the flag set it was drawn from, its author, its licence, and why that drawing was chosen. It works in [the demo](https://johnmorrisdotca.github.io/hata/) with nothing to install.
+Hata is the flag set a site that already knows its countries and regions by ISO code (from [Kuni](https://github.com/johnmorrisdotca/kuni), say) can show beside them: 478 flags, every one drawn at the proportions its government gives it, as an SVG that scales to any size and looks the same on every system, which a flag emoji does not (Windows shows two letters). No other flag set has Japan's prefectures, all of Canada's provinces and territories, Germany's and Austria's states, Switzerland's cantons and Brazil's states together, or codes that match ISO 3166-2. Each flag is a module of its own, so a page carries only the flags it imports; one lookup loads any flag by its code when it is wanted. And every flag says where it comes from: the Wikimedia Commons file or the flag set it was drawn from, its author, its licence, and why that drawing was chosen. It works in [the demo](https://johnmorrisdotca.github.io/hata/) with nothing to install.
 
 <picture>
 <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/johnmorrisdotca/hata/main/docs/images/hero-phone-dark.webp">
@@ -102,12 +102,16 @@ Install the scoped name: an unscoped `hata` on npm, if there is one, is somebody
 
 ### What's in it
 
-- **466 flags**: 245 of the 250 countries Kuni knows, 45 of Japan's 47 prefectures,
+- **478 flags**: 245 of the 250 countries Kuni knows, 45 of Japan's 47 prefectures,
   13 of Canada's 13 provinces and territories, 57 of the United States' 57 states, district and outlying areas,
   8 of Australia's 8 states and territories, 3 of the United Kingdom's 4 countries, 16 of Germany's 16 states,
   17 of France's 26 regions and overseas collectivities, 26 of Switzerland's 26 cantons, 9 of Austria's 9 states
-  and 27 of Brazil's 27 states and Federal District. The 17 codes with no flag are listed with their reasons:
-  Northern Ireland has no flag of its own, and most of France's regions use a logo rather than a flag.
+  and 27 of Brazil's 27 states and Federal District, and 12 former countries that a medal table or a record book
+  still names (the Soviet Union, East and West Germany, Czechoslovakia, Yugoslavia, Serbia and Montenegro, and
+  six more: [below](#former-countries)). The 27 codes with no flag are listed with their reasons:
+  Northern Ireland has no flag of its own, most of France's regions use a logo rather than a flag, and the Olympic
+  teams that marched under the Olympic flag (the Unified Team of 1992, the Russian Olympic Committee) have no flag
+  of their own to ship.
 - **Disputed and alternative flags, offered side by side.** A place with more than one flag in real use has them all,
   each with a status (official, de facto, historical or local), dates, the reason it is offered and a source, and a
   `disputed` mark where more than one authority claims the place's flag: Afghanistan's Republic tricolour and the
@@ -132,7 +136,7 @@ Install the scoped name: an unscoped `hata` on npm, if there is one, is somebody
   Nothing is redrawn, and every shipped flag is proved to draw as its source does.
 - **Safe to inline.** Scripts, event handlers, foreign objects and references outside the picture are refused at
   build time, and every id and class carries the flag's own prefix, so two flags in one page cannot collide.
-- **Small where it matters.** The main entry is 11 KB (3.9 KB gzipped) and carries no flag; the median flag is
+- **Small where it matters.** The main entry is 12 KB (3.7 KB gzipped) and carries no flag; the median flag is
   under 800 bytes; the lookup is 25 KB and then the flag's own file.
 - **Provenance for every flag**, in `/manifest` and `manifest.json`: the file, its page, the Wikidata item, the
   licence, the author, the restrictions Commons notes, and the dates.
@@ -171,8 +175,8 @@ The alias changes the import name in your project; the module and its data remai
 
 | Entry | What it carries | Size |
 | --- | --- | --- |
-| `@johnmorrisdotca/hata` | The codes, `flagCode`, `flagUrl`, `frame`, `aspectOf`, `toDataUri`; no flag | 10 KB, 3.5 KB gzipped |
-| `@johnmorrisdotca/hata/flags/<code>` | One flag's SVG string (`/flags/jp`, `/flags/jp-13`, `/flags/ca-on`, `/flags/de-by`, lower case); `/flags/<code>.1x1` and `.4x3`, flag-icons' drawing made for that frame, where there is one | median 755 bytes; 176 bytes for Japan |
+| `@johnmorrisdotca/hata` | The codes, `flagCode`, `flagUrl`, `frame`, `aspectOf`, `toDataUri`; no flag | 12 KB, 3.7 KB gzipped |
+| `@johnmorrisdotca/hata/flags/<code>` | One flag's SVG string (`/flags/jp`, `/flags/jp-13`, `/flags/ca-on`, `/flags/de-by`, and a former country's, `/flags/suhh`, lower case); `/flags/<code>.1x1` and `.4x3`, flag-icons' drawing made for that frame, where there is one | median 755 bytes; 176 bytes for Japan |
 | `@johnmorrisdotca/hata/load` | `flag(code, { shape, fit, variant })`, one dynamic import per flag | 26 KB, 5.7 KB gzipped, then the flag's own file (and a 3.6 KB gzipped table when a frame is asked for, and a 0.5 KB one when a variant is) |
 | `@johnmorrisdotca/hata/names` | `flagName(code, lang)` and `flagAspect(code)`: each flag's place in English and Japanese, from Kuni | 24 KB, 8.7 KB gzipped |
 | `@johnmorrisdotca/hata/element` | `<hata-flag>`: `defineFlag`, `FLAG_ELEMENT_NAME`, `FLAG_ELEMENT_ATTRIBUTES` | 8 KB, 2.8 KB gzipped, then /load and /names |
@@ -355,6 +359,49 @@ await flag("GB-NIR", { variant: "ulster-banner" });   // Northern Ireland has no
 [docs/decisions.md](./docs/decisions.md) says why each default was chosen and what is not offered, such as Libya's and Myanmar's
 earlier flags and Saint-Martin's local flag.
 
+### Former countries
+
+A medal table, a record book or a history of a sport still names countries that no longer exist. Hata has the flag of
+twelve of them, each under a code no present-day country uses: the ISO 3166-3 code where that standard has one
+(`SUHH` the Soviet Union, `DDDE` East Germany, `CSHH` Czechoslovakia, `YUCS` Yugoslavia, `CSXX` Serbia and Montenegro,
+`ANHH` the Netherlands Antilles, `BUMM` Burma, `ZRCD` Zaire, `RHZW` Rhodesia), else the IOC's (`FRG` West Germany,
+`BOH` Bohemia, `WIF` the West Indies Federation). The codes a table is likely to hold find them too, in any case:
+the ISO 3166-1 alpha-2 and alpha-3 the place had (`SU`, `SUN`, `DD`, `DDR`, `YU`, `AN`, `BU`, `ZR`) and the IOC's
+three letters (`URS`, `GDR`, `TCH`, `YUG`, `SCG`, `AHO`, `BIR`, `ZAI`, `RHO`, `BWI`). They are `FLAG_ALIASES`.
+
+```ts
+import { flag } from "@johnmorrisdotca/hata/load";
+import { manifest, variantsOf } from "@johnmorrisdotca/hata/manifest";
+
+await flag("URS");                                    // the Soviet Union's flag of 1955 to 1991 (also "SU", "SUHH")
+await flag("GDR", { shape: "round", label: "East Germany" });
+await flag("YUG");                                    // the flag Yugoslavia competed under from 1948 to 1988
+await flag("YUG", { variant: "kingdom" });            // its flag before 1941, a variant with its dates
+variantsOf("YUCS").map((one) => `${one.id} ${one.from}-${one.until}`);
+manifest("FRG")?.sameAs;                              // "DE": West Germany's flag is Germany's, the one picture
+manifest("SUHH")?.historical;                         // { from: "1922", until: "1991", aliases: ["SU", "SUN", "URS"] }
+```
+
+- **A code two countries held finds neither.** `CS` was Czechoslovakia's until 1992 and Serbia and Montenegro's from
+  2003, so `flag("CS")` is `null`, and `leftOut("CS")` says to use `CSHH` or `TCH`, `CSXX` or `SCG`.
+- **West Germany and Czechoslovakia fly today's flags.** `FRG` and `CSHH` are separate codes with Germany's and Czechia's
+  one picture, so a table can keep the row apart and the page loads the drawing once.
+- **Yugoslavia's flag has dates.** The default is the Socialist Federal Republic's star flag (1946 to 1992), the one it
+  competed under at every Games from 1948 to 1988; the plain tricolour of the Federal Republic (`fry`, 1992 to 2003, the
+  flag of Serbia and Montenegro too) and the Kingdom's (`kingdom`, 1918 to 1941) are variants. The Soviet Union's flag of
+  1936 to 1955 (`1936`) and Burma's of 1948 to 1974 (`union`) are the same kind of variant. No flag is picked by year:
+  you ask for the one you mean.
+- **An Olympic team under the Olympic flag has no flag to ship.** The Unified Team of 1992 (`EUN`), the United Team of
+  Germany (`EUA`), the Russian Olympic Committee (`ROC`), Olympic Athletes from Russia (`OAR`), the Individual Neutral Athletes
+  (`AIN`), the Independent Olympic Participants (`IOP`) and the Refugee Olympic Team (`EOR`) marched under the IOC's rings or a
+  committee's emblem, which are marks and not a country's flag. They are in `LEFT_OUT` with that reason, so a page draws a
+  badge with the code. So are the Russian Empire (`RU1`) and Australasia (`ANZ`), which had no one flag in sport.
+- **Some restrictions are not about copyright.** Commons marks the Soviet Union's and other communist-era flags
+  `communist` and `insignia`: showing them is limited by law in some countries. The manifest records it as Commons
+  gives it (`manifest("SUHH")?.restrictions`).
+
+[docs/historical.md](./docs/historical.md) has every code and alias, the years, and the reason for each choice.
+
 ### 5. An `&lt;img&gt;`, from the CDN or your own folder
 
 
@@ -461,7 +508,7 @@ The [API reference](https://johnmorrisdotca.github.io/hata/api.html) lists every
 
 | Entry | Exports |
 | --- | --- |
-| `@johnmorrisdotca/hata` | `FLAG_CODES`, `isFlagCode`, `flagCode`, `flagUrl`, `aspectOf`, `frame`, `toDataUri`, `VERSION`, and the types `FlagCode`, `FlagUrlOptions`, `FrameOptions`, `Shape` and `Fit` |
+| `@johnmorrisdotca/hata` | `FLAG_CODES`, `FLAG_ALIASES`, `isFlagCode`, `flagCode`, `flagUrl`, `aspectOf`, `frame`, `toDataUri`, `VERSION`, and the types `FlagCode`, `FlagUrlOptions`, `FrameOptions`, `Shape` and `Fit` |
 | `@johnmorrisdotca/hata/flags/<code>` | the flag's SVG string as the default export and as `svg` |
 | `@johnmorrisdotca/hata/load` | `flag`, `flagDataUri` and the types `FlagOptions` and `FrameOptions` |
 | `@johnmorrisdotca/hata/names` | `flagName`, `flagAspect` and the type `NameLanguage` |
@@ -511,6 +558,8 @@ Every function is pure and every record it hands out is frozen.
 
 1. **Wikidata names each place's flag** (P41, flag image), a CC0 statement: the preferred one, with any that has
    ended left out. `scripts/data-config.ts` settles the few places where it leaves a choice, each with its reason.
+   A former country's statements have all ended, so its Commons file is named there by hand and checked to be one
+   of its Wikidata item's flag images.
 2. **Wikimedia Commons has the drawing**, at the flag's true proportions, usually made from the government's
    construction sheet and cited on its page. `pnpm data:commons` downloads it, with its licence, author and
    licence templates, into `data-sources/`, checked by SHA-256.
@@ -525,7 +574,7 @@ Every function is pure and every record it hands out is frozen.
    pixels of its source at 960 pixels wide.
 
 Only drawings in the public domain, under CC0, under CC BY or under MIT are shipped. [docs/provenance.md](./docs/provenance.md)
-lists every flag with its file, licence, author and why; [docs/left-out.md](./docs/left-out.md) the 17 codes with
+lists every flag with its file, licence, author and why; [docs/left-out.md](./docs/left-out.md) the 27 codes with
 no flag; [docs/decisions.md](./docs/decisions.md) the judgement calls, including the four flags left out for their
 licence, which of France's regions have a flag, Germany's and Austria's civil flags, and the places where the
 sources disagree on the design, each with a recommendation, and [docs/variants.md](./docs/variants.md) every place's other flags in real use.
@@ -570,12 +619,13 @@ dark one on a dark page), and its size. The demo is the worked example: [`demo/d
 | --- | --- | --- |
 | Countries | 245 of the 250 Kuni knows | `FLAG_CODES` |
 | Subdivisions | the first level of Japan (45 of 47), Canada (13 of 13), the United States (57 of 57), Australia (8 of 8), the United Kingdom (3 of 4), Germany (16 of 16), France (17 of 26), Switzerland (26 of 26), Austria (9 of 9) and Brazil (27 of 27) | `FLAG_CODES` |
-| Codes with no flag | 17 codes, each with its reason | `LEFT_OUT`, [docs/left-out.md](./docs/left-out.md) |
+| Former countries | 12 flags, 10 more codes with a reason (the Olympic teams under the Olympic flag, and two without one flag) | `FLAG_CODES`, `LEFT_OUT`, [docs/historical.md](./docs/historical.md) |
+| Codes with no flag | 27 codes, each with its reason | `LEFT_OUT`, [docs/left-out.md](./docs/left-out.md) |
 | Licences | public domain, CC0, CC BY and MIT only | `manifest(code).licence` |
 | Largest flag | 372 KB (Virginia); 55 over the 40 KB budget | [docs/sizes.md](./docs/sizes.md) |
 
 Not here: other countries' regions (Spain's, Italy's, Mexico's and India's wait, for the reasons in
-[docs/decisions.md](./docs/decisions.md)), the United Kingdom's counties (Kuni lists the four countries only), cities, historical flags, ensigns and standards, and raster pictures. A flag's
+[docs/decisions.md](./docs/decisions.md)), the United Kingdom's counties (Kuni lists the four countries only), cities, the earlier flags of countries that still exist (apart from the dated variants of a few), ensigns and standards, and raster pictures. A flag's
 licence covers the drawing; using a country's flag or seal may still be limited by its law (Commons marks most
 flags "insignia"), which [NOTICE.md](./NOTICE.md) explains.
 

@@ -132,7 +132,11 @@ describe("the framings", () => {
 
   it("are the sides a crop is kept at: one row for each flag a person chose a side for, and for no other", () => {
     const expected = Object.fromEntries(
-      MANIFEST.filter((one) => one.sameAs === null && FOCUS[one.code] !== undefined && FOCUS[one.code]!.at !== "whole").map((one) => [one.code.toLowerCase(), FOCUS[one.code]!.at]),
+      [
+        ...MANIFEST.filter((one) => one.sameAs === null && FOCUS[one.code] !== undefined && FOCUS[one.code]!.at !== "whole").map((one) => [one.code.toLowerCase(), FOCUS[one.code]!.at]),
+        // A variant with a picture of its own and a side chosen for it ("SUHH--1936"), by its module's name.
+        ...Object.entries(FOCUS).filter(([code, focus]) => code.includes("--") && focus.at !== "whole").map(([code, focus]) => [code.toLowerCase(), focus.at]),
+      ],
     );
     expect(CROPS).toEqual(expected);
   });

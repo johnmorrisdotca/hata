@@ -208,6 +208,8 @@ const SIDES: Readonly<Record<string, Focus>> = {
   ...group("whole", "The meaning is spread across the whole flag (two emblems, or a design that runs from one end to the other), so any square crop is a part of it that another flag could share.", [
     "AS", "AU-NT", "BR-MS", "CA-SK", "CA-NL", "CA-NU", "CX", "TF", "TK", "US-AK", "US-DC", "LK",
   ]),
+  ...group("left", "The emblem sits in a canton at the hoist on a plain field, so a crop from the centre is a square of one colour; a crop from the left keeps the emblem, as a hand-drawn square of the flag would.", ["SUHH", "SUHH--1936"]),
+  ...group("left", "The blue canton with its stars or its wheel sits at the hoist, and a crop from the centre cuts half of it away; a crop from the left keeps it whole with the red field beside it.", ["BUMM", "BUMM--union"]),
   QA: {
     at: "whole",
     why: "The serrated white band covers the hoist for more than a third of the flag, so a square at the hoist is white and a square from the centre is plain maroon; neither is the flag, which is both.",
@@ -616,7 +618,351 @@ const VARIANTS: Readonly<Record<string, VariantSet>> = {
       },
     ],
   },
+  // The former countries (HISTORICAL): where a state flew more than one flag in the years a sport knows it, the one a table
+  // most often needs is the default and the others are dated variants (none is chosen by year: `flag(code, { variant })`).
+  SUHH: {
+    disputed: false,
+    default: "1955",
+    variants: [
+      {
+        id: "1955",
+        name: "The flag of 1955 to 1991",
+        nameJa: "1955年から1991年の国旗",
+        status: "official",
+        from: "1955-08-19",
+        until: "1991-12-25",
+        why: "The red flag with the gold hammer and sickle and the gold-edged red star in the canton that the Soviet Union flew from 1955 until it was dissolved, at every Games from 1956 to 1988.",
+        source: "https://en.wikipedia.org/wiki/Flag_of_the_Soviet_Union",
+        file: null,
+      },
+      {
+        id: "1936",
+        name: "The flag of 1936 to 1955",
+        nameJa: "1936年から1955年の国旗",
+        status: "historical",
+        from: "1936-12-05",
+        until: "1955-08-19",
+        why: "The earlier version of the flag, in a darker red with the emblem drawn a little differently, which the Soviet Union flew at its first Olympic Games, Helsinki 1952.",
+        source: "https://en.wikipedia.org/wiki/Flag_of_the_Soviet_Union",
+        file: "Flag of the Soviet Union (1936 – 1955).svg",
+      },
+    ],
+  },
+  YUCS: {
+    disputed: false,
+    default: "sfry",
+    variants: [
+      {
+        id: "sfry",
+        name: "The flag of the Socialist Federal Republic",
+        nameJa: "ユーゴスラビア社会主義連邦共和国の国旗",
+        status: "official",
+        from: "1946",
+        until: "1992-04-27",
+        why: "The blue, white and red tricolour with a gold-edged red star, the flag of Yugoslavia's years as a sporting power (every Games from 1948 to 1988): the default.",
+        source: "https://en.wikipedia.org/wiki/Flag_of_Yugoslavia",
+        file: null,
+      },
+      {
+        id: "fry",
+        name: "The flag of the Federal Republic",
+        nameJa: "ユーゴスラビア連邦共和国の国旗",
+        status: "official",
+        from: "1992-04-27",
+        until: "2003-02-04",
+        why: "The plain blue, white and red tricolour of the Federal Republic of Yugoslavia (Serbia and Montenegro), which competed as Yugoslavia at the Games of 1996 and 2000. The same drawing is the flag of Serbia and Montenegro (CSXX).",
+        source: "https://en.wikipedia.org/wiki/Flag_of_Yugoslavia",
+        file: "Flag of Serbia and Montenegro (1992–2006).svg",
+      },
+      {
+        id: "kingdom",
+        name: "The flag of the Kingdom",
+        nameJa: "ユーゴスラビア王国の国旗",
+        status: "historical",
+        from: "1918",
+        until: "1941",
+        why: "The blue, white and red tricolour of the Kingdom of the Serbs, Croats and Slovenes and then of Yugoslavia, without a star, under which the country competed at the Games of 1920 to 1936.",
+        source: "https://en.wikipedia.org/wiki/Flag_of_Yugoslavia",
+        file: "Flag of Yugoslavia (1918–1941).svg",
+      },
+    ],
+  },
+  BUMM: {
+    disputed: false,
+    default: "socialist",
+    variants: [
+      {
+        id: "socialist",
+        name: "The flag of 1974 to 2010",
+        nameJa: "1974年から2010年の国旗",
+        status: "official",
+        from: "1974-01-03",
+        until: "2010-10-21",
+        why: "The red flag with the blue canton, the cogwheel and ears of rice and the ring of fourteen stars, adopted with the 1974 constitution and kept by Myanmar until 2010: the default.",
+        source: "https://en.wikipedia.org/wiki/Flag_of_Myanmar",
+        file: null,
+      },
+      {
+        id: "union",
+        name: "The flag of 1948 to 1974",
+        nameJa: "1948年から1974年の国旗",
+        status: "historical",
+        from: "1948-01-04",
+        until: "1974-01-03",
+        why: "The flag of the Union of Burma from its independence: red, with a blue canton holding one large white star among five small ones.",
+        source: "https://en.wikipedia.org/wiki/Flag_of_Myanmar",
+        file: "Flag of Burma (1948–1974).svg",
+      },
+    ],
+  },
 };
+
+// Former countries, for the places a medal table, a record book or a history of a sport still names: each is a
+// place of its own under a code that no present-day country uses, with its flag, the years it flew, and the sports
+// and ISO codes that also find it. The canonical code is the ISO 3166-3 code (four letters: SUHH, DDDE, YUCS ...)
+// where the standard has one, else the IOC's (FRG, BOH, WIF). `aliases` are the other codes a table is likely to
+// hold: the ISO 3166-1 alpha-2 and alpha-3 the place had (SU, SUN, DD, DDR ...) and the IOC's three letters (URS, GDR,
+// TCH, YUG ...). A code that two former countries held (CS: Czechoslovakia until 1992, Serbia and Montenegro from
+// 2003) is an alias of neither, and is listed with `file: null` so that it says why. `file` is a Wikimedia Commons file that must be
+// one of the flag images (P41) of Wikidata's `item` (scripts/select.ts checks), or null where the place has no flag
+// here: the flag of an Olympic team that marched under the Olympic flag is the IOC's mark, not a country's, and a
+// site draws a badge for it. A place's other flags in real use are in VARIANTS, as for any place. Added in 1.7.0.
+interface HistoricalSpec {
+  en: string;
+  ja: string; // the usual Japanese name; marked for review with the rest of the Japanese (docs/strings-ja.md)
+  item: string | null; // the Wikidata item whose flag image names `file`
+  from: string; // the first year it flew its flag (or the state's first year)
+  until: string; // the last
+  aliases: readonly string[];
+  file: string | null;
+  why: string;
+}
+
+const HISTORICAL: Readonly<Record<string, HistoricalSpec>> = {
+  SUHH: {
+    en: "Soviet Union",
+    ja: "ソビエト連邦",
+    item: "Q15180",
+    from: "1922",
+    until: "1991",
+    aliases: ["SU", "SUN", "URS"],
+    file: "Flag of the Soviet Union.svg",
+    why: "The flag of 1955 to 1991, the one the Soviet Union flew at the Olympic Games from 1956 to 1988 (it stayed away in 1984) and at every world championship of its last 36 years; Wikidata's statement for it runs 1955-08-19 to 1991-12-25. The flag of 1936 to 1955 (a darker red, the emblem drawn a little differently), which it flew at its first Games, Helsinki 1952, is the `1936` variant.",
+  },
+  DDDE: {
+    en: "East Germany",
+    ja: "東ドイツ",
+    item: "Q16957",
+    from: "1949",
+    until: "1990",
+    aliases: ["DD", "DDR", "GDR"],
+    file: "Flag of the German Democratic Republic.svg",
+    why: "The flag with the hammer and compass in a wreath of rye, which the German Democratic Republic flew from 1959-10-01 to 1990 and under which it competed at the Games from 1968 to 1988 (it stayed away in 1984), after a team it shared with West Germany until 1964; before 1959 its flag was Germany's plain tricolour. Wikidata's preferred flag.",
+  },
+  FRG: {
+    en: "West Germany",
+    ja: "西ドイツ",
+    item: "Q713750",
+    from: "1949",
+    until: "1990",
+    aliases: [],
+    file: "Flag of Germany.svg",
+    why: "The Federal Republic of Germany's flag from 1949 to 1990 is the black, red and gold tricolour that Germany flies today (Basic Law, Article 22), so West Germany ships the same picture as Germany's: `FRG` and `DE` are one drawing, and `manifest('FRG').sameAs` says `DE`. The code exists so that a table can keep West Germany's row apart from the united country's.",
+  },
+  CSHH: {
+    en: "Czechoslovakia",
+    ja: "チェコスロバキア",
+    item: "Q33946",
+    from: "1918",
+    until: "1992",
+    aliases: ["CSK", "TCH"],
+    file: "Flag of the Czech Republic.svg",
+    why: "Czechoslovakia's flag from 1920 to 1992 (white over red with a blue wedge at the hoist) is the flag the Czech Republic took over unchanged in 1993, so it ships the same picture as Czechia's and `manifest('CSHH').sameAs` says `CZ`; Wikidata names the same Commons file for the Czechoslovak item. Its alpha-2 code, CS, is not an alias: Serbia and Montenegro held it from 2003 (`CS` is listed with that reason).",
+  },
+  YUCS: {
+    en: "Yugoslavia",
+    ja: "ユーゴスラビア",
+    item: "Q83286",
+    from: "1918",
+    until: "2003",
+    aliases: ["YU", "YUG"],
+    file: "Flag of Yugoslavia (1946-1992).svg",
+    why: "The flag of the Socialist Federal Republic (blue, white and red with a gold-edged red star, 1946 to 1992), because it is the flag Yugoslavia's teams marched under at every Olympic Games from 1948 to 1988 and at the world championships in basketball, handball, water polo, football and hockey. The state used two other flags in 1918 to 2003, each a variant with its dates: the Kingdom's tricolour (`kingdom`) and the Federal Republic's plain one (`fry`).",
+  },
+  CSXX: {
+    en: "Serbia and Montenegro",
+    ja: "セルビア・モンテネグロ",
+    item: "Q37024",
+    from: "2003",
+    until: "2006",
+    aliases: ["SCG"],
+    file: "Flag of Serbia and Montenegro (1992–2006).svg",
+    why: "The State Union of Serbia and Montenegro (2003 to 2006) kept the blue, white and red tricolour that the Federal Republic of Yugoslavia had flown since 1992, so Commons has one file for both and it ships the same picture as Yugoslavia's `fry` variant. Wikidata's flag for the item. Its alpha-2 code, CS, is not an alias (Czechoslovakia held it first).",
+  },
+  ANHH: {
+    en: "Netherlands Antilles",
+    ja: "オランダ領アンティル",
+    item: "Q25227",
+    from: "1954",
+    until: "2010",
+    aliases: ["AN", "ANT", "AHO"],
+    file: "Flag of the Netherlands Antilles (1986–2010).svg",
+    why: "The flag of 1986 to 2010, with five stars for the islands that remained after Aruba left, which the Netherlands Antilles flew at its Olympic Games from 1988 to 2008. Wikidata's preferred flag. The flag of 1959 to 1986 (six stars) has no variant here: its Commons file is CC BY-SA 2.5, which this package does not ship (docs/decisions.md).",
+  },
+  BUMM: {
+    en: "Burma",
+    ja: "ビルマ",
+    item: "Q13072974",
+    from: "1948",
+    until: "1989",
+    aliases: ["BU", "BUR", "BIR"],
+    file: "Flag of Myanmar (1974–2010).svg",
+    why: "Burma's flag from 1974 to 2010 (the red field with the blue canton, the cogwheel and rice ears ringed by fourteen stars, for the fourteen states and divisions of the Socialist Republic), which the country kept under the name Myanmar from 1989 until the 2010 flag replaced it; the flag before 1974 is the `union` variant. The code BUMM is ISO 3166-3's for the country as Burma (until 1989).",
+  },
+  ZRCD: {
+    en: "Zaire",
+    ja: "ザイール",
+    item: "Q6500954",
+    from: "1971",
+    until: "1997",
+    aliases: ["ZR", "ZAR", "ZAI"],
+    file: "Flag of Zaire (1971–1997).svg",
+    why: "Zaire's flag from 1971 to 1997 (green with a yellow disc and the hand holding a flaming torch), the flag of the country now called the Democratic Republic of the Congo (CD) while it was Zaire. Wikidata's statement on the Zaire item.",
+  },
+  RHZW: {
+    en: "Rhodesia",
+    ja: "ローデシア",
+    item: "Q217169",
+    from: "1965",
+    until: "1979",
+    aliases: ["RH", "RHO"],
+    file: "Flag of Rhodesia (1968–1979).svg",
+    why: "Rhodesia's flag from 1968 to 1979 (green, white and green, with the arms in the centre of the white band), the flag it flew until 1979. ISO 3166-3 names the code RHZW for Southern Rhodesia (it was RH, then ZW from 1980). The blue ensign that preceded it (1964 to 1968) has a Commons page that also carries a CC BY-SA 4.0 template beside the public-domain ones, so it is not offered.",
+  },
+  BOH: {
+    en: "Bohemia",
+    ja: "ボヘミア",
+    item: "Q39193",
+    from: "1198",
+    until: "1918",
+    aliases: [],
+    file: "Flag of Bohemia.svg",
+    why: "Bohemia's flag (white over red), the flag of the Kingdom of Bohemia and of the Czech lands, under which Bohemian athletes competed at the Games of 1900, 1908 and 1912 (the IOC's BOH). Wikidata's flag for Bohemia, and a public-domain drawing on Commons.",
+  },
+  WIF: {
+    en: "West Indies Federation",
+    ja: "西インド連邦",
+    item: "Q652560",
+    from: "1958",
+    until: "1962",
+    aliases: ["BWI"],
+    file: "Flag of the West Indies Federation (1958–1962).svg",
+    why: "The flag of the West Indies Federation (1958 to 1962: blue with white wavy bands and an orange sun), under which the British West Indies team competed at the 1960 Games (the IOC's BWI).",
+  },
+  CS: {
+    en: "Czechoslovakia or Serbia and Montenegro",
+    ja: "チェコスロバキアまたはセルビア・モンテネグロ",
+    item: null,
+    from: "1974",
+    until: "2006",
+    aliases: [],
+    file: null,
+    why: "CS is ambiguous: ISO 3166-1 gave it to Czechoslovakia until 1992 and to Serbia and Montenegro from 2003, so it is not an alias of either, because a near miss would draw the wrong country. Ask for Czechoslovakia by `CSHH`, `CSK` or `TCH`, and for Serbia and Montenegro by `CSXX` or `SCG`.",
+  },
+  EUN: {
+    en: "Unified Team",
+    ja: "合同チーム",
+    item: null,
+    from: "1992",
+    until: "1992",
+    aliases: [],
+    file: null,
+    why: "The Unified Team of the former Soviet republics (the Winter and Summer Games of 1992) competed under the Olympic flag, the IOC's own mark, not a country's: it has no flag of its own, and the package does not ship the Olympic rings. A site that needs a mark for this row draws a badge with the code.",
+  },
+  EUA: {
+    en: "United Team of Germany",
+    ja: "ドイツ合同チーム",
+    item: null,
+    from: "1956",
+    until: "1964",
+    aliases: [],
+    file: null,
+    why: "The United Team of Germany (the Games of 1956, 1960 and 1964) flew the German tricolour with the white Olympic rings across its middle, a flag that carries the IOC's mark, so it is not shipped. East and West Germany, which entered separate teams from 1968, are DDDE and FRG; a site that needs a mark for this row draws a badge with the code.",
+  },
+  ROC: {
+    en: "Russian Olympic Committee",
+    ja: "ロシア・オリンピック委員会",
+    item: null,
+    from: "2020",
+    until: "2022",
+    aliases: [],
+    file: null,
+    why: "The Russian Olympic Committee's team at Tokyo 2020 and Beijing 2022 marched under the committee's own emblem on white, a federation's mark and not a country's flag (Russia's flag was not allowed), so it is not shipped. A site draws a badge with the code.",
+  },
+  OAR: {
+    en: "Olympic Athletes from Russia",
+    ja: "ロシアからのオリンピック選手",
+    item: null,
+    from: "2018",
+    until: "2018",
+    aliases: [],
+    file: null,
+    why: "The athletes at Pyeongchang 2018 competed under the Olympic flag, the IOC's mark, so there is no flag to ship. A site draws a badge with the code.",
+  },
+  AIN: {
+    en: "Individual Neutral Athletes",
+    ja: "個人の中立選手",
+    item: null,
+    from: "2024",
+    until: "2024",
+    aliases: [],
+    file: null,
+    why: "The neutral athletes at Paris 2024 competed under the Olympic flag, the IOC's mark, so there is no flag to ship. A site draws a badge with the code.",
+  },
+  IOP: {
+    en: "Independent Olympic Participants",
+    ja: "独立オリンピック参加者",
+    item: null,
+    from: "1992",
+    until: "1992",
+    aliases: [],
+    file: null,
+    why: "The athletes from Yugoslavia (and Macedonia) who competed independently in 1992 marched under the Olympic flag, the IOC's mark, so there is no flag to ship. A site draws a badge with the code.",
+  },
+  EOR: {
+    en: "Refugee Olympic Team",
+    ja: "難民選手団",
+    item: null,
+    from: "2016",
+    until: "2024",
+    aliases: ["ROT"],
+    file: null,
+    why: "The Refugee Olympic Team (2016, where the IOC's code was ROT, and from 2020, EOR) competes under the Olympic flag, the IOC's mark, not a country's, so there is no flag to ship. A site draws a badge with the code.",
+  },
+  RU1: {
+    en: "Russian Empire",
+    ja: "ロシア帝国",
+    item: null,
+    from: "1900",
+    until: "1912",
+    aliases: [],
+    file: null,
+    why: "The Russian Empire's teams of 1900, 1908 and 1912 are listed under one IOC code, RU1, but the Empire had no single flag in sporting use: the black, yellow and white state flag, the white, blue and red tricolour of its merchant ships and the imperial standard were each flown, and sources differ on which a team carried. Left out rather than chosen for it; a site draws a badge with the code.",
+  },
+  ANZ: {
+    en: "Australasia",
+    ja: "オーストララシア",
+    item: null,
+    from: "1908",
+    until: "1912",
+    aliases: [],
+    file: null,
+    why: "The combined team of Australia and New Zealand at the Games of 1908 and 1912 had no flag of its own, and the Australian and New Zealand flags of the time are not one picture, so there is none to ship. A site draws a badge with the code.",
+  },
+};
+
+// Every alias to the code it finds, for the lookups and the manifest (the builder checks no alias is a code of its own).
+const ALIASES: Readonly<Record<string, string>> = Object.fromEntries(Object.entries(HISTORICAL).flatMap(([code, spec]) => spec.aliases.map((alias) => [alias, code])));
 
 // The size budget of one optimised flag, in bytes of SVG. Flags carrying a detailed coat of arms or seal go over
 // it; the build lists them in docs/sizes.md and the size test holds the list, so a new one is a decision.
@@ -625,5 +971,5 @@ const BUDGET_BYTES = 40 * 1024;
 // Flags may go over the budget only up to this, after which the build fails: a picture this large is not an icon.
 const CEILING_BYTES = 400 * 1024;
 
-export { ACCEPTED, BUDGET_BYTES, CEILING_BYTES, CHOSEN, FOCUS, ITEM, NAMED, NO_FLAG, REVIEWED, SAME_PLACE, SUBDIVISION_COUNTRIES, VARIANTS };
-export type { Anchor, Focus, VariantSet, VariantSpec, VariantStatus };
+export { ACCEPTED, ALIASES, BUDGET_BYTES, CEILING_BYTES, CHOSEN, FOCUS, HISTORICAL, ITEM, NAMED, NO_FLAG, REVIEWED, SAME_PLACE, SUBDIVISION_COUNTRIES, VARIANTS };
+export type { Anchor, Focus, HistoricalSpec, VariantSet, VariantSpec, VariantStatus };

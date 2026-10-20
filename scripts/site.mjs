@@ -12,6 +12,8 @@ import { FAMILY_SCRIPT, FAMILY_EMBED_BUILDER_WORDS, familyEmbedBuilder, familyFo
 const id = "hata";
 const { FLAG_CODES } = await import(new URL("../dist/index.js", import.meta.url).href);
 const { LEFT_OUT } = await import(new URL("../dist/manifest.js", import.meta.url).href);
+// The former countries and teams of sport are Hata's own list, not Kuni's (which knows the countries of today).
+const { HISTORICAL } = await import(new URL("./data-config.ts", import.meta.url).href);
 
 
 // A flag on a pole, in the family's green.
@@ -21,7 +23,9 @@ const ICON = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewB
 // the quiz asks. Written into the site as a module.
 const names = {};
 for (const code of [...FLAG_CODES, ...LEFT_OUT.map((one) => one.code)]) {
-  if (code.length === 2) {
+  if (HISTORICAL[code] !== undefined) {
+    names[code] = { en: HISTORICAL[code].en, ja: HISTORICAL[code].ja, reading: null };
+  } else if (code.length === 2) {
     const one = country(code);
     names[code] = { en: one.name.en, ja: one.name.ja, short: one.shortName?.en ?? null, shortJa: one.shortName?.ja ?? null, reading: one.reading ?? null, continent: one.continent };
   } else {
@@ -51,7 +55,7 @@ const gallery = `<section class="fam-panels" id="gallery-panel" role="tabpanel" 
         <div class="fam-panel">
           <p class="blurb" data-say="gallery_blurb"></p>
           ${row(["Type a place's name in English or Japanese, or its code (JP-13, CA-ON, US-TX).", "地名（英語でも日本語でも）か、コード（JP-13、CA-ON、US-TX）を入力します。"], `<label class="fam-label" for="search" data-say="search"></label><input id="search" class="fam-field" data-testid="search" type="search" spellcheck="false" autocomplete="off" autocapitalize="off" data-say-placeholder="search_hint" />`)}
-          ${row(["Show every flag, or only the countries, or one country's regions: Japan's prefectures, Canada's provinces, the American states, Australia's states, the United Kingdom's four countries, Germany's states, France's regions, Switzerland's cantons, Austria's states or Brazil's states.", "すべての旗を表示するか、国だけ、または一つの国の地域だけに絞り込みます。日本の都道府県、カナダの州と準州、アメリカの州、オーストラリアの州と準州、イギリスの4つの構成国、ドイツの州、フランスの地域圏、スイスの州、オーストリアの州、ブラジルの州から選べます。"], `<label class="fam-label" for="set" data-say="set"></label><select id="set" class="fam-field" data-testid="set"></select>`)}
+          ${row(["Show every flag, or only the countries, or one country's regions: Japan's prefectures, Canada's provinces, the American states, Australia's states, the United Kingdom's four countries, Germany's states, France's regions, Switzerland's cantons, Austria's states, Brazil's states or the former countries (the Soviet Union, East and West Germany, Yugoslavia and more).", "すべての旗を表示するか、国だけ、または一つの国の地域だけに絞り込みます。日本の都道府県、カナダの州と準州、アメリカの州、オーストラリアの州と準州、イギリスの4つの構成国、ドイツの州、フランスの地域圏、スイスの州、オーストリアの州、ブラジルの州、旧国（ソビエト連邦、東西ドイツ、ユーゴスラビアなど）から選べます。"], `<label class="fam-label" for="set" data-say="set"></label><select id="set" class="fam-field" data-testid="set"></select>`)}
           ${row(["Narrow the countries to one continent.", "国を大陸で絞り込みます。"], `<label class="fam-label" for="region" data-say="region"></label><select id="region" class="fam-field" data-testid="region"></select>`, ` id="region-row"`)}
           ${seg("shape", "shape", [["flag", "shape_flag"], ["4:3", "shape_43"], ["1:1", "shape_11"], ["round", "shape_round"]], ["See every flag at its own proportions, or framed at 4:3, square or round as the package frames it: never stretched, cropped only where a crop keeps every colour, and drawn again for the shape where flag-icons has done so.", "旗を本来の縦横比のまま、またはこのパッケージと同じ方法で4:3・正方形・円形の枠に収めて表示します。引き伸ばさず、切り抜くのはどの色も残る場合だけで、flag-iconsがその形用に描いた図があればそれを使います。"])}
           ${seg("fit", "fit", [["auto", "fit_auto"], ["whole", "fit_whole"], ["crop", "fit_crop"]], ["How a 4:3, square or round frame shows a flag: the best for the flag (a crop where one keeps it true, else the whole flag), always the whole flag, or a crop kept at the side chosen for it, such as the United States' stars and stripes rather than its middle stripes.", "4:3・正方形・円形の枠での旗の見せ方を選びます。旗に合わせた最適な表示（正しく表せる切り抜きがあれば切り抜き、なければ全体）、常に旗の全体、または旗ごとに選んだ側を残した切り抜き（アメリカなら、中央の縞ではなく星のある側）です。"]).replace('<div class="fam-seg"', '<div class="fam-seg" hidden')}
@@ -77,7 +81,7 @@ const gallery = `<section class="fam-panels" id="gallery-panel" role="tabpanel" 
 const quiz = `<section class="fam-panels" id="quiz-panel" role="tabpanel" aria-labelledby="tab-quiz" data-testid="quiz-panel" hidden>
         <div class="fam-panel">
           <p class="blurb" data-say="quiz_blurb"></p>
-          ${row(["Pick what to be asked: the world's countries, or the regions of Japan, Canada, the United States, Australia, Brazil, Germany or Switzerland, or Europe's regions together (the United Kingdom's, Germany's, France's, Switzerland's and Austria's).", "出題範囲を選びます。世界の国、日本・カナダ・アメリカ・オーストラリア・ブラジル・ドイツ・スイスの地域、またはヨーロッパの地域（イギリス・ドイツ・フランス・スイス・オーストリア）をまとめて選べます。"], `<label class="fam-label" for="mode" data-say="mode"></label><select id="mode" class="fam-field" data-testid="mode"></select>`)}
+          ${row(["Pick what to be asked: the world's countries, or the regions of Japan, Canada, the United States, Australia, Brazil, Germany or Switzerland, Europe's regions together (the United Kingdom's, Germany's, France's, Switzerland's and Austria's), or the former countries.", "出題範囲を選びます。世界の国、日本・カナダ・アメリカ・オーストラリア・ブラジル・ドイツ・スイスの地域、ヨーロッパの地域（イギリス・ドイツ・フランス・スイス・オーストリア）をまとめて、または旧国から選べます。"], `<label class="fam-label" for="mode" data-say="mode"></label><select id="mode" class="fam-field" data-testid="mode"></select>`)}
           ${row(["The same game, word for word, comes from the same seed: share the link and a friend gets your ten flags in your order.", "同じシードからは同じ問題が出ます。リンクを共有すると、友だちにも同じ10問が同じ順で出ます。"], `<span class="fam-label" data-say="seed"></span><code class="fam-code" id="seed" data-testid="seed"></code><button type="button" class="fam-button" id="new-game" data-testid="new-game" data-say="new_game"></button><button type="button" class="fam-button" id="daily" data-testid="daily" data-say="daily"></button><button type="button" class="fam-button" id="share" data-testid="share" data-say="share"></button>`)}
           <div class="scores" data-testid="scores">
             <div class="fam-card"><b id="score" data-testid="score">0</b><span data-say="score"></span></div>

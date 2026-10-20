@@ -6,6 +6,24 @@ All notable changes to this project are written here. The format follows
 
 ## [Unreleased]
 
+Flags of former countries, for the medal tables and record books that still name them (`docs/historical.md`, `docs/decisions.md`, "Former countries").
+
+### Added
+
+- **Twelve former countries**, each under a code no present-day country has: `SUHH` the Soviet Union, `DDDE` East Germany, `FRG` West Germany, `CSHH` Czechoslovakia, `YUCS` Yugoslavia, `CSXX` Serbia and Montenegro, `ANHH` the Netherlands Antilles, `BUMM` Burma, `ZRCD` Zaire, `RHZW` Rhodesia, `BOH` Bohemia and `WIF` the West Indies Federation (478 flags in all, and `/flags/<code>` modules, `dist/svg/<code>.svg` files and manifest records for each). The code is the ISO 3166-3 one where that standard has one, else the IOC's. Every drawing is a public-domain file on Commons that is one of the flag images of its Wikidata item (the build checks); West Germany's is Germany's picture and Czechoslovakia's is Czechia's (`manifest(code).sameAs`), kept as codes of their own so a table keeps the row.
+- **`FLAG_ALIASES`**: the codes a table holds for them find them too, in any case, through `flagCode`, `flag`, `flagName`, `flagAspect`, `flagUrl`, `manifest`, `leftOut`, `variantsOf` and `<hata-flag>`: the ISO 3166-1 alpha-2 and alpha-3 (`SU`, `SUN`, `DD`, `DDR`, `YU`, `AN`, `BU`, `ZR`, `RH`, `CSK`, `ANT`, `BUR`, `ZAR`) and the IOC's letters (`URS`, `GDR`, `TCH`, `YUG`, `SCG`, `AHO`, `BIR`, `ZAI`, `RHO`, `BWI`). An alias is never a code of a flag (`isFlagCode("URS")` is false). **`CS` finds nothing** on purpose: Czechoslovakia and Serbia and Montenegro both held it, so `leftOut("CS")` says which codes to use.
+- **Dated variants**: Yugoslavia's default is the Socialist Federal Republic's star flag (1946 to 1992, the one it competed under from 1948 to 1988), with the Federal Republic's tricolour (`fry`, 1992 to 2003) and the Kingdom's (`kingdom`, 1918 to 1941); the Soviet Union's flag of 1936 to 1955 (`1936`) and Burma's of 1948 to 1974 (`union`) are variants beside their defaults. Nothing is chosen by year: you ask for the one you mean.
+- **Ten more codes with a reason and no flag**, in `LEFT_OUT`: the Olympic teams that marched under the Olympic flag or the committee's emblem, which are marks and not countries' flags (`EUN` the Unified Team of 1992, `EUA` the United Team of Germany, `ROC`, `OAR`, `AIN`, `IOP`, `EOR`), `RU1` the Russian Empire and `ANZ` Australasia (no one flag in sport), and the ambiguous `CS`. A page draws a badge with the code for these.
+- `manifest(code).historical` (`from`, `until`, `aliases`) on a former country's record, and on a left-out team's.
+- The demo's **Former countries** set in the gallery and in the quiz, `docs/historical.md`, and a section in the codes guide, in English and Japanese.
+- `pnpm data:wikidata -- --historical` asks Wikidata for the former countries' items only, and puts them into the snapshot; `FOCUS` (the side a crop keeps) may now name a variant's own picture.
+
+### Changed
+
+- `FLAG_CODES` is countries, then subdivisions, then the former countries (it was the first two). `LEFT_OUT` is 27 codes (was 17). The main entry grows by 0.2 KB gzipped.
+- The Netherlands Antilles' flag of 1959 to 1986 and Rhodesia's of 1964 to 1968 are not offered: their Commons pages are CC BY-SA (2.5, and 4.0 beside public-domain templates), which this package does not ship.
+- Burma's flag of 1974 to 2010, once "considered and not offered", is now `BUMM`'s.
+
 ## [1.6.3] - 2026-10-20
 
 The second batch from the October 2026 audit (`docs/audit-2026-10.md`): the Commons snapshot is refreshed, and every flag now names its author.

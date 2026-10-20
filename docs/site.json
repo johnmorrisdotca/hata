@@ -122,6 +122,10 @@
       "en": "AM flag SVG",
       "ja": "AMの旗のSVG"
     },
+    "./flags/anhh": {
+      "en": "ANHH flag SVG",
+      "ja": "ANHHの旗のSVG"
+    },
     "./flags/ao.1x1": {
       "en": "AO.1X1 flag SVG",
       "ja": "AO.1X1の旗のSVG"
@@ -434,6 +438,10 @@
       "en": "BO flag SVG",
       "ja": "BOの旗のSVG"
     },
+    "./flags/boh": {
+      "en": "BOH flag SVG",
+      "ja": "BOHの旗のSVG"
+    },
     "./flags/br-ac": {
       "en": "BR-AC flag SVG",
       "ja": "BR-ACの旗のSVG"
@@ -569,6 +577,14 @@
     "./flags/bt": {
       "en": "BT flag SVG",
       "ja": "BTの旗のSVG"
+    },
+    "./flags/bumm--union": {
+      "en": "BUMM--UNION flag SVG",
+      "ja": "BUMM--UNIONの旗のSVG"
+    },
+    "./flags/bumm": {
+      "en": "BUMM flag SVG",
+      "ja": "BUMMの旗のSVG"
     },
     "./flags/bv": {
       "en": "BV flag SVG",
@@ -890,6 +906,14 @@
       "en": "CR flag SVG",
       "ja": "CRの旗のSVG"
     },
+    "./flags/cshh": {
+      "en": "CSHH flag SVG",
+      "ja": "CSHHの旗のSVG"
+    },
+    "./flags/csxx": {
+      "en": "CSXX flag SVG",
+      "ja": "CSXXの旗のSVG"
+    },
     "./flags/cu.1x1": {
       "en": "CU.1X1 flag SVG",
       "ja": "CU.1X1の旗のSVG"
@@ -953,6 +977,10 @@
     "./flags/cz": {
       "en": "CZ flag SVG",
       "ja": "CZの旗のSVG"
+    },
+    "./flags/ddde": {
+      "en": "DDDE flag SVG",
+      "ja": "DDDEの旗のSVG"
     },
     "./flags/de-bb": {
       "en": "DE-BB flag SVG",
@@ -1277,6 +1305,10 @@
     "./flags/fr": {
       "en": "FR flag SVG",
       "ja": "FRの旗のSVG"
+    },
+    "./flags/frg": {
+      "en": "FRG flag SVG",
+      "ja": "FRGの旗のSVG"
     },
     "./flags/ga.1x1": {
       "en": "GA.1X1 flag SVG",
@@ -2738,6 +2770,10 @@
       "en": "RE flag SVG",
       "ja": "REの旗のSVG"
     },
+    "./flags/rhzw": {
+      "en": "RHZW flag SVG",
+      "ja": "RHZWの旗のSVG"
+    },
     "./flags/ro.1x1": {
       "en": "RO.1X1 flag SVG",
       "ja": "RO.1X1の旗のSVG"
@@ -2961,6 +2997,14 @@
     "./flags/st": {
       "en": "ST flag SVG",
       "ja": "STの旗のSVG"
+    },
+    "./flags/suhh--1936": {
+      "en": "SUHH--1936 flag SVG",
+      "ja": "SUHH--1936の旗のSVG"
+    },
+    "./flags/suhh": {
+      "en": "SUHH flag SVG",
+      "ja": "SUHHの旗のSVG"
     },
     "./flags/sv.1x1": {
       "en": "SV.1X1 flag SVG",
@@ -3578,6 +3622,10 @@
       "en": "WF flag SVG",
       "ja": "WFの旗のSVG"
     },
+    "./flags/wif": {
+      "en": "WIF flag SVG",
+      "ja": "WIFの旗のSVG"
+    },
     "./flags/ws.1x1": {
       "en": "WS.1X1 flag SVG",
       "ja": "WS.1X1の旗のSVG"
@@ -3614,6 +3662,18 @@
       "en": "YT flag SVG",
       "ja": "YTの旗のSVG"
     },
+    "./flags/yucs--fry": {
+      "en": "YUCS--FRY flag SVG",
+      "ja": "YUCS--FRYの旗のSVG"
+    },
+    "./flags/yucs--kingdom": {
+      "en": "YUCS--KINGDOM flag SVG",
+      "ja": "YUCS--KINGDOMの旗のSVG"
+    },
+    "./flags/yucs": {
+      "en": "YUCS flag SVG",
+      "ja": "YUCSの旗のSVG"
+    },
     "./flags/za.1x1": {
       "en": "ZA.1X1 flag SVG",
       "ja": "ZA.1X1の旗のSVG"
@@ -3637,6 +3697,10 @@
     "./flags/zm": {
       "en": "ZM flag SVG",
       "ja": "ZMの旗のSVG"
+    },
+    "./flags/zrcd": {
+      "en": "ZRCD flag SVG",
+      "ja": "ZRCDの旗のSVG"
     },
     "./flags/zw.1x1": {
       "en": "ZW.1X1 flag SVG",

@@ -4,6 +4,7 @@
 //
 // Every function is pure and works on strings: no DOM, no network, the same answer on a server and in a browser.
 
+import { FLAG_ALIASES } from "./data/aliases.data";
 import { FLAG_CODES } from "./data/codes.data";
 import type { FlagCode } from "./data/codes.data";
 import { aspectOf, frame, mustBeString, toDataUri } from "./svg";
@@ -35,8 +36,8 @@ interface FlagUrlOptions {
 const CDN = `https://cdn.jsdelivr.net/npm/@johnmorrisdotca/hata@${VERSION.split(".")[0]}/dist/svg`;
 
 /**
- * True for one of the codes with a flag, written exactly as Kuni writes it: "JP", "JP-13", "CA-ON", "US-TX".
- * Lower case is not a code here; `flagCode` is the forgiving one.
+ * True for one of the codes with a flag, written exactly as this package writes it: "JP", "JP-13", "CA-ON", "US-TX", and
+ * a former country's "SUHH". Lower case is not a code here, and neither is an alias ("URS"); `flagCode` is the forgiving one.
  *
  * @param value - Anything.
  * @returns `true` when `value` is a string in `FLAG_CODES`, and `false` for anything else, never throwing.
@@ -55,10 +56,12 @@ const isFlagCode = (value: unknown): value is FlagCode => typeof value === "stri
 /**
  * The code of a flag, from a code written loosely: either case, with spaces around it, and an underscore for the
  * hyphen ("jp", " Jp-13 ", "us_tx"). Codes match Kuni's exactly: ISO 3166-1 alpha-2 for a country, ISO 3166-2
- * for a subdivision.
+ * for a subdivision. A former country is found by its own code (ISO 3166-3: "SUHH", "DDDE", "YUCS"; the IOC's where
+ * that has none: "FRG") and by the codes a table of sport holds for it (`FLAG_ALIASES`: "SU", "URS", "GDR", "TCH", "YUG"),
+ * and the answer is its own code. A code two former countries held ("CS") is no alias, and finds nothing.
  *
- * @param input - A country's alpha-2 code ("JP") or a subdivision's ISO 3166-2 code ("JP-13"), in any case.
- * @returns The code as Kuni writes it (`"JP-13"`), or `null` when it is not a code or the place has no flag here.
+ * @param input - A country's alpha-2 code ("JP"), a subdivision's ISO 3166-2 code ("JP-13"), or a former country's code or alias ("URS"), in any case.
+ * @returns The code as this package writes it (`"JP-13"`, `"SUHH"`), or `null` when it is not a code or the place has no flag here.
  * @throws TypeError when `input` is not a string.
  *
  * @example
@@ -67,12 +70,15 @@ const isFlagCode = (value: unknown): value is FlagCode => typeof value === "stri
  *
  * console.log(flagCode("jp-13"));  // "JP-13"
  * console.log(flagCode("ca_on"));  // "CA-ON"
+ * console.log(flagCode("urs"));    // "SUHH": the Soviet Union, by the IOC's code
+ * console.log(flagCode("CS"));     // null: Czechoslovakia and Serbia and Montenegro both held it
  * console.log(flagCode("JPN"));    // null: alpha-3 codes are Kuni's to translate (country("JPN").alpha2)
  * console.log(flagCode("XX"));     // null
  * ```
  */
 const flagCode = (input: string): FlagCode | null => {
-  const code = mustBeString(input, "code").trim().toUpperCase().replace(/_/g, "-");
+  const written = mustBeString(input, "code").trim().toUpperCase().replace(/_/g, "-");
+  const code = FLAG_ALIASES[written] ?? written;
 
   return CODE_SET.has(code) ? (code as FlagCode) : null;
 };
@@ -103,5 +109,5 @@ const flagUrl = (code: string, options: FlagUrlOptions = {}): string | null => {
   return `${base.replace(/\/+$/, "")}/${known.toLowerCase()}.svg`;
 };
 
-export { aspectOf, FLAG_CODES, flagCode, flagUrl, frame, isFlagCode, toDataUri, VERSION };
+export { aspectOf, FLAG_ALIASES, FLAG_CODES, flagCode, flagUrl, frame, isFlagCode, toDataUri, VERSION };
 export type { Fit, FlagCode, FlagUrlOptions, FrameOptions, Shape };

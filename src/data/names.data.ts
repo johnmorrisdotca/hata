@@ -468,6 +468,18 @@ const NAMES: Readonly<Record<string, readonly [en: string, ja: string, aspect: n
   "US-WI": ["Wisconsin", "ウィスコンシン州", 1.5],
   "US-WV": ["West Virginia", "ウェストバージニア州", 1.9],
   "US-WY": ["Wyoming", "ワイオミング州", 1.4286],
+  "ANHH": ["Netherlands Antilles", "オランダ領アンティル", 1.5],
+  "BOH": ["Bohemia", "ボヘミア", 1.5],
+  "BUMM": ["Burma", "ビルマ", 1.8],
+  "CSHH": ["Czechoslovakia", "チェコスロバキア", 1.5],
+  "CSXX": ["Serbia and Montenegro", "セルビア・モンテネグロ", 2],
+  "DDDE": ["East Germany", "東ドイツ", 1.6667],
+  "FRG": ["West Germany", "西ドイツ", 1.6667],
+  "RHZW": ["Rhodesia", "ローデシア", 2],
+  "SUHH": ["Soviet Union", "ソビエト連邦", 2],
+  "WIF": ["West Indies Federation", "西インド連邦", 2],
+  "YUCS": ["Yugoslavia", "ユーゴスラビア", 2],
+  "ZRCD": ["Zaire", "ザイール", 1.5],
   "GB-NIR": ["Northern Ireland", "北アイルランド", 1.6667],
 };
 

@@ -724,6 +724,12 @@ const ADAPTED: Readonly<Record<string, Loader>> = {
   "US-VI 4:3": () => import("../flags/vi.4x3.js"),
   "US-VI 1:1": () => import("../flags/vi.1x1.js"),
   "US-VI round": () => import("../flags/vi.1x1.js"),
+  "CSHH 4:3": () => import("../flags/cz.4x3.js"),
+  "CSHH 1:1": () => import("../flags/cz.1x1.js"),
+  "CSHH round": () => import("../flags/cz.1x1.js"),
+  "FRG 4:3": () => import("../flags/de.4x3.js"),
+  "FRG 1:1": () => import("../flags/de.1x1.js"),
+  "FRG round": () => import("../flags/de.1x1.js"),
 };
 
 export { ADAPTED };

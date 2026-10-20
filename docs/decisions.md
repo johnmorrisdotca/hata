@@ -236,7 +236,7 @@ has one, never a flag chosen for being the one most flown.
   drawing and its licence.
 
 **Considered and not offered**, each because no old flag is in common use today or the flag is not a place's flag:
-**Libya's** 1977 to 2011 green flag (no flag used by more than a few); **Myanmar's** 1974 to 2010 flag; **Mississippi's, Utah's
+**Libya's** 1977 to 2011 green flag (no flag used by more than a few); **Myanmar's** 1974 to 2010 flag, which came in with 1.7.0 as Burma's (`BUMM`, below); **Mississippi's, Utah's
 and Minnesota's** flags before their recent changes (the old ones are replaced everywhere they are official); **civil and state
 flags** that differ only by the arms on them (Belgium's civil flag, Bolivia's, Costa Rica's and Peru's state or war flags,
 Saxony's state flag, Tyrol's and Vienna's state flags, Switzerland's civil ensign, Baden-Württemberg's banner); military ensigns
@@ -250,6 +250,69 @@ flag's (a variant whose licence cannot ship is left out and listed in variants.m
 of the flag it shares a drawing with, where there is one, such as France's tricolour), and `pnpm data:framing <code>--<id>`
 measures its frames. A build that finds a new picture unmeasured writes everything as cropped from the centre and stops at the end,
 naming what to measure; run `pnpm data:framing` for it and `pnpm data` again.
+
+## Former countries
+
+Written 2026-10-20, for the medal table of [taisen-brackets](https://github.com/johnmorrisdotca/taisen-brackets), which needed a flag for
+the Soviet Union, East and West Germany, Yugoslavia and the rest, and found none: until 1.7.0 Hata drew present-day places only.
+[historical.md](historical.md) lists every code, alias and reason; this is why they are as they are.
+
+- **A former country is a place of its own.** Its code is the ISO 3166-3 code where that standard has one (`SUHH`, `DDDE`, `CSHH`,
+  `YUCS`, `CSXX`, `ANHH`, `BUMM`, `ZRCD`, `RHZW`), else the IOC's three letters (`FRG`, `BOH`, `WIF`). No present-day country has
+  these codes, so nothing can be mistaken for a place that exists. ISO's own name for `RHZW`
+  is Southern Rhodesia; Hata calls it Rhodesia, which is what the flag of 1968 to 1979 and the sports tables call it.
+- **The other codes find it.** A table keeps the ISO 3166-1 alpha-2 and alpha-3 the place had (`SU`, `SUN`, `DD`, `DDR`, `YU`, `AN`, `ANT`, `BU`,
+  `BUR`, `ZR`, `ZAR`, `RH`, `RHO`, `CSK`) or the IOC's three letters (`URS`, `GDR`, `TCH`, `YUG`, `SCG`, `AHO`, `BIR`, `ZAI`, `BWI`). These are
+  `FLAG_ALIASES`, read by `flagCode`, `flag`, `flagName`, `manifest`, `leftOut` and `<hata-flag>`. This is the one place where Hata reads
+  three-letter codes; the rule that alpha-3 codes are Kuni's to translate stays for every present-day place, because those are a standard
+  Kuni already translates, and the IOC's letters are not one. An alias is never a code of a flag (`isFlagCode("URS")` is false), and the build
+  stops if an alias is a place's code or two places share one.
+- **`CS` finds nothing.** ISO 3166-1 gave it to Czechoslovakia (1974 to 1992) and to Serbia and Montenegro (2003 to 2006). A near miss
+  would draw one country's flag for the other's row, so it is not an alias of either, it is `null` for `flag("CS")`, and `leftOut("CS")` tells
+  the caller to say `CSHH` or `TCH`, `CSXX` or `SCG`. A site that holds only `CS` and a year can pick between them itself.
+- **The flag is Wikidata's, named by hand.** Every flag statement of a former country has ended, which the rule for present-day places (leave out
+  what has ended) would drop, so `HISTORICAL` in `scripts/data-config.ts` names the Commons file, and the build checks it is one of the flag
+  images (P41) of the Wikidata item named beside it. The snapshot of the former countries' items is its own section
+  (`pnpm data:wikidata -- --historical` asks only for them). The licence check is the same as for any flag: all twelve are public domain on Commons.
+- **West Germany and Czechoslovakia fly today's flags.** The black, red and gold tricolour was the Federal Republic's from 1949 and is Germany's
+  today; Czechoslovakia's flag of 1920 to 1992 is the Czech Republic's. Each is its own code with the same picture as the present-day
+  place (`manifest("FRG").sameAs` is `DE`, `manifest("CSHH").sameAs` is `CZ`), so a table keeps its row, a page loads one drawing, and no
+  drawing is made up. East Germany's is the hammer and compass flag of 1959 to 1990 (Wikidata's preferred statement); before 1959 it
+  flew Germany's plain tricolour, which no sport used for it.
+- **Yugoslavia has dated flags, and the default is the one sport knew.** The state used three: the Kingdom's tricolour (1918 to 1941), the
+  Socialist Federal Republic's with the gold-edged red star (1946 to 1992) and the Federal Republic's plain tricolour (1992 to 2003, which
+  Serbia and Montenegro kept to 2006). Hata has no way to choose by year, and does not pretend to: the default is the star flag, because
+  Yugoslavia competed under it at every Olympic Games from 1948 to 1988 and at the world championships of its team sports, and the other two are variants
+  (`kingdom`, `fry`) with their dates, asked for by name. `CSXX` (Serbia and Montenegro) is the Federal Republic's tricolour, the one file
+  Commons keeps for 1992 to 2006, so `YUCS--fry` and `CSXX` are one picture. Two more variants are of the same kind: the Soviet Union's flag of
+  1936 to 1955 (`1936`, the one it flew at Helsinki 1952) and Burma's of 1948 to 1974 (`union`), beside their defaults, the flags of 1955 to 1991 and
+  1974 to 2010.
+- **Burma, with the flag Myanmar kept to 2010.** `BUMM` is ISO 3166-3's code for the country as Burma (until 1989); the red flag with the
+  blue canton, the cogwheel and the fourteen stars flew from 1974 to 2010, so it is the default for the name, the flag a table of the years
+  1974 to 2010 means. Myanmar's flag since 2010 is `MM`'s.
+- **The Netherlands Antilles are the flag of 1986 to 2010.** Its Commons file is public domain (`PD-shape`, the page names no author, so
+  the author is recorded as unknown, with flagspot.net, the source the page gives). The flag of 1959 to 1986, with six stars, is CC BY-SA 2.5 on
+  Commons and has no public-domain drawing, so it is not offered; there is no variant for it. The same goes for Rhodesia's blue ensign
+  of 1964 to 1968, whose page carries a CC BY-SA 4.0 template beside the public-domain ones.
+- **Bohemia and the West Indies Federation** are in because Olympic medal tables carry them (the IOC's `BOH`, 1900 to 1912, and `BWI`, the
+  British West Indies of 1960). Their flags are public domain on Commons.
+- **Olympic teams under the Olympic flag have no flag.** The Unified Team of 1992 (`EUN`), the United Team of Germany (`EUA`, the German
+  tricolour with the white Olympic rings across it), Olympic Athletes from Russia (`OAR`), the Individual Neutral Athletes (`AIN`), the
+  Independent Olympic Participants (`IOP`) and the Refugee Olympic Team (`EOR`, `ROT` in 2016) marched under the Olympic flag or a flag
+  that carries the rings, which is the IOC's mark and not a country's. The Russian Olympic Committee's flag (`ROC`) is the committee's
+  emblem on white, a federation's mark. The maintainer's instruction (2026-10-20) was not to ship the rings, so these are left out with their reasons in `LEFT_OUT`, and a
+  site draws a badge with the code. The Russian Empire (`RU1`) had no single flag in sport (the black, yellow and white state flag, the white,
+  blue and red tricolour and the imperial standard were each flown, and sources differ on which a team carried), and Australasia (`ANZ`, the
+  combined team of 1908 and 1912) had none at all; both are left out the same way.
+- **Not offered, because the place still exists under the same code.** Germany's own flags before 1945 (the Empire's black, white and red,
+  Weimar's, the Third Reich's), Russia's before 1991, Ceylon's, Persia's, Siam's, the Gold Coast's and the other names of countries that now
+  have an ISO code and a flag. A medal table lists them under the present-day country, as the IOC does, and an old flag of a place that
+  still has a flag is a variant of it, not a place. They could come in as variants, one decision each.
+- **Restrictions that are not about copyright** are recorded as Commons gives them. The Soviet Union's, Yugoslavia's, East Germany's and Burma's
+  flags are marked `communist` and `insignia` (and the Soviet one `rusmilitarism`): showing a Soviet or communist-era symbol is limited by
+  law in some countries (Ukraine, Latvia, Lithuania and others), and a site that serves those countries must read `manifest(code).restrictions`.
+- **The Japanese names** (ソビエト連邦, 東ドイツ, 西ドイツ, チェコスロバキア, ユーゴスラビア, セルビア・モンテネグロ, オランダ領アンティル, ビルマ, ザイール,
+  ローデシア, ボヘミア, 西インド連邦) are the usual ones, and share the Japanese's standing: not yet reviewed by a native reader.
 
 ## Frames: no frame may misrepresent a flag
 

@@ -95,6 +95,31 @@ interface FlagRecord {
   variants: Variant[];
   /** How the flag is framed at 4:3, square and round by `flag(code, { shape })`, and by `frame()`; see `Framing`. */
   framings: Record<"4:3" | "1:1" | "round", Framing>;
+  /** Only for a former country (the Soviet Union, East Germany, Yugoslavia): the years it existed and the other codes that find it. Absent for every present-day place. See `HistoricalEra`. */
+  historical?: HistoricalEra;
+}
+
+/**
+ * The years a former country existed and the other codes that find its flag: the ISO 3166-1 alpha-2 and alpha-3 it had
+ * and the IOC's three letters. Only a former country's record has one; a present-day place's has none.
+ *
+ * @example
+ * ```ts
+ * import { manifest, type HistoricalEra } from "@johnmorrisdotca/hata/manifest";
+ *
+ * const era: HistoricalEra | undefined = manifest("SUHH")?.historical;
+ * console.log(era?.from);    // "1922"
+ * console.log(era?.until);   // "1991"
+ * console.log(era?.aliases); // ["SU", "SUN", "URS"]
+ * ```
+ */
+interface HistoricalEra {
+  /** The first year of the state (not of the flag in the record: a variant has its own dates), as a year. */
+  from: string;
+  /** The last year of the state, as a year. */
+  until: string;
+  /** The other codes that find it: "SU", "SUN" and "URS" for the Soviet Union. None is a code of a flag itself, and none is shared with another place. */
+  aliases: string[];
 }
 
 /**
@@ -229,7 +254,7 @@ interface FramingCrop {
 }
 
 /**
- * A code Kuni knows that has no flag in this version, and why.
+ * A code Kuni knows, or a former team of sport Hata lists, that has no flag in this version, and why.
  *
  * @example
  * ```ts
@@ -240,7 +265,7 @@ interface FramingCrop {
  * ```
  */
 interface LeftOutRecord {
-  /** The code, as Kuni writes it. */
+  /** The code, as Kuni writes it (a former team's is the IOC's: "EUN"). */
   code: string;
   /** Why: `no-flag` (no source names one), `not-svg` (the source's file is not an SVG) or `licence` (not public domain, CC0 or CC BY). */
   kind: "no-flag" | "not-svg" | "licence";
@@ -258,6 +283,8 @@ interface LeftOutRecord {
   defaultVariant: string | null;
   /** The flags in real use at a place with none of its own (Northern Ireland: the Union Flag, the former Ulster Banner), each asked for by name; empty for the rest. */
   variants: Variant[];
+  /** Only for a former country or a team of sport listed here (the Unified Team, the Russian Olympic Committee): the years and the other codes, as for `FlagRecord`. Absent for a present-day place. */
+  historical?: HistoricalEra;
 }
 
-export type { FlagRecord, FlagSource, Framing, FramingCrop, LeftOutRecord, LicenceKind, Variant };
+export type { FlagRecord, FlagSource, Framing, FramingCrop, HistoricalEra, LeftOutRecord, LicenceKind, Variant };

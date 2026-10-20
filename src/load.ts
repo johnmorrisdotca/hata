@@ -1,6 +1,7 @@
 // The entry @johnmorrisdotca/hata/load: a flag by its code, fetched when it is wanted. Each flag is its own dynamic
 // import, so a bundler makes a small chunk of each and a page downloads only the flags it shows.
 
+import { FLAG_ALIASES } from "./data/aliases.data";
 import { LOADERS } from "./data/loaders.data";
 import { checkFrameOptions, frame, mustBeString, toDataUri } from "./svg";
 import type { FrameOptions } from "./svg";
@@ -21,7 +22,11 @@ interface FlagOptions extends FrameOptions {
   variant?: string;
 }
 
-const codeOf = (code: string): string => mustBeString(code, "code").trim().toUpperCase().replace(/_/g, "-");
+const codeOf = (code: string): string => {
+  const written = mustBeString(code, "code").trim().toUpperCase().replace(/_/g, "-");
+
+  return FLAG_ALIASES[written] ?? written;
+};
 
 /**
  * A flag's SVG string by its code, loaded when asked for: one dynamic import of `/flags/<code>`. With options, it
@@ -33,7 +38,7 @@ const codeOf = (code: string): string => mustBeString(code, "code").trim().toUpp
  * else the flag's own drawing cropped at its chosen side, even where `auto` would show the whole flag. `fit: "whole"`
  * asks for all of the flag, and any other `fit` asks for that fit of the flag's own drawing.
  *
- * @param code - A country's alpha-2 code or a subdivision's ISO 3166-2 code, in any case: "JP", "jp-13", "CA-ON".
+ * @param code - A country's alpha-2 code or a subdivision's ISO 3166-2 code, in any case: "JP", "jp-13", "CA-ON"; or a former country's code or alias: "SUHH", "urs", "GDR".
  * @param options - How to frame it: `shape`, `fit` and `label`, as for `frame()`; the flag as it is when left out. And `variant`: the
  *   `id` of another of the place's flags in real use (`variantsOf(code)`), such as Afghanistan's "de-facto"; the default when left out.
  * @returns A promise of the SVG string, or of `null` when the code has no flag here (unknown, malformed, or left out), or has no such variant.
@@ -50,6 +55,8 @@ const codeOf = (code: string): string => mustBeString(code, "code").trim().toUpp
  * const canton = await flag("us", { shape: "1:1", fit: "crop" });      // the canton and a slice of the stripes
  * console.log(await flag("AF", { variant: "de-facto" }));             // the Taliban's flag; the Republic's tricolour is the default
  * console.log(await flag("GB-NIR", { variant: "union-flag" }));        // Northern Ireland has no flag of its own: ask for one
+ * console.log(await flag("GDR"));                                       // East Germany, by the IOC's code
+ * console.log(await flag("YU", { variant: "kingdom" }));                // Yugoslavia's flag before 1941
  * console.log(await flag("XX"));                                        // null
  * ```
  */

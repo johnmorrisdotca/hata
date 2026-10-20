@@ -33,6 +33,7 @@ open a *Fix a translation* issue with the string's name. `{name}` and the other 
 | `set_ch` | Switzerland | スイス |
 | `set_at` | Austria | オーストリア |
 | `set_br` | Brazil | ブラジル |
+| `set_historical` | Former countries | 旧国 |
 | `region` | Continent | 大陸 |
 | `region_all` | Every continent | すべての大陸 |
 | `shape` | Shape | 形 |
@@ -134,6 +135,7 @@ open a *Fix a translation* issue with the string's name. `{name}` and the other 
 | `mode_de` | Germany's states | ドイツの州 |
 | `mode_ch` | Swiss cantons | スイスの州 |
 | `mode_europe` | Europe's regions | ヨーロッパの地域 |
+| `mode_historical` | Former countries | 旧国 |
 | `seed` | Seed | シード |
 | `new_game` | New game | 新しいゲーム |
 | `daily` | Today's | 今日の問題 |
