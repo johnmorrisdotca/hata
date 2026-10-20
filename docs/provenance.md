@@ -6,7 +6,7 @@ Commons file's is the one Commons states on its page, linked here, and a flag se
 Authors are as Commons gives them. Commons notes on most flags that the use of an insignia may be restricted by
 law, apart from copyright; see NOTICE.md.
 
-Which drawing won, of 465 flags: commons 464, country-flag-icons 1. How the choice is
+Which drawing won, of 466 flags: commons 465, country-flag-icons 1. How the choice is
 made is in `scripts/choose.mjs`; the reason for each flag is in its row.
 
 ## Countries: 245 of 250
@@ -309,12 +309,13 @@ made is in `scripts/choose.mjs`; the reason for each flag is in its row.
 | `JP-46` | Kagoshima (鹿児島県) | [Flag of Kagoshima Prefecture.svg](https://commons.wikimedia.org/wiki/File:Flag_of_Kagoshima_Prefecture.svg) | public domain | Guilherme Paula, Mike Rohsopht | 329 B | Commons, the only drawing of it (3:2, 311 bytes). |
 | `JP-47` | Okinawa (沖縄県) | [Flag of Okinawa Prefecture.svg](https://commons.wikimedia.org/wiki/File:Flag_of_Okinawa_Prefecture.svg) | public domain | Zach Harden (Zscout370)Optimized by Wrightbus | 323 B | Commons, the only drawing of it (3:2, 305 bytes). |
 
-## Canada's provinces and territories: 12 of 13
+## Canada's provinces and territories: 13 of 13
 
 | Code | Place | Drawing | Licence | Author | Size | Why this drawing |
 | --- | --- | --- | --- | --- | --- | --- |
 | `CA-AB` | Alberta (アルバータ州) | [Flag of Alberta.svg](https://commons.wikimedia.org/wiki/File:Flag_of_Alberta.svg) | public domain | Kooma (original) | 14.1 KB | Commons, the only drawing of it (2:1, 14466 bytes). |
 | `CA-BC` | British Columbia (ブリティッシュコロンビア州) | [Flag of British Columbia.svg](https://commons.wikimedia.org/wiki/File:Flag_of_British_Columbia.svg) | public domain | Kooma (original) Sshu94 (current) | 14.7 KB | Commons, the only drawing at its true proportions and in its full design (5:3, 14988 bytes): circle-flags draws it round, a framing. |
+| `CA-MB` | Manitoba (マニトバ州) | [Flag of Manitoba.svg](https://commons.wikimedia.org/wiki/File:Flag_of_Manitoba.svg) | public domain | Kooma (original) Echando una mano (current) | 45.6 KB | Named by hand: John, 2026-10-09: Manitoba stays out unless a public-domain drawing of the same flag is named on Commons. Wikidata names "Flag of the Province of Manitoba.svg", which Commons marks CC BY-SA 4.0; "Flag of Manitoba.svg" (Kooma's drawing, kept up to date by Echando una mano) draws the same flag, the Red Ensign with the province's shield (adopted in 1966), at its true 2:1, and Commons marks it public domain (PD-author, PD-Layout; Copyrighted: False), so it ships with no share-alike. Commons, the only drawing of it (2:1, 46718 bytes). |
 | `CA-NB` | New Brunswick (ニューブランズウィック州) | [Flag of New Brunswick.svg](https://commons.wikimedia.org/wiki/File:Flag_of_New_Brunswick.svg) | public domain | Dbenbenn (original) E Pluribus Anthony (current) | 35.8 KB | Commons, the only drawing of it (8:5, 36602 bytes). |
 | `CA-NL` | Newfoundland and Labrador (ニューファンドランド・ラブラドール州) | [Flag of Newfoundland and Labrador.svg](https://commons.wikimedia.org/wiki/File:Flag_of_Newfoundland_and_Labrador.svg) | public domain | Original 2005 upload was created by Robert Crosbie and uploaded by Kooma. Entire flag redrawn/recoded from scratch by MapGrid in 2019. Colors changed by Great Brightstar in 2019. | 530 B | Commons, the only drawing of it (2:1, 512 bytes). |
 | `CA-NS` | Nova Scotia (ノバスコシア州) | [Flag of Nova Scotia.svg](https://commons.wikimedia.org/wiki/File:Flag_of_Nova_Scotia.svg) | public domain | Original: Unknown author Vector: Kooma, FJDEACKB, Zscout370 and Denelson83 | 6.7 KB | Commons, the only drawing of it (2:1, 6813 bytes). |

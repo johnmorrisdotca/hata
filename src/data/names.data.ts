@@ -293,6 +293,7 @@ const NAMES: Readonly<Record<string, readonly [en: string, ja: string, aspect: n
   "BR-TO": ["Tocantins", "トカンティンス州", 1.4286],
   "CA-AB": ["Alberta", "アルバータ州", 2],
   "CA-BC": ["British Columbia", "ブリティッシュコロンビア州", 1.6667],
+  "CA-MB": ["Manitoba", "マニトバ州", 2],
   "CA-NB": ["New Brunswick", "ニューブランズウィック州", 1.6],
   "CA-NL": ["Newfoundland and Labrador", "ニューファンドランド・ラブラドール州", 2],
   "CA-NS": ["Nova Scotia", "ノバスコシア州", 2],

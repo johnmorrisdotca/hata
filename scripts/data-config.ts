@@ -64,6 +64,10 @@ const NAMED: Readonly<Record<string, { file: string; why: string }>> = {
     file: "Flag of Brittany (Gwenn ha du).svg",
     why: "John, 2026-10-09: \"Brittany. Why would I not want it?\" The Gwenn-ha-du is the flag flown across Brittany, by its people, its towns and its council's buildings, though the Région Bretagne's official symbol is a logo. Wikidata names \"Flag of Brittany.svg\", which Commons marks CC BY-SA 4.0; this drawing of the same flag is marked public domain (Open Clip Art Library, PD-OpenClipart, CC0, PD-old, PD-France), so it ships with no share-alike. Its status is `local` (`variants`).",
   },
+  "CA-MB": {
+    file: "Flag of Manitoba.svg",
+    why: "John, 2026-10-09: Manitoba stays out unless a public-domain drawing of the same flag is named on Commons. Wikidata names \"Flag of the Province of Manitoba.svg\", which Commons marks CC BY-SA 4.0; \"Flag of Manitoba.svg\" (Kooma's drawing, kept up to date by Echando una mano) draws the same flag, the Red Ensign with the province's shield (adopted in 1966), at its true 2:1, and Commons marks it public domain (PD-author, PD-Layout; Copyrighted: False), so it ships with no share-alike.",
+  },
   "AT-4": {
     file: "Flag of Tirol and Upper Austria.svg",
     why: "Upper Austria's flag (Landesflagge) is white over red, plain; Wikidata gives only the government's service flag (Landesdienstflagge), which adds the arms. Tyrol's flag is the same white over red.",
@@ -199,7 +203,7 @@ const SIDES: Readonly<Record<string, Focus>> = {
   ...group("left", "The cross is set towards the hoist, as on the other Nordic flags, so a crop from the centre puts it in the wrong place; a crop from the left keeps its shape and its place.", ["DK", "FI", "FO", "IS", "NO", "SE", "AX"]),
   ...group("right", "The emblem sits in the fly, away from the pole, so a crop from the right keeps it with the stripes beside it.", ["RW", "ZM"]),
   ...group("whole", "A Blue or Red Ensign: the Union Flag in the canton and a badge or stars in the fly make the flag, and no square crop holds both, so a crop would show one half of it.", [
-    "AI", "AU", "AU-NSW", "AU-QLD", "AU-SA", "AU-TAS", "AU-VIC", "AU-WA", "BM", "CK", "FJ", "FK", "GS", "IO", "KY", "MS", "NU", "NZ", "PN", "TC", "TV", "VG", "CA-ON",
+    "AI", "AU", "AU-NSW", "AU-QLD", "AU-SA", "AU-TAS", "AU-VIC", "AU-WA", "BM", "CK", "FJ", "FK", "GS", "IO", "KY", "MS", "NU", "NZ", "PN", "TC", "TV", "VG", "CA-MB", "CA-ON",
   ]),
   ...group("whole", "The meaning is spread across the whole flag (two emblems, or a design that runs from one end to the other), so any square crop is a part of it that another flag could share.", [
     "AS", "AU-NT", "BR-MS", "CA-SK", "CA-NL", "CA-NU", "CX", "TF", "TK", "US-AK", "US-DC", "LK",

@@ -5,7 +5,7 @@
 const PACKED: Readonly<Record<string, string>> = {
   "a,a,a": "ae aw ax bh bj bs by cf cl cn cu cw cz dj er fi fo gq gr gw is jo km kp kw lr mg mh mn mt my mz na no nr ph pr ps rw sb sc sd se sg ss st sx tg tl tm to tr tw um us uy uz vu ws za zm zw br-ac br-am br-ba br-go br-ma br-pi br-se br-sp de-hb de-rp fr-bre us-co us-ga us-hi us-mn us-nc us-nv us-oh us-sc us-tx",
   "c,c,w": "af gd gu ie md mx nf ng vc ca-nb us-ia us-wv us-wy pm--local",
-  "w,w,w": "ai as au bm ck cx fj fk gs io ky lk ms nu nz pn qa tc tf tk tv vg au-nsw au-nt au-qld au-sa au-tas au-vic au-wa br-ms ca-nl ca-nu ca-on ca-sk us-ak us-dc",
+  "w,w,w": "ai as au bm ck cx fj fk gs io ky lk ms nu nz pn qa tc tf tk tv vg au-nsw au-nt au-qld au-sa au-tas au-vic au-wa br-ms ca-mb ca-nl ca-nu ca-on ca-sk us-ak us-dc",
   "c,w,w": "bi ca jm br-sc ca-nt ca-yt us-ms wf--local",
   "c,a,a": "cd dk",
 };

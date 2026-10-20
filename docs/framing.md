@@ -22,7 +22,7 @@ yours to ask for even where the default is the whole flag. The side of every fla
 
 Judged on 2026-10-09 by looking at every flag's whole picture beside its centre crop, and again at the chosen crop beside the whole flag.
 
-## Flags with a side chosen by hand (120)
+## Flags with a side chosen by hand (121)
 
 "Default" is what `frame()` does with `auto` at the square: the crop at the side, or the whole flag where the measure says the crop loses a colour
 no reason excuses, or where a person judged that no crop shows the flag.
@@ -131,6 +131,7 @@ no reason excuses, or where a person judged that no crop shows the flag.
 | `BR-PI` | Piauí | kept at the hoist (left) | the crop | An emblem sits in a canton at the hoist and the flag's body runs on from it, so a crop from the left keeps the emblem and a slice of the body, as a hand-drawn square of the flag does; the centre crop shows only the body. |
 | `BR-SE` | Sergipe | kept at the hoist (left) | the crop | An emblem sits in a canton at the hoist and the flag's body runs on from it, so a crop from the left keeps the emblem and a slice of the body, as a hand-drawn square of the flag does; the centre crop shows only the body. |
 | `BR-SP` | São Paulo | kept at the hoist (left) | the crop | An emblem sits in a canton at the hoist and the flag's body runs on from it, so a crop from the left keeps the emblem and a slice of the body, as a hand-drawn square of the flag does; the centre crop shows only the body. |
+| `CA-MB` | Manitoba | centre, on request only | the whole flag | A Blue or Red Ensign: the Union Flag in the canton and a badge or stars in the fly make the flag, and no square crop holds both, so a crop would show one half of it. |
 | `CA-NL` | Newfoundland and Labrador | centre, on request only | the whole flag | The meaning is spread across the whole flag (two emblems, or a design that runs from one end to the other), so any square crop is a part of it that another flag could share. |
 | `CA-NU` | Nunavut | centre, on request only | the whole flag | The meaning is spread across the whole flag (two emblems, or a design that runs from one end to the other), so any square crop is a part of it that another flag could share. |
 | `CA-ON` | Ontario | centre, on request only | the whole flag | A Blue or Red Ensign: the Union Flag in the canton and a badge or stars in the fly make the flag, and no square crop holds both, so a crop would show one half of it. |

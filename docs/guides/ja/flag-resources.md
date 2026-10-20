@@ -162,6 +162,7 @@ console.log(japan===svg,svg.startsWith("<svg"));
 | `@johnmorrisdotca/hata/flags/bz` | `bz` |
 | `@johnmorrisdotca/hata/flags/ca-ab` | `ca-ab` |
 | `@johnmorrisdotca/hata/flags/ca-bc` | `ca-bc` |
+| `@johnmorrisdotca/hata/flags/ca-mb` | `ca-mb` |
 | `@johnmorrisdotca/hata/flags/ca-nb` | `ca-nb` |
 | `@johnmorrisdotca/hata/flags/ca-nl` | `ca-nl` |
 | `@johnmorrisdotca/hata/flags/ca-ns` | `ca-ns` |

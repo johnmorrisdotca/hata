@@ -36,7 +36,7 @@ At their true proportions, optimised and safe to inline, with the source, author
 </tr>
 </table>
 
-Hata is the flag set a site that already knows its countries and regions by ISO code (from [Kuni](https://github.com/johnmorrisdotca/kuni), say) can show beside them: 465 flags, every one drawn at the proportions its government gives it, as an SVG that scales to any size and looks the same on every system, which a flag emoji does not (Windows shows two letters). No other flag set has Japan's prefectures, all of Canada's provinces and territories, Germany's and Austria's states, Switzerland's cantons and Brazil's states together, or codes that match ISO 3166-2. Each flag is a module of its own, so a page carries only the flags it imports; one lookup loads any flag by its code when it is wanted. And every flag says where it comes from: the Wikimedia Commons file or the flag set it was drawn from, its author, its licence, and why that drawing was chosen. It works in [the demo](https://johnmorrisdotca.github.io/hata/) with nothing to install.
+Hata is the flag set a site that already knows its countries and regions by ISO code (from [Kuni](https://github.com/johnmorrisdotca/kuni), say) can show beside them: 466 flags, every one drawn at the proportions its government gives it, as an SVG that scales to any size and looks the same on every system, which a flag emoji does not (Windows shows two letters). No other flag set has Japan's prefectures, all of Canada's provinces and territories, Germany's and Austria's states, Switzerland's cantons and Brazil's states together, or codes that match ISO 3166-2. Each flag is a module of its own, so a page carries only the flags it imports; one lookup loads any flag by its code when it is wanted. And every flag says where it comes from: the Wikimedia Commons file or the flag set it was drawn from, its author, its licence, and why that drawing was chosen. It works in [the demo](https://johnmorrisdotca.github.io/hata/) with nothing to install.
 
 <picture>
 <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/johnmorrisdotca/hata/main/docs/images/hero-phone-dark.webp">
@@ -102,11 +102,11 @@ Install the scoped name: an unscoped `hata` on npm, if there is one, is somebody
 
 ### What's in it
 
-- **465 flags**: 245 of the 250 countries Kuni knows, 45 of Japan's 47 prefectures,
-  12 of Canada's 13 provinces and territories, 57 of the United States' 57 states, district and outlying areas,
+- **466 flags**: 245 of the 250 countries Kuni knows, 45 of Japan's 47 prefectures,
+  13 of Canada's 13 provinces and territories, 57 of the United States' 57 states, district and outlying areas,
   8 of Australia's 8 states and territories, 3 of the United Kingdom's 4 countries, 16 of Germany's 16 states,
   17 of France's 26 regions and overseas collectivities, 26 of Switzerland's 26 cantons, 9 of Austria's 9 states
-  and 27 of Brazil's 27 states and Federal District. The 18 codes with no flag are listed with their reasons:
+  and 27 of Brazil's 27 states and Federal District. The 17 codes with no flag are listed with their reasons:
   Northern Ireland has no flag of its own, and most of France's regions use a logo rather than a flag.
 - **Disputed and alternative flags, offered side by side.** A place with more than one flag in real use has them all,
   each with a status (official, de facto, historical or local), dates, the reason it is offered and a source, and a
@@ -525,8 +525,8 @@ Every function is pure and every record it hands out is frozen.
    pixels of its source at 960 pixels wide.
 
 Only drawings in the public domain, under CC0, under CC BY or under MIT are shipped. [docs/provenance.md](./docs/provenance.md)
-lists every flag with its file, licence, author and why; [docs/left-out.md](./docs/left-out.md) the 18 codes with
-no flag; [docs/decisions.md](./docs/decisions.md) the judgement calls, including the five flags left out for their
+lists every flag with its file, licence, author and why; [docs/left-out.md](./docs/left-out.md) the 17 codes with
+no flag; [docs/decisions.md](./docs/decisions.md) the judgement calls, including the four flags left out for their
 licence, which of France's regions have a flag, Germany's and Austria's civil flags, and the places where the
 sources disagree on the design, each with a recommendation, and [docs/variants.md](./docs/variants.md) every place's other flags in real use.
 
@@ -569,8 +569,8 @@ dark one on a dark page), and its size. The demo is the worked example: [`demo/d
 | Limit | Value | Where |
 | --- | --- | --- |
 | Countries | 245 of the 250 Kuni knows | `FLAG_CODES` |
-| Subdivisions | the first level of Japan (45 of 47), Canada (12 of 13), the United States (56 of 57), Australia (8 of 8), the United Kingdom (3 of 4), Germany (16 of 16), France (17 of 26), Switzerland (26 of 26), Austria (9 of 9) and Brazil (27 of 27) | `FLAG_CODES` |
-| Codes with no flag | 18 codes, each with its reason | `LEFT_OUT`, [docs/left-out.md](./docs/left-out.md) |
+| Subdivisions | the first level of Japan (45 of 47), Canada (13 of 13), the United States (56 of 57), Australia (8 of 8), the United Kingdom (3 of 4), Germany (16 of 16), France (17 of 26), Switzerland (26 of 26), Austria (9 of 9) and Brazil (27 of 27) | `FLAG_CODES` |
+| Codes with no flag | 17 codes, each with its reason | `LEFT_OUT`, [docs/left-out.md](./docs/left-out.md) |
 | Licences | public domain, CC0, CC BY and MIT only | `manifest(code).licence` |
 | Largest flag | 372 KB (Virginia); 55 over the 40 KB budget | [docs/sizes.md](./docs/sizes.md) |
 
@@ -616,7 +616,7 @@ Not here yet, and each welcome as an [issue](https://github.com/johnmorrisdotca/
 
 - The first level of more countries' regions, a whole country at a time: Spain and Italy once their regions'
   drawings on Commons are free (several are CC BY-SA), Mexico and India only for the states with an official flag.
-- The five flags left out for their licence, by decision or by a public-domain drawing on Commons
+- The four flags left out for their licence, by decision or by a public-domain drawing on Commons
   ([docs/decisions.md](./docs/decisions.md)).
 - A simplified drawing of the heaviest seals, as an option beside the full one, never in its place.
 

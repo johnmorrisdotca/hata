@@ -95,18 +95,17 @@ licence check, the same comparison with the flag sets and the same pixel proof a
 - **India**: no state has an official flag (Jammu and Kashmir's ended in 2019); Wikidata names two, Karnataka's
   proposed one and Delhi's, and neither is adopted.
 
-## For the maintainer: five flags left out for their licence
+## For the maintainer: four flags left out for their licence
 
 Each is on Commons under a licence that is not public domain, CC0 or CC BY, and no MIT set draws it at its true
 proportions. Bringing one in is a line in `ACCEPTED` in `scripts/data-config.ts`, with the decision in words.
-Brittany's joined them in 1.1.0 and left them on 2026-10-10, and Mississippi's left them on 2026-10-09 (both below).
+Brittany's joined them in 1.1.0 and left them on 2026-10-10, Manitoba's left them on 2026-10-20, and Mississippi's left them on 2026-10-09 (all below).
 
 | Code | Place | What Commons states | Recommendation |
 | --- | --- | --- | --- |
 | `OM` | Oman | Open Government Licence – Oman 1.0, attribution required | **Left out: the licence could not be confirmed to cover a flag** (read 2026-10-09, below). |
 | `JP-34` | Hiroshima | No licence template at all: the page carries only `{{Insignia}}` | **Fix at the source**: the drawing is a 1966 prefectural emblem, like the 44 others that Commons marks PD-Japan-organization or PD-ineligible. A licence template added on Commons brings it in with the next `pnpm data:commons`. Still out on 2026-10-09: Commons carries no licence tag for it. |
-| `CA-MB` | Manitoba | CC BY-SA 4.0 (a drawing from the Canadian Heraldic Authority's register) | **Leave out** (John, 2026-10-09), or name a public-domain drawing of the same flag on Commons if one is made. Share-alike would bind every user of the package. |
-| `CC` | Cocos (Keeling) Islands | CC BY-SA 4.0 | **Leave out** (John, 2026-10-09), as Manitoba. |
+| `CC` | Cocos (Keeling) Islands | CC BY-SA 4.0 | **Leave out** (John, 2026-10-09). |
 | `JP-37` | Kagawa | CC BY-SA 3.0 and GFDL, with the note "If you will use this file, you must get Kagawa Prefecture approval" | **Leave out** (John, 2026-10-09). |
 
 **Brittany** came in on 2026-10-10 (John: "Brittany. Why would I not want it?"). It was left out on 2026-10-09 because the
@@ -121,6 +120,17 @@ so no authority has made it the region's flag. It is therefore the default and t
 (`variantsOf("FR-BRE")`, `status: "local"`), with the reason and a source, and the demo shows the status beside it. The CC BY-SA file
 is no longer kept in `data-sources/commons/`. What would change it: Commons' CC BY-SA file is not shipped, and a Région Bretagne
 statement making the flag official would make its status `official`.
+
+**Manitoba** came in on 2026-10-20, on the terms John set on 2026-10-09 for leaving it out: "or name a public-domain drawing of the same
+flag on Commons if one is made". The drawing Wikidata names for `CA-MB`, "Flag of the Province of Manitoba.svg", is CC BY-SA 4.0 on
+Commons, and no flag set draws Manitoba's flag. Commons has a second drawing of the same flag, "Flag of Manitoba.svg" (Kooma's, kept up to
+date by Echando una mano), 2:1 like the flag itself, and its page, read on 2026-10-20, carries the licence tags PD-author and PD-Layout,
+with Commons' machine-readable licence "Public domain" and `Copyrighted: False`. It is one line in `NAMED`, so the build takes it instead
+of Wikidata's file, and the licence check passes it like any public-domain flag. The CC BY-SA file is no longer kept in
+`data-sources/commons/`. It is the Red Ensign with the province's shield, adopted in 1966, so it has no variants; like Ontario's, its
+square, 4:3 and round frames show the whole flag, because the Union Flag in the canton and the shield in the fly are both what makes it
+and no square crop holds both. What would change it: a reading of the Commons page by a person who finds that PD-author does not cover
+the drawing; the file would then go back on the list above.
 
 **Mississippi** came in on 2026-10-09 ("include Mississippi (copyrighted free use)"): Commons gives the licence as
 "Copyrighted free use", under which the holder allows any use for any purpose with no condition, freer than CC BY. It is the one

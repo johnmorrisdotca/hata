@@ -5,9 +5,9 @@ Made by `pnpm data`; a test fails if this list and the data differ. Sizes are of
 
 | | Pictures | SVG | Gzipped |
 | --- | --- | --- | --- |
-| Every flag | 431 (465 codes; 34 share another's picture) | 8493.7 KB | 2977.2 KB |
-| The same drawings as their sources have them | 431 | 14666.2 KB | |
-| The median flag | | 756 B | |
+| Every flag | 432 (466 codes; 34 share another's picture) | 8539.3 KB | 2989.6 KB |
+| The same drawings as their sources have them | 432 | 14736.2 KB | |
+| The median flag | | 763 B | |
 | The countries alone | 233 | 2067.6 KB | 704.9 KB |
 | Drawings made for a frame (flag-icons' 4:3 and square, `/flags/<code>.4x3`, `.1x1`) | 423 | 2827.1 KB | 948.7 KB |
 
@@ -69,6 +69,7 @@ and listed here so a new one is noticed (the size test holds this list).
 | `BR-RJ` | Rio de Janeiro | 56.7 KB | 21.5 KB | 343.5 KB |
 | `US-OK` | Oklahoma | 56.7 KB | 20.1 KB | 96.0 KB |
 | `BR-SC` | Santa Catarina | 47.9 KB | 17.1 KB | 77.1 KB |
+| `CA-MB` | Manitoba | 45.6 KB | 12.4 KB | 70.0 KB |
 | `US-NV` | Nevada | 45.5 KB | 17.4 KB | 128.6 KB |
 | `GS` | South Georgia & South Sandwich Islands | 41.4 KB | 15.4 KB | 51.7 KB |
 | `BZ` | Belize | 40.8 KB | 14.8 KB | 70.2 KB |
