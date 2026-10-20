@@ -6,6 +6,20 @@ All notable changes to this project are written here. The format follows
 
 ## [Unreleased]
 
+## [1.6.2] - 2026-10-20
+
+The first fixes from the October 2026 audit (`docs/audit-2026-10.md`): two flags were at the wrong shape.
+
+### Fixed
+
+- **Qatar (`QA`) is 28:11 (about 2.55:1), as the flag is, not 4.17:1.** Commons' file is a 75 by 18 drawing with `preserveAspectRatio="none"` for a 1400 by 550 picture, meant to be stretched; Hata dropped the attribute and shipped the unstretched drawing, 64% too wide with flattened scallops. The optimiser now scales a drawing like that into its width and height. The names table and the manifest follow the new shape.
+- **Prince Edward Island (`CA-PE`) is 3:2, not 1.459:1.** The Provincial Flag Act's Schedule (R.S.P.E.I. 1988, Cap. P-27) gives six feet in the fly and four in the hoist, inclusive of the band. The Commons drawing is about 2.8% too narrow (seven band tiles across the top, not 7.2), so it is stretched across to 3:2. The ratio and its source are recorded in `scripts/official-ratios.data.json`, and the manifest's reason for the flag says so.
+- The README's Subdivisions row said the United States was 56 of 57; it is 57 of 57.
+
+### Added
+
+- A test that every shipped Commons flag has the shape of its source file's width and height, or the official ratio recorded for it with a source and a reason, so a stretched or squeezed flag cannot come back, and that a recorded ratio is dropped once its drawing is right.
+
 ## [1.6.1] - 2026-10-20
 
 ### Added
