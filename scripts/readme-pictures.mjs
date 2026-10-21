@@ -20,34 +20,27 @@ const pictures = (page) =>
     ),
   );
 
-// `only` names every subject this file makes, so the pictures `pnpm animations` makes (hero-desk, provinces, former, element) are not removed as pictures no shot makes.
+// `only` names every subject this file makes, so the pictures `pnpm animations` makes (frames-live, provinces, former, element) are not removed as pictures no shot makes.
 await takePictures({
-  only: ["frames", "provenance", "gallery", "hero", "detail", "quiz"],
+  only: ["frames", "provenance", "hero", "detail", "quiz"],
   shots: [
     { subject: "frames", views: ["desk"], url: "/?lang=en&help=off&set=jp", ready: READY, target: "#frames",
       async prepare(page) { await page.locator('[data-testid="tile-JP-13"]').click(); await page.locator('#frames img[data-shape="round"]').first().waitFor(); await pictures(page); } },
     { subject: "provenance", views: ["desk"], url: "/?lang=en&help=off&set=jp", ready: READY, target: "#facts",
       async prepare(page) { await page.locator('[data-testid="tile-JP-13"]').click(); await page.locator('#frames img[data-shape="round"]').first().waitFor(); await pictures(page); } },
-    // The gallery from the top of the page: the header, the shape bar, the filters and the first rows of flags, held at the
-    // flags' own proportions (the page plays the frames by itself otherwise; this picture is of the gallery, and the hero is
-    // the moving one). On a phone, in Japanese: the phone's hero, since the desk's is `pnpm animations`'s, not a screenshot.
-    {
-      subject: "gallery",
-      views: ["desk"],
-      url: "/?lang=en&help=off&shape=flag",
-      ready: READY,
-      height: 1000,
-      async prepare(page) {
-        await page.evaluate(() => window.scrollTo(0, 0));
-        await pictures(page);
-      },
-    },
+    // The gallery from the top of the page: the header, the tabs, the filters and the first rows of flags. On a
+    // phone, in Japanese.
     {
       subject: "hero",
-      views: ["phone"],
-      url: "/?lang=ja&help=off&shape=flag",
+      views: ["desk", "phone"],
+      url: "/?lang=en&help=off",
       ready: READY,
-      async prepare(page) {
+      height: 1000,
+      async prepare(page, { view }) {
+        if (view === "phone") {
+          await page.goto("http://hata.test/?lang=ja&help=off");
+          await page.waitForSelector(READY);
+        }
         await page.evaluate(() => window.scrollTo(0, 0));
         await pictures(page);
       },

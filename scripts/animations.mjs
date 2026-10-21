@@ -5,12 +5,13 @@
 // The page is served to the browser without a port (the way `pnpm screenshots:readme` does it), so no port is used.
 //
 //   node scripts/animations.mjs                 all of them (needs the demo built: `pnpm animations` builds it first)
-//   ONLY=hero node scripts/animations.mjs       one scene (hero, provinces, former, element), both twins
+//   ONLY=frames-live node scripts/animations.mjs one scene (frames-live, provinces, former, element), both twins
 //   IMAGES_OUT=dir                              writes somewhere else than docs/images
 //   QUALITY=75                                  the webp quality
+//   SLOW=2                                      how many times longer than a scene says each step stays (2: half the speed, which is how the README's pictures are made)
 //   FRAMES_OUT=dir                              also keeps every step as a png there, to look at
 //
-// `pnpm screenshots:readme` leaves these pictures alone (its hero shot is the phone's only), and the scene files are not shipped.
+// `pnpm screenshots:readme` leaves these pictures alone (the hero is a still screenshot, not one of these), and the scene files are not shipped.
 import { spawnSync } from "node:child_process";
 import { copyFileSync, existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, statSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
@@ -24,6 +25,7 @@ const site = join(root, "site");
 const out = process.env.IMAGES_OUT ?? join(root, "docs", "images");
 const only = process.env.ONLY ? process.env.ONLY.split(",") : null;
 const quality = Number(process.env.QUALITY ?? 75);
+const slow = Number(process.env.SLOW ?? 2);
 const framesOut = process.env.FRAMES_OUT ?? null;
 const MAX_BYTES = 200 * 1024;
 const TYPES = { ".html": "text/html", ".js": "text/javascript", ".css": "text/css", ".json": "application/json", ".svg": "image/svg+xml", ".png": "image/png" };
@@ -156,7 +158,7 @@ const element = async () => {
 };
 
 const SCENES = [
-  { name: "hero", width: 760, setup: heroFlags },
+  { name: "frames-live", width: 760, setup: heroFlags },
   { name: "provinces", width: 760, setup: provinces },
   { name: "former", width: 760, setup: former, data: years },
   { name: "element", width: 760, setup: element },
@@ -195,7 +197,7 @@ try {
         await page.evaluate(async (n) => { await globalThis.paint(n); }, i);
         const file = join(dir, `${String(i).padStart(3, "0")}.png`);
         writeFileSync(file, await (await page.$("#scene")).screenshot({ type: "png", animations: "disabled" }));
-        args.push("-d", String(info.delays[i]), file);
+        args.push("-d", String(Math.round(info.delays[i] * slow)), file);
         if (framesOut) { mkdirSync(framesOut, { recursive: true }); copyFileSync(file, join(framesOut, `${scene.name}-${scheme}-${String(i).padStart(2, "0")}.png`)); }
       }
       const target = join(out, `${scene.name}-desk-${scheme}.webp`);

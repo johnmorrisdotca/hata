@@ -6,6 +6,16 @@ All notable changes to this project are written here. The format follows
 
 ## [Unreleased]
 
+## [1.7.2] - 2026-10-21
+
+The README opens on the still gallery again and the pictures and the demo are slower. No change to the package's code beyond its version.
+
+### Changed
+
+- **README: it opens on the still picture of the gallery again** (`docs/images/hero-desk-*.webp`, a new screenshot of the demo with its shape bar). Flags moving through the frames is now beside the "Round and square frames" point of "The best of it" (`docs/images/frames-live-desk-*.webp`, renamed from `hero-desk`), the Tokyo frames picture is back under the detail panel, and each moving picture is in its own point.
+- **The moving pictures run at half the speed.** `pnpm animations` keeps each step twice as long (`SLOW=2`, `SLOW=1` for the old pace); the files are the same size.
+- **Demo: the gallery waits.** The flags stay at their own proportions until the mouse is over them, then go through 4:3, square and round (a shape every 3.8 seconds, twice as long as before) and stop when the pointer leaves, with the address naming the shape they stopped on. Play keeps them going wherever the pointer is (a touch screen's way in), Pause or choosing a shape stops them, and a reader who prefers reduced motion is never played to by the pointer. `?play=1` starts them; `?shape=` and `?play=0` open still, as before.
+
 ## [1.7.1] - 2026-10-20
 
 The npm page and the demo open on the best of it, in motion. No change to the package's code beyond its version.

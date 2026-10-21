@@ -17,20 +17,12 @@ At their true proportions, optimised and safe to inline, with the source, author
 
 <p align="center"><a href="https://johnmorrisdotca.github.io/hata/"><strong>Try it →</strong></a> · <a href="https://johnmorrisdotca.github.io/hata/builder.html">Build a flag</a> · <a href="https://johnmorrisdotca.github.io/hata/docs/index.html">Documentation</a> · <a href="https://johnmorrisdotca.github.io/hata/docs/guides/getting-started.html">Getting started</a> · <a href="https://johnmorrisdotca.github.io/hata/api.html">API reference</a></p>
 
-<p align="center">
-<picture>
-<source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/johnmorrisdotca/hata/main/docs/images/hero-desk-dark.webp">
-<img src="https://raw.githubusercontent.com/johnmorrisdotca/hata/main/docs/images/hero-desk-light.webp" alt="Eight flags (Japan, Canada, the United States, Switzerland, Nepal, Brazil, Tokyo and Bavaria) moving through the four frames in turn: first at their own proportions, then every one in a 4:3 frame, a square one and a round one, with the name of the frame above them and each flag's code below." width="760">
-</picture>
-<br><em>Flags through the frames: their own proportions, 4:3, square and round, never stretched.</em>
-</p>
-
 <table align="center">
 <tr>
 <td align="center" valign="top">
 <picture>
-<source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/johnmorrisdotca/hata/main/docs/images/gallery-desk-dark.webp">
-<img src="https://raw.githubusercontent.com/johnmorrisdotca/hata/main/docs/images/gallery-desk-light.webp" alt="The demo on a desk, in English: the header with its language chooser, the Docs and API reference links, five cloth patches and the Help switch, then the Flags and Quiz tabs. The Flags tab has a search box, a menu of which flags to show (All, the countries, or one of ten countries' regions), a continent menu, the shapes Own, 4:3, 1:1 and Round, the line 465 of 465 flags with List (TXT), List (Markdown), List (SQL) and Manifest (JSON) buttons, and the first rows of flags: Andorra, the United Arab Emirates, Afghanistan, Antigua and Barbuda, Anguilla and Albania, each with its name and code." width="600">
+<source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/johnmorrisdotca/hata/main/docs/images/hero-desk-dark.webp">
+<img src="https://raw.githubusercontent.com/johnmorrisdotca/hata/main/docs/images/hero-desk-light.webp" alt="The demo on a desk, in English: the header with its language chooser, the Docs and API reference links, five cloth patches and the Help switch, then the Flags and Quiz tabs. The Flags tab has a search box, a menu of which flags to show (All, the countries, or one of ten countries' regions), a continent menu, the shapes Own, 4:3, 1:1 and Round, the line 465 of 465 flags with List (TXT), List (Markdown), List (SQL) and Manifest (JSON) buttons, and the first rows of flags: Andorra, the United Arab Emirates, Afghanistan, Antigua and Barbuda, Anguilla and Albania, each with its name and code." width="600">
 </picture>
 <br><em>The gallery on a desk: every flag at its own proportions, found by name or code.</em>
 </td>
@@ -58,10 +50,10 @@ Hata is the flag set a site that already knows its countries and regions by ISO 
 
 <p align="center">
 <picture>
-<source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/johnmorrisdotca/hata/main/docs/images/frames-desk-dark.webp">
-<img src="https://raw.githubusercontent.com/johnmorrisdotca/hata/main/docs/images/frames-desk-light.webp" alt="Tokyo’s whole and cropped flags in square, 4:3 and round frames, preserving the native framing decisions." width="960">
+<source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/johnmorrisdotca/hata/main/docs/images/frames-live-desk-dark.webp">
+<img src="https://raw.githubusercontent.com/johnmorrisdotca/hata/main/docs/images/frames-live-desk-light.webp" alt="Eight flags (Japan, Canada, the United States, Switzerland, Nepal, Brazil, Tokyo and Bavaria) moving through the four frames in turn: first at their own proportions, then every one in a 4:3 frame, a square one and a round one, with the name of the frame above them and each flag's code below." width="760">
 </picture>
-<br><em>Compare whole and cropped views at each supported frame shape.</em>
+<br><em>Flags through the frames: their own proportions, 4:3, square and round, never stretched.</em>
 </p>
 
 - **Every province and territory of Canada**, and the regions of nine other countries: 13 of 13 here, keyed by ISO 3166-2 (`CA-BC`, `CA-ON`).
@@ -136,6 +128,12 @@ Install the scoped name: an unscoped `hata` on npm, if there is one, is somebody
   <img src="https://raw.githubusercontent.com/johnmorrisdotca/hata/main/docs/images/detail-desk-light.webp" alt="Tokyo’s flag in the detail panel, with its full drawing, whole and cropped frames, and stored source facts." width="960">
 </picture>
 <br><em>Tokyo’s detail panel keeps the drawing, frames and source together.</em>
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/johnmorrisdotca/hata/main/docs/images/frames-desk-dark.webp">
+  <img src="https://raw.githubusercontent.com/johnmorrisdotca/hata/main/docs/images/frames-desk-light.webp" alt="Tokyo’s whole and cropped flags in square, 4:3 and round frames, preserving the native framing decisions." width="960">
+</picture>
+<br><em>Compare whole and cropped views at each supported frame shape.</em>
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/johnmorrisdotca/hata/main/docs/images/provenance-desk-dark.webp">
