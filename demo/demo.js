@@ -51,13 +51,15 @@ const fold = (text) =>
 
 // What the address says, and keeping it there: the tab, the gallery's choices and the quiz's game.
 const asked = new URLSearchParams(location.search);
-/** Play the frames: the gallery's flags go from their own proportions to 4:3, square and round and round again while the page is open, unless the address names a shape (or says play=0) or the reader prefers reduced motion. */
+/** Play the frames: the gallery's flags wait still, and go from their own proportions to 4:3, square and round and round again while the mouse is over them, or after Play (or `?play=1`, for a reader who has not asked for less motion). Leaving them stops them. */
 const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
 const SHAPE_ORDER = ["flag", "4:3", "1:1", "round"];
-/** How long each shape stays, in milliseconds: 1900, or what `?gap=` says (the tests make it shorter). */
-const FRAME_MS = Math.min(Math.max(Number(asked.get("gap")) || 1900, 150), 20000);
+/** How long each shape stays, in milliseconds: 3800, or what `?gap=` says (the tests make it shorter). */
+const FRAME_MS = Math.min(Math.max(Number(asked.get("gap")) || 3800, 150), 20000);
 const state = {
-  playing: !reducedMotion.matches && !asked.has("shape") && asked.get("play") !== "0",
+  playing: !reducedMotion.matches && !asked.has("shape") && asked.get("play") === "1",
+  /** True while the mouse is over the flags (it plays them and leaving stops them). */
+  hover: false,
   tab: asked.get("tab") === "quiz" ? "quiz" : "gallery",
   query: asked.get("q") ?? "",
   set: ["all", ...GROUPS].includes(asked.get("set")) ? asked.get("set") : "all",
@@ -67,6 +69,8 @@ const state = {
   mode: MODES.includes(asked.get("mode")) ? asked.get("mode") : "country",
   seed: /^[\w-]{1,32}$/.test(asked.get("seed") ?? "") ? asked.get("seed") : null,
 };
+/** The frames are going: after Play, or while the pointer is over the flags. */
+const running = () => state.playing || state.hover;
 const remember = () => {
   const query = new URLSearchParams(location.search);
   const put = (key, value, plain) => (value === plain || value === "" || value === null ? query.delete(key) : query.set(key, value));
@@ -74,8 +78,8 @@ const remember = () => {
   put("q", state.query, "");
   put("set", state.set, "all");
   put("region", state.region, "all");
-  put("shape", state.playing ? "" : state.shape, "flag");
-  put("play", state.playing || reducedMotion.matches ? "" : "0", "");
+  put("shape", running() ? "" : state.shape, "flag");
+  put("play", state.playing ? "1" : "", "");
   put("fit", state.fit, "auto");
   put("mode", state.tab === "quiz" ? state.mode : null, null);
   put("seed", state.tab === "quiz" ? state.seed : null, null);
@@ -216,8 +220,8 @@ function drawGallery() {
   $("set").value = state.set;
   for (const button of $("shape").querySelectorAll("button")) button.setAttribute("aria-pressed", String(button.dataset.value === state.shape));
   $("fit").hidden = state.shape === "flag";
-  $("play").textContent = say(state.playing ? "pause_frames" : "play_frames");
-  $("play").setAttribute("aria-pressed", String(state.playing));
+  $("play").textContent = say(running() ? "pause_frames" : "play_frames");
+  $("play").setAttribute("aria-pressed", String(running()));
   $("grid").dataset.fit = state.fit;
   for (const button of $("fit").querySelectorAll("button")) button.setAttribute("aria-pressed", String(button.dataset.value === state.fit));
 }
@@ -253,12 +257,27 @@ $("search").addEventListener("input", () => {
 });
 // One more shape: the grid is drawn again as it stands, and what the reader typed or chose is left alone.
 setInterval(() => {
-  if (!state.playing || document.hidden || state.tab !== "gallery") return;
+  if (!running() || document.hidden || state.tab !== "gallery") return;
   state.shape = SHAPE_ORDER[(SHAPE_ORDER.indexOf(state.shape) + 1) % SHAPE_ORDER.length];
   drawGallery();
 }, FRAME_MS);
+// The mouse over the flags plays them and leaving stops them; Play keeps them going wherever the pointer is. A touch screen uses Play.
+$("grid").addEventListener("pointerenter", (event) => {
+  if (event.pointerType !== "mouse" || reducedMotion.matches || running() || state.tab !== "gallery") return;
+  state.hover = true;
+  drawGallery();
+  remember();
+});
+$("grid").addEventListener("pointerleave", (event) => {
+  if (event.pointerType !== "mouse" || !state.hover) return;
+  state.hover = false;
+  drawGallery();
+  remember();
+});
 $("play").addEventListener("click", () => {
-  state.playing = !state.playing;
+  const on = !running();
+  state.hover = false;
+  state.playing = on;
   drawGallery();
   remember();
 });
@@ -266,6 +285,7 @@ for (const button of $("shape").querySelectorAll("button")) {
   button.addEventListener("click", () => {
     // Choosing a shape is choosing to look at it: the frames stop on it.
     state.playing = false;
+    state.hover = false;
     state.shape = button.dataset.value;
     drawGallery();
     remember();
