@@ -31,14 +31,13 @@ test("opens on a tap with the flag's names, code, proportions, source, licence a
   expect(errors).toEqual([]);
 });
 
-test("says which drawing won and why, where a flag set's did", async ({ page }, testInfo) => {
+test("says which drawing won and why, and what it was kept over", async ({ page }, testInfo) => {
   await open(page, "?lang=en&q=yemen");
   await tap(page, at("tile-YE"), testInfo);
   const facts = page.locator(at("facts"));
-  await expect(facts).toContainText("country-flag-icons, an MIT flag set");
-  await expect(facts).toContainText("the same flag as Commons'");
+  await expect(facts).toContainText("Wikimedia Commons");
+  await expect(facts).toContainText("Commons, kept over country-flag-icons");
   await expect(facts).toContainText("Flag of Yemen.svg");
-  await expect(facts).toContainText("MIT");
 });
 
 test("speaks the page's language, and the other language's name under the title", async ({ page }, testInfo) => {
