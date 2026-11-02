@@ -256,7 +256,7 @@ const NAMES: Readonly<Record<string, readonly [en: string, ja: string, aspect: n
   "AT-7": ["Tyrol", "チロル州", 1.5],
   "AT-8": ["Vorarlberg", "フォアアールベルク州", 1.5],
   "AT-9": ["Vienna", "ウィーン", 1.5],
-  "AU-ACT": ["Australian Capital Territory", "オーストラリア首都特別地域", 2],
+  "AU-ACT": ["Australian Capital Territory", "オーストラリア首都特別地域", 1.9999],
   "AU-NSW": ["New South Wales", "ニューサウスウェールズ州", 2],
   "AU-NT": ["Northern Territory", "ノーザンテリトリー", 2],
   "AU-QLD": ["Queensland", "クイーンズランド州", 2],

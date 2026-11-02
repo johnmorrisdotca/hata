@@ -26,12 +26,13 @@ drawing is smaller it is because it is simplified (a smaller emblem, a disc of t
 which is not the same flag. Japan is the example: country-flag-icons' disc is 0.56 of the height where the law
 says 0.6.
 
-## Yemen: a flag set's drawing, because Commons' file is marked CC BY-SA
+## Yemen: Commons' own drawing again, since its licence reads public domain
 
-Commons' machine-readable licence for *Flag of Yemen.svg* reads CC BY-SA 4.0, though the page's own permission
-field says `{{PD-Yemen}}{{PD-ineligible}}` and carries no Creative Commons template. country-flag-icons draws the
-same three bands at the same 2:3, under MIT, so it ships, and the manifest says why. A tricolour is not
-copyrightable anyway; the choice only keeps the package's licensing simple.
+Until the Commons snapshot of 2026-11-02, Commons' machine-readable licence for *Flag of Yemen.svg* read CC BY-SA 4.0,
+though the page's own permission field said `{{PD-Yemen}}{{PD-ineligible}}` and carried no Creative Commons template,
+so country-flag-icons' drawing of the same three bands (MIT) shipped. The page now reads public domain (Commons'
+licence field, `PD-Yemen`, `PD-ineligible`), the file itself is the same one (SHA-1 unchanged), and Commons' drawing
+is the reference, so `pnpm data:choose YE` chooses it. It is drawn at the same 3:2 as before.
 
 ## Which countries' regions are here, and how one is added
 

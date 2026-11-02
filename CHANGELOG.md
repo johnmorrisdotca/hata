@@ -6,6 +6,10 @@ All notable changes to this project are written here. The format follows
 
 ## [Unreleased]
 
+### Changed
+
+- **Data: the Commons snapshot is read again (2026-11-02).** Baden-Württemberg's and the Australian Capital Territory's flags are Commons' new drawings of the same flags (`de-bw` 143 B; `au-act` 38.2 KB, was 38.8 KB). Yemen's flag is Commons' drawing, no longer country-flag-icons': Commons' licence for the file reads public domain now, where it read CC BY-SA until this snapshot, so `ye` and its frames are drawn from Commons, and the credit for country-flag-icons leaves `NOTICE.md` as it no longer supplies any shipped flag. Three files that changed on Commons were not taken: Uzbekistan's (re-uploaded today with its blue and green in other shades than the flag's), Oman's (still not free to ship) and the Cocos (Keeling) Islands' (Commons now redirects it to Australia's flag; the islands stay out). A Commons file no place names (the Netherlands Antilles' flag of 1959 to 1986) is no longer kept in `data-sources/commons/`.
+
 ## [1.7.2] - 2026-10-21
 
 The README opens on the still gallery again and the pictures and the demo are slower. No change to the package's code beyond its version.
