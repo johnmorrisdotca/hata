@@ -467,7 +467,7 @@ flagAspect("CH");         // 1: Switzerland's flag is square
 
 [Read the complete original HTML image recipe](./docs/guides/loading-flags.md#original-html-image-recipes).
 
-## Use it anywhere
+## Every way to use it
 
 The [demo](https://johnmorrisdotca.github.io/hata/), the [docs](https://johnmorrisdotca.github.io/hata/docs/) (English and Japanese) and the [embed page](https://johnmorrisdotca.github.io/hata/embed.html). Each way below is a tested file in [`examples/`](./examples) (`pnpm test:usage`).
 
