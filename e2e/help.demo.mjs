@@ -31,7 +31,7 @@ test("Help is off at first, and on it shows a line under each option row, in eit
   const untitled = await page.evaluate(() => [...document.querySelectorAll("[data-help-en] button")].filter((b) => !b.title).map((b) => b.textContent.trim()));
   expect(untitled).toEqual([]);
   const english = await lines.first().textContent();
-  await page.locator('[data-lang="ja"]').click();
+  await page.locator('kazoku-language-picker [data-v="ja"]').click();
   await expect(lines.first()).not.toHaveText(english);
   await page.reload();
   await expect(page.locator("[data-help-switch]")).toHaveAttribute("aria-pressed", "true");

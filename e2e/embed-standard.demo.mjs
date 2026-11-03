@@ -18,7 +18,7 @@ test("the standalone builder restores a flag, writes every host format and fits 
   await expect(page.locator("#bld-code")).toContainText("/hata/embed/?");
   await page.locator("#bld-link").click();
   expect(await page.evaluate(() => window.__copied)).toContain("code=JP");
-  await page.locator('[data-lang="ja"]').click();
+  await page.locator('kazoku-language-picker [data-v="ja"]').click();
   await expect(page.locator("#opt-code")).toContainText("日本");
   await expect(page.locator("#bld-maker-says")).toContainText("旗");
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)).toBe(true);

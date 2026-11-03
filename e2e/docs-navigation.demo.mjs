@@ -5,8 +5,8 @@ for(const file of ["index.html","builder.html"]){
   await serve(page);await page.goto(`https://hata.test/${file}?lang=ja`);
   const docs=page.locator('[data-say="pageDocs"]');
   await expect(docs).toHaveText("ドキュメント");await expect(docs).toHaveAttribute("href","docs/ja/index.html");
-  await page.locator('button[data-lang="en"]').click();await expect(docs).toHaveAttribute("href","docs/index.html");
-  await page.locator('button[data-lang="ja"]').click();await docs.click();
+  await page.locator('kazoku-language-picker [data-v="en"]').click();await expect(docs).toHaveAttribute("href","docs/index.html");
+  await page.locator('kazoku-language-picker [data-v="ja"]').click();await docs.click();
   await expect(page).toHaveURL("https://hata.test/docs/ja/index.html");
   await expect(page.locator("html")).toHaveAttribute("lang","ja");
  });

@@ -6,6 +6,21 @@ All notable changes to this project are written here. The format follows
 
 ## [Unreleased]
 
+## [1.8.0] - 2026-11-03
+
+The demo, the docs and the release tooling follow the family's must-have list. No change to the package's code beyond its version.
+
+### Added
+
+- **Every way to use it, tested.** `examples/` holds a script tag from jsDelivr and from unpkg, Vite, webpack, React (with a server render), Vue, Svelte, Angular, an iframe of the embed page, TypeScript and Node. `pnpm test:usage` builds, type-checks or runs each against the package as npm packs it, opens the ones with a page in a browser, and checks that the guides hold the same text word for word. CI runs it.
+- **Five guides, English and Japanese:** plain HTML and CDNs, Vite and webpack, React, Vue, Svelte and Angular, an iframe, and TypeScript and Node. The README links them ("Use it anywhere").
+- **`scripts/check-standard.mjs`**, the family's must-have list as a check (kazoku-ui's, copied unchanged), run by `pnpm test`.
+
+### Changed
+
+- **The demo's header** has the family's language picker and theme switch (kazoku-ui), and the page is `demo/index.html`. The README's pictures are new screenshots of it.
+- **The Release workflow** calls kazoku-ui's shared release workflow, and refuses a commit CI has not passed.
+
 ## [1.7.3] - 2026-11-02
 
 Three flags follow Commons' new files, and Yemen's is Commons' own drawing now. No change to the package's code beyond its version.

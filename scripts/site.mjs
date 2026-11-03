@@ -3,6 +3,8 @@
 // Kuni, at build time, so the page needs no network and no Kuni of its own) and the built package beside it.
 import { cpSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 
+import { build } from "esbuild";
+
 import { continentName, country } from "@johnmorrisdotca/kuni";
 import { subdivision } from "@johnmorrisdotca/kuni/subdivisions";
 
@@ -131,45 +133,26 @@ const dialog = `<dialog id="detail" class="detail" data-testid="detail" aria-lab
       <p class="fam-fine" id="copied" data-testid="copied" aria-live="polite"></p>
     </dialog>`;
 
-const page = `<!doctype html>
-<html lang="en">
-  <head>
-    ${familyHead({
-      id,
-      title: "Hata旗 — Country and region flags as SVG",
-      description: "Every country's flag, and the regions of Japan, Canada, the United States, Australia, the United Kingdom, Germany, France, Switzerland, Austria and Brazil, as optimised SVG keyed by ISO 3166 code, with each flag's source and licence. Search, embed anywhere, download as SVG or PNG, and play the flag quiz. Free and open source.",
-      ogTitle: "Hata旗 — Country and region flags as SVG",
-      ogDescription: `${FLAG_CODES.length} flags at their true proportions, from Wikimedia Commons and MIT flag sets, with provenance for each, an element to embed one anywhere, and a flag quiz in English and Japanese.`,
-    })}
-    <link rel="icon" href="${ICON}" />
-    <link rel="stylesheet" href="family.css" />
-    <link rel="stylesheet" href="hata.css" />
-  </head>
-  <body>
-    <main>
-      ${familyHeader({ id, links: [{ href: "docs/index.html", say: "pageDocs" }, { href: "api.html", say: "pageApi" }] })}
-      <div class="fam-tabs" role="tablist" data-testid="tabs">
-        <button type="button" role="tab" id="tab-gallery" aria-controls="gallery-panel" data-tab="gallery" data-say="tab_gallery"></button>
-        <button type="button" role="tab" id="tab-quiz" aria-controls="quiz-panel" data-tab="quiz" data-say="tab_quiz"></button>
-      </div>
-      ${gallery}
-      ${quiz}
-      ${familyUnreviewed({ id })}
-      <section class="more" aria-labelledby="more-title">
-        <h2 id="more-title" data-say="moreTitle"></h2>
-        <p data-say="moreText"></p>
-        <ul class="uses">
-          ${uses.map((line) => `<li><code>${escape(line)}</code></li>`).join("\n          ")}
-        </ul>
-      </section>
-      ${familyFooter({ id })}
-    </main>
-    ${dialog}
-    <script>${FAMILY_SCRIPT}</script>
-    <script type="module" src="demo.js"></script>
-  </body>
-</html>
-`;
+// The page is demo/index.html; each <!-- family:key --> in it is replaced by the text below.
+const pageParts = {
+  head: familyHead({
+    id,
+    title: "Hata旗 — Country and region flags as SVG",
+    description: "Every country's flag, and the regions of Japan, Canada, the United States, Australia, the United Kingdom, Germany, France, Switzerland, Austria and Brazil, as optimised SVG keyed by ISO 3166 code, with each flag's source and licence. Search, embed anywhere, download as SVG or PNG, and play the flag quiz. Free and open source.",
+    ogTitle: "Hata旗 — Country and region flags as SVG",
+    ogDescription: `${FLAG_CODES.length} flags at their true proportions, from Wikimedia Commons and MIT flag sets, with provenance for each, an element to embed one anywhere, and a flag quiz in English and Japanese.`,
+  }),
+  icon: ICON,
+  header: familyHeader({ id, links: [{ href: "docs/index.html", say: "pageDocs" }, { href: "api.html", say: "pageApi" }] }),
+  gallery,
+  quiz,
+  unreviewed: familyUnreviewed({ id }),
+  uses: uses.map((line) => `<li><code>${escape(line)}</code></li>`).join("\n          "),
+  footer: familyFooter({ id }),
+  dialog,
+  script: `<script>${FAMILY_SCRIPT}</script>\n    <script type="module" src="kazoku-parts.js"></script>`,
+};
+const page = readFileSync("demo/index.html", "utf8").replace(/<!-- family:([A-Za-z]+) -->/g, (_match, key) => pageParts[key]);
 
 rmSync("site", { recursive: true, force: true });
 mkdirSync("site", { recursive: true });
@@ -178,6 +161,15 @@ cpSync("demo", "site", { recursive: true });
 cpSync("dist", "site/dist", { recursive: true, filter: (source) => !/\.d\.ts$/.test(source) });
 writeFileSync("site/names.js", `// Made by scripts/site.mjs from Kuni ${JSON.parse((await import("node:fs")).readFileSync("node_modules/@johnmorrisdotca/kuni/package.json", "utf8")).version}: every place's names, and the continents.\nexport const NAMES = ${JSON.stringify(names)};\nexport const CONTINENTS = ${JSON.stringify(continents)};\n`);
 writeFileSync("site/index.html", page);
+// The family header's language picker and theme switch, as one small module for every page of the site (the demo, the builder, the API reference and the docs).
+await build({
+  stdin: { contents: 'import "@johnmorrisdotca/kazoku-ui/language-picker/define";\nimport "@johnmorrisdotca/kazoku-ui/theme-switch/define";\n', resolveDir: process.cwd() },
+  outfile: "site/kazoku-parts.js",
+  bundle: true,
+  format: "esm",
+  minify: true,
+  logLevel: "silent",
+});
 // The API reference, made from the source: every export of every entry point, and a word on the flags' own entries.
 const api = apiBody();
 api.html = `<section class="api-entry" id="flags-"><h2><code>@johnmorrisdotca/hata/flags/&lt;code&gt;</code></h2>
@@ -195,6 +187,6 @@ writeFileSync("site/embed-builder.js", readFileSync("demo/embed-builder.js", "ut
 const builderWords = {
   "builderHead": familyHead({ id, title: "Hata旗 — Country and region flags as SVG · builder", description: "Choose a flag, preview it and copy its embed code." }),
   "builderHeader": familyHeader({ id, links: [{ href: "./", say: "toGallery" }, { href: "docs/index.html", say: "pageDocs" }, { href: "api.html", say: "pageApi" }] }),
-  "unreviewed": familyUnreviewed({ id }), "footer": familyFooter({ id }), "script": `<script>${FAMILY_SCRIPT}</script>`,
+  "unreviewed": familyUnreviewed({ id }), "footer": familyFooter({ id }), "script": `<script>${FAMILY_SCRIPT}</script>\n    <script type="module" src="kazoku-parts.js"></script>`,
 };
 writeFileSync("site/builder.html", readFileSync("demo/builder.html", "utf8").replace(/<!-- family:([A-Za-z]+) -->/g, (_match, key) => builderWords[key]));
