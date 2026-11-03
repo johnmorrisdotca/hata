@@ -1,3 +1,5 @@
+<p align="center"><a href="https://johnmorrisdotca.github.io/hata/"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/johnmorrisdotca/hata/main/docs/images/thumbnail-dark.png"><img src="https://raw.githubusercontent.com/johnmorrisdotca/hata/main/docs/images/thumbnail.png" alt="Hata: the flags of Japan, Canada, Switzerland, Nepal, Texas, Tokyo and more, drawn as SVG at their true proportions." width="1200"></picture></a></p>
+
 <h1 align="center">Hata <sub>旗</sub> — Country and region flags as SVG</h1>
 
 <p align="center"><strong>Hata 旗: flags as SVG for every country, and the regions of Japan, Canada, the United States, Australia, the United Kingdom, Germany, France, Switzerland, Austria and Brazil, keyed by ISO 3166 code.</strong><br>

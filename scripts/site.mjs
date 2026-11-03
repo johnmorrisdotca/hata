@@ -10,6 +10,7 @@ import { subdivision } from "@johnmorrisdotca/kuni/subdivisions";
 
 import { API_CSS, apiBody, apiPage } from "./api.mjs";
 import { FAMILY_SCRIPT, FAMILY_EMBED_BUILDER_WORDS, familyEmbedBuilder, familyFooter, familyHead, familyHeader, familyUnreviewed } from "./family-template.mjs";
+import { publishThumbnails, thumbnailHead } from "./family-thumbnail.mjs";
 
 const id = "hata";
 const { FLAG_CODES } = await import(new URL("../dist/index.js", import.meta.url).href);
@@ -142,6 +143,7 @@ const pageParts = {
     ogTitle: "Hata旗 — Country and region flags as SVG",
     ogDescription: `${FLAG_CODES.length} flags at their true proportions, from Wikimedia Commons and MIT flag sets, with provenance for each, an element to embed one anywhere, and a flag quiz in English and Japanese.`,
   }),
+  thumbnail: thumbnailHead(JSON.parse(readFileSync("package.json", "utf8")), { alt: "Hata: the flags of Japan, Canada, Switzerland, Nepal, Texas, Tokyo and more, drawn as SVG at their true proportions." }),
   icon: ICON,
   header: familyHeader({ id, links: [{ href: "docs/index.html", say: "pageDocs" }, { href: "api.html", say: "pageApi" }] }),
   gallery,
@@ -161,6 +163,8 @@ cpSync("demo", "site", { recursive: true });
 cpSync("dist", "site/dist", { recursive: true, filter: (source) => !/\.d\.ts$/.test(source) });
 writeFileSync("site/names.js", `// Made by scripts/site.mjs from Kuni ${JSON.parse((await import("node:fs")).readFileSync("node_modules/@johnmorrisdotca/kuni/package.json", "utf8")).version}: every place's names, and the continents.\nexport const NAMES = ${JSON.stringify(names)};\nexport const CONTINENTS = ${JSON.stringify(continents)};\n`);
 writeFileSync("site/index.html", page);
+// The family's card, dark card and icon, at <site>/thumbnail.png, thumbnail-dark.png and icon.png.
+publishThumbnails(".", "site");
 // The family header's language picker and theme switch, as one small module for every page of the site (the demo, the builder, the API reference and the docs).
 await build({
   stdin: { contents: 'import "@johnmorrisdotca/kazoku-ui/language-picker/define";\nimport "@johnmorrisdotca/kazoku-ui/theme-switch/define";\n', resolveDir: process.cwd() },

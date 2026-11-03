@@ -22,7 +22,7 @@ const pictures = (page) =>
 
 // `only` names every subject this file makes, so the pictures `pnpm animations` makes (frames-live, provinces, former, element) are not removed as pictures no shot makes.
 await takePictures({
-  only: ["frames", "provenance", "hero", "detail", "quiz"],
+  only: ["frames", "provenance", "hero", "detail", "quiz", "thumbnail"],
   shots: [
     { subject: "frames", views: ["desk"], url: "/?lang=en&help=off&set=jp", ready: READY, target: "#frames",
       async prepare(page) { await page.locator('[data-testid="tile-JP-13"]').click(); await page.locator('#frames img[data-shape="round"]').first().waitFor(); await pictures(page); } },
@@ -71,4 +71,24 @@ await takePictures({
       },
     },
   ],
+  // The family's thumbnail, dark thumbnail and icon (scripts/family-thumbnail.mjs): flags of every shape at their true
+  // proportions, Nepal's and Switzerland's among them, from the package's own SVG files; the icon is four bold ones.
+  thumbnail: {
+    url: "/?lang=en&help=off",
+    ready: READY,
+    target: "#thumbnail-stage",
+    icon: { target: "#thumbnail-icon" },
+    label: "Hata 旗",
+    async prepare(page) {
+      await page.evaluate(() => {
+        const rows = [["jp", "ca", "ch", "br", "gb"], ["np", "za", "us-tx", "kr", "se", "ca-qc"], ["in", "jp-13", "bt", "mx", "au"]];
+        const flag = (code, height) => `<img src="dist/svg/${code}.svg" alt="" style="height:${height}px;width:auto;display:block;box-shadow:0 1px 3px rgba(0,0,0,.28)${code === "np" ? ";box-shadow:none;filter:drop-shadow(0 1px 2px rgba(0,0,0,.3))" : ""}">`;
+        const stage = `<div id="thumbnail-stage" style="display:flex;flex-direction:column;gap:22px;align-items:center;padding:12px;width:1160px">${rows.map((row) => `<div style="display:flex;gap:22px;align-items:center">${row.map((code) => flag(code, 116)).join("")}</div>`).join("")}</div>`;
+        const icon = `<div id="thumbnail-icon" style="display:grid;grid-template-columns:auto auto;gap:14px;padding:8px;width:max-content">${["jp", "ca", "br", "gb"].map((code) => flag(code, 120)).join("")}</div>`;
+        document.body.replaceChildren();
+        document.body.insertAdjacentHTML("beforeend", stage + icon);
+      });
+      await pictures(page);
+    },
+  },
 });
