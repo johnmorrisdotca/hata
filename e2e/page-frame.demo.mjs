@@ -45,38 +45,84 @@ for (const lang of ["en", "ja"]) {
   }
 }
 
+/** Record each hata-load from the start, so a test can wait for the flag to be drawn. */
+const recordLoads = (page) =>
+  page.addInitScript(() => {
+    globalThis.__loads = [];
+    addEventListener("hata-load", (event) => globalThis.__loads.push(event.detail.code), true);
+  });
+const drawn = (page, code) => expect.poll(() => page.evaluate(() => globalThis.__loads)).toContain(code);
+
 for (const path of ["embed.html", "embed/"]) {
   test(`${path} credits a CC BY drawing in its frame, and adds nothing for a public-domain flag`, async ({ page }) => {
     await serve(page);
+    await recordLoads(page);
     const fetched = [];
     page.on("request", (request) => fetched.push(new URL(request.url()).pathname));
-    // Japan's flag is public domain: no credit line, and the page-frame part is not fetched
+    // Japan's flag is public domain: once it is drawn, no credit line, and the page-frame part was not fetched
     await page.goto(`https://hata.test/${path}?code=JP`);
-    await expect(page.locator("hata-flag")).toHaveAttribute("code", "JP");
-    await page.waitForLoadState("networkidle");
+    await drawn(page, "JP");
     await expect(page.locator("kazoku-page-credits")).toBeHidden();
     expect(fetched.some((one) => one.endsWith("kazoku-page-frame.js"))).toBe(false);
-    // Saint Barthélemy's local flag is CC BY 2.5: its author, its licence and a link to its page, in the small form
+    // Saint Barthélemy's local flag is CC BY 2.5: its licence with its address, and a link to the drawing's page
     await page.goto("about:blank");
     await page.goto(`https://hata.test/${path}?code=BL&variant=local`);
     const credits = page.locator("kazoku-page-credits");
     await expect(credits).toBeVisible();
     await expect(credits).toHaveAttribute("embed", "");
-    await expect(credits).toContainText("CC BY 2.5, Wikimedia Commons");
+    await expect(credits).toContainText("CC BY 2.5 (https://creativecommons.org/licenses/by/2.5)");
     await expect(credits.getByRole("link")).toHaveAttribute("href", /commons\.wikimedia\.org/);
     await expect(credits.getByRole("link")).toHaveAttribute("target", "_blank");
   });
 }
 
-test("the builder makes a CC BY flag's frame taller by its credit line, and a public-domain flag's its own size", async ({ page }) => {
+test("embed.html takes its credit away when the address moves to a flag that owes none", async ({ page }) => {
   await serve(page);
-  const height = async (hash) => {
-    await page.goto("about:blank");
-    await page.goto(`https://hata.test/builder.html?lang=en#make=flag&${hash}&show=iframe`);
-    const code = await page.locator('[data-testid="bld-embed"] [part="code"]').textContent();
-    return Number(/height="(\d+)"/.exec(code ?? "")?.[1]);
-  };
-  // a wide frame takes the line once; a narrow one as many times as the line wraps
-  expect((await height("code=BL&variant=local&width=480&shape=4:3")) - (await height("code=BL&width=480&shape=4:3"))).toBe(2 * 18);
-  expect((await height("code=BL&variant=local&width=120&shape=4:3")) - (await height("code=BL&width=120&shape=4:3"))).toBe(5 * 18);
+  await recordLoads(page);
+  await page.goto("https://hata.test/embed.html#code=BL&variant=local");
+  await expect(page.locator("kazoku-page-credits")).toBeVisible();
+  await page.evaluate(() => {
+    location.hash = "code=JP";
+  });
+  await drawn(page, "JP");
+  await expect(page.locator("kazoku-page-credits")).toBeHidden();
 });
+
+/** The builder's iframe for these choices: its width and height. */
+async function frameSize(page, hash) {
+  await page.goto("about:blank");
+  await page.goto(`https://hata.test/builder.html?lang=en#make=flag&${hash}&show=iframe`);
+  await expect(page.locator("#bld-stage hata-flag img")).toBeVisible();
+  const code = (await page.locator('[data-testid="bld-embed"] [part="code"]').textContent()) ?? "";
+  return { width: Number(/width="(\d+)"/.exec(code)?.[1]), height: Number(/height="(\d+)"/.exec(code)?.[1]) };
+}
+
+for (const width of [480, 120]) {
+  test(`at ${width} px, the builder's frame holds a CC BY flag at its full size with the whole credit line under it`, async ({
+    page,
+    browser,
+  }) => {
+    await serve(page);
+    const plain = await frameSize(page, `code=BL&width=${width}&shape=4:3`);
+    const owed = await frameSize(page, `code=BL&variant=local&width=${width}&shape=4:3`);
+    expect(owed.width).toBe(plain.width);
+    expect(owed.height).toBeGreaterThan(plain.height);
+    // the frame, at the size the builder gives it
+    const measure = async (size, query) => {
+      const frame = await browser.newPage({ viewport: size });
+      await serve(frame);
+      await frame.goto(`https://hata.test/embed/?${query}&width=${width}&shape=4:3`);
+      await expect(frame.locator("hata-flag img, hata-flag svg").first()).toBeVisible();
+      const flag = (await frame.locator("hata-flag").boundingBox()).height;
+      const credits = frame.locator("kazoku-page-credits");
+      const bottom = (await credits.isVisible()) ? (await credits.boundingBox()).y + (await credits.boundingBox()).height : 0;
+      await frame.close();
+      return { flag, bottom };
+    };
+    const without = await measure(plain, "code=BL");
+    const withCredit = await measure(owed, "code=BL&variant=local");
+    expect(Math.abs(withCredit.flag - without.flag)).toBeLessThanOrEqual(1);
+    expect(withCredit.bottom).toBeGreaterThan(0);
+    expect(withCredit.bottom).toBeLessThanOrEqual(owed.height);
+  });
+}

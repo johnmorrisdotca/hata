@@ -223,17 +223,21 @@ writeFileSync("site/api.html", apiPage({ id, name: "Hata", icon: ICON, api }));
 console.log("site/ is ready: serve it, or let the Pages workflow publish it.");
 
 // The embed pages' credit line, owed only where a flag's drawing is under a licence that asks for credit (CC BY): the
-// licence and the source, linked to the drawing's Commons page, which names its author in full (a short line, so a
-// small frame needs few lines for it). A flag that owes none keeps its frame its own size and loads
+// licence with its address (CC BY 2.5, section 4(a)) and the source, linked to the drawing's Commons page, which names
+// its author in full. The builder measures the line at the frame's width. A flag that owes none keeps its frame its own size and loads
 // nothing more. Keyed by "CODE|variant" ("|" alone for the flag's default drawing).
 const owed = {};
+const credit = (drawing) => {
+    const licence = drawing.licence.url ? `${drawing.licence.name} (${drawing.licence.url})` : drawing.licence.name;
+    const licenceJa = drawing.licence.url ? `${drawing.licence.name}（${drawing.licence.url}）` : drawing.licence.name;
+    return { en: `Flag: ${licence}, Wikimedia Commons`, ja: `旗：${licenceJa}、Wikimedia Commons`, href: drawing.page };
+};
 for (const record of MANIFEST) {
-  const credit = (drawing) => ({ en: `Flag: ${drawing.licence.name}, Wikimedia Commons`, ja: `旗：${drawing.licence.name}、Wikimedia Commons`, href: drawing.page });
   if (record.attributionRequired) owed[`${record.code}|`] = credit(record);
   for (const variant of record.variants) if (variant.drawing.attributionRequired) owed[`${record.code}|${variant.id}`] = credit(variant.drawing);
 }
 for (const place of LEFT_OUT)
-  for (const variant of place.variants ?? []) if (variant.drawing.attributionRequired) owed[`${place.code}|${variant.id}`] = { en: `Flag: ${variant.drawing.licence.name}, Wikimedia Commons`, ja: `旗：${variant.drawing.licence.name}、Wikimedia Commons`, href: variant.drawing.page };
+  for (const variant of place.variants ?? []) if (variant.drawing.attributionRequired) owed[`${place.code}|${variant.id}`] = credit(variant.drawing);
 writeFileSync("site/embed-credits.js", `// Made by scripts/site.mjs from the manifest: the credit each embed owes, by "CODE|variant".\nexport const OWED = ${JSON.stringify(owed)};\n`);
 await build({
   stdin: { contents: 'import "@johnmorrisdotca/kazoku-ui/page-frame/define";\n', resolveDir: process.cwd() },

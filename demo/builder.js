@@ -5,6 +5,9 @@ import { FLAG_ELEMENT_ATTRIBUTES } from "./dist/element.js";
 import { manifest, variantsOf, LEFT_OUT } from "./dist/manifest.js";
 import "./dist/element-define.js";
 import { familyEmbedBuilder, FAMILY_EMBED_BUILDER_WORDS } from "./family-embed-builder.js";
+import { OWED } from "./embed-credits.js";
+// the credit line's element, defined before the builder measures it
+import "./kazoku-page-frame.js";
 // kazoku-ui's embed panel, the code section the builder fills: defined before the builder mounts.
 import "./kazoku-embed-panel.js";
 import { FLAG_OPTIONS, HATA_PRODUCT } from "./embed-hata.js";
@@ -64,14 +67,19 @@ options.find((option) => option.id === "size").choiceLabels = { en: { small: "Sm
 const sizes = { small: 24, medium: 48, large: 96 };
 const aspect = (settings) => settings.shape === "4:3" ? 4 / 3 : settings.shape === "round" || settings.shape === "1:1" ? 1 : (() => { const drawing = variantsOf(settings.code ?? "JP").find(one => one.id === settings.variant)?.drawing; return drawing ? drawing.width / drawing.height : flagAspect(settings.code ?? "JP") ?? 1.5; })();
 const width = (settings) => Number(settings.width) > 0 ? Number(settings.width) : (sizes[settings.size] ?? 48) * aspect(settings);
-// A drawing whose licence asks for credit (CC BY) shows a credit line in its frame ("Flag: CC BY 2.5, Wikimedia Commons"
-// and "Data and credits", about 560 px of 13 px text as it wraps): the frame is taller by as many 18 px lines as its width needs.
-const CREDIT_LINE = 18;
-const CREDIT_WIDTH = 560;
-const creditLines = (settings) => {
-  const code = settings.code ?? "JP";
-  const drawing = settings.variant ? variantsOf(code).find((one) => one.id === settings.variant)?.drawing : manifest(code);
-  return drawing?.attributionRequired ? Math.ceil(CREDIT_WIDTH / Math.max(40, Math.ceil(width(settings)))) : 0;
+// A drawing whose licence asks for credit (CC BY) shows a credit line in its frame, under the flag: the frame is taller
+// by the line's height, measured here at the frame's width and in its language, as the embed page draws it (the same
+// element, its own font and words, as in the frame).
+const creditHeight = (settings) => {
+  const owed = OWED[`${(settings.code ?? "JP").toUpperCase()}|${settings.variant ?? ""}`];
+  if (owed === undefined) return 0;
+  const probe = document.createElement("kazoku-page-credits");
+  for (const [name, value] of [["embed", ""], ["credits", owed.en], ["credits-ja", owed.ja], ["href", owed.href], ["lang", settings.lang ?? page.lang]]) probe.setAttribute(name, value);
+  probe.style.cssText = `position:absolute;visibility:hidden;left:0;top:0;display:block;width:${Math.ceil(width(settings))}px`;
+  document.body.append(probe);
+  const height = Math.ceil(probe.getBoundingClientRect().height);
+  probe.remove();
+  return height;
 };
 const legacy = (settings) => ({ code: "JP", shape: "own", lang: document.documentElement.lang, label: "", theme: "auto", ...settings, size: width(settings) / aspect(settings) });
 let context = {};
@@ -91,7 +99,7 @@ const builder = familyEmbedBuilder({ id: "hata", packageName: "@johnmorrisdotca/
   },
   unit: (option) => option.id === "width" ? "px" : "",
   leftOut: { "element.loading": "The preview is eager; iframe snippets use lazy loading." },
-  makers: { flag: { names: "call", element: "element", tag: "hata-flag", embed: "embed/", description: "makerFlagSays", required: ["code"], width: (settings) => Math.ceil(width(settings)) + 8, height: (settings) => Math.ceil(width(settings) / aspect(settings)) + 8 + creditLines(settings) * CREDIT_LINE,
+  makers: { flag: { names: "call", element: "element", tag: "hata-flag", embed: "embed/", description: "makerFlagSays", required: ["code"], width: (settings) => Math.ceil(width(settings)) + 8, height: (settings) => Math.ceil(width(settings) / aspect(settings)) + 8 + creditHeight(settings),
     formats: ["element", "img", "data", "iframe", "module", "react", "vue", "svelte", "angular", "html", "url"] } },
   formats: { ...familyEmbedBuilder({ packageName: "@example/embed", major: 1, site: "https://example.test/", makers: {} }).formats,
     img: HATA_PRODUCT.writers.img, data: HATA_PRODUCT.writers.data },
