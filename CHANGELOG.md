@@ -6,6 +6,8 @@ All notable changes to this project are written here. The format follows
 
 ## [Unreleased]
 
+- CI's browser job runs in the Playwright image and needs no apt mirror (KAZOKU-UI-100). The runner's apt mirror stopped answering on 2026-11-11, so `playwright install --with-deps` failed before a test ran; the demo job now runs in `mcr.microsoft.com/playwright:v1.64.0-noble`, the lockfile's Playwright version, which has the browsers and their system libraries. CI can also be started by hand (`workflow_dispatch`).
+
 - **The builder's code is in the family's embed panel** (kazoku-ui 0.38, family template 2026-11-11). The eleven tabs (the `<img>` and `data:` URI ones too), Copy, "Copy a link to this flag" and "Start again" are all kept, and the panel adds a link that opens the embed page with the choices, the embed guide in the page's language, and the credit of the chosen flag's drawing: its author, its licence and where it is from. The tab chosen stays in the address.
 - The README opens with the package's thumbnail, and the demo carries it as its link preview (og:image) and publishes the card, a dark card and an icon on Pages at `thumbnail.png`, `thumbnail-dark.png` and `icon.png`.
 
