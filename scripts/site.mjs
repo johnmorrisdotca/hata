@@ -174,6 +174,15 @@ await build({
   minify: true,
   logLevel: "silent",
 });
+// kazoku-ui's embed panel, for the builder's code section only.
+await build({
+  stdin: { contents: 'import "@johnmorrisdotca/kazoku-ui/embed-panel/define";\n', resolveDir: process.cwd() },
+  outfile: "site/kazoku-embed-panel.js",
+  bundle: true,
+  format: "esm",
+  minify: true,
+  logLevel: "silent",
+});
 // The API reference, made from the source: every export of every entry point, and a word on the flags' own entries.
 const api = apiBody();
 api.html = `<section class="api-entry" id="flags-"><h2><code>@johnmorrisdotca/hata/flags/&lt;code&gt;</code></h2>

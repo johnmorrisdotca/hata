@@ -24,8 +24,8 @@ importers:
         specifier: ^9.0.0
         version: 9.39.5
       '@johnmorrisdotca/kazoku-ui':
-        specifier: ^0.10.1
-        version: 0.10.1
+        specifier: ^0.38.0
+        version: 0.38.0
       '@johnmorrisdotca/kuni':
         specifier: 1.1.0
         version: 1.1.0
@@ -536,9 +536,10 @@ packages:
     resolution: {integrity: sha512-bV0Tgo9K4hfPCek+aMAn81RppFKv2ySDQeMoSZuvTASywNTnVJCArCZE2FWqpvIatKu7VMRLWlR1EazvVhDyhQ==}
     engines: {node: '>=18.18'}
 
-  '@johnmorrisdotca/kazoku-ui@0.10.1':
-    resolution: {integrity: sha512-WBGTk9yyhebnaTcebf5fXytt3+fkreDp5rSFrVwa2ZZ7FFvuPycoslQfiXH2OQ/m7qKdW0x3Ut2k9PZ7YPDx8w==}
+  '@johnmorrisdotca/kazoku-ui@0.38.0':
+    resolution: {integrity: sha512-VjrzekFLnD21tD2jTBfPhJhc9uNtgrkfNDXr61VUVndpa51V68xKBAdsdQK82J932gBCl7qrnjGVTOcVtXdmbg==}
     engines: {node: '>=22'}
+    hasBin: true
     peerDependencies:
       three: '>=0.160.0'
     peerDependenciesMeta:
@@ -2451,7 +2452,7 @@ snapshots:
 
   '@humanwhocodes/retry@0.4.3': {}
 
-  '@johnmorrisdotca/kazoku-ui@0.10.1': {}
+  '@johnmorrisdotca/kazoku-ui@0.38.0': {}
 
   '@johnmorrisdotca/kuni@1.1.0': {}
 

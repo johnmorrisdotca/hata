@@ -5,6 +5,8 @@ import { FLAG_ELEMENT_ATTRIBUTES } from "./dist/element.js";
 import { manifest, variantsOf, LEFT_OUT } from "./dist/manifest.js";
 import "./dist/element-define.js";
 import { familyEmbedBuilder, FAMILY_EMBED_BUILDER_WORDS } from "./family-embed-builder.js";
+// kazoku-ui's embed panel, the code section the builder fills: defined before the builder mounts.
+import "./kazoku-embed-panel.js";
 import { FLAG_OPTIONS, HATA_PRODUCT } from "./embed-hata.js";
 
 const codeChoices = [...FLAG_CODES, ...LEFT_OUT.filter(one => one.variants.length > 0).map(one => one.code)];
@@ -68,7 +70,16 @@ let epoch = 0;
 let mounted;
 const page = globalThis.familyLanguage({ id: "hata", words, onChange: () => { docsLink(); mounted?.draw(); } });
 const builder = familyEmbedBuilder({ id: "hata", packageName: "@johnmorrisdotca/hata", major: VERSION.split(".")[0], site: "https://johnmorrisdotca.github.io/hata/", title: "Hata · a flag", titleJa: "旗の埋め込み", options,
-  groups: { flag: { en: "The flag", ja: "旗の設定" } }, unit: (option) => option.id === "width" ? "px" : "",
+  groups: { flag: { en: "The flag", ja: "旗の設定" } },
+  // the chosen flag's own drawing: its author or credit line, its licence and where it is from
+  credits: ({ settings, lang }) => {
+    const record = manifest(legacy(settings).code);
+    if (record === null) return "";
+    const by = record.credit ?? record.author;
+    const from = record.source === "commons" ? "Wikimedia Commons" : record.source;
+    return lang === "ja" ? `旗の図：${by ? `${by}、` : ""}${record.licence.name}（${from}）` : `Flag drawing: ${by ? `${by}, ` : ""}${record.licence.name} (${from})`;
+  },
+  unit: (option) => option.id === "width" ? "px" : "",
   leftOut: { "element.loading": "The preview is eager; iframe snippets use lazy loading." },
   makers: { flag: { names: "call", element: "element", tag: "hata-flag", embed: "embed/", description: "makerFlagSays", required: ["code"], width: (settings) => Math.ceil(width(settings)) + 8, height: (settings) => Math.ceil(width(settings) / aspect(settings)) + 8,
     formats: ["element", "img", "data", "iframe", "module", "react", "vue", "svelte", "angular", "html", "url"] } },
@@ -101,5 +112,9 @@ mounted = builder.mount({ words, language: () => page, initial: { flag: { size: 
   return { destroy() { epoch += 1; element.remove(); } };
 } });
 
-function docsLink() { document.querySelector('[data-say="pageDocs"]')?.setAttribute("href", page.lang === "ja" ? "docs/ja/index.html" : "docs/index.html"); }
+function docsLink() {
+  document.querySelector('[data-say="pageDocs"]')?.setAttribute("href", page.lang === "ja" ? "docs/ja/index.html" : "docs/index.html");
+  // the panel's docs link, the embed guide in the page's language
+  document.getElementById("bld-embed")?.setAttribute("docs-href", page.lang === "ja" ? "docs/ja/guides/embed-in-an-iframe.html" : "docs/guides/embed-in-an-iframe.html");
+}
 docsLink();

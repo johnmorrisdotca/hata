@@ -10,12 +10,12 @@ test("the standalone builder restores a flag, writes every host format and fits 
   await expect(page.locator("#bld-stage hata-flag")).toHaveAttribute("width", "120");
   await expect(page.locator("#bld-stage hata-flag img")).toBeVisible();
   await page.locator("#opt-code").selectOption("JP");
-  await expect(page.locator("#bld-code")).toContainText('code="JP"');
+  await expect(page.locator('[data-testid="bld-embed"] [part="code"]')).toContainText('code="JP"');
   for (const format of ["html", "url", "react", "vue", "svelte", "angular", "img", "data", "module", "iframe"]) {
-    await page.locator(`[data-format="${format}"]`).click();
-    await expect(page.locator("#bld-code")).not.toHaveText("");
+    await page.locator(`[data-testid="bld-embed"] button[data-kind="${format}"]`).click();
+    await expect(page.locator('[data-testid="bld-embed"] [part="code"]')).not.toHaveText("");
   }
-  await expect(page.locator("#bld-code")).toContainText("/hata/embed/?");
+  await expect(page.locator('[data-testid="bld-embed"] [part="code"]')).toContainText("/hata/embed/?");
   await page.locator("#bld-link").click();
   expect(await page.evaluate(() => window.__copied)).toContain("code=JP");
   await page.locator('kazoku-language-picker [data-v="ja"]').click();
@@ -95,8 +95,8 @@ test("released variants and crop choices work in the canonical frame and builder
   await page.locator("#opt-variant").fill("republic");
   await page.locator('#opt-fit button[data-value="whole"]').click();
   await expect(page.locator("#bld-stage hata-flag")).toHaveAttribute("variant", "republic");
-  await expect(page.locator("#bld-code")).toContainText('variant="republic"');
+  await expect(page.locator('[data-testid="bld-embed"] [part="code"]')).toContainText('variant="republic"');
   await expect(page.locator("#bld-stage hata-flag img")).toBeVisible();
   await page.locator("#opt-variant").fill("not-a-variant");
-  await expect(page.locator("#bld-code")).toHaveText("");
+  await expect(page.locator('[data-testid="bld-embed"] [part="code"]')).toHaveText("");
 });
