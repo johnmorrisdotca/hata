@@ -15,12 +15,13 @@ const inView = (page, selector) =>
 test.describe("a reader who has not asked for less motion", () => {
   test.use({ reducedMotion: "no-preference" });
 
-  test("the first screen has the shape bar and flags, and nothing moves until the pointer is over the flags", async ({ page }) => {
-    const errors = await open(page, "?lang=en&help=off&gap=400");
+  // in both languages: the Japanese page's header is longer, and its first screen must still hold the flags
+  for (const [lang, play] of [["en", "Play the frames"], ["ja", "枠を再生"]]) test(`the first screen has the shape bar and flags, and nothing moves until the pointer is over the flags (${lang})`, async ({ page }) => {
+    const errors = await open(page, `?lang=${lang}&help=off&gap=400`);
     expect(await inView(page, at("framebar"))).toBe(true);
     expect(await inView(page, at("tile-AD"))).toBe(true);
     await expect(page.locator(at("play"))).toHaveAttribute("aria-pressed", "false");
-    await expect(page.locator(at("play"))).toHaveText("Play the frames");
+    await expect(page.locator(at("play"))).toHaveText(play);
     await page.waitForTimeout(1500);
     expect(await shapeNow(page)).toBe("flag");
     expect(page.url()).not.toMatch(/shape=|play=/);
