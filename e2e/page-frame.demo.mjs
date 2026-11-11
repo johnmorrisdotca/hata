@@ -64,15 +64,27 @@ for (const path of ["embed.html", "embed/"]) {
     await drawn(page, "JP");
     await expect(page.locator("kazoku-page-credits")).toBeHidden();
     expect(fetched.some((one) => one.endsWith("kazoku-page-frame.js"))).toBe(false);
-    // Saint Barthélemy's local flag is CC BY 2.5: its licence with its address, and a link to the drawing's page
+    // Saint Barthélemy's local flag is CC BY 2.5: the licence links to its address, and the source to the drawing's page
     await page.goto("about:blank");
     await page.goto(`https://hata.test/${path}?code=BL&variant=local`);
     const credits = page.locator("kazoku-page-credits");
     await expect(credits).toBeVisible();
     await expect(credits).toHaveAttribute("embed", "");
-    await expect(credits).toContainText("CC BY 2.5 (https://creativecommons.org/licenses/by/2.5)");
-    await expect(credits.getByRole("link")).toHaveAttribute("href", /commons\.wikimedia\.org/);
-    await expect(credits.getByRole("link")).toHaveAttribute("target", "_blank");
+    await expect(credits).toContainText("Flag: CC BY 2.5, Wikimedia Commons");
+    const links = credits.getByRole("link");
+    await expect(links).toHaveCount(2);
+    await expect(credits.getByRole("link", { name: "CC BY 2.5" })).toHaveAttribute("href", /^https:\/\/creativecommons\.org\/licenses\/by\/2\.5/);
+    await expect(credits.getByRole("link", { name: "Wikimedia Commons" })).toHaveAttribute("href", /^https:\/\/commons\.wikimedia\.org\//);
+    // in someone else's frame each link opens a tab of its own, and never takes the frame away
+    for (const link of await links.all()) {
+      await expect(link).toHaveAttribute("target", "_blank");
+      await expect(link).toHaveAttribute("rel", "noopener noreferrer");
+    }
+    // in Japanese, the same two links
+    await page.goto("about:blank");
+    await page.goto(`https://hata.test/${path}?code=BL&variant=local&lang=ja`);
+    await expect(page.locator("kazoku-page-credits")).toContainText("旗：CC BY 2.5、Wikimedia Commons");
+    await expect(page.locator("kazoku-page-credits").getByRole("link")).toHaveCount(2);
   });
 }
 

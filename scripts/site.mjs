@@ -222,15 +222,15 @@ writeFileSync("site/api.css", API_CSS);
 writeFileSync("site/api.html", apiPage({ id, name: "Hata", icon: ICON, api }));
 console.log("site/ is ready: serve it, or let the Pages workflow publish it.");
 
-// The embed pages' credit line, owed only where a flag's drawing is under a licence that asks for credit (CC BY): the
-// licence with its address (CC BY 2.5, section 4(a)) and the source, linked to the drawing's Commons page, which names
-// its author in full. The builder measures the line at the frame's width. A flag that owes none keeps its frame its own size and loads
+// The embed pages' credit line, owed only where a flag's drawing is under a licence that asks for credit (CC BY), in
+// kazoku-ui's credit pieces: the licence linked to its address (CC BY 2.5, section 4(a)) and the source linked to the
+// drawing's Commons page, which names its author in full. The builder measures the line at the frame's width. A flag that owes none keeps its frame its own size and loads
 // nothing more. Keyed by "CODE|variant" ("|" alone for the flag's default drawing).
 const owed = {};
 const credit = (drawing) => {
-    const licence = drawing.licence.url ? `${drawing.licence.name} (${drawing.licence.url})` : drawing.licence.name;
-    const licenceJa = drawing.licence.url ? `${drawing.licence.name}（${drawing.licence.url}）` : drawing.licence.name;
-    return { en: `Flag: ${licence}, Wikimedia Commons`, ja: `旗：${licenceJa}、Wikimedia Commons`, href: drawing.page };
+    const licence = drawing.licence.url ? { text: drawing.licence.name, href: drawing.licence.url } : drawing.licence.name;
+    const source = { text: "Wikimedia Commons", href: drawing.page };
+    return { en: ["Flag: ", licence, ", ", source], ja: ["旗：", licence, "、", source] };
 };
 for (const record of MANIFEST) {
   if (record.attributionRequired) owed[`${record.code}|`] = credit(record);

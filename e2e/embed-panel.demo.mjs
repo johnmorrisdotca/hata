@@ -43,6 +43,11 @@ test("the code section is the embed panel, with every item it had and the guide,
   await expect(panel(page).locator("[part=open]")).toHaveAttribute("href", /embed\/\?.*code=JP/);
   await expect(panel(page).locator("[part=docs]")).toHaveAttribute("href", "docs/guides/embed-in-an-iframe.html");
   await expect(panel(page).locator("[part=credits]")).toHaveText(/Flag drawing: Various, Public domain \(Wikimedia Commons\)/);
+  // the source is a link to the drawing's page, in a tab of its own
+  const source = panel(page).locator("[part=credits] [part=credit-link]");
+  await expect(source).toHaveText("Wikimedia Commons");
+  await expect(source).toHaveAttribute("href", /^https:\/\/commons\.wikimedia\.org\//);
+  await expect(source).toHaveAttribute("target", "_blank");
   // the preview and the size are the builder's own
   await expect(panel(page).locator("[part=preview]")).toBeHidden();
   await expect(panel(page).locator("[part=size]")).toBeHidden();
@@ -84,4 +89,12 @@ test("the credit is the drawing shown: the chosen variant's own, not the place's
   await expect(page.locator("#bld-stage hata-flag")).toHaveAttribute("variant", "de-facto");
   await expect(panel(page).locator("[part=credits]")).toContainText("Original: Taliban Vector: Lexicon");
   await expect(panel(page).locator("[part=credits]")).not.toContainText("Unknown author");
+  // a CC BY drawing: its licence links to the licence's address, and its source to the drawing's page
+  await page.goto("about:blank");
+  await page.goto("https://hata.test/builder.html?lang=en#make=flag&code=BL&variant=local");
+  await expect(page.locator("#bld-stage hata-flag")).toHaveAttribute("variant", "local");
+  const links = panel(page).locator("[part=credits] [part=credit-link]");
+  await expect(links).toHaveText(["CC BY 2.5", "Wikimedia Commons"]);
+  await expect(links.first()).toHaveAttribute("href", /^https:\/\/creativecommons\.org\/licenses\/by\/2\.5/);
+  await expect(links.last()).toHaveAttribute("href", /^https:\/\/commons\.wikimedia\.org\//);
 });

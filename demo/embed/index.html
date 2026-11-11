@@ -40,9 +40,7 @@ const owed = OWED[`${element.getAttribute("code")}|${element.getAttribute("varia
 if (owed !== undefined) {
   await import("../kazoku-page-frame.js");
   const credits = document.getElementById("credits");
-  credits.setAttribute("credits", owed.en);
-  credits.setAttribute("credits-ja", owed.ja);
-  credits.setAttribute("href", owed.href);
+  credits.credits = owed;
   credits.hidden = false;
 }
 </script></body></html>
