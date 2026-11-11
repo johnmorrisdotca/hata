@@ -62,6 +62,11 @@ describe("the docs", () => {
   });
 });
 
+// Measuring every entry point with esbuild is the slow step of these checks: about 9 s for hata's 927 entries on an idle
+// Mac (measured 2026-11-11), and past 15 s on a machine running several browsers at a load near 20. The measurement has
+// a minute, and its test a little more, so the measurement's own limit is the one that stops it, with its own message.
+const MEASURE_LIMIT = 60_000;
+
 describe("the README's badges", () => {
   const readme = read("README.md");
   const site = packageOf(".");
@@ -76,7 +81,7 @@ describe("the README's badges", () => {
     // Use the CLI's actual Node/module context instead of the test runner's transformed modules.
     const script = pathToFileURL(resolve("scripts/docs-site.mjs")).href;
     const code = `import { measureBundles } from ${JSON.stringify(script)}; console.log(JSON.stringify(await measureBundles(process.cwd())));`;
-    const ran = await promisify(execFile)(process.execPath, ["--input-type=module", "-e", code], { cwd: process.cwd(), encoding: "utf8", maxBuffer: 64 * 1024 * 1024, timeout: 30_000 });
+    const ran = await promisify(execFile)(process.execPath, ["--input-type=module", "-e", code], { cwd: process.cwd(), encoding: "utf8", maxBuffer: 64 * 1024 * 1024, timeout: MEASURE_LIMIT });
     const measured = JSON.parse(ran.stdout);
     expect(Object.keys(measured.entries).sort()).toEqual(Object.keys(recorded.entries).sort());
     for (const [key, size] of Object.entries(measured.entries)) {
@@ -89,7 +94,7 @@ describe("the README's badges", () => {
     }
     const whole = recorded.entries["."]?.gzip ?? Object.values(recorded.entries)[0].gzip;
     expect(readme).toContain(sizeBadge(site, whole));
-  });
+  }, MEASURE_LIMIT + 5_000);
 
   it("say the package is published with npm provenance, which the Release workflow does", () => {
     expect(readme).toContain(`<a href="https://www.npmjs.com/package/${pkg.name}#provenance"><img alt="Published with npm provenance" src="https://img.shields.io/badge/npm-provenance-2f5d4a"></a>`);
