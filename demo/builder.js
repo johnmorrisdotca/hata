@@ -74,7 +74,8 @@ const creditHeight = (settings) => {
   const owed = OWED[`${(settings.code ?? "JP").toUpperCase()}|${settings.variant ?? ""}`];
   if (owed === undefined) return 0;
   const probe = document.createElement("kazoku-page-credits");
-  for (const [name, value] of [["embed", ""], ["credits", owed.en], ["credits-ja", owed.ja], ["href", owed.href], ["lang", settings.lang ?? page.lang]]) probe.setAttribute(name, value);
+  for (const [name, value] of [["embed", ""], ["lang", settings.lang ?? page.lang]]) probe.setAttribute(name, value);
+  probe.credits = owed;
   probe.style.cssText = `position:absolute;visibility:hidden;left:0;top:0;display:block;width:${Math.ceil(width(settings))}px`;
   document.body.append(probe);
   const height = Math.ceil(probe.getBoundingClientRect().height);
@@ -88,14 +89,16 @@ let mounted;
 const page = globalThis.familyLanguage({ id: "hata", words, onChange: () => { docsLink(); mounted?.draw(); } });
 const builder = familyEmbedBuilder({ id: "hata", packageName: "@johnmorrisdotca/hata", major: VERSION.split(".")[0], site: "https://johnmorrisdotca.github.io/hata/", title: "Hata · a flag", titleJa: "旗の埋め込み", options,
   groups: { flag: { en: "The flag", ja: "旗の設定" } },
-  // the drawing shown: the chosen variant's own, else the flag's; its author, its licence and where it is from
+  // the drawing shown: the chosen variant's own, else the flag's; its author, its licence (linked to its address where it
+  // has one) and where it is from (linked to the drawing's page), in kazoku-ui's credit pieces
   credits: ({ settings, lang }) => {
     const { code, variant } = legacy(settings);
     const drawing = (variant ? variantsOf(code).find((one) => one.id === variant)?.drawing : undefined) ?? manifest(code);
     if (!drawing) return "";
     const by = drawing.author;
-    const from = drawing.source === "commons" ? "Wikimedia Commons" : drawing.source;
-    return lang === "ja" ? `旗の図：${by ? `${by}、` : ""}${drawing.licence.name}（${from}）` : `Flag drawing: ${by ? `${by}, ` : ""}${drawing.licence.name} (${from})`;
+    const licence = drawing.licence.url ? { text: drawing.licence.name, href: drawing.licence.url } : drawing.licence.name;
+    const from = { text: drawing.source === "commons" ? "Wikimedia Commons" : drawing.source, href: drawing.page };
+    return lang === "ja" ? [`旗の図：${by ? `${by}、` : ""}`, licence, "（", from, "）"] : [`Flag drawing: ${by ? `${by}, ` : ""}`, licence, " (", from, ")"];
   },
   unit: (option) => option.id === "width" ? "px" : "",
   leftOut: { "element.loading": "The preview is eager; iframe snippets use lazy loading." },

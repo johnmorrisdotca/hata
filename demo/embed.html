@@ -33,9 +33,7 @@
         credits.hidden = owed === undefined;
         if (owed === undefined) return;
         await import("./kazoku-page-frame.js");
-        credits.setAttribute("credits", owed.en);
-        credits.setAttribute("credits-ja", owed.ja);
-        credits.setAttribute("href", owed.href);
+        credits.credits = owed;
       };
       const ATTRIBUTES = ["code", "shape", "size", "fit", "variant", "label", "theme", "border", "shadow"];
       const FLAGS = ["border", "shadow"];
