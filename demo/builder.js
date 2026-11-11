@@ -64,6 +64,15 @@ options.find((option) => option.id === "size").choiceLabels = { en: { small: "Sm
 const sizes = { small: 24, medium: 48, large: 96 };
 const aspect = (settings) => settings.shape === "4:3" ? 4 / 3 : settings.shape === "round" || settings.shape === "1:1" ? 1 : (() => { const drawing = variantsOf(settings.code ?? "JP").find(one => one.id === settings.variant)?.drawing; return drawing ? drawing.width / drawing.height : flagAspect(settings.code ?? "JP") ?? 1.5; })();
 const width = (settings) => Number(settings.width) > 0 ? Number(settings.width) : (sizes[settings.size] ?? 48) * aspect(settings);
+// A drawing whose licence asks for credit (CC BY) shows a credit line in its frame ("Flag: CC BY 2.5, Wikimedia Commons"
+// and "Data and credits", about 560 px of 13 px text as it wraps): the frame is taller by as many 18 px lines as its width needs.
+const CREDIT_LINE = 18;
+const CREDIT_WIDTH = 560;
+const creditLines = (settings) => {
+  const code = settings.code ?? "JP";
+  const drawing = settings.variant ? variantsOf(code).find((one) => one.id === settings.variant)?.drawing : manifest(code);
+  return drawing?.attributionRequired ? Math.ceil(CREDIT_WIDTH / Math.max(40, Math.ceil(width(settings)))) : 0;
+};
 const legacy = (settings) => ({ code: "JP", shape: "own", lang: document.documentElement.lang, label: "", theme: "auto", ...settings, size: width(settings) / aspect(settings) });
 let context = {};
 let epoch = 0;
@@ -82,7 +91,7 @@ const builder = familyEmbedBuilder({ id: "hata", packageName: "@johnmorrisdotca/
   },
   unit: (option) => option.id === "width" ? "px" : "",
   leftOut: { "element.loading": "The preview is eager; iframe snippets use lazy loading." },
-  makers: { flag: { names: "call", element: "element", tag: "hata-flag", embed: "embed/", description: "makerFlagSays", required: ["code"], width: (settings) => Math.ceil(width(settings)) + 8, height: (settings) => Math.ceil(width(settings) / aspect(settings)) + 8,
+  makers: { flag: { names: "call", element: "element", tag: "hata-flag", embed: "embed/", description: "makerFlagSays", required: ["code"], width: (settings) => Math.ceil(width(settings)) + 8, height: (settings) => Math.ceil(width(settings) / aspect(settings)) + 8 + creditLines(settings) * CREDIT_LINE,
     formats: ["element", "img", "data", "iframe", "module", "react", "vue", "svelte", "angular", "html", "url"] } },
   formats: { ...familyEmbedBuilder({ packageName: "@example/embed", major: 1, site: "https://example.test/", makers: {} }).formats,
     img: HATA_PRODUCT.writers.img, data: HATA_PRODUCT.writers.data },

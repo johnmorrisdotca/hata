@@ -10,16 +10,32 @@
     <meta name="robots" content="noindex" />
     <meta name="color-scheme" content="light dark" />
     <title>Hata · a flag</title>
+    <meta name="description" content="One flag, drawn at its true proportions, for another site's iframe; its address says which." />
     <style>
       html, body { margin: 0; background: transparent; }
       body { padding: 4px; line-height: 0; }
+      kazoku-page-credits { display: block; line-height: normal; }
     </style>
   </head>
   <body>
     <hata-flag id="flag" loading="eager"></hata-flag>
+    <!-- The credit line, shown only for a drawing whose licence asks for credit (CC BY); a flag that owes none keeps its
+         frame its own size and loads nothing more. -->
+    <kazoku-page-credits id="credits" embed hidden></kazoku-page-credits>
     <script type="module">
       import "./dist/element-define.js";
+      import { OWED } from "./embed-credits.js";
       const element = document.getElementById("flag");
+      const credits = document.getElementById("credits");
+      const credit = async () => {
+        const owed = OWED[`${(element.getAttribute("code") ?? "JP").toUpperCase()}|${element.getAttribute("variant") ?? ""}`];
+        credits.hidden = owed === undefined;
+        if (owed === undefined) return;
+        await import("./kazoku-page-frame.js");
+        credits.setAttribute("credits", owed.en);
+        credits.setAttribute("credits-ja", owed.ja);
+        credits.setAttribute("href", owed.href);
+      };
       const ATTRIBUTES = ["code", "shape", "size", "fit", "variant", "label", "theme", "border", "shadow"];
       const FLAGS = ["border", "shadow"];
       const draw = () => {
@@ -36,8 +52,12 @@
       const tell = (message) => parent !== window && parent.postMessage(message, "*");
       element.addEventListener("hata-load", (event) => tell({ hata: "load", code: event.detail.code }));
       element.addEventListener("hata-error", (event) => tell({ hata: "error", code: event.detail.code, reason: event.detail.reason }));
-      addEventListener("hashchange", draw);
+      addEventListener("hashchange", () => {
+        draw();
+        void credit();
+      });
       draw();
+      void credit();
     </script>
   </body>
 </html>

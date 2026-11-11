@@ -3,6 +3,7 @@
 // Kuni, at build time, so the page needs no network and no Kuni of its own) and the built package beside it.
 import { cpSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 
+import { pageCreditsHtml, pageHeaderHtml, pageTitle } from "@johnmorrisdotca/kazoku-ui/page-frame";
 import { build } from "esbuild";
 
 import { continentName, country } from "@johnmorrisdotca/kuni";
@@ -14,7 +15,7 @@ import { publishThumbnails, thumbnailHead } from "./family-thumbnail.mjs";
 
 const id = "hata";
 const { FLAG_CODES } = await import(new URL("../dist/index.js", import.meta.url).href);
-const { LEFT_OUT } = await import(new URL("../dist/manifest.js", import.meta.url).href);
+const { LEFT_OUT, MANIFEST } = await import(new URL("../dist/manifest.js", import.meta.url).href);
 // The former countries and teams of sport are Hata's own list, not Kuni's (which knows the countries of today).
 const { HISTORICAL } = await import(new URL("./data-config.ts", import.meta.url).href);
 
@@ -135,11 +136,38 @@ const dialog = `<dialog id="detail" class="detail" data-testid="detail" aria-lab
     </dialog>`;
 
 // The page is demo/index.html; each <!-- family:key --> in it is replaced by the text below.
+// The family's page frame on each page (kazoku-ui's page-frame): one line saying what the page is, with a way home, and the
+// flags' credit line above the footer. One table of words per page makes the header line, the built <title> and the
+// title the header keeps in the reader's language, so they cannot disagree.
+const NOTICE = "https://github.com/johnmorrisdotca/hata/blob/main/NOTICE.md";
+const INDEX_DESCRIPTION =
+  "Every country's flag, and the regions of Japan, Canada, the United States, Australia, the United Kingdom, Germany, France, Switzerland, Austria and Brazil, as optimised SVG keyed by ISO 3166 code, with each flag's source and licence. Search, embed anywhere, download as SVG or PNG, and play the flag quiz. Free and open source.";
+const BUILDER_DESCRIPTION = "Choose a flag, preview it and copy its embed code.";
+const FRAME_TEXTS = {
+  "index.html": {
+    en: { name: "Hata 旗", what: "flags of countries and regions", description: INDEX_DESCRIPTION },
+    ja: { name: "旗 Hata", what: "国と地域の旗", description: "国の旗と、日本、カナダ、アメリカ、オーストラリア、イギリス、ドイツ、フランス、スイス、オーストリア、ブラジルの地域の旗を、本来の縦横比のSVGで見られます。旗を選ぶと、出どころ、ライセンス、埋め込みのコード、ダウンロードが見られ、クイズもできます。" },
+  },
+  "builder.html": {
+    en: { name: "Hata 旗", what: "embed builder", description: BUILDER_DESCRIPTION },
+    ja: { name: "旗 Hata", what: "埋め込みを作る", description: "旗を選んでプレビューを確かめ、埋め込みのコードをコピーできます。" },
+  },
+};
+const FRAME_CREDITS = pageCreditsHtml(
+  {
+    en: "Flag drawings from Wikimedia Commons and the flag-icons and country-flag-icons sets, each under its own licence; a flag's own author and licence are with it.",
+    ja: "旗の図はWikimedia Commonsと、flag-iconsとcountry-flag-iconsのセットのもので、それぞれのライセンスに従います。旗ごとの作者とライセンスは、その旗といっしょに示します。",
+  },
+  { href: NOTICE },
+);
+/** A page's <!--frame:header--> and <!--frame:credits--> filled with its frame. */
+const framed = (html, file) => html.replace("<!--frame:header-->", pageHeaderHtml(FRAME_TEXTS[file], { meta: true })).replace("<!--frame:credits-->", FRAME_CREDITS);
+
 const pageParts = {
   head: familyHead({
     id,
-    title: "Hata旗 — Country and region flags as SVG",
-    description: "Every country's flag, and the regions of Japan, Canada, the United States, Australia, the United Kingdom, Germany, France, Switzerland, Austria and Brazil, as optimised SVG keyed by ISO 3166 code, with each flag's source and licence. Search, embed anywhere, download as SVG or PNG, and play the flag quiz. Free and open source.",
+    title: pageTitle(FRAME_TEXTS["index.html"].en),
+    description: INDEX_DESCRIPTION,
     ogTitle: "Hata旗 — Country and region flags as SVG",
     ogDescription: `${FLAG_CODES.length} flags at their true proportions, from Wikimedia Commons and MIT flag sets, with provenance for each, an element to embed one anywhere, and a flag quiz in English and Japanese.`,
   }),
@@ -154,7 +182,7 @@ const pageParts = {
   dialog,
   script: `<script>${FAMILY_SCRIPT}</script>\n    <script type="module" src="kazoku-parts.js"></script>`,
 };
-const page = readFileSync("demo/index.html", "utf8").replace(/<!-- family:([A-Za-z]+) -->/g, (_match, key) => pageParts[key]);
+const page = framed(readFileSync("demo/index.html", "utf8").replace(/<!-- ?family:([A-Za-z]+) ?-->/g, (_match, key) => pageParts[key]), "index.html");
 
 rmSync("site", { recursive: true, force: true });
 mkdirSync("site", { recursive: true });
@@ -167,7 +195,7 @@ writeFileSync("site/index.html", page);
 publishThumbnails(".", "site");
 // The family header's language picker and theme switch, as one small module for every page of the site (the demo, the builder, the API reference and the docs).
 await build({
-  stdin: { contents: 'import "@johnmorrisdotca/kazoku-ui/language-picker/define";\nimport "@johnmorrisdotca/kazoku-ui/theme-switch/define";\n', resolveDir: process.cwd() },
+  stdin: { contents: 'import "@johnmorrisdotca/kazoku-ui/language-picker/define";\nimport "@johnmorrisdotca/kazoku-ui/theme-switch/define";\nimport "@johnmorrisdotca/kazoku-ui/page-frame/define";\n', resolveDir: process.cwd() },
   outfile: "site/kazoku-parts.js",
   bundle: true,
   format: "esm",
@@ -194,12 +222,34 @@ writeFileSync("site/api.css", API_CSS);
 writeFileSync("site/api.html", apiPage({ id, name: "Hata", icon: ICON, api }));
 console.log("site/ is ready: serve it, or let the Pages workflow publish it.");
 
+// The embed pages' credit line, owed only where a flag's drawing is under a licence that asks for credit (CC BY): the
+// licence and the source, linked to the drawing's Commons page, which names its author in full (a short line, so a
+// small frame needs few lines for it). A flag that owes none keeps its frame its own size and loads
+// nothing more. Keyed by "CODE|variant" ("|" alone for the flag's default drawing).
+const owed = {};
+for (const record of MANIFEST) {
+  const credit = (drawing) => ({ en: `Flag: ${drawing.licence.name}, Wikimedia Commons`, ja: `旗：${drawing.licence.name}、Wikimedia Commons`, href: drawing.page });
+  if (record.attributionRequired) owed[`${record.code}|`] = credit(record);
+  for (const variant of record.variants) if (variant.drawing.attributionRequired) owed[`${record.code}|${variant.id}`] = credit(variant.drawing);
+}
+for (const place of LEFT_OUT)
+  for (const variant of place.variants ?? []) if (variant.drawing.attributionRequired) owed[`${place.code}|${variant.id}`] = { en: `Flag: ${variant.drawing.licence.name}, Wikimedia Commons`, ja: `旗：${variant.drawing.licence.name}、Wikimedia Commons`, href: variant.drawing.page };
+writeFileSync("site/embed-credits.js", `// Made by scripts/site.mjs from the manifest: the credit each embed owes, by "CODE|variant".\nexport const OWED = ${JSON.stringify(owed)};\n`);
+await build({
+  stdin: { contents: 'import "@johnmorrisdotca/kazoku-ui/page-frame/define";\n', resolveDir: process.cwd() },
+  outfile: "site/kazoku-page-frame.js",
+  bundle: true,
+  format: "esm",
+  minify: true,
+  logLevel: "silent",
+});
+
 writeFileSync("site/family-embed-builder.js", `export const FAMILY_EMBED_BUILDER_WORDS = ${JSON.stringify(FAMILY_EMBED_BUILDER_WORDS)};\nexport ${familyEmbedBuilder.toString()};\n`);
 writeFileSync("site/embed-builder.js", readFileSync("demo/embed-builder.js", "utf8").replace('from "../scripts/family-template.mjs"', 'from "./family-embed-builder.js"'));
 
 const builderWords = {
-  "builderHead": familyHead({ id, title: "Hata旗 — Country and region flags as SVG · builder", description: "Choose a flag, preview it and copy its embed code." }),
+  "head": familyHead({ id, title: pageTitle(FRAME_TEXTS["builder.html"].en), description: BUILDER_DESCRIPTION }),
   "builderHeader": familyHeader({ id, links: [{ href: "./", say: "toGallery" }, { href: "docs/index.html", say: "pageDocs" }, { href: "api.html", say: "pageApi" }] }),
   "unreviewed": familyUnreviewed({ id }), "footer": familyFooter({ id }), "script": `<script>${FAMILY_SCRIPT}</script>\n    <script type="module" src="kazoku-parts.js"></script>`,
 };
-writeFileSync("site/builder.html", readFileSync("demo/builder.html", "utf8").replace(/<!-- family:([A-Za-z]+) -->/g, (_match, key) => builderWords[key]));
+writeFileSync("site/builder.html", framed(readFileSync("demo/builder.html", "utf8").replace(/<!-- ?family:([A-Za-z]+) ?-->/g, (_match, key) => builderWords[key]), "builder.html"));

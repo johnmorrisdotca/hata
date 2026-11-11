@@ -1,12 +1,14 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex"><meta name="color-scheme" content="light dark"><title>Hata · a flag</title>
-<style>html,body{margin:0;width:100%;height:100%;background:transparent;overflow:hidden}body{box-sizing:border-box;display:flex;align-items:center;justify-content:center;padding:4px}hata-flag{max-width:100%;max-height:100%}</style>
+<style>html,body{margin:0;width:100%;height:100%;background:transparent;overflow:hidden}body{box-sizing:border-box;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:4px}hata-flag{max-width:100%;max-height:100%;min-height:0}kazoku-page-credits{display:block;max-width:100%}</style>
 </head><body><hata-flag id="flag" loading="eager"></hata-flag>
+<kazoku-page-credits id="credits" embed hidden></kazoku-page-credits>
 <script type="module">
 import "../dist/element-define.js";
 import { FLAG_CODES } from "../dist/index.js";
 import { variantsOf, LEFT_OUT } from "../dist/manifest.js";
+import { OWED } from "../embed-credits.js";
 const query = new URLSearchParams(location.search);
 const element = document.getElementById("flag");
 const code = (query.get("code") ?? "JP").trim().toUpperCase();
@@ -33,4 +35,14 @@ for (const name of ["border", "shadow"]) {
 const forward = (event) => { if (parent !== window) parent.postMessage({ type: event.type, detail: event.detail }, "*"); };
 element.addEventListener("hata-load", forward);
 element.addEventListener("hata-error", forward);
+// The credit line, shown only for a drawing whose licence asks for credit (CC BY); the builder makes the frame taller by it.
+const owed = OWED[`${element.getAttribute("code")}|${element.getAttribute("variant") ?? ""}`];
+if (owed !== undefined) {
+  await import("../kazoku-page-frame.js");
+  const credits = document.getElementById("credits");
+  credits.setAttribute("credits", owed.en);
+  credits.setAttribute("credits-ja", owed.ja);
+  credits.setAttribute("href", owed.href);
+  credits.hidden = false;
+}
 </script></body></html>
