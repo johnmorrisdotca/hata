@@ -49,7 +49,7 @@ for (const lang of ["en", "ja"]) {
 const recordLoads = (page) =>
   page.addInitScript(() => {
     globalThis.__loads = [];
-    addEventListener("hata-load", (event) => globalThis.__loads.push(event.detail.code), true);
+    globalThis.addEventListener("hata-load", (event) => globalThis.__loads.push(event.detail.code), true);
   });
 const drawn = (page, code) => expect.poll(() => page.evaluate(() => globalThis.__loads)).toContain(code);
 
