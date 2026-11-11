@@ -71,13 +71,14 @@ let mounted;
 const page = globalThis.familyLanguage({ id: "hata", words, onChange: () => { docsLink(); mounted?.draw(); } });
 const builder = familyEmbedBuilder({ id: "hata", packageName: "@johnmorrisdotca/hata", major: VERSION.split(".")[0], site: "https://johnmorrisdotca.github.io/hata/", title: "Hata · a flag", titleJa: "旗の埋め込み", options,
   groups: { flag: { en: "The flag", ja: "旗の設定" } },
-  // the chosen flag's own drawing: its author or credit line, its licence and where it is from
+  // the drawing shown: the chosen variant's own, else the flag's; its author, its licence and where it is from
   credits: ({ settings, lang }) => {
-    const record = manifest(legacy(settings).code);
-    if (record === null) return "";
-    const by = record.credit ?? record.author;
-    const from = record.source === "commons" ? "Wikimedia Commons" : record.source;
-    return lang === "ja" ? `旗の図：${by ? `${by}、` : ""}${record.licence.name}（${from}）` : `Flag drawing: ${by ? `${by}, ` : ""}${record.licence.name} (${from})`;
+    const { code, variant } = legacy(settings);
+    const drawing = (variant ? variantsOf(code).find((one) => one.id === variant)?.drawing : undefined) ?? manifest(code);
+    if (!drawing) return "";
+    const by = drawing.author;
+    const from = drawing.source === "commons" ? "Wikimedia Commons" : drawing.source;
+    return lang === "ja" ? `旗の図：${by ? `${by}、` : ""}${drawing.licence.name}（${from}）` : `Flag drawing: ${by ? `${by}, ` : ""}${drawing.licence.name} (${from})`;
   },
   unit: (option) => option.id === "width" ? "px" : "",
   leftOut: { "element.loading": "The preview is eager; iframe snippets use lazy loading." },

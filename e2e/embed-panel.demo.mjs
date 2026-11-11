@@ -42,8 +42,7 @@ test("the code section is the embed panel, with every item it had and the guide,
   );
   await expect(panel(page).locator("[part=open]")).toHaveAttribute("href", /embed\/\?.*code=JP/);
   await expect(panel(page).locator("[part=docs]")).toHaveAttribute("href", "docs/guides/embed-in-an-iframe.html");
-  await expect(panel(page).locator("[part=credits]")).toContainText("Flag drawing:");
-  await expect(panel(page).locator("[part=credits]")).toContainText("Wikimedia Commons");
+  await expect(panel(page).locator("[part=credits]")).toHaveText(/Flag drawing: Various, Public domain \(Wikimedia Commons\)/);
   // the preview and the size are the builder's own
   await expect(panel(page).locator("[part=preview]")).toBeHidden();
   await expect(panel(page).locator("[part=size]")).toBeHidden();
@@ -72,4 +71,17 @@ test("a page opened in Japanese gives the panel its Japanese tabs, note, buttons
   await expect(panel(page).getByTestId("bld-link")).toHaveText("この旗へのリンクをコピー");
   await expect(panel(page).locator("[part=docs]")).toHaveAttribute("href", "docs/ja/guides/embed-in-an-iframe.html");
   await expect(panel(page).locator("[part=credits]")).toContainText("旗の図：");
+});
+
+test("the credit is the drawing shown: the chosen variant's own, not the place's default", async ({ page }) => {
+  await serve(page);
+  await page.goto("https://hata.test/builder.html?lang=en#make=flag&code=AF");
+  await expect(page.locator("#bld-stage hata-flag img")).toBeVisible();
+  await expect(panel(page).locator("[part=credits]")).toContainText("Unknown author");
+  // a fresh load: a new hash alone does not load the page again
+  await page.goto("about:blank");
+  await page.goto("https://hata.test/builder.html?lang=en#make=flag&code=AF&variant=de-facto");
+  await expect(page.locator("#bld-stage hata-flag")).toHaveAttribute("variant", "de-facto");
+  await expect(panel(page).locator("[part=credits]")).toContainText("Original: Taliban Vector: Lexicon");
+  await expect(panel(page).locator("[part=credits]")).not.toContainText("Unknown author");
 });
