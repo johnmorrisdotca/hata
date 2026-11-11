@@ -6,6 +6,7 @@ All notable changes to this project are written here. The format follows
 
 ## [Unreleased]
 
+- CI's browser job runs in the Playwright image and needs no apt mirror (KAZOKU-UI-100). The runner's apt mirror stopped answering on 2026-11-11, so `playwright install --with-deps` failed before a test ran; the demo job now runs in `mcr.microsoft.com/playwright:v1.64.0-noble`, the lockfile's Playwright version, which has the browsers and their system libraries. CI can also be started by hand (`workflow_dispatch`).
 - The README opens with the package's thumbnail, and the demo carries it as its link preview (og:image) and publishes the card, a dark card and an icon on Pages at `thumbnail.png`, `thumbnail-dark.png` and `icon.png`.
 
 ## [1.8.0] - 2026-11-03
