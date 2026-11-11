@@ -153,7 +153,9 @@ header nav a[data-say="pageDocs"] { inline-size: 8rem; justify-content: center; 
    fixed rows (the language and the theme; the cloth and Help; the links) instead of wrapping by the width of their words,
    which a wider font could push to a fourth row; Docs takes its own width, since a row no longer reflows when the
    language changes; the page frame's Home link sits beside its line instead of under it; and the count of flags shares
-   its row with the download buttons, which scroll sideways as before. */
+   its row with the download buttons, which scroll sideways as before. The links are narrower (still a finger wide) so the
+   Japanese ones share one row too, and the header's lines, the filters' labels and the count have line heights of their
+   own, so a font with taller lines (Japanese, or CI's fallback font) cannot push the flags down. */
 @media (max-width: 520px) {
   header nav { row-gap: 3px; }
   header nav::before, header nav::after { content: ""; flex-basis: 100%; height: 0; }
@@ -163,6 +165,11 @@ header nav a[data-say="pageDocs"] { inline-size: 8rem; justify-content: center; 
   header nav::after { order: 4; }
   header nav > a { order: 5; }
   header nav a[data-say="pageDocs"] { inline-size: auto; }
+  header nav { column-gap: 6px; }
+  header nav > a { padding: 0 8px; min-inline-size: 48px; justify-content: center; }
+  header h1 { line-height: 1.2; }
+  header .intro > p { line-height: 1.2; }
+  .filters .fam-label, .tools .count { line-height: 1.25; }
   kazoku-page-header::part(line) { flex: 1 1 0; }
   .tools { flex-wrap: nowrap; }
   .tools .count { flex: none; min-width: 0; }
