@@ -100,41 +100,46 @@ test("embed.html takes its credit away when the address moves to a flag that owe
   await expect(page.locator("kazoku-page-credits")).toBeHidden();
 });
 
-/** The builder's iframe for these choices: its width and height. */
-async function frameSize(page, hash) {
+/** The builder's iframe for these choices, from a builder page in `lang`: its width, its height and the address it loads (on the test host). */
+async function frameSize(page, hash, lang = "en") {
   await page.goto("about:blank");
-  await page.goto(`https://hata.test/builder.html?lang=en#make=flag&${hash}&show=iframe`);
+  await page.goto(`https://hata.test/builder.html?lang=${lang}#make=flag&${hash}&show=iframe`);
   await expect(page.locator("#bld-stage hata-flag img")).toBeVisible();
   const code = (await page.locator('[data-testid="bld-embed"] [part="code"]').textContent()) ?? "";
-  return { width: Number(/width="(\d+)"/.exec(code)?.[1]), height: Number(/height="(\d+)"/.exec(code)?.[1]) };
+  // the code is HTML, so its address has &amp; between the parameters
+  const src = new URL((/src="([^"]+)"/.exec(code)?.[1] ?? "").replaceAll("&amp;", "&"), "https://hata.test/");
+  return { width: Number(/width="(\d+)"/.exec(code)?.[1]), height: Number(/height="(\d+)"/.exec(code)?.[1]), src: `https://hata.test${src.pathname.replace(/^\/hata\//, "/")}${src.search}` };
 }
 
-for (const width of [480, 120]) {
-  test(`at ${width} px, the builder's frame holds a CC BY flag at its full size with the whole credit line under it`, async ({
-    page,
-    browser,
-  }) => {
-    await serve(page);
-    const plain = await frameSize(page, `code=BL&width=${width}&shape=4:3`);
-    const owed = await frameSize(page, `code=BL&variant=local&width=${width}&shape=4:3`);
-    expect(owed.width).toBe(plain.width);
-    expect(owed.height).toBeGreaterThan(plain.height);
-    // the frame, at the size the builder gives it
-    const measure = async (size, query) => {
-      const frame = await browser.newPage({ viewport: size });
-      await serve(frame);
-      await frame.goto(`https://hata.test/embed/?${query}&width=${width}&shape=4:3`);
-      await expect(frame.locator("hata-flag img, hata-flag svg").first()).toBeVisible();
-      const flag = (await frame.locator("hata-flag").boundingBox()).height;
-      const credits = frame.locator("kazoku-page-credits");
-      const bottom = (await credits.isVisible()) ? (await credits.boundingBox()).y + (await credits.boundingBox()).height : 0;
-      await frame.close();
-      return { flag, bottom };
-    };
-    const without = await measure(plain, "code=BL");
-    const withCredit = await measure(owed, "code=BL&variant=local");
-    expect(Math.abs(withCredit.flag - without.flag)).toBeLessThanOrEqual(1);
-    expect(withCredit.bottom).toBeGreaterThan(0);
-    expect(withCredit.bottom).toBeLessThanOrEqual(owed.height);
-  });
-}
+// The licence asks for the credit to show, so the frame the builder writes must hold all of it: at each width the guides give, from an English and a Japanese builder page (the frame shows
+// the builder page's language unless one is chosen, and is measured in the language it will show), and with Japanese chosen from the English page.
+for (const width of [480, 240, 120])
+  for (const [lang, chosen] of [["en", ""], ["ja", ""], ["en", "&lang=ja"]])
+    test(`at ${width} px, from the ${lang} builder${chosen ? " with Japanese chosen" : ""}, the frame holds a CC BY flag at its full size with the whole credit line under it`, async ({ page, browser }) => {
+      await serve(page);
+      const plain = await frameSize(page, `code=BL&width=${width}&shape=4:3${chosen}`, lang);
+      const owed = await frameSize(page, `code=BL&variant=local&width=${width}&shape=4:3${chosen}`, lang);
+      expect(owed.width).toBe(plain.width);
+      expect(owed.height).toBeGreaterThan(plain.height);
+      const shown = chosen ? "ja" : lang;
+      expect(new URL(owed.src).searchParams.get("lang"), "the frame's language: the one chosen, else the builder page's").toBe(shown);
+      // the frame the code loads, at the size the builder gives it
+      const measure = async (size, src, words) => {
+        const frame = await browser.newPage({ viewport: size });
+        await serve(frame);
+        await frame.goto(src);
+        await expect(frame.locator("hata-flag img, hata-flag svg").first()).toBeVisible();
+        const flag = (await frame.locator("hata-flag").boundingBox()).height;
+        const credits = frame.locator("kazoku-page-credits");
+        const box = (await credits.isVisible()) ? await credits.boundingBox() : null;
+        // the frame shows the credit in its own language
+        if (words) await expect(credits).toContainText(words);
+        await frame.close();
+        return { flag, bottom: box ? box.y + box.height : 0 };
+      };
+      const without = await measure(plain, plain.src);
+      const withCredit = await measure(owed, owed.src, shown === "ja" ? "旗：" : "Flag: ");
+      expect(Math.abs(withCredit.flag - without.flag)).toBeLessThanOrEqual(1);
+      expect(withCredit.bottom).toBeGreaterThan(0);
+      expect(withCredit.bottom, "the whole credit line is inside the frame").toBeLessThanOrEqual(owed.height);
+    });

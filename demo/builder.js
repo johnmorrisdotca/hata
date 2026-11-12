@@ -74,7 +74,8 @@ const creditHeight = (settings) => {
   const owed = OWED[`${(settings.code ?? "JP").toUpperCase()}|${settings.variant ?? ""}`];
   if (owed === undefined) return 0;
   const probe = document.createElement("kazoku-page-credits");
-  for (const [name, value] of [["embed", ""], ["lang", settings.lang ?? page.lang]]) probe.setAttribute(name, value);
+  // in the language the frame will show: the code's address names the language chosen here, else this page's (an empty choice is the page's too)
+  for (const [name, value] of [["embed", ""], ["lang", settings.lang || page.lang]]) probe.setAttribute(name, value);
   probe.credits = owed;
   probe.style.cssText = `position:absolute;visibility:hidden;left:0;top:0;display:block;width:${Math.ceil(width(settings))}px`;
   document.body.append(probe);
