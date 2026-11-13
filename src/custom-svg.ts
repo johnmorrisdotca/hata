@@ -25,9 +25,10 @@ const PLAIN = new Set([
 const ID = /^[A-Za-z_][A-Za-z0-9_-]{0,63}$/;
 const NAME = /^[A-Za-z][A-Za-z0-9]*$/;
 const ATTRIBUTE = /^[A-Za-z_][A-Za-z0-9_:-]*$/;
-// Letters, digits, spaces, commas, points, signs, percent signs and brackets: enough for a path, a transform or a length, and nothing that can spell an address, a quote or a tag.
-const PLAIN_VALUE = /^[A-Za-z0-9\s,.+\-%()]*$/;
-const COLOUR = /^(?:none|currentcolor|transparent|[a-z]+|#[0-9a-f]{3,8}|(?:rgb|rgba|hsl|hsla)\([0-9\s.,%/-]+\))$/i;
+// Letters, digits, spaces (the plain one only: no no-break or line-separator space), commas, points, signs, percent signs and brackets: enough for a path, a transform or a length, and nothing that can spell an address, a quote or a tag.
+const PLAIN_VALUE = /^[A-Za-z0-9 ,.+\-%()]*$/;
+const COLOUR = /^(?:none|currentcolor|transparent|[a-z]+|#[0-9a-f]{3,8}|(?:rgb|rgba|hsl|hsla)\([0-9 .,%/-]+\))$/i;
+const SLUG = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const ENTITY = /&(?:amp|lt|gt|quot|apos);/g;
 
 interface Node {
@@ -35,6 +36,15 @@ interface Node {
   attributes: [string, string][];
   children: (Node | string)[];
 }
+
+/**
+ * True when the text holds a character that has no place in a name, a group or a value: a control character, a separator (U+2028, U+2029), a bidirectional override or isolate, a byte-order mark,
+ * a non-character or half of a surrogate pair. With `keepSpace`, tab, line feed and carriage return are let through (a title or a description may run over lines).
+ */
+const hasControl = (text: string, keepSpace = false): boolean =>
+  // eslint-disable-next-line no-control-regex
+  (keepSpace ? /[\u0000-\u0008\u000b\u000c\u000e-\u001f]/ : /[\u0000-\u001f]/).test(text) ||
+  /[\u007f-\u009f\u2028\u2029\u202a-\u202e\u2066-\u2069\ufeff\ufffe\uffff]|[\ud800-\udbff](?![\udc00-\udfff])|(?<![\ud800-\udbff])[\udc00-\udfff]/.test(text);
 
 const refuse = (why: string): never => {
   throw new TypeError(why);
@@ -72,7 +82,9 @@ const read = (text: string): Node => {
       if (chunk.trim() !== "" || parent.name === "title" || parent.name === "desc") {
         if (parent.name !== "title" && parent.name !== "desc") fail("text outside a title or a description");
         if (/&(?!(?:amp|lt|gt|quot|apos);)/.test(chunk)) fail("a character reference (&#…;) or an unknown entity: only &amp; &lt; &gt; &quot; &apos; are read");
-        parent.children.push(chunk.replace(ENTITY, (entity) => ({ "&amp;": "&", "&lt;": "<", "&gt;": ">", "&quot;": '"', "&apos;": "'" })[entity] ?? entity));
+        const decoded = chunk.replace(ENTITY, (entity) => ({ "&amp;": "&", "&lt;": "<", "&gt;": ">", "&quot;": '"', "&apos;": "'" })[entity] ?? entity);
+        if (hasControl(decoded, true)) fail("a control character, a line or paragraph separator, a direction override or a half of a surrogate pair in a title or a description");
+        parent.children.push(decoded);
       }
     }
     if (lt < 0) break;
@@ -95,6 +107,8 @@ const read = (text: string): Node => {
     const tag = /^<([A-Za-z][A-Za-z0-9:]*)/.exec(text.slice(at, at + 80));
     if (tag === null) fail("a < that starts no tag");
     const node: Node = { name: tag?.[1] ?? "", attributes: [], children: [] };
+    // A <title> and a <desc> are where an HTML parser starts reading HTML again, so they hold text and nothing else.
+    if (top().name === "title" || top().name === "desc") fail("a <title> or a <desc> holds only text, not elements");
     at += tag?.[0].length ?? 0;
     for (;;) {
       const blank = /\s*/y;
@@ -135,14 +149,12 @@ const read = (text: string): Node => {
   return only[0] as Node;
 };
 
-/** True when the text holds a control character (a code under 32, or 127). */
-const hasControl = (text: string): boolean => [...text].some((char) => (char.codePointAt(0) ?? 0) < 32 || char.codePointAt(0) === 127);
-
-const escape = (text: string): string => text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+// `'` is written as `&apos;` too, so no flag's text can end a single-quoted css url('…') it is put into.
+const escape = (text: string): string => text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&apos;");
 
 /**
  * Checks an SVG a page gives as a custom flag, and writes it again as the SVG to draw: elements and attributes from an allowlist, every value read by its own rule, every reference a local `#id` that
- * is there, the ids prefixed with `custom-<slug>-`, and the size, depth and `<use>` expansion limited. It throws a `TypeError` that says what is wrong; it never returns a part-cleaned picture.
+ * is there, the ids prefixed with `custom-<slug>--`, and the size, depth and `<use>` expansion limited. It throws a `TypeError` that says what is wrong; it never returns a part-cleaned picture.
  *
  * @param svg - The page's SVG text.
  * @param slug - The flag's slug (the id without `custom:`), for the prefix of its ids and `data-hata-custom`.
@@ -151,12 +163,19 @@ const escape = (text: string): string => text.replace(/&/g, "&amp;").replace(/</
  */
 const checkSvg = (svg: unknown, slug: string): { svg: string; aspect: number } => {
   if (typeof svg !== "string") return refuse("the SVG must be a string");
+  if (typeof slug !== "string" || !SLUG.test(slug) || slug.length > 48) return refuse("the slug must be lower-case letters, digits and hyphens");
   if (new TextEncoder().encode(svg).length > MAX_SVG_BYTES) return refuse(`the SVG is over ${MAX_SVG_BYTES} bytes`);
   const tree = read(svg);
   if (tree.name !== "svg") refuse(`the root must be <svg>, not <${tree.name}>`);
-  const prefix = `custom-${slug}-`;
+  // The slug has no "--" in it and an id does not start with a hyphen, so no two (slug, id) pairs write the same id: `custom-a--b-c` and `custom-a-b--c` differ.
+  const prefix = `custom-${slug}--`;
   const defined = new Map<string, Node>();
   const referred: { id: string; from: string }[] = [];
+  // What each element draws through: a `<use>` or a gradient's href, a clip-path or a mask. Fills and strokes point to a gradient, whose cost is its own stops.
+  const edges = new Map<Node, string[]>();
+  const draws = (node: Node, id: string): void => {
+    edges.set(node, [...(edges.get(node) ?? []), id]);
+  };
 
   // Pass 1: the allowlist, each value, the ids.
   const walk = (node: Node, depth: number): void => {
@@ -189,18 +208,21 @@ const checkSvg = (svg: unknown, slug: string): { svg: string; aspect: number } =
         const match = /^#([A-Za-z_][A-Za-z0-9_-]{0,63})$/.exec(value);
         if (match === null) refuse(`${here}: a reference must be exactly a #id in the same file, not ${JSON.stringify(value.slice(0, 40))}`);
         referred.push({ id: match?.[1] ?? "", from: where });
+        draws(node, match?.[1] ?? "");
         kept.push([name, `#${prefix}${match?.[1] ?? ""}`]);
         continue;
       }
       if (PAINT.has(name) || URL_ONLY.has(name)) {
         const written = urlsIn(value.trim(), here, (id) => {
           referred.push({ id, from: where });
+          if (URL_ONLY.has(name)) draws(node, id);
           return prefix + id;
         });
         const bare = written.trim();
-        const isUrl = /^url\(#[A-Za-z0-9_-]+\)(?:\s+\S.*)?$/.test(bare);
-        if (URL_ONLY.has(name) ? !/^url\(#[A-Za-z0-9_-]+\)$/.test(bare) : !isUrl && !COLOUR.test(bare)) refuse(`${here}: ${JSON.stringify(value.slice(0, 40))} is not a colour or a local url(#id)`);
-        if (isUrl && bare.includes(" ") && !COLOUR.test(bare.replace(/^url\(#[A-Za-z0-9_-]+\)\s+/, ""))) refuse(`${here}: the fallback after url(#id) is not a colour`);
+        // A reference, and after it (a fill or a stroke only) one plain space and a colour; or a colour alone.
+        const url = /^url\(#[A-Za-z0-9_-]+\)(?: +(.+))?$/.exec(bare);
+        const fine = url === null ? !URL_ONLY.has(name) && COLOUR.test(bare) : url[1] === undefined || (!URL_ONLY.has(name) && COLOUR.test(url[1]));
+        if (!fine) refuse(`${here}: ${JSON.stringify(value.slice(0, 40))} is not a colour or a local url(#id), alone or with a colour after it`);
         kept.push([name, bare]);
         continue;
       }
@@ -229,17 +251,16 @@ const checkSvg = (svg: unknown, slug: string): { svg: string; aspect: number } =
   const measure = (node: Node, path: Set<Node>): number => {
     const known = size.get(node);
     if (known !== undefined) return known;
-    if (path.has(node)) return refuse("a <use> that points back to itself or to an element that holds it");
+    if (path.has(node)) return refuse("a <use>, href, clip-path or mask that points back to itself or to an element that holds it");
     path.add(node);
     let total = 1;
-    const target = node.name === "use" ? node.attributes.find(([name]) => name === "href" || name === "xlink:href") : undefined;
-    if (target !== undefined) {
-      const pointed = defined.get(target[1].slice(prefix.length + 1));
+    for (const id of edges.get(node) ?? []) {
+      const pointed = defined.get(id);
       if (pointed !== undefined) total += measure(pointed, path);
     }
     for (const child of node.children) if (typeof child !== "string") total += measure(child, path);
     path.delete(node);
-    if (total > MAX_ELEMENTS) refuse(`the picture expands to more than ${MAX_ELEMENTS} elements once every <use> is counted as what it points to`);
+    if (total > MAX_ELEMENTS) refuse(`the picture expands to more than ${MAX_ELEMENTS} elements once every <use>, href, clip-path and mask is counted as what it points to`);
     size.set(node, total);
 
     return total;

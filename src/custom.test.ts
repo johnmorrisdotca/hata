@@ -132,10 +132,10 @@ describe("ids", () => {
   it("are prefixed inside the drawing, so two flags on one page cannot collide", async () => {
     const withId = (): string => wrap('<defs><linearGradient id="g"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#036"/></linearGradient></defs><path fill="url(#g)" d="M0 0h3v2H0z"/>');
     await register([record(withId(), "a"), record(withId(), "b")]);
-    expect(customFlag("custom:a")).toContain('id="custom-a-g"');
-    expect(customFlag("custom:a")).toContain("url(#custom-a-g)");
-    expect(customFlag("custom:b")).toContain('id="custom-b-g"');
-    expect(customFlag("custom:a")).not.toContain("custom-b-");
+    expect(customFlag("custom:a")).toContain('id="custom-a--g"');
+    expect(customFlag("custom:a")).toContain("url(#custom-a--g)");
+    expect(customFlag("custom:b")).toContain('id="custom-b--g"');
+    expect(customFlag("custom:a")).not.toContain("custom-b--");
   });
 
   it("refuse an id with a dot, since a rewritten id may hold only letters, digits, underscores and hyphens", async () => {
@@ -215,8 +215,8 @@ describe("what is drawn is what passed", () => {
     const done = await register([record(rich, "rich")]);
     expect(done.rejected).toEqual([]);
     const out = customFlag("custom:rich") ?? "";
-    expect(out).toContain('clip-path="url(#custom-rich-c)"');
-    expect(out).toContain('href="#custom-rich-s"');
+    expect(out).toContain('clip-path="url(#custom-rich--c)"');
+    expect(out).toContain('href="#custom-rich--s"');
     expect(out).toContain("<title>Rich</title>");
   });
 

@@ -42,9 +42,10 @@ Every SVG is read by a strict reader into a tree, held to an allowlist, and writ
 - Elements: `svg g defs symbol path rect circle ellipse line polyline polygon use linearGradient radialGradient stop clipPath mask title desc`. No script, style, image, link, animation, filter, text or `foreignObject`, and no prefixed name.
 - Attributes: the usual drawing ones, each read by its own rule. No event handler, `style` or `class`. `xmlns` is exactly the SVG namespace and `xmlns:xlink` exactly the XLink one.
 - References: `href` and `url()` only as `#id` of an element in the same file, in any case or spacing; one that points anywhere else, or at an id that is not there, is refused. No `data:` or `javascript:`.
-- Text: no character reference (`&#106;`, `&#x6a;`: refused, not decoded); in a title or a description only `&amp; &lt; &gt; &quot; &apos;`, written back escaped.
-- Limits: 64 KiB, 32 levels, 4,000 elements with each `<use>` counted as what it points to (a loop of `<use>` is refused), 1,000 flags a page. A viewBox, and no width or height, on the root.
-- Ids inside become `custom-<slug>-<id>` (letters, digits, underscores and hyphens), so two flags on one page cannot collide.
+- Text: no character reference (`&#106;`, `&#x6a;`: refused, not decoded); in a title or a description only `&amp; &lt; &gt; &quot; &apos;`, written back escaped, and only text (no element inside one). No control character, line separator or direction override in a title, a description or a name.
+- Limits: 64 KiB, 32 levels, 4,000 elements with each `<use>`, gradient `href`, `clip-path` and `mask` counted as what it points to (a loop of them is refused), 1,000 flags a page. A viewBox, and no width or height, on the root.
+- Ids inside become `custom-<slug>--<id>` (letters, digits, underscores and hyphens), so two flags on one page cannot collide, whatever their slugs and ids.
+- Names, groups and the credit are text, not markup: escape them if you write them into HTML. The registry is one per page (or per server process): on a server register once at start-up, never per request, or one visitor's flags are every visitor's.
 
 ## Look them up
 

@@ -134,6 +134,20 @@ interface FlagSet {
 const SETS = new Map<string, FlagSet>();
 const OWNER = new Map<string, string>();
 
+// A copy of what a source says about itself, taken once and frozen: what is checked is what is held, and the page cannot change a credit or a licence after it was accepted.
+const snapshot = (info: unknown): unknown => {
+  if (typeof info !== "object" || info === null) return info;
+  let copy: unknown;
+  try {
+    copy = JSON.parse(JSON.stringify(info));
+  } catch {
+    throw new TypeError("a source's info must be plain text and numbers");
+  }
+  const freeze = (value: unknown): unknown => (typeof value === "object" && value !== null ? Object.freeze(Object.fromEntries(Object.entries(value).map(([key, inner]) => [key, freeze(inner)]))) : value);
+
+  return freeze(copy);
+};
+
 const slugOf = (id: string): string => id.slice("custom:".length);
 const lower = (text: string): string => text.toLowerCase();
 
@@ -141,12 +155,12 @@ const readRecord = (record: unknown): { id: string; name: { en: string; ja: stri
   if (typeof record !== "object" || record === null) throw new TypeError("a record must be an object");
   const { id, name, svg, group } = record as Partial<CustomFlagRecord> & Record<string, unknown>;
   if (typeof id !== "string" || !id.startsWith("custom:") || !SLUG.test(slugOf(id)) || slugOf(id).length > 48) {
-    throw new TypeError(`the id must be "custom:" and a slug of lower-case letters, digits and hyphens (up to 48): ${JSON.stringify(id)} (a country code, a region code and an "org:" id are never a custom flag's)`);
+    throw new TypeError(`the id must be "custom:" and a slug of lower-case letters, digits and hyphens (up to 48): ${String(JSON.stringify(id)).slice(0, 80)} (a country code, a region code and an "org:" id are never a custom flag's)`);
   }
   const en = (name as { en?: unknown } | undefined)?.en;
   const ja = (name as { ja?: unknown } | undefined)?.ja;
-  if (typeof en !== "string" || en.trim() === "" || en.length > 120) throw new TypeError("name.en must be a text of 1 to 120 characters");
-  if (ja !== undefined && (typeof ja !== "string" || ja.trim() === "" || ja.length > 120)) throw new TypeError("name.ja must be a text of 1 to 120 characters, or left out");
+  if (typeof en !== "string" || en.trim() === "" || en.length > 120 || hasControl(en)) throw new TypeError("name.en must be a text of 1 to 120 characters");
+  if (ja !== undefined && (typeof ja !== "string" || ja.trim() === "" || ja.length > 120 || hasControl(ja))) throw new TypeError("name.ja must be a text of 1 to 120 characters, or left out");
   if (group !== undefined && (typeof group !== "string" || group.trim() === "" || group.length > 48 || hasControl(group))) throw new TypeError("group must be a text of 1 to 48 characters, or left out");
   const checked = checkSvg(svg, slugOf(id));
 
@@ -164,7 +178,7 @@ const count = (): number => [...SETS.values()].reduce((sum, one) => sum + one.fl
  * What an SVG may hold: `svg g defs symbol path rect circle ellipse line polyline polygon use linearGradient radialGradient stop clipPath mask title desc`; the usual drawing attributes (`fill`, `stroke`, `d`,
  * `transform`, `viewBox` and so on) read by a rule each; `href` and `url()` only as a `#id` in the same file, the id there. No scripts, styles, images, links, animation, filters, text, `foreignObject`, event
  * attributes or prefixed names; no `data:` or `javascript:`; no character references (`&#…;`) and no entity but `&amp; &lt; &gt; &quot; &apos;` in a title or description; a viewBox and no width or height on the
- * root; 64 KiB, 32 levels and 4,000 elements (each `<use>` counted as what it points to) at most; xmlns exactly the SVG namespace. The SVG drawn is written again from what was read, with its ids made `custom-<slug>-<id>`.
+ * root; 64 KiB, 32 levels and 4,000 elements (each `<use>`, gradient href, clip-path and mask counted as what it points to) at most; xmlns exactly the SVG namespace. The SVG drawn is written again from what was read, with its ids made `custom-<slug>--<id>`.
  *
  * @param source - The set: a records source of the data door (`kind: "records"`, `info`, `records()`).
  * @param options - `signal`, to stop reading a slow source.
@@ -192,16 +206,19 @@ const count = (): number => [...SETS.values()].reduce((sum, one) => sum + one.fl
  * ```
  */
 const registerFlags = async (source: CustomFlagSource, options: { signal?: AbortSignal } = {}): Promise<FlagsRegistered> => {
-  validateSource(source, SETS.keys());
-  if (source.kind !== "records") throw new TypeError(`source "${source.info.id}": a set of flags is a records source`);
-  const id = source.info.id;
+  // One copy of the source is checked, held and read, so a getter that answers differently the second time cannot take another set's id or change its credit.
+  const given = typeof source === "object" && source !== null ? source : undefined;
+  const taken = given === undefined ? source : { ...given, info: snapshot(given.info) as SourceInfo, ...(typeof given.records === "function" ? { records: (signal: AbortSignal) => given.records(signal) } : {}) };
+  validateSource(taken, SETS.keys());
+  if (taken.kind !== "records") throw new TypeError(`source "${taken.info.id}": a set of flags is a records source`);
+  const id = taken.info.id;
   // The id is held from now, so a second registration while this one reads is refused too.
-  const held: FlagSet = { info: source.info, enabled: true, flags: new Map() };
+  const held: FlagSet = { info: taken.info, enabled: true, flags: new Map() };
   SETS.set(id, held);
   const done: FlagsRegistered = { status: "ok", source: id, added: [], skipped: 0, rejected: [], remove: () => removeFlags(id) };
   const controller = new AbortController();
   options.signal?.addEventListener("abort", () => controller.abort(), { once: true });
-  const read = await loadRecords(source, controller.signal);
+  const read = await loadRecords(taken, controller.signal);
   if (read.status !== "ok" || SETS.get(id) !== held) {
     if (SETS.get(id) === held) SETS.delete(id);
     done.status = read.status === "ok" ? "aborted" : read.status;
@@ -210,7 +227,7 @@ const registerFlags = async (source: CustomFlagSource, options: { signal?: Abort
     return done;
   }
   for (const record of read.records) {
-    const given = typeof (record as { id?: unknown } | null)?.id === "string" ? (record as { id: string }).id : null;
+    const named = typeof (record as { id?: unknown } | null)?.id === "string" ? (record as { id: string }).id.slice(0, 80) : null;
     try {
       const one = readRecord(record);
       const owner = OWNER.get(one.id);
@@ -220,7 +237,7 @@ const registerFlags = async (source: CustomFlagSource, options: { signal?: Abort
       OWNER.set(one.id, id);
       done.added.push(one.id);
     } catch (error) {
-      done.rejected.push({ id: given, reason: error instanceof Error ? error.message : String(error) });
+      done.rejected.push({ id: named, reason: error instanceof Error ? error.message : String(error) });
     }
   }
   done.skipped = done.rejected.length;
