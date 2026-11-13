@@ -6,8 +6,8 @@
       "gzip": 3737
     },
     "./load": {
-      "minified": 12414450,
-      "gzip": 4025978
+      "minified": 12415511,
+      "gzip": 4027662
     },
     "./manifest": {
       "minified": 896145,
@@ -19,19 +19,19 @@
     },
     "./organisations": {
       "minified": 2407,
-      "gzip": 1161
+      "gzip": 1170
     },
     "./custom": {
-      "minified": 15521,
-      "gzip": 6500
+      "minified": 16556,
+      "gzip": 6925
     },
     "./element": {
-      "minified": 12451004,
-      "gzip": 4038765
+      "minified": 12452058,
+      "gzip": 4039328
     },
     "./element/define": {
-      "minified": 12450957,
-      "gzip": 4038744
+      "minified": 12452011,
+      "gzip": 4039297
     },
     "./flags/ad.1x1": {
       "minified": 28262,
