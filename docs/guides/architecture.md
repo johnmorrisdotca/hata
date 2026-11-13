@@ -13,6 +13,8 @@ src/
 ├── svg.ts              aspectOf, frame and toDataUri: pure string work on a flag's SVG
 ├── load.ts             the "/load" entry: a flag by its code, by dynamic import, framed as measured
 ├── names.ts            the "/names" entry: each flag's place in English and Japanese, and its aspect ratio
+├── organisations.ts    the "/organisations" entry: the flags of international organisations by their "org:" id
+├── organisations.data.ts   the organisations' records (id, names, drawing, terms): the one place to add a flag
 ├── element.ts          the "/element" entry: <hata-flag>
 ├── element-define.ts   the "/element/define" entry: registers <hata-flag>
 ├── reflect.ts          an element's attributes as properties too, the family's way

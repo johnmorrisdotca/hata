@@ -43,7 +43,7 @@ const shared = {
 export default defineConfig([
   {
     ...shared,
-    entry: { index: "src/index.ts", load: "src/load.ts", manifest: "src/manifest.ts", adapted: "src/data/adapted.data.ts", variants: "src/data/variants.data.ts", names: "src/names.ts", element: "src/element.ts", "element-define": "src/element-define.ts" },
+    entry: { index: "src/index.ts", load: "src/load.ts", manifest: "src/manifest.ts", adapted: "src/data/adapted.data.ts", variants: "src/data/variants.data.ts", names: "src/names.ts", organisations: "src/organisations.ts", element: "src/element.ts", "element-define": "src/element-define.ts" },
     dts: true,
     minify: false,
     esbuildOptions(options) {

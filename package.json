@@ -85,6 +85,10 @@
       "types": "./dist/names.d.ts",
       "default": "./dist/names.js"
     },
+    "./organisations": {
+      "types": "./dist/organisations.d.ts",
+      "default": "./dist/organisations.js"
+    },
     "./element": {
       "types": "./dist/element.d.ts",
       "default": "./dist/element.js"

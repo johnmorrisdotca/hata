@@ -26,6 +26,10 @@
       "en": "Country and region names",
       "ja": "国と地域の名前"
     },
+    "./organisations": {
+      "en": "Flags of international organisations",
+      "ja": "国際機関の旗"
+    },
     "./element": {
       "en": "Native flag element",
       "ja": "標準の旗の要素"

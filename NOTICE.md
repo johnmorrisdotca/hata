@@ -90,7 +90,31 @@ width and height replaced by a viewBox where it had none, and with every id and 
 flag's code, so two flags in one page cannot collide. Nothing is redrawn: the picture is Commons'. The
 optimised flags are compared with the originals, pixel by pixel, before a version is released (`pnpm data:compare`).
 
+## Flags of international organisations
+
+The flags of international organisations are a separate entry point (`@johnmorrisdotca/hata/organisations`, ids
+`org:<slug>`), and none of them is a Commons file: each is drawn for this package, under the MIT licence, from the
+body's published description of its flag, and nothing is copied. A body's flag is in only where the terms for its
+flag or emblem let a package under the MIT licence carry it. What the terms say, read on 2026-11-13:
+
+| Id | Body | What the terms say | Page |
+| --- | --- | --- | --- |
+| `org:eu` | European Union | Anyone may use the EU emblem or its elements without permission, if the use suggests no connection with or support from the EU institutions or the Council of Europe, is not tied to anything against their aims, and is lawful; registering it or an imitation as a trademark is not acceptable. | https://european-union.europa.eu/legal-notice_en |
+
+Left out, read on 2026-11-13, for the owner to decide again if a body's terms change or it answers a request:
+
+| Body | Why | Page |
+| --- | --- | --- |
+| United Nations | The flag's use is governed by the UN Flag Code (ST/SGB/2020/4), which as read allows authorised use and not commercial use, and the emblem's use is restricted under General Assembly resolution 92(I); no sentence lets a package pass it on. | https://research.un.org/en/maps/flags |
+| NATO | Third parties need NATO's advance authorisation to use its logo, name or emblems; the page does not say the flag is exempt. | https://nato.int/en/about-us/official-texts-and-resources/use-of-nato-content-and-brand |
+| Red Cross, Red Crescent, Red Crystal | Article 53 of the First Geneva Convention bars anyone not entitled from using the emblems or imitations, whatever the object, and Additional Protocol III extends it to the red crystal. | https://ihl-databases.icrc.org/en/ihl-treaties/gci-1949/article-53/commentary/2016 |
+| African Union | The AU's legal notice says its emblem is trademarked or copyrighted and may not be changed or used without approval. | https://au.int/en/legal_notice |
+| ASEAN | The guidelines on the emblem say it is ASEAN's reserved copyright and that use is asked for in writing. | https://asean.org/asean-emblem/use-of-the-asean-emblem/ |
+| Nordic Council | Its symbol guidelines, as found, give use to the Nordic bodies and ask others for permission, mainly for non-profit work (the norden.org page itself refused the request). | https://www.norden.org/en/information/nordic-council-logo-and-symbol |
+| Commonwealth | The Secretariat's page covers its logo, to be used exactly as supplied; it says nothing of the flag, and its terms page is about procurement. | https://thecommonwealth.org/commonwealth-secretariat-logo-kit-and-guidelines |
+| CARICOM, Pacific Islands Forum, Organisation of Islamic Cooperation, League of Arab States, Commonwealth of Independent States | No terms for the flag or emblem were found on the body's own pages (the League's portal carries an all-rights-reserved notice); there is no sentence to record. | https://caricom.org/ , https://forumsec.org/ , https://www.oic-oci.org/ , http://www.lasportal.org/en/Pages/default.aspx , https://eccis.org/en/about-cis |
+
 ## Not carried
 
 Nothing from other flag sets (flag-icons, country-flag-icons, circle-flags): they were measured for comparison
-only. No flag under a share-alike licence, and no file from anywhere but Wikimedia Commons.
+only. No flag under a share-alike licence, and no file from anywhere but Wikimedia Commons (the organisations' flags above are drawn for this package, not files).

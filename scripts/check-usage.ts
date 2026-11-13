@@ -159,6 +159,14 @@ await step("node", () => {
   if (out !== "true 東京都") throw new Error(`unexpected output: ${out}`);
 });
 
+await step("organisations", () => {
+  const out = execFileSync(process.execPath, [join(examples("organisations"), "organisations.mjs")], {
+    cwd: usage,
+    encoding: "utf8",
+  }).trim();
+  if (out !== "true true 欧州連合") throw new Error(`unexpected output: ${out}`);
+});
+
 await step("typescript", () => {
   writeFileSync(
     join(examples("typescript"), "tsconfig.json"),
@@ -367,6 +375,7 @@ const FILES: Record<string, string[]> = {
   "angular/main.ts": guide("frameworks"),
   "typescript/index.ts": guide("typescript-and-node"),
   "node/server.mjs": guide("typescript-and-node"),
+  "organisations/organisations.mjs": guide("organisations"),
 };
 const normal = (text: string) => text.replace(/\r\n/g, "\n").trim();
 for (const [file, places] of everything ? Object.entries(FILES) : []) {

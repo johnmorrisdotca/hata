@@ -12,6 +12,7 @@ import * as element from "./element.ts";
 import * as load from "./load.ts";
 import * as manifest from "./manifest.ts";
 import * as names from "./names.ts";
+import * as organisations from "./organisations.ts";
 
 const pkg = JSON.parse(readFileSync("package.json", "utf8"));
 const readme = readFileSync("README.md", "utf8");
@@ -34,7 +35,7 @@ describe("the README", () => {
   it("names in its API table every runtime export of every entry", () => {
     const table = section("API");
     const rowOf = (entry) => table.split("\n").find((line) => line.startsWith(`| \`${entry}\``)) ?? "";
-    for (const [entry, module] of [[pkg.name, main], [`${pkg.name}/load`, load], [`${pkg.name}/manifest`, manifest], [`${pkg.name}/names`, names], [`${pkg.name}/element`, element]]) {
+    for (const [entry, module] of [[pkg.name, main], [`${pkg.name}/load`, load], [`${pkg.name}/manifest`, manifest], [`${pkg.name}/names`, names], [`${pkg.name}/organisations`, organisations], [`${pkg.name}/element`, element]]) {
       const row = rowOf(entry);
       for (const name of Object.keys(module)) expect(row, `${name} is not in the API table's row for ${entry}`).toContain(`\`${name}\``);
     }

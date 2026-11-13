@@ -17,6 +17,10 @@
       "minified": 31085,
       "gzip": 9333
     },
+    "./organisations": {
+      "minified": 2407,
+      "gzip": 1161
+    },
     "./element": {
       "minified": 12434654,
       "gzip": 4032265

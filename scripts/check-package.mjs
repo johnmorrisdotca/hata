@@ -72,6 +72,7 @@ import { flag } from "${pkg.name}/load";
 import { manifest, MANIFEST, LEFT_OUT } from "${pkg.name}/manifest";
 import json from "${pkg.name}/manifest.json" with { type: "json" };
 import { flagName, flagAspect } from "${pkg.name}/names";
+import { organisationFlag, organisationName, ORGANISATION_IDS } from "${pkg.name}/organisations";
 import { defineFlag, FLAG_ELEMENT_NAME } from "${pkg.name}/element";
 import "${pkg.name}/element/define";
 import canadaSquare from "${pkg.name}/flags/ca.1x1";
@@ -82,6 +83,7 @@ if (FLAG_CODES.length !== ${FLAG_CODES.length} || flagCode("jp-13") !== "JP-13")
 if ((await flag("JP-13")) !== tokyo || (await flag("XX")) !== null) throw new Error("/load answered wrongly");
 if (!frame(japan, { shape: "round" }).includes("clipPath") || !toDataUri(japan).startsWith("data:image/svg+xml,")) throw new Error("the helpers answered wrongly");
 if (flagName("JP-13", "ja") !== "東京都" || flagAspect("CA") !== 2) throw new Error("/names answered wrongly");
+if (ORGANISATION_IDS[0] !== "org:eu" || !organisationFlag("org:eu").startsWith("<svg") || organisationName("org:eu", "ja") !== "欧州連合") throw new Error("/organisations answered wrongly");
 if (FLAG_ELEMENT_NAME !== "hata-flag" || typeof defineFlag !== "function") throw new Error("/element is wrong");
 if ((await flag("CA", { shape: "1:1" })) !== canadaSquare) throw new Error("/load did not use the square drawn for Canada");
 if (manifest("JP")?.code !== "JP" || MANIFEST.length !== FLAG_CODES.length || json.flags.length !== MANIFEST.length || json.leftOut.length !== LEFT_OUT.length) throw new Error("the manifest is wrong");
@@ -89,7 +91,7 @@ const file = readFileSync(createRequire(import.meta.url).resolve("${pkg.name}/sv
 if (file !== wanted) throw new Error("svg/jp.svg is not the module's SVG");
 const required = createRequire(import.meta.url)("${pkg.name}/flags/jp");
 if (required.default !== wanted) throw new Error("require() of flags/jp gave " + typeof required.default);
-console.log("every entry, flags/jp, flags/ca.1x1, /load, /names, /element, svg/jp.svg, manifest.json and require()");
+console.log("every entry, flags/jp, flags/ca.1x1, /load, /names, /organisations, /element, svg/jp.svg, manifest.json and require()");
 `,
 );
 console.log(`ok   ${run(process.execPath, ["esm.mjs"], project).trim()}`);
@@ -103,6 +105,7 @@ import { flag, flagDataUri } from "${pkg.name}/load";
 import { manifest, type FlagRecord, type Framing } from "${pkg.name}/manifest";
 import { flagName } from "${pkg.name}/names";
 import { defineFlag, type HataFlagElement } from "${pkg.name}/element";
+import { organisationFlag, type OrganisationId } from "${pkg.name}/organisations";
 
 const code: FlagCode | null = flagCode("jp");
 const first: FlagCode = FLAG_CODES[0];
@@ -114,9 +117,11 @@ const uri: Promise<string | null> = flagDataUri("JP");
 const record: FlagRecord | null = manifest("JP");
 const square: Framing | undefined = record?.framings["1:1"];
 const name: string | null = flagName("JP", "ja");
+const organisation: string | null = organisationFlag("org:eu");
+const eu: OrganisationId = "org:eu";
 const define: (name?: string) => void = defineFlag;
 type Element = HataFlagElement;
-export { code, define, first, framed, later, name, record, square, uri, url };
+export { code, define, eu, first, framed, later, name, organisation, record, square, uri, url };
 export type { Element };
 `,
 );
