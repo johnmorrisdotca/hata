@@ -203,8 +203,11 @@ const build = (): CustomElementConstructor => {
       const load = async (): Promise<void> => {
         const names = await import("./names.js");
         if (turn !== this.drawing) return;
-        const aspect = shape === "4:3" ? 4 / 3 : shape === "own" ? names.flagAspect(code) : 1;
-        const name = names.flagName(code, languageOf(this));
+        // A flag the page registered (`custom:<slug>`) is named and measured by its own entry, loaded only for such a code.
+        const own = /^custom:/i.test(code) ? await import("./custom.js") : null;
+        if (turn !== this.drawing) return;
+        const aspect = shape === "4:3" ? 4 / 3 : shape === "own" ? (own === null ? names.flagAspect(code) : own.customAspect(code)) : 1;
+        const name = own === null ? names.flagName(code, languageOf(this)) : own.customName(code, languageOf(this));
         if (aspect === null || name === null) {
           this.missing(code, shape, `no flag for the code "${code}" in this version of @johnmorrisdotca/hata (its /manifest's LEFT_OUT gives the reason where Kuni knows the code)`);
           return;

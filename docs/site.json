@@ -30,6 +30,10 @@
       "en": "Flags of international organisations",
       "ja": "国際機関の旗"
     },
+    "./custom": {
+      "en": "Flags a page registers itself",
+      "ja": "ページが自分で登録する旗"
+    },
     "./element": {
       "en": "Native flag element",
       "ja": "標準の旗の要素"

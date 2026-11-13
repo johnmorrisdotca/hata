@@ -23,6 +23,7 @@ const entries = [
   ["@johnmorrisdotca/hata/manifest", "manifest.d.ts"],
   ["@johnmorrisdotca/hata/names", "names.d.ts"],
   ["@johnmorrisdotca/hata/organisations", "organisations.d.ts"],
+  ["@johnmorrisdotca/hata/custom", "custom.d.ts"],
   ["@johnmorrisdotca/hata/element", "element.d.ts"],
   ["@johnmorrisdotca/hata/element/define", "element-define.d.ts"],
   ...flags.map((file) => [`@johnmorrisdotca/hata/flags/${file.slice(0, -5)}`, `flags/${file}`]),

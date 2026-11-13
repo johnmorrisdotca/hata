@@ -213,7 +213,7 @@ import { flagCode } from "flags";
 console.log(flagCode("jp-13"));
 ```
 
-The alias changes the import name in your project; the module and its data remain Hata.
+The alias changes only the import name in your project.
 
 ### The entry points
 
@@ -224,6 +224,7 @@ The alias changes the import name in your project; the module and its data remai
 | `@johnmorrisdotca/hata/load` | `flag(code, { shape, fit, variant })`, one dynamic import per flag | 26 KB, 5.7 KB gzipped, then the flag's own file (and a 3.6 KB gzipped table when a frame is asked for, and a 0.5 KB one when a variant is) |
 | `@johnmorrisdotca/hata/names` | `flagName(code, lang)` and `flagAspect(code)`: each flag's place in English and Japanese, from Kuni | 24 KB, 8.7 KB gzipped |
 | `@johnmorrisdotca/hata/organisations` | Organisations' flags, by `org:` id | 1.2 KB gzipped |
+| `@johnmorrisdotca/hata/custom` | Flags the page registers (`custom:<slug>`) | 11 KB |
 | `@johnmorrisdotca/hata/element` | `<hata-flag>`: `defineFlag`, `FLAG_ELEMENT_NAME`, `FLAG_ELEMENT_ATTRIBUTES` | 8 KB, 2.8 KB gzipped, then /load and /names |
 | `@johnmorrisdotca/hata/element/define` | Registers `<hata-flag>` when imported (`dist/element-define.js` on a CDN) | a line, then /element |
 | `@johnmorrisdotca/hata/manifest` | Every flag's source, licence, author and why it was chosen, how each frame is made, the flags in real use besides (`variantsOf`), and the codes with no flag | 970 KB, 88 KB gzipped |
@@ -547,7 +548,8 @@ The [API reference](https://johnmorrisdotca.github.io/hata/api.html) lists every
 | `@johnmorrisdotca/hata/flags/<code>` | the flag's SVG string as the default export and as `svg` |
 | `@johnmorrisdotca/hata/load` | `flag`, `flagDataUri` and the types `FlagOptions` and `FrameOptions` |
 | `@johnmorrisdotca/hata/names` | `flagName`, `flagAspect` and the type `NameLanguage` |
-| `@johnmorrisdotca/hata/organisations` | `ORGANISATION_IDS`, `isOrganisationId`, `organisationId`, `organisationFlag`, `organisationName`, `organisationAspect`, `organisationTerms` and the type `OrganisationId` |
+| `@johnmorrisdotca/hata/organisations` | `ORGANISATION_IDS`, `isOrganisationId`, `organisationId`, `organisationFlag`, `organisationName`, `organisationAspect`, `organisationTerms`, type `OrganisationId` |
+| `@johnmorrisdotca/hata/custom` | `registerFlags`, `removeFlags`, `enableFlags`, `customFlag`, `customName`, `customAspect`, `customId`, `isCustomId`, `listCustomFlags`, `customGroups`, `searchCustomFlags`, `customCreditLine`, `CUSTOM_GROUP`, `MAX_CUSTOM_FLAGS` |
 | `@johnmorrisdotca/hata/element` | `defineFlag`, `FLAG_ELEMENT_NAME`, `FLAG_ELEMENT_ATTRIBUTES`, and the types `HataFlagElement` and `FlagElementEventDetail` |
 | `@johnmorrisdotca/hata/element/define` | `defineFlag`, after registering `<hata-flag>` |
 | `@johnmorrisdotca/hata/manifest` | `MANIFEST`, `LEFT_OUT`, `manifest`, `leftOut`, `variantsOf`, and the types `FlagRecord`, `Framing`, `FramingCrop`, `LeftOutRecord`, `LicenceKind`, `FlagSource` and `Variant` |
@@ -655,15 +657,12 @@ dark one on a dark page), and its size. The demo is the worked example: [`demo/d
 | --- | --- | --- |
 | Countries | 245 of the 250 Kuni knows | `FLAG_CODES` |
 | Subdivisions | the first level of Japan (45 of 47), Canada (13 of 13), the United States (57 of 57), Australia (8 of 8), the United Kingdom (3 of 4), Germany (16 of 16), France (17 of 26), Switzerland (26 of 26), Austria (9 of 9) and Brazil (27 of 27) | `FLAG_CODES` |
-| Former countries | 12 flags, 10 more codes with a reason (the Olympic teams under the Olympic flag, and two without one flag) | `FLAG_CODES`, `LEFT_OUT`, [docs/historical.md](./docs/historical.md) |
+| Former countries | 12 flags, 10 more codes with a reason (Olympic teams, and two without one flag) | `FLAG_CODES`, `LEFT_OUT`, [docs/historical.md](./docs/historical.md) |
 | Codes with no flag | 27 codes, each with its reason | `LEFT_OUT`, [docs/left-out.md](./docs/left-out.md) |
 | Licences | public domain, CC0, CC BY and MIT only | `manifest(code).licence` |
 | Largest flag | 372 KB (Virginia); 55 over the 40 KB budget | [docs/sizes.md](./docs/sizes.md) |
 
-Not here: other countries' regions (Spain's, Italy's, Mexico's and India's wait, for the reasons in
-[docs/decisions.md](./docs/decisions.md)), the United Kingdom's counties (Kuni lists the four countries only), cities, the earlier flags of countries that still exist (apart from the dated variants of a few), ensigns and standards, and raster pictures. A flag's
-licence covers the drawing; using a country's flag or seal may still be limited by its law (Commons marks most
-flags "insignia"), which [NOTICE.md](./NOTICE.md) explains.
+Not here: other countries' regions (the reasons are in [docs/decisions.md](./docs/decisions.md)), the United Kingdom's counties, cities, the earlier flags of countries that still exist (apart from a few dated variants), ensigns, standards and raster pictures. A flag's licence covers the drawing; using a country's flag or seal may still be limited by its law (Commons marks most flags "insignia"), which [NOTICE.md](./NOTICE.md) explains.
 
 ## Accessibility
 
@@ -698,16 +697,13 @@ not yet reviewed by a native reader. Corrections welcome.** Every line of the de
 
 ## Roadmap
 
-Not here yet, and each welcome as an [issue](https://github.com/johnmorrisdotca/hata/issues):
+Not here yet; each is welcome as an [issue](https://github.com/johnmorrisdotca/hata/issues):
 
-- The first level of more countries' regions, a whole country at a time: Spain and Italy once their regions'
-  drawings on Commons are free (several are CC BY-SA), Mexico and India only for the states with an official flag.
-- The four flags left out for their licence, by decision or by a public-domain drawing on Commons
-  ([docs/decisions.md](./docs/decisions.md)).
-- A simplified drawing of the heaviest seals, as an option beside the full one, never in its place.
+- More countries' regions, a whole country at a time: Spain and Italy once their drawings are free, Mexico and India for states with an official flag.
+- The four flags left out for their licence ([docs/decisions.md](./docs/decisions.md)).
+- A simplified drawing of the heaviest seals, beside the full one, never in its place.
 
-Left out on purpose: a React or other framework component (`<hata-flag>` works in every framework), redrawn flags,
-and anything under a share-alike or GPL licence.
+Left out on purpose: a framework component, redrawn flags, anything share-alike or GPL.
 
 ## Architecture
 

@@ -167,6 +167,14 @@ await step("organisations", () => {
   if (out !== "true true 欧州連合") throw new Error(`unexpected output: ${out}`);
 });
 
+await step("custom", () => {
+  const out = execFileSync(process.execPath, [join(examples("custom"), "custom.mjs")], {
+    cwd: usage,
+    encoding: "utf8",
+  }).trim();
+  if (out !== "custom:harbour-fc true Harbour FC crest, drawn by the club (Used with the club's permission).") throw new Error(`unexpected output: ${out}`);
+});
+
 await step("typescript", () => {
   writeFileSync(
     join(examples("typescript"), "tsconfig.json"),
@@ -376,6 +384,7 @@ const FILES: Record<string, string[]> = {
   "typescript/index.ts": guide("typescript-and-node"),
   "node/server.mjs": guide("typescript-and-node"),
   "organisations/organisations.mjs": guide("organisations"),
+  "custom/custom.mjs": guide("custom-flags"),
 };
 const normal = (text: string) => text.replace(/\r\n/g, "\n").trim();
 for (const [file, places] of everything ? Object.entries(FILES) : []) {

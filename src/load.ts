@@ -38,7 +38,7 @@ const codeOf = (code: string): string => {
  * else the flag's own drawing cropped at its chosen side, even where `auto` would show the whole flag. `fit: "whole"`
  * asks for all of the flag, and any other `fit` asks for that fit of the flag's own drawing.
  *
- * @param code - A country's alpha-2 code or a subdivision's ISO 3166-2 code, in any case: "JP", "jp-13", "CA-ON"; or a former country's code or alias: "SUHH", "urs", "GDR".
+ * @param code - A country's alpha-2 code or a subdivision's ISO 3166-2 code, in any case: "JP", "jp-13", "CA-ON"; or a former country's code or alias: "SUHH", "urs", "GDR"; or a flag the page registered, `custom:<slug>` (see `@johnmorrisdotca/hata/custom`).
  * @param options - How to frame it: `shape`, `fit` and `label`, as for `frame()`; the flag as it is when left out. And `variant`: the
  *   `id` of another of the place's flags in real use (`variantsOf(code)`), such as Afghanistan's "de-facto"; the default when left out.
  * @returns A promise of the SVG string, or of `null` when the code has no flag here (unknown, malformed, or left out), or has no such variant.
@@ -64,6 +64,17 @@ const flag = (code: string, options?: FlagOptions): Promise<string | null> => {
   const known = codeOf(code);
   if (options !== undefined) checkFrameOptions(options);
   if (options?.variant !== undefined && typeof options.variant !== "string") throw new TypeError("variant must be a string");
+  // A flag a page registered itself (`custom:<slug>`, /custom): its entry is loaded only now, and a custom flag has no variants.
+  if (known.startsWith("CUSTOM:")) {
+    if (options?.variant !== undefined) return Promise.resolve(null);
+    const framedOnly = options === undefined || (options.shape === undefined && options.fit === undefined && options.label === undefined);
+
+    return import("./custom.js").then(({ customFlag }) => {
+      const svg = customFlag(code);
+
+      return svg === null || framedOnly ? svg : frame(svg, options);
+    });
+  }
   // A variant is its own drawing, loaded by "<code>--<id>" from its own table (loaded when one is asked for); the default's is
   // the place's own, so it is the same as asking for no variant.
   if (options?.variant === undefined) return place(known, options, LOADERS[known]);

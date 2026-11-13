@@ -6,8 +6,8 @@
       "gzip": 3737
     },
     "./load": {
-      "minified": 12398118,
-      "gzip": 4019478
+      "minified": 12414450,
+      "gzip": 4025978
     },
     "./manifest": {
       "minified": 896145,
@@ -21,13 +21,17 @@
       "minified": 2407,
       "gzip": 1161
     },
+    "./custom": {
+      "minified": 15521,
+      "gzip": 6500
+    },
     "./element": {
-      "minified": 12434654,
-      "gzip": 4032265
+      "minified": 12451004,
+      "gzip": 4038765
     },
     "./element/define": {
-      "minified": 12434607,
-      "gzip": 4032244
+      "minified": 12450957,
+      "gzip": 4038744
     },
     "./flags/ad.1x1": {
       "minified": 28262,

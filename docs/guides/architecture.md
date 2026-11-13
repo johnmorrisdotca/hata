@@ -15,6 +15,9 @@ src/
 ├── names.ts            the "/names" entry: each flag's place in English and Japanese, and its aspect ratio
 ├── organisations.ts    the "/organisations" entry: the flags of international organisations by their "org:" id
 ├── organisations.data.ts   the organisations' records (id, names, drawing, terms): the one place to add a flag
+├── custom.ts           the "/custom" entry: flags a page registers itself, as custom:<slug>, from a data-door source
+├── custom-svg.ts       the check on a page's SVG: an allowlist, then written again from what was read
+├── data-door.ts        the family's data door, copied unchanged from kazoku-ui: a source's licence and credit, and its checks
 ├── element.ts          the "/element" entry: <hata-flag>
 ├── element-define.ts   the "/element/define" entry: registers <hata-flag>
 ├── reflect.ts          an element's attributes as properties too, the family's way
