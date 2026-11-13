@@ -56,7 +56,7 @@ test("a flag with a script in it is refused and nothing of it reaches the page",
   await open(
     page,
     `import { registerFlags, customFlag } from "/dist/custom.js";
-    const svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2" onload="window.pwned=1"><script>window.pwned=1</script></svg>';
+    const svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2" onload="window.pwned=1"><script>window.pwned=1<\\/script></svg>';
     window.done = await registerFlags(${SET}, records: () => [{ id: "custom:bad", name: { en: "Bad" }, svg }] });
     window.drawn = customFlag("custom:bad");
     window.ready = true;`,
