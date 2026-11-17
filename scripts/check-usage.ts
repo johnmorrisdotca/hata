@@ -88,6 +88,15 @@ const opened = async (browser: Browser, run: (page: Page, errors: string[]) => P
   if (errors.length > 0) throw new Error(`the page reported errors:\n${errors.join("\n")}`);
 };
 
+/** The flag is drawn inline by a framework binding: a span with the flag's name that holds the flag's <svg>. */
+const seesInlineFlag = async (scope: { locator: Page["locator"] }): Promise<void> => {
+  const flag = scope.locator('[data-hata-flag][role="img"]').first();
+  await flag.waitFor({ state: "attached", timeout: 30_000 });
+  const box = await flag.locator("svg").first().boundingBox();
+  if (box === null || box.width <= 0 || box.height <= 0) throw new Error("the flag's svg has no size");
+  if ((await flag.getAttribute("aria-label")) !== "Tokyo") throw new Error("the flag has no name");
+};
+
 /** The flag is drawn: a <hata-flag> that holds its picture, and the picture has loaded. */
 const seesFlag = async (scope: { locator: Page["locator"] }): Promise<void> => {
   const image = scope.locator("hata-flag > img").first();
@@ -275,7 +284,7 @@ await step("iframe", async () => {
 
 // The bundlers and frameworks: built, then opened.
 const { build: viteBuild } = await import("vite");
-const viteApp = async (name: string, plugins: unknown[] = []): Promise<void> => {
+const viteApp = async (name: string, plugins: unknown[] = [], sees = seesFlag): Promise<void> => {
   const dir = examples(name);
   const out = join(usage, "out", name);
   await viteBuild({
@@ -289,7 +298,7 @@ const viteApp = async (name: string, plugins: unknown[] = []): Promise<void> => 
   await opened(browser, async (page) => {
     await serve(page, "https://app.test", out);
     await page.goto("https://app.test/");
-    await seesFlag(page);
+    await sees(page);
   });
 };
 
@@ -297,6 +306,33 @@ await step("vite", () => viteApp("vite"));
 await step("react", () => viteApp("react"));
 await step("vue", async () => viteApp("vue", [(await import("@vitejs/plugin-vue")).default()]));
 await step("svelte", async () => viteApp("svelte", [(await import("@sveltejs/vite-plugin-svelte")).svelte()]));
+
+await step("react binding", () => viteApp("bindings/react", [], seesInlineFlag));
+await step("vue binding", () => viteApp("bindings/vue", [], seesInlineFlag));
+await step("svelte binding", async () => viteApp("bindings/svelte", [(await import("@sveltejs/vite-plugin-svelte")).svelte()], seesInlineFlag));
+
+await step("react binding, server render to string", async () => {
+  const out = join(usage, "react-server.mjs");
+  await esbuild({
+    entryPoints: [join(examples("bindings"), "react-server.tsx")],
+    outfile: out,
+    bundle: true,
+    platform: "node",
+    format: "esm",
+    jsx: "automatic",
+    absWorkingDir: root,
+    logLevel: "silent",
+    external: ["react", "react-dom", "@johnmorrisdotca/hata"],
+    splitting: false,
+  });
+  const text = execFileSync(process.execPath, [out], { cwd: root, encoding: "utf8" }).trim();
+  if (text !== "true true") throw new Error(`the server render lost the flag: ${text}`);
+});
+
+await step("vue binding, server render to string", () => {
+  const text = execFileSync(process.execPath, [join(examples("bindings"), "vue-server.mjs")], { cwd: usage, encoding: "utf8" }).trim();
+  if (text !== "true true") throw new Error(`the server render lost the flag: ${text}`);
+});
 
 await step("react-ssr", async () => {
   const script = join(usage, "ssr-react.tsx");
@@ -431,6 +467,9 @@ const unlisted = (folder: string): string[] =>
 const known = new Set([
   ...Object.keys(FILES),
   "angular/index.html",
+  "bindings/react/index.html",
+  "bindings/svelte/index.html",
+  "bindings/vue/index.html",
   "react/index.html",
   "svelte/index.html",
   "vue/index.html",

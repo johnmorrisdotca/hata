@@ -10,7 +10,7 @@ import { OWED } from "./embed-credits.js";
 import "./kazoku-page-frame.js";
 // kazoku-ui's embed panel, the code section the builder fills: defined before the builder mounts.
 import "./kazoku-embed-panel.js";
-import { FLAG_OPTIONS, HATA_PRODUCT, unknownDate } from "./embed-hata.js";
+import { bindingCode, FLAG_OPTIONS, HATA_PRODUCT, unknownDate } from "./embed-hata.js";
 
 const codeChoices = [...FLAG_CODES, ...LEFT_OUT.filter(one => one.variants.length > 0).map(one => one.code)];
 const needsVariant = settings => settings.date && !settings.variant ? unknownDate({ ...settings, code: settings.code ?? "JP" }) : settings.variant ? !variantsOf(settings.code ?? "JP").some(one => one.id === settings.variant) : !FLAG_CODES.includes(settings.code ?? "JP");
@@ -116,6 +116,7 @@ const builder = familyEmbedBuilder({ id: "hata", packageName: "@johnmorrisdotca/
     img: HATA_PRODUCT.writers.img, data: HATA_PRODUCT.writers.data },
   code: ({ maker, format, attrs, settings }) => {
     if (needsVariant(settings)) return null;
+    if (format === "react" || format === "vue" || format === "svelte") return bindingCode(format, attrs);
     if ((format === "iframe" || format === "url") && settings.lang === undefined) return builder.codeFor(maker, format, options, { ...settings, lang: page.lang });
     if (format === "data" && !context.uri) return null;
     return HATA_PRODUCT.writers[format]?.write(legacy(settings), attrs, context);

@@ -152,6 +152,27 @@ function imageStyle(settings, framing, adapted) {
   return rules.length === 0 ? "" : ` style="${rules.join(";")}"`;
 }
 
+// The code for a framework binding (@johnmorrisdotca/hata/react, /vue, /svelte): the typed component of the package, which draws the flag's SVG inline and so
+// works in a server render and a static build, with the element's attributes as its props. `attrs` is the [name, value] list of the element's attributes.
+const propText = (name, value, kind, vue) => {
+  if (kind === "boolean") return value === "false" ? (vue ? `:${name}="false"` : `${name}={false}`) : name;
+  if (kind === "number" && /^-?\d+(\.\d+)?$/.test(value)) return vue ? `:${name}="${value}"` : `${name}={${value}}`;
+  return `${name}="${escapeAttribute(value)}"`;
+};
+export const bindingCode = (format, attrs) => {
+  const kindOf = (name) => FLAG_OPTIONS.find((one) => one.attribute === name)?.kind;
+  const props = (vue) => attrs.map(([name, value]) => propText(name, value, kindOf(name), vue));
+  if (format === "react") {
+    const list = props(false);
+    const line = `<Flag ${list.join(" ")} />`;
+    const body = line.length > 64 ? `(\n    <Flag\n${list.map((one) => `      ${one}`).join("\n")}\n    />\n  )` : line;
+    return `import { Flag } from "${PACKAGE}/react";\n// On a server, await preloadFlags([...]) from "${PACKAGE}/react" before renderToString.\n\nexport function Example() {\n  return ${body};\n}`;
+  }
+  if (format === "vue") return `<script setup>\nimport { Flag } from "${PACKAGE}/vue";\n</script>\n\n<template>\n  <Flag ${props(true).join(" ")} />\n</template>`;
+  if (format === "svelte") return `<script>\n  import Flag from "${PACKAGE}/svelte";\n</script>\n\n<Flag ${props(false).join(" ")} />`;
+  return undefined;
+};
+
 /** Hata as a product the builder can write code for. */
 export const HATA_PRODUCT = {
   name: "Hata",

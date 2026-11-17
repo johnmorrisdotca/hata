@@ -14,6 +14,8 @@ test("the standalone builder restores a flag, writes every host format and fits 
   for (const format of ["html", "url", "react", "vue", "svelte", "angular", "img", "data", "module", "iframe"]) {
     await page.locator(`[data-testid="bld-embed"] button[data-kind="${format}"]`).click();
     await expect(page.locator('[data-testid="bld-embed"] [part="code"]')).not.toHaveText("");
+    // The React, Vue and Svelte code is the typed component, which draws inline and so works in a server render.
+    if (["react", "vue", "svelte"].includes(format)) await expect(page.locator('[data-testid="bld-embed"] [part="code"]')).toContainText(`@johnmorrisdotca/hata/${format}`);
   }
   await expect(page.locator('[data-testid="bld-embed"] [part="code"]')).toContainText("/hata/embed/?");
   await page.locator("#bld-link").click();

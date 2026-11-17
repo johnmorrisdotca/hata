@@ -101,6 +101,27 @@
       "types": "./dist/element-define.d.ts",
       "default": "./dist/element-define.js"
     },
+    "./bind": {
+      "types": "./dist/bind.d.ts",
+      "default": "./dist/bind.js"
+    },
+    "./react": {
+      "types": "./dist/react.d.ts",
+      "default": "./dist/react.js"
+    },
+    "./vue": {
+      "types": "./dist/vue.d.ts",
+      "default": "./dist/vue.js"
+    },
+    "./svelte": {
+      "types": "./dist/svelte.d.ts",
+      "svelte": "./dist/svelte/Flag.svelte",
+      "default": "./dist/svelte/Flag.svelte"
+    },
+    "./react-native": {
+      "types": "./dist/react-native.d.ts",
+      "default": "./dist/react-native.js"
+    },
     "./svg/*": "./dist/svg/*",
     "./package.json": "./package.json",
     "./flags/ad.1x1": {
@@ -3823,6 +3844,22 @@
     "size": "node scripts/docs-site.mjs size",
     "test:usage": "pnpm site && node scripts/check-usage.ts",
     "check:standard": "node scripts/check-standard.mjs"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "svelte": ">=5",
+    "vue": ">=3.3"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    },
+    "svelte": {
+      "optional": true
+    },
+    "vue": {
+      "optional": true
+    }
   },
   "devDependencies": {
     "@angular/common": "^22.2.4",

@@ -75,6 +75,7 @@ import { flagName, flagAspect } from "${pkg.name}/names";
 import { organisationFlag, organisationName, ORGANISATION_IDS } from "${pkg.name}/organisations";
 import { customFlag, registerFlags } from "${pkg.name}/custom";
 import { defineFlag, FLAG_ELEMENT_NAME } from "${pkg.name}/element";
+import { resolveFlag } from "${pkg.name}/bind";
 import "${pkg.name}/element/define";
 import canadaSquare from "${pkg.name}/flags/ca.1x1";
 const wanted = ${JSON.stringify(japan)};
@@ -87,6 +88,7 @@ if (flagName("JP-13", "ja") !== "東京都" || flagAspect("CA") !== 2) throw new
 if (ORGANISATION_IDS[0] !== "org:eu" || !organisationFlag("org:eu").startsWith("<svg") || organisationName("org:eu", "ja") !== "欧州連合") throw new Error("/organisations answered wrongly");
 if (customFlag("custom:none") !== null || typeof registerFlags !== "function") throw new Error("/custom answered wrongly");
 if (FLAG_ELEMENT_NAME !== "hata-flag" || typeof defineFlag !== "function") throw new Error("/element is wrong");
+if ((await resolveFlag({ code: "JP" }))?.svg !== wanted || (await resolveFlag({ code: "XX" })) !== null) throw new Error("/bind answered wrongly");
 if ((await flag("CA", { shape: "1:1" })) !== canadaSquare) throw new Error("/load did not use the square drawn for Canada");
 if (manifest("JP")?.code !== "JP" || MANIFEST.length !== FLAG_CODES.length || json.flags.length !== MANIFEST.length || json.leftOut.length !== LEFT_OUT.length) throw new Error("the manifest is wrong");
 const file = readFileSync(createRequire(import.meta.url).resolve("${pkg.name}/svg/jp.svg"), "utf8").trim();
@@ -109,6 +111,7 @@ import { flagName } from "${pkg.name}/names";
 import { defineFlag, type HataFlagElement } from "${pkg.name}/element";
 import { organisationFlag, type OrganisationId } from "${pkg.name}/organisations";
 import { registerFlags, type CustomFlagRecord } from "${pkg.name}/custom";
+import { resolveFlag, type FlagProps } from "${pkg.name}/bind";
 
 const code: FlagCode | null = flagCode("jp");
 const first: FlagCode = FLAG_CODES[0];
@@ -125,8 +128,10 @@ const eu: OrganisationId = "org:eu";
 const mine: CustomFlagRecord = { id: "custom:mine", name: { en: "Mine" }, svg: "<svg/>" };
 const register = registerFlags;
 const define: (name?: string) => void = defineFlag;
+const props: FlagProps = { code: "JP", which: "in-use", date: "1962" };
+const bound: Promise<unknown> = resolveFlag(props);
 type Element = HataFlagElement;
-export { code, define, eu, mine, register, first, framed, later, name, organisation, record, square, uri, url };
+export { bound, code, define, eu, mine, register, first, framed, later, name, organisation, record, square, uri, url };
 export type { Element };
 `,
 );

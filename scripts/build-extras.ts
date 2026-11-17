@@ -6,7 +6,7 @@
 //     or a CDN address (flagUrl);
 //   - dist/manifest.json: /manifest's records and the codes left out, as JSON, for a tool that does not run JavaScript.
 
-import { mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
+import { copyFileSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { pathToFileURL } from "node:url";
 
@@ -33,6 +33,25 @@ for (const file of readdirSync(SRC).filter((name) => name.endsWith(".ts")).sort(
   if (!restrictedModules.has(code)) writeFileSync(join(DIST, "svg", `${code}.svg`), `${built.svg}\n`);
   count += 1;
 }
+
+// The Svelte binding is a .svelte file, compiled by the consumer's Svelte plugin (the "svelte" export condition), so it is copied as it is; it imports ../bind.js.
+mkdirSync(join(DIST, "svelte"), { recursive: true });
+copyFileSync(join(ROOT, "src", "svelte", "Flag.svelte"), join(DIST, "svelte", "Flag.svelte"));
+writeFileSync(
+  join(DIST, "svelte.d.ts"),
+  `import type { Component } from "svelte";
+import type { FlagProps } from "./bind.js";
+
+/**
+ * A flag as a Svelte 5 component that draws the flag's SVG inline: the props of <hata-flag>, typed (see FlagProps in @johnmorrisdotca/hata/bind).
+ * On a server, await preloadFlags([...]) from "@johnmorrisdotca/hata/bind" before the render.
+ */
+declare const Flag: Component<FlagProps>;
+
+export default Flag;
+export type { FlagProps };
+`,
+);
 
 const pkg = JSON.parse(readFileSync(join(ROOT, "package.json"), "utf8")) as { name: string; version: string };
 writeFileSync(join(DIST, "manifest.json"), `${JSON.stringify({ package: pkg.name, version: pkg.version, flags: manifest.MANIFEST, leftOut: manifest.LEFT_OUT, restricted: manifest.RESTRICTED }, null, 1)}\n`);

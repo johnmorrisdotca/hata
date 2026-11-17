@@ -47,7 +47,7 @@ const lineComments = (declaration) => {
 
 /** Every entry point with its exports: [{ entry, name, exports: [{ name, kind, signature, doc }] }]. */
 export function apiOf() {
-  const entries = Object.entries(pkg.exports).filter(([key, entry]) => !key.includes("*") && typeof entry === "object" && builtOf(entry).startsWith("./dist/")).map(([key, entry]) => ({ key, name: key === "." ? pkg.name : `${pkg.name}/${key.slice(2)}`, file: ["ts", "tsx"].map((ext) => sourceOf(entry).replace(/\.ts$/, `.${ext}`)).find((file) => ts.sys.fileExists(file)) }));
+  const entries = Object.entries(pkg.exports).filter(([key, entry]) => !key.includes("*") && typeof entry === "object" && builtOf(entry).startsWith("./dist/") && builtOf(entry).endsWith(".js")).map(([key, entry]) => ({ key, name: key === "." ? pkg.name : `${pkg.name}/${key.slice(2)}`, file: ["ts", "tsx"].map((ext) => sourceOf(entry).replace(/\.ts$/, `.${ext}`)).find((file) => ts.sys.fileExists(file)) }));
   const config = ts.getParsedCommandLineOfConfigFile(join(root, "tsconfig.json"), {}, { ...ts.sys, onUnRecoverableConfigFileDiagnostic: () => {} });
   const program = ts.createProgram(entries.map((entry) => entry.file), { ...config.options, noEmit: true });
   const checker = program.getTypeChecker();

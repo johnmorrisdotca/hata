@@ -498,32 +498,28 @@ const credits = MANIFEST.filter((one) => one.sameAs === null && one.attributionR
   .map((one) => `${one.code}: ${one.file}, ${one.author}, ${one.licence.name}`);
 ```
 
-### A React flag
+### React, Vue and Svelte components
+
+Typed components draw the SVG inline, so the flag is in a server render and a static build. They take the element's props (`code`, `shape`, `size`, `label`, `date`, `variant` and the rest).
+React, Vue and Svelte are optional peer dependencies: nothing new is installed for anyone who does not import one.
 
 ```jsx
-import "@johnmorrisdotca/hata/element/define";
-export function Flag() { return <hata-flag code="JP" label="Japan" />; }
+import { Flag, preloadFlags } from "@johnmorrisdotca/hata/react"; // /vue, /svelte and /react-native work the same way
+await preloadFlags([{ code: "JP", label: "Japan" }]); // a server's renderToString cannot wait
+export const Japan = () => <Flag code="JP" label="Japan" />;
 ```
-
-### A Vue flag
 
 ```vue
-<script setup>
-import "@johnmorrisdotca/hata/element/define";
-</script>
-<template><hata-flag code="CA" label="Canada" /></template>
+<script setup>import { Flag } from "@johnmorrisdotca/hata/vue";</script>
+<template><Flag code="CA" label="Canada" /></template>
 ```
-
-### A Svelte flag
 
 ```svelte
-<script>
-import "@johnmorrisdotca/hata/element/define";
-</script>
-<hata-flag code="JP-13" label="Tokyo" />
+<script>import Flag from "@johnmorrisdotca/hata/svelte";</script>
+<Flag code="JP-13" label="Tokyo" />
 ```
 
-Configure the host framework to accept the custom element; the registration entry is browser-only. Keep the original proportions and a spoken name.
+[The frameworks guide](./docs/guides/frameworks.md) has server rendering, hydration, and the element for any other framework.
 
 ## API
 
@@ -541,6 +537,11 @@ The [API reference](https://johnmorrisdotca.github.io/hata/api.html) lists every
 | `@johnmorrisdotca/hata/custom` | `registerFlags`, `removeFlags`, `enableFlags`, `customFlag`, `customName`, `customAspect`, `customId`, `isCustomId`, `listCustomFlags`, `customGroups`, `searchCustomFlags`, `customCreditLine`, `CUSTOM_GROUP`, `MAX_CUSTOM_FLAGS` |
 | `@johnmorrisdotca/hata/element` | `defineFlag`, `FLAG_ELEMENT_NAME`, `FLAG_ELEMENT_ATTRIBUTES`, and the types `HataFlagElement` and `FlagElementEventDetail` |
 | `@johnmorrisdotca/hata/element/define` | `defineFlag`, after registering `<hata-flag>` |
+| `@johnmorrisdotca/hata/react` | `Flag`, `preloadFlags`, `useFlag`: a component that draws the flag's SVG inline |
+| `@johnmorrisdotca/hata/vue` | `Flag` and `preloadFlags` |
+| `@johnmorrisdotca/hata/svelte` | the default export, `Flag` (a `.svelte` file) |
+| `@johnmorrisdotca/hata/react-native` | `createFlag(SvgXml)` and `preloadFlags`, over react-native-svg |
+| `@johnmorrisdotca/hata/bind` | `resolveFlag`, `preloadFlags`, `cachedFlag`, `boxStyle`, `inlineSvg`, `styleText`, and the types `FlagProps` and `BoundFlag` |
 | `@johnmorrisdotca/hata/manifest` | `MANIFEST`, `LEFT_OUT`, `RESTRICTED`, `manifest`, `leftOut`, `variantsOf`, `variantOn`, `flagOn`, and the types `FlagRecord`, `Framing`, `FramingCrop`, `LeftOutRecord`, `LicenceKind`, `FlagSource`, `Variant`, `FlagRole`, `RoleNote`, `Restricted`, `RestrictedVariant`, `DatedVariant`, `OtherFlag`, `NoFlag`, `FlagOnDay` and `VariantOptions` |
 
 A flag's record:
@@ -690,7 +691,7 @@ Not here yet; each is welcome as an [issue](https://github.com/johnmorrisdotca/h
 - A simplified drawing of the heaviest seals, beside the full one.
 - Dated earlier flags for the countries not yet researched ([docs/decisions.md](./docs/decisions.md#historic-flags-of-present-day-countries)).
 
-Left out on purpose: a framework component, redrawn flags, anything share-alike or GPL.
+Not planned: redrawn flags, anything share-alike or GPL, and Angular or Solid components (the element works there).
 
 ## Architecture
 

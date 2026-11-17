@@ -22,6 +22,11 @@ src/
 ├── element.ts          the "/element" entry: <hata-flag>
 ├── element-define.ts   the "/element/define" entry: registers <hata-flag>
 ├── reflect.ts          an element's attributes as properties too, the family's way
+├── bind.ts             the "/bind" entry: the framework-free core of the typed components (props, the inline SVG, a cache a server can fill)
+├── react.ts            the "/react" entry: the React component
+├── vue.ts              the "/vue" entry: the Vue component
+├── svelte/             the "/svelte" entry: Flag.svelte, copied to dist/svelte by scripts/build-extras.ts
+├── react-native.ts     the "/react-native" entry: createFlag(SvgXml), the React Native component
 ├── manifest.ts         the "/manifest" entry: every flag's record, and the codes left out
 ├── manifest.types.ts   the shapes of a flag's record, a frame and a code left out
 ├── version.ts          the package's version
