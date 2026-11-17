@@ -89,6 +89,8 @@ interface FlagRecord {
   notes: string[];
   /** The flag's colours, the one that covers most of it first, each an exact hex with its share of the flag and its name; see `FlagColour`. */
   colours: FlagColour[];
+  /** What is on the flag, as tags from a closed list, each with where it comes from and what it rests on; see `FlagTagRecord`. */
+  tags: FlagTagRecord[];
   /** True where more than one authority or community claims the place's flag at the same time (Afghanistan, Northern Ireland); this package takes no side, and says why each default was chosen (README). */
   disputed: boolean;
   /** The `id` of the variant `flag(code)` gives; null where the place has one flag (`variants` is then empty) or none of its own by default. */
@@ -135,6 +137,93 @@ interface FlagColour {
   share: number;
   /** The nearest name of the closed list: see `ColourName`. */
   name: ColourName;
+}
+
+/**
+ * The names a flag's tag can have: a closed list of the things a person sees on a flag. `plain` is flat fields of
+ * colour with nothing drawn on them; `emblem` is any seal, badge, shield or device, a coat of arms included; a
+ * Nordic cross is a `cross` too. docs/tags.md says when each applies.
+ *
+ * @example
+ * ```ts
+ * import { manifest, type TagName } from "@johnmorrisdotca/hata/manifest";
+ *
+ * const names: TagName[] = (manifest("DE")?.tags ?? []).map((one) => one.tag);
+ * console.log(names); // ["plain", "stripes-horizontal"]
+ * ```
+ */
+type TagName =
+  | "plain"
+  | "stripes-horizontal"
+  | "stripes-vertical"
+  | "stripes-diagonal"
+  | "cross"
+  | "nordic-cross"
+  | "saltire"
+  | "canton"
+  | "stars"
+  | "crescent"
+  | "sun"
+  | "circle"
+  | "triangle"
+  | "emblem"
+  | "coat-of-arms"
+  | "animal"
+  | "plant"
+  | "building"
+  | "weapon"
+  | "crown"
+  | "map"
+  | "text";
+
+/**
+ * Where a tag comes from, the most trusted first. `reviewed`: a person looked at the flag and said so. `computed`:
+ * measured from the drawing by a rule with no judgement in it. `wikidata`: the flag's Wikidata item says it depicts
+ * a thing of that kind. `unreviewed`: an automated guess (a Wikimedia Commons category of the drawing's file, or a
+ * rule of thumb on the drawing) that nobody has checked.
+ *
+ * @example
+ * ```ts
+ * import { manifest, type TagSource } from "@johnmorrisdotca/hata/manifest";
+ *
+ * const sure: TagSource[] = ["reviewed", "computed"];
+ * console.log((manifest("FR")?.tags ?? []).filter((one) => sure.includes(one.source)).map((one) => one.tag)); // ["plain", "stripes-vertical"]
+ * ```
+ */
+type TagSource = "reviewed" | "computed" | "wikidata" | "unreviewed";
+
+/**
+ * One thing that is on a flag, and where the claim comes from.
+ *
+ * @example
+ * ```ts
+ * import { tagsOf, type FlagTag } from "@johnmorrisdotca/hata/search";
+ *
+ * const germany: readonly FlagTag[] = tagsOf("DE");
+ * console.log(germany); // [{ tag: "plain", source: "computed" }, { tag: "stripes-horizontal", source: "computed" }]
+ * ```
+ */
+interface FlagTag {
+  /** The tag, of the closed list: see `TagName`. */
+  tag: TagName;
+  /** Where it comes from: see `TagSource`. */
+  source: TagSource;
+}
+
+/**
+ * A flag's tag as the manifest has it: the tag, its source, and what the source rests on.
+ *
+ * @example
+ * ```ts
+ * import { manifest, type FlagTagRecord } from "@johnmorrisdotca/hata/manifest";
+ *
+ * const germany: FlagTagRecord[] = manifest("DE")?.tags ?? [];
+ * console.log(germany[1]); // { tag: "stripes-horizontal", source: "computed", from: "the whole flag is three bands across" }
+ * ```
+ */
+interface FlagTagRecord extends FlagTag {
+  /** What the source rests on, in words: the measure, the Wikidata statement, or the Commons category. */
+  from: string;
 }
 
 /**
@@ -327,4 +416,4 @@ interface LeftOutRecord {
   historical?: HistoricalEra;
 }
 
-export type { ColourName, FlagColour, FlagRecord, FlagSource, Framing, FramingCrop, HistoricalEra, LeftOutRecord, LicenceKind, Variant };
+export type { ColourName, FlagColour, FlagRecord, FlagSource, FlagTag, FlagTagRecord, Framing, FramingCrop, HistoricalEra, LeftOutRecord, LicenceKind, TagName, TagSource, Variant };

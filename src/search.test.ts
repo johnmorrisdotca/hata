@@ -1,15 +1,17 @@
-// Each flag's colours as exact hex shares, measured from the shipped drawing, and the search by colour.
+// Each flag's colours as exact hex shares, measured from the shipped drawing, its tags with the source of each, and
+// the search by colour and by tag.
 import { readFileSync } from "node:fs";
 
 import { describe, expect, it } from "vitest";
 
 import { colourName, COLOUR_NAMES as NAMED } from "../scripts/colour-data";
 import { coloursFrom, WIDTH } from "../scripts/colour-measure";
+import { CATEGORY_DESCRIBES, CATEGORY_TAGS, FLAG_TAGS as TAG_LIST, TAG_REVIEWS, TAG_SOURCES as SOURCE_LIST, WIKIDATA_TAGS } from "../scripts/tag-config";
 import { VARIANT_PICTURES } from "./data/manifest.data";
 import { FLAG_CODES } from "./index";
 import { flag } from "./load";
 import { manifest, MANIFEST, variantsOf } from "./manifest";
-import { COLOUR_NAMES, coloursOf, flagsWith } from "./search";
+import { COLOUR_NAMES, coloursOf, FLAG_TAGS, flagsWith, TAG_SOURCES, tagsOf } from "./search";
 
 const measured = JSON.parse(readFileSync("scripts/colours.data.json", "utf8")) as Record<string, { width: number; height: number; drawn: number; colours: [string, number][]; merged: number }>;
 
@@ -135,7 +137,125 @@ describe("flagsWith", () => {
   });
 
   it("refuses a name that is not on the list", () => {
-    for (const bad of [["pink"], ["Red"], "red", undefined, [1]]) expect(() => flagsWith({ colours: bad as unknown as [] }), String(bad)).toThrow(TypeError);
+    for (const bad of [["pink"], ["Red"], "red", [1]]) expect(() => flagsWith({ colours: bad as unknown as [] }), String(bad)).toThrow(TypeError);
     expect(() => flagsWith(undefined as unknown as { colours: [] })).toThrow(TypeError);
+  });
+});
+
+describe("the tags (scripts/tag-config.ts, scripts/tag-data.ts)", () => {
+  const geometry = JSON.parse(readFileSync("scripts/tags.data.json", "utf8")) as Record<string, { across: [string, number][] | null; down: [string, number][] | null; edgesAcross: [string, number][] | null; edgesDown: [string, number][] | null; text: boolean }>;
+  const snapshotName = (JSON.parse(readFileSync("data-sources/sources.json", "utf8")) as { files: { path: string }[] }).files.map((file) => file.path).find((path) => path.startsWith("flag-tags-"))!;
+  const snapshot = JSON.parse(readFileSync(`data-sources/${snapshotName}`, "utf8")) as { wikidata: { flags: Record<string, { flag: string; depicts: [string, string][] }[]>; kinds: Record<string, string[]>; labels: Record<string, string> }; commons: { categories: Record<string, string[]> } };
+
+  it("has a measure for every picture that ships, and for nothing else", () => {
+    expect(Object.keys(geometry).sort()).toEqual(Object.keys(measured).sort());
+    expect(geometry.DE!.across).toEqual([["#000000", 0.3333], ["#dd0000", 0.3333], ["#ffce00", 0.3333]]);
+    expect(geometry.FR!.down?.map(([hex]) => hex)).toEqual(["#002654", "#ffffff", "#ce1126"]);
+    expect(geometry.JP).toMatchObject({ across: null, down: null });
+    expect(geometry.DK!.edgesAcross?.length).toBe(3);
+    expect(geometry.DK!.edgesDown?.length).toBe(3);
+  });
+
+  it("names in its closed list the tags the types and /search name, each with when it applies", () => {
+    expect(TAG_LIST.map((one) => one.id)).toEqual([...FLAG_TAGS]);
+    expect(new Set(FLAG_TAGS).size).toBe(FLAG_TAGS.length);
+    for (const one of TAG_LIST) {
+      expect(one.id).toMatch(/^[a-z]+(-[a-z]+)*$/);
+      expect(one.what.length, one.id).toBeGreaterThan(5);
+    }
+    expect([...TAG_SOURCES]).toEqual([...SOURCE_LIST]);
+    expect([...TAG_SOURCES]).toEqual(["reviewed", "computed", "wikidata", "unreviewed"]);
+    expect(Object.isFrozen(FLAG_TAGS) && Object.isFrozen(TAG_SOURCES)).toBe(true);
+  });
+
+  it("holds every Wikidata item of its table to the label Wikidata gave, and every tag in its tables to the list", () => {
+    for (const [item, one] of Object.entries(WIKIDATA_TAGS)) {
+      expect(snapshot.wikidata.labels[item], item).toBe(one.label);
+      for (const tag of one.tags) expect(FLAG_TAGS, `${item} ${tag}`).toContain(tag);
+    }
+    for (const rule of CATEGORY_TAGS) for (const tag of rule.tags) expect(FLAG_TAGS, String(rule.pattern)).toContain(tag);
+    for (const [key, reviews] of Object.entries(TAG_REVIEWS)) {
+      expect(Object.keys(measured), key).toContain(key);
+      for (const [tag, answer] of Object.entries(reviews)) {
+        expect(FLAG_TAGS, `${key} ${tag}`).toContain(tag);
+        expect(["yes", "no"], `${key} ${tag}`).toContain(answer);
+      }
+    }
+  });
+
+  it("reads only the Commons categories that say what is on a flag", () => {
+    const tagsFor = (category: string): string[] => (CATEGORY_DESCRIBES.test(category) ? CATEGORY_TAGS.filter((rule) => rule.pattern.test(category)).flatMap((rule) => [...rule.tags]) : []);
+    expect(tagsFor("Flags with five-pointed stars")).toEqual(["stars"]);
+    expect(tagsFor("Union Jack cantons")).toEqual(["cross", "saltire", "canton"]);
+    expect(tagsFor("Eagles on flags of the United States")).toEqual(["animal"]);
+    expect(tagsFor("Horizontal bicolor white and red flags")).toEqual(["stripes-horizontal"]);
+    expect(tagsFor("Hiragana flags (1 letter)")).toEqual(["text"]);
+    for (const category of ["Flags of territories in the Austrian Circle", "Flags based on the flag of Germany", "Plain blue SVG star icons", "SVG flags of Japan - aspect ratio of 3:2", "Flags with blue fields", "Red star as a symbol of communism"]) expect(tagsFor(category), category).toEqual([]);
+  });
+
+  it("gives every flag tags of the list with a source and what it rests on, each tag once, in the list's order", () => {
+    for (const record of MANIFEST) {
+      const tags = record.tags;
+      expect(tags.map((one) => one.tag), record.code).toEqual(FLAG_TAGS.filter((tag) => tags.some((one) => one.tag === tag)));
+      for (const one of tags) {
+        expect(FLAG_TAGS, `${record.code} ${one.tag}`).toContain(one.tag);
+        expect(TAG_SOURCES, `${record.code} ${one.tag}`).toContain(one.source);
+        expect(one.from.length, `${record.code} ${one.tag}`).toBeGreaterThan(8);
+        // Nothing automated passes as checked: a reviewed tag is one a person put in TAG_REVIEWS.
+        if (one.source === "reviewed") expect(TAG_REVIEWS[record.sameAs ?? record.code]?.[one.tag], `${record.code} ${one.tag}`).toBe("yes");
+        if (one.source === "wikidata") expect(one.from, `${record.code} ${one.tag}`).toMatch(/^Q\d+ depicts .*\(Q\d+\)/);
+        if (one.source === "unreviewed") expect(one.from, `${record.code} ${one.tag}`).toMatch(/^(Commons category "|the same |a band across|\d+ colours)/);
+      }
+      expect(tagsOf(record.code), record.code).toEqual(tags.map(({ tag, source }) => ({ tag, source })));
+    }
+  });
+
+  it("computes what needs no judgement: bands across or down the whole flag, and nothing on them", () => {
+    expect(manifest("DE")!.tags).toEqual([
+      { tag: "plain", source: "computed", from: "the whole flag is three bands across, with nothing on them" },
+      { tag: "stripes-horizontal", source: "computed", from: "the whole flag is three bands across" },
+    ]);
+    expect(tagsOf("FR")).toEqual([{ tag: "plain", source: "computed" }, { tag: "stripes-vertical", source: "computed" }]);
+    for (const [key, one] of Object.entries(geometry)) {
+      const record = manifest(key);
+      if (record === null) continue;
+      const computed = record.tags.filter((tag) => tag.source === "computed").map((tag) => tag.tag);
+      expect(computed.includes("plain"), key).toBe(one.across !== null || one.down !== null);
+      expect(computed.includes("stripes-horizontal"), key).toBe((one.across?.length ?? 0) > 1);
+      expect(computed.includes("stripes-vertical"), key).toBe((one.down?.length ?? 0) > 1);
+    }
+  });
+
+  it("takes Wikidata's word where the flag's item depicts a thing of a named kind", () => {
+    expect(tagsOf("DK")).toEqual([{ tag: "cross", source: "wikidata" }, { tag: "nordic-cross", source: "wikidata" }]);
+    expect(tagsOf("JP")).toEqual([{ tag: "sun", source: "wikidata" }, { tag: "circle", source: "wikidata" }]);
+    expect(manifest("BR")!.tags.find((one) => one.tag === "stars")?.from).toMatch(/a kind of (star|constellation) \(Q\d+\)$/);
+    // The Sun is a star to an astronomer and a sun on a flag: a named thing gives its own tags only.
+    expect(tagsOf("JP").some((one) => one.tag === "stars")).toBe(false);
+  });
+
+  it("reads a code and a variant as coloursOf does", () => {
+    expect(tagsOf(" fr_972 ")).toBe(tagsOf("MQ"));
+    expect(tagsOf("MQ", { variant: "france" })).toBe(tagsOf("FR"));
+    expect(tagsOf("GB-NIR")).toEqual([]);
+    expect(tagsOf("GB-NIR", { variant: "union-flag" })).toBe(tagsOf("GB"));
+    expect(tagsOf("XX")).toEqual([]);
+    expect(Object.isFrozen(tagsOf("DE")) && Object.isFrozen(tagsOf("DE")[0])).toBe(true);
+    expect(() => tagsOf(1 as unknown as string)).toThrow(TypeError);
+    expect(() => tagsOf("JP", { variant: 1 as unknown as string })).toThrow(TypeError);
+    for (const record of MANIFEST) for (const variant of variantsOf(record.code)) expect(Array.isArray(tagsOf(record.code, { variant: variant.id })), `${record.code} ${variant.id}`).toBe(true);
+  });
+
+  it("finds flags by tag, by the sources that count, and with colours", () => {
+    expect(flagsWith({ tags: ["nordic-cross"] })).toEqual(expect.arrayContaining(["DK", "FI", "IS", "NO", "SE"]));
+    expect(flagsWith({ tags: ["stripes-horizontal"], sources: ["computed"] })).toEqual(expect.arrayContaining(["DE", "UA", "NL"]));
+    expect(flagsWith({ tags: ["stripes-horizontal"], sources: ["computed"] })).not.toContain("IN");
+    expect(flagsWith({ tags: ["stripes-horizontal"] })).toContain("IN");
+    expect(flagsWith({ tags: ["plain", "stripes-vertical"], colours: ["blue", "white", "red"], only: true })).toContain("FR");
+    expect(flagsWith({ tags: ["stars"], sources: ["reviewed"] })).toEqual(Object.keys(TAG_REVIEWS).length === 0 ? [] : expect.any(Array));
+    expect(flagsWith({})).toEqual([...FLAG_CODES]);
+    expect(flagsWith({ tags: [] })).toEqual([...FLAG_CODES]);
+    for (const bad of [["star"], "stars", [1]]) expect(() => flagsWith({ tags: bad as unknown as [] }), String(bad)).toThrow(TypeError);
+    expect(() => flagsWith({ tags: ["stars"], sources: ["guess"] as unknown as [] })).toThrow(TypeError);
   });
 });

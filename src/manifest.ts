@@ -3,7 +3,7 @@
 // page, a licence check in a build, or the demo's detail panel. The same data is in manifest.json.
 
 import { LEFT_OUT as LEFT_OUT_ROWS, RECORDS } from "./data/manifest.data";
-import type { ColourName, FlagColour, FlagRecord, FlagSource, Framing, FramingCrop, HistoricalEra, LeftOutRecord, LicenceKind, Variant } from "./manifest.types";
+import type { ColourName, FlagColour, FlagRecord, FlagSource, FlagTag, FlagTagRecord, Framing, FramingCrop, HistoricalEra, LeftOutRecord, LicenceKind, TagName, TagSource, Variant } from "./manifest.types";
 import { FLAG_ALIASES } from "./data/aliases.data";
 import { dayAfter, dayOf } from "./dates";
 import { mustBeString } from "./svg";
@@ -167,4 +167,4 @@ const variantOn = (code: string, date: string | Date): Variant | null => {
 };
 
 export { LEFT_OUT, leftOut, manifest, MANIFEST, variantOn, variantsOf };
-export type { ColourName, FlagColour, FlagRecord, FlagSource, Framing, FramingCrop, HistoricalEra, LeftOutRecord, LicenceKind, Variant };
+export type { ColourName, FlagColour, FlagRecord, FlagSource, FlagTag, FlagTagRecord, Framing, FramingCrop, HistoricalEra, LeftOutRecord, LicenceKind, TagName, TagSource, Variant };

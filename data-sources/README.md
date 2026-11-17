@@ -10,6 +10,7 @@ bytes are not the recorded ones.
 | `wikidata-2026-10-09.json` | https://query.wikidata.org/sparql, the two queries written in the file | 2026-10-09 | CC0 |
 | `commons-2026-11-17.json` | https://commons.wikimedia.org/w/api.php: each chosen file's address, size, SHA-1, upload time, licence and author fields, licence templates, and the SHA-256 of the copy kept here | 2026-11-17 | Facts about the files; each file's own licence is recorded in it |
 | `commons/<file name>` | Each file Wikidata names as a place's flag, or `NAMED` names by hand, as Commons serves it (503 files, 18 MB) | 2026-11-17 | Each file's own, as Commons states it: see `commons-2026-10-09.json` and the file's page |
+| `flag-tags-2026-11-17.json` | https://query.wikidata.org/sparql, the two queries written in the file: what each flag's Wikidata item depicts (P180), and of which named kinds those things are; https://commons.wikimedia.org/w/api.php: the categories of each flag's file (`pnpm data:tags:fetch`) | 2026-11-17 | CC0 (Wikidata); facts about the files (Commons) |
 
 The flag sets the build also reads (flag-icons, country-flag-icons and circle-flags) are npm packages, pinned
 to exact versions in `package.json` and checked by the lockfile's integrity hashes; they are not copied here.
