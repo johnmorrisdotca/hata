@@ -6,7 +6,7 @@ import { COUNTRY_CODES } from "@johnmorrisdotca/kuni";
 import { subdivisions } from "@johnmorrisdotca/kuni/subdivisions";
 import { describe, expect, it } from "vitest";
 
-import { HISTORICAL, SUBDIVISION_COUNTRIES } from "../scripts/data-config";
+import { HISTORICAL, SUBDIVISION_COUNTRIES, VARIANT_ALIASES } from "../scripts/data-config";
 import { FLAG_CODES } from "./index";
 import { flag } from "./load";
 import { LEFT_OUT, leftOut, manifest, MANIFEST, RESTRICTED } from "./manifest";
@@ -137,7 +137,9 @@ describe("every flag's picture", () => {
     // A variant's module is "<code>--<id>": one for each variant that is not the place's own flag.
     const variants = [...[...MANIFEST, ...LEFT_OUT].flatMap((one) => one.variants), ...RESTRICTED.map((one) => one.variant)].filter((variant) => !variant.default).map((variant) => variant.module);
     expect(files.filter((file) => !file.includes(".") && !file.includes("--")).map((file) => file.toUpperCase()).sort()).toEqual([...FLAG_CODES].sort());
-    expect(files.filter((file) => file.includes("--")).sort()).toEqual([...new Set(variants)].sort());
+    // And one for each deprecated alias of a renamed variant ("MQ local" is mq--local), kept until 2.0.
+    const aliases = Object.keys(VARIANT_ALIASES).map((spec) => spec.toLowerCase().replace(" ", "--"));
+    expect(files.filter((file) => file.includes("--")).sort()).toEqual([...new Set([...variants, ...aliases])].sort());
     const framed = MANIFEST.filter((one) => one.sameAs === null).flatMap((one) => (["4:3", "1:1"] as const).filter((shape) => one.framings[shape].method === "adapted").map((shape) => `${one.code.toLowerCase()}.${shape.replace(":", "x")}`));
     expect(files.filter((file) => file.includes(".")).sort()).toEqual(framed.sort());
   });

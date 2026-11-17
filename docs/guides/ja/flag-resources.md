@@ -597,6 +597,7 @@ console.log(japan===svg,svg.startsWith("<svg"));
 | `@johnmorrisdotca/hata/flags/mo.4x3` | `mo.4x3` |
 | `@johnmorrisdotca/hata/flags/mo` | `mo` |
 | `@johnmorrisdotca/hata/flags/mp` | `mp` |
+| `@johnmorrisdotca/hata/flags/mq--local` | `mq--local` |
 | `@johnmorrisdotca/hata/flags/mq--france` | `mq--france` |
 | `@johnmorrisdotca/hata/flags/mq.1x1` | `mq.1x1` |
 | `@johnmorrisdotca/hata/flags/mq.4x3` | `mq.4x3` |
