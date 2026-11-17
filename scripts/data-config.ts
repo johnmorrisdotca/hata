@@ -1,6 +1,8 @@
 // The few things about the flags that are written by hand rather than read from Wikidata or Commons. Every entry
 // says why it is here. scripts/select.ts and scripts/build-data.ts read this file; nothing else is hand-written.
 
+import { HISTORIC } from "./historic-flags.ts";
+
 // The first level of these countries' subdivisions has flags in this version. Kuni's lists are the ones checked, and
 // a country is added only whole: every first-level code Kuni gives it has a flag here or a reason in NO_FLAG (or one
 // the build writes itself, such as a licence that is not free). Japan, Canada and the United States came in 1.0.0;
@@ -250,6 +252,9 @@ const FOCUS: Readonly<Record<string, Focus>> = { ...SIDES, ...Object.fromEntries
 // out, and the build says so.
 // `name`/`nameJa` are for a menu; the Japanese is marked for review (docs/strings-ja.md).
 type VariantStatus = "official" | "de-facto" | "historical" | "local";
+// What kind of page a variant's dates come from: `official` (a government, parliament, archive or law text), `reference` (a
+// vexillological reference or a scholarly article) or `encyclopedia` (Wikipedia: a better source is wanted). Left out, `encyclopedia`.
+type SourceKind = "official" | "reference" | "encyclopedia";
 interface VariantSpec {
   id: string;
   name: string;
@@ -259,6 +264,7 @@ interface VariantSpec {
   until: string | null;
   why: string;
   source: string;
+  sourceKind?: SourceKind;
   file: string | null;
 }
 interface VariantSet {
@@ -281,6 +287,7 @@ const france = (place: string, article: string): VariantSpec => ({
 });
 
 const VARIANTS: Readonly<Record<string, VariantSet>> = {
+  ...HISTORIC,
   AF: {
     disputed: true,
     default: "republic",
@@ -972,4 +979,4 @@ const BUDGET_BYTES = 40 * 1024;
 const CEILING_BYTES = 400 * 1024;
 
 export { ACCEPTED, ALIASES, BUDGET_BYTES, CEILING_BYTES, CHOSEN, FOCUS, HISTORICAL, ITEM, NAMED, NO_FLAG, REVIEWED, SAME_PLACE, SUBDIVISION_COUNTRIES, VARIANTS };
-export type { Anchor, Focus, HistoricalSpec, VariantSet, VariantSpec, VariantStatus };
+export type { Anchor, Focus, HistoricalSpec, SourceKind, VariantSet, VariantSpec, VariantStatus };

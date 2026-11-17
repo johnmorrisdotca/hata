@@ -27,6 +27,7 @@ import { subdivision as kuniSubdivision } from "@johnmorrisdotca/kuni/subdivisio
 import { setCandidates, setNamed } from "./candidates.ts";
 import type { SourceName } from "./candidates.ts";
 import { ACCEPTED, ALIASES, BUDGET_BYTES, CEILING_BYTES, FOCUS, HISTORICAL, NO_FLAG, REVIEWED, SAME_PLACE, SUBDIVISION_COUNTRIES, VARIANTS } from "./data-config.ts";
+import { HISTORIC } from "./historic-flags.ts";
 import type { Anchor } from "./data-config.ts";
 import { classify, restrictionsOf } from "./licence.ts";
 import type { Licence } from "./licence.ts";
@@ -336,6 +337,7 @@ interface VariantRecord {
   until: string | null;
   why: string;
   source: string;
+  sourceKind: "official" | "reference" | "encyclopedia";
   default: boolean;
   module: string;
   frames: Record<"4:3" | "1:1" | "round", "cover" | "crop" | "contain">;
@@ -385,7 +387,7 @@ for (const [code, set] of Object.entries(VARIANTS)) {
   } else if (place === undefined || own.length !== 1 || own[0]!.id !== set.default) throw new Error(`VARIANTS ${code}: its default must be its one variant with no file, and the place must have a flag here`);
   const records: VariantRecord[] = [];
   for (const spec of set.variants) {
-    const base = { id: spec.id, name: spec.name, nameJa: spec.nameJa, status: spec.status, from: spec.from, until: spec.until, why: spec.why, source: spec.source, default: spec.id === set.default };
+    const base = { id: spec.id, name: spec.name, nameJa: spec.nameJa, status: spec.status, from: spec.from, until: spec.until, why: spec.why, source: spec.source, sourceKind: spec.sourceKind ?? "encyclopedia", default: spec.id === set.default };
     if (spec.file === null) {
       const one = place!;
       const measured = FRAMINGS_FILE[one.owner]!;
@@ -976,11 +978,13 @@ authority a flag has, and the default is the flag of the authority the world rec
 The decisions behind the defaults are in [decisions.md](decisions.md).
 
 \`flag(code, { variant: id })\` loads one; \`variantsOf(code)\` from \`/manifest\` lists them; \`<hata-flag code variant>\` draws one; each is its
-own module, \`/flags/<code>--<id>\`, and file, \`svg/<code>--<id>.svg\`.
+own module, \`/flags/<code>--<id>\`, and file, \`svg/<code>--<id>.svg\`. The earlier flags of present-day countries (the United States'
+48 stars, Canada's Red Ensign) are in [historical.md](historical.md#earlier-flags-of-present-day-countries), with their dates.
 
 | Code | Place | Id | Status | Dates | Default | Why | Source | Drawing | Licence |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 ${[...variantSets]
+  .filter(([code]) => !Object.hasOwn(HISTORIC, code))
   .flatMap(([code, set]) => {
     const place = places.find((candidate) => candidate.code === code)!;
     return set.variants.map((variant) => `| \`${code}\`${set.disputed ? " (disputed)" : ""} | ${cell(place.en)} | \`${variant.id}\` | ${variant.status} | ${cell([variant.from, variant.until].filter((one) => one !== null).join(" to ") || "")} | ${variant.default ? "yes" : ""} | ${cell(variant.why)} | [source](${variant.source}) | ${linkTo(variant.drawing.file, variant.drawing.page)} | ${cell(variant.drawing.licence.name)} |`);
@@ -996,6 +1000,10 @@ writeDocumentedFile(join(ROOT, "docs", "variants.md"), variantsDoc);
 // The former countries and teams of sport, with every code that finds each: docs/historical.md.
 const formerFlags = shipped.filter((one) => one.place.group === "historical");
 const formerLeftOut = leftOut.filter((one) => one.place.group === "historical");
+const historicSets = [...variantSets].filter(([code]) => Object.hasOwn(HISTORIC, code));
+const historicCount = historicSets.reduce((sum, [, set]) => sum + set.variants.length, 0);
+const historicKinds = { official: 0, reference: 0, encyclopedia: 0 };
+for (const [, set] of historicSets) for (const variant of set.variants) historicKinds[variant.sourceKind] += 1;
 const yearsOf = (code: string): string => `${HISTORICAL[code]!.from} to ${HISTORICAL[code]!.until}`;
 const historicalDoc = `# Former countries and teams of sport
 
@@ -1018,6 +1026,35 @@ ${formerFlags
     const set = variantsOfCode(one.place.code);
 
     return `| \`${one.place.code}\` | ${cell(one.place.en)} (${cell(one.place.ja)}) | ${yearsOf(one.place.code)} | ${HISTORICAL[one.place.code]!.aliases.map((alias) => `\`${alias}\``).join(", ") || "none"} | ${linkTo(one.drawing.file, one.drawing.page)}${one.owner !== one.place.code ? `, the same picture as \`${one.owner}\`'s` : ""} | ${cell(licenceWords(one.drawing.licence))} | ${cell(one.drawing.author ?? "not stated")} | ${set.variants.length === 0 ? "none" : set.variants.map((variant) => `\`${variant.id}\`${variant.default ? " (default)" : ""} ${[variant.from, variant.until].filter((date) => date !== null).join(" to ")}`).join("; ")} | ${cell(one.why)} |`;
+  })
+  .join("\n")}
+
+## Earlier flags of present-day countries
+
+Hata also has the flags that countries which still exist flew before today's, each with the dates it was in use: ${historicCount} flags of ${historicSets.length} countries,
+every national flag change since 1900 for the countries with a space programme or satellites in orbit that the research reached, and the flag in force on 1900-01-01 where there was one.
+A country with no change since 1900 has one dated entry, the day its flag came in. What is left for later, and why, is in [decisions.md](decisions.md#historic-flags-of-present-day-countries).
+\`flag(code, { date })\` from \`/load\` loads the flag in use on a day, \`variantOn(code, date)\` from \`/manifest\` finds its variant, and
+\`<hata-flag code date>\` draws it; each flag is also a variant by its \`id\` (\`flag("CA", { variant: "red-ensign-1957" })\`).
+
+**How a date is read.** \`from\` is the first day a flag was in force and \`until\` the first day of the flag that followed, so the day of a
+change belongs to the new flag. A bare year or month means the whole of it. A date is \`"1962-09-29"\`, \`"1962-09"\`, \`"1962"\` or a \`Date\` (UTC).
+Only \`official\` and \`historical\` flags have a turn; the default is the answer after the newest change. **\`null\` means "not known here"**:
+before a place's first dated flag, in a gap where the flag of that day is not shipped (docs/decisions.md says which), after a former country's last
+day or before its first, and for a place with no dated flags. A former country has an answer only within its years and only where a dated flag of it covers the day:
+\`variantOn("SUHH", "1991-12-26")\` is \`null\`; ask \`flag("SUHH")\` for its flag without a date.
+
+**The source of each date** is the page in \`source\`, and \`sourceKind\` says what kind it is: \`official\` (a government, parliament, archive or law text),
+\`reference\` (Flags of the World, a scholarly article or another vexillological reference) or \`encyclopedia\` (Wikipedia, because nothing better was found: a better source is wanted).
+Of the ${historicCount} flags, ${historicKinds.official} have an official source, ${historicKinds.reference} a reference and ${historicKinds.encyclopedia} an encyclopedia page.
+
+| Code | Place | Id | Years | Status | Name | Source | Drawing | Licence | Why |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+${historicSets
+  .flatMap(([code, set]) => {
+    const place = places.find((candidate) => candidate.code === code)!;
+
+    return [...set.variants].sort((a, b) => (a.from ?? "").localeCompare(b.from ?? "")).map((variant) => `| \`${code}\` | ${cell(place.en)} (${cell(place.ja)}) | \`${variant.id}\` | ${cell(`${variant.from ?? ""} to ${variant.until ?? "today"}`)} | ${variant.status} | ${cell(variant.name)} | [${variant.sourceKind}](${variant.source}) | ${linkTo(variant.drawing.file, variant.drawing.page)} | ${cell(variant.drawing.licence.name)} | ${cell(variant.why)} |`);
   })
   .join("\n")}
 

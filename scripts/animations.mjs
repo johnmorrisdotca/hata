@@ -36,7 +36,7 @@ mkdirSync(out, { recursive: true });
 
 // The former countries' years, from docs/historical.md (the table `pnpm data` writes): | `SUHH` | Soviet Union (…) | 1922 to 1991 | …
 const years = Object.fromEntries(
-  [...readFileSync(join(root, "docs", "historical.md"), "utf8").split("## Codes with no flag")[0].matchAll(/^\| `([A-Z]+)` \| ([^|(]+?) \([^|]*\) \| ([^|]+?) \|/gm)].map(([, code, name, span]) => [code, { name, span }]),
+  [...readFileSync(join(root, "docs", "historical.md"), "utf8").split("## Earlier flags of present-day countries")[0].matchAll(/^\| `([A-Z]+)` \| ([^|(]+?) \([^|]*\) \| ([^|]+?) \|/gm)].map(([, code, name, span]) => [code, { name, span }]),
 );
 
 // Each scene's `setup` runs in the page (it is sent as text, so it carries what it uses) and returns the steps: `count`, `delay(i)` in milliseconds and `paint(i, box)`, which draws step i into the box.

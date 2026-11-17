@@ -158,6 +158,8 @@ interface Variant {
   why: string;
   /** Where the claim above is documented: a web page. */
   source: string;
+  /** What kind of page `source` is: `official` (a government, parliament, archive or law text), `reference` (a vexillological reference or a scholarly article) or `encyclopedia` (Wikipedia: a better source is wanted). */
+  sourceKind: "official" | "reference" | "encyclopedia";
   /** True for the one `flag(code)` gives. At most one per place; none where the place has no flag of its own by default. */
   default: boolean;
   /** The module that has its SVG: `/flags/<module>`, the place's own for the default and `<code>--<id>` for the others. */
