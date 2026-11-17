@@ -2444,6 +2444,10 @@
       "types": "./dist/flags/mp.d.ts",
       "default": "./dist/flags/mp.js"
     },
+    "./flags/mq--local": {
+      "types": "./dist/flags/mq--local.d.ts",
+      "default": "./dist/flags/mq--local.js"
+    },
     "./flags/mq--france": {
       "types": "./dist/flags/mq--france.d.ts",
       "default": "./dist/flags/mq--france.js"

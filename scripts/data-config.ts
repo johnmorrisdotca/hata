@@ -1002,6 +1002,17 @@ const HISTORICAL: Readonly<Record<string, HistoricalSpec>> = {
 // Every alias to the code it finds, for the lookups and the manifest (the builder checks no alias is a code of its own).
 const ALIASES: Readonly<Record<string, string>> = Object.fromEntries(Object.entries(HISTORICAL).flatMap(([code, spec]) => spec.aliases.map((alias) => [alias, code])));
 
+// A variant id that was renamed, "<code> <old id>": still accepted as a deprecated alias of the new id (flag(), the
+// element, /search and its /flags/<code>--<old id> module), so that a caller is not broken before the next major version.
+// It is in no list: variantsOf and the manifest give only the new id.
+const VARIANT_ALIASES: Readonly<Record<string, { to: string; since: string; why: string }>> = {
+  "MQ local": {
+    to: "martinique",
+    since: "1.12.0",
+    why: "Until 1.12.0 the red, green and black flag was Martinique's `local` variant and France's tricolour its default; since the Assembly of Martinique adopted it (2023-02-02) it is the default, `martinique`.",
+  },
+};
+
 // The size budget of one optimised flag, in bytes of SVG. Flags carrying a detailed coat of arms or seal go over
 // it; the build lists them in docs/sizes.md and the size test holds the list, so a new one is a decision.
 const BUDGET_BYTES = 40 * 1024;
@@ -1009,5 +1020,5 @@ const BUDGET_BYTES = 40 * 1024;
 // Flags may go over the budget only up to this, after which the build fails: a picture this large is not an icon.
 const CEILING_BYTES = 400 * 1024;
 
-export { ACCEPTED, ALIASES, BUDGET_BYTES, CEILING_BYTES, CHOSEN, FOCUS, HISTORICAL, ITEM, NAMED, NO_FLAG, REVIEWED, SAME_PLACE, SUBDIVISION_COUNTRIES, VARIANTS };
+export { ACCEPTED, ALIASES, BUDGET_BYTES, CEILING_BYTES, CHOSEN, FOCUS, HISTORICAL, ITEM, NAMED, NO_FLAG, REVIEWED, SAME_PLACE, SUBDIVISION_COUNTRIES, VARIANT_ALIASES, VARIANTS };
 export type { Anchor, Focus, FlagRole, HistoricalSpec, RestrictedSpec, RoleNote, RoleSpec, SourceKind, VariantSet, VariantSpec, VariantStatus };

@@ -20,7 +20,7 @@ import type { FrameOptions } from "./svg";
  * ```
  */
 interface FlagOptions extends FrameOptions {
-  /** The `id` of one of the place's variants (`variantsOf(code)` from `/manifest` lists them): "de-facto", "stripes", "local". Left out, the default. */
+  /** The `id` of one of the place's variants (`variantsOf(code)` from `/manifest` lists them): "de-facto", "stripes", "local". Left out, the default. Martinique's `local` is deprecated, an alias of `martinique` until 2.0. */
   variant?: string;
   /**
    * The day whose flag to load: a `Date`, or `"YYYY-MM-DD"`, `"YYYY-MM"` or `"YYYY"`. The flag that day (the legal one, or the one `role` asks for), as `variantOn(code, date)` from

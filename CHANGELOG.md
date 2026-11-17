@@ -13,7 +13,11 @@ All notable changes to this project are written here. The format follows
 
 ### Changed
 
-- **Martinique's flag is its own** (MODULES-1409). `MQ` and `FR-972` drew France's tricolour and kept the red, green and black flag as a `local` variant, on the ground that Martinique had no official flag. That was out of date: the Assembly of Martinique adopted it on 2023-02-02. It is now the default (variant `martinique`, official, from 2023-02-02), with flag-icons' drawings of it for the 4:3 and square frames (`/flags/mq.4x3`, `/flags/mq.1x1`), and France's tricolour is the `france` variant (`/flags/mq--france`). **Changed for a caller:** `flag("MQ")` gives another picture, at the same 2:3; the variant `local` and the module `/flags/mq--local` are gone (the same drawing is `/flags/mq`). `docs/decisions.md` has the correction; Saint-Martin still has no official flag and is unchanged.
+- **Martinique's flag is its own** (MODULES-1409). `MQ` and `FR-972` drew France's tricolour and kept the red, green and black flag as a `local` variant, on the ground that Martinique had no official flag. That was out of date: the Assembly of Martinique adopted it on 2023-02-02. It is now the default (variant `martinique`, official, from 2023-02-02), with flag-icons' drawings of it for the 4:3 and square frames (`/flags/mq.4x3`, `/flags/mq.1x1`), and France's tricolour is the `france` variant (`/flags/mq--france`). **Changed for a caller:** `flag("MQ")` gives another picture, at the same 2:3; the variant `local` and the module `/flags/mq--local` still work and give Martinique's own flag, the same as `martinique` and `/flags/mq` (see Deprecated). `docs/decisions.md` has the correction; Saint-Martin still has no official flag and is unchanged.
+
+### Deprecated
+
+- **Martinique's `local` variant and `/flags/mq--local`**, kept as aliases, to be removed in 2.0. `flag("MQ", { variant: "local" })` (and `FR-972`, `<hata-flag variant="local">`, `coloursOf` and `tagsOf`) gives the same as `martinique`, and `/flags/mq--local` the same picture as `/flags/mq`, marked `@deprecated` in its types; neither is listed by `variantsOf` or the manifest. Ask for `martinique`, or import `/flags/mq`, instead. The table is `VARIANT_ALIASES` in `scripts/data-config.ts`.
 
 ## [1.11.0] - 2026-11-17
 

@@ -372,13 +372,13 @@ await flag("GB-NIR", { variant: "ulster-banner" });   // Northern Ireland has no
 - **`variantsOf(code)`** (from `/manifest`) lists a place's flags, the default first: an `id`, an English and a Japanese `name`, a `status`
   (`official`, `de-facto`, `historical` or `local`), `from` and `until`, a `why`, a `source`, the `module` that has its SVG and the `drawing` it comes
   from. `manifest(code)` carries the same list with `disputed` and `defaultVariant`.
-- **`flag(code, { variant })`**, `flagDataUri` and `<hata-flag variant>` draw one, framed like any flag; an id the place does not have gives `null`.
+- **`flag(code, { variant })`**, `flagDataUri` and `<hata-flag variant>` draw one, framed like any flag; an unknown id gives `null`.
 - **A place with no flag of its own by default** (Northern Ireland, since 1973) is left out of `FLAG_CODES`, has a reason in `LEFT_OUT`, and its flags in
   use are its variants, asked for by name. **A flag in real use that is not the place's official symbol** (Brittany's Gwenn-ha-du) is its default with the status `local`.
+- **Deprecated** (gone in 2.0): Martinique's `local` and `/flags/mq--local`, aliases of `martinique` and `/flags/mq`.
 
 [docs/variants.md](./docs/variants.md) lists every variant with its reason, source, drawing and licence, and
-[docs/decisions.md](./docs/decisions.md) says why each default was chosen and what is not offered, such as Libya's and Myanmar's
-earlier flags and Saint-Martin's local flag.
+[docs/decisions.md](./docs/decisions.md) says why each default was chosen and what is not offered (Libya's and Myanmar's earlier flags).
 
 ### Former countries
 

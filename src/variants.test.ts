@@ -2,13 +2,14 @@
 // territories' local flags. Each has a status, dates and a reason, and its own module and Commons drawing.
 import { describe, expect, it } from "vitest";
 
-import { VARIANTS } from "../scripts/data-config";
+import { VARIANT_ALIASES, VARIANTS } from "../scripts/data-config";
 import afghanistanTaliban from "./flags/af--de-facto";
 import afghanistan from "./flags/af";
 import britain from "./flags/gb";
 import { aspectOf } from "./index";
 import { flag } from "./load";
 import { leftOut, manifest, MANIFEST, LEFT_OUT, variantOn, variantsOf } from "./manifest";
+import { coloursOf, tagsOf } from "./search";
 
 describe("variantsOf", () => {
   it("lists Afghanistan's two flags, the Republic's tricolour the default and the Taliban's the de-facto one", () => {
@@ -42,9 +43,23 @@ describe("variantsOf", () => {
     expect(await flag("MQ")).not.toBe(await flag("FR"));
     expect(await flag("FR-972")).toBe(await flag("MQ"));
     expect(await flag("MQ", { variant: "france" })).toBe(await flag("FR"));
-    expect(await flag("MQ", { variant: "local" })).toBeNull();
     expect(variantOn("MQ", "2023-02-02")?.id).toBe("martinique");
     expect(variantOn("MQ", "2023-02-01")).toBeNull();
+  });
+
+  it("still takes Martinique's old `local` variant and /flags/mq--local, deprecated aliases of its own flag until 2.0, and lists neither", async () => {
+    const own = await flag("MQ");
+    expect(await flag("MQ", { variant: "local" })).toBe(own);
+    expect(await flag("FR-972", { variant: "local" })).toBe(own);
+    expect(await flag("MQ", { variant: "local", shape: "1:1" })).toBe(await flag("MQ", { variant: "martinique", shape: "1:1" }));
+    const old = await import("./flags/mq--local");
+    const current = await import("./flags/mq");
+    expect(old.default).toBe(current.default);
+    expect(old.svg).toBe(current.svg);
+    expect(coloursOf("MQ", { variant: "local" })).toEqual(coloursOf("MQ"));
+    expect(tagsOf("MQ", { variant: "local" })).toEqual(tagsOf("MQ"));
+    expect(variantsOf("MQ").map((one) => one.id)).not.toContain("local");
+    expect(VARIANT_ALIASES["MQ local"]).toMatchObject({ to: "martinique", since: "1.12.0" });
   });
 
   it("gives Northern Ireland no default flag and two to ask for, the Ulster Banner as history", () => {

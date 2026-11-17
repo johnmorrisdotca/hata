@@ -26,7 +26,7 @@ import { subdivision as kuniSubdivision } from "@johnmorrisdotca/kuni/subdivisio
 
 import { setCandidates, setNamed } from "./candidates.ts";
 import type { SourceName } from "./candidates.ts";
-import { ACCEPTED, ALIASES, BUDGET_BYTES, CEILING_BYTES, FOCUS, HISTORICAL, NO_FLAG, REVIEWED, SAME_PLACE, SUBDIVISION_COUNTRIES, VARIANTS } from "./data-config.ts";
+import { ACCEPTED, ALIASES, BUDGET_BYTES, CEILING_BYTES, FOCUS, HISTORICAL, NO_FLAG, REVIEWED, SAME_PLACE, SUBDIVISION_COUNTRIES, VARIANT_ALIASES, VARIANTS } from "./data-config.ts";
 import type { FlagRole, RestrictedSpec, RoleNote, RoleSpec, VariantSpec } from "./data-config.ts";
 import { HISTORIC } from "./historic-flags.ts";
 import type { Anchor } from "./data-config.ts";
@@ -575,6 +575,36 @@ for (const one of variantModules) {
       : `${HEADER}\n// Source: ${one.drawing.page}, the same drawing as ${one.owner.toUpperCase()}'s flag.\n\nimport { svg as shared } from "./${one.owner}";\n\n${doc}\nconst svg: string = shared;\n\nexport { svg };\nexport default svg;\n`;
   writeDocumentedFile(join(FLAGS_DIR, name), body);
 }
+// A renamed variant's old id (VARIANT_ALIASES): its module is the new one's picture, marked deprecated, and the loaders and
+// /search's tables below take the old id too. It is in no list.
+const variantAliases = Object.entries(VARIANT_ALIASES).map(([spec, alias]) => {
+  const [code, id] = spec.split(" ") as [string, string];
+  const target = variantsOfCode(code).variants.find((variant) => variant.id === alias.to);
+  if (target === undefined) throw new Error(`VARIANT_ALIASES: ${code} has no variant ${alias.to}`);
+  if (allVariantsOfCode(code).variants.some((variant) => variant.id === id)) throw new Error(`VARIANT_ALIASES: ${code} ${id} is a variant of its own`);
+
+  return { code, id, module: `${moduleName(code)}--${id}`, target, ...alias };
+});
+const aliasesOfCode = (code: string): typeof variantAliases => variantAliases.filter((one) => one.code === variantKeyFor(code));
+for (const one of variantAliases) {
+  const name = `${one.module}.ts`;
+  written.add(name);
+  const place = places.find((candidate) => candidate.code === one.code)!;
+  const doc = `/**
+ * Deprecated: ${one.target.name}, the same picture as \`/flags/${one.target.module}\`, kept so that an import of it still works. The flag of ${place.en}${place.ja ? ` (${place.ja})` : ""}, ${one.code}, as an SVG string.
+ * ${one.why}
+ *
+ * @deprecated Since ${one.since}, \`${one.id}\` is an alias of \`${one.to}\`: import \`@johnmorrisdotca/hata/flags/${one.target.module}\`, or ask for \`flag("${one.code}", { variant: "${one.to}" })\`. To be removed in 2.0.
+ *
+ * @example
+ * \`\`\`ts
+ * import flag from "@johnmorrisdotca/hata/flags/${one.target.module}";
+ *
+ * element.innerHTML = flag;
+ * \`\`\`
+ */`;
+  writeDocumentedFile(join(FLAGS_DIR, name), `${HEADER}\n// A deprecated alias (VARIANT_ALIASES in scripts/data-config.ts): the same drawing as ${one.target.module}.\n\nimport { svg as shared } from "./${one.target.module}";\n\n${doc}\nconst svg: string = shared;\n\nexport { svg };\nexport default svg;\n`);
+}
 for (const old of readdirSync(FLAGS_DIR)) if (!written.has(old)) rmSync(join(FLAGS_DIR, old));
 
 const codes = shipped.map((one) => one.place.code);
@@ -658,7 +688,10 @@ export { FLAG_ALIASES };
 const variantLoaderLines = [...new Set([...codes, ...places.map((place) => place.code).filter((code) => variantKeyFor(code) !== null)])]
   .filter((code) => variantsOfCode(code).variants.length > 0)
   .sort()
-  .flatMap((code) => variantsOfCode(code).variants.map((variant) => `  ${quote(`${code}--${variant.id}`)}: () => import("../flags/${variant.module}.js"),`));
+  .flatMap((code) => [
+    ...variantsOfCode(code).variants.map((variant) => `  ${quote(`${code}--${variant.id}`)}: () => import("../flags/${variant.module}.js"),`),
+    ...aliasesOfCode(code).map((alias) => `  ${quote(`${code}--${alias.id}`)}: () => import("../flags/${alias.target.module}.js"), // deprecated: ${alias.to}`),
+  ]);
 // A restricted flag's loaders are a table of their own, so that no listing of variants reaches one: it is asked for by name, with an opt-in.
 const restrictedLoaderLines = restrictedCodes.flatMap((code) =>
   allVariantsOfCode(code).variants.filter((variant) => variant.restricted !== null).map((variant) => `  ${quote(`${code}--${variant.id}`)}: () => import("../flags/${variant.module}.js"),`),
@@ -751,7 +784,10 @@ const pictureRows = [
   ...shipped.map((one) => [one.place.code, one.owner] as const),
   ...[...new Set([...codes, ...places.map((place) => place.code).filter((code) => variantKeyFor(code) !== null)])]
     .sort()
-    .flatMap((code) => variantsOfCode(code).variants.map((variant) => [`${code}--${variant.id}`, pictureOfModule.get(variant.module)!] as const)),
+    .flatMap((code) => [
+      ...variantsOfCode(code).variants.map((variant) => [`${code}--${variant.id}`, pictureOfModule.get(variant.module)!] as const),
+      ...aliasesOfCode(code).map((alias) => [`${code}--${alias.id}`, pictureOfModule.get(alias.target.module)!] as const),
+    ]),
 ];
 writeDocumentedFile(join(DATA_DIR, "colours.data.ts"), coloursDataFile(HEADER, pictureRows.filter(([, picture]) => coloursOfPicture(picture) !== undefined)));
 

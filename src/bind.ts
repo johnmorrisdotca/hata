@@ -42,7 +42,7 @@ interface FlagProps {
   theme?: "auto" | "light" | "dark";
   /** The day whose flag to draw: `"1962-09-29"`, `"1962-09"`, `"1962"` or a `Date`. The `variant` wins where both are given. */
   date?: string | Date;
-  /** Which of the place's flags in real use to draw, by its `id` from `variantsOf(code)`: `de-facto`, `stripes`, `local`. */
+  /** Which of the place's flags in real use to draw, by its `id` from `variantsOf(code)`: `de-facto`, `stripes`, `local`. Martinique's `local` is deprecated, an alias of `martinique` until 2.0. */
   variant?: string;
   /** With `date`: `legal` (the default) or `in-use`. (Not `role`, which is the ARIA role of the element.) */
   which?: FlagRole;
