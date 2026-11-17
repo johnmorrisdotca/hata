@@ -6,12 +6,12 @@
       "gzip": 3777
     },
     "./load": {
-      "minified": 14505938,
-      "gzip": 4494016
+      "minified": 14703230,
+      "gzip": 4529261
     },
     "./manifest": {
-      "minified": 1016860,
-      "gzip": 117930
+      "minified": 1213426,
+      "gzip": 154553
     },
     "./names": {
       "minified": 31129,
@@ -21,33 +21,37 @@
       "minified": 2407,
       "gzip": 1170
     },
+    "./search": {
+      "minified": 69027,
+      "gzip": 21157
+    },
     "./custom": {
       "minified": 16556,
       "gzip": 6925
     },
     "./element": {
-      "minified": 14543286,
-      "gzip": 4505943
+      "minified": 14740583,
+      "gzip": 4541565
     },
     "./element/define": {
-      "minified": 14543239,
-      "gzip": 4505911
+      "minified": 14740536,
+      "gzip": 4541552
     },
     "./bind": {
-      "minified": 14538427,
-      "gzip": 4503932
+      "minified": 14735721,
+      "gzip": 4539506
     },
     "./react": {
-      "minified": 14569667,
-      "gzip": 4514437
+      "minified": 14766962,
+      "gzip": 4552772
     },
     "./vue": {
-      "minified": 14584232,
-      "gzip": 4520978
+      "minified": 14781527,
+      "gzip": 4556624
     },
     "./react-native": {
-      "minified": 14568740,
-      "gzip": 4513980
+      "minified": 14766035,
+      "gzip": 4552277
     },
     "./flags/ad.1x1": {
       "minified": 28262,
@@ -1254,8 +1258,8 @@
       "gzip": 193
     },
     "./flags/fr-972": {
-      "minified": 259,
-      "gzip": 193
+      "minified": 269,
+      "gzip": 205
     },
     "./flags/fr-973": {
       "minified": 259,
@@ -2366,12 +2370,24 @@
       "gzip": 44164
     },
     "./flags/mq--local": {
-      "minified": 268,
+      "minified": 269,
       "gzip": 205
     },
-    "./flags/mq": {
+    "./flags/mq--france": {
       "minified": 259,
       "gzip": 193
+    },
+    "./flags/mq.1x1": {
+      "minified": 244,
+      "gzip": 188
+    },
+    "./flags/mq.4x3": {
+      "minified": 246,
+      "gzip": 190
+    },
+    "./flags/mq": {
+      "minified": 261,
+      "gzip": 200
     },
     "./flags/mr.1x1": {
       "minified": 457,
