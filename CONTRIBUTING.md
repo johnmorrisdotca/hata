@@ -91,6 +91,7 @@ pnpm data             # rebuild src/flags, src/data and the lists in docs/ from 
 pnpm data:compare     # draw every shipped flag beside its source, pixel by pixel (Chromium)
 pnpm data:choose      # compare every flag's drawings and choose what ships (Chromium); then pnpm data
 pnpm data:framing     # measure each flag's 4:3, square and round frames (Chromium); then pnpm data
+pnpm data:colours     # measure each flag's colours as hex shares (Chromium); then pnpm data
 pnpm data:sheet <out.png> <codes…> | --compared   # the drawings side by side, for a person to look at
 pnpm data:wikidata    # take a new Wikidata snapshot (network)
 pnpm data:commons     # fetch the Commons files it names, and what Commons says about them (network)
@@ -116,7 +117,7 @@ Every file under `src/flags/` and `src/data/`, and `docs/provenance.md`, `docs/l
 - **Nothing is redrawn**, and nothing from anywhere but Commons and the MIT flag sets is used. A drawing ships
   only under public domain, CC0, CC BY or MIT.
 - **A changed flag is compared before it ships**: `pnpm data:choose <code>`, `pnpm data`, `pnpm data:framing
-  <code>`, `pnpm data` again, then `pnpm data:compare <code>`. A place newly listed in `docs/compared.md` needs a line in `REVIEWED`, written after
+  <code>` and `pnpm data:colours <code>`, `pnpm data` again, then `pnpm data:compare <code>`. A place newly listed in `docs/compared.md` needs a line in `REVIEWED`, written after
   looking at `pnpm data:sheet`; the tests fail until it has one.
 - **Sizes**: a flag over the budget is listed in `docs/sizes.md`, and the size test holds the list; a flag over
   the ceiling stops the build.
