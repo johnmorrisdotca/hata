@@ -232,6 +232,8 @@ describe("the tags (scripts/tag-config.ts, scripts/tag-data.ts)", () => {
     expect(manifest("BR")!.tags.find((one) => one.tag === "stars")?.from).toMatch(/a kind of (star|constellation) \(Q\d+\)$/);
     // The Sun is a star to an astronomer and a sun on a flag: a named thing gives its own tags only.
     expect(tagsOf("JP").some((one) => one.tag === "stars")).toBe(false);
+    // Oman's flag item depicts its national emblem, a khanjar over two crossed swords, which Wikidata files under no named kind.
+    expect(tagsOf("OM")).toEqual([{ tag: "emblem", source: "wikidata" }, { tag: "weapon", source: "wikidata" }]);
   });
 
   it("reads a code and a variant as coloursOf does", () => {

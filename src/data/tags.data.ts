@@ -178,7 +178,7 @@ const TAGS: Readonly<Record<string, string | readonly (readonly [tag: number, so
   "NR": [[1,2],[8,2]],
   "NU": [[4,2],[6,2],[8,2],[11,2]],
   "NZ": [[4,2],[6,2],[8,2]],
-  "OM": [],
+  "OM": [[13,2],[18,2]],
   "PA": [[8,2]],
   "PE": [[0,1],[2,1]],
   "PF": [[1,3],[10,3]],

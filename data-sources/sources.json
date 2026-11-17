@@ -11,7 +11,7 @@
       "path": "flag-tags-2026-11-17.json",
       "url": "https://query.wikidata.org/sparql and https://commons.wikimedia.org/w/api.php",
       "read": "2026-11-17",
-      "sha256": "37815dfa50c33d76cb7f60f6cd5dc990bdac16265262d9cd41e904fbe7537a25",
+      "sha256": "2501f3ce209d9dd19abdef5ac77a936d95d9dd4708c016bce19ccd56dae7b08b",
       "note": "Wikidata (CC0), what each flag's item depicts (P180) and of which named kinds those things are; Wikimedia Commons, the categories of each flag's file (facts about the files)"
     },
     {

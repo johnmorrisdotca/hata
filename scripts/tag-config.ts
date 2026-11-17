@@ -94,6 +94,7 @@ const WIKIDATA_TAGS: Readonly<Record<string, { label: string; tags: readonly Fla
   Q131559: { label: "shield", tags: ["emblem"] },
   Q188028: { label: "Emblem of Iran", tags: ["emblem"] },
   Q2164980: { label: "Seal of Oregon", tags: ["emblem"] },
+  Q207285: { label: "Coat of arms of Oman", tags: ["emblem", "weapon"] },
   Q729: { label: "animal", tags: ["animal"], kinds: true },
   Q338814: { label: "lion", tags: ["animal"] },
   Q622964: { label: "double-headed eagle", tags: ["animal"] },

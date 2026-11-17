@@ -6,6 +6,10 @@ All notable changes to this project are written here. The format follows
 
 ## [Unreleased]
 
+### Fixed
+
+- **Oman's flag has its tags** (MODULES-1466). The Wikidata and Commons snapshot is taken again with Oman in it (`data-sources/flag-tags-2026-11-17.json`: only Oman's lines and the two queries change), and `scripts/tag-config.ts` names the item its flag depicts, "Coat of arms of Oman" (Q207285), as `emblem` and `weapon` (the khanjar and the two crossed swords): Wikidata files that item under no kind the table follows, so the new snapshot alone gave it none. `OM` now has `emblem` and `weapon` from Wikidata, and 41 of the 501 pictures in `docs/tags.md` have no tag yet.
+
 ## [1.12.0] - 2026-11-17
 
 ### Added

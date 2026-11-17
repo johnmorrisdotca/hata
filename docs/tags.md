@@ -30,19 +30,19 @@ can also take a wrong tag away. To review a flag, look at it, add a line for it 
 | `sun` | A sun, as a disc or with rays. | 36 | 0 | 0 | 21 | 15 |
 | `circle` | A disc or a ring that is a shape of the flag itself. | 32 | 0 | 0 | 20 | 12 |
 | `triangle` | A triangle, most often at the hoist. | 31 | 0 | 0 | 25 | 6 |
-| `emblem` | A seal, a badge, a shield or another device placed on the flag; a coat of arms counts. | 100 | 0 | 0 | 52 | 48 |
+| `emblem` | A seal, a badge, a shield or another device placed on the flag; a coat of arms counts. | 101 | 0 | 0 | 53 | 48 |
 | `coat-of-arms` | A coat of arms. | 66 | 0 | 0 | 48 | 18 |
 | `animal` | An animal or a bird, real or of legend. | 54 | 0 | 0 | 23 | 31 |
 | `plant` | A tree, a leaf, a flower or another plant. | 49 | 0 | 0 | 23 | 26 |
 | `building` | A building, a tower or a bridge. | 4 | 0 | 0 | 1 | 3 |
-| `weapon` | A sword, a spear or another weapon. | 17 | 0 | 0 | 8 | 9 |
+| `weapon` | A sword, a spear or another weapon. | 18 | 0 | 0 | 9 | 9 |
 | `crown` | A crown. | 11 | 0 | 0 | 7 | 4 |
 | `map` | The outline of a land. | 11 | 0 | 0 | 9 | 2 |
 | `text` | Letters or words, in any script. | 89 | 0 | 1 | 40 | 48 |
 
 ## Every flag
 
-42 of the 501 pictures have no tag yet.
+41 of the 501 pictures have no tag yet.
 
 | Code | Flag | Tags, each with its source and what it rests on |
 | --- | --- | --- |
@@ -207,7 +207,7 @@ can also take a wrong tag away. To review a flag, look at it, add a line for it 
 | `NR` | Nauru | `stripes-horizontal` (wikidata: Q185277 depicts fess (Q1088484)); `stars` (wikidata: Q185277 depicts dodecagram (Q3033697)) |
 | `NU` | Niue | `cross` (wikidata: Q202189 depicts Union Jack (Q3173323)); `saltire` (wikidata: Q202189 depicts Union Jack (Q3173323)); `stars` (wikidata: Q202189 depicts Crux (Q10542), a kind of constellation (Q8928)); `circle` (wikidata: Q202189 depicts disk (Q238231)) |
 | `NZ` | New Zealand | `cross` (wikidata: Q160260 depicts Union Jack (Q3173323)); `saltire` (wikidata: Q160260 depicts Union Jack (Q3173323)); `stars` (wikidata: Q160260 depicts Crux (Q10542), a kind of constellation (Q8928)) |
-| `OM` | Oman |  |
+| `OM` | Oman | `emblem` (wikidata: Q165550 depicts Coat of arms of Oman (Q207285)); `weapon` (wikidata: Q165550 depicts Coat of arms of Oman (Q207285)) |
 | `PA` | Panama | `stars` (wikidata: Q168941 depicts five-pointed star (Q379860)) |
 | `PE` | Peru | `plain` (computed: the whole flag is three bands down, with nothing on them); `stripes-vertical` (computed: the whole flag is three bands down) |
 | `PF` | French Polynesia | `stripes-horizontal` (unreviewed: the same three bands at the hoist and at the fly); `sun` (unreviewed: Commons category "Flags with 1 sun") |
