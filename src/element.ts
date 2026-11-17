@@ -28,6 +28,8 @@ import type { Shape } from "./svg";
  * - `variant`: which of the place's flags in real use to draw, by its `id` from `variantsOf(code)`: Afghanistan's `de-facto`,
  *   Bavaria's `stripes`, Guadeloupe's `local`. Left out, the default; a place with no flag of its own by default
  *   (Northern Ireland: `union-flag`, `ulster-banner`) draws only when one is named.
+ * - `date`: the day whose flag to draw, `"1962-09-29"`, `"1962-09"` or `"1962"`: the flag the place had in use then (`variantOn(code, date)` from `/manifest`),
+ *   and today's after its newest change. Nothing is drawn where the package knows no flag for that day. The `variant` wins where both are given.
  * - `label`: what a screen reader says. Left out, the place's name, in English or Japanese by `lang`.
  * - `lang`: `en` or `ja`, the language of the name read out. Left out, the page's language where the element is.
  * - `theme`: `auto` (the default), `light` or `dark`: the colour of the border on a light or a dark page.
@@ -42,7 +44,7 @@ import type { Shape } from "./svg";
  * console.log(FLAG_ELEMENT_ATTRIBUTES.includes("shape")); // true
  * ```
  */
-const FLAG_ELEMENT_ATTRIBUTES = ["code", "shape", "size", "width", "fit", "variant", "label", "lang", "theme", "border", "shadow", "loading"] as const;
+const FLAG_ELEMENT_ATTRIBUTES = ["code", "shape", "size", "width", "fit", "variant", "date", "label", "lang", "theme", "border", "shadow", "loading"] as const;
 
 /**
  * The name the element is registered under.
@@ -87,6 +89,8 @@ type HataFlagElement = HTMLElement & {
   set fit(value: string | null | undefined);
   get variant(): string | null;
   set variant(value: string | null | undefined);
+  get date(): string | null;
+  set date(value: string | null | undefined);
   get label(): string | null;
   set label(value: string | null | undefined);
   get theme(): string | null;
@@ -184,6 +188,7 @@ const build = (): CustomElementConstructor => {
       const fitAsked = (this.getAttribute("fit") ?? "auto").trim();
       const fit = (FITS as readonly string[]).includes(fitAsked) ? (fitAsked as (typeof FITS)[number]) : "auto";
       const variant = (this.getAttribute("variant") ?? "").trim();
+      const date = (this.getAttribute("date") ?? "").trim();
       const sizes: Record<string, number> = { small: 24, medium: 48, large: 96 };
       const sizeText = this.getAttribute("size") ?? "";
       const size = Object.hasOwn(sizes, sizeText) ? sizes[sizeText] : Number(sizeText);
@@ -214,13 +219,13 @@ const build = (): CustomElementConstructor => {
         }
         this.style.aspectRatio = String(aspect);
         this.setAttribute("aria-label", this.getAttribute("label") ?? name);
-        const options = { ...(shape === "own" ? {} : { shape: shape as Shape, fit }), ...(variant === "" ? {} : { variant }) };
+        const options = { ...(shape === "own" ? {} : { shape: shape as Shape, fit }), ...(variant === "" ? {} : { variant }), ...(variant !== "" || date === "" ? {} : { date }) };
         const svg = await flag(code, Object.keys(options).length === 0 ? undefined : options);
         if (turn !== this.drawing) return;
-        // A variant is drawn at its own proportions, which are not always the place's default flag's.
-        if (svg !== null && variant !== "" && shape === "own") this.style.aspectRatio = String(aspectOf(svg) ?? aspect);
+        // A variant, or the flag of a date, is drawn at its own proportions, which are not always the place's default flag's.
+        if (svg !== null && (variant !== "" || date !== "") && shape === "own") this.style.aspectRatio = String(aspectOf(svg) ?? aspect);
         if (svg === null) {
-          this.missing(code, shape, variant === "" ? `no flag for the code "${code}"` : `no variant "${variant}" of the flag for the code "${code}"`);
+          this.missing(code, shape, variant !== "" ? `no variant "${variant}" of the flag for the code "${code}"` : date !== "" ? `no flag known for the code "${code}" on ${date}` : `no flag for the code "${code}"`);
           return;
         }
         const image = this.querySelector(":scope > img") ?? Object.assign(document.createElement("img"), { alt: "", draggable: false, decoding: "async" });
