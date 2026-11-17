@@ -6,12 +6,12 @@
       "gzip": 3775
     },
     "./load": {
-      "minified": 14375141,
-      "gzip": 4463749
+      "minified": 14375813,
+      "gzip": 4464069
     },
     "./manifest": {
-      "minified": 983992,
-      "gzip": 112792
+      "minified": 984047,
+      "gzip": 112932
     },
     "./names": {
       "minified": 31085,
@@ -26,12 +26,12 @@
       "gzip": 6925
     },
     "./element": {
-      "minified": 14411794,
-      "gzip": 4475523
+      "minified": 14412466,
+      "gzip": 4475790
     },
     "./element/define": {
-      "minified": 14411747,
-      "gzip": 4475501
+      "minified": 14412419,
+      "gzip": 4475757
     },
     "./flags/ad.1x1": {
       "minified": 28262,
@@ -1238,8 +1238,8 @@
       "gzip": 193
     },
     "./flags/fr-972": {
-      "minified": 259,
-      "gzip": 193
+      "minified": 269,
+      "gzip": 205
     },
     "./flags/fr-973": {
       "minified": 259,
@@ -2349,13 +2349,21 @@
       "minified": 133219,
       "gzip": 44164
     },
-    "./flags/mq--local": {
-      "minified": 268,
-      "gzip": 205
-    },
-    "./flags/mq": {
+    "./flags/mq--france": {
       "minified": 259,
       "gzip": 193
+    },
+    "./flags/mq.1x1": {
+      "minified": 244,
+      "gzip": 188
+    },
+    "./flags/mq.4x3": {
+      "minified": 246,
+      "gzip": 190
+    },
+    "./flags/mq": {
+      "minified": 261,
+      "gzip": 200
     },
     "./flags/mr.1x1": {
       "minified": 457,

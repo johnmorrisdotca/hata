@@ -31,7 +31,6 @@ difference is the design itself, [decisions.md](decisions.md) says which ships a
 | `LT` | Lithuania | commons | country-flag-icons 33% | same design: the sets draw it simplified, in other shades, or laid out again at their shape; Commons' drawing is the full one |
 | `MF` | St. Martin | commons | country-flag-icons 55%, circle-flags 42% | design: Wikidata gives France's flag; the sets draw Saint Martin's local flag. |
 | `MP` | Northern Mariana Islands | commons | flag-icons 28%, country-flag-icons 31% | same design: the sets draw it simplified, in other shades, or laid out again at their shape; Commons' drawing is the full one |
-| `MQ` | Martinique | commons | flag-icons 100%, country-flag-icons 100%, circle-flags 80% | design: France's flag ships (NAMED); Commons' red, green and black flag is the `local` variant, and the sets draw France's or that one. |
 | `MU` | Mauritius | commons | circle-flags 26% | same design: the sets draw it simplified, in other shades, or laid out again at their shape; Commons' drawing is the full one |
 | `MY` | Malaysia | commons | circle-flags 38% | same design: the sets draw it simplified, in other shades, or laid out again at their shape; Commons' drawing is the full one |
 | `MZ` | Mozambique | commons | flag-icons 36%, circle-flags 32% | same design: the sets draw it simplified, in other shades, or laid out again at their shape; Commons' drawing is the full one |
