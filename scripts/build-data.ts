@@ -37,6 +37,7 @@ import { places as allPlaces } from "./places.ts";
 import type { Group, Place } from "./places.ts";
 import { selectPlace } from "./select.ts";
 import type { WikidataSnapshot } from "./select.ts";
+import { coloursDataFile, coloursOfPicture } from "./colour-data.ts";
 import { refreshGeneratedExamples, writeDocumentedFile } from "./data-docs.ts";
 
 import { readManifest, readSource, ROOT, sha256, SOURCES_DIR } from "./sources.ts";
@@ -658,6 +659,23 @@ export { NAMES };
 const LETTER: Record<Framing["fit"], string> = { cover: "c", crop: "a", contain: "w" };
 // A variant with a picture of its own is framed like any flag (scripts/framing.mjs measures it under "<code>--<id>").
 const variantPictures = variantModules.filter((one) => one.optimised !== null).map((one) => ({ module: one.module, key: one.spec.replace(" ", "--"), optimised: one.optimised! }));
+// The colours of every picture, measured by scripts/colours.mjs (scripts/colours.data.json) and named by
+// scripts/colour-data.ts: for the manifest's `colours`, and for /search's table (src/data/colours.data.ts), which has a
+// line for every code and every "<code>--<id>", so that a code or a variant that has another's picture finds its colours.
+const pictureOfModule = new Map<string, string>([...shipped.map((one) => [moduleName(one.place.code), one.owner] as const), ...variantPictures.map((one) => [one.module, one.key] as const)]);
+for (const one of variantModules) if (one.owner !== null) pictureOfModule.set(one.module, pictureOfModule.get(one.owner)!);
+const uncoloured = [...new Set(pictureOfModule.values())].filter((key) => coloursOfPicture(key) === undefined);
+const coloursOf = (module: string): { hex: string; share: number; name: string }[] => coloursOfPicture(pictureOfModule.get(module)!) ?? [];
+writeDocumentedFile(
+  join(DATA_DIR, "colours.data.ts"),
+  coloursDataFile(HEADER, [
+    ...shipped.map((one) => [one.place.code, one.owner] as const),
+    ...[...new Set([...codes, ...places.map((place) => place.code).filter((code) => variantKeyFor(code) !== null)])]
+      .sort()
+      .flatMap((code) => variantsOfCode(code).variants.map((variant) => [`${code}--${variant.id}`, pictureOfModule.get(variant.module)!] as const)),
+  ].filter(([, picture]) => coloursOfPicture(picture) !== undefined)),
+);
+
 const cropRows = [...owners.map((one) => [moduleName(one.place.code), FOCUS[one.place.code]?.at] as const), ...variantPictures.map((one) => [one.module, FOCUS[one.key]?.at] as const)]
   .filter((row): row is readonly [string, "left" | "right" | "top" | "bottom"] => row[1] !== undefined && row[1] !== "whole");
 const unmeasured = variantPictures.filter((one) => FRAMINGS_FILE[one.key] === undefined);
@@ -742,6 +760,7 @@ const row = (one: Shipped): string => {
     bytes: size(one),
     gzip: one.gzip,
     notes: one.optimised.notes,
+    colours: coloursOf(moduleName(one.place.code)),
     disputed: variantsOfCode(one.place.code).disputed,
     defaultVariant: variantsOfCode(one.place.code).default,
     variants: variantsOfCode(one.place.code).variants,
@@ -1166,4 +1185,5 @@ console.log(`over the ${KB(BUDGET_BYTES)} budget: ${over.length} flags`);
 console.log(`where a set draws something else: ${lookAt.length} flags${unreviewed.length > 0 ? `, not yet looked at: ${unreviewed.join(" ")}` : ", every one looked at"}`);
 if (report) for (const one of shipped) console.log(`${one.place.code.padEnd(6)} ${KB(size(one)).padStart(9)} ${one.drawing.source.padEnd(19)} ${one.drawing.licence.name.padEnd(16)} ${one.drawing.file}`);
 const toMeasure = [...unmeasuredFlags, ...unmeasured.map((one) => one.key)];
+if (toMeasure.length === 0 && uncoloured.length > 0) throw new Error(`${uncoloured.join(", ")} have no line in scripts/colours.data.json, so they are written with no colours: run pnpm data:colours ${uncoloured.join(" ")}, then pnpm data again`);
 if (toMeasure.length > 0) throw new Error(`${toMeasure.join(", ")} have no line in scripts/framings.data.json, so everything is written as cropped from the centre: run pnpm data:framing ${toMeasure.join(" ")}, then pnpm data again`);

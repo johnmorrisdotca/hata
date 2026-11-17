@@ -87,6 +87,8 @@ interface FlagRecord {
   gzip: number;
   /** Things worth knowing about the picture: text drawn with a font, an embedded raster picture. */
   notes: string[];
+  /** The flag's colours, the one that covers most of it first, each an exact hex with its share of the flag and its name; see `FlagColour`. */
+  colours: FlagColour[];
   /** True where more than one authority or community claims the place's flag at the same time (Afghanistan, Northern Ireland); this package takes no side, and says why each default was chosen (README). */
   disputed: boolean;
   /** The `id` of the variant `flag(code)` gives; null where the place has one flag (`variants` is then empty) or none of its own by default. */
@@ -97,6 +99,42 @@ interface FlagRecord {
   framings: Record<"4:3" | "1:1" | "round", Framing>;
   /** Only for a former country (the Soviet Union, East Germany, Yugoslavia): the years it existed and the other codes that find it. Absent for every present-day place. See `HistoricalEra`. */
   historical?: HistoricalEra;
+}
+
+/**
+ * The names a flag's colour can have: a closed list of the words a person uses of a flag ("red, white and blue"). Two
+ * blues are both `blue`, and the hex says which; `light-blue` is the sky blue of Argentina's flag or the United Nations'.
+ *
+ * @example
+ * ```ts
+ * import { manifest, type ColourName } from "@johnmorrisdotca/hata/manifest";
+ *
+ * const names: ColourName[] = (manifest("FR")?.colours ?? []).map((one) => one.name);
+ * console.log(names); // ["blue", "red", "white"]
+ * ```
+ */
+type ColourName = "red" | "orange" | "yellow" | "green" | "light-blue" | "blue" | "purple" | "brown" | "black" | "grey" | "white";
+
+/**
+ * One colour of a flag, measured from the shipped drawing (the flag's own, never a frame or a crop) drawn 1200 pixels
+ * wide: every pixel counted by its exact colour, the smoothed edges and the steps of a gradient given to the nearest
+ * colour that covers at least 0.1% of the flag (`pnpm data:colours`, scripts/colours.mjs).
+ *
+ * @example
+ * ```ts
+ * import { manifest, type FlagColour } from "@johnmorrisdotca/hata/manifest";
+ *
+ * const japan: FlagColour[] = manifest("JP")?.colours ?? [];
+ * console.log(japan); // [{ hex: "#ffffff", share: 0.8116, name: "white" }, { hex: "#bc002d", share: 0.1884, name: "red" }]
+ * ```
+ */
+interface FlagColour {
+  /** The colour as the drawing has it, `#rrggbb` in lower case. */
+  hex: string;
+  /** The share of the flag's drawn area it covers, from 0 to 1, to four decimals. */
+  share: number;
+  /** The nearest name of the closed list: see `ColourName`. */
+  name: ColourName;
 }
 
 /**
@@ -289,4 +327,4 @@ interface LeftOutRecord {
   historical?: HistoricalEra;
 }
 
-export type { FlagRecord, FlagSource, Framing, FramingCrop, HistoricalEra, LeftOutRecord, LicenceKind, Variant };
+export type { ColourName, FlagColour, FlagRecord, FlagSource, Framing, FramingCrop, HistoricalEra, LeftOutRecord, LicenceKind, Variant };

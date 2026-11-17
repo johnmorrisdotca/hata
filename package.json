@@ -89,6 +89,10 @@
       "types": "./dist/organisations.d.ts",
       "default": "./dist/organisations.js"
     },
+    "./search": {
+      "types": "./dist/search.d.ts",
+      "default": "./dist/search.js"
+    },
     "./custom": {
       "types": "./dist/custom.d.ts",
       "default": "./dist/custom.js"
@@ -3826,6 +3830,7 @@
     "data:choose": "node scripts/choose.mjs",
     "data:sheet": "node scripts/sheet.mjs",
     "data:framing": "node scripts/framing.mjs",
+    "data:colours": "node scripts/colours.mjs",
     "docs:site": "pnpm build && node scripts/docs-site.mjs build",
     "docs:check": "pnpm build && node scripts/docs-site.mjs check",
     "size": "node scripts/docs-site.mjs size",

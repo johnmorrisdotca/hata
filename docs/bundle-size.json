@@ -6,12 +6,12 @@
       "gzip": 3775
     },
     "./load": {
-      "minified": 14375813,
-      "gzip": 4464069
+      "minified": 14469227,
+      "gzip": 4483866
     },
     "./manifest": {
-      "minified": 984047,
-      "gzip": 112932
+      "minified": 1077461,
+      "gzip": 133185
     },
     "./names": {
       "minified": 31085,
@@ -21,17 +21,21 @@
       "minified": 2407,
       "gzip": 1170
     },
+    "./search": {
+      "minified": 53805,
+      "gzip": 17756
+    },
     "./custom": {
       "minified": 16556,
       "gzip": 6925
     },
     "./element": {
-      "minified": 14412466,
-      "gzip": 4475790
+      "minified": 14505880,
+      "gzip": 4495827
     },
     "./element/define": {
-      "minified": 14412419,
-      "gzip": 4475757
+      "minified": 14505833,
+      "gzip": 4495790
     },
     "./flags/ad.1x1": {
       "minified": 28262,

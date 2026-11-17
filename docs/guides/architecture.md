@@ -14,6 +14,7 @@ src/
 ├── load.ts             the "/load" entry: a flag by its code, by dynamic import, framed as measured
 ├── names.ts            the "/names" entry: each flag's place in English and Japanese, and its aspect ratio
 ├── organisations.ts    the "/organisations" entry: the flags of international organisations by their "org:" id
+├── search.ts           the "/search" entry: each flag's colours, and the flags that have the colours asked for
 ├── organisations.data.ts   the organisations' records (id, names, drawing, terms): the one place to add a flag
 ├── custom.ts           the "/custom" entry: flags a page registers itself, as custom:<slug>, from a data-door source
 ├── custom-svg.ts       the check on a page's SVG: an allowlist, then written again from what was read
@@ -32,7 +33,7 @@ src/
 `scripts/build-data.ts` (`pnpm data`) makes `src/flags/` and `src/data/` from the inputs in `data-sources/` and the
 flag sets in `node_modules`, with no network and no browser, and checks every input's SHA-256 first; run twice, it
 leaves the tree as it was. `scripts/choose.mjs` (`pnpm data:choose`) is the comparison that decides which drawing
-ships; `scripts/framing.mjs` (`pnpm data:framing`) measures how each flag is framed; `scripts/optimise.ts` is the SVGO settings and the safety checks; `scripts/data-config.ts` holds the few
+ships; `scripts/framing.mjs` (`pnpm data:framing`) measures how each flag is framed; `scripts/colours.mjs` (`pnpm data:colours`) measures each flag's colours, and `scripts/colour-data.ts` names them; `scripts/optimise.ts` is the SVGO settings and the safety checks; `scripts/data-config.ts` holds the few
 things decided by hand. Tests sit beside the code (`*.test.ts`). `scripts/` also builds the demo and its API page,
 checks every export's documentation and checks the package as npm packs it; `demo/` is the page and `e2e/` its
 browser tests.

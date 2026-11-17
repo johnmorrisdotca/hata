@@ -216,10 +216,11 @@ The alias changes only the import name in your project.
 | `@johnmorrisdotca/hata/load` | `flag(code, { shape, fit, variant })`, one dynamic import per flag | 26 KB, 5.7 KB gzipped, then the flag's own file (and a 3.6 KB gzipped table when a frame is asked for, and a 0.5 KB one when a variant is) |
 | `@johnmorrisdotca/hata/names` | `flagName(code, lang)` and `flagAspect(code)`: each flag's place in English and Japanese, from Kuni | 24 KB, 8.7 KB gzipped |
 | `@johnmorrisdotca/hata/organisations` | Organisations' flags, by `org:` id | 1.2 KB gzipped |
+| `@johnmorrisdotca/hata/search` | Each flag's colours as hex shares (`coloursOf`), and the flags with the colours asked for (`flagsWith`) | 53 KB, 17 KB gzipped |
 | `@johnmorrisdotca/hata/custom` | Flags the page registers (`custom:<slug>`) | 11 KB |
 | `@johnmorrisdotca/hata/element` | `<hata-flag>`: `defineFlag`, `FLAG_ELEMENT_NAME`, `FLAG_ELEMENT_ATTRIBUTES` | 8 KB, 2.8 KB gzipped, then /load and /names |
 | `@johnmorrisdotca/hata/element/define` | Registers `<hata-flag>` when imported (`dist/element-define.js` on a CDN) | a line, then /element |
-| `@johnmorrisdotca/hata/manifest` | Every flag's source, licence, author and why it was chosen, how each frame is made, the flags in real use besides and the earlier flags of a country (`variantsOf`, `variantOn`), and the codes with no flag | 970 KB, 88 KB gzipped |
+| `@johnmorrisdotca/hata/manifest` | Every flag's source, licence, author and why it was chosen, how each frame is made, the flags in real use besides and the earlier flags of a country (`variantsOf`, `variantOn`), and the codes with no flag | 1,052 KB, 130 KB gzipped |
 | `@johnmorrisdotca/hata/svg/<code>.svg` | Every flag as a file, for an `&lt;img&gt;`, a CSS `url()` or a CDN; `<code>.1x1.svg` and `.4x3.svg` too | the same as the module's string |
 | `@johnmorrisdotca/hata/manifest.json` | The manifest as JSON | 848 KB |
 
@@ -557,10 +558,11 @@ The [API reference](https://johnmorrisdotca.github.io/hata/api.html) lists every
 | `@johnmorrisdotca/hata/load` | `flag`, `flagDataUri` and the types `FlagOptions` and `FrameOptions` |
 | `@johnmorrisdotca/hata/names` | `flagName`, `flagAspect` and the type `NameLanguage` |
 | `@johnmorrisdotca/hata/organisations` | `ORGANISATION_IDS`, `isOrganisationId`, `organisationId`, `organisationFlag`, `organisationName`, `organisationAspect`, `organisationTerms`, type `OrganisationId` |
+| `@johnmorrisdotca/hata/search` | `COLOUR_NAMES`, `coloursOf`, `flagsWith`, and the types `ColourName` and `FlagColour` |
 | `@johnmorrisdotca/hata/custom` | `registerFlags`, `removeFlags`, `enableFlags`, `customFlag`, `customName`, `customAspect`, `customId`, `isCustomId`, `listCustomFlags`, `customGroups`, `searchCustomFlags`, `customCreditLine`, `CUSTOM_GROUP`, `MAX_CUSTOM_FLAGS` |
 | `@johnmorrisdotca/hata/element` | `defineFlag`, `FLAG_ELEMENT_NAME`, `FLAG_ELEMENT_ATTRIBUTES`, and the types `HataFlagElement` and `FlagElementEventDetail` |
 | `@johnmorrisdotca/hata/element/define` | `defineFlag`, after registering `<hata-flag>` |
-| `@johnmorrisdotca/hata/manifest` | `MANIFEST`, `LEFT_OUT`, `manifest`, `leftOut`, `variantsOf`, `variantOn`, and the types `FlagRecord`, `Framing`, `FramingCrop`, `LeftOutRecord`, `LicenceKind`, `FlagSource` and `Variant` |
+| `@johnmorrisdotca/hata/manifest` | `MANIFEST`, `LEFT_OUT`, `manifest`, `leftOut`, `variantsOf`, `variantOn`, and the types `FlagRecord`, `Framing`, `FramingCrop`, `LeftOutRecord`, `LicenceKind`, `FlagSource`, `Variant`, `FlagColour` and `ColourName` |
 
 A flag's record:
 
@@ -588,13 +590,8 @@ interface FlagRecord {
   bytes: number;                  // the SVG's size
   gzip: number;
   notes: string[];                // text drawn with a font, an embedded raster picture
-  framings: Record<"4:3" | "1:1" | "round", {
-    method: "own" | "adapted" | "cover" | "crop" | "contain";  // how flag(code, { shape }) frames it
-    fit: "cover" | "crop" | "contain";  // what frame() does with the flag's own SVG
-    crop: { rule: "own" | "curated" | "centre" | "whole"; at: "left" | "right" | "top" | "bottom" | "centre"; why: string | null; loses: string[] };  // which crop, at which side, and why
-    source: "flag-icons" | null; file: string | null; page: string | null; bytes: number | null;  // an adapted drawing
-    coverLoses: string[];         // what a centre crop would lose: ["red 65% to 29%"]
-  }>;
+  colours: { hex: string; share: number; name: string }[];  // "#bc002d", 0.1884, "red": measured from the drawing
+  framings: Record<"4:3" | "1:1" | "round", Framing>;  // how each frame is made, and which crop: the `Framing` type
 }
 ```
 
