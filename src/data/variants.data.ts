@@ -10,6 +10,7 @@ const VARIANT_LOADERS: Readonly<Record<string, Loader>> = {
   "AF--republic": () => import("../flags/af.js"),
   "AF--de-facto": () => import("../flags/af--de-facto.js"),
   "AR--sun-flag": () => import("../flags/ar.js"),
+  "AU--union-flag": () => import("../flags/au--union-flag.js"),
   "AU--federation-1901": () => import("../flags/au--federation-1901.js"),
   "AU--commonwealth-1903": () => import("../flags/au--commonwealth-1903.js"),
   "AU--australian-national-flag": () => import("../flags/au.js"),
@@ -21,6 +22,7 @@ const VARIANT_LOADERS: Readonly<Record<string, Loader>> = {
   "BR--republic-27-stars": () => import("../flags/br.js"),
   "BUMM--socialist": () => import("../flags/bumm.js"),
   "BUMM--union": () => import("../flags/bumm--union.js"),
+  "CA--union-flag": () => import("../flags/ca--union-flag.js"),
   "CA--red-ensign-1868": () => import("../flags/ca--red-ensign-1868.js"),
   "CA--red-ensign-1922": () => import("../flags/ca--red-ensign-1922.js"),
   "CA--red-ensign-1957": () => import("../flags/ca--red-ensign-1957.js"),
@@ -93,6 +95,7 @@ const VARIANT_LOADERS: Readonly<Record<string, Loader>> = {
   "NC--france": () => import("../flags/nc--france.js"),
   "NG--green-white-green": () => import("../flags/ng.js"),
   "NO--norwegian-flag": () => import("../flags/no.js"),
+  "NZ--union-flag": () => import("../flags/nz--union-flag.js"),
   "NZ--southern-cross-ensign": () => import("../flags/nz.js"),
   "PF--french-polynesia": () => import("../flags/pf.js"),
   "PF--france": () => import("../flags/pf--france.js"),
@@ -142,4 +145,10 @@ const VARIANT_LOADERS: Readonly<Record<string, Loader>> = {
   "ZA--rainbow-flag": () => import("../flags/za.js"),
 };
 
-export { VARIANT_LOADERS };
+// The variants whose display the law restricts (docs/decisions.md, "Restricted flags"): not in the table above, loaded only
+// by a call that opts in (`allowRestricted`).
+const RESTRICTED_LOADERS: Readonly<Record<string, Loader>> = {
+  "DE--swastika-1935": () => import("../flags/de--swastika-1935.js"),
+};
+
+export { RESTRICTED_LOADERS, VARIANT_LOADERS };

@@ -213,7 +213,7 @@ The alias changes only the import name in your project.
 | --- | --- | --- |
 | `@johnmorrisdotca/hata` | The codes, `flagCode`, `flagUrl`, `frame`, `aspectOf`, `toDataUri`; no flag | 12 KB, 3.7 KB gzipped |
 | `@johnmorrisdotca/hata/flags/<code>` | One flag's SVG string (`/flags/jp`, `/flags/jp-13`, `/flags/ca-on`, `/flags/de-by`, and a former country's, `/flags/suhh`, lower case); `/flags/<code>.1x1` and `.4x3`, flag-icons' drawing made for that frame, where there is one | median 755 bytes; 176 bytes for Japan |
-| `@johnmorrisdotca/hata/load` | `flag(code, { shape, fit, variant })`, one dynamic import per flag | 26 KB, 5.7 KB gzipped, then the flag's own file (and a 3.6 KB gzipped table when a frame is asked for, and a 0.5 KB one when a variant is) |
+| `@johnmorrisdotca/hata/load` | `flag(code, { shape, fit, variant, date, role })`, one dynamic import per flag | 26 KB, 5.7 KB gzipped, then the flag's own file (and a 3.6 KB gzipped table when a frame is asked for, and a 0.5 KB one when a variant is) |
 | `@johnmorrisdotca/hata/names` | `flagName(code, lang)` and `flagAspect(code)`: each flag's place in English and Japanese, from Kuni | 24 KB, 8.7 KB gzipped |
 | `@johnmorrisdotca/hata/organisations` | Organisations' flags, by `org:` id | 1.2 KB gzipped |
 | `@johnmorrisdotca/hata/custom` | Flags the page registers (`custom:<slug>`) | 11 KB |
@@ -281,16 +281,11 @@ frame, which crop `auto` uses (`own`, `curated`, `centre` or `whole`), the side 
 drops (`loses`), and [docs/framing.md](./docs/framing.md) lists every flag with its side and reason. The demo's flag panel shows the
 whole flag beside its crop at each shape, and the gallery has a Whole / Cropped switch.
 
-`pnpm data:framing` measured every flag's frames in a browser. A frame keeps a flag when every colour covering 5%
-of the flag still covers at least half that share. For 4:3 and square it takes, in order: the flag itself where it
-is that shape already; flag-icons' drawing made by hand for the shape, where it keeps the colours and draws the
-same design; a crop from the centre, where that keeps them; and the whole flag otherwise. Round is the square's
-choice in a circle. Where a person chose a side for the flag, a crop kept at that side comes before the centre one
-(see "Whole and cropped" below). `flag(code, { shape })` uses all of these; `frame(svg)` works on the one SVG it is given,
-so it crops or shows the flag whole, as measured for the flag the SVG names (`data-hata`). `manifest(code).framings`
-says which for every flag, and a browser test fails if any frame of any flag loses a colour no reason excuses. Of the 430
-pictures, 211 are drawn again for 4:3 and 212 for the square; `frame()` on a flag's own SVG crops at a chosen side for 81 and
-83, from the centre for 308 and 276, and shows the whole flag for 36 and 43 (the rest are already that shape).
+`pnpm data:framing` measured every flag's frames in a browser. A frame keeps a flag when every colour covering 5% of it still covers at least half that share. For 4:3 and
+square it takes, in order: the flag itself where it is that shape already; flag-icons' drawing made by hand for the shape, where it keeps the colours and draws the same design;
+a crop kept at the chosen side or from the centre, where that keeps them; and the whole flag otherwise. Round is the square's choice in a circle. `flag(code, { shape })` uses
+all of these; `frame(svg)` works on the one SVG it is given, as measured for the flag the SVG names (`data-hata`). `manifest(code).framings` says which for every flag, and a
+browser test fails if any frame of any flag loses a colour no reason excuses.
 
 ### 4. Embed it anywhere
 
@@ -308,7 +303,9 @@ One script tag and an element, for any page:
 | `shape` | `own` (the default: its own proportions), `4:3`, `1:1` or `round`, framed as `flag(code, { shape })` frames it |
 | `size` | Its height in CSS pixels; left out, `1em`, the height of the text around it, and any CSS height works |
 | `variant` | Which of the place's flags in real use to draw, by its `id` from `variantsOf(code)`: `de-facto`, `stripes`, `local`; left out, the default |
-| `date` | The day whose flag to draw, `"1962-09-29"`: the flag in use then (`variantOn`); a `variant` wins |
+| `date` | The day whose flag to draw, `"1962-09-29"`: the flag then (`variantOn`), the legal one by default; a `variant` wins |
+| `which` | With `date`: `legal` (the default) or `in-use`, the flag flown in practice (not `role`, which is the ARIA role the element sets) |
+| `allow-restricted` | Draw a flag the law restricts (Germany's of 1935 to 1945), for history and education; without it nothing is drawn, with `data-restricted` and the reason in `data-reason` |
 | `fit` | `auto` (the default), `whole` (all of the flag), `crop` (a crop at the side chosen for the flag), `cover`, `hoist` or `contain`, as `frame()` takes them |
 | `label` | What a screen reader says; left out, the place's name |
 | `lang` | `en` or `ja`, the language of that name; left out, the language of the page where the element is |
@@ -371,25 +368,12 @@ await flag("GB-NIR", { variant: "ulster-banner" });   // Northern Ireland has no
 <hata-flag code="AF" variant="de-facto" size="48"></hata-flag>
 ```
 
-- **`variantsOf(code)`** (from `/manifest`) lists a place's flags, the default first. Each has an `id`, an English and a Japanese
-  `name`, a `status`, `from` and `until`, a `why`, a `source` (a page that documents the claim), `default`, the `module` that
-  has its SVG (`/flags/af--de-facto`; the default's is the place's own) and the `drawing` it comes from: its Commons file, page,
-  licence, author and size. `manifest(code)` carries the same list with `disputed` and `defaultVariant`.
-- **Statuses.** `official`: adopted by the authority that has the right to. `de-facto`: flown by whoever holds the territory,
-  without that recognition. `historical`: no longer official, and still flown. `local`: in use there, and not made the
-  place's own flag by its authority.
-- **`flag(code, { variant })`**, `flagDataUri` and `<hata-flag variant>` draw one; every frame option works on it, and it
-  is framed as measured for its own picture. A code that is the same place as another (Guadeloupe's `FR-971` and `GP`) has that
-  place's variants. An id the place does not have gives `null`.
-- **A place with no flag of its own by default** is left out of `FLAG_CODES` and has a reason in `LEFT_OUT`, and its flags in
-  use are its variants, asked for by name: Northern Ireland has had no flag of its own since 1973, so `flag("GB-NIR")` is `null`
-  and `variantsOf("GB-NIR")` gives the Union Flag (official) and the former Ulster Banner (historical, 1953 to 1972).
-- **A flag in real use that is not the place's official symbol** is the default with the status `local`, and is the place's only variant:
-  Brittany's Gwenn-ha-du (`FR-BRE`) is flown across the region, but the Région Bretagne's official symbol is a logo, and
-  `variantsOf("FR-BRE")` says so, with the reason and a source. Its drawing is the public-domain one on Commons, not the
-  CC BY-SA file Wikidata names.
-- **The demo** puts a "disputed" mark on the card, a switch between a place's flags in its panel with the status, dates, reason
-  and source of the one shown, and a `variant` field in the embed builder.
+- **`variantsOf(code)`** (from `/manifest`) lists a place's flags, the default first: an `id`, an English and a Japanese `name`, a `status`
+  (`official`, `de-facto`, `historical` or `local`), `from` and `until`, a `why`, a `source`, the `module` that has its SVG and the `drawing` it comes
+  from. `manifest(code)` carries the same list with `disputed` and `defaultVariant`.
+- **`flag(code, { variant })`**, `flagDataUri` and `<hata-flag variant>` draw one, framed like any flag; an id the place does not have gives `null`.
+- **A place with no flag of its own by default** (Northern Ireland, since 1973) is left out of `FLAG_CODES`, has a reason in `LEFT_OUT`, and its flags in
+  use are its variants, asked for by name. **A flag in real use that is not the place's official symbol** (Brittany's Gwenn-ha-du) is its default with the status `local`.
 
 [docs/variants.md](./docs/variants.md) lists every variant with its reason, source, drawing and licence, and
 [docs/decisions.md](./docs/decisions.md) says why each default was chosen and what is not offered, such as Libya's and Myanmar's
@@ -397,48 +381,45 @@ earlier flags and Saint-Martin's local flag.
 
 ### Former countries
 
-A medal table, a record book or a history of a sport still names countries that no longer exist. Hata has the flag of
-twelve of them, each under a code no present-day country uses: the ISO 3166-3 code where that standard has one
-(`SUHH` the Soviet Union, `DDDE` East Germany, `CSHH` Czechoslovakia, `YUCS` Yugoslavia, `CSXX` Serbia and Montenegro,
-`ANHH` the Netherlands Antilles, `BUMM` Burma, `ZRCD` Zaire, `RHZW` Rhodesia), else the IOC's (`FRG` West Germany,
-`BOH` Bohemia, `WIF` the West Indies Federation). The codes a table is likely to hold find them too, in any case:
-the ISO 3166-1 alpha-2 and alpha-3 the place had (`SU`, `SUN`, `DD`, `DDR`, `YU`, `AN`, `BU`, `ZR`) and the IOC's
-three letters (`URS`, `GDR`, `TCH`, `YUG`, `SCG`, `AHO`, `BIR`, `ZAI`, `RHO`, `BWI`). They are `FLAG_ALIASES`.
+A medal table, a record book or a history of a sport still names countries that no longer exist. Hata has the flag of twelve of them, each under a code no present-day
+country uses: the ISO 3166-3 code where that standard has one (`SUHH` the Soviet Union, `DDDE` East Germany, `YUCS` Yugoslavia, `CSHH` Czechoslovakia and more), else the IOC's
+(`FRG` West Germany, `BOH` Bohemia, `WIF` the West Indies Federation). The codes a table is likely to hold find them too, in any case: `SU`, `DD`, `YU`, `BU` and the IOC's
+`URS`, `GDR`, `TCH`, `YUG`, `SCG`, `ZAI`, `RHO`, `BWI`. They are `FLAG_ALIASES`.
 
 ```ts
 import { flag } from "@johnmorrisdotca/hata/load";
-import { manifest, variantsOf } from "@johnmorrisdotca/hata/manifest";
+import { manifest } from "@johnmorrisdotca/hata/manifest";
 
-await flag("URS");                                    // the Soviet Union's flag of 1955 to 1991 (also "SU", "SUHH")
-await flag("GDR", { shape: "round", label: "East Germany" });
-await flag("YUG");                                    // the flag Yugoslavia competed under from 1948 to 1988
-await flag("YUG", { variant: "kingdom" });            // its flag before 1941, a variant with its dates
-variantsOf("YUCS").map((one) => `${one.id} ${one.from}-${one.until}`);
-manifest("FRG")?.sameAs;                              // "DE": West Germany's flag is Germany's, the one picture
-manifest("SUHH")?.historical;                         // { from: "1922", until: "1991", aliases: ["SU", "SUN", "URS"] }
+await flag("URS");                         // the Soviet Union's flag of 1955 to 1991 (also "SU", "SUHH")
+await flag("YUG", { variant: "kingdom" }); // Yugoslavia's flag before 1941, a variant with its dates
+manifest("FRG")?.sameAs;                   // "DE": West Germany's flag is Germany's, the one picture
+manifest("SUHH")?.historical;              // { from: "1922", until: "1991", aliases: ["SU", "SUN", "URS"] }
 ```
 
-Notes on these flags are in [docs/decisions.md](./docs/decisions.md#what-to-know-about-the-former-countries), and [docs/historical.md](./docs/historical.md) has every code and alias, the years, and the reason for each choice.
+[docs/historical.md](./docs/historical.md) has every code, alias, year and reason; [docs/decisions.md](./docs/decisions.md#what-to-know-about-the-former-countries) the notes.
 
 ### Historic flags, and the flag of a date
 
-Countries that still exist have had other flags. Hata has the earlier national flags since 1900 of 33 of them (the United States' 48 stars,
-Canada's Red Ensign, Japan's 1870 Hinomaru, Germany's Weimar flag), each a `historical` variant with `from` and `until` (the first day of the
-next flag: a change day belongs to the new flag), a `source` and its `sourceKind` (`official`, `reference` or `encyclopedia`).
-**`flag(code, { date })`** loads the flag in use on a day, **`variantOn(code, date)`** from `/manifest` finds its variant, and **`<hata-flag date>`** draws it.
+Countries that still exist have had other flags. Hata has the earlier national flags since 1900 of 33 of them, each a `historical` variant with `from`, `until`
+(the day of a change belongs to the new flag), a `source` and its kind. **`flag(code, { date })`** loads the flag of a day, **`variantOn(code, date)`** from `/manifest`
+finds its variant, and **`<hata-flag date>`** draws it.
+
+What the law made a country's flag and what its people flew were sometimes two flags, and Hata keeps both, each with a role (`legal`, `in-use` or both) and, where the
+two differ, the reason and its source. The legal flag is the default; `{ role: "in-use" }` (`which="in-use"` on the element) picks the other; `flagOn()` adds the
+drawing, the other flag and, where there is nothing to draw, the reason in words.
 
 ```ts
-import { flag } from "@johnmorrisdotca/hata/load";
+import { flag, flagOn } from "@johnmorrisdotca/hata/load";
 import { variantOn } from "@johnmorrisdotca/hata/manifest";
 
-variantOn("CA", "1962-09-29")?.id;            // "red-ensign-1957"; "1965-02-15" is "maple-leaf"
-await flag("US", { date: "1950" });           // the 48-star flag; after the newest change, today's flag
-variantOn("SUHH", "1991-12-26");              // null: a former country has an answer only within its years
+variantOn("CA", "1962-09-29")?.id;                        // "union-flag", Canada's legal flag; "1965-02-15" is "maple-leaf"
+variantOn("CA", "1962-09-29")?.other?.id;                 // "red-ensign-1957", the flag flown, with `note.why` and its source
+await flag("CA", { date: "1962-09-29", role: "in-use" }); // the Red Ensign
+(await flagOn("SUHH", "1991-12-26")).none?.reason;        // "It had ended by 1991-12-26 (its years are 1922 to 1991)."
 ```
 
-`null` means "not known here", never "no flag". The [Historic flags page](https://johnmorrisdotca.github.io/hata/historic.html) shows every
-country with all of its flags in date order; [docs/historical.md](./docs/historical.md#earlier-flags-of-present-day-countries) and
-[docs/decisions.md](./docs/decisions.md#historic-flags-of-present-day-countries) say which flags, which sources, and what is left.
+Germany's flag of 1935 to 1945 is shipped for history and education only, and withheld unless asked for (`allowRestricted`, [docs/decisions.md](./docs/decisions.md#restricted-flags)). The [Historic flags page](https://johnmorrisdotca.github.io/hata/historic.html) shows every country in date order, the legal flag and the flag in use side by side where they differ; [docs/guides/historic-flags.md](./docs/guides/historic-flags.md),
+[docs/historical.md](./docs/historical.md#earlier-flags-of-present-day-countries) and [docs/decisions.md](./docs/decisions.md#historic-flags-of-present-day-countries) have the rest.
 
 ### 5. An `&lt;img&gt;`, from the CDN or your own folder
 
@@ -554,13 +535,13 @@ The [API reference](https://johnmorrisdotca.github.io/hata/api.html) lists every
 | --- | --- |
 | `@johnmorrisdotca/hata` | `FLAG_CODES`, `FLAG_ALIASES`, `isFlagCode`, `flagCode`, `flagUrl`, `aspectOf`, `frame`, `toDataUri`, `VERSION`, and the types `FlagCode`, `FlagUrlOptions`, `FrameOptions`, `Shape` and `Fit` |
 | `@johnmorrisdotca/hata/flags/<code>` | the flag's SVG string as the default export and as `svg` |
-| `@johnmorrisdotca/hata/load` | `flag`, `flagDataUri` and the types `FlagOptions` and `FrameOptions` |
+| `@johnmorrisdotca/hata/load` | `flag`, `flagDataUri`, `flagOn` and the types `FlagOptions`, `FrameOptions` and `LoadedFlagOn` |
 | `@johnmorrisdotca/hata/names` | `flagName`, `flagAspect` and the type `NameLanguage` |
 | `@johnmorrisdotca/hata/organisations` | `ORGANISATION_IDS`, `isOrganisationId`, `organisationId`, `organisationFlag`, `organisationName`, `organisationAspect`, `organisationTerms`, type `OrganisationId` |
 | `@johnmorrisdotca/hata/custom` | `registerFlags`, `removeFlags`, `enableFlags`, `customFlag`, `customName`, `customAspect`, `customId`, `isCustomId`, `listCustomFlags`, `customGroups`, `searchCustomFlags`, `customCreditLine`, `CUSTOM_GROUP`, `MAX_CUSTOM_FLAGS` |
 | `@johnmorrisdotca/hata/element` | `defineFlag`, `FLAG_ELEMENT_NAME`, `FLAG_ELEMENT_ATTRIBUTES`, and the types `HataFlagElement` and `FlagElementEventDetail` |
 | `@johnmorrisdotca/hata/element/define` | `defineFlag`, after registering `<hata-flag>` |
-| `@johnmorrisdotca/hata/manifest` | `MANIFEST`, `LEFT_OUT`, `manifest`, `leftOut`, `variantsOf`, `variantOn`, and the types `FlagRecord`, `Framing`, `FramingCrop`, `LeftOutRecord`, `LicenceKind`, `FlagSource` and `Variant` |
+| `@johnmorrisdotca/hata/manifest` | `MANIFEST`, `LEFT_OUT`, `RESTRICTED`, `manifest`, `leftOut`, `variantsOf`, `variantOn`, `flagOn`, and the types `FlagRecord`, `Framing`, `FramingCrop`, `LeftOutRecord`, `LicenceKind`, `FlagSource`, `Variant`, `FlagRole`, `RoleNote`, `Restricted`, `RestrictedVariant`, `DatedVariant`, `OtherFlag`, `NoFlag`, `FlagOnDay` and `VariantOptions` |
 
 A flag's record:
 

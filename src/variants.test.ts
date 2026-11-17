@@ -44,7 +44,7 @@ describe("variantsOf", () => {
 
   it("follows the data: every variant has a status, a reason, a source, a Japanese name and a shipped drawing, and at most one is the default", () => {
     for (const [code, set] of Object.entries(VARIANTS)) {
-      const list = variantsOf(code);
+      const list = variantsOf(code, { allowRestricted: true });
       expect(list.map((one) => one.id), code).toEqual(set.variants.filter((one) => list.some((shown) => shown.id === one.id)).map((one) => one.id));
       expect(list.length, code).toBe(set.variants.length);
       expect(list.filter((one) => one.default).length, code).toBe(set.default === null ? 0 : 1);

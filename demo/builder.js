@@ -53,6 +53,7 @@ const options = [
   row("shape", "choice", ["Shape", "Keep its proportions or choose a frame."], ["形", "本来の縦横比、または枠の形を選びます。"], { default: "own", choices: ["own", "4:3", "1:1", "round"] }),
   row("variant", "text", ["Variant (optional)", "Choose a variant id from the flag's gallery panel; empty uses the default."], ["別の旗（任意）", "旗の一覧のパネルにあるidで指定します。空のままなら既定の旗を描きます。"]),
   row("date", "text", ["Date (optional)", "Draw the flag in use on this day, such as 1962-09-29; empty uses the default."], ["日付（任意）", "その日に使われていた旗を描きます。例：1962-09-29。空のままなら既定の旗を描きます。"]),
+  row("which", "choice", ["Which flag of the date", "With a date: the legal flag, or the flag in use."], ["その日の旗の種類", "日付を指定したときに、法律上の国旗と実際に使われた旗のどちらを描くか選びます。"], { default: "legal", choices: ["legal", "in-use"] }),
   row("fit", "choice", ["Whole or cropped", "Use the curated frame, the whole flag or a crop."], ["全体か切り抜きか", "旗に合わせた表示・旗の全体・切り抜きから選びます。"], { default: "auto", choices: ["auto", "whole", "crop", "cover", "hoist", "contain"] }),
   row("size", "choice", ["Display size", "Small, medium or large; width overrides it."], ["表示の大きさ", "小・中・大を選びます。幅の指定が優先されます。"], { choices: ["small", "medium", "large"] }),
   row("width", "number", ["Width", "Width in pixels, preserving the flag's proportions."], ["幅", "旗の縦横比を保った幅を、ピクセルで指定します。"], { range: { min: 12, max: 600, step: 4 } }),
@@ -68,7 +69,7 @@ for (const option of options.filter((one) => one.kind === "choice")) {
 }
 options.find((option) => option.id === "size").choiceLabels = { en: { small: "Small", medium: "Medium", large: "Large" }, ja: { small: "小", medium: "中", large: "大" } };
 const sizes = { small: 24, medium: 48, large: 96 };
-const aspect = (settings) => settings.shape === "4:3" ? 4 / 3 : settings.shape === "round" || settings.shape === "1:1" ? 1 : (() => { const variant = settings.variant || (settings.date && !unknownDate({ ...settings, code: settings.code ?? "JP" }) ? variantOn(settings.code ?? "JP", settings.date)?.id : ""); const drawing = variantsOf(settings.code ?? "JP").find(one => one.id === variant)?.drawing; return drawing ? drawing.width / drawing.height : flagAspect(settings.code ?? "JP") ?? 1.5; })();
+const aspect = (settings) => settings.shape === "4:3" ? 4 / 3 : settings.shape === "round" || settings.shape === "1:1" ? 1 : (() => { const variant = settings.variant || (settings.date && !unknownDate({ ...settings, code: settings.code ?? "JP" }) ? variantOn(settings.code ?? "JP", settings.date, { role: settings.which === "in-use" ? "in-use" : "legal" })?.id : ""); const drawing = variantsOf(settings.code ?? "JP").find(one => one.id === variant)?.drawing; return drawing ? drawing.width / drawing.height : flagAspect(settings.code ?? "JP") ?? 1.5; })();
 const width = (settings) => Number(settings.width) > 0 ? Number(settings.width) : (sizes[settings.size] ?? 48) * aspect(settings);
 // A drawing whose licence asks for credit (CC BY) shows a credit line in its frame, under the flag: the frame is taller
 // by the line's height, measured here at the frame's width and in its language, as the embed page draws it (the same
@@ -105,7 +106,10 @@ const builder = familyEmbedBuilder({ id: "hata", packageName: "@johnmorrisdotca/
     return lang === "ja" ? [`旗の図：${by ? `${by}、` : ""}`, licence, "（", from, "）"] : [`Flag drawing: ${by ? `${by}, ` : ""}`, licence, " (", from, ")"];
   },
   unit: (option) => option.id === "width" ? "px" : "",
-  leftOut: { "element.loading": "The preview is eager; iframe snippets use lazy loading." },
+  leftOut: {
+    "element.loading": "The preview is eager; iframe snippets use lazy loading.",
+    "element.allow-restricted": "A flag the law restricts (Germany's of 1935 to 1945) is asked for in code, for history and education, never by a builder (docs/decisions.md, Restricted flags).",
+  },
   makers: { flag: { names: "call", element: "element", tag: "hata-flag", embed: "embed/", description: "makerFlagSays", required: ["code"], width: (settings) => Math.ceil(width(settings)) + 8, height: (settings) => Math.ceil(width(settings) / aspect(settings)) + 8 + creditHeight(settings),
     formats: ["element", "img", "data", "iframe", "module", "react", "vue", "svelte", "angular", "html", "url"] } },
   formats: { ...familyEmbedBuilder({ packageName: "@example/embed", major: 1, site: "https://example.test/", makers: {} }).formats,

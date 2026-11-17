@@ -15,7 +15,7 @@ import { publishThumbnails, thumbnailHead } from "./family-thumbnail.mjs";
 
 const id = "hata";
 const { FLAG_CODES } = await import(new URL("../dist/index.js", import.meta.url).href);
-const { LEFT_OUT, MANIFEST } = await import(new URL("../dist/manifest.js", import.meta.url).href);
+const { LEFT_OUT, MANIFEST, RESTRICTED } = await import(new URL("../dist/manifest.js", import.meta.url).href);
 // The former countries and teams of sport are Hata's own list, not Kuni's (which knows the countries of today).
 const { HISTORICAL } = await import(new URL("./data-config.ts", import.meta.url).href);
 
@@ -270,11 +270,19 @@ writeFileSync("site/builder.html", framed(readFileSync("demo/builder.html", "utf
 
 // The Historic flags page: every country and former country with all of its flags in date order, made from the manifest here so
 // that it lists exactly what the package holds (e2e/historic.demo.mjs holds the page to the manifest).
+// A flag's roles for the page: which of legal and in-use it is, the days of each, and why it is only one (the reason and its source).
+const roleFields = (variant) => ({
+  roles: variant.roles,
+  roleDates: variant.roleDates,
+  note: variant.roleNote === null ? null : { why: variant.roleNote.why, source: variant.roleNote.source, kind: variant.roleNote.sourceKind },
+});
 const historicRows = MANIFEST.filter((record) => record.code.length === 2 || record.historical !== undefined)
   .map((record) => {
+    // The restricted flags are on this page and no other (docs/decisions.md, "Restricted flags"): in the row of their place, with their context note.
+    const restricted = RESTRICTED.filter((one) => one.code === record.code).map(({ variant }) => ({ ...variant, restrictedHere: true }));
     const flags = record.variants.length === 0
-      ? [{ id: null, module: record.code.toLowerCase(), en: "", ja: "", from: null, until: null, status: "official", kind: "commons", source: record.page }]
-      : [...record.variants].sort((a, b) => (a.from ?? "9999").localeCompare(b.from ?? "9999")).map((variant) => ({ id: variant.id, module: variant.module, en: variant.name, ja: variant.nameJa, from: variant.from, until: variant.until, status: variant.status, kind: variant.sourceKind, source: variant.source }));
+      ? [{ id: null, module: record.code.toLowerCase(), en: "", ja: "", from: null, until: null, status: "official", kind: "commons", source: record.page, roles: [], roleDates: {}, note: null }]
+      : [...record.variants, ...restricted].sort((a, b) => (a.from ?? "9999").localeCompare(b.from ?? "9999")).map((variant) => ({ id: variant.id, module: variant.module, en: variant.name, ja: variant.nameJa, from: variant.from, until: variant.until, status: variant.status, kind: variant.sourceKind, source: variant.source, ...roleFields(variant), ...(variant.restricted === null ? {} : { restricted: { en: variant.restricted.reason, ja: variant.restricted.reasonJa } }) }));
 
     return { code: record.code, en: names[record.code].en, ja: names[record.code].ja, continent: names[record.code].continent ?? null, former: record.historical !== undefined, years: record.historical === undefined ? null : [record.historical.from, record.historical.until], flags };
   })

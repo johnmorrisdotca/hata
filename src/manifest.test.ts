@@ -9,7 +9,7 @@ import { describe, expect, it } from "vitest";
 import { HISTORICAL, SUBDIVISION_COUNTRIES } from "../scripts/data-config";
 import { FLAG_CODES } from "./index";
 import { flag } from "./load";
-import { LEFT_OUT, leftOut, manifest, MANIFEST } from "./manifest";
+import { LEFT_OUT, leftOut, manifest, MANIFEST, RESTRICTED } from "./manifest";
 
 // Every code the package answers for: each country, and the first level of each country whose subdivisions it has.
 const kuniCodes = [...COUNTRY_CODES, ...SUBDIVISION_COUNTRIES.flatMap((country) => (subdivisions(country) ?? []).filter((one) => one.level === 1).map((one) => one.code))];
@@ -135,7 +135,7 @@ describe("every flag's picture", () => {
   it("is the generated module's own: one file in src/flags for each code and each drawing made for a frame, none other", () => {
     const files = readdirSync("src/flags").map((file) => file.replace(/\.ts$/, ""));
     // A variant's module is "<code>--<id>": one for each variant that is not the place's own flag.
-    const variants = [...MANIFEST, ...LEFT_OUT].flatMap((one) => one.variants.filter((variant) => !variant.default).map((variant) => variant.module));
+    const variants = [...[...MANIFEST, ...LEFT_OUT].flatMap((one) => one.variants), ...RESTRICTED.map((one) => one.variant)].filter((variant) => !variant.default).map((variant) => variant.module);
     expect(files.filter((file) => !file.includes(".") && !file.includes("--")).map((file) => file.toUpperCase()).sort()).toEqual([...FLAG_CODES].sort());
     expect(files.filter((file) => file.includes("--")).sort()).toEqual([...new Set(variants)].sort());
     const framed = MANIFEST.filter((one) => one.sameAs === null).flatMap((one) => (["4:3", "1:1"] as const).filter((shape) => one.framings[shape].method === "adapted").map((shape) => `${one.code.toLowerCase()}.${shape.replace(":", "x")}`));

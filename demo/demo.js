@@ -411,7 +411,13 @@ $("variant-date").addEventListener("change", (event) => {
   if (day === "" || opened === null) return;
   const found = variantOn(opened, day);
   if (found === null) $("variant-date-note").textContent = say("variant_date_none", { date: day });
-  else showDetail(opened, found.id, day);
+  // A flag the law restricts is not drawn here: the panel says why, and the Historic flags page is where it is shown.
+  else if (found.withheld) $("variant-date-note").textContent = ja() ? found.restricted.reasonJa : found.restricted.reason;
+  else {
+    showDetail(opened, found.id, day);
+    // The legal flag is shown; where the flag flown was another, say so.
+    if (found.other !== null) $("variant-date-note").textContent = say("variant_date_other", { name: ja() ? found.other.nameJa : found.other.name });
+  }
 });
 
 // Which of a place's flags is shown: a switch with a button for each, and below it the chosen one's status, dates, reason

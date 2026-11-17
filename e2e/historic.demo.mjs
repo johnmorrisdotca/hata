@@ -6,12 +6,12 @@ import { join } from "node:path";
 
 import { expect, test } from "@playwright/test";
 
-import { at, noSidewaysScroll, serve } from "./demo.mjs";
+import { at, noSidewaysScroll, open as openDemo, serve, tap } from "./demo.mjs";
 
-const { MANIFEST } = await import(pathToFileURL(join(import.meta.dirname, "..", "dist", "manifest.js")).href);
-// A country is two letters; a former country has its years. Each is a row, and a flag in it is a variant, or its one flag.
+const { MANIFEST, RESTRICTED } = await import(pathToFileURL(join(import.meta.dirname, "..", "dist", "manifest.js")).href);
+// A country is two letters; a former country has its years. Each is a row, and a flag in it is a variant, or its one flag. The restricted flag is on this page, in its place's row, and nowhere else.
 const ROWS = MANIFEST.filter((record) => record.code.length === 2 || record.historical !== undefined);
-const FLAGS = ROWS.flatMap((record) => (record.variants.length === 0 ? [{ code: record.code, id: "", source: record.page }] : record.variants.map((variant) => ({ code: record.code, id: variant.id, source: variant.source, status: variant.status, from: variant.from, until: variant.until }))));
+const FLAGS = ROWS.flatMap((record) => (record.variants.length === 0 ? [{ code: record.code, id: "", source: record.page }] : [...record.variants, ...RESTRICTED.filter((one) => one.code === record.code).map((one) => one.variant)].map((variant) => ({ code: record.code, id: variant.id, source: variant.source, status: variant.status, from: variant.from, until: variant.until }))));
 
 async function open(page, query = "") {
   const errors = [];
@@ -46,13 +46,24 @@ test("shows a country's flags oldest first, each with its years, status and kind
   const canada = page.locator(`${at("historic-country")}[data-code="CA"]`);
   await expect(canada).toBeVisible();
   const flags = canada.locator(at("historic-flag"));
-  await expect(flags).toHaveCount(4);
-  await expect(flags.locator(".years")).toHaveText(["1868 to 1922-04-26", "1922-04-26 to 1957-10-08", "1957-10-08 to 1965-02-15", "since 1965-02-15"]);
-  await expect(flags.locator(".status")).toHaveText(["historical", "historical", "historical", "official"]);
-  await expect(flags.nth(3).locator("img")).toHaveAttribute("src", "dist/svg/ca.svg");
-  await expect(flags.nth(2).locator("img")).toHaveAttribute("src", "dist/svg/ca--red-ensign-1957.svg");
-  await expect(flags.nth(0).locator(at("historic-source"))).toHaveText("Wikipedia only");
-  await expect(flags.nth(3).locator(at("historic-source"))).toHaveText("official source");
+  // Canada's Union Flag (legal) and three Red Ensigns (flown) sit side by side in one block, then the Maple Leaf flag.
+  await expect(flags).toHaveCount(5);
+  const split = canada.locator(at("historic-split"));
+  await expect(split).toHaveCount(1);
+  await expect(split.locator(`${at("historic-split-legal")} ${at("historic-flag")}`)).toHaveCount(1);
+  await expect(split.locator(`${at("historic-split-in-use")} ${at("historic-flag")}`)).toHaveCount(3);
+  await expect(split.locator(`${at("historic-split-legal")} .years`)).toHaveText(["1867-07-01 → 1965-02-15"]);
+  await expect(split.locator(`${at("historic-split-in-use")} .years`)).toHaveText(["1868 → 1922-04-26", "1922-04-26 → 1957-10-08", "1957-10-08 → 1965-02-15"]);
+  await expect(split.locator(at("historic-reason"))).toContainText("kept the Union Flag as the national flag");
+  await expect(split.locator(at("historic-reason")).locator("a")).toHaveAttribute("href", "https://www.canada.ca/en/canadian-heritage/services/flag-canada-history.html");
+  await expect(split).toContainText("The legal flag and the flag in use differ");
+  await expect(flags.last().locator("img")).toHaveAttribute("src", "dist/svg/ca.svg");
+  await expect(flags.last().locator(".years")).toHaveText("since 1965-02-15");
+  await expect(flags.last().locator(at("historic-role"))).toHaveText("Legal and in use");
+  await expect(flags.nth(3).locator("img")).toHaveAttribute("src", "dist/svg/ca--red-ensign-1957.svg");
+  await expect(flags.nth(0).locator(at("historic-source"))).toHaveText("official source");
+  await expect(flags.nth(1).locator(at("historic-source"))).toHaveText("Wikipedia only");
+  await expect(flags.last().locator(at("historic-source"))).toHaveText("official source");
   // A country with one flag is one row with its picture, and the Commons file as its source.
   await page.locator(at("search")).fill("Angola");
   await expect(page.locator(at("historic-flag"))).toHaveCount(1);
@@ -102,8 +113,10 @@ test("is the same page in Japanese, with the same flags, and has no folds", asyn
   await expect(page.locator(at("count"))).toHaveText(`${ROWS.length}か国、旗${FLAGS.length}枚`);
   await page.locator(at("search")).fill("カナダ");
   const canada = page.locator(`${at("historic-country")}[data-code="CA"]`);
-  await expect(canada.locator(".years").first()).toHaveText("1868から1922-04-26まで");
+  await expect(canada.locator(".years").first()).toHaveText("1867-07-01 → 1965-02-15");
   await expect(canada.locator(".status").first()).toHaveText("かつての旗");
+  await expect(canada.locator(at("historic-split"))).toContainText("法律上の国旗と、実際に使われた旗が違う期間");
+  await expect(canada.locator("h3").first()).toHaveText("法律上の国旗");
   await expect(page.locator("details")).toHaveCount(0);
   expect(errors).toEqual([]);
 });
@@ -117,4 +130,71 @@ test("fits a phone without sideways scrolling, and the docs and gallery link to 
   await expect(page.locator(at("historic-link"))).toHaveAttribute("href", "historic.html");
   await page.locator(at("historic-link")).click();
   await expect(page.locator(at("historic-country")).first()).toBeVisible();
+});
+
+test("shows the legal flag and the flag in use side by side wherever they differ, each with its reason and source", async ({ page }) => {
+  await open(page, "?lang=en");
+  const noted = MANIFEST.filter((record) => record.variants.some((variant) => variant.roleNote !== null)).map((record) => record.code);
+  expect(noted.sort()).toEqual(["AU", "CA", "NZ", "UA"]);
+  await expect(page.locator(at("historic-split"))).toHaveCount(4);
+  for (const code of noted) {
+    const block = page.locator(`${at("historic-split")}[data-code="${code}"]`);
+    await expect(block, code).toHaveCount(1);
+    await expect(block.locator(at("historic-split-legal")), code).toBeVisible();
+    await expect(block.locator(at("historic-split-in-use")), code).toBeVisible();
+    // Each reason names a source, and the page's reasons are the manifest's.
+    const reasons = MANIFEST.find((record) => record.code === code).variants.filter((variant) => variant.roleNote !== null).map((variant) => variant.roleNote.why);
+    const shown = await block.locator(at("historic-reason")).allTextContents();
+    expect(shown.length, code).toBe(new Set(reasons).size);
+    for (const why of new Set(reasons)) expect(shown.some((text) => text.includes(why.slice(0, 60))), code).toBe(true);
+  }
+  // The flag with the same days in both roles has no block: it is one flag marked "Legal and in use".
+  await page.locator(at("search")).fill("Angola");
+  await expect(page.locator(at("historic-split"))).toHaveCount(0);
+  await page.locator(at("search")).fill("Australia");
+  const australia = page.locator(`${at("historic-split")}[data-code="AU"]`);
+  await expect(australia.locator(`${at("historic-split-legal")} .years`)).toHaveText(["1901-01-01 → 1954-04-14", "1954-04-14 → today"]);
+  await expect(australia.locator(`${at("historic-split-in-use")} .years`)).toHaveText(["1901-01-01 → 1901-09-03", "1901-09-03 → 1903-02-20", "1903-02-20 → 1908-12-19", "1908-12-19 → today"]);
+  await noSidewaysScroll(page);
+});
+
+test("shows Germany's restricted flag in Germany's row, with the context note in English and in Japanese, and nowhere else on the page", async ({ page }) => {
+  const errors = await open(page, "?lang=en&q=Germany");
+  const germany = page.locator(`${at("historic-country")}[data-code="DE"]`);
+  const shown = germany.locator(`${at("historic-flag")}[data-id="swastika-1935"]`);
+  await expect(shown).toHaveCount(1);
+  await expect(shown.locator(at("historic-restricted"))).toHaveText("Flag of Nazi Germany, 1935–1945. Shown for history and education. Displaying it is restricted by law in Germany and Austria outside those purposes.");
+  await expect(shown.locator(".status")).toHaveText("historical, restricted");
+  await expect(shown.locator(".years")).toHaveText("1935-09-17 to 1945-05-23");
+  // It is drawn by the package's own call that opts in, not from the CDN listing, which has no file of it.
+  await expect(shown.locator("img")).toHaveAttribute("src", /^data:image\/svg\+xml,/);
+  await shown.scrollIntoViewIfNeeded();
+  await expect(shown.locator("img")).toHaveJSProperty("complete", true);
+  await expect(page.locator(at("historic-restricted"))).toHaveCount(1);
+  expect(await page.locator("img").evaluateAll((images) => images.map((image) => image.getAttribute("src")).filter((src) => /swastika/.test(src ?? "") && !(src ?? "").startsWith("data:")))).toEqual([]);
+  // The other German flags have no note.
+  await expect(germany.locator(at("historic-restricted"))).toHaveCount(1);
+  await page.goto("https://hata.test/historic.html?lang=ja&q=Germany");
+  await page.waitForSelector('main[data-ready="true"]');
+  await expect(page.locator(`${at("historic-flag")}[data-id="swastika-1935"] ${at("historic-restricted")}`)).toHaveText("ナチス・ドイツの国旗（1935～1945年）。歴史と教育のために表示しています。ドイツとオーストリアでは、これらの目的以外での掲示は法律で制限されています。");
+  expect(errors).toEqual([]);
+});
+
+test("keeps the restricted flag out of the gallery, the panel's variant switch, the quiz and the CDN listing", async ({ page }, testInfo) => {
+  await openDemo(page, "?lang=en&set=country");
+  await expect(page.locator("body")).not.toContainText("Nazi");
+  await tap(page, at("tile-DE"), testInfo);
+  await expect(page.locator(at("variant-federal-bkrg"))).toHaveCount(1);
+  await expect(page.locator(at("variant-swastika-1935"))).toHaveCount(0);
+  // The panel's date field names the restriction instead of drawing the flag.
+  await page.locator(at("variant-date")).fill("1940-06-01");
+  await expect(page.locator(at("variant-date-note"))).toContainText("restricted by law in Germany and Austria");
+  await expect(page.locator(at("detail-flag"))).not.toHaveAttribute("src", /swastika/);
+  await page.locator(at("detail")).evaluate((dialog) => dialog.close());
+  // The quiz draws its questions from the codes, which never include a variant.
+  await page.goto("https://hata.test/?lang=en&tab=quiz&seed=1");
+  await page.waitForSelector('main[data-ready="true"]');
+  await expect(page.locator("body")).not.toContainText("Nazi");
+  const status = await page.evaluate(async () => (await fetch("dist/svg/de--swastika-1935.svg")).status);
+  expect(status).toBe(404);
 });

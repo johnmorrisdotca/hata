@@ -27,6 +27,7 @@ import { subdivision as kuniSubdivision } from "@johnmorrisdotca/kuni/subdivisio
 import { setCandidates, setNamed } from "./candidates.ts";
 import type { SourceName } from "./candidates.ts";
 import { ACCEPTED, ALIASES, BUDGET_BYTES, CEILING_BYTES, FOCUS, HISTORICAL, NO_FLAG, REVIEWED, SAME_PLACE, SUBDIVISION_COUNTRIES, VARIANTS } from "./data-config.ts";
+import type { FlagRole, RestrictedSpec, RoleNote, RoleSpec, VariantSpec } from "./data-config.ts";
 import { HISTORIC } from "./historic-flags.ts";
 import type { Anchor } from "./data-config.ts";
 import { classify, restrictionsOf } from "./licence.ts";
@@ -335,6 +336,10 @@ interface VariantRecord {
   status: string;
   from: string | null;
   until: string | null;
+  roles: FlagRole[];
+  roleDates: Partial<Record<FlagRole, { from: string | null; until: string | null }>>;
+  roleNote: RoleNote | null;
+  restricted: RestrictedSpec | null;
   why: string;
   source: string;
   sourceKind: "official" | "reference" | "encyclopedia";
@@ -375,6 +380,61 @@ const commonsDrawing = (file: CommonsFile, licence: Licence): Drawing => {
     text: commonsText(file),
   };
 };
+// The roles of a variant, resolved: which of `legal` and `in-use` it answers, the days of each (a role's own, else the variant's), the
+// reason and source where it is not both, and what restricts it. An official or historical variant must say which roles it has; a
+// de-facto or local flag has no turn (variantOn never gives one), so it has none.
+const BOTH_ROLES: readonly FlagRole[] = ["legal", "in-use"];
+const rolesOf = (code: string, spec: VariantSpec): Pick<VariantRecord, "roles" | "roleDates" | "roleNote" | "restricted"> => {
+  const where = `VARIANTS ${code} ${spec.id}`;
+  const turn = spec.status === "official" || spec.status === "historical";
+  if (!turn) {
+    if (spec.roles !== undefined || spec.roleNote !== undefined) throw new Error(`${where}: a ${spec.status} flag has no turn, so no roles`);
+    if (spec.restricted !== undefined) throw new Error(`${where}: only an official or historical flag can be restricted`);
+
+    return { roles: [], roleDates: {}, roleNote: null, restricted: null };
+  }
+  // The earlier flags of present-day countries (historic-flags.ts) were each decided; the few other dated flags are the flag of the law and of use alike.
+  if ((spec.roles === undefined || spec.roles.length === 0) && Object.hasOwn(HISTORIC, code)) throw new Error(`${where}: roles is required: ["legal"], ["in-use"] or both`);
+  const roles: FlagRole[] = [];
+  const roleDates: Partial<Record<FlagRole, { from: string | null; until: string | null }>> = {};
+  for (const one of (spec.roles ?? (BOTH_ROLES as readonly RoleSpec[])) as readonly RoleSpec[]) {
+    const entry = typeof one === "string" ? { role: one } : one;
+    if (entry.role !== "legal" && entry.role !== "in-use") throw new Error(`${where}: ${String(entry.role)} is not a role`);
+    if (roles.includes(entry.role)) throw new Error(`${where}: the role ${entry.role} twice`);
+    roles.push(entry.role);
+    roleDates[entry.role] = { from: "from" in entry && entry.from !== undefined ? entry.from : spec.from, until: "until" in entry && entry.until !== undefined ? entry.until : spec.until };
+  }
+  const bothWays = roles.length === 2;
+  if (bothWays && spec.roleNote !== undefined && JSON.stringify(roleDates.legal) === JSON.stringify(roleDates["in-use"]) && JSON.stringify(roleDates.legal) === JSON.stringify({ from: spec.from, until: spec.until })) throw new Error(`${where}: it is both legal and in use on the same days, so it needs no roleNote`);
+  const differs = !bothWays || JSON.stringify(roleDates.legal) !== JSON.stringify(roleDates["in-use"]);
+  if (differs && spec.roleNote === undefined) throw new Error(`${where}: legal and in use differ for it, so it needs a roleNote with the reason and its source`);
+  for (const dates of Object.values(roleDates)) {
+    if (dates.from !== null && spec.from !== null && dates.from < spec.from && !/^\d{4}$/.test(spec.from)) throw new Error(`${where}: a role starts before the flag does`);
+    if (dates.until !== null && spec.until !== null && dates.until > spec.until && !/^\d{4}$/.test(spec.until)) throw new Error(`${where}: a role ends after the flag does`);
+  }
+  if (spec.restricted !== undefined && (spec.restricted.law.length === 0 || spec.restricted.reason === "" || spec.restricted.reasonJa === "" || spec.restricted.allowedFor === "")) throw new Error(`${where}: a restricted flag needs its reason (in both languages), its law and who may use it`);
+
+  return { roles, roleDates, roleNote: spec.roleNote === undefined ? null : { why: spec.roleNote.why, source: spec.roleNote.source, sourceKind: spec.roleNote.sourceKind }, restricted: spec.restricted === undefined ? null : { reason: spec.restricted.reason, reasonJa: spec.restricted.reasonJa, law: [...spec.restricted.law], allowedFor: spec.restricted.allowedFor, allowedForJa: spec.restricted.allowedForJa } };
+};
+for (const [code, set] of Object.entries(VARIANTS)) {
+  // One flag per role on any day: two variants of a place may not both be the legal flag (or both the flag in use) on one day.
+  for (const role of ["legal", "in-use"] as const) {
+    const spans = set.variants.flatMap((spec) => {
+      const found = rolesOf(code, spec);
+      const dates = found.roleDates[role];
+
+      return dates === undefined || (dates.from === null && dates.until === null) ? [] : [{ id: spec.id, from: dates.from ?? "", until: dates.until }];
+    });
+    for (const [at, one] of spans.entries()) for (const other of spans.slice(at + 1)) {
+      const starts = (day: string): string => (/^\d{4}$/.test(day) ? `${day}-01-01` : /^\d{4}-\d{2}$/.test(day) ? `${day}-01` : day);
+      const ends = (day: string | null): string => (day === null ? "9999-12-31" : starts(day));
+      // A bare year shared by two flags is a change somewhere in it: the later flag wins, which is not an overlap to stop on.
+      if (starts(one.from) < ends(other.until) && starts(other.from) < ends(one.until) && !(/^\d{4}$/.test(one.from) || /^\d{4}$/.test(other.from) || (one.until !== null && /^\d{4}$/.test(one.until)) || (other.until !== null && /^\d{4}$/.test(other.until)))) {
+        throw new Error(`VARIANTS ${code}: ${one.id} and ${other.id} are both the ${role} flag on one day`);
+      }
+    }
+  }
+}
 for (const [code, set] of Object.entries(VARIANTS)) {
   const ids = set.variants.map((variant) => variant.id);
   if (new Set(ids).size !== ids.length) throw new Error(`VARIANTS ${code}: two variants share an id`);
@@ -387,7 +447,7 @@ for (const [code, set] of Object.entries(VARIANTS)) {
   } else if (place === undefined || own.length !== 1 || own[0]!.id !== set.default) throw new Error(`VARIANTS ${code}: its default must be its one variant with no file, and the place must have a flag here`);
   const records: VariantRecord[] = [];
   for (const spec of set.variants) {
-    const base = { id: spec.id, name: spec.name, nameJa: spec.nameJa, status: spec.status, from: spec.from, until: spec.until, why: spec.why, source: spec.source, sourceKind: spec.sourceKind ?? "encyclopedia", default: spec.id === set.default };
+    const base = { id: spec.id, name: spec.name, nameJa: spec.nameJa, status: spec.status, from: spec.from, until: spec.until, ...rolesOf(code, spec), why: spec.why, source: spec.source, sourceKind: spec.sourceKind ?? "encyclopedia", default: spec.id === set.default };
     if (spec.file === null) {
       const one = place!;
       const measured = FRAMINGS_FILE[one.owner]!;
@@ -418,7 +478,15 @@ for (const [code, set] of Object.entries(VARIANTS)) {
   }
   variantSets.set(code, { disputed: set.disputed, default: set.default, variants: records });
 }
-const variantsOfCode = (code: string): { disputed: boolean; default: string | null; variants: VariantRecord[] } => variantSets.get(variantKeyFor(code) ?? "") ?? { disputed: false, default: null, variants: [] };
+const allVariantsOfCode = (code: string): { disputed: boolean; default: string | null; variants: VariantRecord[] } => variantSets.get(variantKeyFor(code) ?? "") ?? { disputed: false, default: null, variants: [] };
+// What every list shows: a restricted flag is in none of them (it has its own list, `RESTRICTED`, and its own module table).
+const variantsOfCode = (code: string): { disputed: boolean; default: string | null; variants: VariantRecord[] } => {
+  const all = allVariantsOfCode(code);
+
+  return { ...all, variants: all.variants.filter((variant) => variant.restricted === null) };
+};
+const restrictedCodes = [...variantSets].filter(([, set]) => set.variants.some((variant) => variant.restricted !== null)).map(([code]) => code).sort();
+const listedSets = [...variantSets].map(([code, set]) => [code, { ...set, variants: set.variants.filter((variant) => variant.restricted === null) }] as const);
 leftOut.sort(byCode);
 
 // 4. The source files.
@@ -588,6 +656,10 @@ const variantLoaderLines = [...new Set([...codes, ...places.map((place) => place
   .filter((code) => variantsOfCode(code).variants.length > 0)
   .sort()
   .flatMap((code) => variantsOfCode(code).variants.map((variant) => `  ${quote(`${code}--${variant.id}`)}: () => import("../flags/${variant.module}.js"),`));
+// A restricted flag's loaders are a table of their own, so that no listing of variants reaches one: it is asked for by name, with an opt-in.
+const restrictedLoaderLines = restrictedCodes.flatMap((code) =>
+  allVariantsOfCode(code).variants.filter((variant) => variant.restricted !== null).map((variant) => `  ${quote(`${code}--${variant.id}`)}: () => import("../flags/${variant.module}.js"),`),
+);
 writeDocumentedFile(
   join(DATA_DIR, "loaders.data.ts"),
   `${HEADER}
@@ -616,7 +688,13 @@ const VARIANT_LOADERS: Readonly<Record<string, Loader>> = {
 ${variantLoaderLines.join("\n")}
 };
 
-export { VARIANT_LOADERS };
+// The variants whose display the law restricts (docs/decisions.md, "Restricted flags"): not in the table above, loaded only
+// by a call that opts in (\`allowRestricted\`).
+const RESTRICTED_LOADERS: Readonly<Record<string, Loader>> = {
+${restrictedLoaderLines.join("\n")}
+};
+
+export { RESTRICTED_LOADERS, VARIANT_LOADERS };
 `,
 );
 
@@ -775,7 +853,7 @@ writeDocumentedFile(
 // Sources: Wikidata (CC0), the flag image (P41) of each place, read ${wikidata.read}; Wikimedia Commons, each file's page,
 // read ${commons.read}; flag-icons ${setNamed("flag-icons").version}, country-flag-icons ${setNamed("country-flag-icons").version} and circle-flags ${setNamed("circle-flags").version} (MIT), compared by pnpm data:choose.
 
-import type { FlagRecord, LeftOutRecord } from "../manifest.types";
+import type { FlagRecord, LeftOutRecord, RestrictedVariant } from "../manifest.types";
 
 // The pictures that only a variant has, for scripts/framing.mjs to measure: "<code>--<id>" and the picture's box.
 const VARIANT_PICTURES: readonly { code: string; width: number; height: number }[] = [
@@ -790,7 +868,12 @@ const LEFT_OUT: readonly LeftOutRecord[] = [
 ${leftOut.map((one) => `  ${JSON.stringify({ code: one.place.code, kind: one.kind, reason: one.reason, file: one.file?.file ?? null, page: one.file?.page ?? null, licence: one.licence?.name ?? null, disputed: variantsOfCode(one.place.code).disputed, defaultVariant: variantsOfCode(one.place.code).default, variants: variantsOfCode(one.place.code).variants, ...eraOf(one.place.code) })},`).join("\n")}
 ];
 
-export { LEFT_OUT, RECORDS, VARIANT_PICTURES };
+// The flags whose display the law restricts, apart from every list above: see RestrictedVariant in /manifest.
+const RESTRICTED_ROWS: readonly RestrictedVariant[] = [
+${restrictedCodes.flatMap((code) => allVariantsOfCode(code).variants.filter((variant) => variant.restricted !== null).map((variant) => `  ${JSON.stringify({ code, variant })},`)).join("\n")}
+];
+
+export { LEFT_OUT, RECORDS, RESTRICTED_ROWS, VARIANT_PICTURES };
 `,
 );
 
@@ -983,7 +1066,7 @@ own module, \`/flags/<code>--<id>\`, and file, \`svg/<code>--<id>.svg\`. The ear
 
 | Code | Place | Id | Status | Dates | Default | Why | Source | Drawing | Licence |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-${[...variantSets]
+${listedSets
   .filter(([code]) => !Object.hasOwn(HISTORIC, code))
   .flatMap(([code, set]) => {
     const place = places.find((candidate) => candidate.code === code)!;
@@ -1000,11 +1083,29 @@ writeDocumentedFile(join(ROOT, "docs", "variants.md"), variantsDoc);
 // The former countries and teams of sport, with every code that finds each: docs/historical.md.
 const formerFlags = shipped.filter((one) => one.place.group === "historical");
 const formerLeftOut = leftOut.filter((one) => one.place.group === "historical");
-const historicSets = [...variantSets].filter(([code]) => Object.hasOwn(HISTORIC, code));
+const historicSets = listedSets.filter(([code]) => Object.hasOwn(HISTORIC, code));
 const historicCount = historicSets.reduce((sum, [, set]) => sum + set.variants.length, 0);
 const historicKinds = { official: 0, reference: 0, encyclopedia: 0 };
 for (const [, set] of historicSets) for (const variant of set.variants) historicKinds[variant.sourceKind] += 1;
 const yearsOf = (code: string): string => `${HISTORICAL[code]!.from} to ${HISTORICAL[code]!.until}`;
+const rolesWords = (variant: VariantRecord): string => (variant.roles.length === 2 ? "legal and in use" : variant.roles[0] === "legal" ? "legal" : "in use");
+const rolesNoted = historicSets.flatMap(([code, set]) => set.variants.filter((variant) => variant.roleNote !== null).map((variant) => ({ code, variant })));
+const days = (variant: VariantRecord, role: FlagRole): string => {
+  const dates = variant.roleDates[role];
+
+  return dates === undefined ? "never" : `${dates.from ?? ""} to ${dates.until ?? "today"}`;
+};
+const rolesDoc = `### Legal flag and flag in use
+
+What the law made a country's flag and what its people flew were sometimes two flags. Every earlier flag has \`roles\`: \`legal\` (the flag the law made the
+national flag), \`in-use\` (the flag flown as the country's own in practice) or both, with the days of each (\`roleDates\`; a role's days may differ from the flag's own).
+${historicCount - rolesNoted.length} of the ${historicCount} flags are both on the same days as their own, and need no more. The ${rolesNoted.length} below are not, and each has a reason and a source (\`roleNote\`).
+\`flag(code, { date })\` and \`variantOn(code, date)\` give the legal flag by default, with \`other\` naming the flag of the other role and why;
+\`{ role: "in-use" }\` (\`which="in-use"\` on \`<hata-flag>\`) picks the other. A flag whose display the law restricts (Germany's of 1935 to 1945) is in no table here: see [decisions.md](decisions.md#restricted-flags).
+
+| Code | Place | Id | Roles | Legal flag on | In use on | Why, and the source |
+| --- | --- | --- | --- | --- | --- | --- |
+${rolesNoted.map(({ code, variant }) => `| \`${code}\` | ${cell(places.find((candidate) => candidate.code === code)!.en)} | \`${variant.id}\` | ${rolesWords(variant)} | ${days(variant, "legal")} | ${days(variant, "in-use")} | ${cell(variant.roleNote!.why)} [${variant.roleNote!.sourceKind}](${variant.roleNote!.source}) |`).join("\n")}`;
 const historicalDoc = `# Former countries and teams of sport
 
 Made by \`pnpm data\`; a test fails if this list and the data differ. A medal table, a record book or a history of a sport
@@ -1048,15 +1149,17 @@ day or before its first, and for a place with no dated flags. A former country h
 \`reference\` (Flags of the World, a scholarly article or another vexillological reference) or \`encyclopedia\` (Wikipedia, because nothing better was found: a better source is wanted).
 Of the ${historicCount} flags, ${historicKinds.official} have an official source, ${historicKinds.reference} a reference and ${historicKinds.encyclopedia} an encyclopedia page.
 
-| Code | Place | Id | Years | Status | Name | Source | Drawing | Licence | Why |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Code | Place | Id | Years | Status | Roles | Name | Source | Drawing | Licence | Why |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 ${historicSets
   .flatMap(([code, set]) => {
     const place = places.find((candidate) => candidate.code === code)!;
 
-    return [...set.variants].sort((a, b) => (a.from ?? "").localeCompare(b.from ?? "")).map((variant) => `| \`${code}\` | ${cell(place.en)} (${cell(place.ja)}) | \`${variant.id}\` | ${cell(`${variant.from ?? ""} to ${variant.until ?? "today"}`)} | ${variant.status} | ${cell(variant.name)} | [${variant.sourceKind}](${variant.source}) | ${linkTo(variant.drawing.file, variant.drawing.page)} | ${cell(variant.drawing.licence.name)} | ${cell(variant.why)} |`);
+    return [...set.variants].sort((a, b) => (a.from ?? "").localeCompare(b.from ?? "")).map((variant) => `| \`${code}\` | ${cell(place.en)} (${cell(place.ja)}) | \`${variant.id}\` | ${cell(`${variant.from ?? ""} to ${variant.until ?? "today"}`)} | ${variant.status} | ${rolesWords(variant)} | ${cell(variant.name)} | [${variant.sourceKind}](${variant.source}) | ${linkTo(variant.drawing.file, variant.drawing.page)} | ${cell(variant.drawing.licence.name)} | ${cell(variant.why)} |`);
   })
   .join("\n")}
+
+${rolesDoc}
 
 ## Codes with no flag
 
@@ -1155,7 +1258,7 @@ const variantCredits = [...variantSets]
 writeDocumentedFile(join(ROOT, "NOTICE.md"), between(between(notice, "attributions", [...credited.map(creditOf), ...variantCredits].length === 0 ? "No Commons drawing in this version is under a licence that asks for credit." : [...credited.map(creditOf), ...variantCredits].join("\n")), "sets", setsBody));
 
 // 6. What happened.
-console.log(`variants: ${[...variantSets].map(([code, set]) => `${code} ${set.variants.length}`).join(", ")}${variantsLeftOut.length > 0 ? `; left out: ${variantsLeftOut.map((one) => `${one.code} ${one.id} (${one.reason})`).join(", ")}` : ""}`);
+console.log(`variants: ${listedSets.map(([code, set]) => `${code} ${set.variants.length}`).join(", ")}${variantsLeftOut.length > 0 ? `; left out: ${variantsLeftOut.map((one) => `${one.code} ${one.id} (${one.reason})`).join(", ")}` : ""}`);
 const summary = groups.map((group) => `${group} ${count(group).flags}/${count(group).total}`).join(", ");
 console.log(`${shipped.length} flags (${owners.length} pictures): ${summary}`);
 console.log(`winners: ${JSON.stringify(tally(shipped, (one) => one.drawing.source))}`);

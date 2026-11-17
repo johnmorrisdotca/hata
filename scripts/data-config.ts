@@ -258,6 +258,25 @@ type VariantStatus = "official" | "de-facto" | "historical" | "local";
 // What kind of page a variant's dates come from: `official` (a government, parliament, archive or law text), `reference` (a
 // vexillological reference or a scholarly article) or `encyclopedia` (Wikipedia: a better source is wanted). Left out, `encyclopedia`.
 type SourceKind = "official" | "reference" | "encyclopedia";
+// What a variant is the answer to on its days: `legal` is the flag the law made the country's national flag, `in-use` the flag it flew
+// as its own in practice. Most flags are both. A role may start or end on another day than the flag's own `from` and `until`
+// (Australia's Blue Ensign was flown from 1901 and became the national flag in law in 1954).
+type FlagRole = "legal" | "in-use";
+type RoleSpec = FlagRole | { role: FlagRole; from?: string | null; until?: string | null };
+// Why a flag is only one of the two, and who says so: required wherever a variant is not both.
+interface RoleNote {
+  why: string;
+  source: string;
+  sourceKind: SourceKind;
+}
+// A flag whose display is restricted by law outside history and education: never returned by a default lookup, and left out of every list, picker, quiz and pack.
+interface RestrictedSpec {
+  reason: string;
+  reasonJa: string;
+  law: readonly string[];
+  allowedFor: string;
+  allowedForJa: string;
+}
 interface VariantSpec {
   id: string;
   name: string;
@@ -265,6 +284,10 @@ interface VariantSpec {
   status: VariantStatus;
   from: string | null;
   until: string | null;
+  // Left out, an official or historical variant must say (historic-flags.ts always does); a de-facto or local one has no turn and has none.
+  roles?: readonly RoleSpec[];
+  roleNote?: RoleNote;
+  restricted?: RestrictedSpec;
   why: string;
   source: string;
   sourceKind?: SourceKind;
@@ -337,7 +360,7 @@ const VARIANTS: Readonly<Record<string, VariantSet>> = {
       {
         id: "union-flag",
         name: "The Union Flag",
-        nameJa: "ユニオンフラッグ（イギリス国旗）",
+        nameJa: "ユニオン・フラッグ（イギリス国旗）",
         status: "official",
         from: null,
         until: null,
@@ -382,7 +405,7 @@ const VARIANTS: Readonly<Record<string, VariantSet>> = {
       {
         id: "union-flag",
         name: "The Union Flag",
-        nameJa: "ユニオンフラッグ（イギリス国旗）",
+        nameJa: "ユニオン・フラッグ（イギリス国旗）",
         status: "official",
         from: "1973",
         until: null,
@@ -982,4 +1005,4 @@ const BUDGET_BYTES = 40 * 1024;
 const CEILING_BYTES = 400 * 1024;
 
 export { ACCEPTED, ALIASES, BUDGET_BYTES, CEILING_BYTES, CHOSEN, FOCUS, HISTORICAL, ITEM, NAMED, NO_FLAG, REVIEWED, SAME_PLACE, SUBDIVISION_COUNTRIES, VARIANTS };
-export type { Anchor, Focus, HistoricalSpec, SourceKind, VariantSet, VariantSpec, VariantStatus };
+export type { Anchor, Focus, FlagRole, HistoricalSpec, RestrictedSpec, RoleNote, RoleSpec, SourceKind, VariantSet, VariantSpec, VariantStatus };

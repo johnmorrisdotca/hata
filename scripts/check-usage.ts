@@ -175,6 +175,17 @@ await step("historic", () => {
   if (out !== "red-ensign-1957 maple-leaf true null 5") throw new Error(`unexpected output: ${out}`);
 });
 
+await step("the legal flag and the flag in use", () => {
+  const out = execFileSync(process.execPath, [join(examples("historic"), "roles.mjs")], { cwd: usage, encoding: "utf8" }).trim().split("\n");
+  const [legal, other, why, source, inUse, same, drawn] = out;
+  if (legal !== "union-flag legal" || other !== "red-ensign-1957 in-use" || !why?.includes("kept the Union Flag") || !source?.startsWith("https://") || inUse !== "red-ensign-1957" || same !== "null" || drawn !== "true") throw new Error(`unexpected output: ${out.join(" | ")}`);
+});
+
+await step("a restricted flag", () => {
+  const out = execFileSync(process.execPath, [join(examples("historic"), "restricted.mjs")], { cwd: usage, encoding: "utf8" }).trim().split("\n");
+  if (out[0] !== "true education and history" || out[1] !== "null" || !out[2]?.startsWith("Flag of Nazi Germany, 1935–1945.") || out[3] !== "true") throw new Error(`unexpected output: ${out.join(" | ")}`);
+});
+
 await step("custom", () => {
   const out = execFileSync(process.execPath, [join(examples("custom"), "custom.mjs")], {
     cwd: usage,
@@ -394,6 +405,14 @@ const FILES: Record<string, string[]> = {
   "organisations/organisations.mjs": guide("organisations"),
   "custom/custom.mjs": guide("custom-flags"),
   "historic/historic.mjs": guide("historic-flags"),
+  "historic/roles.mjs": guide("historic-flags"),
+  "historic/restricted.mjs": guide("historic-flags"),
+  "bindings/react-server.tsx": guide("frameworks"),
+  "bindings/vue-server.mjs": guide("frameworks"),
+  "bindings/react/main.tsx": guide("frameworks"),
+  "bindings/vue/main.ts": guide("frameworks"),
+  "bindings/svelte/App.svelte": guide("frameworks"),
+  "bindings/svelte/main.ts": guide("frameworks"),
 };
 const normal = (text: string) => text.replace(/\r\n/g, "\n").trim();
 for (const [file, places] of everything ? Object.entries(FILES) : []) {

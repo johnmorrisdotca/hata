@@ -44,6 +44,18 @@ export const FLAG_OPTIONS = [
     help: { en: "Draw the flag the place had in use on this day, such as 1962-09-29 for Canada's Red Ensign: the earlier flags of a country, and today's after its newest change. A variant, if named, wins.", ja: "その日にその地域で使われていた旗を描きます。例：1962-09-29（カナダのレッド・エンサイン）。国の以前の旗も指定でき、最も新しい変更のあとの日付なら現在の旗になります。別の旗も指定したときは、そちらが優先されます。" },
   },
   {
+    id: "which",
+    kind: "choice",
+    attribute: "which",
+    default: "legal",
+    label: { en: "Which flag of the date", ja: "その日の旗の種類" },
+    help: { en: "With a date: the legal flag, the one the law made the country's, or the flag in use, the one flown in practice (Canada in 1962: the Union Flag, or the Red Ensign).", ja: "日付を指定したときに、法律上の国旗（法律がその国の旗と定めた旗）と、実際に使われた旗（実際に掲げられた旗）のどちらを描くか選びます。例：1962年のカナダは、法律上の国旗がユニオン・フラッグ、実際に使われた旗がレッド・エンサインです。" },
+    choices: [
+      { value: "legal", label: { en: "The legal flag", ja: "法律上の国旗" } },
+      { value: "in-use", label: { en: "The flag in use", ja: "実際に使われた旗" } },
+    ],
+  },
+  {
     id: "fit",
     kind: "choice",
     attribute: "fit",
@@ -93,14 +105,14 @@ export const FLAG_OPTIONS = [
 export const unknownDate = (settings) => {
   if (!settings.date || settings.variant) return false;
   try {
-    return variantOn(settings.code, settings.date) === null;
+    return variantOn(settings.code, settings.date, { role: settings.which === "in-use" ? "in-use" : "legal" }) === null;
   } catch {
     return true;
   }
 };
 const resolved = (settings) => {
   if (!settings.date || settings.variant || unknownDate(settings)) return settings;
-  return { ...settings, variant: variantOn(settings.code, settings.date).id, date: "" };
+  return { ...settings, variant: variantOn(settings.code, settings.date, { role: settings.which === "in-use" ? "in-use" : "legal" }).id, date: "" };
 };
 
 // A variant is drawn at its own proportions, which are not always the default flag's (the Taliban's is 2:1, the Republic's 3:2).

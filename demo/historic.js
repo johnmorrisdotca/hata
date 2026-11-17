@@ -14,7 +14,8 @@ const words = {
     pageDocs: "Docs",
     pageApi: "API",
     intro: "Each row is a country and every flag the package has for it, oldest first, with the years it was in use, its status and the page that documents the dates.",
-    introDates: "In code: flag(code, { date }) loads the flag in use on a day, variantOn(code, date) finds it, and <hata-flag code date> draws it. A date the package has no flag for gives nothing.",
+    introDates: "In code: flag(code, { date }) loads the flag of a day, variantOn(code, date) finds it, and <hata-flag code date> draws it. It is the legal flag unless you ask for the flag in use. A date the package has no flag for gives nothing.",
+    introRoles: "Where the law made one flag the country's and its people flew another, both are shown side by side with the reason.",
     search: "Search",
     show: "Show",
     continent: "Continent",
@@ -40,6 +41,14 @@ const words = {
     kindEncyclopedia: "Wikipedia only",
     kindDrawing: "Commons file",
     former: "former country, {from} to {until}",
+    roleBoth: "Legal and in use",
+    roleLegal: "Legal flag",
+    roleInUse: "Flag in use",
+    splitTitle: "The legal flag and the flag in use differ",
+    splitWhy: "Why",
+    restricted: "restricted",
+    restrictedNote: "Flag of Nazi Germany, 1935–1945. Shown for history and education. Displaying it is restricted by law in Germany and Austria outside those purposes.",
+    today2: "today",
   },
   ja: {
     pitch: "どの国のどの旗も、年代順に見られます。",
@@ -50,7 +59,8 @@ const words = {
     pageDocs: "ドキュメント",
     pageApi: "API（英語）",
     intro: "1行が1つの国で、パッケージにあるその国の旗を古い順に並べています。使われた年、位置づけ、日付の出典のページを添えています。",
-    introDates: "コードでは、flag(code, { date }) がその日に使われていた旗を読み込み、variantOn(code, date) がそれを探し、<hata-flag code date> が描きます。旗が分からない日付では、何も返りません。",
+    introDates: "コードでは、flag(code, { date }) がその日の旗を読み込み、variantOn(code, date) がそれを探し、<hata-flag code date> が描きます。指定しなければ法律上の国旗で、実際に使われていた旗も選べます。旗が分からない日付では、何も返りません。",
+    introRoles: "法律が定めた国旗と、人々が実際に掲げた旗が違うときは、その2つを理由とともに並べて表示します。",
     search: "検索",
     show: "表示",
     continent: "大陸",
@@ -76,6 +86,14 @@ const words = {
     kindEncyclopedia: "Wikipediaのみ",
     kindDrawing: "Commonsのファイル",
     former: "かつての国（{from}年から{until}年まで）",
+    roleBoth: "法律上も実際にも使用",
+    roleLegal: "法律上の国旗",
+    roleInUse: "実際に使われた旗",
+    splitTitle: "法律上の国旗と、実際に使われた旗が違う期間",
+    splitWhy: "理由",
+    restricted: "使用制限あり",
+    restrictedNote: "ナチス・ドイツの国旗（1935～1945年）。歴史と教育のために表示しています。ドイツとオーストリアでは、これらの目的以外での掲示は法律で制限されています。",
+    today2: "現在",
   },
 };
 const page = globalThis.familyLanguage({ id: "hata", words, onChange: () => { docsLink(); draw(); } });
@@ -90,23 +108,104 @@ const KINDS = { official: "kindOfficial", reference: "kindReference", encycloped
 const years = (flag) => (flag.from !== null && flag.until !== null ? say("between", flag) : flag.from !== null ? say("sinceYear", flag) : flag.until !== null ? say("untilYear", flag) : "");
 const changed = (row) => row.flags.some((flag) => flag.until !== null || flag.status === "historical");
 
-const figure = (row, flag) => {
+// Both only where the two roles run on the same days; a flag that was one of them for part of its years says which, in the side-by-side block.
+const roleWords = (flag) => (flag.roles.length === 2 && JSON.stringify(flag.roleDates.legal) === JSON.stringify(flag.roleDates["in-use"]) ? "roleBoth" : flag.roles.length === 2 ? "roleBoth" : flag.roles[0] === "legal" ? "roleLegal" : "roleInUse");
+const spanOf = (dates) => (dates === undefined ? "" : `${dates.from ?? ""} → ${dates.until ?? say("today2")}`);
+
+// The restricted flag's drawing: asked for by name, for this page of history, from the package's own call (never from dist/svg, which does not list it).
+const drawRestricted = (image, row, flag) => {
+  import("./dist/load.js")
+    .then(({ flag: load }) => load(row.code, { variant: flag.id, allowRestricted: true }))
+    .then((svg) => { if (svg !== null) image.src = `data:image/svg+xml,${encodeURIComponent(svg)}`; });
+};
+
+const figure = (row, flag, again = false) => {
   const item = document.createElement("li");
   item.className = "historic-flag";
-  item.dataset.testid = "historic-flag";
-  item.setAttribute("data-testid", "historic-flag");
+  item.setAttribute("data-testid", again ? "historic-flag-again" : "historic-flag");
   item.dataset.code = row.code;
   item.dataset.id = flag.id ?? "";
   const picture = Object.assign(document.createElement("span"), { className: "picture" });
-  picture.append(Object.assign(document.createElement("img"), { src: `dist/svg/${flag.module}.svg`, alt: "", loading: "lazy", decoding: "async" }));
+  const image = Object.assign(document.createElement("img"), { alt: "", loading: "lazy", decoding: "async" });
+  if (flag.restricted === undefined) image.src = `dist/svg/${flag.module}.svg`;
+  else drawRestricted(image, row, flag);
+  picture.append(image);
   const label = Object.assign(document.createElement("span"), { className: "years", textContent: years(flag) || (flag.id === null ? say(row.former ? "itsFlag" : "today") : say("undated")) });
   const name = Object.assign(document.createElement("span"), { className: "name", textContent: flag.id === null ? "" : ja() ? flag.ja : flag.en, lang: ja() ? "ja" : "en" });
-  const status = Object.assign(document.createElement("span"), { className: "status", textContent: say(flag.status) });
+  const status = Object.assign(document.createElement("span"), { className: "status", textContent: flag.restricted === undefined ? say(flag.status) : `${say(flag.status)}${ja() ? "、" : ", "}${say("restricted")}` });
   status.dataset.status = flag.status;
   const source = Object.assign(document.createElement("a"), { href: flag.source, textContent: say(KINDS[flag.kind]), rel: "noopener", target: "_blank" });
   source.setAttribute("data-testid", "historic-source");
-  item.append(picture, label, ...(flag.id === null ? [] : [name]), status, source);
+  item.append(picture, label, ...(flag.id === null ? [] : [name]), status);
+  if (flag.id !== null && flag.roles.length > 0) {
+    const role = Object.assign(document.createElement("span"), { className: "role", textContent: say(roleWords(flag)) });
+    role.dataset.role = flag.roles.join(" ");
+    role.setAttribute("data-testid", "historic-role");
+    item.append(role);
+  }
+  item.append(source);
+  if (flag.restricted !== undefined) {
+    // The context note, factual and plain: why the flag is here and that the law restricts it elsewhere.
+    const note = Object.assign(document.createElement("p"), { className: "restricted-note", textContent: ja() ? flag.restricted.ja : flag.restricted.en, lang: ja() ? "ja" : "en" });
+    note.setAttribute("data-testid", "historic-restricted");
+    item.dataset.restricted = "true";
+    item.append(note);
+  }
   return item;
+};
+
+// Where the law's flag and the flag flown were two flags (a flag with a role note), they sit side by side, each under its role, with the reason and its source.
+const split = (row, flags) => {
+  const block = document.createElement("li");
+  block.className = "historic-split";
+  block.setAttribute("data-testid", "historic-split");
+  block.dataset.code = row.code;
+  const title = Object.assign(document.createElement("p"), { className: "split-title", textContent: say("splitTitle") });
+  const columns = Object.assign(document.createElement("div"), { className: "split-columns" });
+  const seen = new Set();
+  for (const [role, heading] of [["legal", "roleLegal"], ["in-use", "roleInUse"]]) {
+    const column = Object.assign(document.createElement("div"), { className: "split-column" });
+    column.dataset.role = role;
+    column.setAttribute("data-testid", `historic-split-${role}`);
+    column.append(Object.assign(document.createElement("h3"), { textContent: say(heading) }));
+    const list = Object.assign(document.createElement("ul"), { className: "historic-flags" });
+    for (const flag of flags.filter((one) => one.roles.includes(role))) {
+      const item = figure(row, flag, seen.has(flag.id));
+      seen.add(flag.id);
+      // In this column the flag has the days of this role.
+      const span = item.querySelector(".years");
+      span.textContent = spanOf(flag.roleDates[role]);
+      item.querySelector(".role")?.remove();
+      list.append(item);
+    }
+    column.append(list);
+    columns.append(column);
+  }
+  const reasons = new Map(flags.map((flag) => [flag.note.why, flag.note]));
+  const why = Object.assign(document.createElement("div"), { className: "split-why" });
+  for (const note of reasons.values()) {
+    const line = Object.assign(document.createElement("p"), { textContent: `${say("splitWhy")}: ${note.why} ` });
+    line.append(Object.assign(document.createElement("a"), { href: note.source, textContent: say(KINDS[note.kind]), rel: "noopener", target: "_blank" }));
+    line.setAttribute("data-testid", "historic-reason");
+    why.append(line);
+  }
+  block.append(title, columns, why);
+  return block;
+};
+
+// A country's flags in date order, with the flags whose roles differ gathered into one side-by-side block where the first of them stands.
+const flagItems = (row) => {
+  const noted = row.flags.filter((flag) => flag.note !== null);
+  const items = [];
+  let placed = false;
+  for (const flag of row.flags) {
+    if (flag.note === null) items.push(figure(row, flag));
+    else if (!placed) {
+      placed = true;
+      items.push(split(row, noted));
+    }
+  }
+  return items;
 };
 
 const card = (row) => {
@@ -119,7 +218,7 @@ const card = (row) => {
   title.append(Object.assign(document.createElement("span"), { className: "historic-code", textContent: `${row.code} · ${ja() ? row.en : row.ja}${row.former ? ` · ${say("former", { from: row.years[0], until: row.years[1] })}` : ""}` }));
   head.append(title);
   const list = Object.assign(document.createElement("ul"), { className: "historic-flags" });
-  list.append(...row.flags.map((flag) => figure(row, flag)));
+  list.append(...flagItems(row));
   item.append(head, list);
   return item;
 };

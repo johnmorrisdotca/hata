@@ -114,17 +114,19 @@ test("draws a variant in the element and in the embed page, at its own proportio
   expect(said.length).toBeGreaterThan(0);
 });
 
-test("asks Canada's panel for the flag in use on a day, and says when no flag is known", async ({ page }, testInfo) => {
+test("asks Canada's panel for the flag of a day (the legal one, and says which was flown), and says when no flag is known", async ({ page }, testInfo) => {
   await open(page, "?lang=en&set=country");
   await tap(page, at("tile-CA"), testInfo);
   const picture = page.locator(at("detail-flag"));
   const date = page.locator(at("variant-date"));
   await expect(date).toBeVisible();
   await date.fill("1962-09-29");
-  await expect(picture).toHaveAttribute("src", "dist/svg/ca--red-ensign-1957.svg");
-  await expect(page.locator(at("variant-red-ensign-1957"))).toHaveAttribute("aria-pressed", "true");
-  await expect(page.locator(at("variant-why"))).toContainText("1957-10-08 to 1965-02-15");
-  await expect(page.locator(at("variant-why"))).toContainText("reference");
+  // The legal flag is the one shown, and the note says that another was flown.
+  await expect(picture).toHaveAttribute("src", "dist/svg/ca--union-flag.svg");
+  await expect(page.locator(at("variant-union-flag"))).toHaveAttribute("aria-pressed", "true");
+  await expect(page.locator(at("variant-why"))).toContainText("1867-07-01 to 1965-02-15");
+  await expect(page.locator(at("variant-why"))).toContainText("official");
+  await expect(page.locator(at("variant-date-note"))).toContainText("The flag flown was The Red Ensign (1957 arms, red leaves)");
   await expect(date).toHaveValue("1962-09-29");
   // The day the Maple Leaf came in belongs to it; a day before any flag the package knows is said, not guessed.
   await date.fill("1965-02-15");

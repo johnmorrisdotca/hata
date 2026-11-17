@@ -123,6 +123,88 @@ interface HistoricalEra {
 }
 
 /**
+ * What a flag is the answer to on its days: `legal` is the flag the law made the country's national flag, and `in-use` the flag it flew
+ * as its own in practice. They are the same flag for most places and most days. Where they differ, both are kept, each with its role
+ * and the reason (`Variant.roleNote`): `variantOn(code, date)` gives the legal flag, and `{ role: "in-use" }` the other.
+ *
+ * @example
+ * ```ts
+ * import { variantOn, type FlagRole } from "@johnmorrisdotca/hata/manifest";
+ *
+ * const roles: FlagRole[] = ["legal", "in-use"];
+ * console.log(roles.map((role) => variantOn("CA", "1962-09-29", { role })?.id)); // ["union-flag", "red-ensign-1957"]
+ * ```
+ */
+type FlagRole = "legal" | "in-use";
+
+/**
+ * Why a flag is only one of the two roles, with the page that says so: `why`, a sentence or two, and the `source` page of `sourceKind` (see `Variant`).
+ *
+ * @example
+ * ```ts
+ * import { variantsOf, type RoleNote } from "@johnmorrisdotca/hata/manifest";
+ *
+ * const note: RoleNote | null = variantsOf("CA").find((one) => one.id === "red-ensign-1957")?.roleNote ?? null;
+ * console.log(note?.sourceKind); // "official"
+ * console.log(note?.source);     // "https://www.canada.ca/en/canadian-heritage/services/flag-canada-history.html"
+ * ```
+ */
+interface RoleNote {
+  /** What was the law and what was the practice, and the days that matter. */
+  why: string;
+  /** Where it is documented: a web page. */
+  source: string;
+  /** What kind of page `source` is: `official`, `reference` or `encyclopedia`. */
+  sourceKind: "official" | "reference" | "encyclopedia";
+}
+
+/**
+ * A flag whose display the law restricts. Germany's national flag of 1935 to 1945 is the one: it is shipped for history and education,
+ * and is never returned by a default lookup, a list, a picker, a quiz, a download pack or the CDN listing. Ask for it by name with
+ * `allowRestricted: true` (`flag`, `variantOn`, `variantsOf`) or the `allow-restricted` attribute of `<hata-flag>`, for a purpose in `allowedFor`.
+ *
+ * @example
+ * ```ts
+ * import { variantOn, type Restricted } from "@johnmorrisdotca/hata/manifest";
+ *
+ * const found = variantOn("DE", "1940");
+ * const why: Restricted | null = found?.restricted ?? null;
+ * console.log(found?.withheld); // true: the drawing is not given without allowRestricted
+ * console.log(why?.law);        // ["DE StGB §86a", "AT Verbotsgesetz"]
+ * ```
+ */
+interface Restricted {
+  /** Why it is restricted, in a sentence a page can show beside it, in English. */
+  reason: string;
+  /** The same in Japanese. */
+  reasonJa: string;
+  /** The laws that restrict it: "DE StGB §86a" and "AT Verbotsgesetz". */
+  law: string[];
+  /** What it may be used for under those laws' exceptions (StGB §86(4) in Germany): "education and history". Not commerce. */
+  allowedFor: string;
+  /** The same in Japanese. */
+  allowedForJa: string;
+}
+
+/**
+ * One restricted flag with the code of its place, as `RESTRICTED` in /manifest lists it.
+ *
+ * @example
+ * ```ts
+ * import { RESTRICTED, type RestrictedVariant } from "@johnmorrisdotca/hata/manifest";
+ *
+ * const one: RestrictedVariant | undefined = RESTRICTED[0];
+ * console.log(one?.code, one?.variant.id); // "DE" "swastika-1935"
+ * ```
+ */
+interface RestrictedVariant {
+  /** The place's code. */
+  code: string;
+  /** The flag: a `Variant` with `restricted` set. */
+  variant: Variant;
+}
+
+/**
  * One of a place's flags in real use, for `flag(code, { variant })` and `variantsOf(code)`: Afghanistan's Republic tricolour and
  * the Taliban's flag, Bavaria's lozenges and stripes, Guadeloupe's French tricolour and its local flag.
  *
@@ -154,6 +236,18 @@ interface Variant {
   from: string | null;
   /** When it went out of official use; null where it has not. */
   until: string | null;
+  /**
+   * Which questions this flag answers on its days: `legal` (the flag the law made the country's national flag) and `in-use` (the flag it
+   * flew as its own in practice). Most flags are both. Canada's Red Ensigns before 1965 are `in-use` only and its Union Flag is `legal` only.
+   * Empty for a `de-facto` or `local` flag, which `variantOn` never gives. See `FlagRole`.
+   */
+  roles: FlagRole[];
+  /** The days of each role it has, where they are not the flag's own `from` and `until` (Australia's Blue Ensign was flown from 1901 and became the national flag in law in 1954). Each role in `roles` has an entry. */
+  roleDates: Partial<Record<FlagRole, { from: string | null; until: string | null }>>;
+  /** Why this flag is only one of the two, or is legal and in use on different days, and who says so; null where it is both on the same days. */
+  roleNote: RoleNote | null;
+  /** Set where the law restricts displaying the flag outside history and education: it is then not in `variantsOf` or any record's `variants`, and `flag()` and `<hata-flag>` draw it only when asked with `allowRestricted`. Null for every other flag. See `Restricted`. */
+  restricted: Restricted | null;
   /** Why it is offered, and (for the default) why it is the default, in a sentence or two. */
   why: string;
   /** Where the claim above is documented: a web page. */
@@ -289,4 +383,4 @@ interface LeftOutRecord {
   historical?: HistoricalEra;
 }
 
-export type { FlagRecord, FlagSource, Framing, FramingCrop, HistoricalEra, LeftOutRecord, LicenceKind, Variant };
+export type { FlagRecord, FlagRole, FlagSource, Framing, FramingCrop, HistoricalEra, LeftOutRecord, LicenceKind, Restricted, RestrictedVariant, RoleNote, Variant };

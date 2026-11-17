@@ -74,6 +74,7 @@ open a *Fix a translation* issue with the string's name. `{name}` and the other 
 | `source_kind_encyclopedia` | Wikipedia only | Wikipediaのみ |
 | `variant_date_label` | Flag in use on | 日付で旗を見る |
 | `variant_date_none` | No flag is known here for {date}. | {date}の旗は、ここでは分かっていません。 |
+| `variant_date_other` | This is the legal flag of that day. The flag flown was {name} (see Historic flags). | これはその日の法律上の国旗です。実際に掲げられていたのは{name}です。詳しくは「歴代の旗」をご覧ください。 |
 | `show_variants` | Show its {n} flags | {n}種類の旗を見る |
 | `fact_size_plain` | {bytes} of SVG | SVG {bytes} |
 | `fact_dates_uploaded` | Uploaded to Commons {uploaded} | {uploaded} にCommonsへアップロード |

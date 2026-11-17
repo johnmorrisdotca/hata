@@ -26,8 +26,10 @@ describe("the earlier flags of present-day countries", () => {
     const total = Object.values(HISTORIC).reduce((sum, set) => sum + set.variants.length, 0);
     expect(total).toBeGreaterThan(70);
     for (const [code, set] of Object.entries(HISTORIC)) {
-      const list = variantsOf(code);
+      // A restricted flag is in no list unless asked for.
+      const list = variantsOf(code, { allowRestricted: true });
       expect(list.length, code).toBe(set.variants.length);
+      expect(variantsOf(code).length, code).toBe(set.variants.filter((one) => one.restricted === undefined).length);
       const today = list.find((one) => one.default)!;
       expect(today, code).toMatchObject({ status: "official", until: null });
       expect(today.module, code).toBe(manifest(code)!.code.toLowerCase());
@@ -42,25 +44,29 @@ describe("the earlier flags of present-day countries", () => {
     }
   });
 
-  it("are dated in order, each flag ending no earlier than it began and none overlapping the next (a change within a bare year may share that year)", () => {
+  it("are dated in order, each flag ending no earlier than it began and none overlapping the next in its role (a change within a bare year may share that year)", () => {
     for (const record of dated) {
-      const list = record.variants.filter((one) => (one.status === "official" || one.status === "historical") && one.from !== null);
-      const sorted = [...list].sort((a, b) => startOf(a).localeCompare(startOf(b)));
-      sorted.forEach((one, at) => {
-        const end = endOf(one);
-        if (end !== null) expect(end > startOf(one), `${record.code} ${one.id} ends before it begins`).toBe(true);
-        const after = sorted[at + 1];
-        if (after === undefined) {
-          // The newest flag of a present-day country is open-ended; a former country's ended with it.
-          if (record.historical === undefined) expect(end, `${record.code} ${one.id} is the newest, so it is open-ended`).toBeNull();
-          return;
-        }
-        expect(end, `${record.code} ${one.id} has a successor, so it has an end`).not.toBeNull();
-        // Where either date is a bare year or month the change fell somewhere in it: the two may share that period, and no more.
-        const loose = one.until!.length < 10 || (after.from ?? "").length < 10;
-        if (!loose) expect(end! <= startOf(after), `${record.code}: ${one.id} runs into ${after.id}`).toBe(true);
-        else expect(one.until!.slice(0, 4) <= (after.from ?? "").slice(0, 4), `${record.code}: ${one.id} runs into ${after.id}`).toBe(true);
-      });
+      // A place has one legal flag and one flag in use on any day: the order is held for each role, by the days of the role.
+      for (const role of ["legal", "in-use"] as const) {
+        const list = record.variants.filter((one) => (one.status === "official" || one.status === "historical") && one.roleDates[role]?.from !== undefined && one.roleDates[role]?.from !== null);
+        const span = (one: Variant): Variant => ({ ...one, from: one.roleDates[role]!.from, until: one.roleDates[role]!.until });
+        const sorted = list.map(span).sort((a, b) => startOf(a).localeCompare(startOf(b)));
+        sorted.forEach((one, at) => {
+          const end = endOf(one);
+          if (end !== null) expect(end > startOf(one), `${record.code} ${one.id} (${role}) ends before it begins`).toBe(true);
+          const after = sorted[at + 1];
+          if (after === undefined) {
+            // The newest flag of a present-day country is open-ended; a former country's ended with it.
+            if (record.historical === undefined) expect(end, `${record.code} ${one.id} (${role}) is the newest, so it is open-ended`).toBeNull();
+            return;
+          }
+          expect(end, `${record.code} ${one.id} (${role}) has a successor, so it has an end`).not.toBeNull();
+          // Where either date is a bare year or month the change fell somewhere in it: the two may share that period, and no more.
+          const loose = one.until!.length < 10 || (after.from ?? "").length < 10;
+          if (!loose) expect(end! <= startOf(after), `${record.code}: ${one.id} runs into ${after.id} (${role})`).toBe(true);
+          else expect(one.until!.slice(0, 4) <= (after.from ?? "").slice(0, 4), `${record.code}: ${one.id} runs into ${after.id} (${role})`).toBe(true);
+        });
+      }
     }
   });
 
@@ -81,8 +87,12 @@ describe("the earlier flags of present-day countries", () => {
 
 describe("variantOn", () => {
   it("gives the flag a country had on a day, and the day it changed belongs to the new flag", () => {
-    expect(variantOn("CA", "1962-09-29")?.id).toBe("red-ensign-1957");
-    expect(variantOn("CA", "1965-02-14")?.id).toBe("red-ensign-1957");
+    // The Union Flag was the legal flag until 1965 and the Red Ensigns were flown (docs/historical.md, "Legal flag and flag in use").
+    expect(variantOn("CA", "1962-09-29")?.id).toBe("union-flag");
+    expect(variantOn("CA", "1962-09-29", { role: "in-use" })?.id).toBe("red-ensign-1957");
+    expect(variantOn("CA", "1965-02-14")?.id).toBe("union-flag");
+    expect(variantOn("CA", "1965-02-14", { role: "in-use" })?.id).toBe("red-ensign-1957");
+    expect(variantOn("CA", "1965-02-15", { role: "in-use" })?.id).toBe("maple-leaf");
     expect(variantOn("CA", "1965-02-15")?.id).toBe("maple-leaf");
     expect(variantOn("US", "1959-07-03")?.id).toBe("stars-48");
     expect(variantOn("US", "1959-07-04")?.id).toBe("stars-49");
@@ -108,9 +118,10 @@ describe("variantOn", () => {
     expect(variantOn("US", "1896-07-04")?.id).toBe("stars-45");
     expect(variantOn("CN", "1948-12-31")).toBeNull();
     expect(variantOn("CN", "1949-10-01")?.id).toBe("five-star-red");
-    // The swastika flag of 1935 to 1945 and the Red Ensigns of South Africa are not shipped (docs/decisions.md): no flag, not a wrong one.
-    expect(variantOn("DE", "1940-01-01")).toBeNull();
+    // The Red Ensigns of South Africa are not shipped (docs/decisions.md): no flag, not a wrong one.
     expect(variantOn("ZA", "1920-01-01")).toBeNull();
+    // Germany's flag of 1935 to 1945 is restricted: found, with its reason, and never as a drawing (src/restricted.test.ts).
+    expect(variantOn("DE", "1940-01-01")?.withheld).toBe(true);
   });
 
   it("reads a year, a month and a Date, and refuses what is not a date", () => {
@@ -124,7 +135,7 @@ describe("variantOn", () => {
   });
 
   it("finds a place by any of its codes, and gives null for a place with no dated flags", () => {
-    expect(variantOn("ca", "1962")?.id).toBe("red-ensign-1957");
+    expect(variantOn("ca", "1962", { role: "in-use" })?.id).toBe("red-ensign-1957");
     expect(variantOn("xx", "1962")).toBeNull();
     expect(variantOn("AO", "1962")).toBeNull();
     expect(variantOn("JP-13", "1962")).toBeNull();
@@ -168,7 +179,9 @@ describe("variantOn", () => {
 
 describe("flag(code, { date })", () => {
   it("loads the flag of the day: the variant's own drawing, and today's after the newest change", async () => {
-    expect(await flag("CA", { date: "1962-09-29" })).toBe(await flag("CA", { variant: "red-ensign-1957" }));
+    expect(await flag("CA", { date: "1962-09-29", role: "in-use" })).toBe(await flag("CA", { variant: "red-ensign-1957" }));
+    expect(await flag("CA", { date: "1962-09-29" })).toBe(await flag("CA", { variant: "union-flag" }));
+    expect(await flag("CA", { date: "1962-09-29" })).toBe(await flag("GB"));
     expect(await flag("CA", { date: "1962-09-29" })).not.toBe(await flag("CA"));
     expect(await flag("CA", { date: "1965-02-15" })).toBe(await flag("CA"));
     expect(await flag("CA", { date: "2030-01-01" })).toBe(await flag("CA"));

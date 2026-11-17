@@ -12,6 +12,7 @@
 import { flag } from "./load.js";
 import { reflectAttributes } from "./reflect";
 import { aspectOf, toDataUri } from "./svg";
+import type { FlagRole } from "./manifest";
 import type { Shape } from "./svg";
 
 /**
@@ -28,8 +29,12 @@ import type { Shape } from "./svg";
  * - `variant`: which of the place's flags in real use to draw, by its `id` from `variantsOf(code)`: Afghanistan's `de-facto`,
  *   Bavaria's `stripes`, Guadeloupe's `local`. Left out, the default; a place with no flag of its own by default
  *   (Northern Ireland: `union-flag`, `ulster-banner`) draws only when one is named.
- * - `date`: the day whose flag to draw, `"1962-09-29"`, `"1962-09"` or `"1962"`: the flag the place had in use then (`variantOn(code, date)` from `/manifest`),
+ * - `date`: the day whose flag to draw, `"1962-09-29"`, `"1962-09"` or `"1962"`: the flag the place had then (`variantOn(code, date)` from `/manifest`),
  *   and today's after its newest change. Nothing is drawn where the package knows no flag for that day. The `variant` wins where both are given.
+ * - `which`: with `date`, which flag of the day: `legal` (the default, the flag the law made the national flag) or `in-use` (the flag flown in practice): Canada
+ *   in 1962 draws the Union Flag, or with `which="in-use"` the Red Ensign. (Not `role`: that is the ARIA role, which the element sets to `img`.)
+ * - `allow-restricted`: draw a flag whose display the law restricts (Germany's of 1935 to 1945), for history and education. Without it the element draws
+ *   nothing for such a flag, sets `data-restricted` and says why in `data-reason` and on `hata-error`.
  * - `label`: what a screen reader says. Left out, the place's name, in English or Japanese by `lang`.
  * - `lang`: `en` or `ja`, the language of the name read out. Left out, the page's language where the element is.
  * - `theme`: `auto` (the default), `light` or `dark`: the colour of the border on a light or a dark page.
@@ -44,7 +49,7 @@ import type { Shape } from "./svg";
  * console.log(FLAG_ELEMENT_ATTRIBUTES.includes("shape")); // true
  * ```
  */
-const FLAG_ELEMENT_ATTRIBUTES = ["code", "shape", "size", "width", "fit", "variant", "date", "label", "lang", "theme", "border", "shadow", "loading"] as const;
+const FLAG_ELEMENT_ATTRIBUTES = ["code", "shape", "size", "width", "fit", "variant", "date", "which", "allow-restricted", "label", "lang", "theme", "border", "shadow", "loading"] as const;
 
 /**
  * The name the element is registered under.
@@ -91,6 +96,12 @@ type HataFlagElement = HTMLElement & {
   set variant(value: string | null | undefined);
   get date(): string | null;
   set date(value: string | null | undefined);
+  /** `legal` or `in-use`: which flag of the `date`. */
+  get which(): string | null;
+  set which(value: string | null | undefined);
+  /** Draw a flag the law restricts, for history and education. Written as the `allow-restricted` attribute. */
+  get allowRestricted(): boolean;
+  set allowRestricted(value: boolean | string | null | undefined);
   get label(): string | null;
   set label(value: string | null | undefined);
   get theme(): string | null;
@@ -181,6 +192,8 @@ const build = (): CustomElementConstructor => {
       const turn = ++this.drawing;
       this.watcher?.disconnect();
       this.watcher = null;
+      this.removeAttribute("data-restricted");
+      this.removeAttribute("data-reason");
       if (this.settle === null) this.ready = new Promise((resolve) => (this.settle = resolve));
       const code = (this.getAttribute("code") ?? "").trim();
       const asked = (this.getAttribute("shape") ?? "own").trim();
@@ -189,6 +202,8 @@ const build = (): CustomElementConstructor => {
       const fit = (FITS as readonly string[]).includes(fitAsked) ? (fitAsked as (typeof FITS)[number]) : "auto";
       const variant = (this.getAttribute("variant") ?? "").trim();
       const date = (this.getAttribute("date") ?? "").trim();
+      const whichAsked = (this.getAttribute("which") ?? "").trim();
+      const which: FlagRole | undefined = whichAsked === "in-use" || whichAsked === "legal" ? whichAsked : undefined;
       const sizes: Record<string, number> = { small: 24, medium: 48, large: 96 };
       const sizeText = this.getAttribute("size") ?? "";
       const size = Object.hasOwn(sizes, sizeText) ? sizes[sizeText] : Number(sizeText);
@@ -219,9 +234,22 @@ const build = (): CustomElementConstructor => {
         }
         this.style.aspectRatio = String(aspect);
         this.setAttribute("aria-label", this.getAttribute("label") ?? name);
-        const options = { ...(shape === "own" ? {} : { shape: shape as Shape, fit }), ...(variant === "" ? {} : { variant }), ...(variant !== "" || date === "" ? {} : { date }) };
+        const allowRestricted = on("allow-restricted");
+        const options = { ...(shape === "own" ? {} : { shape: shape as Shape, fit }), ...(variant === "" ? {} : { variant }), ...(variant !== "" || date === "" ? {} : { date }), ...(which === undefined ? {} : { role: which }), ...(allowRestricted ? { allowRestricted } : {}) };
         const svg = await flag(code, Object.keys(options).length === 0 ? undefined : options);
         if (turn !== this.drawing) return;
+        // A restricted flag is withheld, not missing: say so, with its reason, rather than "no flag".
+        if (svg === null && !allowRestricted && (variant !== "" || date !== "")) {
+          const { variantsOf, flagOn } = await import("./manifest.js");
+          if (turn !== this.drawing) return;
+          const reason = variant !== "" ? variantsOf(code, { allowRestricted: true }).find((one) => one.id === variant && one.restricted !== null)?.restricted?.reason : date !== "" ? flagOn(code, date, { role: which }).none?.kind === "restricted" ? flagOn(code, date, { role: which }).none?.reason : undefined : undefined;
+          if (reason !== undefined) {
+            this.setAttribute("data-restricted", "");
+            this.setAttribute("data-reason", reason);
+            this.missing(code, shape, reason);
+            return;
+          }
+        }
         // A variant, or the flag of a date, is drawn at its own proportions, which are not always the place's default flag's.
         if (svg !== null && (variant !== "" || date !== "") && shape === "own") this.style.aspectRatio = String(aspectOf(svg) ?? aspect);
         if (svg === null) {
@@ -232,6 +260,8 @@ const build = (): CustomElementConstructor => {
         (image as HTMLImageElement).src = toDataUri(svg) ?? "";
         if (image.parentNode !== this) this.replaceChildren(image);
         this.removeAttribute("data-missing");
+        this.removeAttribute("data-restricted");
+        this.removeAttribute("data-reason");
         this.dispatchEvent(new CustomEvent<FlagElementEventDetail>("hata-load", { detail: { code, shape }, bubbles: true, composed: true }));
         this.finish(true);
       };
@@ -276,7 +306,17 @@ const build = (): CustomElementConstructor => {
       this.finish(false);
     }
   };
-  reflectAttributes(element, FLAG_ELEMENT_ATTRIBUTES, ["border", "shadow"]);
+  reflectAttributes(element, FLAG_ELEMENT_ATTRIBUTES, ["border", "shadow", "allow-restricted"]);
+  // The camelCase property of the attribute `allow-restricted`, as a framework or a script writes it.
+  Object.defineProperty(element.prototype, "allowRestricted", {
+    configurable: true,
+    get(this: HTMLElement) {
+      return (this as unknown as Record<string, boolean>)["allow-restricted"] === true;
+    },
+    set(this: HTMLElement, value: unknown) {
+      (this as unknown as Record<string, unknown>)["allow-restricted"] = value;
+    },
+  });
 
   return element;
 };
