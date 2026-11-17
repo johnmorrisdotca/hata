@@ -9,6 +9,7 @@ open a *Fix a translation* issue with the string's name. `{name}` and the other 
 | --- | --- | --- |
 | `pageApi` | API | API（英語） |
 | `pageDocs` | Docs | ドキュメント |
+| `historicLink` | Historic flags: every country with all of its flags, in date order | 歴代の旗：すべての国の旗を年代順に |
 | `pitch` | Flags as SVG for every country, and the regions of Japan, Canada, the United States, Australia, the United Kingdom, Germany, France, Switzerland, Austria and Brazil, at their true proportions, keyed by ISO 3166 code. Tap a flag for where it comes from, its licence, the code to embed it and downloads; or play the quiz. | 世界の国々と、日本・カナダ・アメリカ・オーストラリア・イギリス・ドイツ・フランス・スイス・オーストリア・ブラジルの地域の旗を、本来の縦横比のSVGで収録し、ISO 3166のコードで引けるようにしたパッケージです。旗をタップすると、出典、ライセンス、埋め込み用のコード、ダウンロードが表示されます。クイズもあります。 |
 | `name` | Hata (旗) is Japanese for “flag”. | Hataは、国や地域のしるしとして掲げる「旗（はた）」のことです。 |
 | `nameLink` | About the name | 名前について（英語） |
@@ -68,6 +69,11 @@ open a *Fix a translation* issue with the string's name. `{name}` and the other 
 | `variant_dates_since` | since {from} | {from} から |
 | `variant_dates_until` | until {until} | {until} まで |
 | `variant_source` | Source | 出典 |
+| `source_kind_official` | official | 公的資料 |
+| `source_kind_reference` | reference | 参考資料 |
+| `source_kind_encyclopedia` | Wikipedia only | Wikipediaのみ |
+| `variant_date_label` | Flag in use on | 日付で旗を見る |
+| `variant_date_none` | No flag is known here for {date}. | {date}の旗は、ここでは分かっていません。 |
 | `show_variants` | Show its {n} flags | {n}種類の旗を見る |
 | `fact_size_plain` | {bytes} of SVG | SVG {bytes} |
 | `fact_dates_uploaded` | Uploaded to Commons {uploaded} | {uploaded} にCommonsへアップロード |

@@ -175,3 +175,5 @@ header nav a[data-say="pageDocs"] { inline-size: 8rem; justify-content: center; 
   .tools .count { flex: none; min-width: 0; }
   .tools .fam-actions { flex: 1 1 0; min-width: 0; }
 }
+.variant-date { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 8px 0 0; }
+.variant-date[hidden] { display: none; }

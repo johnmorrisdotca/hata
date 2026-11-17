@@ -113,3 +113,50 @@ test("draws a variant in the element and in the embed page, at its own proportio
   await expect(page.locator("hata-flag")).toHaveAttribute("data-missing", "");
   expect(said.length).toBeGreaterThan(0);
 });
+
+test("asks Canada's panel for the flag in use on a day, and says when no flag is known", async ({ page }, testInfo) => {
+  await open(page, "?lang=en&set=country");
+  await tap(page, at("tile-CA"), testInfo);
+  const picture = page.locator(at("detail-flag"));
+  const date = page.locator(at("variant-date"));
+  await expect(date).toBeVisible();
+  await date.fill("1962-09-29");
+  await expect(picture).toHaveAttribute("src", "dist/svg/ca--red-ensign-1957.svg");
+  await expect(page.locator(at("variant-red-ensign-1957"))).toHaveAttribute("aria-pressed", "true");
+  await expect(page.locator(at("variant-why"))).toContainText("1957-10-08 to 1965-02-15");
+  await expect(page.locator(at("variant-why"))).toContainText("reference");
+  await expect(date).toHaveValue("1962-09-29");
+  // The day the Maple Leaf came in belongs to it; a day before any flag the package knows is said, not guessed.
+  await date.fill("1965-02-15");
+  await expect(picture).toHaveAttribute("src", "dist/svg/ca.svg");
+  await expect(page.locator(at("variant-maple-leaf"))).toHaveAttribute("aria-pressed", "true");
+  await date.fill("1850-01-01");
+  await expect(page.locator(at("variant-date-note"))).toHaveText("No flag is known here for 1850-01-01.");
+  await expect(picture).toHaveAttribute("src", "dist/svg/ca.svg");
+  // A place whose only flag is a local one has no dated flags, so no date to ask for.
+  await page.locator(at("detail")).evaluate((dialog) => dialog.close());
+  await page.goto("https://hata.test/?lang=en&set=fr");
+  await page.waitForSelector('main[data-ready="true"]');
+  await tap(page, at("tile-FR-BRE"), testInfo);
+  await expect(page.locator(at("variants"))).toBeVisible();
+  await expect(page.locator(at("variant-date-row"))).toBeHidden();
+});
+
+test("asks the element and the embed page for the flag of a day", async ({ page }) => {
+  const said = [];
+  page.on("console", (message) => message.type() === "warning" && said.push(message.text()));
+  await serve(page);
+  await page.goto("https://hata.test/embed.html?code=JP&size=60&date=1950-01-01");
+  const flag = page.locator("hata-flag");
+  await expect(flag.locator("img")).toHaveAttribute("src", /^data:image\/svg\+xml,/);
+  // The Hinomaru of 1870 is 7:10, and the law of 1999 made it 2:3.
+  await expect.poll(() => flag.evaluate((node) => node.getBoundingClientRect().width / node.getBoundingClientRect().height)).toBeCloseTo(10 / 7, 1);
+  await page.goto("https://hata.test/embed.html?code=JP&size=60&date=2020-01-01");
+  await expect.poll(() => page.locator("hata-flag").evaluate((node) => node.getBoundingClientRect().width / node.getBoundingClientRect().height)).toBeCloseTo(1.5, 1);
+  // A day with no flag known draws nothing, and the page says so.
+  await page.goto("https://hata.test/embed.html?code=JP&size=60&date=1850-01-01");
+  await expect(page.locator("hata-flag")).toHaveAttribute("data-missing", "");
+  await page.goto("https://hata.test/embed.html?code=JP&size=60&date=notadate");
+  await expect(page.locator("hata-flag")).toHaveAttribute("data-missing", "");
+  expect(said.length).toBeGreaterThan(0);
+});

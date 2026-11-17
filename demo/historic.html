@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!--family:head-->
+    <link rel="stylesheet" href="family.css" />
+    <link rel="stylesheet" href="historic.css" />
+  </head>
+  <body>
+    <main class="family-page" data-ready="false">
+      <!-- family:historicHeader -->
+      <!--frame:header-->
+      <section class="fam-panel historic-intro">
+        <p data-say="intro"></p>
+        <p class="fam-fine" data-say="introDates"></p>
+      </section>
+      <section class="fam-panel historic-tools" aria-label="Filter">
+        <div class="fam-row">
+          <label class="fam-label" for="search" data-say="search"></label>
+          <input type="search" id="search" class="fam-field" data-testid="search" autocomplete="off" />
+        </div>
+        <div class="fam-row">
+          <label class="fam-label" for="show" data-say="show"></label>
+          <select id="show" class="fam-field" data-testid="show"></select>
+        </div>
+        <div class="fam-row">
+          <label class="fam-label" for="continent" data-say="continent"></label>
+          <select id="continent" class="fam-field" data-testid="continent"></select>
+        </div>
+        <p class="fam-fine" id="count" data-testid="count" aria-live="polite"></p>
+      </section>
+      <ul class="historic-list" id="list" data-testid="list"></ul>
+      <p class="fam-empty" id="empty" data-testid="empty" hidden data-say="empty"></p>
+      <!-- family:unreviewed -->
+      <!--frame:credits-->
+      <!-- family:footer -->
+    </main>
+    <!-- family:script -->
+    <script type="module" src="historic.js"></script>
+  </body>
+</html>

@@ -12,7 +12,7 @@ At their true proportions, optimised and safe to inline, with the source, author
   <a href="https://www.npmjs.com/package/@johnmorrisdotca/hata"><img alt="npm" src="https://img.shields.io/npm/v/@johnmorrisdotca/hata?color=2f5d4a"></a>
   <a href="./LICENSE"><img alt="MIT licence" src="https://img.shields.io/badge/licence-MIT-2f5d4a"></a>
   <img alt="No dependencies" src="https://img.shields.io/badge/dependencies-0-2f5d4a">
-  <a href="https://johnmorrisdotca.github.io/hata/docs/api/main/index.html"><img alt="3.7 kB minified and gzipped" src="https://img.shields.io/badge/min%2Bgzip-3.7%20kB-2f5d4a"></a>
+  <a href="https://johnmorrisdotca.github.io/hata/docs/api/main/index.html"><img alt="3.8 kB minified and gzipped" src="https://img.shields.io/badge/min%2Bgzip-3.8%20kB-2f5d4a"></a>
   <img alt="TypeScript" src="https://img.shields.io/badge/types-TypeScript-3178c6">
   <a href="https://www.npmjs.com/package/@johnmorrisdotca/hata#provenance"><img alt="Published with npm provenance" src="https://img.shields.io/badge/npm-provenance-2f5d4a"></a>
 </p>
@@ -109,19 +109,18 @@ await flag("XX");                                      // null: not a code with 
 <hata-flag code="DE-BY" shape="round" size="48"></hata-flag>
 ```
 
-Install the scoped name: an unscoped `hata` on npm, if there is one, is somebody else's package.
+Install the scoped name: an unscoped `hata` on npm is somebody else's package.
 
 ## Who it is for
 
-- **Forms and profiles** that show where somebody is from, beside a country or a prefecture they picked.
-- **Sites rendered on a server**, which need a flag as a string, not a component, with no network and no DOM.
+- **Forms and profiles** that show where somebody is from.
+- **Sites rendered on a server**, which need a flag as a string, with no network and no DOM.
 - **Japanese-language sites** that need the 47 prefectures' flags, and Canadian, American, Australian, British,
   German, French, Swiss, Austrian and Brazilian ones that need their regions' flags, keyed the same way as their
   countries.
-- **Any page at all**, with one script tag and a `<hata-flag>`, or an iframe where no script is allowed.
-- **Maps, quizzes and games**, which frame flags as square tiles or round markers and must not stretch them.
-- **Anybody who has to say where a picture came from**: every flag has its source, author and licence in the
-  manifest, and the package ships nothing under a share-alike licence.
+- **Any page at all**, with one script tag and a `<hata-flag>`, or an iframe.
+- **Maps, quizzes and games**, with flags as square tiles or round markers, never stretched.
+- **Anybody who has to say where a picture came from**: every flag has its source, author and licence in the manifest.
 
 ## Features
 
@@ -152,40 +151,33 @@ Install the scoped name: an unscoped `hata` on npm, if there is one, is somebody
   17 of France's 26 regions and overseas collectivities, 26 of Switzerland's 26 cantons, 9 of Austria's 9 states
   and 27 of Brazil's 27 states and Federal District, and 12 former countries that a medal table or a record book
   still names (the Soviet Union, East and West Germany, Czechoslovakia, Yugoslavia, Serbia and Montenegro, and
-  six more: [below](#former-countries)). The 27 codes with no flag are listed with their reasons:
-  Northern Ireland has no flag of its own, most of France's regions use a logo rather than a flag, and the Olympic
-  teams that marched under the Olympic flag (the Unified Team of 1992, the Russian Olympic Committee) have no flag
-  of their own to ship.
+  six more: [below](#former-countries)). The 27 codes with no flag are listed with their reasons.
 - **Disputed and alternative flags, offered side by side.** A place with more than one flag in real use has them all,
   each with a status (official, de facto, historical or local), dates, the reason it is offered and a source, and a
   `disputed` mark where more than one authority claims the place's flag: Afghanistan's Republic tricolour and the
   Taliban's flag, Bavaria's lozenges and stripes, Northern Ireland's Union Flag and former Ulster Banner, Syria's
-  flag before and after 2024-12-08, and the local flag of each French territory beside France's, and Brittany's Gwenn-ha-du, the flag in real use there though not the region's official symbol. Hata takes no side
+  flag before and after 2024-12-08, and each French territory's local flag. Hata takes no side
   and says why each default was chosen ([below](#disputed-and-alternative-flags)).
 - **True proportions.** Japan's 2:3, Canada's 1:2, the United States' 10:19, Switzerland's square, Nepal's two
   pennants: each flag is shipped as its government draws it, and `frame()` puts it in a 4:3, square or round frame
   when that is what a layout needs, never stretched.
-- **Frames that keep the flag, whole and cropped.** A crop from the centre turns Canada's square into a white square
-  with a leaf, and shows the middle stripes of the United States' flag and not its stars. Every flag is offered both
-  ways, `fit: "whole"` and `fit: "crop"`, and the default (`auto`) takes the crop only where it shows the flag fairly:
-  kept at the side a person chose for 121 flags (the canton and a slice of the stripes for the United States, the Sun of
-  May for Uruguay, the triangle for Cuba; 37 of them are shown whole by default, because no square crop holds them), from the centre where that keeps every colour, and the whole flag otherwise.
-  The manifest says which, and why, for every flag and frame.
+- **Frames that keep the flag, whole and cropped.** A crop from the centre would turn Canada's square into a white square
+  with a leaf, so every flag is offered both ways, `fit: "whole"` and `fit: "crop"`, and `auto` takes the crop only where it
+  shows the flag fairly: kept at the side a person chose for 121 flags (the United States' canton, Uruguay's Sun of May), from
+  the centre where that keeps every colour, and the whole flag otherwise. The manifest says which, and why.
 - **Embed it anywhere.** `<hata-flag>`, a custom element named for a screen reader in the page's language, an
   iframe page, and a builder in the demo that writes the code for an element, an `&lt;img&gt;`, an iframe, an ES module,
   React, Vue, Svelte or Angular.
-- **The best accurate drawing.** Each flag's Commons drawing (the one Wikidata names, usually from its
-  construction sheet) is compared in a browser with flag-icons', country-flag-icons' and circle-flags'; a set's
-  drawing ships only where it is the same flag at the same proportions and smaller, or free where Commons' is not.
-  Nothing is redrawn, and every shipped flag is proved to draw as its source does.
-- **Safe to inline.** Scripts, event handlers, foreign objects and references outside the picture are refused at
-  build time, and every id and class carries the flag's own prefix, so two flags in one page cannot collide.
+- **The best accurate drawing.** Each flag's Commons drawing (the one Wikidata names) is compared in a browser with flag-icons',
+  country-flag-icons' and circle-flags'; a set's drawing ships only where it is the same flag at the same proportions and smaller,
+  or free where Commons' is not. Nothing is redrawn, and every shipped flag is proved to draw as its source does.
+- **Safe to inline.** Scripts, event handlers, foreign objects and outside references are refused at build time, and every id and class
+  carries the flag's own prefix, so two flags in one page cannot collide.
 - **Small where it matters.** The main entry is 12 KB (3.7 KB gzipped) and carries no flag; the median flag is
   under 800 bytes; the lookup is 25 KB and then the flag's own file.
 - **Provenance for every flag**, in `/manifest` and `manifest.json`: the file, its page, the Wikidata item, the
-  licence, the author, the restrictions Commons notes, and the dates.
-- **Typed, documented, pure and the same everywhere.** ESM with types; every export has a doc comment with an
-  example, checked against the build; no dependencies, no network, no DOM.
+  licence, the author, the restrictions, and the dates.
+- **Typed, documented, pure.** ESM with types; every export has a checked example; no dependencies, no network, no DOM.
 
 ## Use it in your project
 
@@ -227,7 +219,7 @@ The alias changes only the import name in your project.
 | `@johnmorrisdotca/hata/custom` | Flags the page registers (`custom:<slug>`) | 11 KB |
 | `@johnmorrisdotca/hata/element` | `<hata-flag>`: `defineFlag`, `FLAG_ELEMENT_NAME`, `FLAG_ELEMENT_ATTRIBUTES` | 8 KB, 2.8 KB gzipped, then /load and /names |
 | `@johnmorrisdotca/hata/element/define` | Registers `<hata-flag>` when imported (`dist/element-define.js` on a CDN) | a line, then /element |
-| `@johnmorrisdotca/hata/manifest` | Every flag's source, licence, author and why it was chosen, how each frame is made, the flags in real use besides (`variantsOf`), and the codes with no flag | 970 KB, 88 KB gzipped |
+| `@johnmorrisdotca/hata/manifest` | Every flag's source, licence, author and why it was chosen, how each frame is made, the flags in real use besides and the earlier flags of a country (`variantsOf`, `variantOn`), and the codes with no flag | 970 KB, 88 KB gzipped |
 | `@johnmorrisdotca/hata/svg/<code>.svg` | Every flag as a file, for an `&lt;img&gt;`, a CSS `url()` or a CDN; `<code>.1x1.svg` and `.4x3.svg` too | the same as the module's string |
 | `@johnmorrisdotca/hata/manifest.json` | The manifest as JSON | 848 KB |
 
@@ -281,16 +273,13 @@ frame(usa, { shape: "1:1", fit: "whole" });        // the whole flag
 Every flag is offered as the whole flag and as a crop, at 4:3, square and round. `fit: "whole"` (CSS's `contain`) shows
 all of it. `fit: "crop"` crops it **at the side a person chose for that flag**, not at the middle: the United States and
 Uruguay at the hoist, so that the canton or the Sun of May shows with a slice of the stripes; Rwanda at the fly, where its
-sun is; Cuba, the Czech Republic and the other flags with a triangle or a serrated edge at the hoist at the hoist too;
-and the Nordic crosses at the hoist, where the cross is. Where nobody chose a side the crop is from the centre (Japan's
-disc, a coat of arms, a tricolour). `fit: "auto"`, the default, takes the crop where it shows the flag fairly and the whole flag
-where it does not: a Blue Ensign (Australia, New Zealand, Fiji and the territories) has its Union Flag in one corner and its
-stars or badge in the other, and no square holds both. A crop asked for by name always crops, even there, so a crop that
-drops a colour is yours to ask for. `manifest(code).framings[shape].crop` records, for every flag and frame, which crop `auto`
-uses (`own`, `curated`, `centre` or `whole`), the side (`at`), the reason (`why`) and the colours a crop at that side drops
-(`loses`; a crop that drops a colour covering 5% of the flag is used by default only where the reason says why), and
-[docs/framing.md](./docs/framing.md) lists every flag with its side and reason. The demo's flag panel shows the whole flag
-beside its crop at each shape, and the gallery has a Whole / Cropped switch.
+sun is; flags with a triangle or a serrated edge, and the Nordic crosses, at the hoist. Where nobody chose a side the crop is from the
+centre (Japan's disc, a coat of arms, a tricolour). `fit: "auto"`, the default, takes the crop where it shows the flag fairly and
+the whole flag where it does not: a Blue Ensign has its Union Flag in one corner and its stars or badge in the other, and no square
+holds both. A crop asked for by name always crops, even there. `manifest(code).framings[shape].crop` records, for every flag and
+frame, which crop `auto` uses (`own`, `curated`, `centre` or `whole`), the side (`at`), the reason (`why`) and the colours a crop
+drops (`loses`), and [docs/framing.md](./docs/framing.md) lists every flag with its side and reason. The demo's flag panel shows the
+whole flag beside its crop at each shape, and the gallery has a Whole / Cropped switch.
 
 `pnpm data:framing` measured every flag's frames in a browser. A frame keeps a flag when every colour covering 5%
 of the flag still covers at least half that share. For 4:3 and square it takes, in order: the flag itself where it
@@ -319,6 +308,7 @@ One script tag and an element, for any page:
 | `shape` | `own` (the default: its own proportions), `4:3`, `1:1` or `round`, framed as `flag(code, { shape })` frames it |
 | `size` | Its height in CSS pixels; left out, `1em`, the height of the text around it, and any CSS height works |
 | `variant` | Which of the place's flags in real use to draw, by its `id` from `variantsOf(code)`: `de-facto`, `stripes`, `local`; left out, the default |
+| `date` | The day whose flag to draw, `"1962-09-29"`: the flag in use then (`variantOn`); a `variant` wins |
 | `fit` | `auto` (the default), `whole` (all of the flag), `crop` (a crop at the side chosen for the flag), `cover`, `hoist` or `contain`, as `frame()` takes them |
 | `label` | What a screen reader says; left out, the place's name |
 | `lang` | `en` or `ja`, the language of that name; left out, the language of the page where the element is |
@@ -428,9 +418,27 @@ manifest("FRG")?.sameAs;                              // "DE": West Germany's fl
 manifest("SUHH")?.historical;                         // { from: "1922", until: "1991", aliases: ["SU", "SUN", "URS"] }
 ```
 
-Five more notes on these flags (a code two countries held, West Germany's and Czechoslovakia's flags, Yugoslavia's dates, Olympic teams under the Olympic flag, and restrictions that are not about copyright) are in [docs/decisions.md](./docs/decisions.md#what-to-know-about-the-former-countries).
+Notes on these flags are in [docs/decisions.md](./docs/decisions.md#what-to-know-about-the-former-countries), and [docs/historical.md](./docs/historical.md) has every code and alias, the years, and the reason for each choice.
 
-[docs/historical.md](./docs/historical.md) has every code and alias, the years, and the reason for each choice.
+### Historic flags, and the flag of a date
+
+Countries that still exist have had other flags. Hata has the earlier national flags since 1900 of 33 of them (the United States' 48 stars,
+Canada's Red Ensign, Japan's 1870 Hinomaru, Germany's Weimar flag), each a `historical` variant with `from` and `until` (the first day of the
+next flag: a change day belongs to the new flag), a `source` and its `sourceKind` (`official`, `reference` or `encyclopedia`).
+**`flag(code, { date })`** loads the flag in use on a day, **`variantOn(code, date)`** from `/manifest` finds its variant, and **`<hata-flag date>`** draws it.
+
+```ts
+import { flag } from "@johnmorrisdotca/hata/load";
+import { variantOn } from "@johnmorrisdotca/hata/manifest";
+
+variantOn("CA", "1962-09-29")?.id;            // "red-ensign-1957"; "1965-02-15" is "maple-leaf"
+await flag("US", { date: "1950" });           // the 48-star flag; after the newest change, today's flag
+variantOn("SUHH", "1991-12-26");              // null: a former country has an answer only within its years
+```
+
+`null` means "not known here", never "no flag". The [Historic flags page](https://johnmorrisdotca.github.io/hata/historic.html) shows every
+country with all of its flags in date order; [docs/historical.md](./docs/historical.md#earlier-flags-of-present-day-countries) and
+[docs/decisions.md](./docs/decisions.md#historic-flags-of-present-day-countries) say which flags, which sources, and what is left.
 
 ### 5. An `&lt;img&gt;`, from the CDN or your own folder
 
@@ -552,7 +560,7 @@ The [API reference](https://johnmorrisdotca.github.io/hata/api.html) lists every
 | `@johnmorrisdotca/hata/custom` | `registerFlags`, `removeFlags`, `enableFlags`, `customFlag`, `customName`, `customAspect`, `customId`, `isCustomId`, `listCustomFlags`, `customGroups`, `searchCustomFlags`, `customCreditLine`, `CUSTOM_GROUP`, `MAX_CUSTOM_FLAGS` |
 | `@johnmorrisdotca/hata/element` | `defineFlag`, `FLAG_ELEMENT_NAME`, `FLAG_ELEMENT_ATTRIBUTES`, and the types `HataFlagElement` and `FlagElementEventDetail` |
 | `@johnmorrisdotca/hata/element/define` | `defineFlag`, after registering `<hata-flag>` |
-| `@johnmorrisdotca/hata/manifest` | `MANIFEST`, `LEFT_OUT`, `manifest`, `leftOut`, `variantsOf`, and the types `FlagRecord`, `Framing`, `FramingCrop`, `LeftOutRecord`, `LicenceKind`, `FlagSource` and `Variant` |
+| `@johnmorrisdotca/hata/manifest` | `MANIFEST`, `LEFT_OUT`, `manifest`, `leftOut`, `variantsOf`, `variantOn`, and the types `FlagRecord`, `Framing`, `FramingCrop`, `LeftOutRecord`, `LicenceKind`, `FlagSource` and `Variant` |
 
 A flag's record:
 
@@ -640,16 +648,15 @@ Measured on 2026-10-09, SVG as shipped and gzipped at level 9:
 | circle-flags 2.8.3 (round) | 430 | 301 KB | 159 KB | 585 B |
 
 The countries weigh what flag-icons' do, at their true proportions. The American states are most of the package
-because their flags carry full seals, drawn as they are (Virginia's is 372 KB); 55 flags are over the 40 KB
-budget, and 12 drawings made for a frame, listed in [docs/sizes.md](./docs/sizes.md). A page pays only for the flags it imports or loads.
+because their flags carry full seals (Virginia's is 372 KB); 55 flags are over the 40 KB budget, and 12 drawings made for a frame,
+listed in [docs/sizes.md](./docs/sizes.md). A page pays only for the flags it imports or loads.
 
 ## Theming
 
 A flag is its government's colours, so there is nothing to theme in it. What a page chooses is the frame: its
-shape (`flag(code, { shape })`, `frame()` or CSS `object-fit`), a border or a shadow (`<hata-flag border shadow
-theme="dark">`, and its three CSS custom properties) (a white or pale flag needs one on a white page, and a
-dark one on a dark page), and its size. The demo is the worked example: [`demo/demo.js`](./demo/demo.js) and
-[`demo/hata.css`](./demo/hata.css), over the family's shared stylesheet.
+shape (`flag(code, { shape })`, `frame()` or CSS `object-fit`), a border or a shadow for a white flag on a white page
+(`<hata-flag border shadow theme="dark">`, and its three CSS custom properties), and its size. The demo is the worked example:
+[`demo/demo.js`](./demo/demo.js) and [`demo/hata.css`](./demo/hata.css).
 
 ## Limits
 
@@ -662,7 +669,7 @@ dark one on a dark page), and its size. The demo is the worked example: [`demo/d
 | Licences | public domain, CC0, CC BY and MIT only | `manifest(code).licence` |
 | Largest flag | 372 KB (Virginia); 55 over the 40 KB budget | [docs/sizes.md](./docs/sizes.md) |
 
-Not here: other countries' regions (the reasons are in [docs/decisions.md](./docs/decisions.md)), the United Kingdom's counties, cities, the earlier flags of countries that still exist (apart from a few dated variants), ensigns, standards and raster pictures. A flag's licence covers the drawing; using a country's flag or seal may still be limited by its law (Commons marks most flags "insignia"), which [NOTICE.md](./NOTICE.md) explains.
+Not here: other countries' regions (the reasons are in [docs/decisions.md](./docs/decisions.md)), the United Kingdom's counties, cities, the earlier flags of the countries not yet researched, ensigns, standards and raster pictures. A flag's licence covers the drawing; using a country's flag or seal may still be limited by its law (Commons marks most flags "insignia"), which [NOTICE.md](./NOTICE.md) explains.
 
 ## Accessibility
 
@@ -683,16 +690,14 @@ A flag is a picture, so what Hata can do is make it easy to name.
 ## Browser and runtime support
 
 The package is strings and plain functions, so it runs anywhere JavaScript does: any current browser and Node. The
-SVG files work in every browser that shows SVG. Building it from source and running its data scripts needs Node 24
-or later; CI tests on Node 24 on Linux, macOS and Windows. The demo is played in a real Chromium at a phone's width
-(with touch) and a desk's, and in WebKit at a phone's width.
+SVG files work in every browser that shows SVG. Building it needs Node 24 or later; CI tests on Linux, macOS and Windows,
+and the demo is played in Chromium at a phone's width and a desk's, and in WebKit at a phone's.
 
 ## Languages
 
-The package itself has no words: its codes and SVG are the same in every language, and the manifest's reasons and
-Commons' fields are in English as their sources give them. The demo speaks English and Japanese, with the places'
-names from Kuni. Its Japanese was checked by a strong, but not a native, reader of Japanese. **Japanese: included;
-not yet reviewed by a native reader. Corrections welcome.** Every line of the demo is listed beside its English in
+The package itself has no words: its codes and SVG are the same in every language, and the manifest's reasons are in
+English as their sources give them. The demo speaks English and Japanese, with the places' names from Kuni.
+**Japanese: included; not yet reviewed by a native reader. Corrections welcome.** Every line of the demo is listed beside its English in
 [docs/strings-ja.md](./docs/strings-ja.md), and there is an [issue template](https://github.com/johnmorrisdotca/hata/issues/new?template=fix-a-translation.md) for fixing one.
 
 ## Roadmap
@@ -700,8 +705,9 @@ not yet reviewed by a native reader. Corrections welcome.** Every line of the de
 Not here yet; each is welcome as an [issue](https://github.com/johnmorrisdotca/hata/issues):
 
 - More countries' regions, a whole country at a time: Spain and Italy once their drawings are free, Mexico and India for states with an official flag.
-- The four flags left out for their licence ([docs/decisions.md](./docs/decisions.md)).
-- A simplified drawing of the heaviest seals, beside the full one, never in its place.
+- The four flags left out for their licence ([decisions](./docs/decisions.md)).
+- A simplified drawing of the heaviest seals, beside the full one.
+- Dated earlier flags for the countries not yet researched ([docs/decisions.md](./docs/decisions.md#historic-flags-of-present-day-countries)).
 
 Left out on purpose: a framework component, redrawn flags, anything share-alike or GPL.
 

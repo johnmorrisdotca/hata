@@ -7,7 +7,7 @@ import "./dist/element-define.js";
 import { aspectOf, FLAG_CODES, flagUrl, toDataUri } from "./dist/index.js";
 import { toMarkdown, toSql } from "./downloads.js";
 import { flag } from "./dist/load.js";
-import { LEFT_OUT, manifest, MANIFEST } from "./dist/manifest.js";
+import { LEFT_OUT, manifest, MANIFEST, variantOn } from "./dist/manifest.js";
 import { mountEmbedBuilder } from "./embed-builder.js";
 import { FLAG_OPTIONS, HATA_PRODUCT } from "./embed-hata.js";
 import { CONTINENTS, NAMES } from "./names.js";
@@ -348,7 +348,7 @@ const variantsOfPlace = (code) => (manifest(code) ?? LEFT_OUT.find((one) => one.
 const MODULE_FILE = (module) => `dist/svg/${module}.svg`;
 let openedVariant = null;
 
-async function showDetail(code, variantId) {
+async function showDetail(code, variantId, date = "") {
   opened = code;
   const record = manifest(code);
   const variants = variantsOfPlace(code);
@@ -362,6 +362,8 @@ async function showDetail(code, variantId) {
   $("detail-flag").src = own === null ? fileOf(code) : MODULE_FILE(own.module);
   $("detail-flag").alt = nameOf(code);
   drawVariants(code, variants, chosen);
+  $("variant-date").value = date;
+  $("variant-date-note").textContent = "";
   const facts = $("facts");
   facts.replaceChildren();
   if (own !== null) {
@@ -403,6 +405,15 @@ async function showDetail(code, variantId) {
   drawEmbed(code, own);
 }
 
+// The flag a place had on a day, from the panel's date: variantOn finds the variant; none is said, not guessed.
+$("variant-date").addEventListener("change", (event) => {
+  const day = event.target.value;
+  if (day === "" || opened === null) return;
+  const found = variantOn(opened, day);
+  if (found === null) $("variant-date-note").textContent = say("variant_date_none", { date: day });
+  else showDetail(opened, found.id, day);
+});
+
 // Which of a place's flags is shown: a switch with a button for each, and below it the chosen one's status, dates, reason
 // and source. Nothing shows for a place that has no entry in VARIANTS; a place with one flag and a status (Brittany) shows it.
 function drawVariants(code, variants, chosen) {
@@ -411,6 +422,8 @@ function drawVariants(code, variants, chosen) {
   const place = manifest(code) ?? LEFT_OUT.find((one) => one.code === code);
   $("disputed-note").hidden = !place?.disputed;
   if (variants.length === 0) return;
+  // The flag on a day: a place with dated flags (the earlier flags of a country, a former country's) can be asked what it flew on one.
+  $("variant-date-row").hidden = !variants.some((one) => (one.status === "official" || one.status === "historical") && (one.from !== null || one.until !== null));
   $("variant-switch").replaceChildren(
     ...variants.map((one) => {
       const button = Object.assign(document.createElement("button"), { type: "button", textContent: ja() ? one.nameJa : one.name });
@@ -427,7 +440,7 @@ function drawVariants(code, variants, chosen) {
   const status = Object.assign(document.createElement("b"), { textContent: say(`status_${chosen.status.replace("-", "_")}`) });
   status.dataset.status = chosen.status;
   const reason = Object.assign(document.createElement("span"), { textContent: ` ${chosen.why}`, lang: "en" });
-  const source = Object.assign(document.createElement("a"), { href: chosen.source, textContent: say("variant_source"), rel: "noopener" });
+  const source = Object.assign(document.createElement("a"), { href: chosen.source, textContent: `${say("variant_source")} (${say(`source_kind_${chosen.sourceKind}`)})`, rel: "noopener" });
   why.replaceChildren(status, ...(dates === "" ? [] : [` · ${dates}`]), ...(chosen.default ? [` · ${say("variant_default")}`] : []), document.createElement("br"), reason, " ", source);
   why.dataset.variant = chosen.id;
 }

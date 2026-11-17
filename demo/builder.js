@@ -2,7 +2,7 @@
 import { FLAG_CODES, VERSION } from "./dist/index.js";
 import { flagAspect, flagName } from "./dist/names.js";
 import { FLAG_ELEMENT_ATTRIBUTES } from "./dist/element.js";
-import { manifest, variantsOf, LEFT_OUT } from "./dist/manifest.js";
+import { manifest, variantOn, variantsOf, LEFT_OUT } from "./dist/manifest.js";
 import "./dist/element-define.js";
 import { familyEmbedBuilder, FAMILY_EMBED_BUILDER_WORDS } from "./family-embed-builder.js";
 import { OWED } from "./embed-credits.js";
@@ -10,10 +10,10 @@ import { OWED } from "./embed-credits.js";
 import "./kazoku-page-frame.js";
 // kazoku-ui's embed panel, the code section the builder fills: defined before the builder mounts.
 import "./kazoku-embed-panel.js";
-import { FLAG_OPTIONS, HATA_PRODUCT } from "./embed-hata.js";
+import { FLAG_OPTIONS, HATA_PRODUCT, unknownDate } from "./embed-hata.js";
 
 const codeChoices = [...FLAG_CODES, ...LEFT_OUT.filter(one => one.variants.length > 0).map(one => one.code)];
-const needsVariant = settings => settings.variant ? !variantsOf(settings.code ?? "JP").some(one => one.id === settings.variant) : !FLAG_CODES.includes(settings.code ?? "JP");
+const needsVariant = settings => settings.date && !settings.variant ? unknownDate({ ...settings, code: settings.code ?? "JP" }) : settings.variant ? !variantsOf(settings.code ?? "JP").some(one => one.id === settings.variant) : !FLAG_CODES.includes(settings.code ?? "JP");
 const words = {
   en: {
     ...FAMILY_EMBED_BUILDER_WORDS.en,
@@ -27,6 +27,7 @@ const words = {
     makerFlagSays: "A flag at its own proportions or in a frame.",
     copyLink: "Copy a link to this flag",
     missingVariant: "Choose a valid variant id from the gallery panel; a place with no default flag needs an explicit choice.",
+    missingDate: "No flag is known for this place on that date. Try another day, or leave the date empty for today's flag.",
     loading: "Preparing the image code…"
   },
   ja: {
@@ -41,6 +42,7 @@ const words = {
     makerFlagSays: "本来の縦横比、または枠に収めた旗です。",
     copyLink: "この旗へのリンクをコピー",
     missingVariant: "一覧のパネルにある別の旗のidを指定してください。既定の旗がない地域では、指定が必要です。",
+    missingDate: "この地域のその日付の旗は分かっていません。別の日付を試すか、日付を空にして現在の旗を表示してください。",
     loading: "画像のコードを準備しています…"
   },
 };
@@ -50,6 +52,7 @@ const options = [
   row("code", "choice", ["Flag", "Choose a country or region."], ["旗", "国や地域を選びます。"], { default: "JP", choices: codeChoices, control: "select", choiceLabels: Object.fromEntries(["en", "ja"].map((lang) => [lang, Object.fromEntries(codeChoices.map((code) => [code, `${flagName(code, lang) ?? code} (${code})`]))])) }),
   row("shape", "choice", ["Shape", "Keep its proportions or choose a frame."], ["形", "本来の縦横比、または枠の形を選びます。"], { default: "own", choices: ["own", "4:3", "1:1", "round"] }),
   row("variant", "text", ["Variant (optional)", "Choose a variant id from the flag's gallery panel; empty uses the default."], ["別の旗（任意）", "旗の一覧のパネルにあるidで指定します。空のままなら既定の旗を描きます。"]),
+  row("date", "text", ["Date (optional)", "Draw the flag in use on this day, such as 1962-09-29; empty uses the default."], ["日付（任意）", "その日に使われていた旗を描きます。例：1962-09-29。空のままなら既定の旗を描きます。"]),
   row("fit", "choice", ["Whole or cropped", "Use the curated frame, the whole flag or a crop."], ["全体か切り抜きか", "旗に合わせた表示・旗の全体・切り抜きから選びます。"], { default: "auto", choices: ["auto", "whole", "crop", "cover", "hoist", "contain"] }),
   row("size", "choice", ["Display size", "Small, medium or large; width overrides it."], ["表示の大きさ", "小・中・大を選びます。幅の指定が優先されます。"], { choices: ["small", "medium", "large"] }),
   row("width", "number", ["Width", "Width in pixels, preserving the flag's proportions."], ["幅", "旗の縦横比を保った幅を、ピクセルで指定します。"], { range: { min: 12, max: 600, step: 4 } }),
@@ -65,7 +68,7 @@ for (const option of options.filter((one) => one.kind === "choice")) {
 }
 options.find((option) => option.id === "size").choiceLabels = { en: { small: "Small", medium: "Medium", large: "Large" }, ja: { small: "小", medium: "中", large: "大" } };
 const sizes = { small: 24, medium: 48, large: 96 };
-const aspect = (settings) => settings.shape === "4:3" ? 4 / 3 : settings.shape === "round" || settings.shape === "1:1" ? 1 : (() => { const drawing = variantsOf(settings.code ?? "JP").find(one => one.id === settings.variant)?.drawing; return drawing ? drawing.width / drawing.height : flagAspect(settings.code ?? "JP") ?? 1.5; })();
+const aspect = (settings) => settings.shape === "4:3" ? 4 / 3 : settings.shape === "round" || settings.shape === "1:1" ? 1 : (() => { const variant = settings.variant || (settings.date && !unknownDate({ ...settings, code: settings.code ?? "JP" }) ? variantOn(settings.code ?? "JP", settings.date)?.id : ""); const drawing = variantsOf(settings.code ?? "JP").find(one => one.id === variant)?.drawing; return drawing ? drawing.width / drawing.height : flagAspect(settings.code ?? "JP") ?? 1.5; })();
 const width = (settings) => Number(settings.width) > 0 ? Number(settings.width) : (sizes[settings.size] ?? 48) * aspect(settings);
 // A drawing whose licence asks for credit (CC BY) shows a credit line in its frame, under the flag: the frame is taller
 // by the line's height, measured here at the frame's width and in its language, as the embed page draws it (the same
@@ -117,7 +120,7 @@ const builder = familyEmbedBuilder({ id: "hata", packageName: "@johnmorrisdotca/
 builder.validateCoverage({ element: FLAG_ELEMENT_ATTRIBUTES });
 mounted = builder.mount({ words, language: () => page, initial: { flag: { size: "medium", lang: page.lang } }, renderPreview: ({ stage, settings, attrs, note, say }) => {
   const current = ++epoch;
-  if (needsVariant(settings)) { note.textContent = say("missingVariant"); return { destroy() { epoch += 1; } }; }
+  if (needsVariant(settings)) { note.textContent = say(settings.date && !settings.variant ? "missingDate" : "missingVariant"); return { destroy() { epoch += 1; } }; }
   const values = legacy(settings);
   context = { framing: manifest(values.code)?.framings[values.shape] ?? null };
   const element = document.createElement("hata-flag");

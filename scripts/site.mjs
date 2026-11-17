@@ -116,6 +116,11 @@ const dialog = `<dialog id="detail" class="detail" data-testid="detail" aria-lab
       <div class="variants" id="variants" data-testid="variants" hidden>
         <p class="fam-fine" data-say="variants_title"></p>
         <div class="fam-seg" role="group" id="variant-switch" data-testid="variant-switch" data-say-label="variants_title"></div>
+        <div class="variant-date" id="variant-date-row" data-testid="variant-date-row" hidden>
+          <label class="fam-label" for="variant-date" data-say="variant_date_label"></label>
+          <input type="date" id="variant-date" class="fam-field" data-testid="variant-date" />
+          <span class="fam-fine" id="variant-date-note" data-testid="variant-date-note" aria-live="polite"></span>
+        </div>
         <p class="variant-why" id="variant-why" data-testid="variant-why"></p>
       </div>
       <div class="detail-flag"><img id="detail-flag" data-testid="detail-flag" alt="" /></div>
@@ -143,6 +148,7 @@ const NOTICE = "https://github.com/johnmorrisdotca/hata/blob/main/NOTICE.md";
 const INDEX_DESCRIPTION =
   "Every country's flag, and the regions of Japan, Canada, the United States, Australia, the United Kingdom, Germany, France, Switzerland, Austria and Brazil, as optimised SVG keyed by ISO 3166 code, with each flag's source and licence. Search, embed anywhere, download as SVG or PNG, and play the flag quiz. Free and open source.";
 const BUILDER_DESCRIPTION = "Choose a flag, preview it and copy its embed code.";
+const HISTORIC_DESCRIPTION = "Every country and all of its flags in date order: the earlier flags of countries that still exist and of former countries, each with its years, status and source.";
 const FRAME_TEXTS = {
   "index.html": {
     en: { name: "Hata 旗", what: "flags of countries and regions", description: INDEX_DESCRIPTION },
@@ -151,6 +157,10 @@ const FRAME_TEXTS = {
   "builder.html": {
     en: { name: "Hata 旗", what: "embed builder", description: BUILDER_DESCRIPTION },
     ja: { name: "旗 Hata", what: "埋め込みを作る", description: "旗を選んでプレビューを確かめ、埋め込みのコードをコピーできます。" },
+  },
+  "historic.html": {
+    en: { name: "Hata 旗", what: "historic flags", description: HISTORIC_DESCRIPTION },
+    ja: { name: "旗 Hata", what: "歴代の旗", description: "どの国のどの旗も、年代順に見られます。今もある国の以前の旗と、かつての国の旗に、使われた年、位置づけ、出典を添えています。" },
   },
 };
 const FRAME_CREDITS = pageCreditsHtml(
@@ -257,3 +267,22 @@ const builderWords = {
   "unreviewed": familyUnreviewed({ id }), "footer": familyFooter({ id }), "script": `<script>${FAMILY_SCRIPT}</script>\n    <script type="module" src="kazoku-parts.js"></script>`,
 };
 writeFileSync("site/builder.html", framed(readFileSync("demo/builder.html", "utf8").replace(/<!-- ?family:([A-Za-z]+) ?-->/g, (_match, key) => builderWords[key]), "builder.html"));
+
+// The Historic flags page: every country and former country with all of its flags in date order, made from the manifest here so
+// that it lists exactly what the package holds (e2e/historic.demo.mjs holds the page to the manifest).
+const historicRows = MANIFEST.filter((record) => record.code.length === 2 || record.historical !== undefined)
+  .map((record) => {
+    const flags = record.variants.length === 0
+      ? [{ id: null, module: record.code.toLowerCase(), en: "", ja: "", from: null, until: null, status: "official", kind: "commons", source: record.page }]
+      : [...record.variants].sort((a, b) => (a.from ?? "9999").localeCompare(b.from ?? "9999")).map((variant) => ({ id: variant.id, module: variant.module, en: variant.name, ja: variant.nameJa, from: variant.from, until: variant.until, status: variant.status, kind: variant.sourceKind, source: variant.source }));
+
+    return { code: record.code, en: names[record.code].en, ja: names[record.code].ja, continent: names[record.code].continent ?? null, former: record.historical !== undefined, years: record.historical === undefined ? null : [record.historical.from, record.historical.until], flags };
+  })
+  .sort((a, b) => a.en.localeCompare(b.en));
+writeFileSync("site/historic-data.js", `// Made by scripts/site.mjs from the manifest: every country and former country with all of its flags, in date order.\nexport const ROWS = ${JSON.stringify(historicRows)};\nexport const CONTINENTS = ${JSON.stringify(continents)};\n`);
+const historicWords = {
+  "head": familyHead({ id, title: pageTitle(FRAME_TEXTS["historic.html"].en), description: HISTORIC_DESCRIPTION }),
+  "historicHeader": familyHeader({ id, links: [{ href: "./", say: "toGallery" }, { href: "docs/index.html", say: "pageDocs" }, { href: "api.html", say: "pageApi" }] }),
+  "unreviewed": familyUnreviewed({ id }), "footer": familyFooter({ id }), "script": `<script>${FAMILY_SCRIPT}</script>\n    <script type="module" src="kazoku-parts.js"></script>`,
+};
+writeFileSync("site/historic.html", framed(readFileSync("demo/historic.html", "utf8").replace(/<!-- ?family:([A-Za-z]+) ?-->/g, (_match, key) => historicWords[key]), "historic.html"));
