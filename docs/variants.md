@@ -7,7 +7,8 @@ authority a flag has, and the default is the flag of the authority the world rec
 The decisions behind the defaults are in [decisions.md](decisions.md).
 
 `flag(code, { variant: id })` loads one; `variantsOf(code)` from `/manifest` lists them; `<hata-flag code variant>` draws one; each is its
-own module, `/flags/<code>--<id>`, and file, `svg/<code>--<id>.svg`.
+own module, `/flags/<code>--<id>`, and file, `svg/<code>--<id>.svg`. The earlier flags of present-day countries (the United States'
+48 stars, Canada's Red Ensign) are in [historical.md](historical.md#earlier-flags-of-present-day-countries), with their dates.
 
 | Code | Place | Id | Status | Dates | Default | Why | Source | Drawing | Licence |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
