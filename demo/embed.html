@@ -26,16 +26,22 @@
     <script type="module">
       import "./dist/element-define.js";
       import { OWED } from "./embed-credits.js";
+      import { variantOn } from "./dist/manifest.js";
       const element = document.getElementById("flag");
       const credits = document.getElementById("credits");
       const credit = async () => {
-        const owed = OWED[`${(element.getAttribute("code") ?? "JP").toUpperCase()}|${element.getAttribute("variant") ?? ""}`];
+        const code = (element.getAttribute("code") ?? "JP").toUpperCase();
+        const date = element.getAttribute("date") ?? "";
+        // A date draws the variant `variantOn` finds for it, whose drawing may owe a credit.
+        let variant = element.getAttribute("variant") ?? "";
+        if (variant === "" && date !== "") try { variant = variantOn(code, date)?.id ?? ""; } catch { /* not a date: nothing is drawn */ }
+        const owed = OWED[`${code}|${variant}`];
         credits.hidden = owed === undefined;
         if (owed === undefined) return;
         await import("./kazoku-page-frame.js");
         credits.credits = owed;
       };
-      const ATTRIBUTES = ["code", "shape", "size", "fit", "variant", "label", "theme", "border", "shadow"];
+      const ATTRIBUTES = ["code", "shape", "size", "fit", "variant", "date", "label", "theme", "border", "shadow"];
       const FLAGS = ["border", "shadow"];
       const draw = () => {
         const query = new URLSearchParams(location.hash.length > 1 ? location.hash.slice(1) : location.search.slice(1));

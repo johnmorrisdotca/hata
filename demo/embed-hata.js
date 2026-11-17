@@ -3,7 +3,7 @@ import { VERSION } from "./dist/index.js";
 // the code only Hata writes, a plain <img> of the CDN's SVG file framed by CSS, the same as a data: URI, and an ES
 // module. The preview is a live <hata-flag> drawn by the package's own element.
 import { flagDataUri } from "./dist/load.js";
-import { manifest, variantsOf } from "./dist/manifest.js";
+import { manifest, variantOn, variantsOf } from "./dist/manifest.js";
 import { flagAspect, flagName } from "./dist/names.js";
 
 const PACKAGE = "@johnmorrisdotca/hata";
@@ -34,6 +34,14 @@ export const FLAG_OPTIONS = [
     default: "",
     label: { en: "Variant (optional)", ja: "別の旗（任意）" },
     help: { en: "Which of the place's flags in real use to draw, by its id (the flag's panel above has the switch): de-facto, stripes, local. Left empty, the default.", ja: "その地域で実際に使われている旗のうち、描く旗をidで指定します（切り替えは上の旗のパネルにあります）。例：de-facto、stripes、local。空のままなら既定の旗を描きます。" },
+  },
+  {
+    id: "date",
+    kind: "text",
+    attribute: "date",
+    default: "",
+    label: { en: "Date (optional)", ja: "日付（任意）" },
+    help: { en: "Draw the flag the place had in use on this day, such as 1962-09-29 for Canada's Red Ensign: the earlier flags of a country, and today's after its newest change. A variant, if named, wins.", ja: "その日にその地域で使われていた旗を描きます。例：1962-09-29（カナダのレッド・エンサイン）。国の以前の旗も指定でき、最も新しい変更のあとの日付なら現在の旗になります。別の旗も指定したときは、そちらが優先されます。" },
   },
   {
     id: "fit",
@@ -79,6 +87,21 @@ export const FLAG_OPTIONS = [
     ],
   },
 ];
+
+// A date asks for the flag in use that day: the variant that `variantOn` finds, so the code that is not the element's names it by its id.
+// A date no flag is known for, or that is not a date, leaves the variant empty and `unknownDate` true.
+export const unknownDate = (settings) => {
+  if (!settings.date || settings.variant) return false;
+  try {
+    return variantOn(settings.code, settings.date) === null;
+  } catch {
+    return true;
+  }
+};
+const resolved = (settings) => {
+  if (!settings.date || settings.variant || unknownDate(settings)) return settings;
+  return { ...settings, variant: variantOn(settings.code, settings.date).id, date: "" };
+};
 
 // A variant is drawn at its own proportions, which are not always the default flag's (the Taliban's is 2:1, the Republic's 3:2).
 const variantAspect = (settings) => {
@@ -127,11 +150,13 @@ export const HATA_PRODUCT = {
   cdn: `https://cdn.jsdelivr.net/npm/${PACKAGE}@${MAJOR}/dist/element-define.js`,
   embed: "https://johnmorrisdotca.github.io/hata/embed/",
   formats: ["element", "img", "data", "iframe", "module", "react", "vue", "svelte", "angular", "html", "url"],
-  async context(settings) {
+  async context(asked) {
+    const settings = resolved(asked);
     const options = { ...(settings.shape === "own" ? {} : { shape: settings.shape, ...(settings.fit && settings.fit !== "auto" ? { fit: settings.fit } : {}) }), ...(settings.variant ? { variant: settings.variant } : {}) };
     return { uri: await flagDataUri(settings.code, Object.keys(options).length === 0 ? undefined : options), framing: settings.variant ? null : (manifest(settings.code)?.framings[settings.shape] ?? null) };
   },
-  frameSize(settings) {
+  frameSize(asked) {
+    const settings = resolved(asked);
     const height = Number(settings.size);
     // The embed page leaves 4 pixels round the flag, for its shadow.
     return { width: Math.ceil(height * aspectFor(settings)) + 8, height: height + 8 };
@@ -155,10 +180,11 @@ export const HATA_PRODUCT = {
     img: {
       label: { en: "<img>", ja: "<img>" },
       language: "html",
-      write(settings, _attributes, context) {
+      write(asked, _attributes, context) {
+        const settings = resolved(asked);
         const size = Number(settings.size);
         const adapted = drawnFor(settings, context.framing);
-        const base = settings.variant ? `${settings.code.toLowerCase()}--${settings.variant}` : settings.code.toLowerCase();
+        const base = settings.variant ? (variantsOf(settings.code).find((one) => one.id === settings.variant)?.module ?? `${settings.code.toLowerCase()}--${settings.variant}`) : settings.code.toLowerCase();
         const file = adapted ? `${base}.${settings.shape === "4:3" ? "4x3" : "1x1"}.svg` : `${base}.svg`;
         const width = Math.round(size * aspectFor(settings));
         return `<img src="${SVG_BASE}/${file}" alt="${escapeAttribute(nameFor(settings))}" width="${width}" height="${size}"${imageStyle(settings, context.framing, adapted)}>`;
@@ -167,7 +193,8 @@ export const HATA_PRODUCT = {
     data: {
       label: { en: "data: URI", ja: "data: URI" },
       language: "html",
-      write(settings, _attributes, context) {
+      write(asked, _attributes, context) {
+        const settings = resolved(asked);
         const size = Number(settings.size);
         const width = Math.round(size * aspectFor(settings));
         // The data: URI is the flag already framed, a circle cut and all, as /load frames it.
@@ -177,7 +204,8 @@ export const HATA_PRODUCT = {
     module: {
       label: { en: "ES module", ja: "ESモジュール" },
       language: "js",
-      write(settings) {
+      write(asked) {
+        const settings = resolved(asked);
         const fit = settings.fit && settings.fit !== "auto" ? `, fit: ${JSON.stringify(settings.fit)}` : "";
         const variant = settings.variant ? `variant: ${JSON.stringify(settings.variant)}` : "";
         const framed = settings.shape === "own" ? "" : `shape: ${JSON.stringify(settings.shape)}${fit}`;

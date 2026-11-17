@@ -252,6 +252,48 @@ of the flag it shares a drawing with, where there is one, such as France's trico
 measures its frames. A build that finds a new picture unmeasured writes everything as cropped from the centre and stops at the end,
 naming what to measure; run `pnpm data:framing` for it and `pnpm data` again.
 
+## Historic flags of present-day countries
+
+Added in the next release (board ticket MODULES-1405). Hata had the flag of 12 former countries and a few dated variants; it had no earlier flags of countries that still
+exist. They are now variants with `status: "historical"` and dates (`scripts/historic-flags.ts`, listed in [historical.md](historical.md#earlier-flags-of-present-day-countries)),
+with `flag(code, { date })`, `variantOn(code, date)` and `<hata-flag date>` to ask for the flag in use on a day.
+
+**Which countries.** Every national flag change since 1900 (and the flag in force on 1900-01-01) for the countries named in the ticket, researched 2026-11-17 from the pages
+each variant names: the United States, Canada, the United Kingdom, Australia, New Zealand, South Africa, Japan, Russia, Ukraine, Kazakhstan, Turkey, Egypt, Germany,
+France, Italy, Spain, Luxembourg, Norway, Sweden, China, India, Pakistan, Iran, Israel, South Korea, Vietnam, the Philippines, Indonesia, Brazil, Argentina, Mexico, Nigeria and the United Arab Emirates.
+A country with no visible change since 1900 has one dated entry, the day its flag came in (United Kingdom 1801, France 1830, Luxembourg 1845, Norway 1899, New Zealand 1869).
+**Not yet researched:** every other present-day country whose flag changed since 1900 (Afghanistan, Ethiopia, Iraq, Cambodia, Libya, Greece, Cuba, Chile and about a hundred more; the Wikidata
+statements in `data-sources/wikidata-2026-10-09.json` are the place to start). They have no dated entries, and `variantOn` gives `null` for them.
+
+**What counts as the national flag.** The flag the state itself used as its national flag, on land; not a naval or merchant ensign unless the country had no other. A flag that only
+changed its shade or its specification is not a change (France's blue of 1976 and 2020, Italy's 2003 shades, Argentina's 1943 and 2010 specifications, Japan's red). Flags of the Soviet republics
+(the RSFSR, the Ukrainian and Kazakh SSRs) are counted as the flags of Russia, Ukraine and Kazakhstan, because those states are the same states under new names; the Soviet Union's own flag stays under `SUHH`.
+The Soviet republic flags are `historical`, and a place's flags before its state existed in its present form (China before 1949, India before 1947, Vietnam before 1945) are not included.
+
+**Judgment calls to confirm.**
+- **Canada** has the three Red Ensigns as its flag before 1965, because they are the Canadian drawings and the flag Canadians flew; the Union Flag was the legal national flag until 1965-02-15 and is not a Canadian variant (`flag("GB")` draws it).
+- **Japan** has two flags: the 1870 Hinomaru (7:10, disc 1/100 off centre) and the 1999 Act's (2:3, centred disc), because the 1999 Act changed the proportions and the position of the disc.
+- **Germany** has five periods, not none: the black, white and red flag (to 1919-08-14), the Weimar black, red and gold flag (it looks like today's at 2:3 against 3:5), black, white and red again (1933-03-13 to 1935-09-15) and today's.
+  **The swastika flag of 1935 to 1945 is not shipped** (its drawing is public domain on Commons, which tags it with a note on § 86a of the Strafgesetzbuch): `variantOn("DE", "1940")` is `null`. This is the maintainer's to decide.
+  The Allied civil ensign of 1946 to 1949 is left out too (low confidence in its dates).
+- **Brazil's dates** are the days the decrees and laws came into force (1960-04-21, 1968-05-30, 1992-05-12), not the days they were signed.
+- **Year-only dates** where no source gave a day: Canada's Red Ensign of 1868 (and Wikipedia is its only source), Iran's 1933 and 1964 redrawings, Russia's tricolour of 1896.
+
+**Left out, and why (to add later).**
+- *Drawing under CC BY-SA, which Hata does not ship:* Spain's flags of the monarchy to 1931, of Franco's state (1938 and 1945 arms) and of the 1977 transition; South Africa's Red Ensigns of 1910 and 1912; the Philippines' sky-blue flag of 1985 to 1986.
+  A gap where a flag is not shipped gives `null`, not a wrong flag.
+- *Licence history in doubt:* the Philippines' navy-blue flags of 1936 to 1985 and 1986 to 1998. Commons' only public-domain drawing was uploaded in 2007 as the uploader's own work under GFDL and CC BY-SA, and later marked `PD-Philippines`.
+- *Drawing at the wrong proportions or too large:* the Philippines' 1898 and 1920 flags (the free drawings are 3:2, the flags 1:2); Mexico's frontal eagle of 1892 to 1916 (453 KB, over the 400 KB ceiling).
+- *Not clearly the national flag, or dates not documented:* Turkey's Ottoman flag of 1844 to 1936 (no proven visible change before the law of 1936), Sweden's flags with the union mark (1844 to 1905) and of 1905 to 1906 (Wikipedia is the only source),
+  Kazakhstan's SSR flags of 1937 and 1940, Iran's Qajar flag before 1907, Korea's Taegeukgi of the Korean Empire (the drawing on Commons is the 1882 pattern, not the one in use in 1900).
+- *Not shipped on purpose:* the swastika flag (above).
+
+**Sources.** Each variant's `source` is the page that documents its dates and `sourceKind` says what it is. 39 have an official source (a government, parliament, archive or law text), 34 a reference and 3 only Wikipedia (listed as `encyclopedia`).
+Official pages that would not load in the research (several government sites answer a robot with 403) are not cited; the references used instead are named in each flag's `source`.
+
+**Reading a date.** `from` is the first day a flag was in force and `until` the first day of its successor; a bare year or month is the whole of it, and where two flags share a bare year the later wins.
+`null` means "not known here", never "no flag": see historical.md for the rules, including what a former country gives outside its years.
+
 ## Former countries
 
 Written 2026-10-20, for the medal table of [taisen-brackets](https://github.com/johnmorrisdotca/taisen-brackets), which needed a flag for
