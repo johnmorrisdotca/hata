@@ -6,6 +6,8 @@ All notable changes to this project are written here. The format follows
 
 ## [Unreleased]
 
+- **Martinique's flag is its own** (MODULES-1409). `MQ` and `FR-972` drew France's tricolour and kept the red, green and black flag as a `local` variant, on the ground that Martinique had no official flag. That was out of date: the Assembly of Martinique adopted it on 2023-02-02. It is now the default (variant `martinique`, official, from 2023-02-02), with flag-icons' drawings of it for the 4:3 and square frames (`/flags/mq.4x3`, `/flags/mq.1x1`), and France's tricolour is the `france` variant (`/flags/mq--france`). **Changed for a caller:** `flag("MQ")` gives another picture, at the same 2:3; the variant `local` and the module `/flags/mq--local` are gone (the same drawing is `/flags/mq`). `docs/decisions.md` has the correction; Saint-Martin still has no official flag and is unchanged.
+
 ## [1.11.0] - 2026-11-17
 
 ### Added

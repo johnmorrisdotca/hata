@@ -192,7 +192,9 @@ same flag drawn simplified or laid out again at another shape. These are not:
   (chosen here, `CHOSEN`), Réunion, French Guiana and Saint Martin, and a local flag for Saint Barthélemy,
   Saint-Pierre and Miquelon, Wallis and Futuna, Mayotte and Martinique. For New Caledonia it gives the FLNKS
   (Kanak) flag, which has flown beside France's there since 2010. **Decided 2026-10-09: each territory's official flag, else
-  France's**, with the local flag a variant (below).
+  France's**, with the local flag a variant (below). **Martinique, corrected 2026-11-17:** its red, green and black flag
+  was taken for a local one, and it is official: the Assembly of Martinique adopted it on 2023-02-02, by 44 votes to
+  none. By the rule it is the default for `MQ` and `FR-972`, and France's tricolour is the `france` variant.
 - **Caribbean Netherlands (BQ)** has no flag of its own: Bonaire, Sint Eustatius and Saba each have one, and
   the Netherlands' is the official flag. flag-icons draws the Netherlands', country-flag-icons Bonaire's. The
   package ships none. (Wikidata's other item with the code BQ is the British Antarctic Territory, which had it
@@ -219,13 +221,17 @@ has one, never a flag chosen for being the one most flown.
 - **Saint Helena**: default `saint-helena`, the island's own blue ensign; `union-flag`, the flag of the territory (Saint Helena,
   Ascension and Tristan da Cunha) as a whole, as Wikidata gives it.
 - **The French territories**: each territory's official flag, else France's. **France's tricolour is the default** for
-  Guadeloupe, Martinique, French Guiana, Réunion, Mayotte, Saint-Barthélemy, Saint-Martin, Saint-Pierre and Miquelon, Wallis and
+  Guadeloupe, French Guiana, Réunion, Mayotte, Saint-Barthélemy, Saint-Martin, Saint-Pierre and Miquelon, Wallis and
   Futuna and Clipperton, none of which has an official flag of its own, with the local flag a `local` variant where a drawing
   can ship: Guadeloupe's (red, with the sun and the fleurs-de-lis; the black-field one belongs to the independence movement and is
-  not offered), Martinique's red, green and black flag, French Guiana's green and yellow diagonal with a red star, Réunion's Lofo,
-  Mayotte's, Saint-Barthélemy's, Saint-Pierre and Miquelon's and Wallis and Futuna's. **New Caledonia** and **French Polynesia**
-  have flags of their own that are official (the Kanak flag beside France's since 2010; French Polynesia's since its statute
-  of 1984), so those are the defaults and France's tricolour is the `france` variant. The French Southern and Antarctic Lands
+  not offered), French Guiana's green and yellow diagonal with a red star, Réunion's Lofo,
+  Mayotte's, Saint-Barthélemy's, Saint-Pierre and Miquelon's and Wallis and Futuna's. **New Caledonia**, **French Polynesia**
+  and **Martinique** have flags of their own that are official (the Kanak flag beside France's since 2010; French Polynesia's
+  since its statute of 1984; Martinique's red, green and black flag, with a red triangle at the hoist, since its Assembly
+  adopted it on 2023-02-02), so those are the defaults and France's tricolour is the `france` variant. Until 1.10.0 Martinique
+  drew France's flag and kept its own as a `local` variant, on the ground that it had no official flag; that was out of
+  date (MODULES-1409). Saint-Martin still has none: a competition for one was running in 2026, so it is looked at again
+  when its council adopts a flag. The French Southern and Antarctic Lands
   keep the TAAF's own flag. **Not offered**: Saint-Martin's local flag ("Local flag of the Collectivity of Saint Martin.svg" is
   under the Licence Ouverte, which is not one of the licences John approved), Guadeloupe's "Flag of Guadeloupe (Local).svg" and
   Martinique's collectivity flag (CC BY-SA 4.0). Which territories' local flags count as "official" is a judgement from

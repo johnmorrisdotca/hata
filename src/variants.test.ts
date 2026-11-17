@@ -8,7 +8,7 @@ import afghanistan from "./flags/af";
 import britain from "./flags/gb";
 import { aspectOf } from "./index";
 import { flag } from "./load";
-import { leftOut, manifest, MANIFEST, LEFT_OUT, variantsOf } from "./manifest";
+import { leftOut, manifest, MANIFEST, LEFT_OUT, variantOn, variantsOf } from "./manifest";
 
 describe("variantsOf", () => {
   it("lists Afghanistan's two flags, the Republic's tricolour the default and the Taliban's the de-facto one", () => {
@@ -28,6 +28,23 @@ describe("variantsOf", () => {
     expect(variantsOf("XX")).toEqual([]);
     expect(manifest("AO")).toMatchObject({ disputed: false, defaultVariant: null, variants: [] });
     expect(() => variantsOf(1 as unknown as string)).toThrow(TypeError);
+  });
+
+  it("gives Martinique its own flag, official since 2023-02-02, by either code, and France's as the other", async () => {
+    const list = variantsOf("MQ");
+    expect(list.map((one) => [one.id, one.status, one.default])).toEqual([["martinique", "official", true], ["france", "official", false]]);
+    expect(list[0]).toMatchObject({ from: "2023-02-02", until: null, module: "mq" });
+    expect(list[0]!.drawing.file).toBe("Flag-of-Martinique.svg");
+    expect(list[1]).toMatchObject({ from: null, until: null, module: "mq--france" });
+    expect(variantsOf("FR-972")).toEqual(list);
+    expect(manifest("MQ")).toMatchObject({ file: "Flag-of-Martinique.svg", defaultVariant: "martinique", sameAs: null });
+    expect(manifest("FR-972")).toMatchObject({ file: "Flag-of-Martinique.svg", sameAs: "MQ" });
+    expect(await flag("MQ")).not.toBe(await flag("FR"));
+    expect(await flag("FR-972")).toBe(await flag("MQ"));
+    expect(await flag("MQ", { variant: "france" })).toBe(await flag("FR"));
+    expect(await flag("MQ", { variant: "local" })).toBeNull();
+    expect(variantOn("MQ", "2023-02-02")?.id).toBe("martinique");
+    expect(variantOn("MQ", "2023-02-01")).toBeNull();
   });
 
   it("gives Northern Ireland no default flag and two to ask for, the Ulster Banner as history", () => {

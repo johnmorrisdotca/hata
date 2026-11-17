@@ -2440,9 +2440,17 @@
       "types": "./dist/flags/mp.d.ts",
       "default": "./dist/flags/mp.js"
     },
-    "./flags/mq--local": {
-      "types": "./dist/flags/mq--local.d.ts",
-      "default": "./dist/flags/mq--local.js"
+    "./flags/mq--france": {
+      "types": "./dist/flags/mq--france.d.ts",
+      "default": "./dist/flags/mq--france.js"
+    },
+    "./flags/mq.1x1": {
+      "types": "./dist/flags/mq.1x1.d.ts",
+      "default": "./dist/flags/mq.1x1.js"
+    },
+    "./flags/mq.4x3": {
+      "types": "./dist/flags/mq.4x3.d.ts",
+      "default": "./dist/flags/mq.4x3.js"
     },
     "./flags/mq": {
       "types": "./dist/flags/mq.d.ts",
