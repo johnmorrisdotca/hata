@@ -45,8 +45,8 @@ describe("the manifest", () => {
     for (const one of MANIFEST) {
       if (one.source === "commons") {
         expect(["public-domain", "cc0", "cc-by", "accepted"], one.code).toContain(one.licence.kind);
-        // The only licence accepted by a decision is Mississippi's, whose decision is written in its name.
-        if (one.licence.kind === "accepted") expect([one.code, one.licence.name]).toEqual(["US-MS", expect.stringContaining("accepted:")]);
+        // The licences accepted by a decision are Mississippi's and Oman's, one file each, and the decision is written in the name.
+        if (one.licence.kind === "accepted") expect([one.code, one.licence.name]).toEqual([expect.stringMatching(/^(US-MS|OM)$/), expect.stringContaining("accepted:")]);
         expect(one.page, one.code).toMatch(/^https:\/\/commons\.wikimedia\.org\/wiki\/File:/);
         expect(one.reference, one.code).toBeNull();
         expect(one.uploaded, one.code).toMatch(/^\d{4}-\d{2}-\d{2}$/);
@@ -62,6 +62,18 @@ describe("the manifest", () => {
     }
   });
 
+
+  it("accepts a licence for two files only, Mississippi's and Oman's, each with its decision and reason in the licence's name", () => {
+    const accepted = MANIFEST.filter((one) => one.licence.kind === "accepted");
+    expect(accepted.map((one) => one.code)).toEqual(["OM", "US-MS"]);
+    const oman = accepted.find((one) => one.code === "OM")!;
+    expect(oman.licence.name).toContain("OGL-om 1.0");
+    expect(oman.licence.name).toContain("Article 6");
+    expect(oman.licence.name).toContain("John, 2026-11-17");
+    expect(oman.page).toBe("https://commons.wikimedia.org/wiki/File:Flag_of_Oman.svg");
+    expect(LEFT_OUT.map((one) => one.code)).not.toContain("OM");
+    expect(LEFT_OUT.filter((one) => one.kind === "licence").map((one) => one.code)).toEqual(["CC", "JP-34", "JP-37"]);
+  });
   it("credits in NOTICE.md every Commons drawing under CC BY, and every flag set a drawing came from, with its licence", () => {
     const notice = readFileSync("NOTICE.md", "utf8");
     for (const one of MANIFEST.filter((record) => record.licence.kind === "cc-by" && record.sameAs === null)) expect(notice, one.code).toContain(one.file);

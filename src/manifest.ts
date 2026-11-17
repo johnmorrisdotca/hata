@@ -38,7 +38,7 @@ const MANIFEST: readonly FlagRecord[] = deepFreeze(RECORDS);
  * ```ts
  * import { LEFT_OUT } from "@johnmorrisdotca/hata/manifest";
  *
- * console.log(LEFT_OUT.map((one) => `${one.code}: ${one.kind}`)); // ["AQ: no-flag", "BQ: no-flag", "CA-MB: licence", …]
+ * console.log(LEFT_OUT.map((one) => `${one.code}: ${one.kind}`)); // ["AQ: no-flag", "BQ: no-flag", "CC: licence", …]
  * ```
  */
 const LEFT_OUT: readonly LeftOutRecord[] = deepFreeze(LEFT_OUT_ROWS);

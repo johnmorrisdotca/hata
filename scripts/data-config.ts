@@ -107,10 +107,13 @@ const ITEM: Readonly<Record<string, { item: string; why: string }>> = {
 };
 
 // Files whose licence is not public domain, CC0 or CC BY, brought in by the maintainer's decision, with the
-// decision in words. Empty: every such file is left out and listed in docs/left-out.md until somebody decides.
+// decision in words, one file at a time (never a kind of licence): every other such file is left out and listed in
+// docs/left-out.md until somebody decides.
 const ACCEPTED: Readonly<Record<string, string>> = {
   "Flag of Mississippi.svg":
     "the holder allows any use for any purpose with no condition, freer than CC BY; John, 2026-10-09: include Mississippi",
+  "Flag of Oman.svg":
+    "held back on 2026-10-09 because Article 6 of the licence excludes official government emblems and the file was vectorised from qanoon.om, a site the licence does not name, so it could not be confirmed to cover a flag; John, 2026-11-17: Oman should be allowed, it is world data, keep (docs/decisions.md)",
 };
 
 // What a person found on looking at each place where a flag set draws something quite different from Commons

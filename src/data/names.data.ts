@@ -169,6 +169,7 @@ const NAMES: Readonly<Record<string, readonly [en: string, ja: string, aspect: n
   "NR": ["Nauru", "ナウル", 2],
   "NU": ["Niue", "ニウエ", 2],
   "NZ": ["New Zealand", "ニュージーランド", 2],
+  "OM": ["Oman", "オマーン", 1.75],
   "PA": ["Panama", "パナマ", 1.5],
   "PE": ["Peru", "ペルー", 1.5],
   "PF": ["French Polynesia", "仏領ポリネシア", 1.5],

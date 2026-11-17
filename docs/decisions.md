@@ -115,15 +115,14 @@ empty the same way and are filled the same way.
 - **A stale entry is removed.** A test fails when Commons gives a file an `Artist` of its own, so the record then follows
   Commons.
 
-## For the maintainer: four flags left out for their licence
+## For the maintainer: three flags left out for their licence
 
 Each is on Commons under a licence that is not public domain, CC0 or CC BY, and no MIT set draws it at its true
 proportions. Bringing one in is a line in `ACCEPTED` in `scripts/data-config.ts`, with the decision in words.
-Brittany's joined them in 1.1.0 and left them on 2026-10-10, Manitoba's left them on 2026-10-20, and Mississippi's left them on 2026-10-09 (all below).
+Brittany's joined them in 1.1.0 and left them on 2026-10-10, Manitoba's left them on 2026-10-20, Mississippi's left them on 2026-10-09 and Oman's left them on 2026-11-17 (all below).
 
 | Code | Place | What Commons states | Recommendation |
 | --- | --- | --- | --- |
-| `OM` | Oman | Open Government Licence – Oman 1.0, attribution required | **Left out: the licence could not be confirmed to cover a flag** (read 2026-10-09, below). |
 | `JP-34` | Hiroshima | No licence template at all: the page carries only `{{Insignia}}` | **Fix at the source**: the drawing is a 1966 prefectural emblem, like the 44 others that Commons marks PD-Japan-organization or PD-ineligible. A licence template added on Commons brings it in with the next `pnpm data:commons`. Still out on 2026-10-09: Commons carries no licence tag for it. |
 | `CC` | Cocos (Keeling) Islands | CC BY-SA 4.0 | **Leave out** (John, 2026-10-09). |
 | `JP-37` | Kagawa | CC BY-SA 3.0 and GFDL, with the note "If you will use this file, you must get Kagawa Prefecture approval" | **Leave out** (John, 2026-10-09). |
@@ -157,14 +156,24 @@ the drawing; the file would then go back on the list above.
 line in `ACCEPTED`, its licence kind in the manifest is `accepted`, and the decision is written in the licence's name and credited in
 NOTICE.md.
 
-**Oman was read and is left out.** On 2026-10-09 the Open Government Licence – Oman 1.0 was read in full (oman.om's certificate
-does not verify, so from the Internet Archive's copy of the page). It lets anyone use "the data available on this website" for any
-commercial or non-commercial purpose, asking only that the source be acknowledged, with a link to the licence where possible, and
-that nothing be done that would harm the Data Provider's honour or reputation. **But Article 6 excludes "official government
-emblems"**, and the national flag is one; and the licence covers data on oman.om, while the Commons file was vectorised from
-qanoon.om, the legal gazette, which is another site. So the licence cannot be confirmed to cover this drawing, and Oman is left
-out, as John asked ("if it cannot be confirmed, leave it out"). Asking the Omani government for a statement, or finding a
-public-domain drawing on Commons, would settle it.
+**Oman came in on 2026-11-17** (John: "Oman should be allowed. it's world data. keep."), and its licence status is this, plainly.
+Commons gives the file "Flag of Oman.svg" the Open Government Licence – Oman 1.0 (OGL-om 1.0, attribution required), and marks it
+`Copyrighted: True` with the restriction "insignia". It was left out on 2026-10-09 because it could not be confirmed that the licence
+covers a flag. The licence was read in full that day (oman.om's certificate does not verify, so from the Internet Archive's copy of the
+page): it lets anyone use "the data available on this website" for any commercial or non-commercial purpose, asking only that the source
+be acknowledged, with a link to the licence where possible, and that nothing be done that would harm the Data Provider's honour or
+reputation. **But its Article 6 excludes "official government emblems"**, and the national flag is one; and it covers data on oman.om,
+while the Commons file was vectorised from qanoon.om, the legal gazette, which is another site. None of that has changed: the licence
+still does not clearly cover this drawing, and no public-domain drawing of the flag exists on Commons. The decision to ship it is
+John's, made knowing that. It is **one explicit line in `ACCEPTED`** in `scripts/data-config.ts`, keyed to the file "Flag of Oman.svg"
+alone, so no other file under OGL-om or any other licence comes in with it, and the check that left it out is unchanged for every other
+file. Its licence kind in the manifest is `accepted`; the licence name there carries the decision and the reason it was held back, and
+NOTICE.md credits it with the licence's link, as the licence asks (the source acknowledged). The drawing is the Commons file itself,
+as the snapshot of 2026-11-17 recorded it (the revision of 2025-07-28); Commons' file history names its authors, which is what the
+file's own Artist field says ("See File history below for details."). The flag on the page was edited again on 2026-11-09 after
+Royal Decree No. 99/2026 and was in dispute there, so the snapshot's revision is kept until a person reads the new decree against it. What
+would change it: the Omani government stating that the flag may be used freely, or a person reading OGL-om as not covering the
+flag and deciding to take it out again (remove the line in `ACCEPTED`, then `pnpm data:choose OM`).
 
 ## For the maintainer: places where the sources show different flags
 

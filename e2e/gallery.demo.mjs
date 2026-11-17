@@ -48,7 +48,7 @@ test("narrows to a country's regions, or the countries of one continent", async 
     await expect(page).toHaveURL(new RegExp(`set=${set}`));
   }
   await page.locator(at("set")).selectOption("country");
-  await expect(shown(page)).toHaveCount(245);
+  await expect(shown(page)).toHaveCount(246);
   await page.locator(at("region")).selectOption("EU");
   await expect(page.locator(at("tile-FR"))).toBeVisible();
   await expect(page.locator(at("tile-JP"))).toBeHidden();

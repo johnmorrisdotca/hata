@@ -10,7 +10,6 @@ The decisions behind the reasons are in [decisions.md](decisions.md).
 | `BQ` | Caribbean Netherlands | The Caribbean Netherlands have no flag of their own: Bonaire, Sint Eustatius and Saba each have one, and the Netherlands' flag is the official one (see docs/decisions.md). |  |
 | `CC` | Cocos (Keeling) Islands | Commons gives its licence as CC BY-SA 4.0, which is not public domain, CC0 or CC BY, and no MIT flag set draws the same flag at its proportions | [Flag of the Cocos (Keeling) Island.svg](https://commons.wikimedia.org/wiki/File:Flag_of_the_Cocos_(Keeling)_Island.svg) |
 | `EH` | Western Sahara | Western Sahara has no flag of its own on Wikidata. The flag often shown for it is the Sahrawi Arab Democratic Republic's, one claimant's; it is left out rather than chosen for the territory (see docs/decisions.md). |  |
-| `OM` | Oman | Commons gives its licence as OGL-om 1.0, which is not public domain, CC0 or CC BY, and no MIT flag set draws the same flag at its proportions | [Flag of Oman.svg](https://commons.wikimedia.org/wiki/File:Flag_of_Oman.svg) |
 | `FR-ARA` | Auvergne-Rhône-Alpes | Auvergne-Rhône-Alpes has no flag: its regional council uses a logo, and the flag on Commons that Wikidata names joins the arms of the old provinces in a design that no authority adopted. |  |
 | `FR-BFC` | Burgundy-Franche-Comté | Bourgogne-Franche-Comté has no flag: its regional council uses a logo, and the flag on Commons that Wikidata names joins the arms of Burgundy and Franche-Comté in a design that no authority adopted. |  |
 | `FR-CVL` | Centre-Val de Loire | Centre-Val de Loire has no flag: its regional council uses a logo, and the banner on Commons that Wikidata names is one no authority adopted. |  |
@@ -44,6 +43,5 @@ package to share alike), or naming a public-domain drawing of the same flag on C
 | Code | Place | Commons file | Licence as Commons states it | A public-domain template on the page too |
 | --- | --- | --- | --- | --- |
 | `CC` | Cocos (Keeling) Islands | [Flag of the Cocos (Keeling) Island.svg](https://commons.wikimedia.org/wiki/File:Flag_of_the_Cocos_(Keeling)_Island.svg) | CC BY-SA 4.0 | no |
-| `OM` | Oman | [Flag of Oman.svg](https://commons.wikimedia.org/wiki/File:Flag_of_Oman.svg) | OGL-om 1.0 | no |
 | `JP-34` | Hiroshima | [Flag of Hiroshima Prefecture.svg](https://commons.wikimedia.org/wiki/File:Flag_of_Hiroshima_Prefecture.svg) | not stated | no |
 | `JP-37` | Kagawa | [Flag of Kagawa Prefecture.svg](https://commons.wikimedia.org/wiki/File:Flag_of_Kagawa_Prefecture.svg) | CC BY-SA 3.0 | no |
