@@ -3,7 +3,7 @@
 // page, a licence check in a build, or the demo's detail panel. The same data is in manifest.json.
 
 import { LEFT_OUT as LEFT_OUT_ROWS, RECORDS, RESTRICTED_ROWS } from "./data/manifest.data";
-import type { ColourName, FlagColour, FlagRecord, FlagRole, FlagSource, Framing, FramingCrop, HistoricalEra, LeftOutRecord, LicenceKind, Restricted, RestrictedVariant, RoleNote, Variant } from "./manifest.types";
+import type { ColourName, FlagColour, FlagRecord, FlagRole, FlagSource, FlagTag, FlagTagRecord, Framing, FramingCrop, HistoricalEra, LeftOutRecord, LicenceKind, Restricted, RestrictedVariant, RoleNote, TagName, TagSource, Variant } from "./manifest.types";
 import { FLAG_ALIASES } from "./data/aliases.data";
 import { dayAfter, dayOf } from "./dates";
 import { mustBeString } from "./svg";
@@ -383,4 +383,4 @@ const flagOn = (code: string, date: string | Date, options?: VariantOptions): Fl
 };
 
 export { flagOn, LEFT_OUT, leftOut, manifest, MANIFEST, RESTRICTED, variantOn, variantsOf };
-export type { ColourName, DatedVariant, FlagColour, FlagOnDay, FlagRecord, FlagRole, FlagSource, Framing, FramingCrop, HistoricalEra, LeftOutRecord, LicenceKind, NoFlag, OtherFlag, Restricted, RestrictedVariant, RoleNote, Variant, VariantOptions };
+export type { ColourName, DatedVariant, FlagColour, FlagOnDay, FlagRecord, FlagRole, FlagSource, FlagTag, FlagTagRecord, Framing, FramingCrop, HistoricalEra, LeftOutRecord, LicenceKind, NoFlag, OtherFlag, Restricted, RestrictedVariant, RoleNote, TagName, TagSource, Variant, VariantOptions };

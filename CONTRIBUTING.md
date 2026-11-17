@@ -92,6 +92,8 @@ pnpm data:compare     # draw every shipped flag beside its source, pixel by pixe
 pnpm data:choose      # compare every flag's drawings and choose what ships (Chromium); then pnpm data
 pnpm data:framing     # measure each flag's 4:3, square and round frames (Chromium); then pnpm data
 pnpm data:colours     # measure each flag's colours as hex shares (Chromium); then pnpm data
+pnpm data:tags        # measure each flag's bands, for its tags (Chromium); then pnpm data
+pnpm data:tags:fetch  # ask Wikidata and Commons what is on each flag, for its tags (network); then pnpm data
 pnpm data:sheet <out.png> <codes…> | --compared   # the drawings side by side, for a person to look at
 pnpm data:wikidata    # take a new Wikidata snapshot (network)
 pnpm data:commons     # fetch the Commons files it names, and what Commons says about them (network)
@@ -101,7 +103,7 @@ pnpm docs:make        # rewrite docs/strings-ja.md after changing a word of the 
 ### The flags
 
 Every file under `src/flags/` and `src/data/`, and `docs/provenance.md`, `docs/left-out.md`, `docs/sizes.md`,
-`docs/compared.md` and the credits in `NOTICE.md`, is written by `scripts/build-data.ts`; never edit one by hand.
+`docs/compared.md`, `docs/tags.md` and the credits in `NOTICE.md`, is written by `scripts/build-data.ts`; never edit one by hand.
 `pnpm data` run twice leaves the tree as it was, and CI checks that it does.
 
 - **A wrong or out-of-date flag is fixed at its source.** Wikidata's flag image for the place (P41) and the
@@ -117,7 +119,7 @@ Every file under `src/flags/` and `src/data/`, and `docs/provenance.md`, `docs/l
 - **Nothing is redrawn**, and nothing from anywhere but Commons and the MIT flag sets is used. A drawing ships
   only under public domain, CC0, CC BY or MIT.
 - **A changed flag is compared before it ships**: `pnpm data:choose <code>`, `pnpm data`, `pnpm data:framing
-  <code>` and `pnpm data:colours <code>`, `pnpm data` again, then `pnpm data:compare <code>`. A place newly listed in `docs/compared.md` needs a line in `REVIEWED`, written after
+  <code>`, `pnpm data:colours <code>` and `pnpm data:tags <code>`, `pnpm data` again, then `pnpm data:compare <code>`. A place newly listed in `docs/compared.md` needs a line in `REVIEWED`, written after
   looking at `pnpm data:sheet`; the tests fail until it has one.
 - **Sizes**: a flag over the budget is listed in `docs/sizes.md`, and the size test holds the list; a flag over
   the ceiling stops the build.

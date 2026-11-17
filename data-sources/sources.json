@@ -8,6 +8,13 @@
       "note": "Wikimedia Commons, the description, licence and author of every chosen flag file, and the SHA-256 of each file kept in commons/ (each file under its own licence)"
     },
     {
+      "path": "flag-tags-2026-11-17.json",
+      "url": "https://query.wikidata.org/sparql and https://commons.wikimedia.org/w/api.php",
+      "read": "2026-11-17",
+      "sha256": "37815dfa50c33d76cb7f60f6cd5dc990bdac16265262d9cd41e904fbe7537a25",
+      "note": "Wikidata (CC0), what each flag's item depicts (P180) and of which named kinds those things are; Wikimedia Commons, the categories of each flag's file (facts about the files)"
+    },
+    {
       "path": "wikidata-2026-10-09.json",
       "url": "https://query.wikidata.org/sparql",
       "read": "2026-10-09",

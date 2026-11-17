@@ -3852,6 +3852,8 @@
     "data:sheet": "node scripts/sheet.mjs",
     "data:framing": "node scripts/framing.mjs",
     "data:colours": "node scripts/colours.mjs",
+    "data:tags": "node scripts/tags.mjs",
+    "data:tags:fetch": "node scripts/fetch-tags.ts",
     "docs:site": "pnpm build && node scripts/docs-site.mjs build",
     "docs:check": "pnpm build && node scripts/docs-site.mjs check",
     "size": "node scripts/docs-site.mjs size",

@@ -40,6 +40,8 @@ import { selectPlace } from "./select.ts";
 import type { WikidataSnapshot } from "./select.ts";
 import { coloursDataFile, coloursOfPicture } from "./colour-data.ts";
 import { refreshGeneratedExamples, writeDocumentedFile } from "./data-docs.ts";
+import { tagsDataFile, tagsDoc, tagsOfPicture } from "./tag-data.ts";
+import type { TagRecord } from "./tag-data.ts";
 
 import { readManifest, readSource, ROOT, sha256, SOURCES_DIR } from "./sources.ts";
 
@@ -744,15 +746,38 @@ const pictureOfModule = new Map<string, string>([...shipped.map((one) => [module
 for (const one of variantModules) if (one.owner !== null) pictureOfModule.set(one.module, pictureOfModule.get(one.owner)!);
 const uncoloured = [...new Set(pictureOfModule.values())].filter((key) => coloursOfPicture(key) === undefined);
 const coloursOf = (module: string): { hex: string; share: number; name: string }[] => coloursOfPicture(pictureOfModule.get(module)!) ?? [];
-writeDocumentedFile(
-  join(DATA_DIR, "colours.data.ts"),
-  coloursDataFile(HEADER, [
-    ...shipped.map((one) => [one.place.code, one.owner] as const),
-    ...[...new Set([...codes, ...places.map((place) => place.code).filter((code) => variantKeyFor(code) !== null)])]
-      .sort()
-      .flatMap((code) => variantsOfCode(code).variants.map((variant) => [`${code}--${variant.id}`, pictureOfModule.get(variant.module)!] as const)),
-  ].filter(([, picture]) => coloursOfPicture(picture) !== undefined)),
-);
+// Every code and every "<code>--<id>", with the key of the picture it has.
+const pictureRows = [
+  ...shipped.map((one) => [one.place.code, one.owner] as const),
+  ...[...new Set([...codes, ...places.map((place) => place.code).filter((code) => variantKeyFor(code) !== null)])]
+    .sort()
+    .flatMap((code) => variantsOfCode(code).variants.map((variant) => [`${code}--${variant.id}`, pictureOfModule.get(variant.module)!] as const)),
+];
+writeDocumentedFile(join(DATA_DIR, "colours.data.ts"), coloursDataFile(HEADER, pictureRows.filter(([, picture]) => coloursOfPicture(picture) !== undefined)));
+
+// What is on every picture, as tags with the source of each (scripts/tag-data.ts): for the manifest's `tags`, for
+// /search's table (src/data/tags.data.ts) and for docs/tags.md. Wikidata's word is taken only for the drawing
+// Wikidata itself names; a drawing named by hand here (NAMED, CHOSEN) may be another flag than its item describes.
+const pictureAbout = new Map<string, { item: string | null; file: string; name: string }>([
+  ...owners.map((one) => [one.place.code, { item: one.drawing.source !== "commons" || one.drawing.file === one.reference.file ? one.item : null, file: one.drawing.source === "commons" ? one.drawing.file : one.reference.file, name: one.place.en }] as const),
+  ...variantModules.filter((one) => one.optimised !== null).map((one) => [one.spec.replace(" ", "--"), { item: null, file: one.drawing.file, name: `${places.find((place) => place.code === one.spec.split(" ")[0])?.en ?? one.spec.split(" ")[0]}: ${one.name}` }] as const),
+]);
+const pictureTags = new Map<string, TagRecord[]>();
+const untagged: string[] = [];
+for (const [key, about] of pictureAbout) {
+  const tags = tagsOfPicture(key, { item: about.item, file: about.file, colours: coloursOfPicture(key)?.length ?? 0 });
+  if (tags === undefined) untagged.push(key);
+  pictureTags.set(key, tags ?? []);
+}
+const tagsOf = (module: string): TagRecord[] => pictureTags.get(pictureOfModule.get(module)!) ?? [];
+writeDocumentedFile(join(DATA_DIR, "tags.data.ts"), tagsDataFile(HEADER, pictureRows.map(([key, picture]) => [key, picture, pictureTags.get(picture) ?? []] as const)));
+// A restricted flag is in no list (variantsOfCode), so not in the reviewer's list either.
+const restrictedPicture = (key: string): boolean => {
+  const [code, id] = key.split("--");
+
+  return id !== undefined && allVariantsOfCode(code!).variants.some((variant) => variant.id === id && variant.restricted !== null);
+};
+writeDocumentedFile(join(ROOT, "docs", "tags.md"), tagsDoc([...pictureAbout].filter(([key]) => !restrictedPicture(key)).map(([key, about]) => [key, about.name, pictureTags.get(key)!] as const)));
 
 const cropRows = [...owners.map((one) => [moduleName(one.place.code), FOCUS[one.place.code]?.at] as const), ...variantPictures.map((one) => [one.module, FOCUS[one.key]?.at] as const)]
   .filter((row): row is readonly [string, "left" | "right" | "top" | "bottom"] => row[1] !== undefined && row[1] !== "whole");
@@ -839,6 +864,7 @@ const row = (one: Shipped): string => {
     gzip: one.gzip,
     notes: one.optimised.notes,
     colours: coloursOf(moduleName(one.place.code)),
+    tags: tagsOf(moduleName(one.place.code)),
     disputed: variantsOfCode(one.place.code).disputed,
     defaultVariant: variantsOfCode(one.place.code).default,
     variants: variantsOfCode(one.place.code).variants,
@@ -1289,4 +1315,5 @@ console.log(`where a set draws something else: ${lookAt.length} flags${unreviewe
 if (report) for (const one of shipped) console.log(`${one.place.code.padEnd(6)} ${KB(size(one)).padStart(9)} ${one.drawing.source.padEnd(19)} ${one.drawing.licence.name.padEnd(16)} ${one.drawing.file}`);
 const toMeasure = [...unmeasuredFlags, ...unmeasured.map((one) => one.key)];
 if (toMeasure.length === 0 && uncoloured.length > 0) throw new Error(`${uncoloured.join(", ")} have no line in scripts/colours.data.json, so they are written with no colours: run pnpm data:colours ${uncoloured.join(" ")}, then pnpm data again`);
+if (toMeasure.length === 0 && untagged.length > 0) throw new Error(`${untagged.join(", ")} have no line in scripts/tags.data.json, so they are written with no tags: run pnpm data:tags ${untagged.join(" ")}, then pnpm data again`);
 if (toMeasure.length > 0) throw new Error(`${toMeasure.join(", ")} have no line in scripts/framings.data.json, so everything is written as cropped from the centre: run pnpm data:framing ${toMeasure.join(" ")}, then pnpm data again`);
