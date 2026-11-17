@@ -5,6 +5,7 @@
 import { LEFT_OUT as LEFT_OUT_ROWS, RECORDS } from "./data/manifest.data";
 import type { FlagRecord, FlagSource, Framing, FramingCrop, HistoricalEra, LeftOutRecord, LicenceKind, Variant } from "./manifest.types";
 import { FLAG_ALIASES } from "./data/aliases.data";
+import { dayAfter, dayOf } from "./dates";
 import { mustBeString } from "./svg";
 
 const deepFreeze = <T>(value: T): T => {
@@ -108,5 +109,62 @@ const leftOut = (code: string): LeftOutRecord | null => LEFT_BY_CODE.get(normal(
  */
 const variantsOf = (code: string): readonly Variant[] => (manifest(code) ?? leftOut(code))?.variants ?? [];
 
-export { LEFT_OUT, leftOut, manifest, MANIFEST, variantsOf };
+// The first day a variant was in use, and the first day after it was (`until` is the day the next flag took over, so it
+// is the end, except that a bare year or month means the whole of it: "1972" ends on 1973-01-01).
+const startOf = (variant: Variant): string | null => (variant.from === null ? null : dayOf(variant.from));
+const endOf = (variant: Variant): string | null => {
+  if (variant.until === null) return null;
+
+  return /^\d{4}(-\d{2}){2}$/.test(variant.until) ? variant.until : dayAfter(variant.until);
+};
+
+/**
+ * The flag a place had in use on a date: the variant whose years cover it, the default (the flag of today) when the date
+ * is after the newest change, and `null` where the package knows no flag for that day. Only the `official` and `historical`
+ * variants have a turn; a `de-facto` or `local` flag is never the answer, and a variant with no dates is left out. A date
+ * is a `Date` (read in UTC) or a string, `"1962-09-29"`, `"1962-09"` or `"1962"` (the first day of that month or year). The day a flag
+ * changed belongs to the new flag, and where two variants cover a date (a year-only change) the later one wins. A former
+ * country has an answer only within the years it existed, and only where one of its dated flags covers the day: the Soviet Union's
+ * `1936` flag from 1936-12-05, its `1955` flag to 1991-12-25, and `null` before and after. `null` also means the place has no
+ * dated flags here yet: ask `flag(code)` for the flag of today.
+ *
+ * @param code - A code in any case: "CA", "us", "SUHH", "URS".
+ * @param date - The day: a `Date`, or `"YYYY-MM-DD"`, `"YYYY-MM"` or `"YYYY"`.
+ * @returns The variant in use that day, or `null` when the package has no flag for the place on that day (before its first known flag, after a former country's end, in a gap, or for a place with no dated flags).
+ * @throws TypeError when `code` is not a string, or `date` is not a valid `Date` or date string.
+ *
+ * @example
+ * ```ts
+ * import { variantOn } from "@johnmorrisdotca/hata/manifest";
+ *
+ * console.log(variantOn("CA", "1962-09-29")?.id); // "red-ensign-1957": the Red Ensign, three years before the Maple Leaf
+ * console.log(variantOn("CA", "1965-02-15")?.id); // "maple-leaf": the day the new flag came in belongs to it
+ * console.log(variantOn("CA", "2026-01-01")?.id); // "maple-leaf": after the newest change, today's flag
+ * console.log(variantOn("US", "1950")?.id);       // "stars-48"
+ * console.log(variantOn("SUHH", "1991-12-26"));   // null: the Soviet Union had ended the day before
+ * console.log(variantOn("DE", "1936-05-05"));     // null: the flag of that day is not shipped (docs/decisions.md)
+ * ```
+ */
+const variantOn = (code: string, date: string | Date): Variant | null => {
+  const day = dayOf(date);
+  const era = manifest(code)?.historical ?? leftOut(code)?.historical;
+  if (era !== undefined && (day < `${era.from}-01-01` || day >= `${Number(era.until) + 1}-01-01`)) return null;
+  let found: Variant | null = null;
+  let foundStart = "";
+  for (const variant of variantsOf(code)) {
+    if (variant.status !== "official" && variant.status !== "historical") continue;
+    const start = startOf(variant);
+    const end = endOf(variant);
+    if (start === null && end === null) continue;
+    if ((start !== null && day < start) || (end !== null && day >= end)) continue;
+    if (found === null || (start ?? "") > foundStart) {
+      found = variant;
+      foundStart = start ?? "";
+    }
+  }
+
+  return found;
+};
+
+export { LEFT_OUT, leftOut, manifest, MANIFEST, variantOn, variantsOf };
 export type { FlagRecord, FlagSource, Framing, FramingCrop, HistoricalEra, LeftOutRecord, LicenceKind, Variant };

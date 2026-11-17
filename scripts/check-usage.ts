@@ -167,6 +167,14 @@ await step("organisations", () => {
   if (out !== "true true 欧州連合") throw new Error(`unexpected output: ${out}`);
 });
 
+await step("historic", () => {
+  const out = execFileSync(process.execPath, [join(examples("historic"), "historic.mjs")], {
+    cwd: usage,
+    encoding: "utf8",
+  }).trim();
+  if (out !== "red-ensign-1957 maple-leaf true null 5") throw new Error(`unexpected output: ${out}`);
+});
+
 await step("custom", () => {
   const out = execFileSync(process.execPath, [join(examples("custom"), "custom.mjs")], {
     cwd: usage,
@@ -385,6 +393,7 @@ const FILES: Record<string, string[]> = {
   "node/server.mjs": guide("typescript-and-node"),
   "organisations/organisations.mjs": guide("organisations"),
   "custom/custom.mjs": guide("custom-flags"),
+  "historic/historic.mjs": guide("historic-flags"),
 };
 const normal = (text: string) => text.replace(/\r\n/g, "\n").trim();
 for (const [file, places] of everything ? Object.entries(FILES) : []) {

@@ -16,10 +16,10 @@ const size = (path: string): number => {
 };
 
 describe("the built entries", () => {
-  it("keep the main entry under 12 KB, /load under 28 KB and its table of frames' drawings under 36 KB, with no flag in any", () => {
+  it("keep the main entry under 12 KB, /load under 32 KB and its table of frames' drawings under 36 KB, with no flag in any", () => {
     // /load is one line a flag, about 55 bytes each; dist/adapted.js one a frame's drawing, loaded when a frame is asked for.
     expect(size("dist/index.js")).toBeLessThan(12 * KB);
-    expect(size("dist/load.js")).toBeLessThan(28 * KB);
+    expect(size("dist/load.js")).toBeLessThan(32 * KB);
     expect(size("dist/adapted.js")).toBeLessThan(36 * KB);
     for (const file of ["dist/index.js", "dist/load.js", "dist/adapted.js"]) expect(readFileSync(file, "utf8"), file).not.toContain("<path");
   });

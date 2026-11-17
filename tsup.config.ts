@@ -20,7 +20,7 @@ const flagImports: Plugin = {
   setup(build) {
     // The element's modules are entries of their own: <hata-flag> loads /load and /names, and element-define the
     // element, rather than carry a copy of each.
-    build.onResolve({ filter: /^\.\/(load|names|element|custom)\.js$/ }, (args) => ({ path: args.path, external: true }));
+    build.onResolve({ filter: /^\.\/(load|names|element|custom|manifest)\.js$/ }, (args) => ({ path: args.path, external: true }));
     // /load's table of the drawings made for a frame is an entry of its own, loaded when a frame is asked for.
     build.onResolve({ filter: /^\.\/data\/adapted\.data\.js$/ }, () => ({ path: "./adapted.js", external: true }));
     // So is its table of variants, loaded when a variant is asked for.

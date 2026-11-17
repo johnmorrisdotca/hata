@@ -24,9 +24,9 @@ describe("variantsOf", () => {
   it("gives a code that is the same place as another that place's variants, and none to a place with one flag", () => {
     expect(variantsOf("fr-971")).toEqual(variantsOf("GP"));
     expect(variantsOf("GP").map((one) => one.id)).toEqual(["france", "local"]);
-    expect(variantsOf("JP")).toEqual([]);
+    expect(variantsOf("AO")).toEqual([]);
     expect(variantsOf("XX")).toEqual([]);
-    expect(manifest("JP")).toMatchObject({ disputed: false, defaultVariant: null, variants: [] });
+    expect(manifest("AO")).toMatchObject({ disputed: false, defaultVariant: null, variants: [] });
     expect(() => variantsOf(1 as unknown as string)).toThrow(TypeError);
   });
 
@@ -52,6 +52,7 @@ describe("variantsOf", () => {
         expect(["official", "de-facto", "historical", "local"], `${code} ${one.id}`).toContain(one.status);
         expect(one.why.length, `${code} ${one.id}`).toBeGreaterThan(40);
         expect(one.source, `${code} ${one.id}`).toMatch(/^https:\/\//);
+        expect(["official", "reference", "encyclopedia"], `${code} ${one.id}`).toContain(one.sourceKind);
         expect(one.nameJa, `${code} ${one.id}`).not.toBe("");
         expect(one.drawing.licence.kind, `${code} ${one.id}`).toMatch(/^(public-domain|cc0|cc-by|accepted|mit)$/);
         expect(one.drawing.page, `${code} ${one.id}`).toMatch(/^https:\/\//);
