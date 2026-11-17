@@ -39,9 +39,11 @@ test("a registered flag is drawn by <hata-flag>, named for a screen reader, and 
   );
   await page.waitForFunction(() => window.ready === true);
   expect(await page.evaluate(() => window.done.added)).toEqual(["custom:club"]);
+  // The element draws its image after the page's script is done: wait for it, then count both in one call.
+  expect(await page.evaluate(() => document.querySelector("hata-flag").ready)).toBe(true);
   // The hostile title came out as text: no image, no handler ran, and the one svg is the flag.
   expect(await page.locator("#host img").count()).toBe(0);
-  expect(await page.evaluate(() => document.querySelectorAll("img").length)).toBe(await page.locator("hata-flag img").count());
+  expect(await page.evaluate(() => [document.querySelectorAll("img").length, document.querySelectorAll("hata-flag img").length])).toEqual([1, 1]);
   expect(await page.evaluate(() => window.pwned)).toBeUndefined();
   expect(await page.locator("#host svg").count()).toBe(1);
   expect(await page.locator("#host svg title").textContent()).toBe("</svg><img src=x onerror=window.pwned=1>");
