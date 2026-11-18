@@ -6,6 +6,10 @@ All notable changes to this project are written here. The format follows
 
 ## [Unreleased]
 
+### Added
+
+- **Optional looks on `<hata-flag>`: `rounded`, `gloss` and `wave`** (MODULES-1428). All off by default, and attributes and properties of the element. `rounded` rounds the corners of the box (8%, `--hata-flag-corner`; not on a round frame). `gloss` lays a soft light over the flag, a layer over the picture, so the SVG and its colours are untouched. `wave` sways the picture gently as a CSS transform on the graphics card, with no timer and no script: it is still for a reader who asks for reduced motion (`prefers-reduced-motion`), paused while the flag is out of sight (an IntersectionObserver sets `data-hata-offscreen`; with none, the wave stays paused), keeps the flag inside its box so nothing is cropped, and never recolours it. `--hata-flag-wave-time` and `--hata-flag-depth` tune it. The typed framework components do not take them: they draw the flag as it is. Guide: [Optional looks](docs/guides/element-and-events.md#optional-looks), English and Japanese; tests `e2e/element-looks.demo.mjs`.
+
 ## [1.12.0] - 2026-11-17
 
 ### Added

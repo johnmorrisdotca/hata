@@ -40,6 +40,11 @@ import type { Shape } from "./svg";
  * - `theme`: `auto` (the default), `light` or `dark`: the colour of the border on a light or a dark page.
  * - `border`: a hairline round the flag, so a white flag shows on a white page.
  * - `shadow`: a soft shadow under it.
+ * - `rounded`: round the corners of the flag's box a little (8% by default, `--hata-flag-corner` changes it). The corners are clipped, so use it for a decorative tile, not
+ *   where every pixel of the flag must show. Not on a round frame, which is already round.
+ * - `gloss`: a soft light across the flag, drawn over it and never into it: the SVG is not changed and no colour is recoloured. It is a look and not a different flag.
+ * - `wave`: the flag sways gently, as if in a light wind: a transform of the picture, drawn on the graphics card, with no timer and no script. It is off by default, off for a reader
+ *   whose system asks for reduced motion (`prefers-reduced-motion: reduce`), and paused while the flag is out of sight. The flag keeps its label, is never cropped and never recoloured.
  * - `loading`: `lazy` (the default: loaded when it comes near the screen) or `eager`.
  *
  * @example
@@ -49,7 +54,7 @@ import type { Shape } from "./svg";
  * console.log(FLAG_ELEMENT_ATTRIBUTES.includes("shape")); // true
  * ```
  */
-const FLAG_ELEMENT_ATTRIBUTES = ["code", "shape", "size", "width", "fit", "variant", "date", "which", "allow-restricted", "label", "lang", "theme", "border", "shadow", "loading"] as const;
+const FLAG_ELEMENT_ATTRIBUTES = ["code", "shape", "size", "width", "fit", "variant", "date", "which", "allow-restricted", "label", "lang", "theme", "border", "shadow", "rounded", "gloss", "wave", "loading"] as const;
 
 /**
  * The name the element is registered under.
@@ -65,7 +70,7 @@ const FLAG_ELEMENT_NAME = "hata-flag";
 
 /**
  * What `<hata-flag>` adds to an ordinary element. Every attribute is also a property that writes it, as React, Vue
- * and Svelte set them; `border` and `shadow` read as booleans. `ready` settles when the picture is drawn, or
+ * and Svelte set them; `border`, `shadow`, `rounded`, `gloss` and `wave` read as booleans. `ready` settles when the picture is drawn, or
  * found to have no flag (it is then `false`).
  *
  * @example
@@ -110,6 +115,15 @@ type HataFlagElement = HTMLElement & {
   set border(value: boolean | string | null | undefined);
   get shadow(): boolean;
   set shadow(value: boolean | string | null | undefined);
+  /** Round the corners of the box a little (`--hata-flag-corner`). Off by default. */
+  get rounded(): boolean;
+  set rounded(value: boolean | string | null | undefined);
+  /** A soft light across the flag, drawn over it. Off by default. */
+  get gloss(): boolean;
+  set gloss(value: boolean | string | null | undefined);
+  /** A gentle sway of the picture: off by default, off under reduced motion, paused out of sight. */
+  get wave(): boolean;
+  set wave(value: boolean | string | null | undefined);
   get loading(): string | null;
   set loading(value: string | null | undefined);
   /** Settles when the picture is drawn (`true`) or there is no flag for the code (`false`). */
@@ -142,7 +156,12 @@ const SHAPES = ["own", "4:3", "1:1", "round"] as const;
 const FITS = ["auto", "whole", "crop", "cover", "hoist", "contain"] as const;
 // The styles every <hata-flag> starts from, put once at the head of the document so that the page's own CSS,
 // which comes after, can change any of them.
-const BASE_CSS = `${FLAG_ELEMENT_NAME}{display:inline-block;height:1em;vertical-align:-0.125em;line-height:0;box-sizing:border-box;--hata-flag-border-light:rgba(0,0,0,.22);--hata-flag-border-dark:rgba(255,255,255,.32);--hata-flag-shadow:0 1px 3px rgba(0,0,0,.28)}${FLAG_ELEMENT_NAME}>img{display:block;width:100%;height:100%;-webkit-user-drag:none;user-select:none}`;
+const BASE_CSS = `${FLAG_ELEMENT_NAME}{display:inline-block;height:1em;vertical-align:-0.125em;line-height:0;box-sizing:border-box;--hata-flag-border-light:rgba(0,0,0,.22);--hata-flag-border-dark:rgba(255,255,255,.32);--hata-flag-shadow:0 1px 3px rgba(0,0,0,.28)}${FLAG_ELEMENT_NAME}>img{display:block;width:100%;height:100%;-webkit-user-drag:none;user-select:none}`
+  // The looks, all off until an attribute asks. The gloss is a layer over the flag; the wave is a transform that stays inside the box (a little smaller, never clipped).
+  + `${FLAG_ELEMENT_NAME}[gloss]{position:relative}${FLAG_ELEMENT_NAME}[gloss]::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:linear-gradient(135deg,rgba(255,255,255,.38) 0%,rgba(255,255,255,0) 46%,rgba(0,0,0,.1) 100%)}`
+  + `@keyframes ${FLAG_ELEMENT_NAME}-wave{0%,100%{transform:scale(.95) perspective(var(--hata-flag-depth,500px)) rotateY(-5deg) skewY(-1.2deg)}50%{transform:scale(.95) perspective(var(--hata-flag-depth,500px)) rotateY(5deg) skewY(1.2deg)}}`
+  + `${FLAG_ELEMENT_NAME}[wave]>img{animation:${FLAG_ELEMENT_NAME}-wave var(--hata-flag-wave-time,3.2s) ease-in-out infinite}${FLAG_ELEMENT_NAME}[wave][data-hata-offscreen]>img{animation-play-state:paused}`
+  + `@media (prefers-reduced-motion:reduce){${FLAG_ELEMENT_NAME}[wave]>img{animation:none}}`;
 const warned = new Set<string>();
 let made: CustomElementConstructor | null = null;
 
@@ -158,6 +177,8 @@ const build = (): CustomElementConstructor => {
     static observedAttributes = [...FLAG_ELEMENT_ATTRIBUTES];
     private drawing = 0;
     private watcher: IntersectionObserver | null = null;
+    // Pauses the wave while the flag is out of sight: the only thing it watches for, and it is there only while `wave` is on.
+    private still: IntersectionObserver | null = null;
     private settle: ((drawn: boolean) => void) | null = null;
     ready: Promise<boolean> = new Promise((resolve) => (this.settle = resolve));
 
@@ -167,7 +188,7 @@ const build = (): CustomElementConstructor => {
       const id = `${this.localName}-style`;
       if (into.querySelector(`#${CSS.escape(id)}`) === null) {
         const selector = CSS.escape(this.localName);
-        const css = BASE_CSS.replaceAll(`${FLAG_ELEMENT_NAME}{`, `${selector}{`).replaceAll(`${FLAG_ELEMENT_NAME}>`, `${selector}>`);
+        const css = BASE_CSS.replaceAll(`${FLAG_ELEMENT_NAME}{`, `${selector}{`).replaceAll(`${FLAG_ELEMENT_NAME}>`, `${selector}>`).replaceAll(`${FLAG_ELEMENT_NAME}[`, `${selector}[`).replaceAll(`@keyframes ${FLAG_ELEMENT_NAME}-wave`, `@keyframes ${this.localName}-wave`).replaceAll(`animation:${FLAG_ELEMENT_NAME}-wave`, `animation:${this.localName}-wave`);
         const style = Object.assign(this.ownerDocument.createElement("style"), { id, textContent: css });
         into.prepend(style);
       }
@@ -177,6 +198,8 @@ const build = (): CustomElementConstructor => {
     disconnectedCallback(): void {
       this.watcher?.disconnect();
       this.watcher = null;
+      this.still?.disconnect();
+      this.still = null;
     }
 
     attributeChangedCallback(): void {
@@ -213,7 +236,9 @@ const build = (): CustomElementConstructor => {
       this.style.width = Number.isFinite(width) && width > 0 ? `${width}px` : "";
       // The box is kept from the start: the shape's, or 3:2 until the flag's own proportions are read.
       this.style.aspectRatio = shape === "4:3" ? "4 / 3" : shape === "own" ? this.style.aspectRatio || "1.5" : "1";
-      this.style.borderRadius = shape === "round" ? "50%" : "";
+      this.style.borderRadius = shape === "round" ? "50%" : on("rounded") ? "var(--hata-flag-corner, 8%)" : "";
+      this.style.overflow = shape !== "round" && on("rounded") ? "hidden" : "";
+      this.watchWave(on("wave"));
       const theme = this.getAttribute("theme");
       const dark = theme === "dark" || (theme !== "light" && typeof matchMedia === "function" && matchMedia("(prefers-color-scheme: dark)").matches);
       const shadows = [on("border") ? `0 0 0 1px var(--hata-flag-border-${dark ? "dark" : "light"})` : "", on("shadow") ? "var(--hata-flag-shadow)" : ""].filter(Boolean);
@@ -287,6 +312,26 @@ const build = (): CustomElementConstructor => {
       } else start();
     }
 
+    // The wave runs only while the flag is on the screen: it starts paused (`data-hata-offscreen`), and the observer lifts that while any of the flag shows.
+    // Where the browser has no IntersectionObserver the wave stays paused, never running unseen.
+    private watchWave(wave: boolean): void {
+      if (!wave) {
+        this.still?.disconnect();
+        this.still = null;
+        this.removeAttribute("data-hata-offscreen");
+        return;
+      }
+      if (this.still !== null) return;
+      this.setAttribute("data-hata-offscreen", "");
+      if (typeof IntersectionObserver !== "function") return;
+      this.still = new IntersectionObserver((entries) => {
+        const seen = entries.some((entry) => entry.isIntersecting);
+        if (seen) this.removeAttribute("data-hata-offscreen");
+        else this.setAttribute("data-hata-offscreen", "");
+      });
+      this.still.observe(this);
+    }
+
     // Nothing to draw: the element is emptied and takes no room, says why once on the console, and tells the page.
     private missing(code: string, shape: string, reason: string, quiet = false): void {
       this.replaceChildren();
@@ -306,7 +351,7 @@ const build = (): CustomElementConstructor => {
       this.finish(false);
     }
   };
-  reflectAttributes(element, FLAG_ELEMENT_ATTRIBUTES, ["border", "shadow", "allow-restricted"]);
+  reflectAttributes(element, FLAG_ELEMENT_ATTRIBUTES, ["border", "shadow", "rounded", "gloss", "wave", "allow-restricted"]);
   // The camelCase property of the attribute `allow-restricted`, as a framework or a script writes it.
   Object.defineProperty(element.prototype, "allowRestricted", {
     configurable: true,
