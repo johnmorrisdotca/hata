@@ -36,7 +36,7 @@ ratio to the shape the flag ships at; the file records what a government says an
 (`scripts/official-ratios.data.json` is the one that does).
 
 - **35 have an official ratio and every one matches the drawing**: 24 from a law (a constitution, an act, a decree) and
-  11 from a government page. 25 of the 50 entries were read in the source's own text. For the others the source was
+  11 from a government page. 27 of the 50 entries were read in the source's own text. For the others the source was
   found by a search but could not be opened here (`"read": false`), and they are the first to re-read.
 - **Where no law fixes the shape**, the flag ships at the shape its Commons drawing has, and the data says "no official
   ratio": the United Kingdom (the Flag Institute's 3:5 is not a government's), France, Austria (2:3 is only for the

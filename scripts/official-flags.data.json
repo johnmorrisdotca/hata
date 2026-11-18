@@ -71,8 +71,8 @@
     "ratio": [1, 1],
     "kind": "law",
     "source": "Federal Act on the Protection of the Swiss Coat of Arms and Other Public Signs (SR 232.21), art. 3 and Annex 2: a Swiss cross on a square field",
-    "url": "https://www.admin.ch/opc/en/classified-compilation/20091656/201701010000/232.21.pdf",
-    "read": false
+    "url": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/cc/2015/613/20250701/en/pdf-a/fedlex-data-admin-ch-eli-cc-2015-613-20250701-en-pdf-a.pdf",
+    "read": true
   },
   "CN": {
     "name": "China",
@@ -175,7 +175,8 @@
     "kind": "law",
     "source": "Undang-Undang No. 24 of 2009, art. 4: the flag is a rectangle whose width is two thirds of its length",
     "url": "https://peraturan.go.id/files/UU%2024%20Tahun%202009.pdf",
-    "read": false
+    "read": true,
+    "note": "Read in the transcription of the law's text on id.wikisource.org; the official PDF is the page above."
   },
   "IL": {
     "name": "Israel",
