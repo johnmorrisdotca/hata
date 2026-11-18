@@ -30,12 +30,12 @@
       "gzip": 6925
     },
     "./element": {
-      "minified": 14740583,
-      "gzip": 4541565
+      "minified": 14742065,
+      "gzip": 4542042
     },
     "./element/define": {
-      "minified": 14740536,
-      "gzip": 4541552
+      "minified": 14742018,
+      "gzip": 4542029
     },
     "./bind": {
       "minified": 14735721,
