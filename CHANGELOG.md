@@ -6,6 +6,10 @@ All notable changes to this project are written here. The format follows
 
 ## [Unreleased]
 
+### Added
+
+- **The official proportion of 50 countries, each with its source** (MODULES-1602). `scripts/official-flags.data.json` gives the ratio a law or a government page states (35 countries), or says that none was found (5) or that it could not be read (10), with the wording, the page and whether the text was read. A test holds each ratio to the shape the flag ships at. No drawing changes. The README says the drawing's own shape is used where no law gives one (the United Kingdom, France, Austria, Colombia, Togo).
+
 ## [1.14.0] - 2026-11-17
 
 ### Changed

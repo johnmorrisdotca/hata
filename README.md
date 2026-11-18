@@ -38,7 +38,7 @@ At their true proportions, with the source, author and licence of every flag. On
 </tr>
 </table>
 
-Hata is the flag set a site that already knows its countries and regions by ISO code (from [Kuni](https://github.com/johnmorrisdotca/kuni), say) can show beside them: 479 flags, each drawn at the proportions its government gives it, as an SVG that scales to any size, with its source, author and licence. It works in [the demo](https://johnmorrisdotca.github.io/hata/) with nothing to install. [Why Hata, and what is in it](./docs/guides/what-is-in-hata.md).
+Hata is the flag set a site that already knows its countries and regions by ISO code (from [Kuni](https://github.com/johnmorrisdotca/kuni), say) can show beside them: 479 flags, each drawn at its true proportions (the official ratio where a law or government page gives one, the drawing's own where none does: [official-flags.data.json](./scripts/official-flags.data.json)), as an SVG that scales to any size, with its source, author and licence. It works in [the demo](https://johnmorrisdotca.github.io/hata/) with nothing to install. [Why Hata, and what is in it](./docs/guides/what-is-in-hata.md).
 
 ## In 30 seconds
 

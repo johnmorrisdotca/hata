@@ -1,0 +1,424 @@
+{
+  "AE": {
+    "name": "United Arab Emirates",
+    "ratio": [2, 1],
+    "kind": "law",
+    "source": "Federal Law No. 2 of 1971 as amended by Federal Decree-Law No. 13 of 2019, as the UAE Government's flag guidebook states it: the flag's width is twice its height",
+    "url": "https://uaecabinet.ae/en/download-publication/the-uae-flag-usage-guideline",
+    "read": false
+  },
+  "AR": {
+    "name": "Argentina",
+    "ratio": null,
+    "kind": "open",
+    "source": "Decreto 1650/2010 (Boletín Oficial 2010-11-23) sets the flag's measures through IRAM standards DEF D 7679:2002, DEF D 7677:2002, DEF D 7675:2003 and DEF D 7674:2004. Its own text, Ley 23.208 and the government's flag page give no proportions",
+    "url": "https://www.argentina.gob.ar/normativa/nacional/norma-175328/texto",
+    "note": "The IRAM standards are not free to read, so the ratio stays open. The shipped 8:5 is what Commons draws.",
+    "read": true
+  },
+  "AT": {
+    "name": "Austria",
+    "ratio": null,
+    "kind": "none",
+    "source": "Bundes-Verfassungsgesetz Art. 8a gives the colours and three equal bands, no ratio. The Wappengesetz (BGBl. 159/1984) gives 2:3 for the federal service flag only",
+    "url": "https://www.ris.bka.gv.at/eli/bgbl/1930/1/A8/NOR12002682",
+    "note": "No official ratio found for the national flag.",
+    "read": false
+  },
+  "AU": {
+    "name": "Australia",
+    "ratio": [2, 1],
+    "kind": "law",
+    "source": "Flags Act 1953 (Cth), Schedule 1 and the drawing in the Second Schedule: every measure is a fraction of the flag's width. The Prime Minister and Cabinet booklet 'Australian Flags' labels the length 2X and the hoist X",
+    "url": "https://www.legislation.gov.au/C1954A00001/2008-07-04/2008-07-04/text/original/pdf",
+    "note": "The Schedule's words do not state the length; the ratio is the drawing's and the booklet's.",
+    "read": false
+  },
+  "BD": {
+    "name": "Bangladesh",
+    "ratio": [5, 3],
+    "kind": "law",
+    "source": "Bangladesh National Anthem, Flag and Emblem Order, 1972 (President's Order 130 of 1972), Second Schedule: when the length is 10 feet the width is 6 feet",
+    "url": "http://bdlaws.minlaw.gov.bd/act-418.html",
+    "read": false
+  },
+  "BE": {
+    "name": "Belgium",
+    "ratio": null,
+    "kind": "open",
+    "source": "No law or government page giving the ratio was found; the shipped drawing is 15:13",
+    "url": null,
+    "read": false
+  },
+  "BR": {
+    "name": "Brazil",
+    "ratio": [10, 7],
+    "kind": "law",
+    "source": "Lei 5.700 of 1971, art. 5: the width is divided into 14 modules and the length is 20 modules",
+    "url": "https://www2.camara.leg.br/legin/fed/lei/1970-1979/lei-5700-1-setembro-1971-357915-normaatualizada-pl.html",
+    "read": true
+  },
+  "CA": {
+    "name": "Canada",
+    "ratio": [2, 1],
+    "kind": "government",
+    "source": "Canadian Heritage, Description of the National Flag of Canada: twice as long as it is wide (proportion 2:1, 64 units by 32)",
+    "url": "https://www.canada.ca/en/canadian-heritage/services/flag-canada-description.html",
+    "read": true
+  },
+  "CH": {
+    "name": "Switzerland",
+    "ratio": [1, 1],
+    "kind": "law",
+    "source": "Federal Act on the Protection of the Swiss Coat of Arms and Other Public Signs (SR 232.21), art. 3 and Annex 2: a Swiss cross on a square field",
+    "url": "https://www.admin.ch/opc/en/classified-compilation/20091656/201701010000/232.21.pdf",
+    "read": false
+  },
+  "CN": {
+    "name": "China",
+    "ratio": [3, 2],
+    "kind": "law",
+    "source": "Law on the National Flag (1990, revised 2020), annex 国旗制法说明 (Kokki seihō setsumei / Description of how the flag is made), item 1: the length and the height are as three to two",
+    "url": "https://www.12371.cn/2021/05/23/ARTI1621736435095903.shtml",
+    "note": "A copy of the law's text on 12371.cn.",
+    "read": true
+  },
+  "CO": {
+    "name": "Colombia",
+    "ratio": null,
+    "kind": "none",
+    "source": "Ley 12 of 1984, art. 1, gives the three bands (yellow half, blue and red a quarter each) and no ratio; the merchant flag is 3 metres by 2 under Decreto 309 of 1980",
+    "url": "http://historico.presidencia.gov.co/asiescolombia/bandera.htm",
+    "note": "No official ratio found for the national flag.",
+    "read": true
+  },
+  "CZ": {
+    "name": "Czechia",
+    "ratio": [3, 2],
+    "kind": "law",
+    "source": "Act No. 3/1993 Coll. on the State Symbols, § 4(1): the ratio of the flag's width to its length is 2:3",
+    "url": "https://www.zakonyprolidi.cz/cs/1993-3",
+    "read": true
+  },
+  "DE": {
+    "name": "Germany",
+    "ratio": [5, 3],
+    "kind": "law",
+    "source": "Anordnung über die deutschen Flaggen of 1996, I.1: the ratio of the height to the length of the cloth is 3 to 5",
+    "url": "https://www.gesetze-im-internet.de/flaggano_1996/BJNR172900996.html",
+    "read": true
+  },
+  "DK": {
+    "name": "Denmark",
+    "ratio": [37, 28],
+    "kind": "law",
+    "source": "Lov om flagning (LOV 1449 of 2024-12-10), explanatory notes: the cross is 1/7 of the height, the fields at the hoist are squares and the outer fields are 1 3/4 times the inner ones, which is 28:37",
+    "url": "https://www.retsinformation.dk/eli/lta/2024/1449",
+    "note": "28:37 is worked out from those fractions; the law does not write it.",
+    "read": false
+  },
+  "EG": {
+    "name": "Egypt",
+    "ratio": null,
+    "kind": "open",
+    "source": "No law or government page giving the ratio was found; the shipped drawing is 3:2",
+    "url": null,
+    "read": false
+  },
+  "ES": {
+    "name": "Spain",
+    "ratio": [3, 2],
+    "kind": "law",
+    "source": "Real Decreto 1511/1977 (Reglamento de Banderas, Estandartes, Guiones, Insignias y Distintivos): in the normal proportion the length is three halves of the width",
+    "url": "https://www.boe.es/buscar/act.php?id=BOE-A-1977-14944",
+    "note": "Ley 39/1981 and the Constitution (art. 4) give the bands and no ratio. Whether the Reglamento is still in force in full was not checked.",
+    "read": true
+  },
+  "FI": {
+    "name": "Finland",
+    "ratio": null,
+    "kind": "open",
+    "source": "Laki Suomen lipusta 380/1978 on finlex.fi should give 11:18; its text could not be read from here (the page needs a script)",
+    "url": "https://www.finlex.fi/fi/lainsaadanto/1978/380",
+    "note": "Shipped 18:11.",
+    "read": false
+  },
+  "FR": {
+    "name": "France",
+    "ratio": null,
+    "kind": "none",
+    "source": "Constitution, art. 2: the national emblem is the tricolour flag, blue, white, red. It gives no ratio, and a search of Légifrance found no decree that does",
+    "url": "https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000006527453",
+    "note": "No official ratio found; the search was not exhaustive.",
+    "read": false
+  },
+  "GB": {
+    "name": "United Kingdom",
+    "ratio": null,
+    "kind": "none",
+    "source": "No Act fixes the Union Flag's proportions. The Flag Institute (not a government body) specifies 3:5 on land and 1:2 at sea",
+    "url": "https://www.flaginstitute.org/wp/flags/union-flag-specification/",
+    "note": "No official ratio found; the shipped 5:3 is the Flag Institute's land flag.",
+    "read": false
+  },
+  "GR": {
+    "name": "Greece",
+    "ratio": null,
+    "kind": "open",
+    "source": "Law 851/1978 (FEK 233 A) regulates the national flag; its text could not be read from here",
+    "url": null,
+    "read": false
+  },
+  "ID": {
+    "name": "Indonesia",
+    "ratio": [3, 2],
+    "kind": "law",
+    "source": "Undang-Undang No. 24 of 2009, art. 4: the flag is a rectangle whose width is two thirds of its length",
+    "url": "https://peraturan.go.id/files/UU%2024%20Tahun%202009.pdf",
+    "read": false
+  },
+  "IL": {
+    "name": "Israel",
+    "ratio": [11, 8],
+    "kind": "government",
+    "source": "Israel State Archives, The Flag and the Emblem: the official measurements are 160 by 220 cm (the Flag and Emblem Law, 5709-1949)",
+    "url": "https://catalog.archives.gov.il/site/en/chapter/flag/",
+    "read": false
+  },
+  "IN": {
+    "name": "India",
+    "ratio": [3, 2],
+    "kind": "government",
+    "source": "Flag Code of India 2002, as the Press Information Bureau's FAQ states it: the ratio of the length to the height (width) is 3:2",
+    "url": "https://static.pib.gov.in/WriteReadData/specificdocs/documents/2022/jul/doc202272573901.pdf",
+    "read": true
+  },
+  "IR": {
+    "name": "Iran",
+    "ratio": null,
+    "kind": "open",
+    "source": "Constitution, art. 18, gives the colours, the emblem and the motto and no ratio; a law or regulation that does was not found",
+    "url": "https://en.mfa.gov.ir/portal/viewpage/3997/constitution",
+    "note": "Shipped 7:4.",
+    "read": false
+  },
+  "IT": {
+    "name": "Italy",
+    "ratio": [3, 2],
+    "kind": "government",
+    "source": "Presidency of the Council of Ministers, State Ceremonial Office: the proportions are fixed (height 2/3 of the length). The Constitution, art. 12, gives three equal vertical bands and no ratio",
+    "url": "https://presidenza.governo.it/ufficio_cerimoniale/cerimoniale/quesiti.html",
+    "read": true
+  },
+  "JP": {
+    "name": "Japan",
+    "ratio": [3, 2],
+    "kind": "law",
+    "source": "国旗及び国歌に関する法律 (Kokki oyobi kokka ni kansuru hōritsu / Act on the National Flag and Anthem, Act No. 127 of 1999), Annex 1: the height is two thirds of the length",
+    "url": "https://www8.cao.go.jp/chosei/kokkikokka/kokkikokka.html",
+    "read": true
+  },
+  "KP": {
+    "name": "North Korea",
+    "ratio": [2, 1],
+    "kind": "law",
+    "source": "Socialist Constitution, art. 170: the ratio of the width to the length is 1:2",
+    "url": "https://www.wipo.int/wipolex/en/text/329991",
+    "read": false
+  },
+  "KR": {
+    "name": "South Korea",
+    "ratio": [3, 2],
+    "kind": "government",
+    "source": "National Archives of Korea, how the flag is made: the length (across) and the width (down) of the flag are 3:2 except in special cases",
+    "url": "https://theme.archives.go.kr/next/symbolKorea/makeNationalFlag.do",
+    "note": "The page does not name the Enforcement Decree of the National Flag Act; the decree's text was not read.",
+    "read": true
+  },
+  "KZ": {
+    "name": "Kazakhstan",
+    "ratio": [2, 1],
+    "kind": "government",
+    "source": "Office of the President, National Flag of Kazakhstan: the ratio of the flag's width to its length is 1:2 (Constitutional Law on the State Symbols, 2007)",
+    "url": "https://www.akorda.kz/en/state_symbols/kazakhstan_flag",
+    "read": true
+  },
+  "LU": {
+    "name": "Luxembourg",
+    "ratio": [5, 3],
+    "kind": "law",
+    "source": "Loi du 23 juin 1972 sur les emblèmes nationaux, art. 3: proportions of 5 to 3 or of 2 to 1",
+    "url": "https://legilux.public.lu/eli/etat/leg/loi/1972/06/23/n1/jo",
+    "note": "The law allows two shapes; 5:3 is the one shipped.",
+    "read": true
+  },
+  "MX": {
+    "name": "Mexico",
+    "ratio": [7, 4],
+    "kind": "law",
+    "source": "Ley sobre el Escudo, la Bandera y el Himno Nacionales, art. 3: the proportion of the flag's width to its length is four to seven",
+    "url": "https://ordenjuridico.gob.mx/Documentos/Federal/html/wo13243.html",
+    "read": true
+  },
+  "NG": {
+    "name": "Nigeria",
+    "ratio": null,
+    "kind": "open",
+    "source": "No law or government page giving the ratio was found; the shipped drawing is 2:1",
+    "url": null,
+    "read": false
+  },
+  "NL": {
+    "name": "Netherlands",
+    "ratio": null,
+    "kind": "open",
+    "source": "The government's flag instruction (the Rijksvlaginstructie) is where a ratio would be; it could not be read from here, and the Royal Decree of 1937 was not found to give one",
+    "url": null,
+    "note": "Shipped 3:2.",
+    "read": false
+  },
+  "NO": {
+    "name": "Norway",
+    "ratio": [11, 8],
+    "kind": "law",
+    "source": "Lov om Norges Flag (flaggloven) of 1898, § 1: the width is to the length as 16 to 22",
+    "url": "https://lovdata.no/dokument/NL/lov/1898-12-10-1",
+    "read": true
+  },
+  "NZ": {
+    "name": "New Zealand",
+    "ratio": [2, 1],
+    "kind": "government",
+    "source": "Ministry for Culture and Heritage, New Zealand flag: the flag can be any size, with the length always twice the width. The Flags, Emblems, and Names Protection Act 1981, s 10(c), lets the Minister set the standard proportions",
+    "url": "https://www.mch.govt.nz/our-work/flags-anthems-and-emblems/new-zealand-flag",
+    "read": false
+  },
+  "OM": {
+    "name": "Oman",
+    "ratio": [7, 4],
+    "kind": "law",
+    "source": "Royal Decree 99/2026 (Official Gazette 1672, 2026-11-01), Annex 1, Second: the official measurements are the sheet of 350 cm by 200 cm, a red vertical unit of 116.67 cm and three horizontal bands of 66.67 cm",
+    "url": "https://qanoon.om/p/2026/rd2026099/",
+    "note": "The sheet is an image. A copy of the decree on qanoon.om; the Gazette itself was not found online.",
+    "read": true
+  },
+  "PH": {
+    "name": "Philippines",
+    "ratio": [2, 1],
+    "kind": "law",
+    "source": "Republic Act No. 8491 (Flag and Heraldic Code of the Philippines, 1998), sec. 27: width 1, length 2",
+    "url": "https://www.officialgazette.gov.ph/1998/02/12/republic-act-no-8491/",
+    "read": false
+  },
+  "PK": {
+    "name": "Pakistan",
+    "ratio": [3, 2],
+    "kind": "government",
+    "source": "Cabinet Division, National Flag of the Federation of Pakistan: the resolution of the Constituent Assembly of 1947-08-11 gives a rectangle in the proportion of length to width 3:2",
+    "url": "https://cabinet.gov.pk/PolicyDetail/ZTAzMjNhMWUtNzRjNS00YTkzLThlNzItOWFlOTkyMjRkZWU1",
+    "note": "The page is a scan; the ratio comes from a search result quoting the resolution.",
+    "read": false
+  },
+  "PL": {
+    "name": "Poland",
+    "ratio": [8, 5],
+    "kind": "law",
+    "source": "Ustawa z dnia 31 stycznia 1980 r. o godle, barwach i hymnie Rzeczypospolitej Polskiej oraz o pieczęciach państwowych, annex (Dz.U. 2025 poz. 299): the ratio of the flag's width to its length is 5:8",
+    "url": "https://api.sejm.gov.pl/eli/acts/DU/2025/299/text.pdf",
+    "read": true
+  },
+  "PT": {
+    "name": "Portugal",
+    "ratio": [3, 2],
+    "kind": "government",
+    "source": "Presidency of the Republic, Bandeira Nacional: the height is two thirds of the length (Decree of 1911-06-19 and the technical opinion in Diário do Governo no. 150 of 1911-06-30)",
+    "url": "https://jorgesampaio.arquivo.presidencia.pt/pt/republica/simbolos/bandeiras/index.html",
+    "note": "The Presidency's archive page.",
+    "read": true
+  },
+  "RU": {
+    "name": "Russia",
+    "ratio": [3, 2],
+    "kind": "law",
+    "source": "Federal Constitutional Law No. 1-FKZ of 2000-12-25, art. 1: the ratio of the flag's width to its length is 2:3",
+    "url": "http://www.kremlin.ru/acts/bank/16406",
+    "read": true
+  },
+  "SA": {
+    "name": "Saudi Arabia",
+    "ratio": [3, 2],
+    "kind": "government",
+    "source": "The flag regulation of 1393 AH (1973) makes the width two thirds of the length, as the Saudi Press Agency states it",
+    "url": "https://www.spa.gov.sa/en/c0628db5b1s",
+    "note": "The regulation's own text was not found online.",
+    "read": false
+  },
+  "SE": {
+    "name": "Sweden",
+    "ratio": [8, 5],
+    "kind": "law",
+    "source": "Lag (1982:269) om Sveriges flagga, 2 §: the height of the rectangular flag is to its length as 10 to 16",
+    "url": "https://www.riksdagen.se/sv/dokument-och-lagar/dokument/svensk-forfattningssamling/lag-1982269-om-sveriges-flagga_sfs-1982-269/",
+    "read": true
+  },
+  "TG": {
+    "name": "Togo",
+    "ratio": null,
+    "kind": "none",
+    "source": "The Constitution of the Fourth Republic, art. 3, gives five stripes and the red square with its star and no ratio; the Constitution of 2024 leaves the national emblem to law",
+    "url": "https://assemblee-nationale.tg/wp-content/uploads/2021/05/constitution-consolidee-derniere-version.pdf",
+    "note": "No official ratio found. The shipped 3:2 is the Commons file's own; sources elsewhere disagree (1:1.618, 3:5, 2:3).",
+    "read": false
+  },
+  "TH": {
+    "name": "Thailand",
+    "ratio": [3, 2],
+    "kind": "government",
+    "source": "Government of Thailand, Flag: the flag is rectangular, 6 parts wide and 9 parts long (Flag Act B.E. 2522)",
+    "url": "https://thailand.go.th/page/flag",
+    "read": true
+  },
+  "TR": {
+    "name": "Türkiye",
+    "ratio": null,
+    "kind": "open",
+    "source": "Türk Bayrağı Kanunu 2893, art. 2, takes the flag's shape and proportions from a table annexed to the law; the table could not be read from here",
+    "url": "https://www.mevzuat.gov.tr/mevzuat?MevzuatNo=2893&MevzuatTur=1&MevzuatTertip=5",
+    "note": "Shipped 3:2.",
+    "read": false
+  },
+  "UA": {
+    "name": "Ukraine",
+    "ratio": null,
+    "kind": "open",
+    "source": "Constitution, art. 20, gives two equal bands, blue over yellow, and no ratio; a law that does was not found",
+    "url": "https://zakon.rada.gov.ua/laws/show/254%D0%BA/96-%D0%B2%D1%80",
+    "note": "Shipped 3:2.",
+    "read": false
+  },
+  "US": {
+    "name": "United States",
+    "ratio": [19, 10],
+    "kind": "law",
+    "source": "Executive Order 10834 of 1959-08-21, sec. 21: the standard sizes are in the ratio 1:1.9 (hoist 10.00 feet, fly 19.00 feet; 20.00 by 38.00)",
+    "url": "https://www.archives.gov/federal-register/codification/executive-order/10834.html",
+    "note": "Sec. 3 refers to an attached drawing of the proportions, which the page does not show.",
+    "read": true
+  },
+  "VN": {
+    "name": "Vietnam",
+    "ratio": [3, 2],
+    "kind": "law",
+    "source": "Constitution of 2013, art. 13: the flag is a rectangle whose width is two thirds of its length",
+    "url": "https://chinhphu.vn/quoc-ky-quoc-huy-quoc-ca-tuyen-ngon-68378",
+    "read": true
+  },
+  "ZA": {
+    "name": "South Africa",
+    "ratio": [3, 2],
+    "kind": "law",
+    "source": "Constitution of 1996, Schedule 1, section 1(1): the flag is rectangular and one and a half times longer than it is wide",
+    "url": "https://www.justice.gov.za/legislation/constitution/SAConstitution-web-eng.pdf",
+    "read": true
+  }
+}

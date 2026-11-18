@@ -26,6 +26,29 @@ drawing is smaller it is because it is simplified (a smaller emblem, a disc of t
 which is not the same flag. Japan is the example: country-flag-icons' disc is 0.56 of the height where the law
 says 0.6.
 
+## Official proportions: which are on file, and what "true" means
+
+`scripts/official-flags.data.json` records, for 50 countries, the ratio a law or a government page gives, with its
+page and whether the text was read. The 50 are the G20 countries (the EU is not a country), countries with a space
+agency or a launch site, other large or well-known states of Europe, Asia and Africa, and Togo and Oman, which the
+review named (Argentina is a G20 member). A test (`src/official-flags.test.ts`) holds every recorded
+ratio to the shape the flag ships at; the file records what a government says and changes no drawing
+(`scripts/official-ratios.data.json` is the one that does).
+
+- **35 have an official ratio and every one matches the drawing**: 24 from a law (a constitution, an act, a decree) and
+  11 from a government page. 25 of the 50 entries were read in the source's own text. For the others the source was
+  found by a search but could not be opened here (`"read": false`), and they are the first to re-read.
+- **Where no law fixes the shape**, the flag ships at the shape its Commons drawing has, and the data says "no official
+  ratio": the United Kingdom (the Flag Institute's 3:5 is not a government's), France, Austria (2:3 is only for the
+  federal service flag), Colombia and Togo. For Togo the 3:2 of the shipped file is not the constitution's: sources
+  outside the government give 1:1.618, 3:5 and 2:3.
+- **Left open**, because the text could not be read from here: Argentina (Decreto 1650/2010 hands the measures to IRAM
+  standards that are not free to read; the 8:5 shipped is Commons'), Belgium, Egypt, Finland, Greece, Iran, Nigeria,
+  the Netherlands, Türkiye and Ukraine.
+- **Luxembourg's law allows two shapes**, 5:3 and 2:1; 5:3 is shipped.
+- **The United States' 1:1.9** comes from the standard sizes of Executive Order 10834 (section 21); its drawing of the
+  proportions is an attachment the Federal Register page does not show.
+
 ## Yemen: Commons' own drawing again, since its licence reads public domain
 
 Until the Commons snapshot of 2026-11-02, Commons' machine-readable licence for *Flag of Yemen.svg* read CC BY-SA 4.0,
