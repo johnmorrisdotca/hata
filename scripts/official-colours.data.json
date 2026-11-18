@@ -1,0 +1,87 @@
+{
+  "CA": {
+    "name": "Canada",
+    "colours": [
+      {
+        "role": "red",
+        "official": "#EB2D37",
+        "shipped": "#d52b1e",
+        "value": "RGB 235/45/55 (Pantone 032, CMYK 0/100/100/0)",
+        "kind": "government",
+        "source": "Treasury Board Secretariat, Colour: Design Standard for the Federal Identity Program, Table 1, FIP red",
+        "url": "https://www.canada.ca/en/treasury-board-secretariat/services/government-communications/design-standard/colour-design-standard-fip.html",
+        "note": "The page says FIP red for the Government of Canada's flag symbol; it does not say this is the national flag's red. Canadian Heritage's description of the flag names only red and white and points to CGSB standards for the colour, without values.",
+        "mismatch": true,
+        "read": true
+      }
+    ]
+  },
+  "CH": {
+    "name": "Switzerland",
+    "colours": [
+      {
+        "role": "red",
+        "official": "#FF0000",
+        "shipped": "#ff0000",
+        "value": "RGB 255/0/0, #FF0000 (Pantone 485 C, CMYK 0/100/100/0, RAL 3020)",
+        "kind": "law",
+        "source": "Federal Act on the Protection of the Swiss Coat of Arms and Other Public Signs (SR 232.21), Annex 2: the Swiss flag, definition of the colour red",
+        "url": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/cc/2015/613/20250701/en/pdf-a/fedlex-data-admin-ch-eli-cc-2015-613-20250701-en-pdf-a.pdf",
+        "read": true
+      }
+    ]
+  },
+  "DE": {
+    "name": "Germany",
+    "colours": [
+      {
+        "role": "red",
+        "official": "#FF0000",
+        "shipped": "#dd0000",
+        "value": "RGB 255/0/0, #FF0000 (Pantone 485, CMYK 0/100/100/0)",
+        "kind": "reported",
+        "source": "A 2020 specification of the Federal Government, as the Flags of the World page 'Germany: colour' (crwflags.com/FOTW/FLAGS/de_color.html) reproduces it; the government's own document was not found online",
+        "url": "https://crwflags.com/FOTW/FLAGS/de_color.html",
+        "note": "The Anordnung über die deutschen Flaggen (1996) names the colours (black, red, gold) and gives no values. The Bundestag's flag FAQ says the Reichstag's gold flags use RAL 1028. The same page records that the Interior Ministry said in 1998 it had fixed no technical shade.",
+        "mismatch": true,
+        "read": true
+      },
+      {
+        "role": "gold",
+        "official": "#FFCC00",
+        "shipped": "#ffce00",
+        "value": "RGB 255/204/0, #FFCC00 (Pantone 7405, CMYK 0/12/100/5)",
+        "kind": "reported",
+        "source": "A 2020 specification of the Federal Government, as the Flags of the World page 'Germany: colour' (crwflags.com/FOTW/FLAGS/de_color.html) reproduces it; the government's own document was not found online",
+        "url": "https://crwflags.com/FOTW/FLAGS/de_color.html",
+        "read": true
+      }
+    ]
+  },
+  "ID": {
+    "name": "Indonesia",
+    "colours": [
+      {
+        "role": "red",
+        "official": "#FF0000",
+        "shipped": "#ff0000",
+        "value": "RGB 255/0/0",
+        "kind": "law",
+        "source": "Undang-Undang No. 24 of 2009, explanation of art. 4(1): clear red, digitally RGB red 255, green 0, blue 0",
+        "url": "https://peraturan.go.id/files/UU%2024%20Tahun%202009.pdf",
+        "note": "Read in the transcription of the law's text on id.wikisource.org.",
+        "read": true
+      },
+      {
+        "role": "white",
+        "official": "#FFFFFF",
+        "shipped": "#ffffff",
+        "value": "RGB 255/255/255",
+        "kind": "law",
+        "source": "Undang-Undang No. 24 of 2009, explanation of art. 4(1): white without gradation, digitally RGB 255/255/255",
+        "url": "https://peraturan.go.id/files/UU%2024%20Tahun%202009.pdf",
+        "read": true
+      }
+    ]
+  }
+}

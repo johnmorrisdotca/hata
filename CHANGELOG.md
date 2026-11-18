@@ -9,6 +9,7 @@ All notable changes to this project are written here. The format follows
 ### Added
 
 - **The official proportion of 50 countries, each with its source** (MODULES-1602). `scripts/official-flags.data.json` gives the ratio a law or a government page states (35 countries), or says that none was found (5) or that it could not be read (10), with the wording, the page and whether the text was read. A test holds each ratio to the shape the flag ships at. No drawing changes. The README says the drawing's own shape is used where no law gives one (the United Kingdom, France, Austria, Colombia, Togo).
+- **Official colour values beside the shipped ones, for Germany, Canada, Indonesia and Switzerland** (MODULES-1603). `scripts/official-colours.data.json` records a government's own screen value next to the hex the drawing ships, with the page, and marks a pair further apart than ΔE 5 (CIEDE2000). Germany's red (`#dd0000` against `#FF0000`, ΔE 7.4) and Canada's red (`#d52b1e` against the Federal Identity Program's `#EB2D37`, ΔE 6.8) are marked; nothing is redrawn. `docs/audit-2026-10.md` no longer says they agree with the specification.
 
 ## [1.14.0] - 2026-11-17
 

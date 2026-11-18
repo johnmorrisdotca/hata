@@ -49,6 +49,26 @@ ratio to the shape the flag ships at; the file records what a government says an
 - **The United States' 1:1.9** comes from the standard sizes of Executive Order 10834 (section 21); its drawing of the
   proportions is an attachment the Federal Register page does not show.
 
+## Official colour values, beside the shipped ones
+
+`scripts/official-colours.data.json` puts a government's own screen value (RGB or hex) beside the hex a drawing ships,
+with the page. Nothing is redrawn: the drawings keep Commons' colours. A pair further apart than ΔE 5 (CIEDE2000: 2 is
+seen on close inspection, 5 at a glance) is marked `mismatch`, and `src/official-colours.test.ts` holds the marks to the
+numbers. Only a screen value counts; a Pantone, RAL, NCS or CIE value with no RGB (Sweden's, Poland's, Italy's,
+Luxembourg's) is not recorded, because turning one into hex would be our guess, not the government's.
+
+- **Germany**: the shipped red `#dd0000` is ΔE 7.4 from `#FF0000` and is marked; the gold `#ffce00` is ΔE 0.7 from
+  `#FFCC00`. The values are the Federal Government's 2020 specification as Flags of the World reproduces it: the
+  government's own document was not found online, so this is *reported*, not read. The 1996 Anordnung names the colours
+  and gives no value, and the Interior Ministry told a correspondent in 1998 that it had fixed no shade.
+- **Canada**: the Federal Identity Program's red is RGB 235/45/55 (`#EB2D37`), ΔE 6.8 from the shipped `#d52b1e`, and
+  marked. The page names it for the FIP flag symbol and does not say it is the national flag's red, and Canadian
+  Heritage's description of the flag gives no value (it points to CGSB standards).
+- **Indonesia** (`#ff0000` and `#ffffff`, Undang-Undang 24/2009) and **Switzerland** (`#ff0000`, Annex 2 of SR 232.21)
+  agree with their laws exactly.
+- **For the maintainer**: whether a marked pair should ship the official value, as a changed colour in a drawing that is
+  otherwise Commons' (the "nothing is redrawn" rule says no). Until then the package ships Commons' red for both.
+
 ## Yemen: Commons' own drawing again, since its licence reads public domain
 
 Until the Commons snapshot of 2026-11-02, Commons' machine-readable licence for *Flag of Yemen.svg* read CC BY-SA 4.0,
