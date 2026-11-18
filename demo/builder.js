@@ -108,6 +108,9 @@ const builder = familyEmbedBuilder({ id: "hata", packageName: "@johnmorrisdotca/
   unit: (option) => option.id === "width" ? "px" : "",
   leftOut: {
     "element.loading": "The preview is eager; iframe snippets use lazy loading.",
+    "element.rounded": "A look of the element alone, off by default: the image, the iframe and the typed components draw the flag as it is, so the builder does not write it. Add the attribute by hand (guides, Optional looks).",
+    "element.gloss": "A look of the element alone, off by default: the image, the iframe and the typed components draw the flag as it is, so the builder does not write it. Add the attribute by hand (guides, Optional looks).",
+    "element.wave": "A look of the element alone, off by default and still under reduced motion: the image, the iframe and the typed components draw the flag as it is, so the builder does not write it. Add the attribute by hand (guides, Optional looks).",
     "element.allow-restricted": "A flag the law restricts (Germany's of 1935 to 1945) is asked for in code, for history and education, never by a builder (docs/decisions.md, Restricted flags).",
   },
   makers: { flag: { names: "call", element: "element", tag: "hata-flag", embed: "embed/", description: "makerFlagSays", required: ["code"], width: (settings) => Math.ceil(width(settings)) + 8, height: (settings) => Math.ceil(width(settings) / aspect(settings)) + 8 + creditHeight(settings),
