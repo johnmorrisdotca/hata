@@ -29,7 +29,8 @@ src/
 ├── svelte/             the "/svelte" entry: Flag.svelte, copied to dist/svelte by scripts/build-extras.ts
 ├── react-native.ts     the "/react-native" entry: createFlag(SvgXml), the React Native component
 ├── manifest.ts         the "/manifest" entry: every flag's record, and the codes left out
-├── manifest.types.ts   the shapes of a flag's record, a frame and a code left out
+├── manifest.types.ts   the shapes of a flag's record and a code left out
+├── manifest-framing.types.ts  the shapes of a frame and its crop
 ├── version.ts          the package's version
 ├── data/               written by scripts/build-data.ts: the codes, the loaders, the variants' loaders, the names, the frames, the manifest
 └── flags/              written by scripts/build-data.ts: the "/flags/<code>" entries, the "<code>--<id>" variants, and the ".1x1" and ".4x3" drawings
