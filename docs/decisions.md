@@ -93,6 +93,18 @@ What was not done: the law's own drawing was not set beside the flag (Kenya's Co
 Uzbekistan's flag laws, Angola's Manual de Símbolos Nacionais), and Mozambique's and Iran's constitutions give a description, not a drawing.
 If a stricter check is wanted, that is the next one.
 
+## Flag facts: the first slice (adoption and meaning of the 33 dated countries)
+
+`scripts/flag-facts.data.json` holds, for each of the 33 countries with dated flags, when today's flag was adopted and what its colours
+or symbols mean. **Adoption** is the dated flag's own `from`, `source` and `sourceKind`, repeated so the facts are in one place; a test
+holds them to the dated flag, so they cannot drift. **Meaning** is one sentence in English and one in Japanese, in our own words (no text is
+copied), and only where an official page states it: **5 of the 33 have one** (Argentina: the sun of the first coin; Indonesia: red and
+white, from the explanation of Undang-Undang 24/2009; Iran: the three colours, from the Islamic Revolution Document Center; South
+Korea: the taegeuk and trigrams, from the National Archives; Kazakhstan: the blue, from the President's site). The other 28 are `null`:
+no official statement was read. Many laws only describe a flag, and a meaning from a book or an encyclopedia is not offered as official.
+The Korean sentence is read from the archives' account of the first flag of 1882, whose symbols are the same. Not done yet: the rest of
+the 33, a `hata/facts` entry that serves them (`flagFacts(code)`), the designer, and the other countries.
+
 ## Yemen: Commons' own drawing again, since its licence reads public domain
 
 Until the Commons snapshot of 2026-11-02, Commons' machine-readable licence for *Flag of Yemen.svg* read CC BY-SA 4.0,
