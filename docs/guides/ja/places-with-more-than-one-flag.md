@@ -8,8 +8,8 @@ description: 地域が持った、または同時に持つ旗：争いのある�
 ## 争いのある旗と別の旗
 
 実際に使われている旗が複数ある地域があります。Hataはそのすべてを収録し、それぞれに `status` を付け、**政治的などちらの側にも立ちません**。
-既定は、世界が認める当局の旗（国際連合で議席を持つアフガニスタンのイスラム共和国）か、その地域に自前の旗があればそれ（セントヘレナの青い船舶旗で、ユニオン・フラッグではありません）で、
-そのほかの旗は呼び出し1つで取り出せます。隠れることも、偶然に既定になることもありません。
+既定は、世界が認める当局の旗（国際連合で議席を持つアフガニスタンのイスラム共和国）か、その地域に独自の旗があればそれ（セントヘレナのブルー・エンサインで、ユニオン・フラッグではありません）で、
+そのほかの旗は呼び出し1つで取り出せます。隠されることも、偶然に既定になることもありません。
 
 ```ts
 import { variantsOf, manifest } from "@johnmorrisdotca/hata/manifest";
@@ -32,8 +32,8 @@ await flag("GB-NIR", { variant: "ulster-banner" });   // Northern Ireland has no
 - **`variantsOf(code)`**（`/manifest` から）は、その地域の旗を既定を先頭に並べます。`id`、英語と日本語の `name`、`status`
   （`official`、`de-facto`、`historical`、`local`）、`from` と `until`、`why`、`source`、SVGを持つ `module`、元になった `drawing` があります。
   `manifest(code)` は同じ一覧に、`disputed` と `defaultVariant` を加えて持ちます。
-- **`flag(code, { variant })`**、`flagDataUri`、`<hata-flag variant>` は、ほかの旗と同じ枠でそれを描きます。未知のidは `null` になります。
-- **既定で自前の旗を持たない地域**（1973年以降の北アイルランド）は `FLAG_CODES` に入らず、`LEFT_OUT` に理由があり、実際に使われている旗は
+- **`flag(code, { variant })`**、`flagDataUri`、`<hata-flag variant>` は、ほかの旗と同じ枠でそれを描きます。存在しないidを指定すると `null` になります。
+- **既定で独自の旗を持たない地域**（1973年以降の北アイルランド）は `FLAG_CODES` に入らず、`LEFT_OUT` に理由があり、実際に使われている旗は
   別の旗として、名前を指定して取り出します。**その地域の公式の象徴ではないが実際に使われている旗**（ブルターニュのグウェン・ハ・デュ）は、状態が `local` の既定です。
 - **非推奨**（2.0で削除）：マルティニークの `local` と `/flags/mq--local`。`martinique` と `/flags/mq` の別名です。
 
@@ -45,7 +45,7 @@ await flag("GB-NIR", { variant: "ulster-banner" });   // Northern Ireland has no
 
 メダル表や記録集、競技の歴史は、今はない国の名前を今も挙げます。Hataにはそのうち12か国の旗があり、どれも現在の国が使わないコードで引けます。
 ISO 3166-3にコードがあればそれ（`SUHH` ソビエト連邦、`DDDE` 東ドイツ、`YUCS` ユーゴスラビア、`CSHH` チェコスロバキアなど）、なければIOCのコード
-（`FRG` 西ドイツ、`BOH` ボヘミア、`WIF` 西インド諸島連邦）です。表に入っていそうなコードでも、大文字小文字を問わず見つかります。`SU`、`DD`、`YU`、`BU` と、IOCの
+（`FRG` 西ドイツ、`BOH` ボヘミア、`WIF` 西インド諸島連邦）です。表に入っていそうなコードも、大文字小文字を問わず見つかります。`SU`、`DD`、`YU`、`BU` と、IOCの
 `URS`、`GDR`、`TCH`、`YUG`、`SCG`、`ZAI`、`RHO`、`BWI` です。これらは `FLAG_ALIASES` です。
 
 ```ts
@@ -62,7 +62,7 @@ manifest("SUHH")?.historical;              // { from: "1922", until: "1991", ali
 
 ## 歴代の旗と、ある日の旗
 
-今ある国も、別の旗を使っていたことがあります。Hataには、そのうち33か国の1900年以降の以前の国旗があり、それぞれ `historical` の別の旗として、`from`、`until`
+今ある国も、別の旗を使っていたことがあります。Hataには、そのうち33か国の、1900年以降に使われた以前の国旗があり、それぞれ `historical` の別の旗として、`from`、`until`
 （旗が変わる日は新しい旗のものです）、`source`、その種類を持ちます。**`flag(code, { date })`** はある日の旗を読み込み、`/manifest` の **`variantOn(code, date)`** は
 その別の旗を探し、**`<hata-flag date>`** はそれを描きます。
 

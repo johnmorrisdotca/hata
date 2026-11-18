@@ -29,21 +29,21 @@ description: hata-flag要素のすべての属性、スクリプトを使えな�
 | `fit` | `auto`（既定）、`whole`（旗全体）、`crop`（旗のために選ばれた側での切り抜き）、`cover`、`hoist`、`contain`。`frame()` と同じです |
 | `label` | スクリーンリーダーが読み上げる言葉。省略すると地域の名前です |
 | `lang` | `en` または `ja`。その名前の言語です。省略すると、要素のあるページの言語です |
-| `theme` | `auto`（既定）、`light`、`dark`：明るいページか暗いページか、枠線の色を決めます |
+| `theme` | `auto`（既定）、`light`、`dark`：明るいページ用か暗いページ用か、枠線の色を選びます |
 | `border`, `shadow` | 旗の周りの細い線（白い背景の白い旗には必要です）と、柔らかい影 |
 | `loading` | `lazy`（既定：画面に近づくと読み込む）または `eager` |
 
 要素はページ自身のdocumentに、shadow rootなしで描かれます。`role="img"` と `aria-label` を持ち、中に旗の `<img>` があるので、
 どんな大きさでも鮮明で、ページのCSSが普通のインライン要素と同じように大きさを決めます
 （枠線と影は `--hata-flag-border-light`、`--hata-flag-border-dark`、`--hata-flag-shadow` で変えられます）。
-すべての属性はプロパティでもあり、React 19、Vue、Svelteが設定できます。`await element.ready` で絵ができるのを待てます。
+すべての属性はプロパティでもあり、React 19、Vue、Svelteが設定できます。`await element.ready` で絵の準備が整うのを待てます。
 描けたときは `hata-load`、そのコードに旗がないときは `hata-error` を発火し、その場合は何も描かず、
 場所も取らず、理由をコンソールに1度だけ出します。これらは、
 [Kyuubu](https://github.com/johnmorrisdotca/kyuubu)の `<kyuubu-cube>` から続く、ファミリーの決まりです。
 
 ## スクリプトを使えないページ
 
-スクリプトを使えないサイトには、デモの埋め込みページのiframeがあります。同じ属性をクエリとして受け取ります。
+スクリプトを使えないサイトには、デモの埋め込みページのiframeがあります。同じ属性を、クエリパラメーターとして受け取ります。
 
 ```html
 <iframe src="https://johnmorrisdotca.github.io/hata/embed.html?code=JP-13&amp;shape=round&amp;size=48" title="Flag of Tokyo" width="56" height="56" style="border:0" loading="lazy"></iframe>
@@ -64,7 +64,7 @@ import "@johnmorrisdotca/hata/element/define";
 
 [デモ](https://johnmorrisdotca.github.io/hata/)の詳細パネルには**この旗を埋め込む**ビルダーがあります。
 形、高さ、言語、枠線、影、テーマを選ぶとその場で表示され、正確なコードを
-カスタム要素、CDNのファイルの `<img>`（パッケージと同じ枠をCSSで作ります）、dataのURI、iframe、
+カスタム要素、CDNのファイルの `<img>`（パッケージと同じ枠をCSSで作ります）、data URI、iframe、
 ESモジュール、React、Vue、Svelte、Angularとしてコピーできます。ビルダーは単独で動く1つのモジュールで、
 [`demo/embed-builder.js`](https://github.com/johnmorrisdotca/hata/blob/main/demo/embed-builder.js)といい、製品名を一切含みません。Hataの選択肢と、Hataだけが書くコードは
 [`demo/embed-hata.js`](https://github.com/johnmorrisdotca/hata/blob/main/demo/embed-hata.js)にあります。

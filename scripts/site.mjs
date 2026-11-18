@@ -161,7 +161,7 @@ const FRAME_TEXTS = {
   },
   "codes.html": {
     en: { name: "Hata 旗", what: "every code", description: CODES_DESCRIPTION },
-    ja: { name: "旗 Hata", what: "すべてのコード", description: "パッケージが知るすべてのコードを、英語と日本語の名前と旗へのリンクとともに並べ、コードか名前で探せます。国、地域、かつての国、旗のないコードを含みます。" },
+    ja: { name: "旗 Hata", what: "コード一覧", description: "パッケージが扱うすべてのコードを、英語と日本語の名前と旗へのリンクとともに並べ、コードか名前で探せます。国、地域、かつての国、旗のないコードを含みます。" },
   },
   "historic.html": {
     en: { name: "Hata 旗", what: "historic flags", description: HISTORIC_DESCRIPTION },

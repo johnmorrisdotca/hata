@@ -12,7 +12,7 @@ description: Hataの旗が提供される形式のすべてと、その大きさ
 | 種類 | 得られるもの | 使い方 | 大きさ |
 | --- | --- | --- | --- |
 | SVGファイル | 旗ごとの`.svg`、`dist/svg/<code>.svg` | jsDelivrのアドレスには`flagUrl(code)`、自分のコピーには`flagUrl(code, { base })` | 旗の中央値は806 B。すべての旗で8890.7 KB（gzipで3081.6 KB）、国だけで2119.6 KB（gzipで725.0 KB） |
-| モジュール | SVGの文字列。旗ごとに1つのモジュール | `import jp from "@johnmorrisdotca/hata/flags/jp"` | 同じバイト数。ページは、インポートした旗の分だけを負担します |
+| モジュール | SVGの文字列。旗ごとに1つのモジュール | `import jp from "@johnmorrisdotca/hata/flags/jp"` | 同じバイト数。ページは、インポートした旗の分だけがページに加わります |
 | 枠のためのモジュール | 4:3または正方形の枠のために作った図 | `@johnmorrisdotca/hata/flags/<code>.4x3`と`.1x1` | 429の図、2869.6 KB（gzipで957.8 KB） |
 | 実行時にコードで | ページの動作中に選ぶ旗 | `/load`の`flag(code)`。その旗自身のファイルを1つ読み込みます | コードから旗を引く部分は25 KB、そのあとに旗 |
 | データURI | `data:image/svg+xml`のアドレスにしたSVG。base64より小さい | `toDataUri(svg)`、`flagDataUri(code)` | SVGより少し大きい |
