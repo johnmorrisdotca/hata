@@ -6,6 +6,10 @@ All notable changes to this project are written here. The format follows
 
 ## [Unreleased]
 
+### Changed
+
+- **A shorter README opening, with the long sections in guides** (MODULES-1520). The README went from 63,984 to about 45,000 of its 64,000 characters (the budget is unchanged): the first screen is the title, a two-line summary, the links and the demo's pictures, then the 30-second example. Moved, word for word apart from their links, into five guides in English and Japanese: the long introduction and the list of what is in Hata (`what-is-in-hata`), whole and cropped frames and how a frame is measured (`frames-whole-and-cropped`), the element's attribute table, the iframe, framework notes and the builder (`embed-element-and-builder`), disputed, former and historic flags (`places-with-more-than-one-flag`), and the flag sources, the sizes table, the limits and the `FlagRecord` type (`sources-sizes-and-limits`). The README keeps a short form of each, with a link, and links the guides that compare Hata with other flag sets.
+
 ## [1.13.0] - 2026-11-17
 
 ### Added
