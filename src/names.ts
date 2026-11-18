@@ -2,6 +2,7 @@
 // the flag's aspect ratio. Data only, kept out of the main entry: <hata-flag> loads it for the name it reads aloud.
 
 import { FLAG_ALIASES } from "./data/aliases.data";
+import { ALPHA3, NUMERIC } from "./data/codes3.data";
 import { NAMES } from "./data/names.data";
 import { mustBeString } from "./svg";
 
@@ -69,5 +70,36 @@ const flagName = (code: string, lang: string = "en"): string | null => {
  */
 const flagAspect = (code: string): number | null => NAMES[codeOf(code)]?.[2] ?? null;
 
-export { flagAspect, flagName };
+/**
+ * The code of a flag, from any code a country goes by: its ISO 3166-1 alpha-2 ("JP"), alpha-3 ("JPN") or numeric ("392",
+ * "004" or "4") code, a subdivision's ISO 3166-2 code ("JP-13"), or a former country's code or alias ("URS"), in any case
+ * and with an underscore for the hyphen. The alpha-3 and numeric codes are Kuni's, for the countries that have a flag; a
+ * code that two places held ("CS") finds nothing, as with `flagCode`. It lives here, not in the main entry, because the
+ * two tables of codes are data.
+ *
+ * @param input - A code of a place, as above.
+ * @returns The code as this package writes it (`"JP"`, `"JP-13"`, `"SUHH"`), or `null` when it is no code of a place that has a flag here.
+ * @throws TypeError when `input` is not a string.
+ *
+ * @example
+ * ```ts
+ * import { findFlagCode } from "@johnmorrisdotca/hata/names";
+ *
+ * console.log(findFlagCode("jpn"));   // "JP"
+ * console.log(findFlagCode("392"));   // "JP"
+ * console.log(findFlagCode("004"));   // "AF"
+ * console.log(findFlagCode("ca_on")); // "CA-ON"
+ * console.log(findFlagCode("URS"));   // "SUHH"
+ * console.log(findFlagCode("XXX"));   // null
+ * ```
+ */
+const findFlagCode = (input: string): string | null => {
+  const written = mustBeString(input, "code").trim().toUpperCase().replace(/_/g, "-");
+  const own = codeOf(written);
+  if (NAMES[own] !== undefined) return own;
+
+  return ALPHA3[written] ?? (/^\d{1,3}$/.test(written) ? NUMERIC[written.padStart(3, "0")] : undefined) ?? null;
+};
+
+export { findFlagCode, flagAspect, flagName };
 export type { NameLanguage };

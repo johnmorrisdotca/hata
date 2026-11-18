@@ -22,6 +22,7 @@ import { mkdirSync, readdirSync, readFileSync, rmSync } from "node:fs";
 import { join } from "node:path";
 import { gzipSync } from "node:zlib";
 
+import { country as kuniCountry } from "@johnmorrisdotca/kuni";
 import { subdivision as kuniSubdivision } from "@johnmorrisdotca/kuni/subdivisions";
 
 import { setCandidates, setNamed } from "./candidates.ts";
@@ -763,6 +764,25 @@ ${places.filter((place) => shippedByCode.get(place.code) === undefined && varian
 };
 
 export { NAMES };
+`,
+);
+
+// The ISO 3166-1 alpha-3 and numeric code of each country that has a flag, read from Kuni, for findFlagCode in /names.
+const kuniCountries = shipped.filter((one) => one.place.group === "country").map((one) => ({ code: one.place.code, found: kuniCountry(one.place.code) }));
+writeDocumentedFile(
+  join(DATA_DIR, "codes3.data.ts"),
+  `${HEADER}
+// From Kuni ${JSON.parse(readFileSync(join(ROOT, "node_modules", "@johnmorrisdotca", "kuni", "package.json"), "utf8")).version}: the ISO 3166-1 alpha-3 and numeric code of each country that has a flag, and the alpha-2 code that finds it.
+
+const ALPHA3: Readonly<Record<string, string>> = {
+${kuniCountries.map(({ code, found }) => `  ${quote(found!.alpha3)}: ${quote(code)},`).sort().join("\n")}
+};
+
+const NUMERIC: Readonly<Record<string, string>> = {
+${kuniCountries.map(({ code, found }) => `  ${quote(found!.numeric)}: ${quote(code)},`).sort().join("\n")}
+};
+
+export { ALPHA3, NUMERIC };
 `,
 );
 

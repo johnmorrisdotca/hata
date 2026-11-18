@@ -72,7 +72,7 @@ const isFlagCode = (value: unknown): value is FlagCode => typeof value === "stri
  * console.log(flagCode("ca_on"));  // "CA-ON"
  * console.log(flagCode("urs"));    // "SUHH": the Soviet Union, by the IOC's code
  * console.log(flagCode("CS"));     // null: Czechoslovakia and Serbia and Montenegro both held it
- * console.log(flagCode("JPN"));    // null: alpha-3 codes are Kuni's to translate (country("JPN").alpha2)
+ * console.log(flagCode("JPN"));    // null: alpha-3 and numeric codes are read by findFlagCode in /names
  * console.log(flagCode("XX"));     // null
  * ```
  */

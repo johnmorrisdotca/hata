@@ -29,6 +29,15 @@ console.log(flagName("YUG"), flagCode("CS"));
 
 二つの国が使ったコード（`CS`はチェコスロバキア、のちにセルビア・モンテネグロ）は別名にせず、`flagCode("CS")`はnullです。近いものを返すと別の国の旗を描いてしまうためです。オリンピック旗のもとで行進したチーム（`EUN`）には収録する旗がなく、理由とともに`LEFT_OUT`にあります。コードをバッジとして表示してください。[すべてのコード・別名・理由](../../historical.md)は一覧にあります。
 
+## alpha-3コードと数字コードを読む
+
+ほかの表には、Hataが`JP`で扱う国が`JPN`や`392`と書かれていることがよくあります。`/names`の`findFlagCode`は、これらも読みます。旗のある国についてのKuniの表を使い、`flagCode`が読むもの（行政区画、旧国のコードや別名）もそのまま読めます。2つの表はデータなので、`/names`に置き、メインの入口は小さいままです。旗が見つからないコードや、2つの場所が使ったコードはnullです。
+
+```ts
+import { findFlagCode } from "@johnmorrisdotca/hata/names";
+console.log(findFlagCode("jpn"), findFlagCode("392"), findFlagCode("004"), findFlagCode("urs"), findFlagCode("XXX"));
+```
+
 ## 説明を保つ
 
 `flagName`は英語・日本語を選び、名前がない場合にnullです。翻訳を作らず、コードを代わりに表示できます。`flagAspect`は幅を高さで割った値で、既定の旗がなければnullです。言語で絵や資料は変わりません。既定の旗がない地域は[別の旗](variants.md)を読めます。
