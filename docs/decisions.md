@@ -391,6 +391,20 @@ A country with no visible change since 1900 has one dated entry, the day its fla
 **Not yet researched:** every other present-day country whose flag changed since 1900 (Afghanistan, Ethiopia, Iraq, Cambodia, Libya, Greece, Cuba, Chile and about a hundred more; the Wikidata
 statements in `data-sources/wikidata-2026-10-09.json` are the place to start). They have no dated entries, and `variantOn` gives `null` for them.
 
+**The fifteen named for the next slice** (Afghanistan, Ethiopia, Iraq, Libya, Myanmar, Greece, Chile, Cuba, Cambodia, Romania, Hungary, Bulgaria, Poland, Czechia, Portugal): none is added yet; what 2026-11-18 found for four, so the next pass starts there.
+Many official pages answered 403 or a bot check, and the rule is to cite only what was read.
+
+- **Portugal**: the republican flag came by the decree of the Constituent Assembly of 1911-06-19 (Diário do Governo 141 of 1911-06-20), read on the Presidency's page
+  (presidencia.pt, "Bandeira Nacional"); the Government had approved it on 1910-11-29. Earlier: the blue and white flag of the monarchy has a public domain file
+  ("Flag of Portugal (1830–1910).svg") but no official date was read, so it is not added, and the flag in force on 1900-01-01 is therefore missing.
+- **Poland**: the white and red flag by the Constituent Sejm's act of 1919-08-01 (an exhibition of the Institute of National Remembrance gives the act for the arms; the act's text and the Sejm's own page were not opened), unchanged in colour since,
+  and the 1980 Act is already read for its ratio. One dated entry would do.
+- **Chile**: Law 2.597 of 1912-01-11 fixes the colours and proportions; the flag itself is from a decree of 1817-10-18 known only by references, first flown on 1818-02-12.
+  The Foreign Ministry's page (minrel.gob.cl) would not load.
+- **Cuba**: the flag was first raised as the Republic's on 1902-05-20, but no law of that day was found; its specification is a decree of 1906 (EcuRed gives 21 and 24 April, so the day is
+  unsettled) and the 1940 Constitution, art. 5, names the design. The date the flag came into force is a choice for the maintainer.
+- Adding any of them also means changing the counts of "33 countries" and "79 flags" in the README and the guides, `src/dated.test.ts` and `src/flag-facts.test.ts`.
+
 **What counts as the national flag.** The flag the state itself used as its national flag, on land; not a naval or merchant ensign unless the country had no other. A flag that only
 changed its shade or its specification is not a change (France's blue of 1976 and 2020, Italy's 2003 shades, Argentina's 1943 and 2010 specifications, Japan's red). Flags of the Soviet republics
 (the RSFSR, the Ukrainian and Kazakh SSRs) are counted as the flags of Russia, Ukraine and Kazakhstan, because those states are the same states under new names; the Soviet Union's own flag stays under `SUHH`.
