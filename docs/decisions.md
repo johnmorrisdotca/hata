@@ -214,9 +214,41 @@ file. Its licence kind in the manifest is `accepted`; the licence name there car
 NOTICE.md credits it with the licence's link, as the licence asks (the source acknowledged). The drawing is the Commons file itself,
 as the snapshot of 2026-11-17 recorded it (the revision of 2025-07-28); Commons' file history names its authors, which is what the
 file's own Artist field says ("See File history below for details."). The flag on the page was edited again on 2026-11-09 after
-Royal Decree No. 99/2026 and was in dispute there, so the snapshot's revision is kept until a person reads the new decree against it. What
+Royal Decree No. 99/2026; that decree has been read against the snapshot's revision (the next section). What
 would change it: the Omani government stating that the flag may be used freely, or a person reading OGL-om as not covering the
 flag and deciding to take it out again (remove the line in `ACCEPTED`, then `pnpm data:choose OM`).
+
+## For the maintainer: Oman's flag after Royal Decree 99/2026
+
+Royal Decree 99/2026 (issued 2026-10-29, Official Gazette 1672 of 2026-11-01, in force on 2026-11-02) amends the 2004 State Flag,
+Emblem and National Anthem Law (Royal Decree 53/2004). It replaces Annex 1, the flag's specifications and measurements, and Annex 2,
+the drawing of the emblem. The annexes are two images; the text was read on qanoon.om's copy of the decree (the Gazette itself is not
+online as far as was found), and the images were looked at, not copied. What it says:
+
+- **The design is the same**: a vertical red third at the hoist with the white emblem on its upper part, and three equal horizontal
+  bands to its right, white over red over green. The decree gives the official measurements as one sheet: 350 cm by 200 cm, so
+  **7:4** as shipped, the red unit 116.67 cm wide (a third of the length), each band 66.67 cm, the emblem 53.43 cm wide and 56 cm high,
+  10.67 cm below the top and centred in the red unit.
+- **No colour values**: it leaves the colours and fabrics to "the competent entity" and fixes no shade. The shipped `#028002` and `#db171b`
+  stay; there is nothing official to set beside them (`scripts/official-colours.data.json` has no entry for Oman).
+- **The emblem has a new drawing**: Annex 2 is a new outline drawing of the same things (the *khanjar* dagger with its decorated handle
+  and belt, two crossed swords in their scabbards). At the size of the annexes no difference of design could be seen, so no dated flag
+  is added: it is one design, drawn again.
+
+The shipped drawing (Commons' revision of 2025-07-28, SHA-1 `eb7feb20`) has the right bands, shape and proportions, but its emblem is
+62.6 cm by 62.5 cm of the sheet's 350 by 200 (the sheet says 53.4 by 56), 7.1 cm below the top (the sheet says 10.7).
+Commons' file was redrawn on 2026-11-09 "per new decree" (SHA-1 `23854a23`, 257 KB against 109 KB); its emblem box is exactly the
+sheet's, its colours `#007e3c` and `#df1a23` are the uploader's, and the page's history shows a change and a revert within two minutes that
+evening. Nothing has been changed in the package. The choices are John's:
+
+1. **Keep** the 2025-07-28 revision (as shipped). The flag is right in everything the decree fixes except the emblem's size.
+2. **Take the 2026-11-09 revision**: `pnpm data:commons` with the file's new revision, `pnpm data:choose OM`, `pnpm data`. It follows the
+   decree's sheet, but the file is a new drawing of the annex's emblem by one editor, the licence question above (Article 6, official
+   emblems) applies to it again, it is more than twice the size as Commons has it, and the page was being reverted the day it changed.
+3. **Wait** for Commons' history to settle and the Gazette's own copy to be found, then choose between 1 and 2.
+
+Hand-drawing the emblem from the annex is not offered: nothing is redrawn here, and the annex's drawing is the emblem the licence does
+not clearly cover.
 
 ## For the maintainer: places where the sources show different flags
 
