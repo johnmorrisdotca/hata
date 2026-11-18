@@ -10,6 +10,10 @@ All notable changes to this project are written here. The format follows
 
 - **A shorter README opening, with the long sections in guides** (MODULES-1520). The README went from 63,984 to about 45,000 of its 64,000 characters (the budget is unchanged): the first screen is the title, a two-line summary, the links and the demo's pictures, then the 30-second example. Moved, word for word apart from their links, into five guides in English and Japanese: the long introduction and the list of what is in Hata (`what-is-in-hata`), whole and cropped frames and how a frame is measured (`frames-whole-and-cropped`), the element's attribute table, the iframe, framework notes and the builder (`embed-element-and-builder`), disputed, former and historic flags (`places-with-more-than-one-flag`), and the flag sources, the sizes table, the limits and the `FlagRecord` type (`sources-sizes-and-limits`). The README keeps a short form of each, with a link, and links the guides that compare Hata with other flag sets.
 
+### Added
+
+- **A page of every code, searchable** (MODULES-1518). `codes.html` on the demo site lists every code the package knows (the 479 flags, and the 26 codes with no flag with their reasons) with its English and Japanese names, its flag, and links to the flag's SVG file and its gallery entry; a box narrows it by a code or part of a name in either language, and a menu by countries, regions, former countries or codes with no flag. It is written from the package's names and manifest when the demo is built, so it cannot drift, and the Codes guide links it. The docs site's own search (a Pagefind index of every guide and every reference page, with a box on each page) was already there. The family's `scripts/docs-site.mjs` is unchanged.
+
 ## [1.13.0] - 2026-11-17
 
 ### Added
