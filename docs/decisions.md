@@ -69,6 +69,30 @@ Luxembourg's) is not recorded, because turning one into hex would be our guess, 
 - **For the maintainer**: whether a marked pair should ship the official value, as a changed colour in a drawing that is
   otherwise Commons' (the "nothing is redrawn" rule says no). Until then the package ships Commons' red for both.
 
+## The detail review of eight flags with small emblems (Kenya, Slovakia, Angola, Zimbabwe, Mozambique, Mongolia, Iran, Uzbekistan)
+
+The audit of 2026-10 marked these eight by byte size alone (1.0 to 1.9 KB; `docs/audit-2026-10.md`, "Detail") and left the
+look to a person. On 2026-11-18 each shipped drawing was drawn at 1000 pixels beside the other public domain or CC0 Commons drawings
+of the same flag that name an official source (a construction sheet made from the law, or a drawing taken from the state's own
+text), and looked at. **None is simplified in a way that shows at the size of a flag; the byte count caught emblems that are simple
+by design.** Nothing is changed. This is a look by one person, not a measurement, and the governments' own drawings were
+not downloaded: where a Commons file is cited below, it cites the law or the government page, not the other way round.
+
+| Code | Shipped | Beside | Seen |
+| --- | --- | --- | --- |
+| `KE` | 1.0 KB | "Flag of Kenya (2010 constitution).svg" (public domain, 3.4 KB, traced from the flag in the Constitution on parliament.go.ke) | The same shield, spears and white lens; the other draws the spearheads as separate blades and the centre oval wider. Not simplified. |
+| `SK` | 1.2 KB | "Flag of Slovakia (construction sheet).svg" (public domain, 5.8 KB, from the annexes of Act 63/1993) | The same shield, double cross and three hills in the same place. Not simplified. |
+| `AO` | 1.6 KB | "Flag of Angola using the specifications prescribed in "Manual Simbolos Nacionais", V01.05.2021D.svg" (public domain, 4.0 KB, uploaded 2026-04-21) | The same cogwheel, machete and star. The manual file's black is `#1f1f1f` where the shipped drawing has `#000000`: a colour question, not a detail one, not decided. |
+| `ZW` | 1.8 KB | "Flag of Zimbabwe (construction sheet).svg" (public domain, 12.4 KB, from the Flag of Zimbabwe Act's schedule) | The Zimbabwe Bird has the same detail on its base and body. Not simplified. |
+| `MZ` | 1.9 KB | no fuller public domain drawing found on Commons (the search turned up only the CIA's drawing and variants) | The rifle with its bayonet, the book, the hoe and the star are all drawn. Kept. |
+| `MN` | 1.2 KB | "Flag of Mongolia (construction sheet).svg" (public domain, 14.4 KB) and "Flag of Mongolia (CMYK).svg" (CC0, 6.8 KB) | The same soyombo, shape for shape. Kept. |
+| `IR` | 1.3 KB | "Flag of Iran (WFB 2004).svg" (public domain, 4.3 KB, the CIA's) | The emblem is the usual one; the writing along the two bands is drawn as a stylised repeating pattern, as on Commons' standard file, and the CIA's drawing has the same detail. Kept. |
+| `UZ` | 1.3 KB | "Flag of Uzbekistan (Lex.uz).svg" and "(Constitution.uz).svg" (public domain, 1.2 and 1.3 KB, colours from the state's legal database and government sites) | The same crescent and twelve stars (3, 4 and 5). Only the shades differ. Kept. |
+
+What was not done: the law's own drawing was not set beside the flag (Kenya's Constitution, Slovakia's Act 63/1993, Mongolia's and
+Uzbekistan's flag laws, Angola's Manual de Símbolos Nacionais), and Mozambique's and Iran's constitutions give a description, not a drawing.
+If a stricter check is wanted, that is the next one.
+
 ## Yemen: Commons' own drawing again, since its licence reads public domain
 
 Until the Commons snapshot of 2026-11-02, Commons' machine-readable licence for *Flag of Yemen.svg* read CC BY-SA 4.0,
