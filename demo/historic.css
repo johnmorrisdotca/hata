@@ -25,6 +25,8 @@ main { max-width: 1120px; margin: 0 auto; padding: 24px; }
 .historic-split .split-column h3 { margin: 0 0 6px; font-size: .85rem; }
 .historic-split .split-why { margin-top: 8px; font-size: .8rem; line-height: 1.4; }
 .historic-split .split-why p { margin: 0 0 4px; }
+.historic-flag .why { margin: 4px 0 0; font-size: .72rem; line-height: 1.35; opacity: .85; }
+.historic-country > div > .why { margin: 2px 0 6px; font-size: .8rem; line-height: 1.4; max-width: 70ch; }
 .historic-flag .restricted-note { margin: 4px 0 0; padding: 6px 8px; border-left: 3px solid rgba(127, 127, 127, .7); background: rgba(127, 127, 127, .12); font-size: .75rem; line-height: 1.35; }
 .historic-flag[data-restricted="true"] { width: 220px; }
 @media (max-width: 700px) { .historic-split .split-columns { grid-template-columns: minmax(0, 1fr); } }

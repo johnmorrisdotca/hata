@@ -249,6 +249,10 @@ interface HistoricalEra {
   until: string;
   /** The other codes that find it: "SU", "SUN" and "URS" for the Soviet Union. None is a code of a flag itself, and none is shared with another place. */
   aliases: string[];
+  /** Why this is the flag shipped for it, or why it has none, in English. */
+  why: string;
+  /** The same in Japanese. */
+  whyJa: string;
 }
 
 /**
@@ -379,6 +383,10 @@ interface Variant {
   restricted: Restricted | null;
   /** Why it is offered, and (for the default) why it is the default, in a sentence or two. */
   why: string;
+  /** The same in Japanese; null for a flag that is not one of the dated flags of present-day countries. */
+  whyJa: string | null;
+  /** `roleNote.why` in Japanese; null where `roleNote` is null or there is no Japanese. */
+  roleNoteJa: string | null;
   /** Where the claim above is documented: a web page. */
   source: string;
   /** What kind of page `source` is: `official` (a government, parliament, archive or law text), `reference` (a vexillological reference or a scholarly article) or `encyclopedia` (Wikipedia: a better source is wanted). */

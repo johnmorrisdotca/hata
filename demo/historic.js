@@ -144,6 +144,11 @@ const figure = (row, flag, again = false) => {
     item.append(role);
   }
   item.append(source);
+  if (flag.id !== null && flag.why !== "") {
+    const why = Object.assign(document.createElement("p"), { className: "why", textContent: ja() && flag.whyJa !== null ? flag.whyJa : flag.why, lang: ja() && flag.whyJa !== null ? "ja" : "en" });
+    why.setAttribute("data-testid", "historic-why");
+    item.append(why);
+  }
   if (flag.restricted !== undefined) {
     // The context note, factual and plain: why the flag is here and that the law restricts it elsewhere.
     const note = Object.assign(document.createElement("p"), { className: "restricted-note", textContent: ja() ? flag.restricted.ja : flag.restricted.en, lang: ja() ? "ja" : "en" });
@@ -182,9 +187,10 @@ const split = (row, flags) => {
     columns.append(column);
   }
   const reasons = new Map(flags.map((flag) => [flag.note.why, flag.note]));
+  const said = (note) => (ja() && note.whyJa !== null ? note.whyJa : note.why);
   const why = Object.assign(document.createElement("div"), { className: "split-why" });
   for (const note of reasons.values()) {
-    const line = Object.assign(document.createElement("p"), { textContent: `${say("splitWhy")}: ${note.why} ` });
+    const line = Object.assign(document.createElement("p"), { textContent: `${say("splitWhy")}: ${said(note)} `, lang: ja() && note.whyJa !== null ? "ja" : "en" });
     line.append(Object.assign(document.createElement("a"), { href: note.source, textContent: say(KINDS[note.kind]), rel: "noopener", target: "_blank" }));
     line.setAttribute("data-testid", "historic-reason");
     why.append(line);
@@ -217,6 +223,7 @@ const card = (row) => {
   const title = Object.assign(document.createElement("h2"), { textContent: ja() ? row.ja : row.en, lang: ja() ? "ja" : "en" });
   title.append(Object.assign(document.createElement("span"), { className: "historic-code", textContent: `${row.code} · ${ja() ? row.en : row.ja}${row.former ? ` · ${say("former", { from: row.years[0], until: row.years[1] })}` : ""}` }));
   head.append(title);
+  if (row.why !== null) head.append(Object.assign(document.createElement("p"), { className: "why", textContent: ja() ? row.why.ja : row.why.en, lang: ja() ? "ja" : "en" }));
   const list = Object.assign(document.createElement("ul"), { className: "historic-flags" });
   list.append(...flagItems(row));
   item.append(head, list);

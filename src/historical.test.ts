@@ -17,7 +17,7 @@ describe("the former countries' codes", () => {
     expect(WITH_FLAG.map(([code]) => code).sort()).toEqual(["ANHH", "BOH", "BUMM", "CSHH", "CSXX", "DDDE", "FRG", "RHZW", "SUHH", "WIF", "YUCS", "ZRCD"]);
     for (const [code] of WITH_FLAG) expect(FLAG_CODES as readonly string[], code).toContain(code);
     for (const [code] of WITHOUT) expect(LEFT_OUT.some((one) => one.code === code), code).toBe(true);
-    expect(manifest("SUHH")?.historical).toEqual({ from: "1922", until: "1991", aliases: ["SU", "SUN", "URS"] });
+    expect(manifest("SUHH")?.historical).toMatchObject({ from: "1922", until: "1991", aliases: ["SU", "SUN", "URS"] });
     expect(manifest("JP")?.historical).toBeUndefined();
   });
 

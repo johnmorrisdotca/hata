@@ -29,6 +29,8 @@ console.log(variantOn("CA", "2030-01-01")?.default);  // true：最も新しい�
 
 法律がその国の旗と定めた旗と、人々が実際に掲げた旗は、別の旗だったことがあります。Hataは両方を収録しています。以前の旗にはすべて `roles`（`legal`、`in-use`、または両方）とそれぞれの期間があり、どちらか一方だけの旗には、理由と出典を示す `roleNote` が付きます。1867年から1965年のカナダがその例です。法律上の国旗はユニオン・フラッグで、実際に掲げられたのはレッド・エンサインでした。`variantOn` は何も指定しなければ法律上の旗を返し、その日にもう1つ別の旗があること、その理由も知らせます。`{ role: "in-use" }` で、もう一方を選べます。
 
+日付つきの旗にはどれも、何が描かれていて、なぜ収録したかを書いた`why`（英語）と`whyJa`（日本語）があります。役割の注には日本語の`roleNoteJa`があり、かつての国の`historical`にも`why`と`whyJa`があります。デモの「歴史の旗」のページは、選んだ言語でこれらを表示します。日本語は、ほかの日本語と同じく確認待ちです（`docs/strings-ja.md`）。
+
 ```ts
 import { flag } from "@johnmorrisdotca/hata/load";
 import { variantOn } from "@johnmorrisdotca/hata/manifest";

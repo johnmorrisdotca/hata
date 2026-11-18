@@ -147,6 +147,7 @@ const CHOICES = JSON.parse(readFileSync(join(ROOT, "scripts", "choices.data.json
 // Commons' own words, where it names none), each with where on the page that is said: scripts/authors.data.json.
 const AUTHORS = JSON.parse(readFileSync(join(ROOT, "scripts", "authors.data.json"), "utf8")) as Record<string, { author: string; from: string }>;
 // The flags whose drawing is not at their official ratio, and the ratio they are given (see optimise.ts).
+const HISTORY_JA = JSON.parse(readFileSync(join(ROOT, "scripts", "history-ja.data.json"), "utf8")) as { variants: Record<string, string>; roleNotes: Record<string, string>; former: Record<string, string> };
 const OFFICIAL_RATIOS = JSON.parse(readFileSync(join(ROOT, "scripts", "official-ratios.data.json"), "utf8")) as Record<string, { ratio: [number, number]; source: string; why: string }>;
 
 // 2. The places, from Kuni.
@@ -345,6 +346,8 @@ interface VariantRecord {
   roleNote: RoleNote | null;
   restricted: RestrictedSpec | null;
   why: string;
+  whyJa: string | null;
+  roleNoteJa: string | null;
   source: string;
   sourceKind: "official" | "reference" | "encyclopedia";
   default: boolean;
@@ -451,7 +454,7 @@ for (const [code, set] of Object.entries(VARIANTS)) {
   } else if (place === undefined || own.length !== 1 || own[0]!.id !== set.default) throw new Error(`VARIANTS ${code}: its default must be its one variant with no file, and the place must have a flag here`);
   const records: VariantRecord[] = [];
   for (const spec of set.variants) {
-    const base = { id: spec.id, name: spec.name, nameJa: spec.nameJa, status: spec.status, from: spec.from, until: spec.until, ...rolesOf(code, spec), why: spec.why, source: spec.source, sourceKind: spec.sourceKind ?? "encyclopedia", default: spec.id === set.default };
+    const base = { id: spec.id, name: spec.name, nameJa: spec.nameJa, status: spec.status, from: spec.from, until: spec.until, ...rolesOf(code, spec), why: spec.why, whyJa: HISTORY_JA.variants[`${code}/${spec.id}`] ?? null, roleNoteJa: spec.roleNote === undefined ? null : HISTORY_JA.roleNotes[code] ?? null, source: spec.source, sourceKind: spec.sourceKind ?? "encyclopedia", default: spec.id === set.default };
     if (spec.file === null) {
       const one = place!;
       const measured = FRAMINGS_FILE[one.owner]!;
@@ -887,10 +890,13 @@ const cropOf = (one: Shipped, framing: Framing): { rule: string; at: Anchor; why
 };
 
 // A former country's years and the other codes that find it: part of its manifest record, and of no other's.
-const eraOf = (code: string): { historical?: { from: string; until: string; aliases: string[] } } => {
+const eraOf = (code: string): { historical?: { from: string; until: string; aliases: string[]; why: string; whyJa: string } } => {
   const spec = HISTORICAL[code];
+  if (spec === undefined) return {};
+  const whyJa = HISTORY_JA.former[code];
+  if (whyJa === undefined) throw new Error(`${code}: a former country needs its Japanese note in scripts/history-ja.data.json`);
 
-  return spec === undefined ? {} : { historical: { from: spec.from, until: spec.until, aliases: [...spec.aliases] } };
+  return { historical: { from: spec.from, until: spec.until, aliases: [...spec.aliases], why: spec.why, whyJa } };
 };
 
 // The manifest: one row a flag, and one a code left out.

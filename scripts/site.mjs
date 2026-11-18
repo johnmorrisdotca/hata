@@ -279,7 +279,7 @@ writeFileSync("site/builder.html", framed(readFileSync("demo/builder.html", "utf
 const roleFields = (variant) => ({
   roles: variant.roles,
   roleDates: variant.roleDates,
-  note: variant.roleNote === null ? null : { why: variant.roleNote.why, source: variant.roleNote.source, kind: variant.roleNote.sourceKind },
+  note: variant.roleNote === null ? null : { why: variant.roleNote.why, whyJa: variant.roleNoteJa, source: variant.roleNote.source, kind: variant.roleNote.sourceKind },
 });
 const historicRows = MANIFEST.filter((record) => record.code.length === 2 || record.historical !== undefined)
   .map((record) => {
@@ -287,9 +287,9 @@ const historicRows = MANIFEST.filter((record) => record.code.length === 2 || rec
     const restricted = RESTRICTED.filter((one) => one.code === record.code).map(({ variant }) => ({ ...variant, restrictedHere: true }));
     const flags = record.variants.length === 0
       ? [{ id: null, module: record.code.toLowerCase(), en: "", ja: "", from: null, until: null, status: "official", kind: "commons", source: record.page, roles: [], roleDates: {}, note: null }]
-      : [...record.variants, ...restricted].sort((a, b) => (a.from ?? "9999").localeCompare(b.from ?? "9999")).map((variant) => ({ id: variant.id, module: variant.module, en: variant.name, ja: variant.nameJa, from: variant.from, until: variant.until, status: variant.status, kind: variant.sourceKind, source: variant.source, ...roleFields(variant), ...(variant.restricted === null ? {} : { restricted: { en: variant.restricted.reason, ja: variant.restricted.reasonJa } }) }));
+      : [...record.variants, ...restricted].sort((a, b) => (a.from ?? "9999").localeCompare(b.from ?? "9999")).map((variant) => ({ id: variant.id, module: variant.module, en: variant.name, ja: variant.nameJa, why: variant.why, whyJa: variant.whyJa, from: variant.from, until: variant.until, status: variant.status, kind: variant.sourceKind, source: variant.source, ...roleFields(variant), ...(variant.restricted === null ? {} : { restricted: { en: variant.restricted.reason, ja: variant.restricted.reasonJa } }) }));
 
-    return { code: record.code, en: names[record.code].en, ja: names[record.code].ja, continent: names[record.code].continent ?? null, former: record.historical !== undefined, years: record.historical === undefined ? null : [record.historical.from, record.historical.until], flags };
+    return { code: record.code, en: names[record.code].en, ja: names[record.code].ja, continent: names[record.code].continent ?? null, former: record.historical !== undefined, years: record.historical === undefined ? null : [record.historical.from, record.historical.until], why: record.historical === undefined ? null : { en: record.historical.why, ja: record.historical.whyJa }, flags };
   })
   .sort((a, b) => a.en.localeCompare(b.en));
 writeFileSync("site/historic-data.js", `// Made by scripts/site.mjs from the manifest: every country and former country with all of its flags, in date order.\nexport const ROWS = ${JSON.stringify(historicRows)};\nexport const CONTINENTS = ${JSON.stringify(continents)};\n`);

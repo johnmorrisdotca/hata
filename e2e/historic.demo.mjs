@@ -198,3 +198,18 @@ test("keeps the restricted flag out of the gallery, the panel's variant switch, 
   const status = await page.evaluate(async () => (await fetch("dist/svg/de--swastika-1935.svg")).status);
   expect(status).toBe(404);
 });
+
+test("says why each dated flag is there, and why a former country has the flag it has, in English and in Japanese", async ({ page }) => {
+  await open(page, "?lang=en&q=Japan");
+  const japan = page.locator(`${at("historic-country")}[data-code="JP"]`);
+  await expect(japan.locator(at("historic-why"))).toHaveCount(2);
+  await expect(japan.locator(at("historic-why")).first()).toContainText("Dajokan Proclamation 57");
+  await open(page, "?lang=ja&q=JP");
+  const ja = page.locator(`${at("historic-country")}[data-code="JP"]`);
+  await expect(ja.locator(at("historic-why")).first()).toContainText("太政官布告57号");
+  await expect(ja.locator(at("historic-why")).first()).toHaveAttribute("lang", "ja");
+  await open(page, "?lang=ja&q=SUHH");
+  await expect(page.locator(`${at("historic-country")}[data-code="SUHH"] .why`).first()).toContainText("1955年から1991年");
+  await open(page, "?lang=ja&q=Canada");
+  await expect(page.locator(at("historic-reason")).first()).toContainText("1870年代からレッド・エンサイン");
+});

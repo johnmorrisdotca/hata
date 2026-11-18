@@ -6,12 +6,12 @@
       "gzip": 3777
     },
     "./load": {
-      "minified": 14703167,
+      "minified": 14770266,
       "gzip": 4529261
     },
     "./manifest": {
-      "minified": 1213418,
-      "gzip": 154553
+      "minified": 1280517,
+      "gzip": 168038
     },
     "./names": {
       "minified": 35801,
@@ -30,27 +30,27 @@
       "gzip": 6925
     },
     "./element": {
-      "minified": 14746734,
+      "minified": 14813833,
       "gzip": 4542042
     },
     "./element/define": {
-      "minified": 14746687,
+      "minified": 14813786,
       "gzip": 4542029
     },
     "./bind": {
-      "minified": 14740390,
+      "minified": 14807489,
       "gzip": 4539506
     },
     "./react": {
-      "minified": 14771631,
+      "minified": 14838730,
       "gzip": 4552772
     },
     "./vue": {
-      "minified": 14786196,
+      "minified": 14853295,
       "gzip": 4556624
     },
     "./react-native": {
-      "minified": 14770704,
+      "minified": 14837803,
       "gzip": 4552277
     },
     "./flags/ad.1x1": {

@@ -29,6 +29,8 @@ In a page, `<hata-flag code="CA" date="1962-09-29">` draws it. Every frame optio
 
 What the law made a country's flag and what its people flew were sometimes two flags. Hata keeps both: every earlier flag has `roles` (`legal`, `in-use` or both) and the days of each, and where a flag is only one of them, a `roleNote` says why and names its source. Canada from 1867 to 1965 is the example: the Union Flag was the legal flag, and the Red Ensigns were flown. `variantOn` gives the legal flag unless asked, says that another flag exists that day and why, and `{ role: "in-use" }` picks the other.
 
+Every dated flag says what it shows and why it is there in `why` and, in Japanese, `whyJa`; a role note has its Japanese in `roleNoteJa`; and a former country's `historical` has `why` and `whyJa` too. The demo's Historic flags page shows them in the language it is set to. The Japanese is marked for review with the rest (`docs/strings-ja.md`).
+
 ```ts
 import { flag } from "@johnmorrisdotca/hata/load";
 import { variantOn } from "@johnmorrisdotca/hata/manifest";
