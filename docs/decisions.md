@@ -380,9 +380,34 @@ The Soviet republic flags are `historical`, and a place's flags before its state
 **Legal flag and flag in use** (MODULES-1447, John 2026-11-17: "keep both legal and what was used... add context or tags or metadata explaining it. someone might want an old flag and can choose or get a reason why they see X or Y"). Every earlier flag has `roles` (`legal`, `in-use` or both) and `roleDates`; where a flag is only one of them or the roles run on different days it has a `roleNote` with the reason and its source. `variantOn` and `flag({ date })` give the legal flag by default, name the other one, and `{ role: "in-use" }` picks it. The 80 flags (76 earlier ones, the three Union Flags added for Canada, Australia and New Zealand, and the restricted one) fall into: 68 legal and in use on the same days; 12 with a note (docs/historical.md lists them): Canada's three Red Ensigns (in use) and Union Flag (legal), Australia's three ensigns (in use, the last also legal from the Flags Act 1953 in force on 1954-04-14) and Union Flag (legal, and in use until the Blue Ensign was first flown on 1901-09-03), New Zealand's Ensign (in use from 1869, legal from the Act approved 1902-03-24) and Union Flag, and Ukraine's blue and yellow flag of 1991 (in use) and the Ukrainian SSR's (legal until 1992-01-28). The Union Flag is Canada's, Australia's and New Zealand's legal flag by the same drawing as the United Kingdom's: a line module, not a copy. New Zealand's legal reading before 1902 is the NZ Ministry for Culture and Heritage's, and Paul Christoffel (Journal of New Zealand Studies, 2017) argues the Union Flag was never the legal national flag; both are in the note. Where the roles are the same flag the other is `null`. Other places whose flag was flown before it was adopted (India 1947, Israel 1948) are the same flag in both roles here; their in-use days before the adoption are left for later. A role is a claim about law and practice and is only as good as its `roleNote`'s source.
 
 **Sources.** Each variant's `source` is the page that documents its dates and `sourceKind` says what it is. <!-- variant-sources:start -->
-42 have an official source (a government, parliament, archive or law text), 34 a reference and 3 only Wikipedia (listed as `encyclopedia`).
+43 have an official source (a government, parliament, archive or law text), 34 a reference and 2 only Wikipedia (listed as `encyclopedia`).
 <!-- variant-sources:end -->
 Official pages that would not load in the research (several government sites answer a robot with 403) are not cited; the references used instead are named in each flag's `source`.
+
+**The dates that had only Wikipedia, read against official pages (2026-11-18).** Italy's Savoy-arms flag of 1861 is now `official`: the
+Presidency of the Republic's page on the tricolour says the Kingdom was proclaimed on 17 March 1861 and its flag stayed, by custom,
+the flag of the first war of independence, the tricolour with the Savoy shield that Charles Albert ordered on 23 March 1848.
+The other two are left as they were, because what the official pages say is not what the data says, and each is a choice for the maintainer:
+
+- **Canada's Red Ensign, `from: "1868"` (id `red-ensign-1868`).** No official page gives 1868. Canadian Heritage captions the
+  ensign with the provincial shield "The Red Ensign of 1871 to 1921" and says it was flown unofficially "since the 1870s"; the Governor
+  General's Public Register of Arms, Flags and Badges lists Red Ensigns of 1871, 1873, 1876, 1907, 1922 and 1957 and none of 1868.
+  1868 is the year of the royal warrant (26 May 1868, Statistics Canada's Year Book) for the arms of the four provinces, not of the flag.
+  Options: (a) keep 1868, so it stays marked `encyclopedia`; (b) `from: "1871"` with Canadian Heritage's page as an official source,
+  keeping the id (which then misnames its year); (c) as (b) with a new id `red-ensign-1871` and `red-ensign-1868` kept as an alias,
+  an addition to the public ids. (c) is the careful one. Not done: it changes what `flag("CA", { date })` answers for 1868 to 1870.
+- **Russia's flag of June 1918, `from: "1918-06-17"` (id `rsfsr-1918`).** The Constitution of the RSFSR (adopted 10 July 1918), art. 90,
+  describes the flag as red with the gold letters РСФСР or the full name at the top by the hoist (official text on pravo.by, "Monuments
+  of the history of law"), and a search result for the Presidential Library's history page (which would not open here) dates the decree of the All-Russian Central Executive Committee that set a red
+  flag with the full name to 14 April 1918. No official page found says 17 June 1918 (the date comes from ruwiki's account of the
+  Committee approving Chekhonin's drawing). Options: (a) keep 17 June, `encyclopedia`; (b) `from: "1918-07-10"` with the Constitution as an
+  official source, the days before it going to the earlier flag; (c) look for the Committee's minutes (the State Archive of the Russian Federation).
+
+**Iran's flag, `from: "1980-07-06"`, is settled and unchanged.** The Islamic Revolution Document Center (irdc.ir, the page the flag already
+cites) quotes the Council of the Revolution's resolution no. 6930: approved at the session of 15 Tir 1359 (1980-07-06), notified to the
+Interior Ministry on 4 Mordad 1359 (1980-07-26), with the Islamic Republic's emblem in red and "Allahu Akbar" written 22 times in
+white Kufic script along the borders of the green and red bands. The 29 July 1980 that Flags of the World and Wikipedia give (7 Mordad 1359)
+is in no official source that was found; 6 July is the day the flag was decided, and the notification is three weeks later.
 
 **Reading a date.** `from` is the first day a flag was in force and `until` the first day of its successor; a bare year or month is the whole of it, and where two flags share a bare year the later wins.
 `null` means "not known here", never "no flag": see historical.md for the rules, including what a former country gives outside its years.

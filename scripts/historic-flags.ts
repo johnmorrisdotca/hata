@@ -812,8 +812,8 @@ const HISTORIC: Readonly<Record<string, VariantSet>> = {
         from: "1861-03-17",
         until: "1946-06-19",
         why: "Green-white-red vertical tricolour with the shield of the House of Savoy on the white band (crowned in the State and war flags, uncrowned in the civil flag).",
-        source: "https://en.wikipedia.org/wiki/Flag_of_Italy",
-        sourceKind: "encyclopedia",
+        source: "https://www.quirinale.it/page/tricolore",
+        sourceKind: "official",
         file: "Flag of Italy (1861–1946).svg",
       },
       {
