@@ -1310,7 +1310,7 @@ const notice = readFileSync(join(ROOT, "NOTICE.md"), "utf8");
 const between = (text: string, name: string, body: string): string => {
   const start = `<!-- ${name}:start -->`;
   const end = `<!-- ${name}:end -->`;
-  if (!text.includes(start) || !text.includes(end)) throw new Error(`NOTICE.md has no ${name} markers`);
+  if (!text.includes(start) || !text.includes(end)) throw new Error(`the file has no ${name} markers`);
   return `${text.slice(0, text.indexOf(start))}${start}\n${body}\n${end}${text.slice(text.indexOf(end) + end.length)}`;
 };
 const credited = owners.filter((one) => one.drawing.source === "commons" && (one.drawing.licence.kind === "cc-by" || one.drawing.licence.kind === "accepted" || one.drawing.attributionRequired));
@@ -1337,6 +1337,10 @@ const variantCredits = [...variantSets]
   .filter(({ variant }) => !credited.some((one) => one.drawing.file === variant.drawing.file))
   .map(({ code, variant }) => `- \`${code}--${variant.id}\` ${places.find((place) => place.code === code)!.en}, ${variant.name}: "${variant.drawing.file}", ${variant.drawing.author ? `author as Commons gives it: ${variant.drawing.author}` : "no author named on Commons"}; ${variant.drawing.licence.name}${variant.drawing.licence.url ? ` (${variant.drawing.licence.url})` : ""}; ${variant.drawing.page}`);
 writeDocumentedFile(join(ROOT, "NOTICE.md"), between(between(notice, "attributions", [...credited.map(creditOf), ...variantCredits].length === 0 ? "No Commons drawing in this version is under a licence that asks for credit." : [...credited.map(creditOf), ...variantCredits].join("\n")), "sets", setsBody));
+
+// docs/decisions.md says how many dated flags have each kind of source: the same count as docs/historical.md, from the same data.
+const decisionsFile = join(ROOT, "docs", "decisions.md");
+writeDocumentedFile(decisionsFile, between(readFileSync(decisionsFile, "utf8"), "variant-sources", `${historicKinds.official} have an official source (a government, parliament, archive or law text), ${historicKinds.reference} a reference and ${historicKinds.encyclopedia} only Wikipedia (listed as \`encyclopedia\`).`));
 
 // 6. What happened.
 console.log(`variants: ${listedSets.map(([code, set]) => `${code} ${set.variants.length}`).join(", ")}${variantsLeftOut.length > 0 ? `; left out: ${variantsLeftOut.map((one) => `${one.code} ${one.id} (${one.reason})`).join(", ")}` : ""}`);

@@ -1,6 +1,8 @@
 // The earlier flags of present-day countries (scripts/historic-flags.ts) and the flag of a day: every dated variant has a
 // source and dates in order that do not overlap, and `variantOn(code, date)` and `flag(code, { date })` answer for the
 // day a flag changed, before the first flag the package knows, after the last, and for a former country outside its years.
+import { readFileSync } from "node:fs";
+
 import { describe, expect, it } from "vitest";
 
 import { HISTORIC } from "../scripts/historic-flags";
@@ -82,6 +84,14 @@ describe("the earlier flags of present-day countries", () => {
       }
     }
     expect([...kinds].sort()).toEqual(["encyclopedia", "official", "reference"]);
+  });
+
+  it("are counted by the kind of their source in docs/historical.md and docs/decisions.md, the same as in the data", () => {
+    const count = { official: 0, reference: 0, encyclopedia: 0 };
+    for (const code of Object.keys(HISTORIC)) for (const one of variantsOf(code)) count[one.sourceKind] += 1;
+    const total = count.official + count.reference + count.encyclopedia;
+    expect(readFileSync("docs/historical.md", "utf8")).toContain(`Of the ${total} flags, ${count.official} have an official source, ${count.reference} a reference and ${count.encyclopedia} an encyclopedia page.`);
+    expect(readFileSync("docs/decisions.md", "utf8")).toContain(`${count.official} have an official source (a government, parliament, archive or law text), ${count.reference} a reference and ${count.encyclopedia} only Wikipedia`);
   });
 });
 
