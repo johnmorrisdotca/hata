@@ -48,7 +48,7 @@ Measured on 2026-10-09, SVG as shipped and gzipped at level 9:
 | Hata, Austria's states | 6 pictures | 1 KB | 1 KB | 171 B |
 | Hata, Brazil's states | 27 | 510 KB | 145 KB | 935 B |
 | Hata, the drawings made for a frame (flag-icons' 4:3 and square) | 425 | 2,792 KB | 935 KB | |
-| flag-icons 7.5.0, 4:3 (a crop, not the true proportions) | 271 | 1,955 KB | 651 KB | 804 B |
+| flag-icons 7.6.0, 4:3 (a crop, not the true proportions) | 271 | 1,955 KB | 651 KB | 804 B |
 | country-flag-icons 1.6.20, 3:2 (simplified) | 265 | 174 KB | 87 KB | 479 B |
 | circle-flags 2.8.3 (round) | 430 | 301 KB | 159 KB | 585 B |
 

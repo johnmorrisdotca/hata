@@ -3898,7 +3898,7 @@
     "country-flag-icons": "1.6.20",
     "esbuild": "^0.28.0",
     "eslint": "^9.0.0",
-    "flag-icons": "7.5.0",
+    "flag-icons": "7.6.0",
     "marked": "^18.0.0",
     "pagefind": "^1.5.2",
     "react": "^19.3.1",

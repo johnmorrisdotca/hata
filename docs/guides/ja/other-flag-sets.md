@@ -2,12 +2,12 @@
 title: Hataとほかの旗のセット
 section: explanation
 order: 2
-description: Hataと、よく使われる7つの旗のセットが、それぞれ何を収録し、どの形式で、どのライセンスで提供しているかを並べ、Hataにまだないものを示します。
+description: Hataと、よく使われる8つの旗のセットが、それぞれ何を収録し、どの形式で、どのライセンスで提供しているかを並べ、Hataにまだないものを示します。
 ---
 
-旗のパッケージの多くは、同じ数百の旗を描いています。違いは、形、形式、コード、ライセンスにあります。このページでは、Hataを、よく使われる7つのセットと並べます。ほかのセットについて書いたことは、そのセット自身のREADMEによるものです。リンクは下の一覧にあり、2026-11-17に読みました。「READMEには書かれていない」は、書かれていないという意味であって、そのセットにその機能がないという意味ではありません。Hataについて書いたことは、[README](../../../README.md)とガイドによるもので、数字は、ドキュメントを検証するテストで確かめています。
+旗のパッケージの多くは、同じ数百の旗を描いています。違いは、形、形式、コード、ライセンスにあります。このページでは、Hataを、よく使われる8つのセットと並べます。ほかのセットについて書いたことは、そのセット自身のREADMEによるものです。リンクは下の一覧にあり、2026-11-17に読みました（Twemojiだけは2026-11-18）。「READMEには書かれていない」は、書かれていないという意味であって、そのセットにその機能がないという意味ではありません。Hataについて書いたことは、[README](../../../README.md)とガイドによるもので、数字は、ドキュメントを検証するテストで確かめています。
 
-対象のセット：[flag-icons](https://github.com/lipis/flag-icons)、[country-flag-icons](https://github.com/catamphetamine/country-flag-icons/blob/master/README.md)、[circle-flags](https://github.com/HatScripts/circle-flags/blob/gh-pages/README.md)、[react-world-flags](https://github.com/smucode/react-world-flags/blob/master/README.md)、[svg-country-flags](https://github.com/hampusborgos/country-flags/blob/main/README.md)（`country-flags`リポジトリ）、[world-flags-sprite](https://github.com/lafeber/world-flags-sprite/blob/master/README.md)、[flagpack-core](https://github.com/Yummygum/flagpack-core/blob/main/README.md)。
+対象のセット：[flag-icons](https://github.com/lipis/flag-icons)、[country-flag-icons](https://github.com/catamphetamine/country-flag-icons/blob/master/README.md)、[circle-flags](https://github.com/HatScripts/circle-flags/blob/gh-pages/README.md)、[react-world-flags](https://github.com/smucode/react-world-flags/blob/master/README.md)、[svg-country-flags](https://github.com/hampusborgos/country-flags/blob/main/README.md)（`country-flags`リポジトリ）、[world-flags-sprite](https://github.com/lafeber/world-flags-sprite/blob/master/README.md)、[flagpack-core](https://github.com/Yummygum/flagpack-core/blob/main/README.md)、[Twemoji](https://github.com/jdecked/twemoji/blob/main/README.md)（絵文字のセットで、旗のセットではありませんが、旗の代わりによく使われます）。
 
 ## 何を収録しているか
 
@@ -21,6 +21,7 @@ description: Hataと、よく使われる7つの旗のセットが、それぞ�
 | svg-country-flags | 「世界のすべての旗の正確な描画」。2文字のコードで名づけられ、`GB-ENG`などもあり、コソボは`XK` | 描画のままのSVG。READMEには縦横比が書かれていない |
 | world-flags-sprite | 「世界のすべての国の旗を1つのスプライトに」 | 1つのスプライト、クラス`f32` |
 | flagpack-core | 「250以上の旗アイコン」。ISO 3166のすべての国に加えて、`BQ-SA`、`BQ-BO`、`BQ-SE`、`GB-ENG`、`GB-SCT`、`GB-WLS`、`GB-NIR` | READMEには書かれていない |
+| Twemoji | 「あらゆるプラットフォームで標準のUnicode絵文字を使えるようにする、シンプルなライブラリ」。READMEに旗の記載はない | 絵文字の画像。PNG（既定は72x72）またはSVG |
 
 ## 旗をどう手に入れるか
 
@@ -34,6 +35,7 @@ description: Hataと、よく使われる7つの旗のセットが、それぞ�
 | svg-country-flags | SVGファイルと、幅100・250・1000 pxのPNG。コードから名前へのJSON。ほかの幅を作るスクリプト | READMEには書かれていない |
 | world-flags-sprite | 1つのCSSスプライト。`<li class="flag ar">` | READMEには書かれていない |
 | flagpack-core | SVGファイル（旗ごとに1つずつインポートする）と、`countryCodeList.json` | React・Vue・Svelte向けの別パッケージ。READMEからリンクされている |
+| Twemoji | `twemoji.parse`が、ページ内の絵文字の文字を`<img>`タグに置き換える。既定はPNG、SVGも選べる。jsDelivrから配信 | READMEには書かれていない |
 
 ## コード、名前、ライセンス
 
@@ -47,6 +49,7 @@ description: Hataと、よく使われる7つの旗のセットが、それぞ�
 | svg-country-flags | alpha-2 | コードから国名へのJSON | 旗はパブリックドメインであり、旗の使い方にはほかの制限があるかもしれない、と書かれている |
 | world-flags-sprite | alpha-2またはalpha-3 | READMEには書かれていない | READMEには書かれていない |
 | flagpack-core | alpha-2 | `countryCodeList.json` | MIT |
+| Twemoji | 絵文字の文字。国コードは使わない | READMEには書かれていない | コードはMIT、画像はCC-BY 4.0（出どころの表示が必要） |
 
 ## ほかのREADMEに書かれていない、Hataにあるもの
 

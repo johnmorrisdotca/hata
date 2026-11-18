@@ -456,7 +456,7 @@ The root keeps codes and pure SVG helpers separate from lazy loading, names, pro
 | Which file is each place's flag | Wikidata, a snapshot of 2026-10-09 | CC0 |
 | 462 flags' drawings | Wikimedia Commons, each file's own licence: 450 public domain, 10 CC0, 2 CC BY 2.5 (Saint Barthélemy's one picture, under two codes) | as stated on each file's page |
 | Yemen's drawing | country-flag-icons 1.6.20 | MIT |
-| The 425 drawings made for a frame | flag-icons 7.5.0 | MIT |
+| The 425 drawings made for a frame | flag-icons 7.6.0 | MIT |
 | The drawings compared but not shipped | circle-flags 2.8.3 | MIT |
 | The places' names, in the docs, the demo, `/names` and `<hata-flag>` | Kuni 1.1.0 (Unicode CLDR and Wikidata) | MIT, Unicode-3.0, CC0 |
 | The pipeline, the frames, the lookups and the demo | written for this package | MIT |
