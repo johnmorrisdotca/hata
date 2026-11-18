@@ -148,6 +148,7 @@ const NOTICE = "https://github.com/johnmorrisdotca/hata/blob/main/NOTICE.md";
 const INDEX_DESCRIPTION =
   "Every country's flag, and the regions of Japan, Canada, the United States, Australia, the United Kingdom, Germany, France, Switzerland, Austria and Brazil, as optimised SVG keyed by ISO 3166 code, with each flag's source and licence. Search, embed anywhere, download as SVG or PNG, and play the flag quiz. Free and open source.";
 const BUILDER_DESCRIPTION = "Choose a flag, preview it and copy its embed code.";
+const CODES_DESCRIPTION = "Every code the package knows, with its English and Japanese names and a link to its flag, searchable by code or name: the countries, the regions, the former countries and the codes with no flag.";
 const HISTORIC_DESCRIPTION = "Every country and all of its flags in date order: the earlier flags of countries that still exist and of former countries, each with its years, status and source.";
 const FRAME_TEXTS = {
   "index.html": {
@@ -157,6 +158,10 @@ const FRAME_TEXTS = {
   "builder.html": {
     en: { name: "Hata 旗", what: "embed builder", description: BUILDER_DESCRIPTION },
     ja: { name: "旗 Hata", what: "埋め込みを作る", description: "旗を選んでプレビューを確かめ、埋め込みのコードをコピーできます。" },
+  },
+  "codes.html": {
+    en: { name: "Hata 旗", what: "every code", description: CODES_DESCRIPTION },
+    ja: { name: "旗 Hata", what: "すべてのコード", description: "パッケージが知るすべてのコードを、英語と日本語の名前と旗へのリンクとともに並べ、コードか名前で探せます。国、地域、かつての国、旗のないコードを含みます。" },
   },
   "historic.html": {
     en: { name: "Hata 旗", what: "historic flags", description: HISTORIC_DESCRIPTION },
@@ -294,3 +299,18 @@ const historicWords = {
   "unreviewed": familyUnreviewed({ id }), "footer": familyFooter({ id }), "script": `<script>${FAMILY_SCRIPT}</script>\n    <script type="module" src="kazoku-parts.js"></script>`,
 };
 writeFileSync("site/historic.html", framed(readFileSync("demo/historic.html", "utf8").replace(/<!-- ?family:([A-Za-z]+) ?-->/g, (_match, key) => historicWords[key]), "historic.html"));
+
+// The Codes page: every code the package knows (the flags' and the codes with no flag), with its names and a link to its flag,
+// made from the manifest and the names here so that it lists exactly what the package holds (e2e/codes.demo.mjs holds the page to them).
+const kindOf = (code) => (HISTORICAL[code] !== undefined ? "former" : code.length === 2 ? "country" : "region");
+const codeRows = [
+  ...FLAG_CODES.map((code) => [code, names[code].en, names[code].ja, kindOf(code), names[code].reading, ""]),
+  ...LEFT_OUT.map((one) => [one.code, names[one.code].en, names[one.code].ja, "none", names[one.code].reading, one.reason]),
+].sort((a, b) => a[0].localeCompare(b[0]));
+writeFileSync("site/codes-data.js", `// Made by scripts/site.mjs from the names and the manifest: every code, [code, English, Japanese, kind, reading, reason].\nexport const ROWS = ${JSON.stringify(codeRows)};\n`);
+const codesWords = {
+  "head": familyHead({ id, title: pageTitle(FRAME_TEXTS["codes.html"].en), description: CODES_DESCRIPTION }),
+  "codesHeader": familyHeader({ id, links: [{ href: "./", say: "toGallery" }, { href: "docs/index.html", say: "pageDocs" }, { href: "api.html", say: "pageApi" }] }),
+  "unreviewed": familyUnreviewed({ id }), "footer": familyFooter({ id }), "script": `<script>${FAMILY_SCRIPT}</script>\n    <script type="module" src="kazoku-parts.js"></script>`,
+};
+writeFileSync("site/codes.html", framed(readFileSync("demo/codes.html", "utf8").replace(/<!-- ?family:([A-Za-z]+) ?-->/g, (_match, key) => codesWords[key]), "codes.html"));

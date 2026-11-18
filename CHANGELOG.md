@@ -6,6 +6,10 @@ All notable changes to this project are written here. The format follows
 
 ## [Unreleased]
 
+### Added
+
+- **A page of every code, searchable** (MODULES-1518). `codes.html` on the demo site lists every code the package knows (the 479 flags, and the 26 codes with no flag with their reasons) with its English and Japanese names, its flag, and links to the flag's SVG file and its gallery entry; a box narrows it by a code or part of a name in either language, and a menu by countries, regions, former countries or codes with no flag. It is written from the package's names and manifest when the demo is built, so it cannot drift, and the Codes guide links it. The docs site's own search (a Pagefind index of every guide and every reference page, with a box on each page) was already there. The family's `scripts/docs-site.mjs` is unchanged.
+
 ## [1.12.0] - 2026-11-17
 
 ### Added

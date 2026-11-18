@@ -32,3 +32,7 @@ A code that two countries held (`CS`: Czechoslovakia, then Serbia and Montenegro
 ## Keep a caption
 
 `flagName` accepts English/Japanese language choices and returns null when a name is unavailable. Keep the code as an explicit fallback instead of inventing a translation. `flagAspect` returns width divided by height, or null for an unavailable primary flag. Language selection does not change the drawing or its source. Continue with [variants](variants.md) for a place without a default flag.
+
+## Look a code up
+
+The demo has [a page of every code](https://johnmorrisdotca.github.io/hata/codes.html) with its English and Japanese names, its flag and links to the flag's SVG file and its gallery entry. Type a code or part of a name, in either language, to narrow it; the codes with no flag are listed too, with the reason.

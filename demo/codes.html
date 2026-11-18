@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!--family:head-->
+    <link rel="stylesheet" href="family.css" />
+    <link rel="stylesheet" href="codes.css" />
+  </head>
+  <body>
+    <main class="family-page" data-ready="false">
+      <!-- family:codesHeader -->
+      <!--frame:header-->
+      <section class="fam-panel codes-intro">
+        <p data-say="intro"></p>
+      </section>
+      <section class="fam-panel codes-tools" aria-label="Filter">
+        <div class="fam-row">
+          <label class="fam-label" for="search" data-say="search"></label>
+          <input type="search" id="search" class="fam-field" data-testid="codes-search" autocomplete="off" />
+        </div>
+        <div class="fam-row">
+          <label class="fam-label" for="show" data-say="show"></label>
+          <select id="show" class="fam-field" data-testid="codes-show"></select>
+        </div>
+        <p class="fam-fine" id="count" data-testid="codes-count" aria-live="polite"></p>
+      </section>
+      <table class="codes-table" id="table" data-testid="codes-table">
+        <thead>
+          <tr>
+            <th scope="col" data-say="colFlag"></th>
+            <th scope="col" data-say="colCode"></th>
+            <th scope="col" data-say="colEnglish"></th>
+            <th scope="col" data-say="colJapanese"></th>
+            <th scope="col" data-say="colLinks"></th>
+          </tr>
+        </thead>
+        <tbody id="rows"></tbody>
+      </table>
+      <p class="fam-empty" id="empty" data-testid="codes-empty" hidden data-say="empty"></p>
+      <!-- family:unreviewed -->
+      <!--frame:credits-->
+      <!-- family:footer -->
+    </main>
+    <!-- family:script -->
+    <script type="module" src="codes.js"></script>
+  </body>
+</html>
