@@ -10,6 +10,7 @@ import { flag } from "./dist/load.js";
 import { LEFT_OUT, manifest, MANIFEST, variantOn } from "./dist/manifest.js";
 import { mountEmbedBuilder } from "./embed-builder.js";
 import { FLAG_OPTIONS, HATA_PRODUCT } from "./embed-hata.js";
+import { COLOUR_NAMES, coloursOf, countsWith, FLAG_TAGS, flagsWith, tagsOf } from "./dist/search.js";
 import { CONTINENTS, NAMES } from "./names.js";
 import { WORDS } from "./words.js";
 
@@ -56,7 +57,14 @@ const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
 const SHAPE_ORDER = ["flag", "4:3", "1:1", "round"];
 /** How long each shape stays, in milliseconds: 3800, or what `?gap=` says (the tests make it shorter). */
 const FRAME_MS = Math.min(Math.max(Number(asked.get("gap")) || 3800, 150), 20000);
+const listed = (key, all) => [...new Set((asked.get(key) ?? "").split(","))].filter((one) => all.includes(one));
+/** The tag sources the chips trust: an unreviewed tag is a guess, and counts only when the reader asks. */
+const CHECKED = ["reviewed", "computed", "wikidata"];
 const state = {
+  tags: listed("features", FLAG_TAGS),
+  colours: listed("colours", COLOUR_NAMES),
+  only: asked.get("only") === "1" && listed("colours", COLOUR_NAMES).length > 0,
+  guesses: asked.get("guesses") === "1",
   playing: !reducedMotion.matches && !asked.has("shape") && asked.get("play") === "1",
   /** True while the mouse is over the flags (it plays them and leaving stops them). */
   hover: false,
@@ -81,6 +89,10 @@ const remember = () => {
   put("shape", running() ? "" : state.shape, "flag");
   put("play", state.playing ? "1" : "", "");
   put("fit", state.fit, "auto");
+  put("features", state.tags.join(","), "");
+  put("colours", state.colours.join(","), "");
+  put("only", state.only ? "1" : "", "");
+  put("guesses", state.guesses ? "1" : "", "");
   put("mode", state.tab === "quiz" ? state.mode : null, null);
   put("seed", state.tab === "quiz" ? state.seed : null, null);
   const search = query.toString();
@@ -163,6 +175,35 @@ for (const code of FLAG_CODES) {
 }
 const searchText = new Map(FLAG_CODES.map((code) => [code, [code, NAMES[code].en, NAMES[code].ja, NAMES[code].short, NAMES[code].shortJa, NAMES[code].reading].map(fold).join("|")]));
 
+// The chips: a row for what is drawn on a flag and one for its colours, each with how many flags a click would leave.
+const chips = new Map();
+for (const [kind, names, row] of [["tag", FLAG_TAGS, $("tags")], ["colour", COLOUR_NAMES, $("colours")]]) {
+  for (const name of names) {
+    const button = Object.assign(document.createElement("button"), { type: "button" });
+    button.setAttribute("data-testid", `chip-${kind}-${name}`);
+    const label = document.createElement("span");
+    const count = document.createElement("b");
+    button.append(label, count);
+    button.addEventListener("click", () => {
+      const list = kind === "tag" ? state.tags : state.colours;
+      const at = list.indexOf(name);
+      if (at < 0) list.push(name);
+      else list.splice(at, 1);
+      if (state.colours.length === 0) state.only = false;
+      drawGallery();
+      remember();
+    });
+    row.append(button);
+    chips.set(`${kind}:${name}`, { button, label, count, kind, name });
+  }
+}
+const showChips = (open) => {
+  $("chips").hidden = !open;
+  $("chips-toggle").setAttribute("aria-expanded", String(open));
+};
+showChips(state.tags.length + state.colours.length > 0);
+$("chips-toggle").addEventListener("click", () => showChips($("chips").hidden));
+
 // The picture a tile shows at the gallery's shape and frame (best for the flag, whole, or cropped): the drawing made by
 // hand for it where there is one and the frame is not "whole", else the flag's own file, fitted by CSS the way the package
 // fits it (data-fit: cover, crop or contain; data-at: the side a crop keeps).
@@ -196,17 +237,42 @@ function fillRegion() {
   select.value = state.region;
 }
 
+function drawChips(counts) {
+  for (const { button, label, count, kind, name } of chips.values()) {
+    const on = (kind === "tag" ? state.tags : state.colours).includes(name);
+    const n = counts[kind === "tag" ? "tags" : "colours"][name];
+    label.textContent = say(`${kind}_${name}`);
+    count.textContent = String(n);
+    button.setAttribute("aria-pressed", String(on));
+    button.setAttribute("aria-label", say("chip", { name: label.textContent, n }));
+    button.disabled = n === 0 && !on;
+  }
+  const chosen = state.tags.length + state.colours.length;
+  $("chips-toggle").textContent = chosen === 0 ? say("filters_title") : `${say("filters_title")} · ${say("filters_chosen", { n: chosen })}`;
+  $("only").setAttribute("aria-pressed", String(state.only));
+  $("only").disabled = state.colours.length === 0;
+  $("guesses").setAttribute("aria-pressed", String(state.guesses));
+  $("chips-clear").disabled = chosen === 0;
+}
+
 function drawGallery() {
   const wanted = fold(state.query);
   let shown = 0;
+  const inScope = (code) => {
+    const group = groupOf(code);
+    return (state.set === "all" || state.set === group) && (state.region === "all" || (group === "country" && NAMES[code].continent === state.region)) && (wanted === "" || searchText.get(code).includes(wanted));
+  };
+  const scope = FLAG_CODES.filter(inScope);
+  const query = { colours: state.colours, only: state.only, tags: state.tags, sources: state.guesses ? undefined : CHECKED };
+  const matching = state.tags.length + state.colours.length === 0 ? null : new Set(flagsWith(query));
+  drawChips(countsWith({ ...query, within: scope }));
   for (const code of FLAG_CODES) {
     const tile = tiles.get(code);
     tile.name.textContent = nameOf(code);
     tile.name.lang = language.lang;
     if (tile.badge !== null) tile.badge.textContent = say("disputed");
     tile.item.querySelector("button").setAttribute("aria-label", say("tile", { name: nameOf(code), code }));
-    const group = groupOf(code);
-    const visible = (state.set === "all" || state.set === group) && (state.region === "all" || (group === "country" && NAMES[code].continent === state.region)) && (wanted === "" || searchText.get(code).includes(wanted));
+    const visible = inScope(code) && (matching === null || matching.has(code));
     tile.item.hidden = !visible;
     if (visible) {
       shown += 1;
@@ -305,6 +371,23 @@ $("set").addEventListener("change", () => {
   drawGallery();
   remember();
 });
+$("only").addEventListener("click", () => {
+  state.only = !state.only;
+  drawGallery();
+  remember();
+});
+$("guesses").addEventListener("click", () => {
+  state.guesses = !state.guesses;
+  drawGallery();
+  remember();
+});
+$("chips-clear").addEventListener("click", () => {
+  state.tags = [];
+  state.colours = [];
+  state.only = false;
+  drawGallery();
+  remember();
+});
 $("region").addEventListener("change", () => {
   state.region = $("region").value;
   drawGallery();
@@ -348,6 +431,14 @@ const variantsOfPlace = (code) => (manifest(code) ?? LEFT_OUT.find((one) => one.
 const MODULE_FILE = (module) => `dist/svg/${module}.svg`;
 let openedVariant = null;
 
+// What is on the flag and its colours, from /search: each feature with where it comes from, so a guess reads as one.
+function drawLooks(facts, code, variant) {
+  const options = variant === undefined ? undefined : { variant };
+  const tags = tagsOf(code, options).map((one) => `${say(`tag_${one.tag}`)} (${say(`tagsource_${one.source}`)})`);
+  fact(facts, say("fact_features"), tags.length > 0 ? tags.join(" · ") : say("none_recorded"));
+  fact(facts, say("fact_colours"), coloursOf(code, options).map((one) => `${say(`colour_${one.name}`)} ${one.hex} ${Math.round(one.share * 100)}%`).join(" · "));
+}
+
 async function showDetail(code, variantId, date = "") {
   opened = code;
   const record = manifest(code);
@@ -370,6 +461,7 @@ async function showDetail(code, variantId, date = "") {
     const drawing = own.drawing;
     fact(facts, say("fact_code"), `${code} · ${own.id}`);
     fact(facts, say("fact_ratio"), ratioOf(drawing));
+    drawLooks(facts, code, own.id);
     fact(facts, say("fact_size"), say("fact_size_plain", { bytes: KB(drawing.bytes) }));
     fact(facts, say("fact_source"), say("source_commons"));
     fact(facts, say("fact_file"), drawing.file, { href: drawing.page, lang: "en" });
@@ -383,6 +475,7 @@ async function showDetail(code, variantId, date = "") {
     fact(facts, say("fact_size"), say("fact_size_value", { bytes: KB(record.bytes), gzip: KB(record.gzip) }));
     fact(facts, say("fact_source"), record.source === "commons" ? say("source_commons") : say("source_set", { source: record.source }));
     fact(facts, say("fact_why"), record.why, { lang: "en" });
+    drawLooks(facts, code);
     fact(facts, say("fact_file"), record.file, { href: record.page, lang: "en" });
     fact(facts, say("fact_author"), record.author ?? say("none"), { lang: "en" });
     fact(facts, say("fact_licence"), record.licence.name, record.licence.url ? { href: record.licence.url, lang: "en" } : { lang: "en" });

@@ -49,6 +49,54 @@ open a *Fix a translation* issue with the string's name. `{name}` and the other 
 | `fit_whole` | Whole | 全体 |
 | `fit_crop` | Cropped | 切り抜き |
 | `count` | {shown} of {total} flags | {total} 件中 {shown} 件 |
+| `filters_title` | Features and colours | 図柄と色 |
+| `filters_chosen` | {n} chosen | {n} 件選択中 |
+| `features` | Features | 図柄 |
+| `colours` | Colours | 色 |
+| `only_colours` | Only these colours | 選んだ色だけ |
+| `guesses` | Include unchecked guesses | 未確認の推定も含める |
+| `clear` | Clear | 解除 |
+| `chip` | {name}, {n} flags | {name}、{n} 件 |
+| `fact_features` | Features | 図柄 |
+| `fact_colours` | Colours | 色 |
+| `none_recorded` | None recorded yet | まだ記録なし |
+| `tag_plain` | Plain | 無地 |
+| `tag_stripes-horizontal` | Horizontal stripes | 横縞 |
+| `tag_stripes-vertical` | Vertical stripes | 縦縞 |
+| `tag_stripes-diagonal` | Diagonal stripes | 斜め縞 |
+| `tag_cross` | Cross | 十字 |
+| `tag_nordic-cross` | Nordic cross | 北欧十字 |
+| `tag_saltire` | Saltire | 斜め十字 |
+| `tag_canton` | Canton | 隅の四角 |
+| `tag_stars` | Stars | 星 |
+| `tag_crescent` | Crescent | 三日月 |
+| `tag_sun` | Sun | 太陽 |
+| `tag_circle` | Circle | 円 |
+| `tag_triangle` | Triangle | 三角形 |
+| `tag_emblem` | Emblem | エンブレム |
+| `tag_coat-of-arms` | Coat of arms | 紋章 |
+| `tag_animal` | Animal | 動物 |
+| `tag_plant` | Plant | 植物 |
+| `tag_building` | Building | 建物 |
+| `tag_weapon` | Weapon | 武器 |
+| `tag_crown` | Crown | 王冠 |
+| `tag_map` | Map | 地図 |
+| `tag_text` | Text | 文字 |
+| `colour_red` | Red | 赤 |
+| `colour_orange` | Orange | オレンジ |
+| `colour_yellow` | Yellow | 黄 |
+| `colour_green` | Green | 緑 |
+| `colour_light-blue` | Light blue | 水色 |
+| `colour_blue` | Blue | 青 |
+| `colour_purple` | Purple | 紫 |
+| `colour_brown` | Brown | 茶 |
+| `colour_black` | Black | 黒 |
+| `colour_grey` | Grey | 灰色 |
+| `colour_white` | White | 白 |
+| `tagsource_reviewed` | checked by a person | 人が確認 |
+| `tagsource_computed` | measured from the drawing | 図から計測 |
+| `tagsource_wikidata` | Wikidata | Wikidata |
+| `tagsource_unreviewed` | unchecked guess | 未確認の推定 |
 | `download_list` | List (TXT) | 一覧（TXT） |
 | `download_list_md` | List (Markdown) | 一覧（Markdown） |
 | `download_list_sql` | List (SQL) | 一覧（SQL） |

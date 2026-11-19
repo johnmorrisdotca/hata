@@ -105,6 +105,15 @@ no official statement was read. Many laws only describe a flag, and a meaning fr
 The Korean sentence is read from the archives' account of the first flag of 1882, whose symbols are the same. Not done yet: the rest of
 the 33, a `hata/facts` entry that serves them (`flagFacts(code)`), the designer, and the other countries.
 
+## Finding flags in the demo: what the chips count
+
+The gallery's chips count a feature only when the package can say where it comes from: measured from the drawing,
+named by the flag's Wikidata item, or checked by a person. An `unreviewed` tag (a Commons category, or the same bands
+at both edges) is counted when the reader asks, with "Include unchecked guesses"; a flag's panel always says which kind
+each feature is. No tag is added to make a search come out as expected: the United States flag has `stars` and no
+stripes tag, because Wikidata's item for it does not say them and nobody has put the flag in `TAG_REVIEWS`, so "stars
+and stripes" does not find it until someone does. The chips sit behind one button, closed until chosen, so the first screen keeps its flags.
+
 ## Yemen: Commons' own drawing again, since its licence reads public domain
 
 Until the Commons snapshot of 2026-11-02, Commons' machine-readable licence for *Flag of Yemen.svg* read CC BY-SA 4.0,
