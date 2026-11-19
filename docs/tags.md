@@ -18,7 +18,7 @@ can also take a wrong tag away. To review a flag, look at it, add a line for it 
 | Tag | When it applies | Flags | Reviewed | Computed | Wikidata | Unreviewed |
 | --- | --- | --- | --- | --- | --- | --- |
 | `plain` | Flat fields of colour with straight edges and nothing drawn on them: one colour, or bands across or down the whole flag. | 64 | 0 | 64 | 0 | 0 |
-| `stripes-horizontal` | Bands across the flag, one above another. | 170 | 0 | 53 | 30 | 87 |
+| `stripes-horizontal` | Bands across the flag, one above another. | 171 | 1 | 53 | 30 | 87 |
 | `stripes-vertical` | Bands down the flag, side by side. | 59 | 0 | 11 | 7 | 41 |
 | `stripes-diagonal` | A band or a division from corner to corner. | 16 | 0 | 0 | 10 | 6 |
 | `cross` | A cross of any kind, upright or not; a Nordic cross and the crosses of a Union Flag count. | 65 | 0 | 0 | 43 | 22 |
@@ -265,7 +265,7 @@ can also take a wrong tag away. To review a flag, look at it, add a line for it 
 | `UA` | Ukraine | `plain` (computed: the whole flag is two bands across, with nothing on them); `stripes-horizontal` (computed: the whole flag is two bands across) |
 | `UG` | Uganda | `stripes-horizontal` (unreviewed: the same six bands at the hoist and at the fly); `circle` (wikidata: Q103037 depicts roundel (Q1265761)); `animal` (wikidata: Q103037 depicts Grey Crowned Crane (Q335992), a kind of animal (Q729)) |
 | `UM` | U.S. Outlying Islands |  |
-| `US` | United States | `stars` (wikidata: Q42537 depicts five-pointed star (Q379860)) |
+| `US` | United States | `stripes-horizontal` (reviewed: a person looked at the flag (TAG_REVIEWS)); `stars` (wikidata: Q42537 depicts five-pointed star (Q379860)) |
 | `UY` | Uruguay | `canton` (wikidata: Q171103 depicts canton (Q1267314)); `sun` (wikidata: Q171103 depicts Sun (Q525)) |
 | `UZ` | Uzbekistan | `stripes-horizontal` (unreviewed: the same five bands at the hoist and at the fly); `stars` (wikidata: Q483774 depicts five-pointed star (Q379860)); `crescent` (wikidata: Q483774 depicts crescent (Q5488888)) |
 | `VA` | Vatican City | `stripes-vertical` (unreviewed: the same two bands at the top and at the bottom); `emblem` (unreviewed: 9 colours, as a seal or a coat of arms has); `crown` (wikidata: Q79198 depicts papal tiara (Q1063103)) |

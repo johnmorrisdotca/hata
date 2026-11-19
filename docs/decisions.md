@@ -110,9 +110,10 @@ the 33, a `hata/facts` entry that serves them (`flagFacts(code)`), the designer,
 The gallery's chips count a feature only when the package can say where it comes from: measured from the drawing,
 named by the flag's Wikidata item, or checked by a person. An `unreviewed` tag (a Commons category, or the same bands
 at both edges) is counted when the reader asks, with "Include unchecked guesses"; a flag's panel always says which kind
-each feature is. No tag is added to make a search come out as expected: the United States flag has `stars` and no
-stripes tag, because Wikidata's item for it does not say them and nobody has put the flag in `TAG_REVIEWS`, so "stars
-and stripes" does not find it until someone does. The chips sit behind one button, closed until chosen, so the first screen keeps its flags.
+each feature is. A tag is added to make a search come out as expected only with a source: the United States flag's
+Wikidata item names its stars and not its stripes, so its `stripes-horizontal` is `reviewed` in `TAG_REVIEWS`, from
+4 U.S.C. § 1 ("thirteen horizontal stripes, alternate red and white"). The chips sit behind one button, closed until
+chosen, so the first screen keeps its flags.
 
 ## Yemen: Commons' own drawing again, since its licence reads public domain
 

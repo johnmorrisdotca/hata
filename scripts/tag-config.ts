@@ -158,8 +158,11 @@ const EMBLEM_COLOURS = 8;
 
 // What a person found on looking at a flag: for a picture's key ("JP", "AF--de-facto"), each tag looked at and
 // whether the flag has it. "yes" records the tag as `reviewed` (and adds it where no source gave it); "no" takes an
-// automated or Wikidata tag away. Empty until somebody reviews: the countries first (MODULES-1422).
-const TAG_REVIEWS: Readonly<Record<string, Readonly<Partial<Record<FlagTag, "yes" | "no">>>>> = {};
+// automated or Wikidata tag away. Few until somebody reviews: the countries first (MODULES-1422).
+const TAG_REVIEWS: Readonly<Record<string, Readonly<Partial<Record<FlagTag, "yes" | "no">>>>> = {
+  // 4 U.S.C. § 1: "thirteen horizontal stripes, alternate red and white".
+  US: { "stripes-horizontal": "yes" },
+};
 
 export { CATEGORY_DESCRIBES, CATEGORY_TAGS, EMBLEM_COLOURS, FLAG_TAGS, TAG_REVIEWS, TAG_SOURCES, WIKIDATA_TAGS };
 export type { FlagTag, TagSource };

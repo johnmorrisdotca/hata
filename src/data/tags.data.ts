@@ -239,7 +239,7 @@ const TAGS: Readonly<Record<string, string | readonly (readonly [tag: number, so
   "UA": [[0,1],[1,1]],
   "UG": [[1,3],[11,2],[15,2]],
   "UM": [],
-  "US": [[8,2]],
+  "US": [[1,0],[8,2]],
   "UY": [[7,2],[10,2]],
   "UZ": [[1,3],[8,2],[9,2]],
   "VA": [[2,3],[13,3],[19,2]],

@@ -157,7 +157,8 @@ describe("flagsWith within, and countsWith", () => {
 
   it("finds the tagged flags among the flags that were looked at", () => {
     const sources = ["reviewed", "computed", "wikidata"] as const;
-    expect(flagsWith({ tags: ["stars", "stripes-horizontal"], sources, within: "countries" })).toEqual(expect.arrayContaining(["CU", "IL", "SR"]));
+    expect(flagsWith({ tags: ["stars", "stripes-horizontal"], sources, within: "countries" })).toEqual(expect.arrayContaining(["US", "CU", "IL", "SR"]));
+    expect(tagsOf("US")).toContainEqual({ tag: "stripes-horizontal", source: "reviewed" });
     expect(flagsWith({ tags: ["text"], sources, within: "countries" })).toEqual(["BR", "IQ", "SA"]);
   });
 

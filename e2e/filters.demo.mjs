@@ -43,7 +43,7 @@ test("chips combine as and: the flags with every feature and every colour chosen
   await tap(page, chip(page, "tag", "stripes-horizontal"), testInfo);
   const both = flagsWith({ tags: ["stars", "stripes-horizontal"], sources: CHECKED, within: "countries" });
   await expect(shown(page)).toHaveCount(both.length);
-  for (const code of ["CU", "IL", "SR"]) await expect(page.locator(at(`tile-${code}`)), code).toBeVisible();
+  for (const code of ["US", "CU", "IL", "SR"]) await expect(page.locator(at(`tile-${code}`)), code).toBeVisible();
   await expect(page.locator(at("tile-JP"))).toBeHidden();
   await tap(page, chip(page, "colour", "red"), testInfo);
   const red = flagsWith({ tags: ["stars", "stripes-horizontal"], colours: ["red"], sources: CHECKED, within: "countries" });
