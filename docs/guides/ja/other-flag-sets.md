@@ -27,7 +27,7 @@ description: Hataと、よく使われる8つの旗のセットが、それぞ�
 
 | セット | 形式と使い方 | フレームワークのコンポーネント |
 | --- | --- | --- |
-| hata | 旗ごとのSVGファイル、SVGの文字列を持つモジュール、データURI、`<hata-flag>`要素、iframeのページ。デモはブラウザーでSVG・PNG・JSONを保存できる | 型付きのReact・Vue・Svelte・React Nativeのコンポーネント。そのほかには要素 |
+| hata | 旗ごとのSVGファイル、SVGの文字列を持つモジュール、データURI、`<hata-flag>`要素、iframeのページ。決まった幅のPNGとWebP、zipをデモのサイトに置いている。デモはブラウザーでSVG・PNG・JSONを保存できる | 型付きのReact・Vue・Svelte・React Nativeのコンポーネント。そのほかには要素 |
 | flag-icons | CSSのクラス（`.fi .fi-xx`）、SVGファイル、含める国を選べるSASS | READMEには書かれていない |
 | country-flag-icons | SVGファイル、JavaScriptの文字列、SVGをデータURLとして埋め込んだCSSのクラス、Unicodeの絵文字。`hasFlag`と`countries` | すべての旗のReactコンポーネント。Vue 3向けは実験的 |
 | circle-flags | `…/flags/xx.svg`という形のアドレスにあるSVGファイル | React、React Native / Expo、SolidJS向けの別パッケージ。READMEからリンクされている |
@@ -67,7 +67,6 @@ description: Hataと、よく使われる8つの旗のセットが、それぞ�
 | ないもの | どこにあるか | ここにない理由 | チケット |
 | --- | --- | --- | --- |
 | CSSのクラスと、1枚のスプライトシート（`fi-xx`形式） | flag-icons、country-flag-icons、world-flags-sprite | まだ作っていません。Hataが提供するのはSVGの文字列とファイルです | MODULES-1426 |
-| 決まった幅のPNGやWebP、すべてをまとめたzip | svg-country-flags（PNG 100・250・1000 px） | デモはブラウザーでPNGを作ります。PNGのファイルは配布していません | MODULES-1427 |
 | alpha-3、数字コード、絵文字での指定と`flagEmoji` | react-world-flags、world-flags-sprite、country-flag-icons | 指定できるのはalpha-2と行政区画のコードだけです。絵文字を描かない理由はREADMEにあります | MODULES-1425 |
 | ほかの言語の名前 | | 今は英語と日本語です | MODULES-1432 |
 | EU以外の組織の旗（国連、アフリカ連合、NATOなど） | | 組織の旗は、その使用条件がMITのパッケージに載せることを許す場合だけ入れます | MODULES-1417 |
@@ -88,6 +87,6 @@ description: Hataと、よく使われる8つの旗のセットが、それぞ�
 - 旗をCSSのクラスとして要素につけたいだけなら、今のところflag-iconsかworld-flags-spriteが使えます。Hataにはまだありません。
 - 円形のアイコンだけが必要なら、circle-flagsです。
 - 正しい縦横比で、ライセンスと作者つきで、ここにあるどの国や地域の旗でも、どの形でも欲しいなら、Hataです。
-- それらに加えて250 pxのPNGが必要なら、PNGはsvg-country-flagsにあり、HataはSVGを描きます。
+- それらに加えて250 pxのPNGが必要なら、Hataには幅160・320 pxなどのPNGとWebPがあり（[形式](formats-and-licences.md#決まった大きさの画像とzip)）、svg-country-flagsには100・250・1000 pxがあります。
 
 これらのどれかから移る方法は、[ほかの旗のセットからHataに移る](moving-to-hata.md)にあります。

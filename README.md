@@ -278,6 +278,8 @@ flagUrl("US-TX", { base: "/flags" });   // "/flags/us-tx.svg", for a copy of dis
 toDataUri(svg);                         // "data:image/svg+xml,…", smaller than base64
 ```
 
+For a picture rather than an SVG, every flag is also a PNG and a WebP at 20 to 1280 px wide (and in square and round frames at 40 to 320 px) on the demo's site, with a zip of all the SVGs and a licence list, none of it in the package: `https://johnmorrisdotca.github.io/hata/raster/png/w160/jp.png`. [Sizes, formats and which to use](./docs/guides/formats-and-licences.md#pictures-in-set-sizes-and-a-zip).
+
 ### 6. Where a flag comes from
 
 ```ts

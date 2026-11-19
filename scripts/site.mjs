@@ -235,6 +235,9 @@ import { svg as tokyo } from "@johnmorrisdotca/hata/flags/jp-13";</pre>
       </section>\n${api.html}`;
 writeFileSync("site/api.css", API_CSS);
 writeFileSync("site/api.html", apiPage({ id, name: "Hata", icon: ICON, api }));
+// The flags as PNG and WebP in set sizes, a zip of the SVGs and the licence list: too large for the npm package, so served from Pages.
+const { buildRasters } = await import(new URL("./rasters.ts", import.meta.url).href);
+await buildRasters("site/raster");
 console.log("site/ is ready: serve it, or let the Pages workflow publish it.");
 
 // The embed pages' credit line, owed only where a flag's drawing is under a licence that asks for credit (CC BY), in

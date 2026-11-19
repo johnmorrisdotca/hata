@@ -21,9 +21,42 @@ One drawing, in the forms below. Sizes are from [docs/sizes.md](../sizes.md), ma
 | Iframe | a page that draws one flag | the [embed page](embed-in-an-iframe.md) | one page and one flag |
 | Saved file | SVG, PNG at the size you chose, and JSON of the flag's facts | the demo's detail panel, made in the browser when asked ([the guide](gallery-and-downloads.md)) | made on request; no PNG file is shipped |
 | CSS class or sprite | | not built yet (MODULES-1426) | |
-| PNG or WebP at set widths | | not built yet (MODULES-1427) | |
+| PNG or WebP at set widths | a file for each flag at 20 to 1280 px wide, and in a square or round frame at 40 to 320 px | `https://johnmorrisdotca.github.io/hata/raster/png/w160/jp.png`, [below](#pictures-in-set-sizes-and-a-zip) | not in the npm package; 0.1 to 19.7 MB for every flag at one width |
+| Zip | every flag's SVG, `manifest.json`, `LICENSES.md`, `NOTICE.md` and `LICENSE` | `https://johnmorrisdotca.github.io/hata/raster/hata-flags.zip` | 3.5 MB |
 
 The largest flags carry a coat of arms or a seal drawn as their source draws it: Virginia's is 372.3 KB, and the list of flags over the 40 KB budget is in [docs/sizes.md](../sizes.md). Nothing is redrawn to make it smaller.
+
+## Pictures in set sizes, and a zip
+
+For a page, a document or a tool that wants a picture and not an SVG, every flag is also made as a PNG and as a WebP at set sizes, from the package's own SVG files, each time the demo site is published. They are not in the npm package (which holds no picture, to stay small) but on the demo's site, beside it:
+
+```text
+https://johnmorrisdotca.github.io/hata/raster/<format>/<folder>/<code>.<format>
+https://johnmorrisdotca.github.io/hata/raster/png/w160/jp.png          Japan, 160 px wide, 107 px high
+https://johnmorrisdotca.github.io/hata/raster/webp/round-80/ca-bc.webp   British Columbia in a round frame, 80 px across
+```
+
+The folder `w<width>` holds each flag at its own proportions, `<width>` pixels wide and as high as its proportions make it. `square-<size>` and `round-<size>` hold it in the package's 1:1 and round frames (the same pictures as `flag(code, { shape })`: cropped only where a crop keeps every colour), `<size>` pixels each way, with clear corners where round. The file name is the code in lower case. Both formats keep transparency, and the WebP is lossless, so it is the same picture as the PNG in fewer bytes.
+
+| Width | PNG, every flag | PNG, median flag | WebP, every flag | WebP, median flag | A good use |
+| --- | --- | --- | --- | --- | --- |
+| `w20` | 0.1 MB | 0.3 KB | 0.1 MB | 0.2 KB | beside a line of text, in a table |
+| `w40` | 0.3 MB | 0.5 KB | 0.2 MB | 0.2 KB | a form field, a dropdown option |
+| `w80` | 0.6 MB | 1.0 KB | 0.3 MB | 0.4 KB | a dropdown option on a sharp screen, a list |
+| `w160` | 1.4 MB | 2.0 KB | 0.7 MB | 0.7 KB | a card, a profile |
+| `w320` | 3.4 MB | 4.3 KB | 1.5 MB | 1.4 KB | a phone's full width, a banner |
+| `w640` | 8.3 MB | 9.5 KB | 3.3 MB | 2.7 KB | a heading, a slide |
+| `w1280` | 19.7 MB | 23.0 KB | 6.6 MB | 5.5 KB | a poster, a full screen, print |
+| `square-40` to `square-320` | 0.4 to 5.4 MB | 0.8 to 6.2 KB | 0.2 to 2.3 MB | 0.3 to 2.0 KB | tiles, a map's markers, an avatar |
+| `round-40` to `round-320` | 0.6 to 7.0 MB | 1.3 to 9.9 KB | 0.3 to 3.0 MB | 0.6 to 3.6 KB | a round badge, a profile picture |
+
+Sizes are of the files made for 1.14.0. Use the SVG wherever a page can (it is smaller than any picture of the larger sizes, and sharp at any size), WebP where a page wants a picture, and PNG where a tool does not read WebP: an office document, an email, an older app. Over a few hundred pixels, the largest flags (a coat of arms drawn as the source draws it) are the heavy ones: the biggest PNG is 308 KB.
+
+**`hata-flags.zip`** is for a person who is not a developer and wants every flag in one file: all 479 SVGs in `svg/` (named by code, in lower case), `manifest.json`, `LICENSES.md`, `NOTICE.md` and `LICENSE`.
+
+**The licence travels with the files.** `https://johnmorrisdotca.github.io/hata/raster/LICENSES.md` (and the same file in the zip) lists every flag's Commons file with its link, its author, its licence, whether the licence asks for a credit, and whether the square and round pictures use flag-icons' drawing made for the frame (MIT: its notice is in `NOTICE.md`). A picture is a copy of the drawing, so the drawing's licence and credit apply to it as they do to the SVG.
+
+`pnpm site` makes them into `site/raster/`, and `pnpm rasters <folder>` makes them anywhere else (about a minute); they are made with `@resvg/resvg-js` and `@jsquash/webp`, development dependencies that the package does not carry.
 
 ## Licences
 
