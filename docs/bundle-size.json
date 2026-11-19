@@ -22,8 +22,8 @@
       "gzip": 1170
     },
     "./search": {
-      "minified": 69027,
-      "gzip": 21157
+      "minified": 69630,
+      "gzip": 21412
     },
     "./custom": {
       "minified": 16556,

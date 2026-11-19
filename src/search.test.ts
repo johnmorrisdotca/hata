@@ -11,7 +11,7 @@ import { VARIANT_PICTURES } from "./data/manifest.data";
 import { FLAG_CODES } from "./index";
 import { flag } from "./load";
 import { manifest, MANIFEST, variantsOf } from "./manifest";
-import { COLOUR_NAMES, coloursOf, FLAG_TAGS, flagsWith, TAG_SOURCES, tagsOf } from "./search";
+import { COLOUR_NAMES, coloursOf, countsWith, FLAG_TAGS, flagsWith, TAG_SOURCES, tagsOf } from "./search";
 
 const measured = JSON.parse(readFileSync("scripts/colours.data.json", "utf8")) as Record<string, { width: number; height: number; drawn: number; colours: [string, number][]; merged: number }>;
 
@@ -139,6 +139,40 @@ describe("flagsWith", () => {
   it("refuses a name that is not on the list", () => {
     for (const bad of [["pink"], ["Red"], "red", [1]]) expect(() => flagsWith({ colours: bad as unknown as [] }), String(bad)).toThrow(TypeError);
     expect(() => flagsWith(undefined as unknown as { colours: [] })).toThrow(TypeError);
+  });
+});
+
+describe("flagsWith within, and countsWith", () => {
+  it("looks among the countries, a country's regions or a list of codes only", () => {
+    const countries = flagsWith({ within: "countries" });
+    expect(countries.every((code) => code.length === 2)).toBe(true);
+    expect(countries).toContain("JP");
+    expect(flagsWith({ within: "jp" })).toEqual(FLAG_CODES.filter((code) => code.startsWith("JP-")));
+    expect(flagsWith({ within: ["ca", "JP", "XX"] })).toEqual(["CA", "JP"]);
+    expect(flagsWith({ colours: ["red", "white"], only: true, within: "countries" })).toEqual(expect.arrayContaining(["JP", "PL"]));
+    expect(flagsWith({ colours: ["red", "white"], only: true, within: "countries" })).not.toContain("JP-13");
+    expect(flagsWith({ within: "XX" })).toEqual([]);
+    for (const bad of [1, [1], null]) expect(() => flagsWith({ within: bad as unknown as string }), String(bad)).toThrow(TypeError);
+  });
+
+  it("finds the tagged flags among the flags that were looked at", () => {
+    const sources = ["reviewed", "computed", "wikidata"] as const;
+    expect(flagsWith({ tags: ["stars", "stripes-horizontal"], sources, within: "countries" })).toEqual(expect.arrayContaining(["CU", "IL", "SR"]));
+    expect(flagsWith({ tags: ["text"], sources, within: "countries" })).toEqual(["BR", "IQ", "SA"]);
+  });
+
+  it("counts the flags a query would find with one more name, each the same as flagsWith gives", () => {
+    const query = { colours: ["red"], tags: ["stars"], within: "countries" } as const;
+    const counts = countsWith(query);
+    expect(Object.keys(counts.colours)).toEqual([...COLOUR_NAMES]);
+    expect(Object.keys(counts.tags)).toEqual([...FLAG_TAGS]);
+    expect(counts.colours.white).toBe(flagsWith({ ...query, colours: ["red", "white"] }).length);
+    expect(counts.tags.crescent).toBe(flagsWith({ ...query, tags: ["stars", "crescent"] }).length);
+    // A name the query has already gives the query's own count.
+    expect(counts.colours.red).toBe(flagsWith(query).length);
+    expect(counts.tags.stars).toBe(flagsWith(query).length);
+    expect(countsWith({ within: "countries" }).colours.red).toBe(flagsWith({ colours: ["red"], within: "countries" }).length);
+    expect(() => countsWith({ tags: ["pink" as "stars"] })).toThrow(TypeError);
   });
 });
 

@@ -41,6 +41,30 @@ const coloursAt = (key: string): readonly FlagColour[] => {
 
   return made;
 };
+/**
+ * What `flagsWith` and `countsWith` take: every field is optional.
+ *
+ * @example
+ * ```ts
+ * import { flagsWith, type FlagQuery } from "@johnmorrisdotca/hata/search";
+ *
+ * const query: FlagQuery = { colours: ["red", "white"], only: true, within: "countries" };
+ * console.log(flagsWith(query).includes("JP")); // true
+ * ```
+ */
+type FlagQuery = { colours?: readonly ColourName[]; only?: boolean; tags?: readonly TagName[]; sources?: readonly TagSource[]; within?: string | readonly string[] };
+/**
+ * What `countsWith` gives: a number of flags for every colour name and every tag name.
+ *
+ * @example
+ * ```ts
+ * import { countsWith, type FlagCounts } from "@johnmorrisdotca/hata/search";
+ *
+ * const counts: FlagCounts = countsWith({ tags: ["cross"] });
+ * console.log(counts.colours.blue); // the flags with a cross that are also blue
+ * ```
+ */
+type FlagCounts = { colours: Record<ColourName, number>; tags: Record<TagName, number> };
 const NO_TAGS: readonly FlagTag[] = Object.freeze([]);
 const readTags = new Map<string, readonly FlagTag[]>();
 const tagsAt = (key: string): readonly FlagTag[] => {
@@ -149,9 +173,10 @@ const tagsOf = (code: string, options?: { variant?: string }): readonly FlagTag[
  *
  * @param query - `colours`: the names to look for, of `COLOUR_NAMES`. `only`: true to leave out a flag with another
  *   colour. `tags`: the tags to look for, of `FLAG_TAGS`. `sources`: the tag sources that count, of `TAG_SOURCES`.
+ *   `within`: "countries", a country's code ("JP" for its regions), or a list of codes, to look among those flags only.
  *   With no colours and no tags, every flag is found (with `only`, none).
  * @returns The codes, in the order of `FLAG_CODES`; a place's default flag is the one looked at.
- * @throws TypeError when `colours`, `tags` or `sources` is not a list of names of its closed list.
+ * @throws TypeError when `colours`, `tags` or `sources` is not a list of names of its closed list, or `within` is not a string or a list of strings.
  *
  * @example
  * ```ts
@@ -161,9 +186,10 @@ const tagsOf = (code: string, options?: { variant?: string }): readonly FlagTag[
  * console.log(flagsWith({ colours: ["green", "white", "orange"], only: true }));    // Ireland, Côte d'Ivoire, India, Niger …
  * console.log(flagsWith({ tags: ["nordic-cross"] }));                               // Denmark, Finland, Iceland, Norway, Sweden …
  * console.log(flagsWith({ tags: ["stripes-horizontal"], sources: ["reviewed", "computed"], colours: ["yellow"] })); // Germany, Ukraine …
+ * console.log(flagsWith({ colours: ["red", "white"], within: "JP" }));              // the prefectures with red and white
  * ```
  */
-const flagsWith = (query: { colours?: readonly ColourName[]; only?: boolean; tags?: readonly TagName[]; sources?: readonly TagSource[] }): string[] => {
+const flagsWith = (query: FlagQuery): string[] => {
   const listOf = <T extends string>(given: readonly T[] | undefined, all: readonly T[], what: string, list: string, whenLeftOut: readonly T[]): readonly T[] => {
     if (given === undefined) return whenLeftOut;
     if (!Array.isArray(given) || !given.every((name) => all.includes(name))) throw new TypeError(`${what} must be a list of names of ${list}: ${all.join(", ")}`);
@@ -174,9 +200,14 @@ const flagsWith = (query: { colours?: readonly ColourName[]; only?: boolean; tag
   const asked = listOf(query.colours, NAMES, "colours", "COLOUR_NAMES", []);
   const tags = listOf(query.tags, TAG_NAMES, "tags", "FLAG_TAGS", []);
   const sources = listOf(query.sources, SOURCES, "sources", "TAG_SOURCES", SOURCES);
+  const { within } = query;
+  if (within !== undefined && typeof within !== "string" && !(Array.isArray(within) && within.every((one) => typeof one === "string"))) throw new TypeError('within must be "countries", a country\'s code or a list of codes');
+  const inside = Array.isArray(within) ? new Set(within.map(normal)) : null;
+  const region = typeof within === "string" && within !== "countries" ? `${normal(within)}-` : null;
   const found: string[] = [];
   for (const key of Object.keys(COLOURS)) {
     if (key.includes("--")) continue;
+    if (within === "countries" ? key.length !== 2 : region !== null ? !key.startsWith(region) : inside !== null && !inside.has(key)) continue;
     const shares = new Map<ColourName, number>();
     for (const one of coloursAt(key)) shares.set(one.name, (shares.get(one.name) ?? 0) + one.share);
     if (!asked.every((name) => (shares.get(name) ?? 0) >= HAS)) continue;
@@ -191,5 +222,27 @@ const flagsWith = (query: { colours?: readonly ColourName[]; only?: boolean; tag
   return found;
 };
 
-export { COLOUR_NAMES, coloursOf, FLAG_TAGS, flagsWith, TAG_SOURCES, tagsOf };
-export type { ColourName, FlagColour, FlagTag, TagName, TagSource };
+/**
+ * For a row of chips: how many flags a query would find with one more colour, or one more tag, added to it. A name
+ * the query has already gives the query's own count. It takes what `flagsWith` takes, and throws what it throws.
+ *
+ * @param query - The same as `flagsWith`'s.
+ * @returns `colours` and `tags`: a number for every name of `COLOUR_NAMES` and `FLAG_TAGS`.
+ *
+ * @example
+ * ```ts
+ * import { countsWith } from "@johnmorrisdotca/hata/search";
+ *
+ * const counts = countsWith({ tags: ["stars"], within: "countries" });
+ * console.log(counts.tags.stars, counts.colours.red); // the countries with stars, and the ones of them that are also red
+ * ```
+ */
+const countsWith = (query: FlagQuery): FlagCounts => {
+  const colours = Object.fromEntries(NAMES.map((name) => [name, flagsWith({ ...query, colours: [...new Set([...(query.colours ?? []), name])] }).length])) as Record<ColourName, number>;
+  const tags = Object.fromEntries(TAG_NAMES.map((name) => [name, flagsWith({ ...query, tags: [...new Set([...(query.tags ?? []), name])] }).length])) as Record<TagName, number>;
+
+  return { colours, tags };
+};
+
+export { COLOUR_NAMES, coloursOf, countsWith, FLAG_TAGS, flagsWith, TAG_SOURCES, tagsOf };
+export type { ColourName, FlagColour, FlagCounts, FlagQuery, FlagTag, TagName, TagSource };

@@ -8,7 +8,7 @@ description: Read each flag's tags (stripes, stars, a cross, an emblem) with the
 Each flag has tags from a closed list, such as `stripes-horizontal`, `stars`, `cross` or `emblem`, kept with the colours in `@johnmorrisdotca/hata/search`. `tagsOf(code)` gives a flag's tags, and each one says where it comes from, so a page can tell a checked fact from a guess.
 
 ```mjs
-import { FLAG_TAGS, flagsWith, tagsOf } from "@johnmorrisdotca/hata/search";
+import { countsWith, FLAG_TAGS, flagsWith, tagsOf } from "@johnmorrisdotca/hata/search";
 
 // Germany is three bands across and nothing else: measured from the drawing.
 console.log(tagsOf("DE"));
@@ -18,7 +18,14 @@ console.log(flagsWith({ tags: ["nordic-cross"] }).includes("DK"));
 console.log(flagsWith({ tags: ["stripes-vertical"], sources: ["reviewed", "computed"] }).includes("FR"));
 // Every tag a flag can have, for a row of chips.
 console.log(FLAG_TAGS.length);
+// Among the countries only, and how many of those flags each chip would leave once "stars" is chosen.
+console.log(flagsWith({ tags: ["stars"], within: "countries" }).length);
+console.log(countsWith({ tags: ["stars"], within: "countries" }).colours.red);
 ```
+
+## A row of chips
+
+`within` looks among "countries", a country's code (`"JP"` for its regions) or a list of codes. `countsWith` takes what `flagsWith` takes and gives, for every colour and every tag, how many flags the query would find with that one added: the number to write on a chip. The demo's gallery is such a row, with the guesses left out unless the reader asks for them.
 
 ## Where a tag comes from
 
