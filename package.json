@@ -127,6 +127,12 @@
       "default": "./dist/react-native.js"
     },
     "./svg/*": "./dist/svg/*",
+    "./css": "./dist/css/hata.css",
+    "./css/*": "./dist/css/*.css",
+    "./sheets": {
+      "types": "./dist/sheets.d.ts",
+      "default": "./dist/sheets.js"
+    },
     "./package.json": "./package.json",
     "./flags/ad.1x1": {
       "types": "./dist/flags/ad.1x1.d.ts",
@@ -3848,6 +3854,8 @@
     "data:commons": "node scripts/fetch-commons.ts",
     "site": "pnpm build && node scripts/site.mjs",
     "rasters": "pnpm build && node scripts/rasters.ts",
+    "css": "pnpm build && node scripts/sheets.ts css",
+    "sprite": "pnpm build && node scripts/sheets.ts sprite",
     "test:demo": "pnpm site && node scripts/docs-site.mjs build && playwright test",
     "screenshots:readme": "pnpm site && node scripts/readme-pictures.mjs",
     "animations": "pnpm site && node scripts/animations.mjs",

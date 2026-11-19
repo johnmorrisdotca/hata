@@ -53,6 +53,10 @@
       "minified": 14837803,
       "gzip": 4552277
     },
+    "./sheets": {
+      "minified": 14775196,
+      "gzip": 4572636
+    },
     "./flags/ad.1x1": {
       "minified": 28262,
       "gzip": 10503

@@ -46,6 +46,14 @@
       "en": "Register flag elements",
       "ja": "旗の要素を登録する"
     },
+    "./sheets": {
+      "en": "Flag stylesheet and sprite builders",
+      "ja": "旗のスタイルシートとスプライトを作る"
+    },
+    "./css": {
+      "en": "Flag stylesheet, one class a flag",
+      "ja": "旗ごとにクラスのあるスタイルシート"
+    },
     "./flags/ad.1x1": {
       "en": "AD.1X1 flag SVG",
       "ja": "AD.1X1の旗のSVG"

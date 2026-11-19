@@ -24,6 +24,7 @@ src/
 ├── element-define.ts   the "/element/define" entry: registers <hata-flag>
 ├── reflect.ts          an element's attributes as properties too, the family's way
 ├── bind.ts             the "/bind" entry: the framework-free core of the typed components (props, the inline SVG, a cache a server can fill)
+├── sheets.ts           the "/sheets" entry: flagCss (a class for each flag) and flagSprite (a symbol for each flag), for the flags a page names
 ├── react.ts            the "/react" entry: the React component
 ├── vue.ts              the "/vue" entry: the Vue component
 ├── svelte/             the "/svelte" entry: Flag.svelte, copied to dist/svelte by scripts/build-extras.ts
@@ -39,7 +40,7 @@ src/
 `scripts/build-data.ts` (`pnpm data`) makes `src/flags/` and `src/data/` from the inputs in `data-sources/` and the
 flag sets in `node_modules`, with no network and no browser, and checks every input's SHA-256 first; run twice, it
 leaves the tree as it was. `scripts/choose.mjs` (`pnpm data:choose`) is the comparison that decides which drawing
-ships; `scripts/framing.mjs` (`pnpm data:framing`) measures how each flag is framed; `scripts/colours.mjs` (`pnpm data:colours`) measures each flag's colours, and `scripts/colour-data.ts` names them; `scripts/tags.mjs` (`pnpm data:tags`) measures each flag's bands, `scripts/fetch-tags.ts` (`pnpm data:tags:fetch`) asks Wikidata and Commons what is on it, and `scripts/tag-data.ts` makes the tags by the tables in `scripts/tag-config.ts`; `scripts/optimise.ts` is the SVGO settings and the safety checks; `scripts/data-config.ts` holds the few
+ships; `scripts/framing.mjs` (`pnpm data:framing`) measures how each flag is framed; `scripts/colours.mjs` (`pnpm data:colours`) measures each flag's colours, and `scripts/colour-data.ts` names them; `scripts/tags.mjs` (`pnpm data:tags`) measures each flag's bands, `scripts/fetch-tags.ts` (`pnpm data:tags:fetch`) asks Wikidata and Commons what is on it, and `scripts/tag-data.ts` makes the tags by the tables in `scripts/tag-config.ts`; `scripts/rasters.ts` (`pnpm rasters`) makes the PNG and WebP files and the zip for the demo's site, and `scripts/sheets.ts` (`pnpm css`, `pnpm sprite`) writes a stylesheet or sprite of the flags named; `scripts/optimise.ts` is the SVGO settings and the safety checks; `scripts/data-config.ts` holds the few
 things decided by hand. Tests sit beside the code (`*.test.ts`). `scripts/` also builds the demo and its API page,
 checks every export's documentation and checks the package as npm packs it; `demo/` is the page and `e2e/` its
 browser tests.

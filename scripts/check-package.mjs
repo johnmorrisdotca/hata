@@ -45,7 +45,7 @@ console.log("ok   nothing from src/, docs/ or data-sources/ and no raster pictur
 
 // 2. Everything package.json points at is in the tarball; a wildcard is checked through every flag.
 const targets = (entry) => (typeof entry === "string" ? [entry] : Object.values(entry).flatMap(targets));
-const pointed = [pkg.main, pkg.module, pkg.types, ...Object.values(pkg.exports).flatMap(targets)].flatMap((file) => (file.includes("*") ? FLAG_CODES.map((code) => file.replace("*", file.includes("/svg/") ? `${code.toLowerCase()}.svg` : code.toLowerCase())) : [file]));
+const pointed = [pkg.main, pkg.module, pkg.types, ...Object.values(pkg.exports).flatMap(targets)].flatMap((file) => (file.includes("*") ? FLAG_CODES.map((code) => file.replace("*", file.includes("/svg/") ? `${code.toLowerCase()}.svg` : file.includes("/css/") ? "countries" : code.toLowerCase())) : [file]));
 for (const file of new Set(pointed)) if (!inTarball.has(file.replace(/^\.\//, ""))) fail(`package.json points at ${file}, which is not in the tarball`);
 console.log(`ok   every file package.json points at is in the tarball (${new Set(pointed).size}, every flag's module, types and SVG among them)`);
 for (const named of pkg.files) {
@@ -78,6 +78,7 @@ import { defineFlag, FLAG_ELEMENT_NAME } from "${pkg.name}/element";
 import { resolveFlag } from "${pkg.name}/bind";
 import "${pkg.name}/element/define";
 import canadaSquare from "${pkg.name}/flags/ca.1x1";
+import { flagCss, flagSprite } from "${pkg.name}/sheets";
 const wanted = ${JSON.stringify(japan)};
 if (VERSION !== ${JSON.stringify(pkg.version)}) throw new Error("VERSION is " + VERSION);
 if (japan !== wanted || svg !== wanted) throw new Error("flags/jp is not the built SVG");
@@ -93,9 +94,11 @@ if ((await flag("CA", { shape: "1:1" })) !== canadaSquare) throw new Error("/loa
 if (manifest("JP")?.code !== "JP" || MANIFEST.length !== FLAG_CODES.length || json.flags.length !== MANIFEST.length || json.leftOut.length !== LEFT_OUT.length) throw new Error("the manifest is wrong");
 const file = readFileSync(createRequire(import.meta.url).resolve("${pkg.name}/svg/jp.svg"), "utf8").trim();
 if (file !== wanted) throw new Error("svg/jp.svg is not the module's SVG");
+const stylesheet = readFileSync(createRequire(import.meta.url).resolve("${pkg.name}/css"), "utf8");
+if (!stylesheet.includes(".hata-jp{") || !(await flagCss(["jp"])).includes(".hata-jp{") || !(await flagSprite(["jp"])).includes('<symbol id="hata-jp"')) throw new Error("/css or /sheets answered wrongly");
 const required = createRequire(import.meta.url)("${pkg.name}/flags/jp");
 if (required.default !== wanted) throw new Error("require() of flags/jp gave " + typeof required.default);
-console.log("every entry, flags/jp, flags/ca.1x1, /load, /names, /organisations, /custom, /element, svg/jp.svg, manifest.json and require()");
+console.log("every entry, flags/jp, flags/ca.1x1, /load, /names, /organisations, /custom, /element, /sheets, css, svg/jp.svg, manifest.json and require()");
 `,
 );
 console.log(`ok   ${run(process.execPath, ["esm.mjs"], project).trim()}`);

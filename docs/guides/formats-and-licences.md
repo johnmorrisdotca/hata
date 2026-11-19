@@ -20,7 +20,8 @@ One drawing, in the forms below. Sizes are from [docs/sizes.md](../sizes.md), ma
 | Framework component | typed `Flag` for React, Vue, Svelte and React Native | `@johnmorrisdotca/hata/react`, `/vue`, `/svelte`, `/react-native` | the flag's own module |
 | Iframe | a page that draws one flag | the [embed page](embed-in-an-iframe.md) | one page and one flag |
 | Saved file | SVG, PNG at the size you chose, and JSON of the flag's facts | the demo's detail panel, made in the browser when asked ([the guide](gallery-and-downloads.md)) | made on request; no PNG file is shipped |
-| CSS class or sprite | | not built yet (MODULES-1426) | |
+| CSS class | `<span class="hata hata-jp">`, a class for each flag, and `hata-4x3`, `hata-1x1` and `hata-round` for the frames | `@johnmorrisdotca/hata/css`, or one group of them ([the guide](css-and-sprite.md)) | 88.4 KB, 8.4 KB gzipped, for all 479; the flags are fetched as the page shows them |
+| SVG sprite | one SVG file of `<symbol id="hata-jp">` for each flag | `flagSprite(codes)` from `@johnmorrisdotca/hata/sheets`, or the files on the demo's site | 2.1 MB for the countries, 8.7 MB for all |
 | PNG or WebP at set widths | a file for each flag at 20 to 1280 px wide, and in a square or round frame at 40 to 320 px | `https://johnmorrisdotca.github.io/hata/raster/png/w160/jp.png`, [below](#pictures-in-set-sizes-and-a-zip) | not in the npm package; 0.1 to 19.7 MB for every flag at one width |
 | Zip | every flag's SVG, `manifest.json`, `LICENSES.md`, `NOTICE.md` and `LICENSE` | `https://johnmorrisdotca.github.io/hata/raster/hata-flags.zip` | 3.5 MB |
 

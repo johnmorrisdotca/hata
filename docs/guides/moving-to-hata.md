@@ -24,7 +24,14 @@ In hata the element is the nearest thing. A squared flag is `shape="square"`.
 <hata-flag code="GR" size="32"></hata-flag> <hata-flag code="GR" shape="square" size="32"></hata-flag>
 ```
 
-What changes: hata has no CSS classes or sprite yet (MODULES-1426), so a page that styles `.fi-gr` in a stylesheet needs the element or an `<img>` from [`flagUrl`](html-and-cdn.md) instead.
+Or keep the class: hata has a stylesheet with a class for each flag, so `fi fi-gr` becomes `hata hata-gr` and `fi fi-gr fis` becomes `hata hata-gr hata-1x1` ([CSS classes and an SVG sprite](css-and-sprite.md), and the table of class names below).
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@johnmorrisdotca/hata@1/dist/css/hata.css" />
+<span class="hata hata-gr"></span> <span class="hata hata-gr hata-1x1"></span>
+```
+
+What changes: a `hata` element is `1em` high, where an `fi` is `1.33em` wide, so set the size you want by `font-size` or `height`; and its width follows the flag's own proportions, not 4:3, unless you add `hata-4x3`. hata's classes begin with `hata`, so both sets' classes can be on one page while you move.
 
 ## From country-flag-icons
 
@@ -97,6 +104,21 @@ import { Flag } from "@johnmorrisdotca/hata/react";
 Vue and Svelte are in [the framework guide](frameworks.md).
 
 What changes: England, Scotland and Wales are `GB-ENG`, `GB-SCT` and `GB-WLS` in both; Northern Ireland has no flag of its own, so hata offers the Union Flag and the former Ulster Banner as named variants and `GB-NIR` alone gives null, where flagpack-core has `GB-NIR`. The United Kingdom's own flag is `GB` in hata.
+
+## Class names, set by set
+
+The same flag, in the class each set uses and in hata's. flag-icons and country-flag-icons name a class for a flag; circle-flags is image files only, and a round hata flag takes its place. A frame is a second class in hata, on the same element.
+
+| What you want | flag-icons | country-flag-icons | circle-flags | hata |
+| --- | --- | --- | --- | --- |
+| Greece | `fi fi-gr` | `flag:GR` | `<img src=".../flags/gr.svg">` | `hata hata-gr` |
+| Greece, square | `fi fi-gr fis` | no class (a `1x1` folder of files) | no | `hata hata-gr hata-1x1` |
+| Greece, round | none | none | `<img src=".../flags/gr.svg">` (every file is round) | `hata hata-gr hata-round` |
+| Scotland | `fi fi-gb-sct` | `flag:GB-SCT` | `<img src=".../flags/gb-sct.svg">` | `hata hata-gb-sct` |
+| Bavaria | none | none | none | `hata hata-de-by` |
+| The size | `font-size` (`1.33em` wide) | `font-size`, or `--CountryFlagIcon-height` | the `<img>`'s own | `font-size` or `height` (`1em` high) |
+
+The stylesheet of one is not the stylesheet of another, so take the class from one set and the stylesheet from the same set: moving a page is replacing the class names above, and the one `<link>` for hata's stylesheet.
 
 ## What none of them give you
 

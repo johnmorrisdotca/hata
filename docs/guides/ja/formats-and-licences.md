@@ -20,7 +20,8 @@ description: Hataの旗が提供される形式のすべてと、その大きさ
 | フレームワークのコンポーネント | React・Vue・Svelte・React Native向けの型付きの`Flag` | `@johnmorrisdotca/hata/react`、`/vue`、`/svelte`、`/react-native` | 旗自身のモジュール |
 | iframe | 1つの旗を描くページ | [埋め込みページ](embed-in-an-iframe.md) | 1ページと1つの旗 |
 | 保存したファイル | SVG、選んだ大きさのPNG、旗の情報のJSON | デモの詳細パネル。求めたときにブラウザーで作られます（[ガイド](gallery-and-downloads.md)） | 求めに応じて作ります。PNGのファイルは同梱していません |
-| CSSのクラスやスプライト | | まだ作っていません（MODULES-1426） | |
+| CSSのクラス | `<span class="hata hata-jp">`。旗ごとのクラスと、枠のための`hata-4x3`・`hata-1x1`・`hata-round` | `@johnmorrisdotca/hata/css`、またはそのうちの1グループ（[ガイド](css-and-sprite.md)） | 479すべてで88.4 KB（gzipで8.4 KB）。旗は、ページが表示するときに読み込まれます |
+| SVGスプライト | 旗ごとに`<symbol id="hata-jp">`を並べた1つのSVGファイル | `@johnmorrisdotca/hata/sheets`の`flagSprite(codes)`、またはデモのサイトにあるファイル | 国だけで2.1 MB、すべてで8.7 MB |
 | 決まった幅のPNGやWebP | 旗ごとに、幅20〜1280 pxのファイルと、40〜320 pxの正方形・円形の枠に入れたファイル | `https://johnmorrisdotca.github.io/hata/raster/png/w160/jp.png`、[下](#決まった大きさの画像とzip) | npmパッケージには入っていません。すべての旗で、1つの幅につき0.1〜19.7 MB |
 | zip | すべての旗のSVG、`manifest.json`、`LICENSES.md`、`NOTICE.md`、`LICENSE` | `https://johnmorrisdotca.github.io/hata/raster/hata-flags.zip` | 3.5 MB |
 

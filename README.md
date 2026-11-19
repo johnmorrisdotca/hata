@@ -201,6 +201,8 @@ The alias changes only the import name in your project.
 | `@johnmorrisdotca/hata/element/define` | Registers `<hata-flag>` when imported (`dist/element-define.js` on a CDN) | a line, then /element |
 | `@johnmorrisdotca/hata/manifest` | Every flag's source, licence, author and why it was chosen, how each frame is made, the flags in real use besides and the earlier flags of a country (`variantsOf`, `variantOn`), and the codes with no flag | 1,185 KB, 151 KB gzipped |
 | `@johnmorrisdotca/hata/svg/<code>.svg` | Every flag as a file, for an `&lt;img&gt;`, a CSS `url()` or a CDN; `<code>.1x1.svg` and `.4x3.svg` too | the same as the module's string |
+| `@johnmorrisdotca/hata/css` | A stylesheet with a class for each flag (`<span class="hata hata-jp">`, and `hata-4x3`, `hata-1x1`, `hata-round` for the frames): `dist/css/hata.css`; `@johnmorrisdotca/hata/css/<group>` is one group of it (`countries`, `former`, `jp-regions`, `us-regions`…) | 88 KB, 8.4 KB gzipped, all 479; 61 KB for the countries |
+| `@johnmorrisdotca/hata/sheets` | `flagCss(codes)` and `flagSprite(codes)`: the stylesheet or an SVG sprite of only the flags a page uses | 8 KB, 3 KB gzipped, then /load and /manifest |
 | `@johnmorrisdotca/hata/manifest.json` | The manifest as JSON | 848 KB |
 
 ### 1. One flag
@@ -309,7 +311,7 @@ flagAspect("CH");         // 1: Switzerland's flag is square
 
 The [demo](https://johnmorrisdotca.github.io/hata/), the [docs](https://johnmorrisdotca.github.io/hata/docs/) (English and Japanese) and the [embed page](https://johnmorrisdotca.github.io/hata/embed.html). Each way below is a tested file in [`examples/`](./examples) (`pnpm test:usage`).
 
-Guides: [script tag](./docs/guides/html-and-cdn.md), [Vite and webpack](./docs/guides/bundlers.md), [React, Vue, Svelte, Angular](./docs/guides/frameworks.md), [iframe](./docs/guides/embed-in-an-iframe.md), [TypeScript and Node](./docs/guides/typescript-and-node.md), [the element and the builder](./docs/guides/embed-element-and-builder.md), [frames](./docs/guides/frames-whole-and-cropped.md), [disputed, former and historic flags](./docs/guides/places-with-more-than-one-flag.md).
+Guides: [script tag](./docs/guides/html-and-cdn.md), [Vite and webpack](./docs/guides/bundlers.md), [React, Vue, Svelte, Angular](./docs/guides/frameworks.md), [iframe](./docs/guides/embed-in-an-iframe.md), [TypeScript and Node](./docs/guides/typescript-and-node.md), [the element and the builder](./docs/guides/embed-element-and-builder.md), [frames](./docs/guides/frames-whole-and-cropped.md), [disputed, former and historic flags](./docs/guides/places-with-more-than-one-flag.md), [CSS classes and an SVG sprite](./docs/guides/css-and-sprite.md).
 
 About the set: [what is in Hata](./docs/guides/what-is-in-hata.md), [sources, sizes and limits](./docs/guides/sources-sizes-and-limits.md), [formats, sizes and licences](./docs/guides/formats-and-licences.md), [Hata and the other flag sets](./docs/guides/other-flag-sets.md) and [moving to Hata from another set](./docs/guides/moving-to-hata.md).
 
@@ -391,6 +393,7 @@ The [API reference](https://johnmorrisdotca.github.io/hata/api.html) lists every
 | `@johnmorrisdotca/hata/vue` | `Flag` and `preloadFlags` |
 | `@johnmorrisdotca/hata/svelte` | the default export, `Flag` (a `.svelte` file) |
 | `@johnmorrisdotca/hata/react-native` | `createFlag(SvgXml)` and `preloadFlags`, over react-native-svg |
+| `@johnmorrisdotca/hata/sheets` | `flagCss`, `flagSprite` and the type `SheetOptions` |
 | `@johnmorrisdotca/hata/bind` | `resolveFlag`, `preloadFlags`, `cachedFlag`, `boxStyle`, `inlineSvg`, `styleText`, and the types `FlagProps` and `BoundFlag` |
 | `@johnmorrisdotca/hata/manifest` | `MANIFEST`, `LEFT_OUT`, `RESTRICTED`, `manifest`, `leftOut`, `variantsOf`, `variantOn`, `flagOn`, and the types `FlagRecord`, `Framing`, `FramingCrop`, `LeftOutRecord`, `LicenceKind`, `FlagSource`, `Variant`, `FlagRole`, `RoleNote`, `Restricted`, `RestrictedVariant`, `DatedVariant`, `OtherFlag`, `NoFlag`, `FlagOnDay`, `VariantOptions`, `FlagColour` and `ColourName` |
 

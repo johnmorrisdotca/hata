@@ -238,6 +238,12 @@ writeFileSync("site/api.html", apiPage({ id, name: "Hata", icon: ICON, api }));
 // The flags as PNG and WebP in set sizes, a zip of the SVGs and the licence list: too large for the npm package, so served from Pages.
 const { buildRasters } = await import(new URL("./rasters.ts", import.meta.url).href);
 await buildRasters("site/raster");
+// The sprites, split as the stylesheets are, for a page that copies one onto its own site (a browser reads a sprite file only from its own origin).
+const { flagSprite } = await import(new URL("../dist/sheets.js", import.meta.url).href);
+const { sheetGroups } = await import(new URL("./sheet-groups.ts", import.meta.url).href);
+mkdirSync("site/sprite", { recursive: true });
+writeFileSync("site/sprite/hata.svg", await flagSprite());
+for (const [group, codes] of Object.entries(sheetGroups(FLAG_CODES))) writeFileSync(`site/sprite/${group}.svg`, await flagSprite(codes));
 console.log("site/ is ready: serve it, or let the Pages workflow publish it.");
 
 // The embed pages' credit line, owed only where a flag's drawing is under a licence that asks for credit (CC BY), in

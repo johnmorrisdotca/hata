@@ -98,6 +98,7 @@ pnpm data:sheet <out.png> <codes…> | --compared   # the drawings side by side,
 pnpm data:wikidata    # take a new Wikidata snapshot (network)
 pnpm data:commons     # fetch the Commons files it names, and what Commons says about them (network)
 pnpm docs:make        # rewrite docs/strings-ja.md after changing a word of the demo
+pnpm css [--only jp,ca] [--base dir] [--out file]   # a stylesheet of the flags named (every flag if --only is left out); pnpm sprite [--only jp,ca] [--out file] is the sprite
 pnpm rasters [dir]   # the flags as PNG and WebP in set sizes, a zip and the licence list, into dir (default raster/); pnpm site writes them into site/raster
 ```
 

@@ -27,6 +27,7 @@ const entries = [
   ["@johnmorrisdotca/hata/custom", "custom.d.ts"],
   ["@johnmorrisdotca/hata/element", "element.d.ts"],
   ["@johnmorrisdotca/hata/element/define", "element-define.d.ts"],
+  ["@johnmorrisdotca/hata/sheets", "sheets.d.ts"],
   ...flags.map((file) => [`@johnmorrisdotca/hata/flags/${file.slice(0, -5)}`, `flags/${file}`]),
 ];
 const program = ts.createProgram(entries.map(([, file]) => join(DIST, file)), { noEmit: true, skipLibCheck: true, target: ts.ScriptTarget.ES2022, module: ts.ModuleKind.ESNext, moduleResolution: ts.ModuleResolutionKind.Bundler, lib: ["lib.es2022.d.ts", "lib.dom.d.ts"] });

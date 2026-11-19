@@ -168,6 +168,11 @@ await step("node", () => {
   if (out !== "true 東京都") throw new Error(`unexpected output: ${out}`);
 });
 
+await step("sheets", () => {
+  const out = execFileSync(process.execPath, [join(examples("node"), "sheets.mjs")], { cwd: usage, encoding: "utf8" }).trim();
+  if (out !== "true true") throw new Error(`unexpected output: ${out}`);
+});
+
 await step("organisations", () => {
   const out = execFileSync(process.execPath, [join(examples("organisations"), "organisations.mjs")], {
     cwd: usage,
@@ -248,6 +253,39 @@ await step("cdn-jsdelivr", async () => {
     );
     await page.goto("https://page.test/");
     await seesFlag(page);
+  });
+});
+
+await step("css", async () => {
+  await opened(browser, async (page) => {
+    await page.route("https://cdn.jsdelivr.net/**", (route) => {
+      const found = /^\/npm\/@johnmorrisdotca\/hata(?:@[^/]+)?\/(.+)$/.exec(new URL(route.request().url()).pathname);
+      const file = found ? join(installed, found[1]!) : "";
+      return found && existsSync(file)
+        ? route.fulfill({ body: readFileSync(file), contentType: TYPES[extname(file)] ?? "text/plain" })
+        : route.fulfill({ status: 404, body: "" });
+    });
+    await page.route("https://page.test/**", (route) =>
+      route.fulfill({ body: pageOf(join(examples("css"), "index.html")), contentType: "text/html" }),
+    );
+    await page.goto("https://page.test/");
+    for (const [index, width] of [[0, 72], [1, 48]] as const) {
+      const flag = page.locator(".hata").nth(index);
+      await flag.waitFor({ state: "attached", timeout: 30_000 });
+      const box = await flag.boundingBox();
+      if (box === null || Math.abs(box.width - width) > 1.5 || Math.abs(box.height - 48) > 1.5) throw new Error(`a flag's box is ${box?.width} by ${box?.height}, not ${width} by 48`);
+      await flag.evaluate(
+        (element) =>
+          new Promise<void>((resolve, reject) => {
+            const url = /url\("?([^")]+)"?\)/.exec(getComputedStyle(element).backgroundImage)?.[1];
+            if (url === undefined) return reject(new Error("the flag has no background image"));
+            const img = new Image();
+            img.addEventListener("load", () => (img.naturalWidth > 0 ? resolve() : reject(new Error("the flag's picture is empty"))));
+            img.addEventListener("error", () => reject(new Error("the flag's picture did not load")));
+            img.src = url;
+          }),
+      );
+    }
   });
 });
 
@@ -422,6 +460,8 @@ const guide = (name: string) => [`docs/guides/${name}.md`, `docs/guides/ja/${nam
 const FILES: Record<string, string[]> = {
   "cdn-jsdelivr.html": guide("html-and-cdn"),
   "cdn-unpkg.html": guide("html-and-cdn"),
+  "css/index.html": guide("css-and-sprite"),
+  "node/sheets.mjs": guide("css-and-sprite"),
   "iframe.html": guide("embed-in-an-iframe"),
   "vite/main.ts": guide("bundlers"),
   "vite/index.html": guide("bundlers"),

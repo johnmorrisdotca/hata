@@ -24,7 +24,14 @@ Hataでは、要素がいちばん近いものです。正方形の旗は`shape=
 <hata-flag code="GR" size="32"></hata-flag> <hata-flag code="GR" shape="square" size="32"></hata-flag>
 ```
 
-変わる点：HataにはCSSのクラスやスプライトがまだない（MODULES-1426）ので、スタイルシートで`.fi-gr`にスタイルを当てているページは、代わりに要素か、[`flagUrl`](html-and-cdn.md)のアドレスを使った`<img>`が必要です。
+クラスのまま移ることもできます。Hataには旗ごとのクラスがあるスタイルシートがあり、`fi fi-gr`は`hata hata-gr`に、`fi fi-gr fis`は`hata hata-gr hata-1x1`になります（[CSSのクラスとSVGスプライト](css-and-sprite.md)と、下のクラス名の表）。
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@johnmorrisdotca/hata@1/dist/css/hata.css" />
+<span class="hata hata-gr"></span> <span class="hata hata-gr hata-1x1"></span>
+```
+
+変わる点：`fi`は幅が`1.33em`ですが、`hata`は高さが`1em`です。大きさは`font-size`か`height`で決めてください。幅は旗本来の縦横比で決まり、4:3にはなりません（4:3にするには`hata-4x3`をつけます）。Hataのクラスは`hata`で始まるので、移行のあいだ、両方のセットのクラスを同じページに置けます。
 
 ## country-flag-iconsから
 
@@ -97,6 +104,21 @@ import { Flag } from "@johnmorrisdotca/hata/react";
 VueとSvelteは[フレームワークのガイド](frameworks.md)にあります。
 
 変わる点：イングランド、スコットランド、ウェールズは、どちらでも`GB-ENG`、`GB-SCT`、`GB-WLS`です。北アイルランドには固有の旗がないので、Hataはユニオン・フラッグとかつてのアルスター旗を名前つきの別の旗として提供し、`GB-NIR`だけでは`null`を返します。flagpack-coreには`GB-NIR`があります。イギリス自体の旗は、Hataでは`GB`です。
+
+## クラス名の対応
+
+同じ旗を、各セットのクラスとHataのクラスで書いた表です。flag-iconsとcountry-flag-iconsは旗ごとにクラスがあります。circle-flagsは画像ファイルだけで、Hataでは円形の旗がその代わりになります。Hataの枠は、同じ要素につける2つ目のクラスです。
+
+| やりたいこと | flag-icons | country-flag-icons | circle-flags | Hata |
+| --- | --- | --- | --- | --- |
+| ギリシャ | `fi fi-gr` | `flag:GR` | `<img src=".../flags/gr.svg">` | `hata hata-gr` |
+| ギリシャ、正方形 | `fi fi-gr fis` | クラスなし（`1x1`フォルダーのファイル） | なし | `hata hata-gr hata-1x1` |
+| ギリシャ、円形 | なし | なし | `<img src=".../flags/gr.svg">`（どのファイルも円形） | `hata hata-gr hata-round` |
+| スコットランド | `fi fi-gb-sct` | `flag:GB-SCT` | `<img src=".../flags/gb-sct.svg">` | `hata hata-gb-sct` |
+| バイエルン | なし | なし | なし | `hata hata-de-by` |
+| 大きさ | `font-size`（幅`1.33em`） | `font-size`、または`--CountryFlagIcon-height` | `<img>`自身の大きさ | `font-size`か`height`（高さ`1em`） |
+
+あるセットのスタイルシートは、別のセットのものとは違います。クラスはそのセットのものを、スタイルシートも同じセットのものを使ってください。ページを移すには、上のクラス名を置き換え、Hataのスタイルシートの`<link>`を1つ足します。
 
 ## どのセットにもないもの
 

@@ -27,7 +27,7 @@ The sets: [flag-icons](https://github.com/lipis/flag-icons), [country-flag-icons
 
 | Set | Formats and ways to use it | Framework components |
 | --- | --- | --- |
-| hata | an SVG file for each flag, a module that holds the SVG string, a data URI, the `<hata-flag>` element, an iframe page; PNG and WebP files at set widths and a zip on the demo's site; the demo saves SVG, PNG and JSON in the browser | typed React, Vue, Svelte and React Native components; the element for the rest |
+| hata | CSS classes (`.hata .hata-xx`) and an SVG sprite, an SVG file for each flag, a module that holds the SVG string, a data URI, the `<hata-flag>` element, an iframe page; PNG and WebP files at set widths and a zip on the demo's site; the demo saves SVG, PNG and JSON in the browser | typed React, Vue, Svelte and React Native components; the element for the rest |
 | flag-icons | CSS classes (`.fi .fi-xx`), SVG files, SASS with a list of the countries to include | its README names none |
 | country-flag-icons | SVG files, JavaScript strings, CSS classes with the SVG inlined as data URLs, Unicode emoji; `hasFlag` and `countries` | React components for every flag; an experimental one for Vue 3 |
 | circle-flags | SVG files, at an address of the form `…/flags/xx.svg` | separate packages for React, React Native / Expo and SolidJS, each linked from its README |
@@ -66,7 +66,6 @@ Each row is a gap against one of the sets above or a thing people ask a flag set
 
 | Not here | Where it is found | Why it is not here | Ticket |
 | --- | --- | --- | --- |
-| CSS classes and one sprite sheet (`fi-xx` style) | flag-icons, country-flag-icons, world-flags-sprite | not built yet; hata ships SVG strings and files | MODULES-1426 |
 | Lookup by alpha-3, numeric or emoji, and a `flagEmoji` | react-world-flags, world-flags-sprite, country-flag-icons | the lookup takes alpha-2 and subdivision codes only; the README says why it does not draw emoji | MODULES-1425 |
 | Names in more languages | | English and Japanese today | MODULES-1432 |
 | Flags of organisations beyond the EU (the UN, the African Union, NATO…) | | an organisation's flag goes in only where its terms let an MIT package carry it | MODULES-1417 |
@@ -84,7 +83,7 @@ Not planned: redrawn flags, anything share-alike or GPL, and Angular or Solid co
 
 ## Which to choose
 
-- You need the flag as a CSS class on an element and nothing else: flag-icons or the world-flags-sprite do that today, and hata does not yet.
+- You need the flag as a CSS class on an element and nothing else: flag-icons and the world-flags-sprite do that, and so does hata (`hata hata-gr`, [CSS classes and an SVG sprite](css-and-sprite.md)).
 - You need round icons and nothing else: circle-flags.
 - You need the right flag at the right proportions, with its licence and author, in any shape, for any country or region listed here: hata.
 - You need all of that and a PNG at 250 px: hata has PNG and WebP at 160 and 320 px wide and other widths ([formats](formats-and-licences.md#pictures-in-set-sizes-and-a-zip)), and svg-country-flags has 100, 250 and 1000 px.

@@ -4,12 +4,14 @@
 //     editor shows which flag it is, its size and its source;
 //   - dist/svg/<code>.svg: each flag (but not one the law restricts) as a file, the same SVG as the module's string, for an <img src>, a CSS url()
 //     or a CDN address (flagUrl);
+//   - dist/css/*.css: a stylesheet with a class for each flag (hata.css), and one for each group of flags (countries.css, us-regions.css), so a page can take only what it shows;
 //   - dist/manifest.json: /manifest's records and the codes left out, as JSON, for a tool that does not run JavaScript.
 
 import { copyFileSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { pathToFileURL } from "node:url";
 
+import { sheetGroups } from "./sheet-groups.ts";
 import { ROOT } from "./sources.ts";
 
 const SRC = join(ROOT, "src", "flags");
@@ -53,6 +55,12 @@ export type { FlagProps };
 `,
 );
 
+const { FLAG_CODES } = (await import(pathToFileURL(join(DIST, "index.js")).href)) as { FLAG_CODES: string[] };
+const { flagCss } = (await import(pathToFileURL(join(DIST, "sheets.js")).href)) as typeof import("../src/sheets.ts");
+mkdirSync(join(DIST, "css"), { recursive: true });
+writeFileSync(join(DIST, "css", "hata.css"), await flagCss());
+for (const [group, codes] of Object.entries(sheetGroups(FLAG_CODES))) writeFileSync(join(DIST, "css", `${group}.css`), await flagCss(codes));
+
 const pkg = JSON.parse(readFileSync(join(ROOT, "package.json"), "utf8")) as { name: string; version: string };
 writeFileSync(join(DIST, "manifest.json"), `${JSON.stringify({ package: pkg.name, version: pkg.version, flags: manifest.MANIFEST, leftOut: manifest.LEFT_OUT, restricted: manifest.RESTRICTED }, null, 1)}\n`);
-console.log(`build-extras: ${count} flags' types and SVG files, and manifest.json`);
+console.log(`build-extras: ${count} flags' types and SVG files, the stylesheets, and manifest.json`);
