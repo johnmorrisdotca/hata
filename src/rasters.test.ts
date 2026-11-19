@@ -24,11 +24,11 @@ const dimensions = (file: string): [number, number] => {
 
 describe("the raster files", () => {
   it("write each flag as a PNG and a WebP at every width, its height following its proportions", () => {
-    expect(readdirSync(join(out, "png")).sort()).toEqual(["round-160", "round-320", "round-40", "round-80", "square-160", "square-320", "square-40", "square-80", "w1280", "w160", "w20", "w320", "w40", "w640", "w80"]);
+    expect(readdirSync(join(out, "png")).sort()).toEqual(["round-160", "round-320", "round-40", "round-80", "square-160", "square-320", "square-40", "square-80", "w1280", "w160", "w320", "w40", "w80"]);
     expect(readdirSync(join(out, "webp"))).toEqual(readdirSync(join(out, "png")));
     expect(dimensions(join(out, "png", "w320", "jp.png"))).toEqual([320, 213]);
     expect(dimensions(join(out, "png", "w1280", "ca.png"))).toEqual([1280, 640]);
-    expect(dimensions(join(out, "png", "w20", "ca.png"))).toEqual([20, 10]);
+    expect(dimensions(join(out, "png", "w40", "ca.png"))).toEqual([40, 20]);
   });
 
   it("make the square and round frames square, with the round one's corners clear", () => {
@@ -45,8 +45,8 @@ describe("the raster files", () => {
   });
 
   it("count what they wrote", () => {
-    // 2 flags, 15 sizes, 2 formats, then LICENSES.md and the zip.
-    expect(made.files).toBe(2 * 15 * 2 + 2);
+    // 2 flags, 13 sizes, 2 formats, then LICENSES.md and the zip.
+    expect(made.files).toBe(2 * 13 * 2 + 2);
   });
 });
 

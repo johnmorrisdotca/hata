@@ -22,7 +22,7 @@ description: Hataの旗が提供される形式のすべてと、その大きさ
 | 保存したファイル | SVG、選んだ大きさのPNG、旗の情報のJSON | デモの詳細パネル。求めたときにブラウザーで作られます（[ガイド](gallery-and-downloads.md)） | 求めに応じて作ります。PNGのファイルは同梱していません |
 | CSSのクラス | `<span class="hata hata-jp">`。旗ごとのクラスと、枠のための`hata-4x3`・`hata-1x1`・`hata-round` | `@johnmorrisdotca/hata/css`、またはそのうちの1グループ（[ガイド](css-and-sprite.md)） | 479すべてで88.4 KB（gzipで8.4 KB）。旗は、ページが表示するときに読み込まれます |
 | SVGスプライト | 旗ごとに`<symbol id="hata-jp">`を並べた1つのSVGファイル | `@johnmorrisdotca/hata/sheets`の`flagSprite(codes)`、またはデモのサイトにあるファイル | 国だけで2.1 MB、すべてで8.7 MB |
-| 決まった幅のPNGやWebP | 旗ごとに、幅20〜1280 pxのファイルと、40〜320 pxの正方形・円形の枠に入れたファイル | `https://johnmorrisdotca.github.io/hata/raster/png/w160/jp.png`、[下](#決まった大きさの画像とzip) | npmパッケージには入っていません。すべての旗で、1つの幅につき0.1〜19.7 MB |
+| 決まった幅のPNGやWebP | 旗ごとに、幅40〜1280 pxのファイルと、40〜320 pxの正方形・円形の枠に入れたファイル | `https://johnmorrisdotca.github.io/hata/raster/png/w160/jp.png`、[下](#決まった大きさの画像とzip) | npmパッケージには入っていません。すべての旗で、1つの幅につき0.2〜19.7 MB |
 | zip | すべての旗のSVG、`manifest.json`、`LICENSES.md`、`NOTICE.md`、`LICENSE` | `https://johnmorrisdotca.github.io/hata/raster/hata-flags.zip` | 3.5 MB |
 
 いちばん大きい旗は、出典が描いているとおりの紋章や印章を載せています。バージニア州は372.3 KBで、40 KBの予算を超える旗の一覧は[docs/sizes.md](../../sizes.md)にあります。小さくするために描き直すことはしません。
@@ -41,12 +41,10 @@ https://johnmorrisdotca.github.io/hata/raster/webp/round-80/ca-bc.webp   ブリ�
 
 | 幅 | PNG、すべての旗 | PNG、中央値の旗 | WebP、すべての旗 | WebP、中央値の旗 | 使い道 |
 | --- | --- | --- | --- | --- | --- |
-| `w20` | 0.1 MB | 0.3 KB | 0.1 MB | 0.2 KB | 文章の行のそば、表の中 |
-| `w40` | 0.3 MB | 0.5 KB | 0.2 MB | 0.2 KB | 入力欄、ドロップダウンの選択肢 |
+| `w40` | 0.3 MB | 0.5 KB | 0.2 MB | 0.2 KB | 文章の行のそば、入力欄、ドロップダウンの選択肢 |
 | `w80` | 0.6 MB | 1.0 KB | 0.3 MB | 0.4 KB | 高精細な画面のドロップダウン、一覧 |
 | `w160` | 1.4 MB | 2.0 KB | 0.7 MB | 0.7 KB | カード、プロフィール |
-| `w320` | 3.4 MB | 4.3 KB | 1.5 MB | 1.4 KB | スマートフォンの画面の幅いっぱい、バナー |
-| `w640` | 8.3 MB | 9.5 KB | 3.3 MB | 2.7 KB | 見出し、スライド |
+| `w320` | 3.4 MB | 4.3 KB | 1.5 MB | 1.4 KB | スマートフォンの画面の幅いっぱい、バナー、スライド |
 | `w1280` | 19.7 MB | 23.0 KB | 6.6 MB | 5.5 KB | ポスター、全画面、印刷 |
 | `square-40`〜`square-320` | 0.4〜5.4 MB | 0.8〜6.2 KB | 0.2〜2.3 MB | 0.3〜2.0 KB | タイル、地図のマーカー、アイコン |
 | `round-40`〜`round-320` | 0.6〜7.0 MB | 1.3〜9.9 KB | 0.3〜3.0 MB | 0.6〜3.6 KB | 丸いバッジ、プロフィール写真 |

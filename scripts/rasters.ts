@@ -1,6 +1,6 @@
 // The flags as pictures in set sizes, and one zip of the SVGs, made from the built package (dist/):
 //
-//   <out>/png/w<width>/<code>.png        each flag at its own proportions, <width> px wide (height follows), widths 20 to 1280
+//   <out>/png/w<width>/<code>.png        each flag at its own proportions, <width> px wide (height follows), widths 40 to 1280
 //   <out>/webp/w<width>/<code>.webp      the same, as lossless WebP
 //   <out>/png/square-<size>/…, round-<size>/…, and the same in webp/   the flag in a square or a round frame, <size> px, sizes 40 to 320
 //   <out>/hata-flags.zip                 every flag's SVG, manifest.json, LICENSES.md, NOTICE.md and LICENSE
@@ -20,7 +20,7 @@ import encodeWebp, { init } from "@jsquash/webp/encode.js";
 import type { FlagRecord } from "../src/manifest.types.ts";
 import { ROOT } from "./sources.ts";
 
-const WIDTHS = [20, 40, 80, 160, 320, 640, 1280];
+const WIDTHS = [40, 80, 160, 320, 1280];
 const FRAME_SIZES = [40, 80, 160, 320];
 const DIST = join(ROOT, "dist");
 const load = (name: string) => import(pathToFileURL(join(DIST, name)).href);

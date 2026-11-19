@@ -86,6 +86,6 @@ Not planned: redrawn flags, anything share-alike or GPL, and Angular or Solid co
 - You need the flag as a CSS class on an element and nothing else: flag-icons and the world-flags-sprite do that, and so does hata (`hata hata-gr`, [CSS classes and an SVG sprite](css-and-sprite.md)).
 - You need round icons and nothing else: circle-flags.
 - You need the right flag at the right proportions, with its licence and author, in any shape, for any country or region listed here: hata.
-- You need all of that and a PNG at 250 px: hata has PNG and WebP at 160 and 320 px wide and other widths ([formats](formats-and-licences.md#pictures-in-set-sizes-and-a-zip)), and svg-country-flags has 100, 250 and 1000 px.
+- You need all of that and a PNG at 250 px: hata has PNG and WebP at 160, 320 and other widths ([formats](formats-and-licences.md#pictures-in-set-sizes-and-a-zip)), and svg-country-flags has 100, 250 and 1000 px.
 
 Moving from one of them is on [Move to hata from another flag set](moving-to-hata.md).
