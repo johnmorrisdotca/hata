@@ -52,7 +52,7 @@ The sets: [flag-icons](https://github.com/lipis/flag-icons), [country-flag-icons
 
 - **The licence, author and source of every flag**, kept with it and read in code (`manifest(code)`), and a licence page that holds only flags it can carry.
 - **True proportions and frames that do not stretch.** Japan is 2:3, Canada 1:2, Switzerland square; a round frame is drawn again for the circle where a crop would lose a colour.
-- **Disputed and alternative flags side by side**, each with a status, dates and a reason, and the flag of a date for 33 countries.
+- **Disputed and alternative flags side by side**, each with a status, dates and a reason, and the flag of a date for 35 countries.
 - **Colours and tags for every flag**, as exact hex values and a closed list of tags, each with its source (`/search`, [colours](colours.md), [tags](tags.md)).
 - **A small core.** The main entry is 3.7 kB gzipped and carries no flag, and a page pays only for the flags it imports.
 - **A gallery, a builder, a quiz and a docs site** in English and Japanese.

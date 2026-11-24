@@ -11,8 +11,8 @@ const every = Object.keys(HISTORIC).flatMap((code) => variantsOf(code, { allowRe
 const sameDays = (variant: Variant): boolean => ["legal", "in-use"].every((role) => variant.roleDates[role as "legal" | "in-use"]?.from === variant.from && variant.roleDates[role as "legal" | "in-use"]?.until === variant.until);
 
 describe("every earlier flag has a role", () => {
-  it("is each of the 80 dated flags either legal, in use or both, with the days of each role", () => {
-    expect(every).toHaveLength(80);
+  it("is each of the 82 dated flags either legal, in use or both, with the days of each role", () => {
+    expect(every).toHaveLength(82);
     for (const { code, variant } of every) {
       expect(variant.roles.length, `${code} ${variant.id}`).toBeGreaterThan(0);
       expect(new Set(variant.roles).size, `${code} ${variant.id}`).toBe(variant.roles.length);
