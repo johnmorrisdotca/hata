@@ -3844,6 +3844,8 @@
     "check": "pnpm lint && pnpm typecheck && pnpm build && node scripts/check-docs.mjs && pnpm test && node scripts/check-package.mjs",
     "prepublishOnly": "pnpm check",
     "data": "node scripts/build-data.ts",
+    "data:organisations": "node scripts/fetch-organisations.ts",
+    "draw:organisations": "node scripts/draw-organisations.ts",
     "data:wikidata": "node scripts/fetch-wikidata.ts",
     "data:commons": "node scripts/fetch-commons.ts",
     "site": "pnpm build && node scripts/site.mjs",

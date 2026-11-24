@@ -6,6 +6,10 @@ All notable changes to this project are written here. The format follows
 
 ## [Unreleased]
 
+### Added
+
+- **Six more organisations' flags, taken from Commons, and the rule for the others** (MODULES-1813, John 2026-11-24). A body whose own terms or law explicitly restrict its flag or emblem stays out; a body with no terms found for its flag or emblem may come in, as a public-domain or CC0 Commons drawing through the licence check, with a note saying no terms were found and the day read. In: CARICOM (`org:caricom`), the League of Arab States (`org:arab-league`), the Commonwealth of Independent States (`org:cis`), the Commonwealth of Nations (`org:commonwealth`), the Andean Community (`org:andean-community`) and the Organisation of Islamic Cooperation (`org:oic`, its flag of 1981 to 2011). New `organisationSource(id)` gives each file, page, licence and author; `pnpm data:organisations` fetches the files and `pnpm draw:organisations` makes the data. Out because their own terms or law restrict the flag or emblem: the United Nations, NATO, the Red Cross and Red Crescent, the African Union, ASEAN, the Nordic Council, the Olympic rings; out because their pages could not be read (403, not worked around): the Organization of American States and Mercosur; out for want of a drawing: the Pacific Islands Forum. `NOTICE.md` and `docs/decisions.md` record each decision. The guide is updated in English and Japanese.
+
 ### Changed
 
 - **The terms of the organisations left out were read again** (MODULES-1813). On 2026-11-24 the page of each body listed in `NOTICE.md` as left out was read again, and what it said that day is recorded beside the earlier reading. None of the terms lets an MIT package pass on a drawing made from the description of the flag or emblem, so no organisation is added and the European Union is still the only one in. Three pages could not be read (the ICRC's database page returned no text, ASEAN's answered with a browser check, the Nordic Council's with 403) and the earlier readings stand; none was worked around.

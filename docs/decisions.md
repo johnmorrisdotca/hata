@@ -309,6 +309,16 @@ Official pages that would not load in the research (several government sites ans
 **Reading a date.** `from` is the first day a flag was in force and `until` the first day of its successor; a bare year or month is the whole of it, and where two flags share a bare year the later wins.
 `null` means "not known here", never "no flag": see historical.md for the rules, including what a former country gives outside its years.
 
+## Organisations' flags
+
+*(MODULES-1413, MODULES-1813; John 2026-11-24.)* The European Union's flag is drawn for this package from the Union's description, under its terms. The rule for the other bodies: **a body whose own terms or law
+explicitly restrict its flag or emblem stays out, whatever the licence of a drawing of it; a body with no terms found for its flag or emblem may come in**, as a public-domain or CC0 Commons drawing through
+the licence check (or a drawing made from its published description), with a note saying that no terms were found and the day the page was read. No terms is not a licence, and the law of a country can still limit a flag.
+
+- **In (read 2026-11-24):** CARICOM, the League of Arab States, the Commonwealth of Independent States, the Commonwealth of Nations, the Andean Community and the Organisation of Islamic Cooperation (its flag of 1981 to 2011). `organisationSource(id)` has each file, page, licence and author; `NOTICE.md` has what each body's page said.
+- **Out, because their own terms or law restrict the flag or emblem:** the United Nations (the UN Flag Code and resolution 92(I)), NATO (advance authorisation for its logo, name and emblems), the Red Cross, Red Crescent and Red Crystal (the Geneva Conventions), the African Union (its emblem is trademarked or copyrighted and not to be used without approval), ASEAN (reserved copyright, use asked for in writing), the Nordic Council (use by others by permission) and the Olympic rings (the Olympic Charter).
+- **Out, because the page could not be read** (a 403 or a browser check, which this package does not work around): the Organization of American States, Mercosur. **Out, for want of a drawing:** the Pacific Islands Forum.
+
 ## Restricted flags
 
 **Germany's national flag of 1935 to 1945** (the swastika flag) is a variant of `DE` with `restricted: { reason, reasonJa, law, allowedFor, allowedForJa }` (MODULES-1447, John 2026-11-17: shipped "for historic educational reasons", restricted). It was left out of 1.10.0 as a gap; it is now shipped, and every lookup treats it with care.

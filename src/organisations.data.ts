@@ -8,6 +8,8 @@
 // never shadow a country's. The ids of flags a page registers itself (MODULES-1244) will use the namespace `custom:`.
 // A drawing's ids and classes begin with `org-<slug>-`, so two flags in one page cannot collide.
 
+import { ORGANISATIONS_FROM_COMMONS } from "./organisations.commons.data";
+
 interface OrganisationRecord {
   /** `org:` and a lower-case slug (letters, digits and hyphens). */
   id: `org:${string}`;
@@ -17,9 +19,11 @@ interface OrganisationRecord {
   svg: string;
   /** Where the terms for the flag were read, the day, and what they say. */
   terms: { url: string; read: string; says: string };
+  /** For a drawing taken from Wikimedia Commons: its file, page, licence as Commons states it and author as Commons gives it. */
+  source?: { file: string; page: string; licence: string; author: string };
 }
 
-const ORGANISATIONS = [
+const HAND_DRAWN = [
   {
     id: "org:eu",
     name: { en: "European Union", ja: "欧州連合" },
@@ -33,6 +37,9 @@ const ORGANISATIONS = [
     },
   },
 ] as const satisfies readonly OrganisationRecord[];
+
+// The European Union is drawn for this package; the others are Commons files (organisations.commons.data.ts).
+const ORGANISATIONS: readonly OrganisationRecord[] = [...HAND_DRAWN, ...ORGANISATIONS_FROM_COMMONS];
 
 export { ORGANISATIONS };
 export type { OrganisationRecord };

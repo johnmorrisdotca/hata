@@ -7,23 +7,23 @@
     },
     "./load": {
       "minified": 14706019,
-      "gzip": 4529261
+      "gzip": 4530045
     },
     "./manifest": {
       "minified": 1216099,
-      "gzip": 154553
+      "gzip": 155208
     },
     "./names": {
       "minified": 31129,
       "gzip": 9347
     },
     "./organisations": {
-      "minified": 2407,
-      "gzip": 1170
+      "minified": 56508,
+      "gzip": 21482
     },
     "./search": {
       "minified": 69111,
-      "gzip": 21157
+      "gzip": 21178
     },
     "./custom": {
       "minified": 16556,
@@ -31,27 +31,27 @@
     },
     "./element": {
       "minified": 14744854,
-      "gzip": 4542042
+      "gzip": 4542757
     },
     "./element/define": {
       "minified": 14744807,
-      "gzip": 4542029
+      "gzip": 4542749
     },
     "./bind": {
       "minified": 14738510,
-      "gzip": 4539506
+      "gzip": 4540298
     },
     "./react": {
       "minified": 14769751,
-      "gzip": 4552772
+      "gzip": 4553483
     },
     "./vue": {
       "minified": 14784316,
-      "gzip": 4556624
+      "gzip": 4557419
     },
     "./react-native": {
       "minified": 14768824,
-      "gzip": 4552277
+      "gzip": 4553017
     },
     "./flags/ad.1x1": {
       "minified": 28262,

@@ -15,6 +15,13 @@
       "note": "Wikidata (CC0), what each flag's item depicts (P180) and of which named kinds those things are; Wikimedia Commons, the categories of each flag's file (facts about the files)"
     },
     {
+      "path": "organisations-commons-2026-11-24.json",
+      "url": "https://commons.wikimedia.org/w/api.php",
+      "read": "2026-11-24",
+      "sha256": "a46467d183ece56994a427381d9ad4411bda366d140cee413cf0027de9d9103c",
+      "note": "Wikimedia Commons, the description, licence and author of every organisations flag file, and the SHA-256 of each file kept in organisations/ (each file under its own licence)"
+    },
+    {
       "path": "wikidata-2026-10-09.json",
       "url": "https://query.wikidata.org/sparql",
       "read": "2026-10-09",
