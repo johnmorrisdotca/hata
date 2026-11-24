@@ -6,20 +6,20 @@
       "gzip": 4071
     },
     "./load": {
-      "minified": 15255059,
-      "gzip": 4705547
+      "minified": 15254993,
+      "gzip": 4705545
     },
     "./manifest": {
-      "minified": 1347172,
-      "gzip": 173813
+      "minified": 1347106,
+      "gzip": 173809
     },
     "./names": {
       "minified": 34213,
       "gzip": 10383
     },
     "./organisations": {
-      "minified": 57439,
-      "gzip": 21577
+      "minified": 57540,
+      "gzip": 21602
     },
     "./signals": {
       "minified": 81924,
@@ -46,28 +46,28 @@
       "gzip": 6925
     },
     "./element": {
-      "minified": 15296633,
-      "gzip": 4718939
+      "minified": 15296567,
+      "gzip": 4718935
     },
     "./element/define": {
-      "minified": 15296586,
-      "gzip": 4718908
+      "minified": 15296520,
+      "gzip": 4718905
     },
     "./bind": {
-      "minified": 15290289,
-      "gzip": 4716574
+      "minified": 15290223,
+      "gzip": 4716571
     },
     "./react": {
-      "minified": 15321538,
-      "gzip": 4728063
+      "minified": 15321472,
+      "gzip": 4728060
     },
     "./vue": {
-      "minified": 15336107,
-      "gzip": 4733346
+      "minified": 15336041,
+      "gzip": 4733344
     },
     "./react-native": {
-      "minified": 15320611,
-      "gzip": 4727582
+      "minified": 15320545,
+      "gzip": 4727577
     },
     "./flags/ad.1x1": {
       "minified": 28262,

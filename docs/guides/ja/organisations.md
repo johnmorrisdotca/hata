@@ -12,16 +12,16 @@ import { frame } from "@johnmorrisdotca/hata";
 import { organisationFlag, organisationName } from "@johnmorrisdotca/hata/organisations";
 
 // An organisation's flag is an SVG string, framed like a country's; its id begins with "org:".
-const svg = await organisationFlag("org:eu");
+const svg = organisationFlag("org:eu");
 const round = svg === null ? "" : frame(svg, { shape: "round", label: organisationName("org:eu", "ja") ?? "" });
 console.log(svg?.startsWith("<svg"), round.includes("clipPath"), organisationName("org:eu", "ja"));
 ```
 
-`organisationFlag(id)` はSVG文字列を（Promiseとして）読み込み、`organisationName(id, lang)` は英語か日本語の名前、`organisationAspect(id)` は幅÷高さ、`organisationTerms(id)` は旗の利用条件を読んだページ・日付・内容を返します。`organisationId("EU")` は緩く書いたidを読み取り `"org:eu"` を返し、`ORGANISATION_IDS` は全idの一覧です。旗がないidにはどれも `null` を返します。
+`organisationFlag(id)` はSVG文字列を即座に返し（絵が入口にある欧州連合の場合。絵が別のモジュールである機関には `null`）、`loadOrganisationFlag(id)` はどの機関の絵も（Promiseとして）読み込み、`organisationName(id, lang)` は英語か日本語の名前、`organisationAspect(id)` は幅÷高さ、`organisationTerms(id)` は旗の利用条件を読んだページ・日付・内容を返します。`organisationId("EU")` は緩く書いたidを読み取り `"org:eu"` を返し、`ORGANISATION_IDS` は全idの一覧です。旗がないidにはどれも `null` を返します。
 
 ## サイズと、1枚だけ読み込む方法
 
-入口にあるのは記録だけです（ID、名前、説明、期間、出典、注記。約7.1 KB、gzipで2.5 KB）。絵は入っていません。絵はそれぞれ別のモジュール `@johnmorrisdotca/hata/organisations/eu`（中央値885 B、最大40 KB）で、国の旗に `/load` がするのと同じく、検索が頼まれたときに動的importで読み込みます。そのため、ページに入るのは頼んだ絵だけです。モジュールは自分で読み込むこともできます（`import svg from "@johnmorrisdotca/hata/organisations/eu"` は `org:eu` の絵）。絵に行く道は、IDかモジュールだけです。
+入口にあるのは記録と欧州連合の絵です（約7 KB、gzipで2.5 KB）。Commonsから取った機関の絵は別のモジュール `@johnmorrisdotca/hata/organisations/<slug>`（中央値885 B、最大40 KB）で、国の旗に `/load` がするのと同じく、`loadOrganisationFlag(id)` が頼まれたときに動的importで読み込みます。そのため、ページに入るのは頼んだ絵だけです。モジュールは自分で読み込むこともできます（`import svg from "@johnmorrisdotca/hata/organisations/caricom"`）。`organisationFlag(id)` はこれまでどおり同期で、入口が持つ絵について答えます。
 
 ## どの機関があるか
 

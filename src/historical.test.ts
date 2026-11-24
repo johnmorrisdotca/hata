@@ -80,13 +80,13 @@ describe("every ISO 3166-3 code, and the states that never had one", () => {
     expect(manifest("FQHH")?.sameAs).toBe("FR");
     expect(manifest("NQAQ")?.sameAs).toBe("NO");
     expect(manifest("DYBJ")?.sameAs).toBe("BJ");
-    for (const code of ["JTUM", "MIUM", "PUUM", "PZPA", "WKUM"]) expect(manifest(code)?.wikidata, code).toBeNull();
+    for (const code of ["JTUM", "MIUM", "PUUM", "PZPA", "WKUM"]) expect(manifest(code)?.wikidata, code).toBe("");
   });
 
   it("names no Wikidata item for a state it draws by a file named by hand", () => {
     for (const [code, spec] of Object.entries(FORMER_HISTORICAL)) {
       expect(spec.item, code).toBeNull();
-      if (spec.file !== null) expect(manifest(code)?.wikidata, code).toBeNull();
+      if (spec.file !== null) expect(manifest(code)?.wikidata, code).toBe("");
     }
   });
 

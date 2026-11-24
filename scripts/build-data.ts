@@ -883,7 +883,7 @@ const row = (one: Shipped): string => {
     file: drawing.file,
     page: drawing.page,
     version: drawing.version,
-    wikidata: one.item,
+    wikidata: one.item ?? "",
     licence: drawing.licence,
     author: drawing.author,
     credit: drawing.credit,

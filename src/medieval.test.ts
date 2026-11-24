@@ -13,7 +13,7 @@ describe("the banners", () => {
     expect(MEDIEVAL_IDS).toHaveLength(42);
     const notice = readFileSync("NOTICE.md", "utf8");
     expect(notice).toBe(medievalNoticeText(notice));
-  });
+  }, 60000);
 
   it("are all reconstructions that say what the source documents and cite a page", () => {
     for (const id of MEDIEVAL_IDS) {

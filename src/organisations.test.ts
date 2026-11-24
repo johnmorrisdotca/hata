@@ -8,7 +8,7 @@ import { FLAG_ALIASES } from "./data/aliases.data";
 import { FLAG_CODES, flagCode, frame, isFlagCode, toDataUri } from "./index";
 import { aspectOf } from "./svg";
 import { ORGANISATION_LOADERS, ORGANISATIONS } from "./organisations.data";
-import { isOrganisationId, ORGANISATION_IDS, organisationAspect, organisationFlag, organisationId, organisationName, organisationSource, organisationTerms } from "./organisations";
+import { isOrganisationId, ORGANISATION_IDS, organisationAspect, organisationFlag, loadOrganisationFlag, organisationId, organisationName, organisationSource, organisationTerms } from "./organisations";
 
 const slugOf = (id: string): string => id.slice(4);
 
@@ -29,8 +29,8 @@ describe("the ids", () => {
   it("leave a code's own flag alone: a country's code is no organisation id, with or without `org:`", async () => {
     expect(isOrganisationId("JP")).toBe(false);
     expect(isOrganisationId("org:jp")).toBe(false);
-    expect(await organisationFlag("JP")).toBeNull();
-    expect(await organisationFlag("org:jp")).toBeNull();
+    expect(organisationFlag("JP")).toBeNull();
+    expect(organisationFlag("org:jp")).toBeNull();
     expect(organisationId("org:xx")).toBeNull();
   });
 
@@ -41,7 +41,8 @@ describe("the ids", () => {
     expect(isOrganisationId("ORG:EU")).toBe(false);
     expect(isOrganisationId(3)).toBe(false);
     expect(() => organisationId(3 as unknown as string)).toThrow(TypeError);
-    await expect(organisationFlag(null as unknown as string)).rejects.toThrow(TypeError);
+    expect(() => organisationFlag(null as unknown as string)).toThrow(TypeError);
+    await expect(loadOrganisationFlag(null as unknown as string)).rejects.toThrow(TypeError);
   });
 });
 
@@ -98,7 +99,10 @@ describe("the organisations taken from Commons", () => {
 
 describe("the functions", () => {
   it("give the drawing, the names, the ratio and the terms", async () => {
-    expect(await organisationFlag("org:eu")).toBe((await ORGANISATION_LOADERS["org:eu"]!()).svg);
+    expect(organisationFlag("org:eu")).toBe((await ORGANISATION_LOADERS["org:eu"]!()).svg);
+    expect(await loadOrganisationFlag("org:eu")).toBe(organisationFlag("org:eu"));
+    expect(organisationFlag("org:caricom")).toBeNull();
+    expect(await loadOrganisationFlag("org:caricom")).toMatch(/^<svg/);
     expect(organisationName("org:eu")).toBe("European Union");
     expect(organisationName("EU", "ja-JP")).toBe("欧州連合");
     expect(organisationAspect("org:eu")).toBe(1.5);
@@ -106,18 +110,18 @@ describe("the functions", () => {
     const terms = organisationTerms("org:eu");
     expect(terms).toEqual(ORGANISATIONS[0].terms);
     expect(terms).not.toBe(organisationTerms("org:eu"));
-    for (const answer of [await organisationFlag("org:xx"), organisationName("org:xx"), organisationAspect("org:xx"), organisationTerms("org:xx")]) expect(answer).toBeNull();
+    for (const answer of [organisationFlag("org:xx"), await loadOrganisationFlag("org:xx"), organisationName("org:xx"), organisationAspect("org:xx"), organisationTerms("org:xx")]) expect(answer).toBeNull();
   });
 
   it("draw twelve gold stars on blue, once each", async () => {
-    const svg = (await organisationFlag("org:eu")) ?? "";
+    const svg = organisationFlag("org:eu") ?? "";
     expect(svg.match(/<use /g)?.length).toBe(12);
     expect(svg).toContain('fill="#039"');
     expect(svg).toContain('fill="#fc0"');
   });
 
   it("work with the main entry's frame and data: URI", async () => {
-    const svg = (await organisationFlag("org:eu")) ?? "";
+    const svg = organisationFlag("org:eu") ?? "";
     expect(frame(svg, { shape: "round" }) ?? "").toContain("clipPath");
     expect(frame(svg, { shape: "1:1", fit: "whole" }) ?? "").toContain("<svg");
     expect(toDataUri(svg)?.startsWith("data:image/svg+xml,")).toBe(true);
@@ -148,7 +152,7 @@ describe("a new organisation", () => {
     expect(added.ORGANISATION_IDS).toEqual([...ORGANISATION_IDS, "org:test-body"]);
     expect(added.isOrganisationId("org:test-body")).toBe(true);
     expect(added.organisationId("TEST-BODY")).toBe("org:test-body");
-    expect(await added.organisationFlag("org:test-body")).toContain("viewBox");
+    expect(await added.loadOrganisationFlag("org:test-body")).toContain("viewBox");
     expect(added.organisationName("org:test-body", "ja")).toBe("試験機関");
     expect(added.organisationAspect("org:test-body")).toBe(1.5);
     expect(added.organisationTerms("org:test-body")?.url).toBe("https://example.test/terms");

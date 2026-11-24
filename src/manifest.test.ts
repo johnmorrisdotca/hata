@@ -56,7 +56,7 @@ describe("the manifest", () => {
         expect(one.reference?.page, one.code).toMatch(/^https:\/\/commons\.wikimedia\.org\/wiki\/File:/);
         expect(one.author, one.code).toMatch(/^Copyright/);
       }
-      if (one.wikidata !== null) expect(one.wikidata, one.code).toMatch(/^Q\d+$/);
+      if (one.wikidata !== "") expect(one.wikidata, one.code).toMatch(/^Q\d+$/);
       else expect(one.historical, one.code).toBeDefined();
       expect(one.why.length, one.code).toBeGreaterThan(20);
       expect(one.fetched, one.code).toMatch(/^\d{4}-\d{2}-\d{2}$/);

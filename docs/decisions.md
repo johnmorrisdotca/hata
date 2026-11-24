@@ -406,7 +406,7 @@ the Soviet Union, East and West Germany, Yugoslavia and the rest, and found none
   `XQI`, `XUA`, `XTX`, `XIT` and `XZB`, and the former-countries guide lists them. This is Hata's choice, not a standard's, and a
   code can be renamed before 2.0 if the maintainer prefers another scheme.
 - **These states have no Wikidata item in the snapshot, so their Commons files are named by hand** (`item: null` in
-  `scripts/former-flags.ts`; the manifest's `wikidata` is `null`). Wikidata is not asked for more than the snapshot has. The Commons snapshot
+  `scripts/former-flags.ts`; the manifest's `wikidata` is the empty string). Wikidata is not asked for more than the snapshot has. The Commons snapshot
   gained their 19 files on 2026-11-24 (each has a `fetched` day); the others were not read again.
 - **A state with no flag in law says so.** Austria-Hungary's civil ensign is its flag in use only (`roles: ["in-use"]` and a `roleNote`),
   and so are the Qing Empire's Yellow Dragon Flags and the Kingdom of Hawaii's flag of 1816.

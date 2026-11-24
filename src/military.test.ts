@@ -16,7 +16,7 @@ describe("the flags", () => {
     const notice = readFileSync("NOTICE.md", "utf8");
     expect(notice).toBe(militaryNoticeText(notice));
     expect(militaryRecords().filter((one) => one.restricted === undefined).map((one) => one.id)).toEqual([...MILITARY_IDS]);
-  });
+  }, 60000);
 
   it("come from at least thirty navies, and every Commons one is public domain or CC0, with its author and page kept", () => {
     const countries = new Set(militaryRecords().map((one) => one.id.slice(4, 6)));

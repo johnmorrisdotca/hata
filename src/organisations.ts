@@ -5,6 +5,7 @@
 // Every function is pure and works on strings: no DOM, no network, the same answer on a server and in a browser.
 
 import { ORGANISATION_LOADERS, ORGANISATIONS } from "./organisations.data";
+import { svg as EUROPEAN_UNION } from "./sets/organisations/eu";
 import { mustBeString } from "./svg";
 
 /**
@@ -28,10 +29,13 @@ type OrganisationId = (typeof ORGANISATIONS)[number]["id"];
  * ```ts
  * import { ORGANISATION_IDS } from "@johnmorrisdotca/hata/organisations";
  *
- * console.log(ORGANISATION_IDS[0]); // "org:eu"
+ * console.log(ORGANISATION_IDS); // ["org:eu", "org:caricom", …]
  * ```
  */
 const ORGANISATION_IDS: readonly OrganisationId[] = ORGANISATIONS.map((one) => one.id);
+
+// The drawings held in this entry, answered at once by `organisationFlag`: the European Union's.
+const HELD: Readonly<Record<string, string>> = { "org:eu": EUROPEAN_UNION };
 
 const BY_ID: ReadonlyMap<string, (typeof ORGANISATIONS)[number]> = new Map(ORGANISATIONS.map((one) => [one.id, one]));
 
@@ -79,23 +83,48 @@ const organisationId = (input: string): OrganisationId | null => {
 
 /**
  * An organisation's flag as an SVG string, the same kind of string a country's module holds: it has a viewBox and no
- * width or height. `frame()` and `toDataUri()` from the main entry take it like any other.
+ * width or height. `frame()` and `toDataUri()` from the main entry take it like any other. The entry holds the drawing of the
+ * European Union (the flag drawn for this package), so this answers at once; the bodies taken from Wikimedia Commons are drawings
+ * of their own, loaded on demand: `loadOrganisationFlag` gives any of them.
  *
  * @param id - An organisation's id, in any case, with or without `org:` ("org:eu", "EU").
- * @returns The SVG string, loaded when it is asked for (each drawing is a module of its own, so a page carries only the flags it asks for), or `null` when the id has no flag here.
- * @throws TypeError, as a rejection, when `id` is not a string.
+ * @returns The SVG string, or `null` when the id has no flag here or its drawing is not held in this entry (see `loadOrganisationFlag`).
+ * @throws TypeError when `id` is not a string.
  *
  * @example
  * ```ts
  * import { frame } from "@johnmorrisdotca/hata";
  * import { organisationFlag } from "@johnmorrisdotca/hata/organisations";
  *
- * const european = await organisationFlag("org:eu"); // "<svg …>"
+ * const european = organisationFlag("org:eu"); // "<svg …>"
  * console.log(european === null ? null : frame(european, { shape: "round", label: "European Union" }));
- * console.log(await organisationFlag("org:xx")); // null
+ * console.log(organisationFlag("org:xx"));     // null
  * ```
  */
-const organisationFlag = async (id: string): Promise<string | null> => {
+const organisationFlag = (id: string): string | null => {
+  const known = organisationId(id);
+
+  return known === null ? null : (HELD[known] ?? null);
+};
+
+/**
+ * Any organisation's flag as an SVG string, loaded when it is asked for: each drawing is a module of its own
+ * (`@johnmorrisdotca/hata/organisations/<slug>`), so a page carries the drawings it asks for and no others. The same string
+ * `organisationFlag` gives for the European Union, and the drawing of each body taken from Wikimedia Commons.
+ *
+ * @param id - An organisation's id, in any case, with or without `org:` ("org:caricom", "CARICOM").
+ * @returns The SVG string, or `null` when the id has no flag here.
+ * @throws TypeError, as a rejection, when `id` is not a string.
+ *
+ * @example
+ * ```ts
+ * import { loadOrganisationFlag } from "@johnmorrisdotca/hata/organisations";
+ *
+ * console.log((await loadOrganisationFlag("org:caricom"))?.startsWith("<svg")); // true
+ * console.log(await loadOrganisationFlag("org:xx"));                            // null
+ * ```
+ */
+const loadOrganisationFlag = async (id: string): Promise<string | null> => {
   const known = organisationId(id);
   const load = known === null ? undefined : ORGANISATION_LOADERS[known];
 
@@ -196,5 +225,5 @@ const organisationSource = (id: string): { file: string; page: string; licence: 
   return found?.source === undefined ? null : { ...found.source };
 };
 
-export { isOrganisationId, ORGANISATION_IDS, organisationAspect, organisationFlag, organisationId, organisationName, organisationSource, organisationTerms };
+export { isOrganisationId, ORGANISATION_IDS, organisationAspect, loadOrganisationFlag, organisationFlag, organisationId, organisationName, organisationSource, organisationTerms };
 export type { OrganisationId };

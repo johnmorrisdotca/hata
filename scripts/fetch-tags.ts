@@ -66,7 +66,7 @@ interface Bindings {
 const sparql = async (query: string): Promise<Bindings["results"]["bindings"]> => ((await ask(SPARQL, new URLSearchParams({ query, format: "json" }), 0)) as Bindings).results.bindings;
 
 // 1. What each flag's item depicts.
-const places = [...new Set(RECORDS.flatMap((record) => (record.wikidata === null ? [] : [record.wikidata])))].sort((a, b) => Number(a.slice(1)) - Number(b.slice(1)));
+const places = [...new Set(RECORDS.flatMap((record) => (record.wikidata === "" ? [] : [record.wikidata])))].sort((a, b) => Number(a.slice(1)) - Number(b.slice(1)));
 const depictsQuery = `SELECT ?place ?flag ?thing ?thingLabel WHERE {
   VALUES ?place { ${places.map((place) => `wd:${place}`).join(" ")} }
   ?place wdt:P163 ?flag .

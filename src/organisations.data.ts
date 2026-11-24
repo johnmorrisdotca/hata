@@ -40,10 +40,12 @@ const HAND_DRAWN = [
 ] as const satisfies readonly OrganisationRecord[];
 
 // The European Union is drawn for this package; the others are Commons files (organisations.commons.data.ts).
-const ORGANISATIONS: readonly OrganisationRecord[] = [...HAND_DRAWN, ...ORGANISATIONS_FROM_COMMONS];
+type OrganisationRecordId = "org:eu" | (typeof ORGANISATIONS_FROM_COMMONS)[number]["id"];
+
+const ORGANISATIONS: readonly (OrganisationRecord & { id: OrganisationRecordId })[] = [...HAND_DRAWN, ...ORGANISATIONS_FROM_COMMONS];
 
 /** One dynamic import for each drawing, so that a page downloads only the flags it shows. */
 const ORGANISATION_LOADERS: Readonly<Record<string, DrawnLoader>> = { "org:eu": () => import("./sets/organisations/eu"), ...ORGANISATIONS_FROM_COMMONS_LOADERS };
 
 export { ORGANISATIONS, ORGANISATION_LOADERS };
-export type { OrganisationRecord };
+export type { OrganisationRecord, OrganisationRecordId };
