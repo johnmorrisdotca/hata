@@ -15,17 +15,11 @@ src/
 ├── names.ts            the "/names" entry: each flag's place in English and Japanese, and its aspect ratio
 ├── organisations.ts    the "/organisations" entry: the flags of international organisations by their "org:" id
 ├── signals.ts          the "/signals" entry: the International Code of Signals' flags by their "ics:" id
-├── drawn.ts            what the sets drawn for this package share (not an entry): ids, names, meanings, sources, aspect ratios
-├── sets/               the drawn sets' records: signals.data.ts, made by scripts/draw-signals.ts (pnpm draw)
 ├── samurai.ts          the "/samurai" entry: the battle banners of Sengoku daimyo by their "samurai:" id
+├── military.ts         the "/military" entry: naval ensigns, jacks and war flags by their "mil:" id
+├── medieval.ts         the "/medieval" entry: medieval banners by their "med:" id
 ├── drawn.ts            what the sets drawn for this package share (not an entry): ids, names, descriptions, sources, aspect ratios
-├── sets/               the drawn sets' records: samurai.data.ts, made by scripts/draw-samurai.ts (pnpm draw:samurai)
-├── medieval.ts         the "/medieval" entry: a curated set of medieval banners by their "med:" id
-├── drawn.ts            what the sets drawn for this package share (not an entry): ids, names, descriptions, sources, aspect ratios
-├── sets/               the drawn sets' records: medieval.data.ts, made by scripts/draw-medieval.ts (pnpm draw:medieval)
-├── military.ts         the "/military" entry: naval ensigns and jacks by their "mil:" id
-├── drawn.ts            what the sets drawn for this package share (not an entry): ids, names, descriptions, sources, aspect ratios
-├── sets/               the drawn sets' records: military.data.ts, made by scripts/draw-military.ts (pnpm draw:military)
+├── sets/               the drawn sets' records (signals, samurai, military, medieval), made by scripts/draw-*.ts (pnpm draw, draw:samurai, draw:military, draw:medieval)
 ├── search.ts           the "/search" entry: each flag's colours and tags, and the flags that have the ones asked for
 ├── organisations.data.ts   the organisations' records (id, names, drawing, terms): the one place to add a flag
 ├── organisations.commons.data.ts   the six taken from Commons, made by scripts/draw-organisations.ts (pnpm draw:organisations)

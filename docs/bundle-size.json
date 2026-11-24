@@ -2,60 +2,72 @@
   "measured": "esbuild 0.28.2, bundled, minified, ES2020, gzip level 9",
   "entries": {
     ".": {
-      "minified": 7969,
-      "gzip": 3777
+      "minified": 8526,
+      "gzip": 4065
     },
     "./load": {
-      "minified": 14706019,
-      "gzip": 4530045
+      "minified": 15222162,
+      "gzip": 4695060
     },
     "./manifest": {
-      "minified": 1216099,
-      "gzip": 155208
+      "minified": 1342115,
+      "gzip": 173086
     },
     "./names": {
-      "minified": 31129,
-      "gzip": 9347
+      "minified": 34066,
+      "gzip": 10316
     },
     "./organisations": {
       "minified": 56508,
       "gzip": 21482
     },
+    "./signals": {
+      "minified": 76316,
+      "gzip": 7158
+    },
+    "./samurai": {
+      "minified": 23997,
+      "gzip": 4764
+    },
     "./military": {
       "minified": 1490441,
       "gzip": 434800
     },
+    "./medieval": {
+      "minified": 507683,
+      "gzip": 165024
+    },
     "./search": {
-      "minified": 69111,
-      "gzip": 21178
+      "minified": 73669,
+      "gzip": 22578
     },
     "./custom": {
       "minified": 16556,
       "gzip": 6925
     },
     "./element": {
-      "minified": 14744854,
-      "gzip": 4542757
+      "minified": 15263589,
+      "gzip": 4708534
     },
     "./element/define": {
-      "minified": 14744807,
-      "gzip": 4542749
+      "minified": 15263542,
+      "gzip": 4708458
     },
     "./bind": {
-      "minified": 14738510,
-      "gzip": 4540298
+      "minified": 15257245,
+      "gzip": 4706049
     },
     "./react": {
-      "minified": 14769751,
-      "gzip": 4553483
+      "minified": 15288494,
+      "gzip": 4716937
     },
     "./vue": {
-      "minified": 14784316,
-      "gzip": 4557419
+      "minified": 15303063,
+      "gzip": 4723146
     },
     "./react-native": {
-      "minified": 14768824,
-      "gzip": 4553017
+      "minified": 15287567,
+      "gzip": 4716490
     },
     "./flags/ad.1x1": {
       "minified": 28262,

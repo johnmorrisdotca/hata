@@ -179,15 +179,23 @@ await step("organisations", () => {
 await step("former countries", () => {
   const out = execFileSync(process.execPath, [join(examples("former"), "former.mjs")], { cwd: usage, encoding: "utf8" }).trim().split("\n");
   if (out.join("|") !== "1844 1299|BJ true|civil-ensign other-role|The Kingdom's flags on Commons") throw new Error(`unexpected output: ${out.join(" | ")}`);
+});
+
 await step("signals", () => {
   const out = execFileSync(process.execPath, [join(examples("signals"), "signals.mjs")], { cwd: usage, encoding: "utf8" }).trim().split("\n");
   if (out.join("|") !== "ics:s ics:o ics:s ics:7 true|Man overboard. 人が海に落ちました。") throw new Error(`unexpected output: ${out.join(" | ")}`);
+});
+
 await step("samurai", () => {
   const out = execFileSync(process.execPath, [join(examples("samurai"), "samurai.mjs")], { cwd: usage, encoding: "utf8" }).trim().split("\n");
   if (out.join("|") !== "true true 真田の六連銭の幟|reconstruction") throw new Error(`unexpected output: ${out.join(" | ")}`);
+});
+
 await step("medieval", () => {
   const out = execFileSync(process.execPath, [join(examples("medieval"), "medieval.mjs")], { cwd: usage, encoding: "utf8" }).trim();
   if (out !== "true true 1218") throw new Error(`unexpected output: ${out}`);
+});
+
 await step("military", () => {
   const out = execFileSync(process.execPath, [join(examples("military"), "military.mjs")], { cwd: usage, encoding: "utf8" }).trim();
   if (out !== "true true 1864") throw new Error(`unexpected output: ${out}`);

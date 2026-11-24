@@ -15,8 +15,8 @@ import * as names from "./names.ts";
 import * as organisations from "./organisations.ts";
 import * as signals from "./signals.ts";
 import * as samurai from "./samurai.ts";
-import * as medieval from "./medieval.ts";
 import * as military from "./military.ts";
+import * as medieval from "./medieval.ts";
 import * as search from "./search.ts";
 import * as custom from "./custom.ts";
 
@@ -41,10 +41,7 @@ describe("the README", () => {
   it("names in its API table every runtime export of every entry", () => {
     const table = section("API");
     const rowOf = (entry) => table.split("\n").find((line) => line.startsWith(`| \`${entry}\``)) ?? "";
-    for (const [entry, module] of [[pkg.name, main], [`${pkg.name}/load`, load], [`${pkg.name}/manifest`, manifest], [`${pkg.name}/names`, names], [`${pkg.name}/organisations`, organisations], [`${pkg.name}/signals`, signals], [`${pkg.name}/search`, search], [`${pkg.name}/custom`, custom], [`${pkg.name}/element`, element]]) {
-    for (const [entry, module] of [[pkg.name, main], [`${pkg.name}/load`, load], [`${pkg.name}/manifest`, manifest], [`${pkg.name}/names`, names], [`${pkg.name}/organisations`, organisations], [`${pkg.name}/samurai`, samurai], [`${pkg.name}/search`, search], [`${pkg.name}/custom`, custom], [`${pkg.name}/element`, element]]) {
-    for (const [entry, module] of [[pkg.name, main], [`${pkg.name}/load`, load], [`${pkg.name}/manifest`, manifest], [`${pkg.name}/names`, names], [`${pkg.name}/organisations`, organisations], [`${pkg.name}/medieval`, medieval], [`${pkg.name}/search`, search], [`${pkg.name}/custom`, custom], [`${pkg.name}/element`, element]]) {
-    for (const [entry, module] of [[pkg.name, main], [`${pkg.name}/load`, load], [`${pkg.name}/manifest`, manifest], [`${pkg.name}/names`, names], [`${pkg.name}/organisations`, organisations], [`${pkg.name}/military`, military], [`${pkg.name}/search`, search], [`${pkg.name}/custom`, custom], [`${pkg.name}/element`, element]]) {
+    for (const [entry, module] of [[pkg.name, main], [`${pkg.name}/load`, load], [`${pkg.name}/manifest`, manifest], [`${pkg.name}/names`, names], [`${pkg.name}/organisations`, organisations], [`${pkg.name}/signals`, signals], [`${pkg.name}/samurai`, samurai], [`${pkg.name}/military`, military], [`${pkg.name}/medieval`, medieval], [`${pkg.name}/search`, search], [`${pkg.name}/custom`, custom], [`${pkg.name}/element`, element]]) {
       const row = rowOf(entry);
       for (const name of Object.keys(module)) expect(row, `${name} is not in the API table's row for ${entry}`).toContain(`\`${name}\``);
     }

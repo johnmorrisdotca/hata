@@ -103,10 +103,7 @@ const file = readFileSync(createRequire(import.meta.url).resolve("${pkg.name}/sv
 if (file !== wanted) throw new Error("svg/jp.svg is not the module's SVG");
 const required = createRequire(import.meta.url)("${pkg.name}/flags/jp");
 if (required.default !== wanted) throw new Error("require() of flags/jp gave " + typeof required.default);
-console.log("every entry, flags/jp, flags/ca.1x1, /load, /names, /organisations, /signals, /custom, /element, svg/jp.svg, manifest.json and require()");
-console.log("every entry, flags/jp, flags/ca.1x1, /load, /names, /organisations, /samurai, /custom, /element, svg/jp.svg, manifest.json and require()");
-console.log("every entry, flags/jp, flags/ca.1x1, /load, /names, /organisations, /medieval, /custom, /element, svg/jp.svg, manifest.json and require()");
-console.log("every entry, flags/jp, flags/ca.1x1, /load, /names, /organisations, /military, /custom, /element, svg/jp.svg, manifest.json and require()");
+console.log("every entry, flags/jp, flags/ca.1x1, /load, /names, /organisations, /signals, /samurai, /military, /medieval, /custom, /element, svg/jp.svg, manifest.json and require()");
 `,
 );
 console.log(`ok   ${run(process.execPath, ["esm.mjs"], project).trim()}`);
@@ -154,10 +151,7 @@ const define: (name?: string) => void = defineFlag;
 const props: FlagProps = { code: "JP", which: "in-use", date: "1962" };
 const bound: Promise<unknown> = resolveFlag(props);
 type Element = HataFlagElement;
-export { alfa, bound, code, define, eu, mine, register, first, framed, later, name, organisation, record, square, uri, url };
-export { bound, code, define, eu, sanada, mine, register, first, framed, later, name, organisation, record, square, uri, url };
-export { bound, code, cross, define, eu, mine, register, first, framed, later, name, organisation, record, square, uri, url };
-export { bound, code, define, eu, white, mine, register, first, framed, later, name, organisation, record, square, uri, url };
+export { alfa, bound, code, cross, define, eu, mine, register, sanada, first, framed, later, name, organisation, record, square, uri, url, white };
 export type { Element };
 `,
 );

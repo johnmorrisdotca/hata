@@ -194,12 +194,11 @@ The alias changes only the import name in your project.
 | `@johnmorrisdotca/hata/flags/<code>` | One flag's SVG string (`/flags/jp`, `/flags/jp-13`, `/flags/ca-on`, `/flags/de-by`, and a former country's, `/flags/suhh`, lower case); `/flags/<code>.1x1` and `.4x3`, flag-icons' drawing made for that frame, where there is one | median 755 bytes; 176 bytes for Japan |
 | `@johnmorrisdotca/hata/load` | `flag(code, { shape, fit, variant, date, role })`, one dynamic import per flag | 26 KB, 5.7 KB gzipped, then the flag's own file (and a 3.6 KB gzipped table when a frame is asked for, and a 0.5 KB one when a variant is) |
 | `@johnmorrisdotca/hata/names` | `flagName(code, lang)` and `flagAspect(code)`: each flag's place in English and Japanese, from Kuni | 24 KB, 8.7 KB gzipped |
-| `@johnmorrisdotca/hata/organisations` | Organisations' flags, by `org:` id | 1.2 KB gzipped |
-| `@johnmorrisdotca/hata/signals` | The International Code of Signals' 40 ship signal flags, by `ics:` id, with their meanings in English and Japanese | 68 KB, 7.1 KB gzipped |
-| `@johnmorrisdotca/hata/samurai` | Nine battle banners of Sengoku daimyo (nobori, hata, uma-jirushi), by `samurai:` id, each saying what is documented and what is reconstruction | 24 KB, 4.7 KB gzipped |
-| `@johnmorrisdotca/hata/medieval` | 42 medieval banners (six drawn for this package, 36 Wikimedia Commons drawings in the public domain or CC0), by `med:` id, each with its dates, source, file and licence | 496 KB, 161 KB gzipped |
-| `@johnmorrisdotca/hata/military` | 60 naval ensigns, jacks and war flags of more than thirty navies (Japan's Rising Sun Flag only here, as two ensigns), by `mil:` id, with dates, sources, licences and authors; the Confederate battle flags withheld by default | 1.5 MB, 425 KB gzipped |
-| `@johnmorrisdotca/hata/organisations` | Organisations' flags (the European Union's and six taken from Commons), by `org:` id | 55 KB, 21 KB gzipped |
+| `@johnmorrisdotca/hata/signals` | The International Code of Signals' 40 ship signal flags, by `ics:` id, with their meanings in English and Japanese | 74.5 KB, 7.0 KB gzipped |
+| `@johnmorrisdotca/hata/samurai` | Nine battle banners of Sengoku daimyo (nobori, hata, uma-jirushi), by `samurai:` id, each saying what is documented and what is reconstruction | 23.4 KB, 4.7 KB gzipped |
+| `@johnmorrisdotca/hata/medieval` | 42 medieval banners (six drawn for this package, 36 Wikimedia Commons drawings in the public domain or CC0), by `med:` id, each with its dates, source, file and licence | 495.8 KB, 161 KB gzipped |
+| `@johnmorrisdotca/hata/military` | 60 naval ensigns, jacks and war flags of more than thirty navies (Japan's Rising Sun Flag only here, as two ensigns), by `mil:` id, with dates, sources, licences and authors; the Confederate battle flags withheld by default | 1.4 MB, 425 KB gzipped |
+| `@johnmorrisdotca/hata/organisations` | Organisations' flags (the European Union's and six taken from Commons), by `org:` id | 55.2 KB, 21 KB gzipped |
 | `@johnmorrisdotca/hata/search` | Each flag's colours (`coloursOf`) and tags (`tagsOf`), and the flags that have them (`flagsWith`) | 67 KB, 21 KB gzipped |
 | `@johnmorrisdotca/hata/custom` | Flags the page registers (`custom:<slug>`) | 11 KB |
 | `@johnmorrisdotca/hata/element` | `<hata-flag>`: `defineFlag`, `FLAG_ELEMENT_NAME`, `FLAG_ELEMENT_ATTRIBUTES` | 8 KB, 2.8 KB gzipped, then /load and /names |
@@ -385,7 +384,6 @@ The [API reference](https://johnmorrisdotca.github.io/hata/api.html) lists every
 | `@johnmorrisdotca/hata/flags/<code>` | the flag's SVG string as the default export and as `svg` |
 | `@johnmorrisdotca/hata/load` | `flag`, `flagDataUri`, `flagOn` and the types `FlagOptions`, `FrameOptions` and `LoadedFlagOn` |
 | `@johnmorrisdotca/hata/names` | `flagName`, `flagAspect` and the type `NameLanguage` |
-| `@johnmorrisdotca/hata/organisations` | `ORGANISATION_IDS`, `isOrganisationId`, `organisationId`, `organisationFlag`, `organisationName`, `organisationAspect`, `organisationTerms`, type `OrganisationId` |
 | `@johnmorrisdotca/hata/signals` | `SIGNAL_IDS`, `isSignalId`, `signalId`, `signalFlag`, `signalName`, `signalMeaning`, `signalAspect`, `signalInfo`, `signalsFor`, types `SignalId`, `SignalInfo` |
 | `@johnmorrisdotca/hata/samurai` | `SAMURAI_IDS`, `isSamuraiId`, `samuraiId`, `samuraiFlag`, `samuraiName`, `samuraiAbout`, `samuraiAspect`, `samuraiInfo`, `samuraiIn`, types `SamuraiId`, `SamuraiInfo` |
 | `@johnmorrisdotca/hata/medieval` | `MEDIEVAL_IDS`, `isMedievalId`, `medievalId`, `medievalFlag`, `medievalName`, `medievalAbout`, `medievalAspect`, `medievalInfo`, `medievalIn`, types `MedievalId`, `MedievalInfo` |

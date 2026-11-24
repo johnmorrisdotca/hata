@@ -26,8 +26,6 @@ interface DrawnSource {
 /** What is known of a drawing: `official` (the body's own specification), `documented` (a period or museum source shows it) or `reconstruction` (drawn from a description or a later picture). */
 type DrawnStatus = "official" | "documented" | "reconstruction";
 
-interface DrawnRecord {
-  id: string;
 /** A drawing that is shipped for history and education and never given by default: why, and who it is for, in both languages. No law restricts it. */
 interface DrawnRestriction {
   reason: string;
@@ -65,10 +63,6 @@ interface DrawnInfo {
   note: { en: string; ja: string };
   source: DrawnSource;
   aspect: number;
-}
-
-const drawnSet = <const Records extends readonly DrawnRecord[]>(prefix: string, records: Records) => {
-  const byId: ReadonlyMap<string, Records[number]> = new Map(records.map((one) => [one.id, one]));
   /** Why the drawing is withheld by default, or null. */
   restricted: DrawnRestriction | null;
 }
@@ -87,12 +81,6 @@ const drawnSet = <const Records extends readonly DrawnRecord[]>(prefix: string, 
 
   return {
     ids: records.map((one) => one.id) as readonly Records[number]["id"][],
-    isId: (value: unknown): boolean => typeof value === "string" && byId.has(value),
-    idOf,
-    flag: (id: string): string | null => {
-      const known = idOf(id);
-
-      return known === null ? null : (byId.get(known)?.svg ?? null);
     isId: (value: unknown): boolean => typeof value === "string" && byId.has(value) && byId.get(value)?.restricted === undefined,
     restrictedIds: all.filter((one) => one.restricted !== undefined).map((one) => one.id),
     idOf,
@@ -143,5 +131,4 @@ const drawnSet = <const Records extends readonly DrawnRecord[]>(prefix: string, 
 };
 
 export { drawnSet };
-export type { DrawnInfo, DrawnRecord, DrawnSource, DrawnStatus };
 export type { DrawnInfo, DrawnRecord, DrawnRestriction, DrawnSource, DrawnStatus };

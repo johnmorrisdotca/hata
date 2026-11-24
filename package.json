@@ -89,24 +89,21 @@
       "types": "./dist/organisations.d.ts",
       "default": "./dist/organisations.js"
     },
-<<<<<<< HEAD
-<<<<<<< HEAD
     "./signals": {
       "types": "./dist/signals.d.ts",
       "default": "./dist/signals.js"
+    },
     "./samurai": {
       "types": "./dist/samurai.d.ts",
       "default": "./dist/samurai.js"
-=======
-    "./medieval": {
-      "types": "./dist/medieval.d.ts",
-      "default": "./dist/medieval.js"
->>>>>>> origin/feat/1811-medieval-banners
-=======
+    },
     "./military": {
       "types": "./dist/military.d.ts",
       "default": "./dist/military.js"
->>>>>>> origin/feat/1812-military-flags
+    },
+    "./medieval": {
+      "types": "./dist/medieval.d.ts",
+      "default": "./dist/medieval.js"
     },
     "./search": {
       "types": "./dist/search.d.ts",
@@ -3863,23 +3860,14 @@
     "check": "pnpm lint && pnpm typecheck && pnpm build && node scripts/check-docs.mjs && pnpm test && node scripts/check-package.mjs",
     "prepublishOnly": "pnpm check",
     "data": "node scripts/build-data.ts",
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
     "draw": "node scripts/draw-signals.ts",
     "draw:samurai": "node scripts/draw-samurai.ts",
-=======
-    "draw:medieval": "node scripts/draw-medieval.ts",
-    "data:medieval": "node scripts/fetch-medieval.ts",
->>>>>>> origin/feat/1811-medieval-banners
-=======
     "draw:military": "node scripts/draw-military.ts",
-    "data:military": "node scripts/fetch-military.ts",
->>>>>>> origin/feat/1812-military-flags
-=======
-    "data:organisations": "node scripts/fetch-organisations.ts",
+    "draw:medieval": "node scripts/draw-medieval.ts",
     "draw:organisations": "node scripts/draw-organisations.ts",
->>>>>>> origin/feat/1813-organisations-terms
+    "data:military": "node scripts/fetch-military.ts",
+    "data:medieval": "node scripts/fetch-medieval.ts",
+    "data:organisations": "node scripts/fetch-organisations.ts",
     "data:wikidata": "node scripts/fetch-wikidata.ts",
     "data:commons": "node scripts/fetch-commons.ts",
     "site": "pnpm build && node scripts/site.mjs",
