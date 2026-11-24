@@ -176,6 +176,11 @@ await step("organisations", () => {
   if (out !== "true true 欧州連合") throw new Error(`unexpected output: ${out}`);
 });
 
+await step("signals", () => {
+  const out = execFileSync(process.execPath, [join(examples("signals"), "signals.mjs")], { cwd: usage, encoding: "utf8" }).trim().split("\n");
+  if (out.join("|") !== "ics:s ics:o ics:s ics:7 true|Man overboard. 人が海に落ちました。") throw new Error(`unexpected output: ${out.join(" | ")}`);
+});
+
 await step("historic", () => {
   const out = execFileSync(process.execPath, [join(examples("historic"), "historic.mjs")], {
     cwd: usage,
@@ -439,6 +444,7 @@ const FILES: Record<string, string[]> = {
   "typescript/index.ts": guide("typescript-and-node"),
   "node/server.mjs": guide("typescript-and-node"),
   "organisations/organisations.mjs": guide("organisations"),
+  "signals/signals.mjs": guide("ship-signal-flags"),
   "custom/custom.mjs": guide("custom-flags"),
   "historic/historic.mjs": guide("historic-flags"),
   "historic/roles.mjs": guide("historic-flags"),

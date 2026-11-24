@@ -116,6 +116,16 @@ Left out, read on 2026-11-13, for the owner to decide again if a body's terms ch
 | Commonwealth | The Secretariat's page covers its logo, to be used exactly as supplied; it says nothing of the flag, and its terms page is about procurement. | https://thecommonwealth.org/commonwealth-secretariat-logo-kit-and-guidelines |
 | CARICOM, Pacific Islands Forum, Organisation of Islamic Cooperation, League of Arab States, Commonwealth of Independent States | No terms for the flag or emblem were found on the body's own pages (the League's portal carries an all-rights-reserved notice); there is no sentence to record. | https://caricom.org/ , https://forumsec.org/ , https://www.oic-oci.org/ , http://www.lasportal.org/en/Pages/default.aspx , https://eccis.org/en/about-cis |
 
+## Ship signal flags
+
+The flags of the International Code of Signals are a separate entry point (`@johnmorrisdotca/hata/signals`, ids `ics:<slug>`), and none of them is a Commons
+file: each is drawn for this package, under the MIT licence, as geometry written out in `scripts/draw-signals.ts`, from the Code's own plate and
+text. The Code is a work of the United States Government, with no copyright claimed under Title 17 of the United States Code. Read on 2026-11-24:
+
+| Ids | What | Source | What it says |
+| --- | --- | --- | --- |
+| `ics:a` to `ics:z`, `ics:0` to `ics:9`, `ics:sub-1` to `ics:sub-3`, `ics:answer` | The 26 alphabet flags, the 10 numeral pennants, the 3 substitutes and the answering pennant | International Code of Signals, United States Edition, 1969 (Revised 2003), Pub. 102, National Imagery and Mapping Agency (the copy read is the Internet Archive's, https://archive.org/details/pub-102) | The plate "International Flags and Pennants" shows each flag and pennant, and the Code names the five colours and gives each single-letter signal its meaning. It gives no construction sheet: the proportions are measured from the plate and the values of the colours are this package's. |
+
 ## Not carried
 
 Nothing from other flag sets (flag-icons, country-flag-icons, circle-flags): they were measured for comparison

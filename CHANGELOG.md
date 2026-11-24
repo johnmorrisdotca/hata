@@ -6,6 +6,10 @@ All notable changes to this project are written here. The format follows
 
 ## [Unreleased]
 
+### Added
+
+- **Ship signal flags: the International Code of Signals** (MODULES-1809). A new entry point, `@johnmorrisdotca/hata/signals`, with an id namespace of its own, `ics:`: the 26 alphabet flags, the 10 numeral pennants, the 3 substitutes and the answering pennant, drawn for this package from the Code's own plate (Pub. 102, a United States Government work) as exact geometry under the MIT licence, with each flag's meaning in English (the Code's words) and Japanese. `signalFlag`, `signalName`, `signalMeaning`, `signalAspect`, `signalInfo`, `signalId`, `isSignalId`, `signalsFor` and `SIGNAL_IDS`. `pnpm draw` makes the data from `scripts/draw-signals.ts`. A page of them in the demo (`signals.html`, kinds as chips) and a guide in English and Japanese. The shared parts for the sets drawn for this package are `src/drawn.ts`, `scripts/draw-lib.ts`, `demo/set.*` and `src/sets.test.ts`.
+
 ## [1.15.0] - 2026-11-23
 
 ### Added
