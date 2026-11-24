@@ -1,0 +1,17 @@
+{
+  "name": "medieval",
+  "what": { "en": "medieval banners", "ja": "中世の旗" },
+  "description": {
+    "en": "Six medieval banners (the Templars', the red cross, Denmark's in the Gelre Armorial, Aragon, Scotland, the Hospitallers'), each drawn from the page that dates it and saying what is documented and what is reconstruction.",
+    "ja": "中世の旗6点（テンプル騎士団、赤十字、ゲルレ紋章集のデンマーク、アラゴン、スコットランド、聖ヨハネ騎士団）を、年代を示す文献から描いたものです。確かめられていることと復元とを、それぞれが述べています。"
+  },
+  "intro": {
+    "en": "Choose a kind, then a banner. No banner of the time survives, so each is a reconstruction, and its note says what the dated source documents.",
+    "ja": "種類を選び、旗を選んでください。当時の旗は残っていないので、どれも復元で、年代の分かる出典が何を示すかは、それぞれの注記に書いてあります。"
+  },
+  "groups": {
+    "order": { "en": "Military orders", "ja": "騎士団" },
+    "cross": { "en": "Crosses", "ja": "十字" },
+    "kingdom": { "en": "Kingdoms", "ja": "王国" }
+  }
+}

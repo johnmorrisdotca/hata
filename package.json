@@ -89,6 +89,10 @@
       "types": "./dist/organisations.d.ts",
       "default": "./dist/organisations.js"
     },
+    "./medieval": {
+      "types": "./dist/medieval.d.ts",
+      "default": "./dist/medieval.js"
+    },
     "./search": {
       "types": "./dist/search.d.ts",
       "default": "./dist/search.js"
@@ -3844,6 +3848,7 @@
     "check": "pnpm lint && pnpm typecheck && pnpm build && node scripts/check-docs.mjs && pnpm test && node scripts/check-package.mjs",
     "prepublishOnly": "pnpm check",
     "data": "node scripts/build-data.ts",
+    "draw:medieval": "node scripts/draw-medieval.ts",
     "data:wikidata": "node scripts/fetch-wikidata.ts",
     "data:commons": "node scripts/fetch-commons.ts",
     "site": "pnpm build && node scripts/site.mjs",

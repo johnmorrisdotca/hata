@@ -6,6 +6,10 @@ All notable changes to this project are written here. The format follows
 
 ## [Unreleased]
 
+### Added
+
+- **Medieval banners, a small curated set** (MODULES-1811). A new entry point, `@johnmorrisdotca/hata/medieval`, with an id namespace of its own, `med:`: six banners (the Templars', the red cross on white, Denmark's in the Gelre Armorial, the arms of Aragon, Scotland's saltire and the Hospitallers' cross), each drawn for this package as geometry under the MIT licence from a page that dates it. No banner of the time survives, so each is a `reconstruction`, and its `note` says what the source documents and what is this package's. `medievalFlag`, `medievalName`, `medievalAbout`, `medievalAspect`, `medievalInfo`, `medievalId`, `isMedievalId`, `medievalIn` and `MEDIEVAL_IDS`; `pnpm draw:medieval` makes the data. A page of them in the demo (`medieval.html`, kinds as chips) and a guide in English and Japanese, which also lists what is left out (the Teutonic Order's banner, the lions of England, the fleurs-de-lis of France, the Oriflamme).
+
 ## [1.15.0] - 2026-11-23
 
 ### Added

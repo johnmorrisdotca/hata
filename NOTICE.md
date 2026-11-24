@@ -116,6 +116,21 @@ Left out, read on 2026-11-13, for the owner to decide again if a body's terms ch
 | Commonwealth | The Secretariat's page covers its logo, to be used exactly as supplied; it says nothing of the flag, and its terms page is about procurement. | https://thecommonwealth.org/commonwealth-secretariat-logo-kit-and-guidelines |
 | CARICOM, Pacific Islands Forum, Organisation of Islamic Cooperation, League of Arab States, Commonwealth of Independent States | No terms for the flag or emblem were found on the body's own pages (the League's portal carries an all-rights-reserved notice); there is no sentence to record. | https://caricom.org/ , https://forumsec.org/ , https://www.oic-oci.org/ , http://www.lasportal.org/en/Pages/default.aspx , https://eccis.org/en/about-cis |
 
+## Medieval banners
+
+The medieval banners are a separate entry point (`@johnmorrisdotca/hata/medieval`, ids `med:<slug>`), and none of them is a Commons file: each is drawn for this
+package, under the MIT licence, as geometry written out in `scripts/draw-medieval.ts`, from the page that dates it, and nothing is copied from a picture. No banner of
+the time survives for any of them, so every drawing is a reconstruction, and its record says what the source documents and what is this package's. Read on 2026-11-24:
+
+| Id | What | Source | What it says |
+| --- | --- | --- | --- |
+| `med:templar-baucent` | The Templars' banner | Beauseant, Wikipedia, https://en.wikipedia.org/wiki/Beauseant | 13th-century sources describe a white gonfanon with a black chief; Jacques de Vitry (1220s), Matthew Paris (c. 1250 to 1259) and the San Bevignate fresco (c. 1290). |
+| `med:red-cross` | The red cross on white | Saint George's Cross, Wikipedia, https://en.wikipedia.org/wiki/Saint_George%27s_Cross | The Genoese annals show a plain red-cross flag from at least 1218; the red cross on white a crusaders' symbol from about 1190; the 1190 grant of Richard I is a tradition. |
+| `med:gelre-denmark` | Denmark's banner in the Gelre Armorial | Gelre Armorial, Wikipedia, https://en.wikipedia.org/wiki/Gelre_Armorial | Compiled before 1396; folio 55v shows a banner with a white cross on red for "die coninc van denmarke", the earliest known coloured image of the Dannebrog. |
+| `med:aragon-pallets` | The arms of Aragon | Flag of Aragon, Wikipedia, https://en.wikipedia.org/wiki/Flag_of_Aragon | The earliest undisputed material evidence is the seal of Alfonso II of 1159; the blazon is Or, four bars Gules. |
+| `med:scotland-saltire` | The saltire of Scotland | Flag of Scotland, Wikipedia, https://en.wikipedia.org/wiki/Flag_of_Scotland | The white saltire on blue is recorded as a naval flag for 1507 (the carrack Great Michael) and shown in Lindsay's armorial in 1542. |
+| `med:hospitaller-cross` | The Hospitallers' white cross on red | Knights Hospitaller, Wikipedia, https://en.wikipedia.org/wiki/Knights_Hospitaller | A plain silver cross in a field of red given to the order by Pope Innocent II (1130); a red surcoat with a white cross approved in 1248. |
+
 ## Not carried
 
 Nothing from other flag sets (flag-icons, country-flag-icons, circle-flags): they were measured for comparison
