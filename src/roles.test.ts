@@ -52,7 +52,8 @@ describe("variantOn with a role", () => {
       expect(variantOn("CA", day)?.id, day).toBe("union-flag");
       expect(variantOn("CA", day, { role: "legal" })?.id, day).toBe("union-flag");
     }
-    expect(variantOn("CA", "1868-06-01", { role: "in-use" })?.id).toBe("red-ensign-1868");
+    expect(variantOn("CA", "1871-06-01", { role: "in-use" })?.id).toBe("red-ensign-1868");
+    expect(variantOn("CA", "1868-06-01", { role: "in-use" })).toBeNull();
     expect(variantOn("CA", "1930-05-05", { role: "in-use" })?.id).toBe("red-ensign-1922");
     expect(variantOn("CA", "1962-09-29", { role: "in-use" })?.id).toBe("red-ensign-1957");
     expect(variantOn("CA", "1965-02-15")?.id).toBe("maple-leaf");

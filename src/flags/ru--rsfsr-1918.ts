@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_the_Russian_Soviet_Federative_Socialist_Republic_(1918%E2%80%931925).svg
 
 /**
- * RSFSR flag, June 1918 (gold letters РСФСР): one of the flags of Russia (ロシア), RU, in real use, as an SVG string: viewBox 600 by 300 (2:1), 2.4 KB.
+ * RSFSR flag, July 1918 (gold letters РСФСР): one of the flags of Russia (ロシア), RU, in real use, as an SVG string: viewBox 600 by 300 (2:1), 2.4 KB.
  * From Wikimedia Commons, "Flag of the Russian Soviet Federative Socialist Republic (1918–1925).svg" (public domain). `flag("RU", { variant: "rsfsr-1918" })` loads it, and `variantsOf("RU")` says its status, dates and why it is offered.
  *
  * @example
