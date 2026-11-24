@@ -53,7 +53,7 @@ test("shows a country's flags oldest first, each with its years, status and kind
   await expect(split.locator(`${at("historic-split-legal")} ${at("historic-flag")}`)).toHaveCount(1);
   await expect(split.locator(`${at("historic-split-in-use")} ${at("historic-flag")}`)).toHaveCount(3);
   await expect(split.locator(`${at("historic-split-legal")} .years`)).toHaveText(["1867-07-01 → 1965-02-15"]);
-  await expect(split.locator(`${at("historic-split-in-use")} .years`)).toHaveText(["1868 → 1922-04-26", "1922-04-26 → 1957-10-08", "1957-10-08 → 1965-02-15"]);
+  await expect(split.locator(`${at("historic-split-in-use")} .years`)).toHaveText(["1871 → 1922-04-26", "1922-04-26 → 1957-10-08", "1957-10-08 → 1965-02-15"]);
   await expect(split.locator(at("historic-reason"))).toContainText("kept the Union Flag as the national flag");
   await expect(split.locator(at("historic-reason")).locator("a")).toHaveAttribute("href", "https://www.canada.ca/en/canadian-heritage/services/flag-canada-history.html");
   await expect(split).toContainText("The legal flag and the flag in use differ");
