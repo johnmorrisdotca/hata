@@ -81,7 +81,7 @@ describe("every drawn set", () => {
         const prefix = one.id.split(":")[0]!;
         const root = /^<svg\b[^>]*>/.exec(one.svg)?.[0] ?? "";
         expect(root, one.id).toContain('xmlns="http://www.w3.org/2000/svg"');
-        expect(root, one.id).toMatch(/viewBox="0 0 [\d.]+ [\d.]+"/);
+        expect(root, one.id).toMatch(/viewBox="-?[\d.]+ -?[\d.]+ [\d.]+ [\d.]+"/);
         expect(root, one.id).not.toMatch(/\s(width|height)=/);
         expect(one.svg, one.id).not.toMatch(/<script|<foreignObject|<image|<style|javascript:|\son\w+=|xlink:href|href="(?!#)|url\((?!#)|data:|base64/i);
         for (const [, id] of one.svg.matchAll(/\sid="([^"]+)"/g)) expect(id, one.id).toMatch(new RegExp(`^${prefix}-${slug}-`));

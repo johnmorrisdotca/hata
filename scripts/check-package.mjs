@@ -87,7 +87,7 @@ if ((await flag("JP-13")) !== tokyo || (await flag("XX")) !== null) throw new Er
 if (!frame(japan, { shape: "round" }).includes("clipPath") || !toDataUri(japan).startsWith("data:image/svg+xml,")) throw new Error("the helpers answered wrongly");
 if (flagName("JP-13", "ja") !== "東京都" || flagAspect("CA") !== 2) throw new Error("/names answered wrongly");
 if (ORGANISATION_IDS[0] !== "org:eu" || !organisationFlag("org:eu").startsWith("<svg") || organisationName("org:eu", "ja") !== "欧州連合") throw new Error("/organisations answered wrongly");
-if (MILITARY_IDS.length !== 5 || !militaryFlag("mil:us-navy-jack").startsWith("<svg") || militaryName("mil:us-navy-jack", "ja") !== "アメリカ：海軍の艦首旗") throw new Error("/military answered wrongly");
+if (MILITARY_IDS.length !== 58 || !militaryFlag("mil:us-navy-jack").startsWith("<svg") || militaryName("mil:us-navy-jack", "ja") !== "アメリカ：海軍の艦首旗") throw new Error("/military answered wrongly");
 if (customFlag("custom:none") !== null || typeof registerFlags !== "function") throw new Error("/custom answered wrongly");
 if (FLAG_ELEMENT_NAME !== "hata-flag" || typeof defineFlag !== "function") throw new Error("/element is wrong");
 if ((await resolveFlag({ code: "JP" }))?.svg !== wanted || (await resolveFlag({ code: "XX" })) !== null) throw new Error("/bind answered wrongly");

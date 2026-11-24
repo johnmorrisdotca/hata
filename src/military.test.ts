@@ -1,31 +1,48 @@
-// The military flags: naval ensigns and jacks, with the Rising Sun Flag of Japan only here, as the Self-Defense Force's and the Imperial Navy's ensign.
+// The military flags: naval ensigns, jacks and war flags of many navies; the Rising Sun Flag of Japan only here, as the Self-Defense Force's and the
+// Imperial Navy's ensign; and the Confederate battle flags, withheld by default.
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 
 import { describe, expect, it } from "vitest";
 
-import { militaryDataText, militaryRecords } from "../scripts/draw-military";
+import { militaryDataText, militaryNoticeText, militaryRecords } from "../scripts/draw-military";
+import { MILITARY_FILES } from "../scripts/military-files";
 import { FLAG_CODES } from "./index";
-import { isMilitaryId, MILITARY_IDS, militaryAbout, militaryAspect, militaryFlag, militaryId, militaryIn, militaryInfo, militaryName } from "./military";
 import { manifest } from "./manifest";
+import { isMilitaryId, MILITARY_IDS, MILITARY_RESTRICTED_IDS, militaryAbout, militaryAspect, militaryFlag, militaryId, militaryIn, militaryInfo, militaryName } from "./military";
 
 describe("the flags", () => {
-  it("are what scripts/draw-military.ts makes, so the data file cannot drift from the geometry", () => {
+  it("are what scripts/draw-military.ts makes from the Commons snapshot, so the data file and the notice cannot drift", () => {
     expect(readFileSync(fileURLToPath(new URL("./sets/military.data.ts", import.meta.url)), "utf8")).toBe(militaryDataText());
-    expect(militaryRecords().map((one) => one.id)).toEqual([...MILITARY_IDS]);
-    expect(MILITARY_IDS).toHaveLength(5);
+    const notice = readFileSync("NOTICE.md", "utf8");
+    expect(notice).toBe(militaryNoticeText(notice));
+    expect(militaryRecords().filter((one) => one.restricted === undefined).map((one) => one.id)).toEqual([...MILITARY_IDS]);
   });
 
-  it("each have dates and a source, say whether the construction is the source's, and name their country", () => {
+  it("come from at least thirty navies, and every Commons one is public domain or CC0, with its author and page kept", () => {
+    const countries = new Set(militaryRecords().map((one) => one.id.slice(4, 6)));
+    expect(countries.size).toBeGreaterThanOrEqual(30);
+    const files = militaryRecords().filter((one) => one.source.file !== undefined);
+    expect(files.length).toBeGreaterThan(40);
+    for (const one of files) {
+      expect(one.source.licence, one.id).toMatch(/^(Public domain|CC0)/);
+      expect(one.source.url, one.id).toMatch(/^https:\/\/commons\.wikimedia\.org\/wiki\/File:/);
+      expect(one.source.author?.length, one.id).toBeGreaterThan(2);
+    }
+    expect(MILITARY_FILES.length).toBeGreaterThan(files.length - 1);
+  });
+
+  it("each have a source, say whether the construction is the source's, and dates where the source gives them", () => {
     for (const id of MILITARY_IDS) {
       const info = militaryInfo(id);
-      expect(info?.dates?.from, id).toMatch(/^\d{4}/);
       expect(["documented", "reconstruction"], id).toContain(info?.status);
       expect(info?.note.en.length, id).toBeGreaterThan(60);
       expect(info?.source.url, id).toMatch(/^https:\/\//);
     }
     expect(militaryInfo("mil:jp-ijn-ensign")?.dates).toEqual({ from: "1889-10-07", until: "1945" });
     expect(militaryInfo("mil:jp-jmsdf-ensign")?.dates).toEqual({ from: "1954-06-30", until: null });
+    expect(militaryInfo("mil:de-war-ensign-1921")?.dates).toEqual({ from: "1921", until: "1933" });
+    expect(militaryInfo("mil:no-naval-jack")?.dates).toEqual({ from: "1905", until: null });
   });
 
   it("keep the Rising Sun Flag in this set only, as two ensigns, and in no country's record", () => {
@@ -43,17 +60,51 @@ describe("the flags", () => {
     expect(militaryAspect("mil:gb-white-ensign")).toBe(2);
     expect(militaryAspect("mil:gb-naval-jack")).toBe(2);
     expect(militaryAspect("mil:us-navy-jack")).toBeCloseTo(0.76 / 0.5385, 3);
-    expect((militaryFlag("mil:us-navy-jack")?.match(/M\d/g) ?? []).length).toBe(1 + 1 + 50 - 1 + 0);
   });
 
   it("are grouped, read loosely, named in both languages, and null for anything else", () => {
-    expect(militaryIn("ensign")).toEqual(["mil:jp-jmsdf-ensign", "mil:jp-ijn-ensign", "mil:gb-white-ensign"]);
-    expect(militaryIn("jack")).toEqual(["mil:gb-naval-jack", "mil:us-navy-jack"]);
+    expect(militaryIn("ensign")).toContain("mil:gb-white-ensign");
+    expect(militaryIn("jack")).toContain("mil:us-navy-jack");
+    expect(militaryIn("war")).toContain("mil:de-war-ensign-1921");
+    expect(militaryIn("jack")).not.toContain("mil:cs-naval-jack");
     expect(militaryId(" GB-White-Ensign ")).toBe("mil:gb-white-ensign");
     expect(isMilitaryId("mil:us-navy-jack")).toBe(true);
     expect(isMilitaryId("US")).toBe(false);
     expect(militaryName("mil:gb-white-ensign", "ja")).toBe("イギリス：白色軍艦旗（ホワイト・エンサイン）");
     expect(militaryFlag("mil:nobody")).toBeNull();
     expect(() => militaryId(1 as unknown as string)).toThrow(TypeError);
+  });
+});
+
+describe("the restricted flags", () => {
+  it("are the two Confederate battle flags, in no list or group, and never drawn by default", () => {
+    expect(MILITARY_RESTRICTED_IDS).toEqual(["mil:cs-battle-flag", "mil:cs-naval-jack"]);
+    for (const id of MILITARY_RESTRICTED_IDS) {
+      expect(MILITARY_IDS, id).not.toContain(id);
+      expect(isMilitaryId(id), id).toBe(false);
+      expect(militaryFlag(id), id).toBeNull();
+      expect(militaryFlag(id, { allowRestricted: false }), id).toBeNull();
+      for (const group of ["ensign", "jack", "war"]) expect(militaryIn(group), id).not.toContain(id);
+    }
+  });
+
+  it("are given when asked for by name, with the reason in both languages, no law, and the dates and the source", () => {
+    expect(militaryFlag("mil:cs-battle-flag", { allowRestricted: true })).toMatch(/^<svg/);
+    expect(militaryFlag("mil:cs-naval-jack", { allowRestricted: true })).toMatch(/^<svg/);
+    const info = militaryInfo("mil:cs-battle-flag");
+    expect(info?.restricted?.reason).toBe("Confederate battle flag, 1861 to 1865. Shown for history and education. It is widely seen today as a symbol of racism and white supremacy.");
+    expect(info?.restricted?.reasonJa).toMatch(/人種差別/);
+    expect(info?.restricted?.allowedFor).toBe("education and history");
+    expect(info?.restricted && "law" in info.restricted).toBe(false);
+    expect(info?.dates).toEqual({ from: "1861", until: "1865" });
+    expect(militaryInfo("mil:us-flag-1861")?.restricted).toBeNull();
+    expect(militaryAspect("mil:cs-battle-flag")).toBe(1);
+  });
+
+  it("sit beside the United States' flags of the same years, and are in no demo list", () => {
+    expect(MILITARY_IDS).toContain("mil:us-flag-1861");
+    expect(MILITARY_IDS).toContain("mil:us-flag-1863");
+    const page = readFileSync("scripts/site.mjs", "utf8");
+    expect(page).toMatch(/restricted === undefined/);
   });
 });

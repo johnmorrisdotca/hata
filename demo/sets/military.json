@@ -1,16 +1,29 @@
 {
   "name": "military",
-  "what": { "en": "military flags", "ja": "軍の旗" },
+  "what": {
+    "en": "military flags",
+    "ja": "軍の旗"
+  },
   "description": {
-    "en": "Naval ensigns and jacks of Japan, the United Kingdom and the United States, each with its dates and its source. The Rising Sun Flag of Japan is here, as an ensign, among them.",
-    "ja": "日本、イギリス、アメリカの軍艦旗と艦首旗を、期間と出典つきで並べます。日本の旭日旗も、軍艦旗として、そのなかにあります。"
+    "en": "Naval ensigns, naval jacks and war flags of more than thirty navies, among them Japan's two ensigns, each with its dates, its source and its Commons file and licence.",
+    "ja": "30を超える海軍の軍艦旗、艦首旗、軍旗を、期間、出典、Commonsのファイルとライセンスつきで並べます。日本の2つの軍艦旗も、そのなかにあります。"
   },
   "intro": {
-    "en": "Choose a kind, then a flag, to read its dates and its source. Each is drawn for this package, and its note says which sizes are the source's.",
-    "ja": "種類を選び、旗を選ぶと、期間と出典が読めます。どれもこのパッケージのために描いたもので、どの寸法が出典のものかは、注記に書いてあります。"
+    "en": "Choose a kind, then a flag, to read its dates, its source and its licence. Most are Wikimedia Commons files in the public domain; five are drawn for this package.",
+    "ja": "種類を選び、旗を選ぶと、期間、出典、ライセンスが読めます。多くはパブリックドメインのWikimedia Commonsのファイルで、5点はこのパッケージのために描いたものです。"
   },
   "groups": {
-    "ensign": { "en": "Ensigns", "ja": "軍艦旗" },
-    "jack": { "en": "Jacks", "ja": "艦首旗" }
+    "ensign": {
+      "en": "Ensigns",
+      "ja": "軍艦旗"
+    },
+    "jack": {
+      "en": "Jacks",
+      "ja": "艦首旗"
+    },
+    "war": {
+      "en": "War flags",
+      "ja": "軍旗"
+    }
   }
 }

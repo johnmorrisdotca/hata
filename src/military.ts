@@ -8,6 +8,8 @@
 import { drawnSet } from "./drawn";
 import type { DrawnInfo } from "./drawn";
 import { MILITARY } from "./sets/military.data";
+import type { MilitaryRecordId } from "./sets/military.data";
+import type { DrawnRestriction } from "./drawn";
 
 const set = drawnSet("mil", MILITARY);
 
@@ -23,7 +25,7 @@ const set = drawnSet("mil", MILITARY);
  * console.log(ensign);
  * ```
  */
-type MilitaryId = (typeof MILITARY)[number]["id"];
+type MilitaryId = MilitaryRecordId;
 
 /**
  * What the package knows of one military flag: its id, group, both names, what it is, its status, the note on what is the source's and what is
@@ -40,16 +42,43 @@ type MilitaryId = (typeof MILITARY)[number]["id"];
 type MilitaryInfo = DrawnInfo;
 
 /**
- * Every military flag id of the set, in the order of the table.
+ * Every military flag id of the set, in the order of the table, without the restricted ones (`MILITARY_RESTRICTED_IDS`).
  *
  * @example
  * ```ts
  * import { MILITARY_IDS } from "@johnmorrisdotca/hata/military";
  *
- * console.log(MILITARY_IDS.length); // 5
+ * console.log(MILITARY_IDS.length); // 58
  * ```
  */
 const MILITARY_IDS: readonly MilitaryId[] = set.ids;
+
+/**
+ * The ids of the flags shipped for history and education and never given by default: the Confederate battle flag of the Army of Northern Virginia
+ * and the Confederate States Navy's jack. They are in no list, group or picker; `militaryFlag(id, { allowRestricted: true })` draws one, and
+ * `militaryInfo(id)?.restricted` says why it is withheld.
+ *
+ * @example
+ * ```ts
+ * import { MILITARY_RESTRICTED_IDS } from "@johnmorrisdotca/hata/military";
+ *
+ * console.log(MILITARY_RESTRICTED_IDS); // ["mil:cs-battle-flag", "mil:cs-naval-jack"]
+ * ```
+ */
+const MILITARY_RESTRICTED_IDS: readonly MilitaryId[] = set.restrictedIds as readonly MilitaryId[];
+
+/**
+ * Why a flag is withheld by default, and who it is for, in both languages: `reason`, `reasonJa`, `allowedFor` and `allowedForJa`. No law restricts it.
+ *
+ * @example
+ * ```ts
+ * import { type MilitaryRestriction } from "@johnmorrisdotca/hata/military";
+ *
+ * const why: MilitaryRestriction["allowedFor"] = "education and history";
+ * console.log(why);
+ * ```
+ */
+type MilitaryRestriction = DrawnRestriction;
 
 /**
  * True for an id of this set, written exactly as this package writes it. A country's code ("JP") is not one.
@@ -86,9 +115,11 @@ const militaryId = (input: string): MilitaryId | null => set.idOf(input) as Mili
 
 /**
  * A military flag as an SVG string: it has a viewBox and no width or height. `frame()` and `toDataUri()` from the main entry take it like any other.
+ * A restricted flag (`MILITARY_RESTRICTED_IDS`) is `null` unless `allowRestricted` is true, for a page of history or teaching.
  *
  * @param id - A flag's id, in any case, with or without `mil:`.
- * @returns The SVG string, or `null` when the set has no such flag.
+ * @param options - `{ allowRestricted: true }` to draw a flag shipped for history and education only.
+ * @returns The SVG string, or `null` when the set has no such flag or the flag is restricted and not asked for.
  * @throws TypeError when `id` is not a string.
  *
  * @example
@@ -100,7 +131,7 @@ const militaryId = (input: string): MilitaryId | null => set.idOf(input) as Mili
  * console.log(ensign === null ? null : toDataUri(ensign)?.startsWith("data:image/svg+xml,"));
  * ```
  */
-const militaryFlag = (id: string): string | null => set.flag(id);
+const militaryFlag = (id: string, options: { allowRestricted?: boolean } = {}): string | null => set.flag(id, options.allowRestricted === true);
 
 /**
  * A flag's name, in English or Japanese: the country and what the flag is. Any language tag that starts with `ja` is Japanese.
@@ -187,5 +218,5 @@ const militaryInfo = (id: string): MilitaryInfo | null => set.info(id);
  */
 const militaryIn = (group: string): MilitaryId[] => [...set.inGroup(group)];
 
-export { isMilitaryId, MILITARY_IDS, militaryAbout, militaryAspect, militaryFlag, militaryId, militaryInfo, militaryIn, militaryName };
-export type { MilitaryId, MilitaryInfo };
+export { isMilitaryId, MILITARY_IDS, MILITARY_RESTRICTED_IDS, militaryAbout, militaryAspect, militaryFlag, militaryId, militaryInfo, militaryIn, militaryName };
+export type { MilitaryId, MilitaryInfo, MilitaryRestriction };

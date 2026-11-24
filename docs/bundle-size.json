@@ -22,8 +22,8 @@
       "gzip": 1170
     },
     "./military": {
-      "minified": 22471,
-      "gzip": 6756
+      "minified": 1490441,
+      "gzip": 434800
     },
     "./search": {
       "minified": 69111,

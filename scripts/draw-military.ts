@@ -11,12 +11,17 @@
 //
 // What a record's `status` says: `documented` where a source gives the construction (the ratio, the sizes), `reconstruction` where it
 // gives the design and the dates and the sizes are this package's. Each `note` says which.
-import { writeFileSync } from "node:fs";
+import { readFileSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 
 import type { DrawnRecord } from "../src/drawn.ts";
 import { box, clipTo, n, poly, svg } from "./draw-lib.ts";
+import { classify } from "./licence.ts";
+import { MILITARY_FILES } from "./military-files.ts";
+import { optimiseFlag } from "./optimise.ts";
+import { readManifest, readSource, ROOT } from "./sources.ts";
 import type { Shape } from "./draw-lib.ts";
+import type { MilitaryFile } from "./military-files.ts";
 
 const fill = (colour: string, d: string): Shape => ({ fill: colour, d });
 
@@ -105,7 +110,80 @@ const ENTRIES: Entry[] = [
   { slug: "us-navy-jack", group: "jack", status: "documented", en: "United States: Navy jack", ja: "アメリカ：海軍の艦首旗", aboutEn: "The union of the United States flag alone: fifty white stars on blue, flown at the jack staff of United States Navy ships in port.", aboutJa: "アメリカの国旗の青い部分だけを旗にしたもので、白い50の星を並べます。停泊中の米海軍の艦艇が艦首の旗竿に掲げます。", dates: { from: "1960-07-04", until: null }, source: US_SOURCE, noteEn: "The union's size and the stars' places and size are the Executive Order's (the 50-star flag since 4 July 1960). That the jack is the union alone is as the Wikipedia article on the flag lists it; the flag called the First Navy Jack, which has been flown in its place from time to time, is not drawn.", noteJa: "青い部分の大きさと星の位置・大きさは大統領令のものです（50星の旗は1960年7月4日から）。艦首旗がその青い部分だけであることは、Wikipediaの国旗の項の記述によります。ときどき代わりに掲げられるファースト・ネイビー・ジャックは描いていません。", svg: navyJack() },
 ];
 
-const militaryRecords = (): DrawnRecord[] =>
+// The flags taken from Wikimedia Commons (scripts/military-files.ts, fetched by scripts/fetch-military.ts): each file's licence is read from the
+// snapshot and only public domain and CC0 ship; the file is optimised as a country's flag is. A file over the size ceiling is left out and listed.
+const CEILING_BYTES = 140 * 1024;
+// The Confederate battle flags are shipped for history and education and never given by default (docs/decisions.md, "Restricted flags"); no law restricts them.
+const RESTRICTED = {
+  reason: "Confederate battle flag, 1861 to 1865. Shown for history and education. It is widely seen today as a symbol of racism and white supremacy.",
+  reasonJa: "アメリカ連合国の軍旗（1861～1865年）。歴史と教育のために表示しています。今日では、人種差別と白人至上主義の象徴と広く見なされています。",
+  allowedFor: "education and history",
+  allowedForJa: "教育と歴史",
+} as const;
+const TODAY = "2026-11-24";
+const KIND_EN = { ensign: "naval ensign", jack: "naval jack", war: "war flag" } as const;
+const KIND_JA = { ensign: "軍艦旗", jack: "艦首旗", war: "軍旗" } as const;
+interface Taken { file: string; page: string; licence: string; author: string; description: string }
+let memo: ReturnType<typeof commonsOnce> | undefined;
+const commons = (): ReturnType<typeof commonsOnce> => (memo ??= commonsOnce());
+const commonsOnce = (): { records: DrawnRecord[]; left: { slug: string; file: string; why: string }[]; taken: (Taken & { id: string })[] } => {
+  const manifest = readManifest();
+  const entry = manifest.files.find((one) => /^military-commons-\d{4}-\d{2}-\d{2}\.json$/.test(one.path));
+  if (entry === undefined) throw new Error("no military Commons snapshot in data-sources/sources.json: run pnpm data:military");
+  const snapshot = JSON.parse(readSource(manifest, entry.path).text) as { files: { file: string; page: string; stored: string; sha256: string; metadata: Record<string, string>; templates: string[] }[] };
+  const records: DrawnRecord[] = [];
+  const left: { slug: string; file: string; why: string }[] = [];
+  const taken: (Taken & { id: string })[] = [];
+  for (const one of MILITARY_FILES as readonly MilitaryFile[]) {
+    const found = snapshot.files.find((file) => file.file === one.file);
+    if (found === undefined) throw new Error(`${one.file} is not in the military snapshot: run pnpm data:military`);
+    const licence = classify(found.metadata, found.templates);
+    if (!licence.shipped || (licence.kind !== "public-domain" && licence.kind !== "cc0")) {
+      left.push({ slug: one.slug, file: one.file, why: `licence ${licence.name}` });
+      continue;
+    }
+    const raw = readFileSync(`${ROOT}/data-sources/${found.stored}`, "utf8");
+    const optimised = optimiseFlag(raw, `mil-${one.slug}`);
+    const drawing = optimised.svg.replace(/hata-mil-/g, "mil-").replace(/^<svg /, `<svg data-hata-mil="${one.slug}" `);
+    if (/<image\b|<style\b|base64/i.test(drawing)) {
+      left.push({ slug: one.slug, file: one.file, why: "not a plain vector (an embedded raster picture or a style element)" });
+      continue;
+    }
+    if (drawing.length > CEILING_BYTES) {
+      left.push({ slug: one.slug, file: one.file, why: `${Math.round(drawing.length / 1024)} KB optimised, over the ${CEILING_BYTES / 1024} KB ceiling` });
+      continue;
+    }
+    const author = (found.metadata.Artist ?? "").trim() === "" || /^See File history/i.test(found.metadata.Artist ?? "") ? "an author the file's page does not name" : found.metadata.Artist!.trim();
+    const label = one.label;
+    const from = one.dates.from;
+    const until = one.dates.until;
+    const span = from !== null && until !== null ? `from ${from} to ${until}` : from !== null ? `since ${from}` : "";
+    const spanJa = from !== null && until !== null ? `${from}年から${until}年まで` : from !== null ? `${from}から` : "";
+    const aboutEn = `The ${KIND_EN[one.kind]} of ${one.country.en}${label === undefined ? "" : `, ${label.en}`}${one.kind === "ensign" ? ": the flag its warships fly at the stern" : one.kind === "jack" ? ": the flag flown at the bow of its warships" : ""}${span === "" ? "" : `, in use ${span}`}.`;
+    const aboutJa = `${one.country.ja}の${KIND_JA[one.kind]}${label === undefined ? "" : `（${label.ja}）`}${one.kind === "ensign" ? "。軍艦が艦尾に掲げる旗です" : one.kind === "jack" ? "。軍艦が艦首に掲げる旗です" : ""}${spanJa === "" ? "" : `。使われた期間：${spanJa}`}。`;
+    records.push({
+      id: `mil:${one.slug}`,
+      ...(one.restricted === true ? { restricted: RESTRICTED } : {}),
+      group: one.kind,
+      name: { en: `${one.country.en}: ${KIND_EN[one.kind]}${label === undefined ? "" : `, ${label.en}`}`, ja: `${one.country.ja}：${KIND_JA[one.kind]}${label === undefined ? "" : `、${label.ja}`}` },
+      about: { en: aboutEn, ja: aboutJa },
+      status: "documented",
+      dates: from === null && until === null ? null : { from, until },
+      note: {
+        en: `Taken from Wikimedia Commons (${licence.name}, by ${author}) and optimised as a country's flag is; the drawing is the file's, and the proportions are its own. ${from === null && until === null ? `The file's page gives no dates: the flag is the current one, as read on ${TODAY}.` : "The dates are the ones the file's title or description gives."}`,
+        ja: `Wikimedia Commons（${licence.name}、作者：${author}）から取り、国の旗と同じく最適化したものです。絵はそのファイルのもので、縦横の比もそのままです。${from === null && until === null ? `ファイルのページに期間は書かれておらず、${TODAY}に読んだ時点の現行の旗です。` : "期間は、ファイルの名前か説明が示すものです。"}`,
+      },
+      source: { title: `${one.file} (Wikimedia Commons)`, url: found.page, kind: "reference", read: TODAY, says: `A file on Wikimedia Commons under ${licence.name}, by ${author}, which its page describes as the ${KIND_EN[one.kind]} of ${one.country.en}${label === undefined ? "" : ` (${label.en})`}.`, file: one.file, licence: licence.name, author },
+      svg: drawing,
+    });
+    taken.push({ id: `mil:${one.slug}`, file: one.file, page: found.page, licence: licence.name, author, description: "" });
+  }
+
+  return { records, left, taken };
+};
+
+const militaryRecords = (): DrawnRecord[] => [...drawnRecords(), ...commons().records];
+const drawnRecords = (): DrawnRecord[] =>
   ENTRIES.map((entry) => ({
     id: `mil:${entry.slug}`,
     group: entry.group,
@@ -119,14 +197,27 @@ const militaryRecords = (): DrawnRecord[] =>
   }));
 
 const text = (): string => {
-  const body = militaryRecords().map((record) => `  ${JSON.stringify(record)},`).join("\n");
+  const all = militaryRecords();
+  const ids = all.map((record) => JSON.stringify(record.id)).join(" | ");
 
-  return `// Made by scripts/draw-military.ts (pnpm draw:military): do not edit by hand. Naval ensigns and jacks, drawn for this package under the MIT licence from the sources named in each record.\nimport type { DrawnRecord } from "../drawn";\n\nconst MILITARY = [\n${body}\n] as const satisfies readonly DrawnRecord[];\n\nexport { MILITARY };\n`;
+  return `// Made by scripts/draw-military.ts (pnpm draw:military): do not edit by hand. Naval ensigns, jacks and war flags, drawn for this package under the MIT licence from the sources named in each record, or taken from Wikimedia Commons (public domain and CC0 only), optimised, with each file's author and page.\nimport type { DrawnRecord } from "../drawn";\n\ntype MilitaryRecordId = ${ids};\n\nconst MILITARY: readonly (DrawnRecord & { id: MilitaryRecordId })[] = [\n${all.map((record) => `  ${JSON.stringify(record)},`).join("\n")}\n];\n\nexport { MILITARY };\nexport type { MilitaryRecordId };\n`;
 };
 
+// The table of Commons files in NOTICE.md, between its markers: the file, its licence and author as Commons gives them, its page, and the files left out.
+const noticeBlock = (): string => {
+  const { taken, left } = commons();
+  const rows = taken.map((one) => `| \`${one.id}\` | ${one.file} | ${one.licence} | ${one.author.replace(/\|/g, "/")} | ${one.page} |`).join("\n");
+  const out = left.map((one) => `| \`mil:${one.slug}\` | ${one.file} | ${one.why} |`).join("\n");
+
+  return `<!-- military-files:start -->\n| Id | Commons file | Licence | Author as Commons gives it | Page |\n| --- | --- | --- | --- | --- |\n${rows}\n\nCommons files left out of the military flags for their size or because they are not a plain vector (the size ceiling is ${CEILING_BYTES / 1024} KB optimised):\n\n| Id | Commons file | Why |\n| --- | --- | --- |\n${out}\n<!-- military-files:end -->`;
+};
+const noticeText = (current: string): string => current.replace(/<!-- military-files:start -->[\s\S]*?<!-- military-files:end -->/, noticeBlock());
+
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  const notice = fileURLToPath(new URL("../NOTICE.md", import.meta.url));
+  writeFileSync(notice, noticeText(readFileSync(notice, "utf8")));
   writeFileSync(fileURLToPath(new URL("../src/sets/military.data.ts", import.meta.url)), text());
   console.log(`wrote src/sets/military.data.ts: ${militaryRecords().length} drawings`);
 }
 
-export { militaryRecords, text as militaryDataText };
+export { commons as militaryCommons, militaryRecords, noticeText as militaryNoticeText, text as militaryDataText };

@@ -321,7 +321,7 @@ rmSync("site/sets", { recursive: true, force: true });
 rmSync("site/set.html", { force: true });
 for (const file of readdirSync("demo/sets").filter((one) => one.endsWith(".json")).sort()) {
   const config = JSON.parse(readFileSync(`demo/sets/${file}`, "utf8"));
-  const records = Object.values(await import(new URL(`../src/sets/${config.name}.data.ts`, import.meta.url).href))[0];
+  const records = Object.values(await import(new URL(`../src/sets/${config.name}.data.ts`, import.meta.url).href))[0].filter((one) => one.restricted === undefined);
   const page = `${config.name}.html`;
   writeFileSync(`site/${config.name}-data.js`, `// Made by scripts/site.mjs from src/sets/${config.name}.data.ts: the set's config and every record.\nexport const CONFIG = ${JSON.stringify({ groups: config.groups, intro: config.intro, spell: config.spell })};\nexport const ITEMS = ${JSON.stringify(records)};\n`);
   FRAME_TEXTS[page] = { en: { name: "Hata 旗", what: config.what.en, description: config.description.en }, ja: { name: "旗 Hata", what: config.what.ja, description: config.description.ja } };
