@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Flag_of_Canada_(1868%E2%80%931921).svg
 
 /**
- * The Red Ensign (provincial-arms shield, c. 1868-1922): one of the flags of Canada (カナダ), CA, in real use, as an SVG string: viewBox 120 by 60 (2:1), 62.2 KB.
+ * The Red Ensign (provincial-arms shield, from 1871): one of the flags of Canada (カナダ), CA, in real use, as an SVG string: viewBox 120 by 60 (2:1), 62.2 KB.
  * From Wikimedia Commons, "Flag of Canada (1868–1921).svg" (public domain). `flag("CA", { variant: "red-ensign-1868" })` loads it, and `variantsOf("CA")` says its status, dates and why it is offered.
  *
  * @example

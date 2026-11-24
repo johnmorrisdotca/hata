@@ -10,6 +10,10 @@ All notable changes to this project are written here. The format follows
 
 - **Dated flags for Portugal and Czechia** (MODULES-1607). Portugal's green and red flag is dated from the Constituent Assembly's decree of 19 June 1911, on the Presidency's page. Czechia's white-over-red flag with the blue wedge is dated from 1 January 1993, the day Act 3/1993 takes effect. Thirteen of the fifteen named countries are not added: their official pages did not load, or no shippable drawing was found.
 
+### Changed
+
+- **Two encyclopedia-only flag dates, replaced from the pages that were read** (MODULES-1608). Canada's provincial-arms Red Ensign is dated from 1871, the year Canadian Heritage's timeline gives for its unofficial use, not 1868. Russia's letters flag (РСФСР) is dated from 10 July 1918, the day the Fifth All-Russian Congress of Soviets adopted the constitution whose article 90 describes it, not 17 June. Italy's Savoy tricolour is unchanged: the Presidency's page would not load. Iran is unchanged.
+
 ## [1.14.0] - 2026-11-17
 
 ### Changed
