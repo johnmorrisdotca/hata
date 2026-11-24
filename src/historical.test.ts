@@ -17,7 +17,7 @@ describe("the former countries' codes", () => {
   it("are flags for the places that have a drawing and reasons for the rest, each under a code no present-day place has", () => {
     expect(WITH_FLAG.map(([code]) => code).sort()).toEqual([
       "AIDJ", "ANHH", "BOH", "BUMM", "BYAA", "CSHH", "CSXX", "DDDE", "DYBJ", "FQHH", "FRG", "GEHH", "HVBF", "JTUM", "MIUM", "NQAQ", "PCHH", "PUUM", "PZPA", "RHZW", "SUHH", "VDVN", "WIF", "WKUM",
-      "XAH", "XCS", "XGE", "XHW", "XIT", "XKR", "XOT", "XPR", "XPS", "XQI", "XSD", "XSM", "XSV", "XTX", "XUA", "XZB", "YDYE", "YUCS", "ZRCD",
+      "XAH", "XCS", "XGE", "XHW", "XIT", "XKR", "XMK", "XOT", "XPR", "XPS", "XQI", "XSD", "XSM", "XSV", "XTB", "XTX", "XUA", "XZB", "YDYE", "YUCS", "ZRCD",
     ]);
     for (const [code] of WITH_FLAG) expect(FLAG_CODES as readonly string[], code).toContain(code);
     for (const [code] of WITHOUT) expect(LEFT_OUT.some((one) => one.code === code), code).toBe(true);
@@ -71,7 +71,7 @@ describe("every ISO 3166-3 code, and the states that never had one", () => {
 
   it("gives a state with no ISO 3166-3 code a code of Hata's own: X and two letters, a range ISO 3166 never gives a country", () => {
     const own = Object.keys(HISTORICAL).filter((code) => /^X[A-Z]{2}$/.test(code));
-    expect(own.length).toBeGreaterThanOrEqual(16);
+    expect(own.length).toBeGreaterThanOrEqual(18);
     for (const code of own) expect(ISO_3166_3, code).not.toContain(code);
   });
 

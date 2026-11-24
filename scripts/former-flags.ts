@@ -347,8 +347,8 @@ const FORMER_HISTORICAL: Readonly<Record<string, HistoricalSpec>> = {
     from: "1912",
     until: "1950",
     aliases: [],
-    file: null,
-    why: "Held for the maintainer's decision: Tibet's status in 1912 to 1950 and today is disputed, and the flag's use is politically contested. A public-domain drawing exists on Commons.",
+    file: "Flag of Tibet.svg",
+    why: "The snow lion flag that Tibet flew in the years of its de facto independence, from 1913 until the People's Liberation Army entered Tibet in 1950, and that the Tibetan government in exile flies today. The Commons drawing is titled 1914 to 1951; the flag is dated here by the years of those events. This package takes no side on Tibet's status today.",
   },
   XMK: {
     en: "Manchukuo",
@@ -357,8 +357,8 @@ const FORMER_HISTORICAL: Readonly<Record<string, HistoricalSpec>> = {
     from: "1932",
     until: "1945",
     aliases: [],
-    file: null,
-    why: "Held for the maintainer's decision: Manchukuo was a state set up under Japanese control and its status is disputed; a public-domain drawing of its flag exists on Commons.",
+    file: "Flag of Manchukuo.svg",
+    why: "The flag of Manchukuo, a state set up by Japan in 1932 in Manchuria and recognised by few countries, which ended in 1945: a yellow field with red, blue, white and black bands in the upper left. This package takes no side on its status.",
   },
   // Left out, each with its reason (docs/left-out.md): file null
   BQAQ: {
@@ -473,6 +473,20 @@ const FORMER_VARIANTS: Readonly<Record<string, VariantSet>> = {
     default: "white-elephant",
     variants: [
       { id: "white-elephant", name: "The white elephant flag", nameJa: "白象旗", status: "official", roles: BOTH, from: "1855", until: "1917", why: "A white elephant on a red field, Siam's national flag from 1855 until the red, white and blue tricolour replaced it (the file's description says 1916, other sources 1917-09-28).", source: "https://en.wikipedia.org/wiki/Flag_of_Thailand", sourceKind: "encyclopedia", file: null },
+    ],
+  },
+  XTB: {
+    disputed: false,
+    default: "snow-lion",
+    variants: [
+      { id: "snow-lion", name: "The snow lion flag", nameJa: "雪獅子旗", status: "official", roles: [{ role: "in-use" }], from: "1916", until: "1950", roleNote: { why: "Tibet's government flew the flag in the years of its de facto independence; its status in international law in those years and today is disputed, and no law of a recognised state made it a national flag.", source: "https://en.wikipedia.org/wiki/Flag_of_Tibet", sourceKind: "encyclopedia" }, why: "The snow lion flag, introduced by the 13th Dalai Lama in 1916 and flown by Tibet's government until 1950.", source: "https://en.wikipedia.org/wiki/Flag_of_Tibet", sourceKind: "encyclopedia", file: null },
+    ],
+  },
+  XMK: {
+    disputed: false,
+    default: "five-colours",
+    variants: [
+      { id: "five-colours", name: "The Manchukuo flag", nameJa: "満洲国旗", status: "official", roles: BOTH, from: "1932", until: "1945", why: "A yellow field with a canton of red, blue, white and black bands, flown by Manchukuo, a state set up by Japan in 1932 and recognised by few countries, until it ended in 1945.", source: "https://en.wikipedia.org/wiki/Manchukuo", sourceKind: "encyclopedia", file: null },
     ],
   },
   AIDJ: parentFlag("France", "France's flag", "フランスの国旗", "1967-07-05", "1977-06-27", "The French tricolour flew over the territory from the day it was renamed French Territory of the Afars and the Issas until independence.", "https://en.wikipedia.org/wiki/French_Somaliland", "encyclopedia"),

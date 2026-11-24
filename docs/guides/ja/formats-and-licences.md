@@ -27,7 +27,7 @@ description: Hataの旗が提供される形式のすべてと、その大きさ
 
 ## ライセンス
 
-パッケージのコードはMITです。旗はパッケージ自身の作品ではなく、それぞれがWikimedia Commonsにある描画で、Commonsがそのファイルについて示すライセンスのもとにあり、そのライセンスは旗に付随します。コードでは`manifest(code).licence`で読め、すべては[docs/provenance.md](../../provenance.md)にあります。そのうち、510の既定の図は次のとおりです：
+パッケージのコードはMITです。旗はパッケージ自身の作品ではなく、それぞれがWikimedia Commonsにある描画で、Commonsがそのファイルについて示すライセンスのもとにあり、そのライセンスは旗に付随します。コードでは`manifest(code).licence`で読め、すべては[docs/provenance.md](../../provenance.md)にあります。そのうち、512の既定の図は次のとおりです：
 
 | ライセンス | 旗の数 | しなければならないこと |
 | --- | --- | --- |
