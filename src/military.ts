@@ -146,7 +146,7 @@ const militaryFlag = (id: string, options: { allowRestricted?: boolean } = {}): 
  * import { militaryName } from "@johnmorrisdotca/hata/military";
  *
  * console.log(militaryName("mil:gb-white-ensign"));       // "United Kingdom: White Ensign"
- * console.log(militaryName("mil:gb-white-ensign", "ja")); // "イギリス：白色軍艦旗（ホワイト・エンサイン）"
+ * console.log(militaryName("mil:gb-white-ensign", "ja")); // "イギリス：ホワイト・エンサイン（軍艦旗）"
  * ```
  */
 const militaryName = (id: string, lang: string = "en"): string | null => set.name(id, lang);

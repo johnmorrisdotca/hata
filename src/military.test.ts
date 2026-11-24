@@ -69,7 +69,7 @@ describe("the flags", () => {
     expect(militaryId(" GB-White-Ensign ")).toBe("mil:gb-white-ensign");
     expect(isMilitaryId("mil:us-navy-jack")).toBe(true);
     expect(isMilitaryId("US")).toBe(false);
-    expect(militaryName("mil:gb-white-ensign", "ja")).toBe("イギリス：白色軍艦旗（ホワイト・エンサイン）");
+    expect(militaryName("mil:gb-white-ensign", "ja")).toBe("イギリス：ホワイト・エンサイン（軍艦旗）");
     expect(await militaryFlag("mil:nobody")).toBeNull();
     expect(() => militaryId(1 as unknown as string)).toThrow(TypeError);
   });

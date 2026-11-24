@@ -493,7 +493,7 @@ const NAMES: Readonly<Record<string, readonly [en: string, ja: string, aspect: n
   "VDVN": ["Democratic Republic of Vietnam", "ベトナム民主共和国", 1.5],
   "WIF": ["West Indies Federation", "西インド連邦", 2],
   "WKUM": ["Wake Island", "ウェーク島", 1.9],
-  "XAH": ["Austria-Hungary", "オーストリア＝ハンガリー", 1.5],
+  "XAH": ["Austria-Hungary", "オーストリア＝ハンガリー帝国", 1.5],
   "XCS": ["Confederate States of America", "アメリカ連合国", 2],
   "XGE": ["German Empire", "ドイツ帝国", 1.5],
   "XHW": ["Kingdom of Hawaii", "ハワイ王国", 2],

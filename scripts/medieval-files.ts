@@ -22,7 +22,7 @@ const MEDIEVAL_FILES: readonly MedievalFile[] = [
   m("hre-red-cross", "empire", "Holy Roman Empire: white cross on red", "神聖ローマ帝国：赤地に白十字", "Flag of the Holy Roman Empire (1200-1350).svg", "1200", "1350", "A flag with a white cross on a red field, taken to be an early form of the Reichssturmfahne, the imperial war flag, used alongside the imperial banner."),
   m("hre-war-flag", "empire", "Holy Roman Empire: the Reichssturmfahne", "神聖ローマ帝国：帝国軍旗（ライヒスシュトゥルムファーネ）", "War flag of the Holy Roman Empire (1200-1350).svg", "1200", "1350", "The Reichssturmfahne, the military banner of the Holy Roman Empire of the German Nation, about 1200 to 1350."),
   m("venice-lion", "city", "Venice: the Lion of Saint Mark", "ヴェネツィア：聖マルコの獅子", "Lion of St Mark.svg", null, null, "The Lion of Saint Mark, the emblem of the Republic of Venice."),
-  m("genoa-cross", "city", "Genoa: the red cross on white", "ジェノヴァ：白地に赤十字", "Flag of Genoa.svg", null, null, "The flag of Genoa."),
+  m("genoa-cross", "city", "Genoa: the red cross on white", "ジェノヴァ：白地に赤い十字", "Flag of Genoa.svg", null, null, "The flag of Genoa."),
   m("teutonic-banner", "order", "The Teutonic Order's banner", "ドイツ騎士団の旗", "Flag of the Teutonic Order.svg", null, null, "The banner of the Order of Teutonic Knights."),
   m("teutonic-state", "order", "The State of the Teutonic Order", "ドイツ騎士団国の旗", "Flag of the State of the Teutonic Order.svg", null, null, "The flag of the State of the Teutonic Order."),
   m("leon", "kingdom", "León: the purple lion", "レオン王国の旗", "Flag of Leon.svg", null, null, "The flag of the Kingdom of León and the region of León."),
@@ -54,5 +54,46 @@ const MEDIEVAL_FILES: readonly MedievalFile[] = [
   m("ragusa-secondary", "city", "Ragusa: the secondary flag", "ラグーザ共和国の副旗", "Secondary flag of Republic of Ragusa.svg", null, null, "The secondary flag of the Republic of Ragusa."),
 ];
 
-export { MEDIEVAL_FILES };
+/** What each file's page says, in Japanese, for the Japanese `about` of its record (the English is `says`). */
+const SAYS_JA: Readonly<Record<string, string>> = {
+  "fr-blue-banner": "10世紀後半から12世紀前半まで使われた、フランスの無地の青い旗です。",
+  "fr-valois-lis": "1328年のヴァロワ家の紋章は青地に金のユリで、以後フランス王の旗となりました。",
+  "fr-navarre-1284": "ナバラ王国とフランス王国が同君連合だった時期（ルイ10世からシャルル4世まで）の紋章旗です。",
+  "gb-royal-banner": "ランカスター公領の旗から描き直した、縦横比3対5のイングランド王の旗です。",
+  "hre-red-cross": "赤地に白い十字の旗で、帝国の軍旗ライヒスシュトゥルムファーネ（Reichssturmfahne）の初期の形とみられ、帝国の旗とともに使われました。",
+  "hre-war-flag": "ドイツ国民の神聖ローマ帝国の軍旗、ライヒスシュトゥルムファーネ。1200年ごろから1350年ごろです。",
+  "venice-lion": "ヴェネツィア共和国の紋章、聖マルコの獅子です。",
+  "genoa-cross": "ジェノヴァの旗です。",
+  "teutonic-banner": "ドイツ騎士団の旗です。",
+  "teutonic-state": "ドイツ騎士団国の旗です。",
+  "leon": "レオン王国と、レオン地方の旗です。",
+  "navarre-chains": "1212年から1589年までのナバラ王国の古い旗です。",
+  "portugal-first": "ポルトガルの最初の旗で、サンショ1世、アフォンソ2世、サンショ2世の治世に使われました。",
+  "hungary-arpad": "11世紀半ばから12世紀後半までのハンガリー王国の王旗です。",
+  "hungary-1170": "12世紀後半のハンガリー王国の王旗です。",
+  "hungary-1467": "『ハンガリー年代記』（Chronica Hungarorum）によるバイアの戦い（1467年）のハンガリーの旗です。",
+  "poland-eagle": "14世紀のポーランド王国の旗です。1290年のプシェミスウ2世公の印章には、冠をかぶった鷲の旗を持つ君主が描かれています。",
+  "burgundy-saltire": "ブルゴーニュ十字（斜め十字）の旗で、のちにカトリック君主国（スペイン）とその副王領で使われました。",
+  "palaiologos-1250": "ミカエル8世パレオロゴスが帝位に就く前に使われた、パレオロゴス家の紋の旗です。",
+  "byzantium-1375": "1375年のカタルーニャ地図に描かれた、パレオロゴス朝のもとの後期東ローマ帝国の旗です。",
+  "papal-states": "1808年より前の教皇領の旗です。",
+  "jerusalem-1162": "1162年からのエルサレム王国の2番目の旗です。",
+  "florence-ghibelline": "11世紀から、1250年に敗れるまで、ギベリン派が使ったフィレンツェの旗です。",
+  "pisa": "ピサ共和国の旗です。",
+  "milan-1450": "1450年ごろからのミラノ公国の旗です。",
+  "corsica-14c": "14世紀のコルシカの旗です。",
+  "serbia-1339": "アンジェリーノ・ドゥルチェルトの地図（1339年）に描かれたセルビアの旗です。",
+  "serbian-church": "セルビア教会（のちの総主教座）の旗で、1439年8月のガブリエル・デ・バルセカの地図に基づきます。",
+  "almoravid": "シャハーダ（信仰告白）を記した白い旗で、モロッコのムラービト朝（11世紀から12世紀）の旗とされますが、ページはその説に疑いを示しています。",
+  "ayyubid": "アイユーブ朝の旗で、黄色で示されることが多いものです。",
+  "saladin": "サラーフ・アッディーン（サラディン）の個人の軍旗です。",
+  "morocco-medieval": "11世紀から13世紀のモロッコの旗です。",
+  "wales-dragon": "15世紀のオワイン・グリンドゥール公が用いたウェールズの軍旗で、1400年に作られました。",
+  "rostock-14c": "14世紀のロストックのハンザの旗です。",
+  "swiss-cross": "スイスの旗の初期の形で、1470年代ごろから、誓約同盟軍の指揮下の部隊が戦場の目印として使いました。",
+  "unterwalden-1309": "ウンターヴァルデン州の歴史的な旗です。",
+  "ragusa-secondary": "ラグーザ共和国の副旗です。",
+};
+
+export { MEDIEVAL_FILES, SAYS_JA };
 export type { MedievalFile };

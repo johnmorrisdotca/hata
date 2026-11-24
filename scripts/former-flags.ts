@@ -181,7 +181,7 @@ const FORMER_HISTORICAL: Readonly<Record<string, HistoricalSpec>> = {
   // States with no ISO 3166-3 code, under Hata's own codes (X, then two letters)
   XAH: {
     en: "Austria-Hungary",
-    ja: "オーストリア＝ハンガリー",
+    ja: "オーストリア＝ハンガリー帝国",
     item: null,
     from: "1867",
     until: "1918",
@@ -479,7 +479,7 @@ const FORMER_VARIANTS: Readonly<Record<string, VariantSet>> = {
     disputed: false,
     default: "snow-lion",
     variants: [
-      { id: "snow-lion", name: "The snow lion flag", nameJa: "雪獅子旗", status: "official", roles: [{ role: "in-use" }], from: "1916", until: "1950", roleNote: { why: "Tibet's government flew the flag in the years of its de facto independence; its status in international law in those years and today is disputed, and no law of a recognised state made it a national flag.", source: "https://en.wikipedia.org/wiki/Flag_of_Tibet", sourceKind: "encyclopedia" }, why: "The snow lion flag, introduced by the 13th Dalai Lama in 1916 and flown by Tibet's government until 1950.", source: "https://en.wikipedia.org/wiki/Flag_of_Tibet", sourceKind: "encyclopedia", file: null },
+      { id: "snow-lion", name: "The snow lion flag", nameJa: "雪山獅子旗", status: "official", roles: [{ role: "in-use" }], from: "1916", until: "1950", roleNote: { why: "Tibet's government flew the flag in the years of its de facto independence; its status in international law in those years and today is disputed, and no law of a recognised state made it a national flag.", source: "https://en.wikipedia.org/wiki/Flag_of_Tibet", sourceKind: "encyclopedia" }, why: "The snow lion flag, introduced by the 13th Dalai Lama in 1916 and flown by Tibet's government until 1950.", source: "https://en.wikipedia.org/wiki/Flag_of_Tibet", sourceKind: "encyclopedia", file: null },
     ],
   },
   XMK: {
@@ -512,7 +512,7 @@ const FORMER_VARIANTS: Readonly<Record<string, VariantSet>> = {
     disputed: false,
     default: "colony",
     variants: [
-      { id: "colony", name: "The colony's Blue Ensign", nameJa: "植民地の青色船舶旗", status: "official", roles: BOTH, from: "1937", until: "1976", why: "The British Blue Ensign with the colony's badge in the fly, the colony's state ensign from the grant of its arms in 1937 until the colony was divided in 1975 and 1976.", source: "https://en.wikipedia.org/wiki/Flag_of_Kiribati", sourceKind: "encyclopedia", file: null },
+      { id: "colony", name: "The colony's Blue Ensign", nameJa: "植民地のブルー・エンサイン", status: "official", roles: BOTH, from: "1937", until: "1976", why: "The British Blue Ensign with the colony's badge in the fly, the colony's state ensign from the grant of its arms in 1937 until the colony was divided in 1975 and 1976.", source: "https://en.wikipedia.org/wiki/Flag_of_Kiribati", sourceKind: "encyclopedia", file: null },
     ],
   },
   HVBF: {
@@ -609,12 +609,12 @@ const FORMER_VARIANTS: Readonly<Record<string, VariantSet>> = {
     default: "dragon-1889",
     variants: [
       {
-        id: "dragon-1889", name: "The rectangular Yellow Dragon Flag", nameJa: "長方形の黄竜旗", status: "official", roles: [{ role: "in-use" }], from: "1889", until: "1912-01-10",
+        id: "dragon-1889", name: "The rectangular Yellow Dragon Flag", nameJa: "長方形の黄龍旗", status: "official", roles: [{ role: "in-use" }], from: "1889", until: "1912-01-10",
         roleNote: { why: "The flag was made for official occasions and the dynasty's ships, not as a national flag, and no law made it one; from the late 1880s it came into use as the national flag.", source: "https://en.wikipedia.org/wiki/Flag_of_China", sourceKind: "encyclopedia" },
         why: "A blue dragon with a red pearl on yellow, in the rectangular form of 1889, used until the Five-Colour Flag was adopted on 1912-01-10.", source: "https://en.wikipedia.org/wiki/Flag_of_China", sourceKind: "encyclopedia", file: null,
       },
       {
-        id: "triangular-1862", name: "The triangular Yellow Dragon Flag", nameJa: "三角形の黄竜旗", status: "historical", roles: [{ role: "in-use" }], from: "1862", until: "1889",
+        id: "triangular-1862", name: "The triangular Yellow Dragon Flag", nameJa: "三角形の黄龍旗", status: "historical", roles: [{ role: "in-use" }], from: "1862", until: "1889",
         roleNote: { why: "The flag was made for official occasions and the dynasty's ships, not as a national flag, and no law made it one.", source: "https://en.wikipedia.org/wiki/Flag_of_China", sourceKind: "encyclopedia" },
         why: "The triangular form of the Yellow Dragon Flag, adopted in 1862 and replaced by the rectangular form in 1889.", source: "https://en.wikipedia.org/wiki/Flag_of_China", sourceKind: "encyclopedia", file: "Flag of China (1862–1889).svg",
       },

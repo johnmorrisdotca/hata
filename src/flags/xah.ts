@@ -2,7 +2,7 @@
 // Source: https://commons.wikimedia.org/wiki/File:Ensign_of_Austro-Hungarian_civil_fleet_(1869-1918).svg
 
 /**
- * The flag of Austria-Hungary (オーストリア＝ハンガリー), XAH, as an SVG string: viewBox 648 by 432 (3:2), 4.9 KB.
+ * The flag of Austria-Hungary (オーストリア＝ハンガリー帝国), XAH, as an SVG string: viewBox 648 by 432 (3:2), 4.9 KB.
  * From Wikimedia Commons, "Ensign of Austro-Hungarian civil fleet (1869-1918).svg" (public domain); the /manifest entry gives its author, licence and why it was chosen.
  * It has a viewBox and no width or height, so it fills the box it is put in at its own aspect ratio.
  *

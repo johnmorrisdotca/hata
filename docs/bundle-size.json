@@ -6,36 +6,36 @@
       "gzip": 4071
     },
     "./load": {
-      "minified": 15254993,
-      "gzip": 4705545
+      "minified": 15255023,
+      "gzip": 4705555
     },
     "./manifest": {
-      "minified": 1347106,
-      "gzip": 173809
+      "minified": 1347136,
+      "gzip": 173825
     },
     "./names": {
-      "minified": 34213,
-      "gzip": 10383
+      "minified": 34225,
+      "gzip": 10382
     },
     "./organisations": {
       "minified": 57540,
       "gzip": 21602
     },
     "./signals": {
-      "minified": 81924,
-      "gzip": 8463
+      "minified": 83622,
+      "gzip": 8547
     },
     "./samurai": {
-      "minified": 25254,
-      "gzip": 5123
+      "minified": 25416,
+      "gzip": 5127
     },
     "./military": {
-      "minified": 1499842,
-      "gzip": 421888
+      "minified": 1500509,
+      "gzip": 421915
     },
     "./medieval": {
-      "minified": 514323,
-      "gzip": 162218
+      "minified": 513160,
+      "gzip": 163161
     },
     "./search": {
       "minified": 74098,
@@ -46,28 +46,28 @@
       "gzip": 6925
     },
     "./element": {
-      "minified": 15296567,
-      "gzip": 4718935
+      "minified": 15296609,
+      "gzip": 4718951
     },
     "./element/define": {
-      "minified": 15296520,
-      "gzip": 4718905
+      "minified": 15296562,
+      "gzip": 4718913
     },
     "./bind": {
-      "minified": 15290223,
-      "gzip": 4716571
+      "minified": 15290265,
+      "gzip": 4716577
     },
     "./react": {
-      "minified": 15321472,
-      "gzip": 4728060
+      "minified": 15321514,
+      "gzip": 4728078
     },
     "./vue": {
-      "minified": 15336041,
-      "gzip": 4733344
+      "minified": 15336083,
+      "gzip": 4733352
     },
     "./react-native": {
-      "minified": 15320545,
-      "gzip": 4727577
+      "minified": 15320587,
+      "gzip": 4727596
     },
     "./flags/ad.1x1": {
       "minified": 28262,

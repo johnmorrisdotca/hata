@@ -85,5 +85,12 @@ const writeSetFiles = (root: string, name: string, files: ReadonlyMap<string, st
   for (const [path, text] of files) writeFileSync(join(root, path), text);
 };
 
-export { box, clipTo, n, poly, setFiles, svg, writeSetFiles };
+/** A date as Japanese writes it: "1861-07-04" is 1861年7月4日, "1861-07" is 1861年7月 and "1848" is 1848年. */
+const jaDate = (value: string): string => {
+  const [year, month, day] = value.split("-");
+
+  return day !== undefined ? `${year}年${Number(month)}月${Number(day)}日` : month !== undefined ? `${year}年${Number(month)}月` : `${year}年`;
+};
+
+export { box, clipTo, jaDate, n, poly, setFiles, svg, writeSetFiles };
 export type { Shape };

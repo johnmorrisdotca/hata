@@ -11,9 +11,9 @@ import { readFileSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 
 import type { DrawnDrawing } from "../src/drawn.ts";
-import { box, setFiles, writeSetFiles, clipTo, poly, svg } from "./draw-lib.ts";
+import { box, setFiles, writeSetFiles, clipTo, jaDate, poly, svg } from "./draw-lib.ts";
 import { classify } from "./licence.ts";
-import { MEDIEVAL_FILES } from "./medieval-files.ts";
+import { MEDIEVAL_FILES, SAYS_JA } from "./medieval-files.ts";
 import { optimiseFlag } from "./optimise.ts";
 import { readManifest, readSource, ROOT } from "./sources.ts";
 import type { Shape } from "./draw-lib.ts";
@@ -66,30 +66,30 @@ interface Entry { slug: string; en: string; ja: string; aboutEn: string; aboutJa
 const ENTRIES: Entry[] = [
   {
     slug: "templar-baucent", en: "The Templars' banner (the baucent)", ja: "テンプル騎士団の旗（ボーセアン）", dates: { from: "1220", until: "1312" },
-    aboutEn: "The banner of the Knights Templar: white with a black chief, the colours Jacques de Vitry described in the 1220s.", aboutJa: "テンプル騎士団の旗。白地に黒い上部を持ち、1220年代にジャック・ド・ヴィトリが述べた色です。",
+    aboutEn: "The banner of the Knights Templar: white with a black chief, the colours Jacques de Vitry described in the 1220s.", aboutJa: "テンプル騎士団の旗。白地の上部が黒く、1220年代にジャック・ド・ヴィトリが述べた配色です。",
     source: src("Beauseant, Wikipedia", "https://en.wikipedia.org/wiki/Beauseant", "Says 13th-century sources describe a white gonfanon with a black chief (argent a chief sable), names Jacques de Vitry (1220s) and Matthew Paris (c. 1250 to 1259), and says a fresco at San Bevignate (c. 1290) shows the banner with the upper half white and the lower half black and a red cross."),
     noteEn: "The black and white are the source's. The sources differ on which half is black (a black chief in the text, a black lower half in the fresco) and on the red cross of the fresco, which the article says appears to be later: this drawing follows the text, and leaves out the cross.", noteJa: "白と黒は出典のものです。出典どうしで、どちらの半分が黒かが食い違います（文章では黒い上部、壁画では黒い下半分）。壁画の赤い十字は、記事によれば後の付加とみられます。この絵は文章に従い、十字は描きません。",
   },
   {
-    slug: "red-cross", en: "The red cross on white (St George's Cross)", ja: "白地に赤十字（聖ジョージ十字）", dates: { from: "1218", until: null },
+    slug: "red-cross", en: "The red cross on white (St George's Cross)", ja: "白地に赤い十字（聖ジョージ十字）", dates: { from: "1218", until: null },
     aboutEn: "A red cross on white: the crusaders' sign from about 1190, the flag of Genoa from at least 1218, and England's flag, later tied to Saint George.", aboutJa: "白地に赤い十字。1190年ごろから十字軍のしるしとなり、ジェノヴァの旗として遅くとも1218年から使われ、のちに聖ジョージと結び付いたイングランドの旗です。",
     source: src("Saint George's Cross, Wikipedia", "https://en.wikipedia.org/wiki/Saint_George%27s_Cross", "Says the Genoese annals show a plain red-cross flag from at least 1218 (and a flag of Saint George and the dragon in 1198), that the plain red on white became a recognisable crusaders' symbol from about 1190, and that the story of Richard I buying the right to the flag in 1190 is a tradition the page cannot confirm."),
-    noteEn: "The design and the date of 1218 are the source's; the 1190 grant is a tradition and is not drawn as a fact.", noteJa: "意匠と1218年という年は出典のものです。1190年の許可は伝承で、事実としては描きません。",
+    noteEn: "The design and the date of 1218 are the source's; the 1190 grant is a tradition and is not drawn as a fact.", noteJa: "図案と1218年という年は出典のものです。1190年の許可は伝承で、事実としては扱いません。",
   },
   {
     slug: "gelre-denmark", en: "Denmark's banner in the Gelre Armorial", ja: "ゲルレ紋章集のデンマークの旗", dates: null,
     aboutEn: "A white cross on red, the banner of \"die coninc van denmarke\" on folio 55v of the Gelre Armorial, compiled before 1396: the earliest known coloured picture of the Dannebrog.", aboutJa: "赤地に白い十字。1396年より前に編まれたゲルレ紋章集の55葉裏にある「デンマーク王」の旗で、ダンネブロの現存する最古の彩色画とされます。",
     source: src("Gelre Armorial, Wikipedia", "https://en.wikipedia.org/wiki/Gelre_Armorial", "Says the armorial was compiled before 1396 by Claes Heinenzoon (fl. 1345 to 1414), that folio 55v shows a lance tip with a banner displaying a white cross on red, labelled \"die coninc van denmarke\", and that it is the earliest known coloured image of the Dannebrog."),
-    noteEn: "The white cross on red and the date are the source's; the page does not describe the cross's proportions or the cloth's shape, so the arms' width and the cross's place (nearer the hoist, as in the Dannebrog today) are this package's.", noteJa: "赤地に白い十字と年代は出典のものです。出典は十字の寸法も布の形も述べないため、腕の太さと十字の位置（今のダンネブロと同じく掲揚側寄り）はこのパッケージのものです。",
+    noteEn: "The white cross on red and the date are the source's; the page does not describe the cross's proportions or the cloth's shape, so the arms' width and the cross's place (nearer the hoist, as in the Dannebrog today) are this package's.", noteJa: "赤地に白い十字と年代は出典のものです。出典は十字の寸法も布の形も述べないため、腕の太さと十字の位置（今のダンネブロと同じく旗竿側寄り）はこのパッケージのものです。",
   },
   {
     slug: "aragon-pallets", en: "The arms of Aragon", ja: "アラゴンの紋章", dates: { from: "1159", until: null },
     aboutEn: "Gold with four red bars, here as a banner of nine vertical stripes: the arms of Aragon, whose earliest undisputed material evidence is the seal of Alfonso II of 1159.", aboutJa: "金地に4本の赤い帯。ここでは縦の9本の縞の旗として描きます。アラゴンの紋章で、争いのない最古の物証は1159年のアルフォンソ2世の印章です。",
     source: src("Flag of Aragon, Wikipedia", "https://en.wikipedia.org/wiki/Flag_of_Aragon", "Says the earliest undisputed material evidence of the arms is a royal seal of Alfonso II of Aragon (1159), that an equestrian seal of Ramon Berenguer IV (c. 1150) shows a paled shield with no tinctures, and gives the blazon as Or, four bars Gules."),
-    noteEn: "The gold and red and the four bars (vertical on the flag) are the source's, dated by the seal of 1159, whose tinctures a seal does not show: they are the blazon's. The ratio of 3 to 2 and the shades are this package's. The legend of the bars drawn by Charles the Bald is not drawn as a fact.", noteJa: "金と赤、4本の帯（旗では縦）は出典のもので、1159年の印章で年代が示されます。印章に色は出ないため、色は紋章記述のものです。3対2の比と色合いはこのパッケージのものです。カール禿頭王が帯を描いたという伝説は、事実としては描きません。",
+    noteEn: "The gold and red and the four bars (vertical on the flag) are the source's, dated by the seal of 1159, whose tinctures a seal does not show: they are the blazon's. The ratio of 3 to 2 and the shades are this package's. The legend of the bars drawn by Charles the Bald is not drawn as a fact.", noteJa: "金と赤、4本の帯（旗では縦）は出典のもので、1159年の印章で年代が示されます。印章に色は出ないため、色は紋章記述のものです。縦横の比2対3と色合いはこのパッケージのものです。シャルル禿頭王が帯を描いたという伝説は、事実としては扱いません。",
   },
   {
-    slug: "scotland-saltire", en: "The saltire of Scotland", ja: "スコットランドのサルタイア", dates: { from: "1507", until: null },
+    slug: "scotland-saltire", en: "The saltire of Scotland", ja: "スコットランドの聖アンドリュー十字", dates: { from: "1507", until: null },
     aboutEn: "A white saltire (St Andrew's Cross) on blue, first recorded as a naval flag in 1507, for the carrack Great Michael.", aboutJa: "青地に白い斜め十字（聖アンドリュー十字）。1507年に大型帆船グレート・マイケル号の旗として記録されたのが最初です。",
     source: src("Flag of Scotland, Wikipedia", "https://en.wikipedia.org/wiki/Flag_of_Scotland", "Says the saltire as a naval flag on blue is recorded for 1507 (the Treasurer's accounts, for the carrack Great Michael), that the white saltire on blue is first shown in 1542 in Lindsay's armorial, that a seal of the Guardians of Scotland of 1286 shows Saint Andrew on a saltire cross, and that the Parliament of Scotland in 1385 ordered a white St Andrew's Cross for soldiers; it gives the saltire's width as a third to a fifth of the field."),
     noteEn: "The white saltire on blue and the date of 1507 are the source's, and the bars are drawn a fifth of the height wide, within the range the source gives. It is the latest banner here, at the edge of the Middle Ages: the 1286 seal and the 1385 order show the saltire as a sign, not as a banner.", noteJa: "青地に白い斜め十字と1507年は出典のものです。帯は、出典の示す範囲内で、縦の5分の1の太さに描きます。ここにあるなかで最も新しく、中世の終わりに当たります。1286年の印章と1385年の命令が示すのは、旗ではなく、しるしとしての斜め十字です。",
@@ -137,17 +137,18 @@ const commonsOnce = (): { records: DrawnDrawing[]; left: { slug: string; file: s
     }
     const artist = (found.metadata.Artist ?? "").trim();
     const author = artist === "" || /^See File history/i.test(artist) ? "an author the file's page does not name" : artist;
+    const authorJa = artist === "" || /^See File history/i.test(artist) ? "作者名の記載なし" : artist;
     const { from, until } = one.dates;
     records.push({
       id: `med:${one.slug}`,
       group: one.group,
       name: one.name,
-      about: { en: `${one.name.en}. ${one.says}`, ja: `${one.name.ja}。Wikimedia Commonsのファイルのページには、次のように書かれています：${one.says}` },
+      about: { en: `${one.name.en}. ${one.says}`, ja: `${one.name.ja}。${SAYS_JA[one.slug] ?? one.says}` },
       status: "reconstruction",
       dates: from === null && until === null ? null : { from, until },
       note: {
         en: `A modern drawing on Wikimedia Commons (${licence.name}, by ${author}) of a banner known from the sources its page names, optimised as a country's flag is. The drawing, its proportions and its shades are the drawer's, not the banner's, so it is a reconstruction. ${from === null && until === null ? `The file's page gives no dates (read on ${TODAY}).` : "The dates are the ones the file's title or description gives."}`,
-        ja: `Wikimedia Commons（${licence.name}、作者：${author}）にある、そのページが挙げる出典から知られる旗の現代の絵を、国の旗と同じく最適化したものです。絵、縦横の比、色合いは描いた人のもので、旗そのものではないため、復元です。${from === null && until === null ? `ファイルのページに期間は書かれていません（${TODAY}に確認）。` : "期間は、ファイルの名前か説明が示すものです。"}`,
+        ja: `Wikimedia Commons（${licence.name}、作者：${authorJa}）にある、そのページが挙げる出典から知られる旗を、現代に描いた絵です。国の旗と同じく最適化しています。絵、縦横の比、色合いは描いた人のもので、旗そのものではないため、復元です。${from === null && until === null ? `ファイルのページに期間は書かれていません（${jaDate(TODAY)}に確認）。` : "期間は、ファイルの名前か説明が示すものです。"}`,
       },
       source: { title: `${one.file} (Wikimedia Commons)`, url: found.page, kind: "reference", read: TODAY, says: `A file on Wikimedia Commons under ${licence.name}, by ${author}. Its page says: ${one.says}`, file: one.file, licence: licence.name, author },
       svg: drawing,

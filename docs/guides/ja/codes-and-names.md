@@ -18,7 +18,7 @@ console.log(flagName("JP-13","ja"),flagAspect("JP-13"));
 
 ## 旧国の旗を求める
 
-メダル表や記録集には、いまもソビエト連邦、東ドイツ、ユーゴスラビアが出てきます。Hataはこれらの旗を、現在の国が使わないコードで収録しています。ISO 3166-3のコードがあればそれ（`SUHH`、`DDDE`、`YUCS`）を、なければIOCのコード（`FRG`、`BOH`、`WIF`）を、それもなければHata独自の、`X` に2文字を続けたコード（`XAH` オーストリア＝ハンガリー、`XOT` オスマン帝国）を使います。ISO 3166は、このコードを国に割り当てません（[かつての国](former-countries.md)）。表でよく使われるコードは`FLAG_ALIASES`にあり、`flagCode`・`flag`・`flagName`・`manifest`が読みます。`isFlagCode`と`FLAG_CODES`はコードそのものだけを持ちます。
+メダル表や記録集には、いまもソビエト連邦、東ドイツ、ユーゴスラビアが出てきます。Hataはこれらの旗を、現在の国が使わないコードで収録しています。ISO 3166-3のコードがあればそれ（`SUHH`、`DDDE`、`YUCS`）を、なければIOCのコード（`FRG`、`BOH`、`WIF`）を、それもなければHata独自の、`X` に2文字を続けたコード（`XAH` オーストリア＝ハンガリー帝国、`XOT` オスマン帝国）を使います。ISO 3166は、このコードを国に割り当てません（[かつての国](former-countries.md)）。表でよく使われるコードは`FLAG_ALIASES`にあり、`flagCode`・`flag`・`flagName`・`manifest`が読みます。`isFlagCode`と`FLAG_CODES`はコードそのものだけを持ちます。
 
 ```ts
 import { flagCode, isFlagCode, FLAG_ALIASES } from "@johnmorrisdotca/hata";

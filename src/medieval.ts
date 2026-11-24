@@ -115,7 +115,7 @@ const medievalFlag = (id: string): Promise<string | null> => set.flag(id);
  * import { medievalName } from "@johnmorrisdotca/hata/medieval";
  *
  * console.log(medievalName("med:red-cross"));       // "The red cross on white (St George's Cross)"
- * console.log(medievalName("med:red-cross", "ja")); // "白地に赤十字（聖ジョージ十字）"
+ * console.log(medievalName("med:red-cross", "ja")); // "白地に赤い十字（聖ジョージ十字）"
  * ```
  */
 const medievalName = (id: string, lang: string = "en"): string | null => set.name(id, lang);

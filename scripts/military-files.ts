@@ -81,8 +81,8 @@ const MILITARY_FILES: readonly MilitaryFile[] = [
   f("pe-war-flag", c("Peru", "ペルー"), "war", "War flag of Peru.svg"),
   f("us-flag-1861", US, "war", "Flag of the United States (1861–1863).svg", "1861-07-04", "1863-07-04", c("the national flag of the Union's armies and navy, 34 stars", "北軍と海軍の国旗、星34個")),
   f("us-flag-1863", US, "war", "Flag of the United States (1863–1865).svg", "1863-07-04", "1865-07-04", c("the national flag of the Union's armies and navy, 35 stars", "北軍と海軍の国旗、星35個")),
-  { ...f("cs-battle-flag", CS, "war", "Battle flag of the Confederate States of America (1-1).svg", "1861", "1865", c("battle flag of the Army of Northern Virginia, square", "北バージニア軍の軍旗（正方形）")), restricted: true },
-  { ...f("cs-naval-jack", CS, "jack", "Naval jack of the Confederate States (1863–1865).svg", "1863", "1865", c("the Confederate States Navy's jack, rectangular", "海軍の艦首旗（長方形）")), restricted: true },
+  { ...f("cs-battle-flag", CS, "war", "Battle flag of the Confederate States of America (1-1).svg", "1861", "1865", c("battle flag of the Army of Northern Virginia, square", "北バージニア軍、正方形")), restricted: true },
+  { ...f("cs-naval-jack", CS, "jack", "Naval jack of the Confederate States (1863–1865).svg", "1863", "1865", c("the Confederate States Navy's jack, rectangular", "海軍、長方形")), restricted: true },
   f("ro-naval-jack", c("Romania", "ルーマニア"), "jack", "Naval Jack of Romania.svg"),
 ];
 

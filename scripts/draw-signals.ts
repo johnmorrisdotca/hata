@@ -165,7 +165,7 @@ const MEANINGS_EN = [
 ];
 const MEANINGS_JA = [
   "ダイバーが潜水中です。十分に離れ、低速で航行してください。",
-  "危険物を積み込み、揚げ荷し、または運搬しています。",
+  "危険物を積み込み中、荷揚げ中、または運搬中です。",
   "はい（肯定。または「直前の群の意味を肯定として読むこと」）。",
   "私から離れてください。操船が困難です。",
   "針路を右舷へ変えています。",
@@ -173,15 +173,15 @@ const MEANINGS_JA = [
   "水先人が必要です。漁場で近接して操業する漁船が掲げるときは「網を揚げています」。",
   "水先人が乗っています。",
   "針路を左舷へ変えています。",
-  "火災があり、危険物を積んでいます。私から十分に離れてください。または危険物が漏れています。",
-  "あなたと通信したい。",
+  "火災があり、危険物を積んでいます。私から十分に離れてください。または、危険物が漏れています。",
+  "あなたと通信したいです。",
   "直ちに停船してください。",
-  "本船は停止しており、水に対して行き足がありません。",
+  "本船は停止しており、対水速力がありません。",
   "いいえ（否定。または「直前の群の意味を否定として読むこと」）。視覚信号か音響信号でのみ使います。",
   "人が海に落ちました。",
   "港内では、本船がまもなく出港するので全員乗船してください。海上では、漁船が「網が障害物に掛かった」の意味で使うことがあります。",
-  "本船は「健康」で、自由交通を求めます。",
-  "規約はRに単独の信号を割り当てていません。数字を伴う補足として使います。",
+  "本船は「健康」です。入港と上陸の許可（フリー・プラティーク）を求めます。",
+  "国際信号書はRに単独の信号を割り当てていません。数字を伴う補足として使います。",
   "後進をかけています。",
   "私から離れてください。私はペア・トロールをしています。",
   "あなたは危険に向かっています。",
@@ -189,7 +189,7 @@ const MEANINGS_JA = [
   "医療援助が必要です。",
   "意図している行動をやめ、私の信号に注意してください。",
   "走錨しています。",
-  "引き船が必要です。漁場で近接して操業する漁船が掲げるときは「網を投げています」。",
+  "引き船が必要です。漁場で近接して操業する漁船が掲げるときは「網を入れています」。",
 ];
 const NUMBERS = [["Nadazero", "ナダゼロ"], ["Unaone", "ウナワン"], ["Bissotwo", "ビソツー"], ["Terrathree", "テラスリー"], ["Kartefour", "カルテフォー"], ["Pantafive", "パンタファイブ"], ["Soxisix", "ソキシシックス"], ["Setteseven", "セッテセブン"], ["Oktoeight", "オクトエイト"], ["Novenine", "ノベナイン"]] as const;
 
@@ -202,7 +202,7 @@ const SOURCE = {
 } as const;
 const NOTE = {
   en: "The Code shows this flag in a plate with no construction sheet. The design and the colours' names are the Code's; the proportions were measured from the plate and rounded, and the colours' values are this package's.",
-  ja: "規約は、この旗を寸法図のない図版で示しています。意匠と色の名前は規約のもの、縦横の比は図版から測って丸めたもの、色の値はこのパッケージのものです。",
+  ja: "国際信号書は、この旗を寸法図のない図版で示しています。図案と色の名前は国際信号書のもの、縦横の比は図版から測って丸めたもの、色の値はこのパッケージのものです。",
 };
 
 const signalRecords = (): DrawnDrawing[] => {
@@ -218,7 +218,7 @@ const signalRecords = (): DrawnDrawing[] => {
   const ordinal = ["first", "second", "third"] as const;
   const ordinalJa = ["第1", "第2", "第3"] as const;
   ordinal.forEach((word, at) => {
-    records.push({ id: `ics:sub-${at + 1}`, group: "substitute", name: { en: ["1st substitute", "2nd substitute", "3rd substitute"][at]!, ja: `${ordinalJa[at]}代表旗` }, about: { en: `Repeats the ${at === 0 ? "uppermost" : word} signal flag of the class of flags (letters or numerals) that immediately precedes it, so one set of flags can make a group that repeats a flag. No substitute is used more than once in a group.`, ja: `直前の種類の旗（文字旗か数字旗）の${at === 0 ? "最上" : `上から${at + 1}番目`}の旗を繰り返します。1組の旗で、同じ旗を繰り返す群を作るために使います。1つの群で同じ代表旗は2度使いません。` }, status: "official", dates: null, note: NOTE, source: SOURCE, svg: SUBSTITUTES[`sub-${at + 1}`]! });
+    records.push({ id: `ics:sub-${at + 1}`, group: "substitute", name: { en: ["1st substitute", "2nd substitute", "3rd substitute"][at]!, ja: `${ordinalJa[at]}代表旗` }, about: { en: `Repeats the ${at === 0 ? "uppermost" : word} signal flag of the class of flags (letters or numerals) that immediately precedes it, so one set of flags can make a group that repeats a flag. No substitute is used more than once in a group.`, ja: `直前に掲げた種類（文字旗か数字旗）の、${at === 0 ? "一番上" : `上から${at + 1}番目`}の旗を繰り返します。1組の旗で、同じ旗を繰り返す群を作れるようにするための旗です。同じ代表旗は、1つの群で2度使いません。` }, status: "official", dates: null, note: NOTE, source: SOURCE, svg: SUBSTITUTES[`sub-${at + 1}`]! });
   });
   records.push({ id: "ics:answer", group: "answer", name: { en: "Answering pennant (Code pennant)", ja: "応答旗（コード旗）" }, about: { en: "Hoisted at the dip to answer each hoist of a signal, and closed up when it is understood; hoisted singly after the last hoist to show that a signal is complete; and in a group of numerals it is the decimal point. A ship of war uses it as the Code pennant to call a merchant vessel.", ja: "信号の各掲揚に応えて半ばまで掲げ、意味がわかったら一杯に掲げます。信号の最後の掲揚のあとに単独で掲げて信号の完了を示し、数字の群では小数点になります。軍艦は、商船に呼びかけるときのコード旗として使います。" }, status: "official", dates: null, note: NOTE, source: SOURCE, svg: ANSWER });
 

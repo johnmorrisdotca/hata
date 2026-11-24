@@ -45,7 +45,7 @@ describe("the banners", () => {
     expect(medievalId(" Red-Cross ")).toBe("med:red-cross");
     expect(isMedievalId("med:red-cross")).toBe(true);
     expect(isMedievalId("red-cross")).toBe(false);
-    expect(medievalName("med:red-cross", "ja-JP")).toBe("白地に赤十字（聖ジョージ十字）");
+    expect(medievalName("med:red-cross", "ja-JP")).toBe("白地に赤い十字（聖ジョージ十字）");
     expect(medievalAbout("med:aragon-pallets", "ja")).toMatch(/アルフォンソ2世/);
     expect(await medievalFlag("med:nobody")).toBeNull();
     expect(() => medievalId(1 as unknown as string)).toThrow(TypeError);
