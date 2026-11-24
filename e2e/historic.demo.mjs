@@ -62,7 +62,7 @@ test("shows a country's flags oldest first, each with its years, status and kind
   await expect(flags.last().locator(at("historic-role"))).toHaveText("Legal and in use");
   await expect(flags.nth(3).locator("img")).toHaveAttribute("src", "dist/svg/ca--red-ensign-1957.svg");
   await expect(flags.nth(0).locator(at("historic-source"))).toHaveText("official source");
-  await expect(flags.nth(1).locator(at("historic-source"))).toHaveText("Wikipedia only");
+  await expect(flags.nth(1).locator(at("historic-source"))).toHaveText("official source");
   await expect(flags.last().locator(at("historic-source"))).toHaveText("official source");
   // A country with one flag is one row with its picture, and the Commons file as its source.
   await page.locator(at("search")).fill("Angola");
