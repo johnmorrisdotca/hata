@@ -13,7 +13,7 @@ The sets: [flag-icons](https://github.com/lipis/flag-icons), [country-flag-icons
 
 | Set | What its README says it contains | Shapes |
 | --- | --- | --- |
-| hata | 479 flags: 246 of the 250 countries, the first-level regions of ten countries, 12 former countries and the dated earlier flags of some present-day ones | each flag at its own proportions, and 4:3, square and round frames that never stretch it |
+| hata | 506 flags: 246 of the 250 countries, the first-level regions of ten countries, 39 former countries and the dated earlier flags of some present-day ones | each flag at its own proportions, and 4:3, square and round frames that never stretch it |
 | flag-icons | "A curated collection of all country flags in SVG, plus the CSS" | 4:3, and a squared version (`fis`) |
 | country-flag-icons | every ISO 3166-1 country, plus `EU`, `IC`, `AC`, `TA`, `XK`, `XA`, `XO`, `XC`, `BQ-BO`, `BQ-SA`, `BQ-SE`, `GB-ENG`, `GB-NIR`, `GB-SCT`, `GB-WLS` and `ES-CT` | 3:2 |
 | circle-flags | "A collection of circular SVG country flags"; the README also names regional files such as `es-ib` (the Balearic Islands) and `aq-true_south` | round |
@@ -54,7 +54,7 @@ The sets: [flag-icons](https://github.com/lipis/flag-icons), [country-flag-icons
 - **True proportions and frames that do not stretch.** Japan is 2:3, Canada 1:2, Switzerland square; a round frame is drawn again for the circle where a crop would lose a colour.
 - **Disputed and alternative flags side by side**, each with a status, dates and a reason, and the flag of a date for 35 countries.
 - **Colours and tags for every flag**, as exact hex values and a closed list of tags, each with its source (`/search`, [colours](colours.md), [tags](tags.md)).
-- **A small core.** The main entry is 3.7 kB gzipped and carries no flag, and a page pays only for the flags it imports.
+- **A small core.** The main entry is 4.0 kB gzipped and carries no flag, and a page pays only for the flags it imports.
 - **A gallery, a builder, a quiz and a docs site** in English and Japanese.
 
 ## What hata does not have yet, and why

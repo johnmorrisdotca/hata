@@ -1,6 +1,7 @@
 // The few things about the flags that are written by hand rather than read from Wikidata or Commons. Every entry
 // says why it is here. scripts/select.ts and scripts/build-data.ts read this file; nothing else is hand-written.
 
+import { FORMER_HISTORICAL, FORMER_VARIANTS } from "./former-flags.ts";
 import { HISTORIC } from "./historic-flags.ts";
 
 // The first level of these countries' subdivisions has flags in this version. Kuni's lists are the ones checked, and
@@ -309,6 +310,7 @@ const france = (place: string, article: string): VariantSpec => ({
 
 const VARIANTS: Readonly<Record<string, VariantSet>> = {
   ...HISTORIC,
+  ...FORMER_VARIANTS,
   AF: {
     disputed: true,
     default: "republic",
@@ -768,7 +770,7 @@ const VARIANTS: Readonly<Record<string, VariantSet>> = {
 interface HistoricalSpec {
   en: string;
   ja: string; // the usual Japanese name; marked for review with the rest of the Japanese (docs/strings-ja.md)
-  item: string | null; // the Wikidata item whose flag image names `file`
+  item: string | null; // the Wikidata item whose flag image names `file`; null with a file: a state with no item here (former-flags.ts), its Commons file named by hand
   from: string; // the first year it flew its flag (or the state's first year)
   until: string; // the last
   aliases: readonly string[];
@@ -997,6 +999,7 @@ const HISTORICAL: Readonly<Record<string, HistoricalSpec>> = {
     file: null,
     why: "The combined team of Australia and New Zealand at the Games of 1908 and 1912 had no flag of its own, and the Australian and New Zealand flags of the time are not one picture, so there is none to ship. A site draws a badge with the code.",
   },
+  ...FORMER_HISTORICAL,
 };
 
 // Every alias to the code it finds, for the lookups and the manifest (the builder checks no alias is a code of its own).

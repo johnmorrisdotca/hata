@@ -12,7 +12,7 @@ At their true proportions, with the source, author and licence of every flag. On
   <a href="https://www.npmjs.com/package/@johnmorrisdotca/hata"><img alt="npm" src="https://img.shields.io/npm/v/@johnmorrisdotca/hata?color=2f5d4a"></a>
   <a href="./LICENSE"><img alt="MIT licence" src="https://img.shields.io/badge/licence-MIT-2f5d4a"></a>
   <img alt="No dependencies" src="https://img.shields.io/badge/dependencies-0-2f5d4a">
-  <a href="https://johnmorrisdotca.github.io/hata/docs/api/main/index.html"><img alt="3.8 kB minified and gzipped" src="https://img.shields.io/badge/min%2Bgzip-3.8%20kB-2f5d4a"></a>
+  <a href="https://johnmorrisdotca.github.io/hata/docs/api/main/index.html"><img alt="4.0 kB minified and gzipped" src="https://img.shields.io/badge/min%2Bgzip-4.0%20kB-2f5d4a"></a>
   <img alt="TypeScript" src="https://img.shields.io/badge/types-TypeScript-3178c6">
   <a href="https://www.npmjs.com/package/@johnmorrisdotca/hata#provenance"><img alt="Published with npm provenance" src="https://img.shields.io/badge/npm-provenance-2f5d4a"></a>
 </p>
@@ -38,7 +38,7 @@ At their true proportions, with the source, author and licence of every flag. On
 </tr>
 </table>
 
-Hata is the flag set a site that already knows its countries and regions by ISO code (from [Kuni](https://github.com/johnmorrisdotca/kuni), say) can show beside them: 479 flags, each drawn at the proportions its government gives it, as an SVG that scales to any size, with its source, author and licence. It works in [the demo](https://johnmorrisdotca.github.io/hata/) with nothing to install. [Why Hata, and what is in it](./docs/guides/what-is-in-hata.md).
+Hata is the flag set a site that already knows its countries and regions by ISO code (from [Kuni](https://github.com/johnmorrisdotca/kuni), say) can show beside them: 506 flags, each drawn at the proportions its government gives it, as an SVG that scales to any size, with its source, author and licence. It works in [the demo](https://johnmorrisdotca.github.io/hata/) with nothing to install. [Why Hata, and what is in it](./docs/guides/what-is-in-hata.md).
 
 ## In 30 seconds
 
@@ -144,13 +144,13 @@ Install the scoped name: an unscoped `hata` on npm is somebody else's package.
 
 ### What's in it
 
-- **479 flags**: 246 of the 250 countries Kuni knows, 45 of Japan's 47 prefectures,
+- **506 flags**: 246 of the 250 countries Kuni knows, 45 of Japan's 47 prefectures,
   13 of Canada's 13 provinces and territories, 57 of the United States' 57 states, district and outlying areas,
   8 of Australia's 8 states and territories, 3 of the United Kingdom's 4 countries, 16 of Germany's 16 states,
   17 of France's 26 regions and overseas collectivities, 26 of Switzerland's 26 cantons, 9 of Austria's 9 states
-  and 27 of Brazil's 27 states and Federal District, and 12 former countries that a medal table or a record book
-  still names (the Soviet Union, East and West Germany, Czechoslovakia, Yugoslavia, Serbia and Montenegro, and
-  six more: [former countries](./docs/guides/places-with-more-than-one-flag.md#former-countries)). The 26 codes with no flag are listed with their reasons.
+  and 27 of Brazil's 27 states and Federal District, and 39 former countries that a medal table or a record book
+  still names (the Soviet Union, East and West Germany, Czechoslovakia, Yugoslavia, Austria-Hungary, the Ottoman Empire, Prussia, the Kingdom of Hawaii
+  and 31 more, every ISO 3166-3 code that has a flag among them: [former countries](./docs/guides/former-countries.md)). The 35 codes with no flag are listed with their reasons.
 - **Disputed and alternative flags**, side by side, each with a status, dates and a source; Hata takes no side ([disputed, former and historic flags](./docs/guides/places-with-more-than-one-flag.md)).
 - **True proportions, and frames that keep the flag**: 4:3, square and round, whole or cropped where a crop keeps every colour ([frames](./docs/guides/frames-whole-and-cropped.md)).
 - **Embed it anywhere**: `<hata-flag>`, an iframe page, and a builder that writes the code ([the element, the iframe and the builder](./docs/guides/embed-element-and-builder.md)).
@@ -190,7 +190,7 @@ The alias changes only the import name in your project.
 
 | Entry | What it carries | Size |
 | --- | --- | --- |
-| `@johnmorrisdotca/hata` | The codes, `flagCode`, `flagUrl`, `frame`, `aspectOf`, `toDataUri`; no flag | 12 KB, 3.7 KB gzipped |
+| `@johnmorrisdotca/hata` | The codes, `flagCode`, `flagUrl`, `frame`, `aspectOf`, `toDataUri`; no flag | 13 KB, 4.5 KB gzipped |
 | `@johnmorrisdotca/hata/flags/<code>` | One flag's SVG string (`/flags/jp`, `/flags/jp-13`, `/flags/ca-on`, `/flags/de-by`, and a former country's, `/flags/suhh`, lower case); `/flags/<code>.1x1` and `.4x3`, flag-icons' drawing made for that frame, where there is one | median 755 bytes; 176 bytes for Japan |
 | `@johnmorrisdotca/hata/load` | `flag(code, { shape, fit, variant, date, role })`, one dynamic import per flag | 26 KB, 5.7 KB gzipped, then the flag's own file (and a 3.6 KB gzipped table when a frame is asked for, and a 0.5 KB one when a variant is) |
 | `@johnmorrisdotca/hata/names` | `flagName(code, lang)` and `flagAspect(code)`: each flag's place in English and Japanese, from Kuni | 24 KB, 8.7 KB gzipped |
@@ -256,7 +256,7 @@ One script tag and an element, for any page:
 
 ### Disputed, former and historic flags
 
-A place with more than one flag in real use has them all, each with a status, and Hata takes no side. Twelve former countries have flags under codes no present-day country uses, and 35 countries have earlier flags, found by date.
+A place with more than one flag in real use has them all, each with a status, and Hata takes no side. 39 former countries have flags under codes no present-day country uses, and 35 countries have earlier flags, found by date.
 
 ```ts
 import { flag } from "@johnmorrisdotca/hata/load";
@@ -403,7 +403,7 @@ shape (`flag(code, { shape })`, `frame()` or CSS `object-fit`), a border or a sh
 
 ## Limits
 
-246 of the 250 countries Kuni knows; the first level of ten countries' subdivisions; 12 former countries; 26 codes with a reason and no flag (`LEFT_OUT`); only public domain, CC0, CC BY and MIT drawings; and the largest flag is 372 KB (Virginia), with 55 over the 40 KB budget. Not here: other countries' regions, the United Kingdom's counties, cities, ensigns, standards and raster pictures. A flag's licence covers the drawing; using a country's flag or seal may still be limited by its law, which [NOTICE.md](./NOTICE.md) explains. The table is in [sources, sizes and limits](./docs/guides/sources-sizes-and-limits.md#limits).
+246 of the 250 countries Kuni knows; the first level of ten countries' subdivisions; 39 former countries; 35 codes with a reason and no flag (`LEFT_OUT`); only public domain, CC0, CC BY and MIT drawings; and the largest flag is 372 KB (Virginia), with 55 over the 40 KB budget. Not here: other countries' regions, the United Kingdom's counties, cities, ensigns, standards and raster pictures. A flag's licence covers the drawing; using a country's flag or seal may still be limited by its law, which [NOTICE.md](./NOTICE.md) explains. The table is in [sources, sizes and limits](./docs/guides/sources-sizes-and-limits.md#limits).
 
 ## Accessibility
 

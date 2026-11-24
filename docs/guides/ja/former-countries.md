@@ -1,0 +1,43 @@
+---
+title: かつての国
+section: how-to
+order: 24
+description: ISO 3166-3のすべてのコードと、コードのなかった主な国家について、それぞれの旗、使われた期間、法律上の旗と実際に使われた旗、除いたものとその理由を説明します。
+---
+
+メダル表、1900年の地図帳、歴史の授業には、今はない国の名前が出てきます。Hataには、そのうち39か国の旗があり、どれも現在の国が使っていないコードで探せます。旗が使われた期間、期間の根拠になった資料、絵のライセンスも添えてあります。ISO 3166-3（国が名前を改めたあとの旧名の規格）の30のコードのうち24に旗があり、残る6つには、旗がない理由を載せています。
+
+```mjs
+import { flag } from "@johnmorrisdotca/hata/load";
+import { flagOn, leftOut, manifest, variantOn } from "@johnmorrisdotca/hata/manifest";
+
+// A state with no ISO 3166-3 code has a code of Hata's own: X and two letters ("XOT", the Ottoman Empire).
+console.log(variantOn("XOT", "1900")?.id, manifest("XOT")?.historical?.from);
+// Dahomey's flag is the one picture Benin flies again today, under two codes.
+console.log(manifest("DYBJ")?.sameAs, (await flag("DYBJ")) === (await flag("BJ")));
+// Austria-Hungary had no flag in law: its civil ensign is the flag in use, and the answer says why.
+const ensign = variantOn("XAH", "1900", { role: "in-use" });
+console.log(ensign?.id, flagOn("XAH", "1900").none?.kind);
+// What is not here has a reason.
+console.log(leftOut("SKIN")?.reason.slice(0, 30));
+```
+
+## コード
+
+- **ISO 3166-3のコードは4文字**（`SUHH`、`DDDE`、`DYBJ`）で、その国が持っていたコードに、後継国の2文字（後継国がなければ `HH`）を続けたものです。Hataでは、これがその国のコードです。以前の2文字（`DY`、`HV`、`YD`）や3文字のコード（`DHY`、`HVO`、`YMD`）でも、大文字小文字を問わず見つかります。ただし、今の国がその文字を使っている場合は除きます（`BY` はベラルーシなので、白ロシア・ソビエト社会主義共和国は `BYAA` だけです）。
+- **ISO 3166-3のコードを持たなかった国家には、Hata独自のコード、`X` に2文字を続けたものを付けます。** ISO 3166は `XAA` から `XZZ` を利用者のために空けてあり、国には割り当てないので、このコードが公式のコードと重なることはありません。`XAH` オーストリア＝ハンガリー、`XOT` オスマン帝国、`XPR` プロイセン、`XHW` ハワイ王国、`XGE` ドイツ帝国、`XSV` 南ベトナム、`XKR` 大韓帝国、`XQI` 清、`XUA` アラブ連合共和国、`XTX` テキサス共和国、`XIT` イタリア王国、`XZB` ザンジバル・スルタン国です。
+- **IOCのコード**（`FRG`、`BOH`、`WIF`）は、これまでISO 3166-3のコードがなかった国のために、そのまま使います。
+
+## 日付で探す旗、法律上の旗と実際に使われた旗
+
+このガイドとともに加えたかつての国の旗にはどれも日付があり、今ある国と同じように `variantOn(code, date)` と `flag(code, { date })` で探せます（[歴代の旗](historic-flags.md)を参照）。ただし、その国があった年の範囲に限ります。旗は、法律上の旗、実際に使われた旗、またはその両方です。たいていは両方です。そうでない3つの国は、`roleNote` に理由を書いてあります。オーストリア＝ハンガリーは法律上の国旗を持ちませんでした（1867年の和協が、それぞれの半分に独自の象徴を残したため）。清の黄竜旗は王朝の儀式や船のための旗で、法律によらず国旗として使われるようになりました。ハワイ王国の1816年の旗には、見つかっている布告がありません。
+
+## 領土は国の旗を掲げた
+
+アファール・イッサ領、フランス領南方・南極地域、ドロンニング・モード・ランド、ジョンストン島、ミッドウェー諸島、ウェーク島、パナマ運河地帯、アメリカのそのほかの太平洋の島々は、統治する国の旗を掲げ、独自の旗は持ちませんでした。どれも独自のコードを持ち、同じ絵を共有します（`manifest("NQAQ")?.sameAs` は `"NO"`）。西ドイツがドイツの絵を共有するのと同じです。コードの年は項目に、その旗が掲げられた日はそのバリアントにあります。
+
+## 除いたものとその理由
+
+それぞれの理由は `leftOut(code)` で読めます。ISO 3166-3のコードのうち旗のない6つは、英領南極地域（Commonsの絵が1969年の旗と同じだと言う資料がない）、カントン・エンダーベリー諸島（英米の共同統治で、それぞれが自国の旗を掲げた）、ニューヘブリディーズ諸島（英仏の共同統治で、独自の旗がない）、中立地帯（どの国の領土でもない）、シッキム（最後の旗がCC BY-SAで、Hataは収録しない）、東ティモール（ポルトガル、のちインドネシアの旗）です。コードのなかった国家でも、大コロンビアとタンガニーカ（CC BY-SAの絵）、アメリカ連合国（旗が今も議論のある象徴で、どれをどう載せるかはメンテナーが決めること）を除いています。理由つきの全体は[docs/left-out.md](../../left-out.md)（英語）に、すべてのコード・別名・年・旗は[かつての国の一覧](../../historical.md)（英語）にあります。
+
+続けて[争いのある旗・かつての国・歴代の旗](places-with-more-than-one-flag.md)を読んでください。

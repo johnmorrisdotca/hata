@@ -4,6 +4,7 @@
 import { describe, expect, it } from "vitest";
 
 import { ALIASES, HISTORICAL } from "../scripts/data-config";
+import { FORMER_HISTORICAL, FORMER_VARIANTS } from "../scripts/former-flags";
 import { aspectOf, FLAG_ALIASES, FLAG_CODES, flagCode, flagUrl, isFlagCode } from "./index";
 import { flag } from "./load";
 import { leftOut, manifest, MANIFEST, LEFT_OUT, variantsOf } from "./manifest";
@@ -13,8 +14,11 @@ const WITH_FLAG = Object.entries(HISTORICAL).filter(([, spec]) => spec.file !== 
 const WITHOUT = Object.entries(HISTORICAL).filter(([, spec]) => spec.file === null);
 
 describe("the former countries' codes", () => {
-  it("are flags for twelve places and reasons for the rest, each under a code no present-day place has", () => {
-    expect(WITH_FLAG.map(([code]) => code).sort()).toEqual(["ANHH", "BOH", "BUMM", "CSHH", "CSXX", "DDDE", "FRG", "RHZW", "SUHH", "WIF", "YUCS", "ZRCD"]);
+  it("are flags for the places that have a drawing and reasons for the rest, each under a code no present-day place has", () => {
+    expect(WITH_FLAG.map(([code]) => code).sort()).toEqual([
+      "AIDJ", "ANHH", "BOH", "BUMM", "BYAA", "CSHH", "CSXX", "DDDE", "DYBJ", "FQHH", "FRG", "GEHH", "HVBF", "JTUM", "MIUM", "NQAQ", "PCHH", "PUUM", "PZPA", "RHZW", "SUHH", "VDVN", "WIF", "WKUM",
+      "XAH", "XGE", "XHW", "XIT", "XKR", "XOT", "XPR", "XQI", "XSV", "XTX", "XUA", "XZB", "YDYE", "YUCS", "ZRCD",
+    ]);
     for (const [code] of WITH_FLAG) expect(FLAG_CODES as readonly string[], code).toContain(code);
     for (const [code] of WITHOUT) expect(LEFT_OUT.some((one) => one.code === code), code).toBe(true);
     expect(manifest("SUHH")?.historical).toEqual({ from: "1922", until: "1991", aliases: ["SU", "SUN", "URS"] });
@@ -53,9 +57,57 @@ describe("the former countries' codes", () => {
   });
 });
 
+describe("every ISO 3166-3 code, and the states that never had one", () => {
+  // ISO 3166-3 (Code for formerly used names of countries): thirty codes, each either a flag here or a reason in the left-out list.
+  const ISO_3166_3 = ["AIDJ", "ANHH", "BQAQ", "BUMM", "BYAA", "CSHH", "CSXX", "CTKI", "DDDE", "DYBJ", "FQHH", "GEHH", "HVBF", "JTUM", "MIUM", "NHVU", "NQAQ", "NTHH", "PCHH", "PUUM", "PZPA", "RHZW", "SKIN", "SUHH", "TPTL", "VDVN", "WKUM", "YDYE", "YUCS", "ZRCD"];
+
+  it("has all thirty ISO 3166-3 codes, each with a flag or a reason", () => {
+    for (const code of ISO_3166_3) {
+      expect(HISTORICAL[code], code).toBeDefined();
+      expect(code in HISTORICAL && (manifest(code) !== null || leftOut(code) !== null), code).toBe(true);
+    }
+    for (const code of ["BQAQ", "CTKI", "NHVU", "NTHH", "SKIN", "TPTL"]) expect(leftOut(code)?.reason.length, code).toBeGreaterThan(80);
+  });
+
+  it("gives a state with no ISO 3166-3 code a code of Hata's own: X and two letters, a range ISO 3166 never gives a country", () => {
+    const own = Object.keys(HISTORICAL).filter((code) => /^X[A-Z]{2}$/.test(code));
+    expect(own.length).toBeGreaterThanOrEqual(12);
+    for (const code of own) expect(ISO_3166_3, code).not.toContain(code);
+  });
+
+  it("draws a territory's flag from its governing country's, one picture under two codes", () => {
+    expect(manifest("AIDJ")?.sameAs).toBe("FR");
+    expect(manifest("FQHH")?.sameAs).toBe("FR");
+    expect(manifest("NQAQ")?.sameAs).toBe("NO");
+    expect(manifest("DYBJ")?.sameAs).toBe("BJ");
+    for (const code of ["JTUM", "MIUM", "PUUM", "PZPA", "WKUM"]) expect(manifest(code)?.wikidata, code).toBeNull();
+  });
+
+  it("names no Wikidata item for a state it draws by a file named by hand", () => {
+    for (const [code, spec] of Object.entries(FORMER_HISTORICAL)) {
+      expect(spec.item, code).toBeNull();
+      if (spec.file !== null) expect(manifest(code)?.wikidata, code).toBeNull();
+    }
+  });
+
+  it("dates each flag, says which flags were the law's and which were in use, and cites a page for it", () => {
+    for (const code of Object.keys(FORMER_VARIANTS)) {
+      const variants = variantsOf(code);
+      expect(variants.length, code).toBeGreaterThan(0);
+      for (const one of variants) {
+        expect(one.from, `${code} ${one.id}`).not.toBeNull();
+        expect(one.roles.length, `${code} ${one.id}`).toBeGreaterThan(0);
+        expect(one.source, `${code} ${one.id}`).toMatch(/^https:\/\//);
+      }
+    }
+    expect(variantsOf("XAH")[0]?.roles).toEqual(["in-use"]);
+    expect(variantsOf("XAH")[0]?.roleNote?.why).toMatch(/no flag/);
+  });
+});
+
 describe("the former countries' flags", () => {
   it("are drawn at their true proportions", () => {
-    const official: Record<string, number> = { SUHH: 2, DDDE: 5 / 3, FRG: 5 / 3, CSHH: 3 / 2, YUCS: 2, CSXX: 2, ANHH: 3 / 2, BUMM: 9 / 5, ZRCD: 3 / 2, RHZW: 2, BOH: 3 / 2, WIF: 2 };
+    const official: Record<string, number> = { SUHH: 2, DDDE: 5 / 3, FRG: 5 / 3, CSHH: 3 / 2, YUCS: 2, CSXX: 2, ANHH: 3 / 2, BUMM: 9 / 5, ZRCD: 3 / 2, RHZW: 2, BOH: 3 / 2, WIF: 2, BYAA: 2, GEHH: 2, HVBF: 3 / 2, PCHH: 19 / 10, VDVN: 3 / 2, YDYE: 3 / 2, XSV: 3 / 2, XOT: 3 / 2, XHW: 2 };
     for (const [code, ratio] of Object.entries(official)) {
       const record = manifest(code)!;
       expect(record.width / record.height, code).toBeCloseTo(ratio, 1);

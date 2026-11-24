@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   inkscape:version="1.0 (4035a4fb49, 2020-05-01)"
+   sodipodi:docname="Flag_of_Hawaii_(1816).svg"
+   id="svg174"
+   version="1.1"
+   viewBox="0 0 120 60"
+   height="600"
+   width="1200">
+  <metadata
+     id="metadata180">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs178" />
+  <sodipodi:namedview
+     inkscape:current-layer="svg174"
+     inkscape:window-maximized="1"
+     inkscape:window-y="-8"
+     inkscape:window-x="-8"
+     inkscape:cy="300"
+     inkscape:cx="417.00901"
+     inkscape:zoom="0.89348659"
+     showgrid="false"
+     id="namedview176"
+     inkscape:window-height="1018"
+     inkscape:window-width="1920"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0"
+     guidetolerance="10"
+     gridtolerance="10"
+     objecttolerance="10"
+     borderopacity="1"
+     bordercolor="#666666"
+     pagecolor="#ffffff" />
+  <clipPath
+     id="c1">
+    <path
+       id="path158"
+       d="M 0,0 H 65 V 33.333333 H 0 Z" />
+  </clipPath>
+  <clipPath
+     id="c2">
+    <path
+       id="path161"
+       d="m 0,0 v 16.666667 h 60 v 16.666666 0 z m 0,33.333333 v 0 H 30 V 0 h 30 z" />
+  </clipPath>
+  <rect
+     id="rect164"
+     fill="#012169"
+     height="60"
+     width="120" />
+  <path
+     sodipodi:nodetypes="cccc"
+     id="path166"
+     clip-path="url(#c1)"
+     stroke-width="6.66666666666667"
+     stroke="#ffffff"
+     d="M 0,0 60,33.333333 M 60,0 0,33.333333" />
+  <path
+     sodipodi:nodetypes="cccc"
+     id="path168"
+     clip-path="url(#c2)"
+     stroke-width="4.444444444444447"
+     stroke="#c8102e"
+     d="M 0,0 60,33.333333 M 60,0 0,33.333333" />
+  <path
+     sodipodi:nodetypes="cccc"
+     id="path170"
+     stroke-width="11.11111111111112"
+     stroke="#ffffff"
+     d="M 0,16.6667 H 60 M 30,0 v 33.333333" />
+  <path
+     sodipodi:nodetypes="cccc"
+     id="path172"
+     stroke-width="6.66666666666667"
+     stroke="#c8102e"
+     d="M 0,16.6667 H 60 M 30,3.35e-5 V 33.333367" />
+  <g
+     transform="matrix(0.74074074,0,0,0.74074074,0,40)"
+     id="1">
+    <rect
+       y="0"
+       x="0"
+       fill="#c8102e"
+       width="162"
+       height="9"
+       id="rect127" />
+    <rect
+       style="stroke-width:0.948683"
+       x="0"
+       fill="#ffffff"
+       y="9"
+       width="162"
+       height="9"
+       id="rect129" />
+  </g>
+  <use
+     height="100%"
+     width="100%"
+     transform="matrix(0.5,0,0,1,60,-20)"
+     id="use203"
+     xlink:href="#1"
+     y="0"
+     x="0" />
+  <use
+     x="0"
+     y="0"
+     xlink:href="#1"
+     id="use203-3"
+     transform="matrix(0.5,0,0,1,60,-40)"
+     width="100%"
+     height="100%" />
+</svg>

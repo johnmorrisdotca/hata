@@ -12,6 +12,7 @@ templates on its page, the day its current version was uploaded and the day it w
 | Which Commons file is each place's flag | Wikidata, the flag image (P41) of each country (P297) and subdivision (P300), the snapshot `data-sources/wikidata-2026-10-09.json` | CC0 |
 | The flags themselves | Wikimedia Commons, one file a flag, kept in `data-sources/commons/` and recorded with their metadata in `data-sources/commons-2026-11-17.json` | Each file's own: public domain, CC0 or CC BY, below |
 | The dates of the earlier flags of present-day countries (`scripts/historic-flags.ts`) | Facts read on 2026-11-17 from the page each variant names as its `source` (a government, parliament, archive or law text, a vexillological reference, or Wikipedia, as its `sourceKind` says); nothing is copied from them | Facts; each page is under its own terms |
+| The Commons files of the former states with no Wikidata item (`scripts/former-flags.ts`: the Ottoman Empire, Prussia, the Kingdom of Hawaii and the rest), and the dates of their flags | Named by hand and added to the Commons snapshot on 2026-11-24 (each file's own licence, as above); the dates read on 2026-11-24 from the page each variant names as its `source`; nothing is copied from them | Facts; each page is under its own terms |
 | The places' names, in the docs and the demo only | Kuni (`@johnmorrisdotca/kuni` 1.0.0, a development dependency), from Unicode CLDR and Wikidata | MIT, Unicode-3.0 and CC0 |
 | The pipeline, the frames, the lookups and the demo | Written for this package | MIT |
 

@@ -18,7 +18,7 @@ console.log(flagName("JP-13","ja"),flagAspect("JP-13"));
 
 ## Ask for a former country
 
-A medal table or a record book still names the Soviet Union, East Germany and Yugoslavia. Hata has their flags under codes no present-day country uses: the ISO 3166-3 code where that standard has one (`SUHH`, `DDDE`, `YUCS`), else the IOC's (`FRG`, `BOH`, `WIF`). The codes a table is likely to hold are `FLAG_ALIASES`, and `flagCode`, `flag`, `flagName` and `manifest` read them; `isFlagCode` and `FLAG_CODES` hold only the code itself.
+A medal table or a record book still names the Soviet Union, East Germany and Yugoslavia. Hata has their flags under codes no present-day country uses: the ISO 3166-3 code where that standard has one (`SUHH`, `DDDE`, `YUCS`), else the IOC's (`FRG`, `BOH`, `WIF`), else a code of Hata's own, `X` and two letters (`XAH` Austria-Hungary, `XOT` the Ottoman Empire), which ISO 3166 never gives a country ([former countries](former-countries.md)). The codes a table is likely to hold are `FLAG_ALIASES`, and `flagCode`, `flag`, `flagName` and `manifest` read them; `isFlagCode` and `FLAG_CODES` hold only the code itself.
 
 ```ts
 import { flagCode, isFlagCode, FLAG_ALIASES } from "@johnmorrisdotca/hata";

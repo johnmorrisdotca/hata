@@ -6,6 +6,14 @@ All notable changes to this project are written here. The format follows
 
 ## [Unreleased]
 
+### Added
+
+- **Every former country's flag: all 30 ISO 3166-3 codes, and the larger states that never had one** (MODULES-1808). 27 more flags (39 former countries in all, 506 flags): 15 ISO 3166-3 codes (`AIDJ`, `BYAA`, `DYBJ`, `FQHH`, `GEHH`, `HVBF`, `JTUM`, `MIUM`, `NQAQ`, `PCHH`, `PUUM`, `PZPA`, `VDVN`, `WKUM`, `YDYE`) and 12 states under codes of Hata's own, `X` and two letters (Austria-Hungary, the Ottoman Empire, Prussia, the Kingdom of Hawaii, the German Empire, South Vietnam, the Korean Empire, the Qing Empire, the United Arab Republic, the Republic of Texas, the Kingdom of Italy and the Sultanate of Zanzibar). Each has dated flags with the legal flag and the flag in use, a source and a licence. Nine more codes are in `LEFT_OUT` with their reasons (six ISO 3166-3 codes, and Gran Colombia, Tanganyika and the Confederate States). `manifest(code).wikidata` is `null` for a state with no Wikidata item. New guide: [former countries](docs/guides/former-countries.md), in English and Japanese.
+
+### Changed
+
+- **The main entry is 13 KB** (4.5 KB gzipped), up from 12 KB, for the new codes and aliases; the size test holds the new budget.
+
 ## [1.15.0] - 2026-11-23
 
 ### Added

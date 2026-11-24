@@ -2,56 +2,56 @@
   "measured": "esbuild 0.28.2, bundled, minified, ES2020, gzip level 9",
   "entries": {
     ".": {
-      "minified": 7969,
-      "gzip": 3777
+      "minified": 8498,
+      "gzip": 4049
     },
     "./load": {
-      "minified": 14706019,
-      "gzip": 4529261
+      "minified": 15148186,
+      "gzip": 4676641
     },
     "./manifest": {
-      "minified": 1216099,
-      "gzip": 154553
+      "minified": 1324046,
+      "gzip": 170833
     },
     "./names": {
-      "minified": 31129,
-      "gzip": 9347
+      "minified": 33816,
+      "gzip": 10239
     },
     "./organisations": {
       "minified": 2407,
       "gzip": 1170
     },
     "./search": {
-      "minified": 69111,
-      "gzip": 21157
+      "minified": 72857,
+      "gzip": 22354
     },
     "./custom": {
       "minified": 16556,
       "gzip": 6925
     },
     "./element": {
-      "minified": 14744854,
-      "gzip": 4542042
+      "minified": 15189362,
+      "gzip": 4689802
     },
     "./element/define": {
-      "minified": 14744807,
-      "gzip": 4542029
+      "minified": 15189315,
+      "gzip": 4689780
     },
     "./bind": {
-      "minified": 14738510,
-      "gzip": 4539506
+      "minified": 15183016,
+      "gzip": 4687389
     },
     "./react": {
-      "minified": 14769751,
-      "gzip": 4552772
+      "minified": 15214267,
+      "gzip": 4698441
     },
     "./vue": {
-      "minified": 14784316,
-      "gzip": 4556624
+      "minified": 15228836,
+      "gzip": 4704425
     },
     "./react-native": {
-      "minified": 14768824,
-      "gzip": 4552277
+      "minified": 15213340,
+      "gzip": 4697966
     },
     "./flags/ad.1x1": {
       "minified": 28262,
