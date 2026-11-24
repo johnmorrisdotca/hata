@@ -42,7 +42,7 @@ can also take a wrong tag away. To review a flag, look at it, add a line for it 
 
 ## Every flag
 
-55 of the 520 pictures have no tag yet.
+58 of the 523 pictures have no tag yet.
 
 | Code | Flag | Tags, each with its source and what it rests on |
 | --- | --- | --- |
@@ -494,6 +494,7 @@ can also take a wrong tag away. To review a flag, look at it, add a line for it 
 | `VDVN` | Democratic Republic of Vietnam |  |
 | `WIF` | West Indies Federation | `stripes-horizontal` (unreviewed: the same nine bands at the hoist and at the fly); `circle` (unreviewed: Commons category "Flags with centered orange disks") |
 | `XAH` | Austria-Hungary |  |
+| `XCS` | Confederate States of America |  |
 | `XGE` | German Empire | `plain` (computed: the whole flag is three bands across, with nothing on them); `stripes-horizontal` (computed: the whole flag is three bands across) |
 | `XIT` | Kingdom of Italy | `stripes-vertical` (unreviewed: the same three bands at the top and at the bottom); `cross` (unreviewed: Commons category "Flags with 1 white cross"); `emblem` (unreviewed: Commons category "Flags with centered coat of arms from Italy"); `coat-of-arms` (unreviewed: Commons category "Flags with centered coat of arms from Italy") |
 | `XKR` | Korean Empire |  |
@@ -544,6 +545,8 @@ can also take a wrong tag away. To review a flag, look at it, add a line for it 
 | `BR--republic-23-stars` | Brazil: 23 stars (Acre) |  |
 | `MX--carranza-1916` | Mexico: Profile eagle (Carranza, 1916) | `stripes-vertical` (unreviewed: the same three bands at the top and at the bottom); `emblem` (unreviewed: 14 colours, as a seal or a coat of arms has) |
 | `MX--enciso-1934` | Mexico: 1934 eagle | `stripes-vertical` (unreviewed: the same three bands at the top and at the bottom); `emblem` (unreviewed: 14 colours, as a seal or a coat of arms has) |
+| `XCS--stars-and-bars` | Confederate States of America: The first national flag ("Stars and Bars") |  |
+| `XCS--blood-stained-banner` | Confederate States of America: The third national flag ("Blood-Stained Banner") |  |
 | `BYAA--1937` | Byelorussian Soviet Socialist Republic: The flag of 1937 to 1951 |  |
 | `BYAA--1927` | Byelorussian Soviet Socialist Republic: The flag of 1927 to 1937 |  |
 | `BYAA--1919` | Byelorussian Soviet Socialist Republic: The flag of 1919 to 1927 |  |

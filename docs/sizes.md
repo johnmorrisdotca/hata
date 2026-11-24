@@ -5,8 +5,8 @@ Made by `pnpm data`; a test fails if this list and the data differ. Sizes are of
 
 | | Pictures | SVG | Gzipped |
 | --- | --- | --- | --- |
-| Every flag | 460 (506 codes; 46 share another's picture) | 9039.4 KB | 3139.1 KB |
-| The same drawings as their sources have them | 460 | 15768.3 KB | |
+| Every flag | 461 (507 codes; 46 share another's picture) | 9040.5 KB | 3139.5 KB |
+| The same drawings as their sources have them | 461 | 15769.4 KB | |
 | The median flag | | 805 B | |
 | The countries alone | 235 | 2119.6 KB | 725.0 KB |
 | Drawings made for a frame (flag-icons' 4:3 and square, `/flags/<code>.4x3`, `.1x1`) | 429 | 2869.6 KB | 957.8 KB |

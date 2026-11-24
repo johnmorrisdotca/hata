@@ -398,8 +398,7 @@ the Soviet Union, East and West Germany, Yugoslavia and the rest, and found none
   gained their 19 files on 2026-11-24 (each has a `fetched` day); the others were not read again.
 - **A state with no flag in law says so.** Austria-Hungary's civil ensign is its flag in use only (`roles: ["in-use"]` and a `roleNote`),
   and so are the Qing Empire's Yellow Dragon Flags and the Kingdom of Hawaii's flag of 1816.
-- **Left out for the maintainer, or for a licence.** The Confederate States (contested symbols), Gran Colombia and Tanganyika
-  (every drawing under CC BY-SA). Prussia's state flag with the arms (1892 to 1918) is drawn on Commons only at changed proportions
+- **Left out for a licence.** Gran Colombia and Tanganyika (every drawing under CC BY-SA). The Confederate States are in (`XCS`): the three national flags, as dated variants, like any former state; the battle flag is not a national flag and is in the military set (docs/guides/military-flags.md). Prussia's state flag with the arms (1892 to 1918) is drawn on Commons only at changed proportions
   or under a licence that is not shipped, so Prussia ships the plain black and white flag.
 
 - **A code two countries held finds neither.** `CS` was Czechoslovakia's until 1992 and Serbia and Montenegro's from

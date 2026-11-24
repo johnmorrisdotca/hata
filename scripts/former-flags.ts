@@ -300,6 +300,16 @@ const FORMER_HISTORICAL: Readonly<Record<string, HistoricalSpec>> = {
     why: "The red flag of the independent Sultanate, from independence on 1963-12-10 until the revolution of 1964-01-12; Zanzibar then joined Tanganyika to make Tanzania (`TZ`).",
   },
 
+  XCS: {
+    en: "Confederate States of America",
+    ja: "アメリカ連合国",
+    item: null,
+    from: "1861",
+    until: "1865",
+    aliases: [],
+    file: "Flag of the Confederate States (1863–1865).svg",
+    why: "The second national flag of the Confederate States, the \"Stainless Banner\" (a white field with the battle flag in the canton), the flag of the longest part of the state's life, from 1863-05-01 to 1865-03-04; the first and the third national flags are variants with their dates. The Confederate battle flag (the \"Southern Cross\") was never a national flag and is not shipped as one.",
+  },
   // Left out, each with its reason (docs/left-out.md): file null
   BQAQ: {
     en: "British Antarctic Territory",
@@ -361,16 +371,6 @@ const FORMER_HISTORICAL: Readonly<Record<string, HistoricalSpec>> = {
     file: null,
     why: "In the years of the code (1974 to 1993) East Timor was Portuguese Timor, then from 1976 a province of Indonesia: it flew Portugal's flag and then Indonesia's, and had none of its own that was in lasting use. Timor-Leste (`TL`) has its flag since independence.",
   },
-  XCS: {
-    en: "Confederate States of America",
-    ja: "アメリカ連合国",
-    item: null,
-    from: "1861",
-    until: "1865",
-    aliases: [],
-    file: null,
-    why: "Not added: the flags of the Confederacy are contested symbols today, and which of its three national flags to carry, and how, is a decision for the maintainer, not one the pipeline makes.",
-  },
   XGC: {
     en: "Gran Colombia",
     ja: "大コロンビア",
@@ -394,6 +394,15 @@ const FORMER_HISTORICAL: Readonly<Record<string, HistoricalSpec>> = {
 };
 
 const FORMER_VARIANTS: Readonly<Record<string, VariantSet>> = {
+  XCS: {
+    disputed: false,
+    default: "stainless-banner",
+    variants: [
+      { id: "stars-and-bars", name: "The first national flag (\"Stars and Bars\")", nameJa: "第1国旗（「スターズ・アンド・バーズ」）", status: "historical", roles: BOTH, from: "1861-03-04", until: "1863-05-01", why: "Three horizontal bars of red, white and red, with a blue canton holding a ring of white stars (seven at first, thirteen by 1862), adopted by the Confederate Congress on 1861-03-04 and replaced on 1863-05-01.", source: "https://en.wikipedia.org/wiki/Flags_of_the_Confederate_States_of_America", sourceKind: "encyclopedia", file: "Flag of the Confederate States (1861–1863).svg" },
+      { id: "stainless-banner", name: "The second national flag (\"Stainless Banner\")", nameJa: "第2国旗（「ステンレス・バナー」）", status: "historical", roles: BOTH, from: "1863-05-01", until: "1865-03-04", why: "A white field with the battle flag in the canton, adopted by the Confederate Congress and in use from 1863-05-01 until 1865-03-04.", source: "https://en.wikipedia.org/wiki/Flags_of_the_Confederate_States_of_America", sourceKind: "encyclopedia", file: null },
+      { id: "blood-stained-banner", name: "The third national flag (\"Blood-Stained Banner\")", nameJa: "第3国旗（「ブラッド・ステインド・バナー」）", status: "historical", roles: BOTH, from: "1865-03-04", until: "1865", why: "The second national flag with a red vertical bar at the fly, adopted on 1865-03-04 and in use until the Confederacy was disbanded in 1865.", source: "https://en.wikipedia.org/wiki/Flags_of_the_Confederate_States_of_America", sourceKind: "encyclopedia", file: "Flag of the Confederate States (1865).svg" },
+    ],
+  },
   AIDJ: parentFlag("France", "France's flag", "フランスの国旗", "1967-07-05", "1977-06-27", "The French tricolour flew over the territory from the day it was renamed French Territory of the Afars and the Issas until independence.", "https://en.wikipedia.org/wiki/French_Somaliland", "encyclopedia"),
   BYAA: {
     disputed: false,

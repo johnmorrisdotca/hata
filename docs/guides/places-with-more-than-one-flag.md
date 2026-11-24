@@ -44,7 +44,7 @@ See also [choose a flag variant explicitly](variants.md).
 
 ## Former countries
 
-A medal table, a record book or a history of a sport still names countries that no longer exist. Hata has the flag of 39 of them, each under a code no present-day
+A medal table, a record book or a history of a sport still names countries that no longer exist. Hata has the flag of 40 of them, each under a code no present-day
 country uses: the ISO 3166-3 code where that standard has one (`SUHH` the Soviet Union, `DDDE` East Germany, `YUCS` Yugoslavia, `CSHH` Czechoslovakia and more: 24 of its 30), else the IOC's
 (`FRG` West Germany, `BOH` Bohemia, `WIF` the West Indies Federation), else a code of Hata's own, `X` and two letters (`XAH` Austria-Hungary, `XOT` the Ottoman Empire, `XHW` the Kingdom of Hawaii; [former countries](former-countries.md) lists them). The codes a table is likely to hold find them too, in any case: `SU`, `DD`, `YU`, `BU` and the IOC's
 `URS`, `GDR`, `TCH`, `YUG`, `SCG`, `ZAI`, `RHO`, `BWI`. They are `FLAG_ALIASES`.
