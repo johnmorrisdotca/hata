@@ -26,6 +26,7 @@ const entries = [
   ["@johnmorrisdotca/hata/signals", "signals.d.ts"],
   ["@johnmorrisdotca/hata/samurai", "samurai.d.ts"],
   ["@johnmorrisdotca/hata/medieval", "medieval.d.ts"],
+  ["@johnmorrisdotca/hata/military", "military.d.ts"],
   ["@johnmorrisdotca/hata/search", "search.d.ts"],
   ["@johnmorrisdotca/hata/custom", "custom.d.ts"],
   ["@johnmorrisdotca/hata/element", "element.d.ts"],

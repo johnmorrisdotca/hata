@@ -203,6 +203,97 @@ Commons files left out of the medieval banners for their size or because they ar
 | --- | --- | --- |
 | `med:venice-lion` | Lion of St Mark.svg | 301 KB optimised, over the 140 KB ceiling |
 <!-- medieval-files:end -->
+## Military flags
+
+The military flags are a separate entry point (`@johnmorrisdotca/hata/military`, ids `mil:<slug>`). Five are drawn for this package, under the MIT licence, as
+geometry written out in `scripts/draw-military.ts`, from the sources named, and nothing is copied from a picture. The others are Wikimedia Commons files, taken as
+the country flags are: each file's licence is read from Commons and only public domain and CC0 are shipped, the file is optimised (`scripts/optimise.ts`) and its
+page, licence and author are kept (`data-sources/military-commons-2026-11-24.json`, made by `pnpm data:military`). The Rising Sun Flag of Japan is in this set only,
+as the ensign of the Japan Maritime Self-Defense Force and as the war ensign of the Imperial Japanese Navy, and is in no country's record. The two Confederate battle
+flags are shipped for history and education only and never given by default (docs/decisions.md, "Restricted flags"). Read on 2026-11-24.
+
+The five drawn here:
+
+| Ids | What | Source | What it says |
+| --- | --- | --- | --- |
+| `mil:jp-jmsdf-ensign`, `mil:jp-ijn-ensign` | Japan: the Maritime Self-Defense Force's ensign and the Imperial Japanese Navy's | 自衛艦旗, Japanese Wikipedia, https://ja.wikipedia.org/wiki/自衛艦旗 | The ratio 2 to 3, the sun's diameter half the hoist, its centre a sixth of the length from the middle toward the hoist, rays of 11.25 degrees, set by Cabinet Order No. 179 of 1954; the navy's ensign fixed by the navy's flag regulations of 7 October 1889. |
+| `mil:jp-jmsdf-ensign`, `mil:jp-ijn-ensign` | The dates and the red | Rising Sun Flag, Wikipedia, https://en.wikipedia.org/wiki/Rising_Sun_Flag | The Self-Defense Force ensign readopted on 30 June 1954 (red #bd0029); the navy's ensign adopted on 7 October 1889. |
+| `mil:gb-white-ensign` | United Kingdom: the White Ensign | White Ensign, Wikipedia, https://en.wikipedia.org/wiki/White_Ensign | The Admiralty reserved it to the Royal Navy in 1864; the ratio is 1 to 2; the Union Flag is in the canton since 1801. |
+| `mil:gb-naval-jack` | United Kingdom: the Union Jack as naval jack | Union Jack, Wikipedia, https://en.wikipedia.org/wiki/Union_Jack | The Union Flag flown at the bow as the jack is the Royal Navy's naval jack. |
+| `mil:us-navy-jack` | United States: the Navy jack | Executive Order 10834 (1959), Wikisource, https://en.wikisource.org/wiki/Executive_Order_10834 | Fixes the union of the 50-star flag (0.76 by 0.5385 of the hoist) and its stars; the jack is that union, current from 4 July 1960. |
+
+The Commons files:
+
+<!-- military-files:start -->
+| Id | Commons file | Licence | Author as Commons gives it | Page |
+| --- | --- | --- | --- | --- |
+| `mil:de-naval-ensign` | Naval Ensign of Germany.svg | Public domain | Deutsche Bundesregierung | https://commons.wikimedia.org/wiki/File:Naval_Ensign_of_Germany.svg |
+| `mil:de-war-ensign-1871` | War Ensign of Germany (1867–1892).svg | Public domain | Fornax, overhaul by Ericmetro. | https://commons.wikimedia.org/wiki/File:War_Ensign_of_Germany_(1867%E2%80%931892).svg |
+| `mil:de-war-ensign-1919` | War Ensign of Germany (1919–1921).svg | Public domain | War_Ensign_of_Germany_1903-1918.svg: Original uploader was R-41 at en.wikipedia Flag_of_Weimar_Republic_(defence_minister_1919).svg: Jwnabd from German-Wikipedia Wappen_Deutsches_Reich_(Weimarer_Republik).svg: David Liuzzo derivative work: Mboro (talk) | https://commons.wikimedia.org/wiki/File:War_Ensign_of_Germany_(1919%E2%80%931921).svg |
+| `mil:de-war-ensign-1921` | War Ensign of Germany (1921–1933).svg | Public domain | diese Datei: Jwnabd | https://commons.wikimedia.org/wiki/File:War_Ensign_of_Germany_(1921%E2%80%931933).svg |
+| `mil:fr-naval-ensign` | Ensign of France.svg | Public domain | Original: Unknown Vector: David Newton | https://commons.wikimedia.org/wiki/File:Ensign_of_France.svg |
+| `mil:it-naval-ensign-1947` | Naval Ensign of Italy (1947-2013).svg | Public domain | Denelson83 | https://commons.wikimedia.org/wiki/File:Naval_Ensign_of_Italy_(1947-2013).svg |
+| `mil:it-naval-jack` | Naval Jack of Italy.svg | Public domain | Design by Michele d'Andrea Asþont Older version by Denelson83 | https://commons.wikimedia.org/wiki/File:Naval_jack_of_Italy.svg |
+| `mil:it-war-flag` | War flag of Italy.svg | Public domain | Original: PavelD Derivative work: Carnby | https://commons.wikimedia.org/wiki/File:War_flag_of_Italy.svg |
+| `mil:be-naval-ensign` | Naval Ensign of Belgium.svg | Public domain | user:Denelson83 | https://commons.wikimedia.org/wiki/File:Naval_Ensign_of_Belgium.svg |
+| `mil:be-naval-jack` | Naval Jack of Belgium.svg | Public domain | Dbenbenn and others | https://commons.wikimedia.org/wiki/File:Naval_Jack_of_Belgium.svg |
+| `mil:dk-naval-ensign` | Naval Ensign of Denmark.svg | Public domain | an author the file's page does not name | https://commons.wikimedia.org/wiki/File:Naval_Ensign_of_Denmark.svg |
+| `mil:fi-naval-ensign` | Naval Ensign of Finland.svg | Public domain | Axel Gallén-Kallela, svg format by User:Denelson83 | https://commons.wikimedia.org/wiki/File:Military_flag_of_Finland.svg |
+| `mil:fi-naval-jack` | Naval Jack of Finland.svg | Public domain | Axel Gallén-Kallela, svg format by User:Denelson83 | https://commons.wikimedia.org/wiki/File:Naval_jack_of_Finland.svg |
+| `mil:pl-naval-ensign` | Naval Ensign of Poland.svg | Public domain | Denelson83, Mareklug, Wanted | https://commons.wikimedia.org/wiki/File:Naval_Ensign_of_Poland.svg |
+| `mil:pl-naval-ensign-1919` | Naval Ensign of Poland (1919-1928).svg | Public domain | Naval_Ensign_of_Poland.svg: Denelson83, Mareklug, Wanted Herb Polski z lat 1919-1927 vector.svg: Ziegenpl derivative work: Mboro (talk) | https://commons.wikimedia.org/wiki/File:Naval_Ensign_of_Poland_(1919-1928).svg |
+| `mil:pl-naval-jack` | Naval Jack of Poland.svg | Public domain | Denelson83 | https://commons.wikimedia.org/wiki/File:Naval_Jack_of_Poland.svg |
+| `mil:gr-naval-ensign` | Naval Ensign of Greece.svg | Public domain | Kwasura | https://commons.wikimedia.org/wiki/File:Naval_Ensign_of_Greece.svg |
+| `mil:ru-naval-ensign` | Naval Ensign of Russia.svg | Public domain | Zscout370, SeNeKa | https://commons.wikimedia.org/wiki/File:Naval_ensign_of_Russia.svg |
+| `mil:ru-naval-jack` | Naval Jack of Russia.svg | Public domain | Zscout370 | https://commons.wikimedia.org/wiki/File:Naval_Jack_of_Russia.svg |
+| `mil:su-naval-ensign` | Naval Ensign of the Soviet Union.svg | Public domain | User:Zscout370 | https://commons.wikimedia.org/wiki/File:Naval_Ensign_of_the_Soviet_Union_(1950%E2%80%931991).svg |
+| `mil:su-naval-jack` | Naval Jack of the Soviet Union.svg | Public domain | Zscout370 | https://commons.wikimedia.org/wiki/File:Naval_jack_of_the_Soviet_Union.svg |
+| `mil:in-naval-ensign` | Naval Ensign of India.svg | Public domain | Indian Navy | https://commons.wikimedia.org/wiki/File:Naval_Ensign_of_India.svg |
+| `mil:pk-naval-ensign` | Naval Ensign of Pakistan.svg | Public domain | an author the file's page does not name | https://commons.wikimedia.org/wiki/File:Naval_Ensign_of_Pakistan.svg |
+| `mil:pk-naval-jack` | Naval Jack of Pakistan.svg | Public domain | an author the file's page does not name | https://commons.wikimedia.org/wiki/File:Naval_Jack_of_Pakistan.svg |
+| `mil:cn-naval-ensign` | Naval Ensign of the People's Republic of China.svg | Public domain | Created by PhiLiP / using CorelDRAW X3 | https://commons.wikimedia.org/wiki/File:Naval_Ensign_of_China.svg |
+| `mil:tw-naval-jack` | Naval Jack of the Republic of China.svg | Public domain | Lu Haodong | https://commons.wikimedia.org/wiki/File:Naval_Jack_of_the_Republic_of_China.svg |
+| `mil:au-naval-ensign` | Naval Ensign of Australia.svg | Public domain | David Newton (original) | https://commons.wikimedia.org/wiki/File:Naval_Ensign_of_Australia.svg |
+| `mil:au-naval-jack` | Naval Jack of Australia.svg | Public domain | Unknown (Vector graphics image by Ian Fieggen) (only minor code changes by uploader.) | https://commons.wikimedia.org/wiki/File:Flag_of_Australia_(converted).svg |
+| `mil:ca-naval-ensign` | Naval Ensign of Canada.svg | Public domain | Her Majesty the Queen in Right of Canada, as represented by the Minister of National Defence (vectorised by Sodacan) | https://commons.wikimedia.org/wiki/File:Naval_ensign_of_Canada.svg |
+| `mil:ca-naval-jack` | Naval Jack of Canada.svg | Public domain | Created by George F. G. Stanley / E Pluribus Anthony / User:Mzajac | https://commons.wikimedia.org/wiki/File:Flag_of_Canada.svg |
+| `mil:nz-naval-ensign` | Naval Ensign of New Zealand.svg | Public domain | Denelson83 and Others | https://commons.wikimedia.org/wiki/File:Naval_Ensign_of_New_Zealand.svg |
+| `mil:th-naval-jack` | Naval Jack of Thailand.svg | Public domain | Tangmo | https://commons.wikimedia.org/wiki/File:Naval_Jack_of_Thailand.svg |
+| `mil:sg-naval-ensign` | Naval Ensign of Singapore.svg | Public domain | Republic of Singapore Navy. Vectorised by User:Denelson83. | https://commons.wikimedia.org/wiki/File:Naval_Ensign_of_Singapore.svg |
+| `mil:za-naval-ensign` | Naval Ensign of South Africa.svg | Public domain | Author of first-uploaded SVG file version is User:Denelson83 | https://commons.wikimedia.org/wiki/File:Naval_Ensign_of_South_Africa.svg |
+| `mil:eg-naval-ensign` | Naval Ensign of Egypt.svg | Public domain | Denelson83 from original Flag of Egypt.svg | https://commons.wikimedia.org/wiki/File:Naval_Ensign_of_Egypt.svg |
+| `mil:il-naval-ensign` | Naval Ensign of Israel.svg | Public domain | Drawn by Makaristos, based on a previous version by Denelson83, Flag of Israel.svg and an image at the World Flag Database. | https://commons.wikimedia.org/wiki/File:Naval_Ensign_of_Israel.svg |
+| `mil:ua-naval-ensign` | Naval Ensign of Ukraine.svg | Public domain | UP9 | https://commons.wikimedia.org/wiki/File:Naval_Ensign_of_Ukraine.svg |
+| `mil:id-naval-jack` | Naval Jack of Indonesia.svg | Public domain | an author the file's page does not name | https://commons.wikimedia.org/wiki/File:Naval_Jack_of_Indonesia.svg |
+| `mil:ar-naval-jack` | Naval Jack of Argentina.svg | Public domain | Armada Argentina (Vector graphics image by Denelson83) | https://commons.wikimedia.org/wiki/File:Naval_jack_of_Argentina.svg |
+| `mil:cl-naval-jack` | Naval Jack of Chile.svg | Public domain | an author the file's page does not name | https://commons.wikimedia.org/wiki/File:Naval_jack_of_Chile.svg |
+| `mil:mx-naval-jack` | Naval Jack of Mexico.svg | Public domain | an author the file's page does not name | https://commons.wikimedia.org/wiki/File:Naval_jack_of_Mexico.svg |
+| `mil:no-naval-jack` | Naval Jack of Norway.svg | Public domain | Kingdom of Norway | https://commons.wikimedia.org/wiki/File:Naval_Jack_of_Norway.svg |
+| `mil:pt-naval-jack` | Naval Jack of Portugal.svg | Public domain | Denelson83 | https://commons.wikimedia.org/wiki/File:Naval_Jack_of_Portugal.svg |
+| `mil:es-naval-jack` | Naval Jack of Spain.svg | Public domain | Denelson83 | https://commons.wikimedia.org/wiki/File:Naval_jack_of_Spain.svg |
+| `mil:kr-naval-jack` | Naval Jack of South Korea.svg | Public domain | Republic of Korea Navy | https://commons.wikimedia.org/wiki/File:Naval_jack_of_South_Korea.svg |
+| `mil:ph-naval-jack` | Naval Jack of the Philippines.svg | Public domain | an author the file's page does not name | https://commons.wikimedia.org/wiki/File:Naval_Jack_of_the_Philippines.svg |
+| `mil:ph-war-flag` | War Flag of the Philippines.svg | Public domain | an author the file's page does not name | https://commons.wikimedia.org/wiki/File:War_Flag_of_the_Philippines.svg |
+| `mil:ie-naval-jack` | Naval Jack of Ireland.svg | Public domain | Setanta Saki | https://commons.wikimedia.org/wiki/File:Naval_Jack_of_Ireland.svg |
+| `mil:pe-naval-jack` | Naval Jack of Peru.svg | Public domain | Denelson83 | https://commons.wikimedia.org/wiki/File:Naval_Jack_of_Peru.svg |
+| `mil:pe-war-flag` | War flag of Peru.svg | Public domain | Republic of Peru - Republica del Perú | https://commons.wikimedia.org/wiki/File:War_flag_of_Peru.svg |
+| `mil:us-flag-1861` | Flag of the United States (1861–1863).svg | Public domain | Jacobolus (SVG) | https://commons.wikimedia.org/wiki/File:Flag_of_the_United_States_(1861%E2%80%931863).svg |
+| `mil:us-flag-1863` | Flag of the United States (1863–1865).svg | Public domain | Jacobolus (SVG) | https://commons.wikimedia.org/wiki/File:Flag_of_the_United_States_(1863%E2%80%931865).svg |
+| `mil:cs-battle-flag` | Battle flag of the Confederate States of America (1-1).svg | Public domain | William Porcher Miles (1822-1899) Vectorization: Zscout370 Stephanie~commonswiki Pumbaa80 TRAJAN 117 Current version: DeathHotDog | https://commons.wikimedia.org/wiki/File:Battle_flag_of_the_Confederate_States_of_America_(1-1).svg |
+| `mil:cs-naval-jack` | Naval jack of the Confederate States (1863–1865).svg | Public domain | William Porcher Miles (1822-1899) | https://commons.wikimedia.org/wiki/File:Naval_jack_of_the_Confederate_States_(1863%E2%80%931865).svg |
+| `mil:ro-naval-jack` | Naval Jack of Romania.svg | Public domain | an author the file's page does not name | https://commons.wikimedia.org/wiki/File:Naval_Jack_of_Romania.svg |
+
+Commons files left out of the military flags for their size or because they are not a plain vector (the size ceiling is 140 KB optimised):
+
+| Id | Commons file | Why |
+| --- | --- | --- |
+| `mil:de-war-ensign-1892` | War Ensign of Germany (1892–1903).svg | 211 KB optimised, over the 140 KB ceiling |
+| `mil:de-war-ensign-1903` | War Ensign of Germany (1903–1919).svg | 227 KB optimised, over the 140 KB ceiling |
+| `mil:it-naval-ensign` | Naval ensign of Italy.svg | 164 KB optimised, over the 140 KB ceiling |
+| `mil:th-naval-ensign` | Naval Ensign of Thailand.svg | 250 KB optimised, over the 140 KB ceiling |
+| `mil:co-naval-ensign` | Naval Ensign of Colombia.svg | 276 KB optimised, over the 140 KB ceiling |
+| `mil:id-naval-ensign` | Naval ensign of Indonesia.svg | not a plain vector (an embedded raster picture or a style element) |
+<!-- military-files:end -->
 
 ## Not carried
 

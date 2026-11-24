@@ -188,6 +188,9 @@ await step("samurai", () => {
 await step("medieval", () => {
   const out = execFileSync(process.execPath, [join(examples("medieval"), "medieval.mjs")], { cwd: usage, encoding: "utf8" }).trim();
   if (out !== "true true 1218") throw new Error(`unexpected output: ${out}`);
+await step("military", () => {
+  const out = execFileSync(process.execPath, [join(examples("military"), "military.mjs")], { cwd: usage, encoding: "utf8" }).trim();
+  if (out !== "true true 1864") throw new Error(`unexpected output: ${out}`);
 });
 
 await step("historic", () => {
@@ -456,6 +459,7 @@ const FILES: Record<string, string[]> = {
   "signals/signals.mjs": guide("ship-signal-flags"),
   "samurai/samurai.mjs": guide("samurai-banners"),
   "medieval/medieval.mjs": guide("medieval-banners"),
+  "military/military.mjs": guide("military-flags"),
   "custom/custom.mjs": guide("custom-flags"),
   "former/former.mjs": guide("former-countries"),
   "historic/historic.mjs": guide("historic-flags"),

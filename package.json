@@ -90,6 +90,7 @@
       "default": "./dist/organisations.js"
     },
 <<<<<<< HEAD
+<<<<<<< HEAD
     "./signals": {
       "types": "./dist/signals.d.ts",
       "default": "./dist/signals.js"
@@ -101,6 +102,11 @@
       "types": "./dist/medieval.d.ts",
       "default": "./dist/medieval.js"
 >>>>>>> origin/feat/1811-medieval-banners
+=======
+    "./military": {
+      "types": "./dist/military.d.ts",
+      "default": "./dist/military.js"
+>>>>>>> origin/feat/1812-military-flags
     },
     "./search": {
       "types": "./dist/search.d.ts",
@@ -3858,12 +3864,17 @@
     "prepublishOnly": "pnpm check",
     "data": "node scripts/build-data.ts",
 <<<<<<< HEAD
+<<<<<<< HEAD
     "draw": "node scripts/draw-signals.ts",
     "draw:samurai": "node scripts/draw-samurai.ts",
 =======
     "draw:medieval": "node scripts/draw-medieval.ts",
     "data:medieval": "node scripts/fetch-medieval.ts",
 >>>>>>> origin/feat/1811-medieval-banners
+=======
+    "draw:military": "node scripts/draw-military.ts",
+    "data:military": "node scripts/fetch-military.ts",
+>>>>>>> origin/feat/1812-military-flags
     "data:wikidata": "node scripts/fetch-wikidata.ts",
     "data:commons": "node scripts/fetch-commons.ts",
     "site": "pnpm build && node scripts/site.mjs",

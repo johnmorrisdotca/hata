@@ -23,6 +23,9 @@ src/
 ├── medieval.ts         the "/medieval" entry: a curated set of medieval banners by their "med:" id
 ├── drawn.ts            what the sets drawn for this package share (not an entry): ids, names, descriptions, sources, aspect ratios
 ├── sets/               the drawn sets' records: medieval.data.ts, made by scripts/draw-medieval.ts (pnpm draw:medieval)
+├── military.ts         the "/military" entry: naval ensigns and jacks by their "mil:" id
+├── drawn.ts            what the sets drawn for this package share (not an entry): ids, names, descriptions, sources, aspect ratios
+├── sets/               the drawn sets' records: military.data.ts, made by scripts/draw-military.ts (pnpm draw:military)
 ├── search.ts           the "/search" entry: each flag's colours and tags, and the flags that have the ones asked for
 ├── organisations.data.ts   the organisations' records (id, names, drawing, terms): the one place to add a flag
 ├── custom.ts           the "/custom" entry: flags a page registers itself, as custom:<slug>, from a data-door source

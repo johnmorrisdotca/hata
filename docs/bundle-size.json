@@ -21,9 +21,9 @@
       "minified": 2407,
       "gzip": 1170
     },
-    "./medieval": {
-      "minified": 507683,
-      "gzip": 165024
+    "./military": {
+      "minified": 1490441,
+      "gzip": 434800
     },
     "./search": {
       "minified": 69111,
