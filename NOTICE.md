@@ -116,6 +116,18 @@ Left out, read on 2026-11-13, for the owner to decide again if a body's terms ch
 | Commonwealth | The Secretariat's page covers its logo, to be used exactly as supplied; it says nothing of the flag, and its terms page is about procurement. | https://thecommonwealth.org/commonwealth-secretariat-logo-kit-and-guidelines |
 | CARICOM, Pacific Islands Forum, Organisation of Islamic Cooperation, League of Arab States, Commonwealth of Independent States | No terms for the flag or emblem were found on the body's own pages (the League's portal carries an all-rights-reserved notice); there is no sentence to record. | https://caricom.org/ , https://forumsec.org/ , https://www.oic-oci.org/ , http://www.lasportal.org/en/Pages/default.aspx , https://eccis.org/en/about-cis |
 
+## Samurai battle banners
+
+The battle banners of Sengoku daimyo are a separate entry point (`@johnmorrisdotca/hata/samurai`, ids `samurai:<slug>`), and none of them is a Commons file:
+each is drawn for this package, under the MIT licence, as geometry written out in `scripts/draw-samurai.ts`, from the words of a published source, and
+nothing is copied from a picture. No cloth survives for any of them, so every drawing is a reconstruction, and its record says which part follows the source and
+which is this package's. Read on 2026-11-24:
+
+| Ids | What | Source | What it says |
+| --- | --- | --- | --- |
+| `samurai:uesugi-tenshi`, `samurai:uesugi-ogi`, `samurai:hojo-gosyoku`, `samurai:date-daishihan`, `samurai:toyotomi-gunbai`, `samurai:tokugawa-kinsen`, `samurai:oda-karakasa`, `samurai:ii-igeta` | Banners and signs of named commanders | 馬印 (Uma-jirushi), Japanese Wikipedia, https://ja.wikipedia.org/wiki/馬印 | Lists the banners and signs of named Sengoku commanders with their designs and grounds in words; it names no surviving cloth or museum for them. |
+| `samurai:sanada-rokumonsen` | The Sanada nobori | 真田氏 (Sanada clan), Japanese Wikipedia, https://ja.wikipedia.org/wiki/真田氏 | Says the six-coin crest was mainly a battle banner, describes an all-red nobori with the crest of unclear use, and names the screen of the Summer Campaign of Osaka (Osaka Castle collection) as the source for the Sanada unit's all-red flag with a gold line. |
+
 ## Not carried
 
 Nothing from other flag sets (flag-icons, country-flag-icons, circle-flags): they were measured for comparison

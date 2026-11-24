@@ -6,6 +6,10 @@ All notable changes to this project are written here. The format follows
 
 ## [Unreleased]
 
+### Added
+
+- **Samurai battle banners** (MODULES-1810). A new entry point, `@johnmorrisdotca/hata/samurai`, with an id namespace of its own, `samurai:`: nine banners of Sengoku daimyo (nobori, hata and uma-jirushi: Uesugi, Hojo, Date, Toyotomi, Tokugawa, Oda, Sanada and Ii), drawn for this package as geometry under the MIT licence from the words of the Japanese Wikipedia's articles on uma-jirushi and the Sanada clan. No cloth survives, so each is a `reconstruction`, and its `note` says which part follows the source and which is this package's. `samuraiFlag`, `samuraiName`, `samuraiAbout`, `samuraiAspect`, `samuraiInfo`, `samuraiId`, `isSamuraiId`, `samuraiIn` and `SAMURAI_IDS`; `pnpm draw:samurai` makes the data. A page of them in the demo (`samurai.html`, kinds as chips) and a guide in English and Japanese. Left out, with the reason in the guide: the banners that are written characters (Fūrinkazan, 毘, 厭離穢土欣求浄土).
+
 ## [1.15.0] - 2026-11-23
 
 ### Added

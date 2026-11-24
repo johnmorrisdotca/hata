@@ -23,6 +23,7 @@ const entries = [
   ["@johnmorrisdotca/hata/manifest", "manifest.d.ts"],
   ["@johnmorrisdotca/hata/names", "names.d.ts"],
   ["@johnmorrisdotca/hata/organisations", "organisations.d.ts"],
+  ["@johnmorrisdotca/hata/samurai", "samurai.d.ts"],
   ["@johnmorrisdotca/hata/search", "search.d.ts"],
   ["@johnmorrisdotca/hata/custom", "custom.d.ts"],
   ["@johnmorrisdotca/hata/element", "element.d.ts"],

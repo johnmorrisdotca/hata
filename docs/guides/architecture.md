@@ -14,6 +14,9 @@ src/
 ├── load.ts             the "/load" entry: a flag by its code, by dynamic import, framed as measured
 ├── names.ts            the "/names" entry: each flag's place in English and Japanese, and its aspect ratio
 ├── organisations.ts    the "/organisations" entry: the flags of international organisations by their "org:" id
+├── samurai.ts          the "/samurai" entry: the battle banners of Sengoku daimyo by their "samurai:" id
+├── drawn.ts            what the sets drawn for this package share (not an entry): ids, names, descriptions, sources, aspect ratios
+├── sets/               the drawn sets' records: samurai.data.ts, made by scripts/draw-samurai.ts (pnpm draw:samurai)
 ├── search.ts           the "/search" entry: each flag's colours and tags, and the flags that have the ones asked for
 ├── organisations.data.ts   the organisations' records (id, names, drawing, terms): the one place to add a flag
 ├── custom.ts           the "/custom" entry: flags a page registers itself, as custom:<slug>, from a data-door source
