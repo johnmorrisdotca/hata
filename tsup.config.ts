@@ -45,6 +45,7 @@ export default defineConfig([
     ...shared,
     entry: { index: "src/index.ts", load: "src/load.ts", manifest: "src/manifest.ts", adapted: "src/data/adapted.data.ts", variants: "src/data/variants.data.ts", names: "src/names.ts", organisations: "src/organisations.ts", signals: "src/signals.ts", search: "src/search.ts", custom: "src/custom.ts", element: "src/element.ts", "element-define": "src/element-define.ts", bind: "src/bind.ts", react: "src/react.ts", vue: "src/vue.ts", "react-native": "src/react-native.ts" },
     entry: { index: "src/index.ts", load: "src/load.ts", manifest: "src/manifest.ts", adapted: "src/data/adapted.data.ts", variants: "src/data/variants.data.ts", names: "src/names.ts", organisations: "src/organisations.ts", samurai: "src/samurai.ts", search: "src/search.ts", custom: "src/custom.ts", element: "src/element.ts", "element-define": "src/element-define.ts", bind: "src/bind.ts", react: "src/react.ts", vue: "src/vue.ts", "react-native": "src/react-native.ts" },
+    entry: { index: "src/index.ts", load: "src/load.ts", manifest: "src/manifest.ts", adapted: "src/data/adapted.data.ts", variants: "src/data/variants.data.ts", names: "src/names.ts", organisations: "src/organisations.ts", medieval: "src/medieval.ts", search: "src/search.ts", custom: "src/custom.ts", element: "src/element.ts", "element-define": "src/element-define.ts", bind: "src/bind.ts", react: "src/react.ts", vue: "src/vue.ts", "react-native": "src/react-native.ts" },
     dts: true,
     minify: false,
     esbuildOptions(options) {

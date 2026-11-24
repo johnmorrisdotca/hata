@@ -89,12 +89,18 @@
       "types": "./dist/organisations.d.ts",
       "default": "./dist/organisations.js"
     },
+<<<<<<< HEAD
     "./signals": {
       "types": "./dist/signals.d.ts",
       "default": "./dist/signals.js"
     "./samurai": {
       "types": "./dist/samurai.d.ts",
       "default": "./dist/samurai.js"
+=======
+    "./medieval": {
+      "types": "./dist/medieval.d.ts",
+      "default": "./dist/medieval.js"
+>>>>>>> origin/feat/1811-medieval-banners
     },
     "./search": {
       "types": "./dist/search.d.ts",
@@ -3851,8 +3857,13 @@
     "check": "pnpm lint && pnpm typecheck && pnpm build && node scripts/check-docs.mjs && pnpm test && node scripts/check-package.mjs",
     "prepublishOnly": "pnpm check",
     "data": "node scripts/build-data.ts",
+<<<<<<< HEAD
     "draw": "node scripts/draw-signals.ts",
     "draw:samurai": "node scripts/draw-samurai.ts",
+=======
+    "draw:medieval": "node scripts/draw-medieval.ts",
+    "data:medieval": "node scripts/fetch-medieval.ts",
+>>>>>>> origin/feat/1811-medieval-banners
     "data:wikidata": "node scripts/fetch-wikidata.ts",
     "data:commons": "node scripts/fetch-commons.ts",
     "site": "pnpm build && node scripts/site.mjs",

@@ -75,6 +75,7 @@ import { flagName, flagAspect } from "${pkg.name}/names";
 import { organisationFlag, organisationName, ORGANISATION_IDS } from "${pkg.name}/organisations";
 import { signalFlag, signalMeaning, SIGNAL_IDS } from "${pkg.name}/signals";
 import { samuraiFlag, samuraiName, SAMURAI_IDS } from "${pkg.name}/samurai";
+import { medievalFlag, medievalName, MEDIEVAL_IDS } from "${pkg.name}/medieval";
 import { customFlag, registerFlags } from "${pkg.name}/custom";
 import { defineFlag, FLAG_ELEMENT_NAME } from "${pkg.name}/element";
 import { resolveFlag } from "${pkg.name}/bind";
@@ -90,6 +91,7 @@ if (flagName("JP-13", "ja") !== "東京都" || flagAspect("CA") !== 2) throw new
 if (ORGANISATION_IDS[0] !== "org:eu" || !organisationFlag("org:eu").startsWith("<svg") || organisationName("org:eu", "ja") !== "欧州連合") throw new Error("/organisations answered wrongly");
 if (SIGNAL_IDS.length !== 40 || !signalFlag("ics:a").startsWith("<svg") || !signalMeaning("ics:o").includes("Man overboard")) throw new Error("/signals answered wrongly");
 if (SAMURAI_IDS.length !== 9 || !samuraiFlag("samurai:ii-igeta").startsWith("<svg") || samuraiName("samurai:ii-igeta", "ja") !== "井伊直政の赤地に金の井桁") throw new Error("/samurai answered wrongly");
+if (MEDIEVAL_IDS.length !== 42 || !medievalFlag("med:red-cross").startsWith("<svg") || medievalName("med:red-cross", "ja") !== "白地に赤十字（聖ジョージ十字）") throw new Error("/medieval answered wrongly");
 if (customFlag("custom:none") !== null || typeof registerFlags !== "function") throw new Error("/custom answered wrongly");
 if (FLAG_ELEMENT_NAME !== "hata-flag" || typeof defineFlag !== "function") throw new Error("/element is wrong");
 if ((await resolveFlag({ code: "JP" }))?.svg !== wanted || (await resolveFlag({ code: "XX" })) !== null) throw new Error("/bind answered wrongly");
@@ -101,6 +103,7 @@ const required = createRequire(import.meta.url)("${pkg.name}/flags/jp");
 if (required.default !== wanted) throw new Error("require() of flags/jp gave " + typeof required.default);
 console.log("every entry, flags/jp, flags/ca.1x1, /load, /names, /organisations, /signals, /custom, /element, svg/jp.svg, manifest.json and require()");
 console.log("every entry, flags/jp, flags/ca.1x1, /load, /names, /organisations, /samurai, /custom, /element, svg/jp.svg, manifest.json and require()");
+console.log("every entry, flags/jp, flags/ca.1x1, /load, /names, /organisations, /medieval, /custom, /element, svg/jp.svg, manifest.json and require()");
 `,
 );
 console.log(`ok   ${run(process.execPath, ["esm.mjs"], project).trim()}`);
@@ -117,6 +120,7 @@ import { defineFlag, type HataFlagElement } from "${pkg.name}/element";
 import { organisationFlag, type OrganisationId } from "${pkg.name}/organisations";
 import { signalFlag, type SignalId } from "${pkg.name}/signals";
 import { samuraiFlag, type SamuraiId } from "${pkg.name}/samurai";
+import { medievalFlag, type MedievalId } from "${pkg.name}/medieval";
 import { registerFlags, type CustomFlagRecord } from "${pkg.name}/custom";
 import { resolveFlag, type FlagProps } from "${pkg.name}/bind";
 
@@ -136,6 +140,8 @@ const diver: SignalId = "ics:a";
 const alfa: string | null = signalFlag(diver);
 const nobori: SamuraiId = "samurai:sanada-rokumonsen";
 const sanada: string | null = samuraiFlag(nobori);
+const banner: MedievalId = "med:red-cross";
+const cross: string | null = medievalFlag(banner);
 const mine: CustomFlagRecord = { id: "custom:mine", name: { en: "Mine" }, svg: "<svg/>" };
 const register = registerFlags;
 const define: (name?: string) => void = defineFlag;
@@ -144,6 +150,7 @@ const bound: Promise<unknown> = resolveFlag(props);
 type Element = HataFlagElement;
 export { alfa, bound, code, define, eu, mine, register, first, framed, later, name, organisation, record, square, uri, url };
 export { bound, code, define, eu, sanada, mine, register, first, framed, later, name, organisation, record, square, uri, url };
+export { bound, code, cross, define, eu, mine, register, first, framed, later, name, organisation, record, square, uri, url };
 export type { Element };
 `,
 );

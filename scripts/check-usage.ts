@@ -185,6 +185,9 @@ await step("signals", () => {
 await step("samurai", () => {
   const out = execFileSync(process.execPath, [join(examples("samurai"), "samurai.mjs")], { cwd: usage, encoding: "utf8" }).trim().split("\n");
   if (out.join("|") !== "true true 真田の六連銭の幟|reconstruction") throw new Error(`unexpected output: ${out.join(" | ")}`);
+await step("medieval", () => {
+  const out = execFileSync(process.execPath, [join(examples("medieval"), "medieval.mjs")], { cwd: usage, encoding: "utf8" }).trim();
+  if (out !== "true true 1218") throw new Error(`unexpected output: ${out}`);
 });
 
 await step("historic", () => {
@@ -452,6 +455,7 @@ const FILES: Record<string, string[]> = {
   "organisations/organisations.mjs": guide("organisations"),
   "signals/signals.mjs": guide("ship-signal-flags"),
   "samurai/samurai.mjs": guide("samurai-banners"),
+  "medieval/medieval.mjs": guide("medieval-banners"),
   "custom/custom.mjs": guide("custom-flags"),
   "former/former.mjs": guide("former-countries"),
   "historic/historic.mjs": guide("historic-flags"),

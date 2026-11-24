@@ -12,6 +12,7 @@ const SETS = await Promise.all(
   readdirSync(join(import.meta.dirname, "..", "demo", "sets")).filter((file) => file.endsWith(".json")).sort().map(async (file) => {
     const config = JSON.parse(readFileSync(join(import.meta.dirname, "..", "demo", "sets", file), "utf8"));
     const records = Object.values(await import(pathToFileURL(join(import.meta.dirname, "..", "src", "sets", `${config.name}.data.ts`)).href))[0];
+    const records = Object.values(await import(pathToFileURL(join(import.meta.dirname, "..", "src", "sets", `${config.name}.data.ts`)).href))[0].filter((one) => one.restricted === undefined);
     return { config, records };
   }),
 );

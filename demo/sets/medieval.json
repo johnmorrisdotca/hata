@@ -1,0 +1,37 @@
+{
+  "name": "medieval",
+  "what": {
+    "en": "medieval banners",
+    "ja": "中世の旗"
+  },
+  "description": {
+    "en": "42 medieval banners: six drawn for this package from dated sources and 36 Wikimedia Commons drawings in the public domain or CC0, each with its dates, its source, its file and its licence, and each a reconstruction.",
+    "ja": "中世の旗42点を並べます。年代の分かる出典から描いた6点と、パブリックドメインかCC0のWikimedia Commonsの絵36点で、期間、出典、ファイル、ライセンスがあり、どれも復元です。"
+  },
+  "intro": {
+    "en": "Choose a kind, then a banner. No banner of the time survives, so each is a reconstruction, and its note says what the source documents.",
+    "ja": "種類を選び、旗を選んでください。当時の旗は残っていないので、どれも復元で、出典が何を示すかは、それぞれの注記に書いてあります。"
+  },
+  "groups": {
+    "kingdom": {
+      "en": "Kingdoms",
+      "ja": "王国"
+    },
+    "empire": {
+      "en": "Empires and dynasties",
+      "ja": "帝国と王朝"
+    },
+    "city": {
+      "en": "Cities and republics",
+      "ja": "都市と共和国"
+    },
+    "order": {
+      "en": "Orders",
+      "ja": "騎士団・教団"
+    },
+    "cross": {
+      "en": "Crosses",
+      "ja": "十字"
+    }
+  }
+}

@@ -21,9 +21,9 @@
       "minified": 2407,
       "gzip": 1170
     },
-    "./samurai": {
-      "minified": 23762,
-      "gzip": 4705
+    "./medieval": {
+      "minified": 507683,
+      "gzip": 165024
     },
     "./search": {
       "minified": 69111,

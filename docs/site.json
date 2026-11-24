@@ -30,12 +30,18 @@
       "en": "Flags of international organisations",
       "ja": "国際機関の旗"
     },
+<<<<<<< HEAD
     "./signals": {
       "en": "Ship signal flags (International Code of Signals)",
       "ja": "船の信号旗（国際信号書）"
     "./samurai": {
       "en": "Samurai battle banners",
       "ja": "武士の戦場の旗"
+=======
+    "./medieval": {
+      "en": "Medieval banners",
+      "ja": "中世の旗"
+>>>>>>> origin/feat/1811-medieval-banners
     },
     "./search": {
       "en": "Flags by their colours",
