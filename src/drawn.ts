@@ -5,7 +5,7 @@
 // A set has its own id namespace: `<prefix>:<slug>`. The colon is in no ISO 3166 code, so no id here can shadow a country's.
 // Every function is pure and works on strings: no DOM, no network, the same answer on a server and in a browser.
 
-import { aspectOf, mustBeString } from "./svg";
+import { mustBeString } from "./svg";
 
 /** Where a drawing's facts were read, and what kind of page it is. */
 interface DrawnSource {
@@ -48,9 +48,15 @@ interface DrawnRecord {
   /** What is documented and what is reconstruction, in words; empty for an official drawing. */
   note: { en: string; ja: string };
   source: DrawnSource;
-  /** The drawing: an SVG string with a viewBox and no width or height. */
-  svg: string;
+  /** The drawing's width over its height, kept here so that it is known before the drawing is loaded. */
+  aspect: number;
 }
+
+/** What a generator makes a record from: the record and its drawing, an SVG string with a viewBox and no width or height. The drawing is in a module of its own (`<set>/<slug>.ts`), not in the record. */
+type DrawnDrawing = Omit<DrawnRecord, "aspect"> & { svg: string };
+
+/** A module that holds one drawing: its SVG string, loaded by a dynamic import when the drawing is asked for. */
+type DrawnLoader = () => Promise<{ svg: string }>;
 
 /** A drawing's record as the set gives it, copied: the id, the group, both names, what it is, its status, its dates, the note on what is documented, its source and its aspect ratio. */
 interface DrawnInfo {
@@ -67,7 +73,7 @@ interface DrawnInfo {
   restricted: DrawnRestriction | null;
 }
 
-const drawnSet = <const Records extends readonly DrawnRecord[]>(prefix: string, all: Records) => {
+const drawnSet = <const Records extends readonly DrawnRecord[]>(prefix: string, all: Records, loaders: Readonly<Record<string, DrawnLoader>>) => {
   // A restricted drawing is in no list and no group: only a call that names it, and asks, gives it.
   const records = all.filter((one) => one.restricted === undefined) as unknown as Records;
   const byId: ReadonlyMap<string, Records[number]> = new Map(all.map((one) => [one.id, one as Records[number]]));
@@ -84,11 +90,12 @@ const drawnSet = <const Records extends readonly DrawnRecord[]>(prefix: string, 
     isId: (value: unknown): boolean => typeof value === "string" && byId.has(value) && byId.get(value)?.restricted === undefined,
     restrictedIds: all.filter((one) => one.restricted !== undefined).map((one) => one.id),
     idOf,
-    flag: (id: string, allowRestricted: boolean = false): string | null => {
+    flag: async (id: string, allowRestricted: boolean = false): Promise<string | null> => {
       const known = idOf(id);
       const found = known === null ? undefined : byId.get(known);
+      const load = found === undefined || (found.restricted !== undefined && !allowRestricted) ? undefined : loaders[found.id];
 
-      return found === undefined || (found.restricted !== undefined && !allowRestricted) ? null : found.svg;
+      return load === undefined ? null : (await load()).svg;
     },
     name: (id: string, language: string): string | null => {
       const known = idOf(id);
@@ -106,7 +113,7 @@ const drawnSet = <const Records extends readonly DrawnRecord[]>(prefix: string, 
       const known = idOf(id);
       const found = known === null ? undefined : byId.get(known);
 
-      return found === undefined ? null : aspectOf(found.svg);
+      return found === undefined ? null : found.aspect;
     },
     info: (id: string): DrawnInfo | null => {
       const known = idOf(id);
@@ -122,7 +129,7 @@ const drawnSet = <const Records extends readonly DrawnRecord[]>(prefix: string, 
         dates: found.dates === null ? null : { ...found.dates },
         note: { ...found.note },
         source: { ...found.source },
-        aspect: aspectOf(found.svg) ?? 1,
+        aspect: found.aspect,
         restricted: found.restricted === undefined ? null : { ...found.restricted },
       };
     },
@@ -131,4 +138,4 @@ const drawnSet = <const Records extends readonly DrawnRecord[]>(prefix: string, 
 };
 
 export { drawnSet };
-export type { DrawnInfo, DrawnRecord, DrawnRestriction, DrawnSource, DrawnStatus };
+export type { DrawnDrawing, DrawnInfo, DrawnLoader, DrawnRecord, DrawnRestriction, DrawnSource, DrawnStatus };

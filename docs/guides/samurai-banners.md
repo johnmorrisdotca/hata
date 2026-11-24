@@ -12,13 +12,17 @@ import { frame } from "@johnmorrisdotca/hata";
 import { samuraiFlag, samuraiInfo, samuraiName } from "@johnmorrisdotca/hata/samurai";
 
 // A banner is an SVG string, framed like a country's; its id begins with "samurai:", and its record says what is documented.
-const nobori = samuraiFlag("samurai:sanada-rokumonsen");
+const nobori = await samuraiFlag("samurai:sanada-rokumonsen");
 const round = nobori === null ? "" : frame(nobori, { shape: "round", label: samuraiName("samurai:sanada-rokumonsen", "ja") ?? "" });
 console.log(nobori?.startsWith("<svg"), round.includes("clipPath"), samuraiName("samurai:sanada-rokumonsen", "ja"));
 console.log(samuraiInfo("samurai:sanada-rokumonsen")?.status);
 ```
 
-`samuraiFlag(id)` gives the SVG string, `samuraiName(id, lang)` and `samuraiAbout(id, lang)` the name and a sentence in English or Japanese, `samuraiAspect(id)` the width over the height, `samuraiInfo(id)` everything the package knows of it, and `samuraiIn("nobori")` the ids of one kind (`nobori`, `hata` or `uma`). `samuraiId("ii-igeta")` reads an id written loosely, and `SAMURAI_IDS` lists them all. Each returns `null` for an id with no banner here.
+`samuraiFlag(id)` loads the SVG string (a promise), `samuraiName(id, lang)` and `samuraiAbout(id, lang)` the name and a sentence in English or Japanese, `samuraiAspect(id)` the width over the height, `samuraiInfo(id)` everything the package knows of it, and `samuraiIn("nobori")` the ids of one kind (`nobori`, `hata` or `uma`). `samuraiId("ii-igeta")` reads an id written loosely, and `SAMURAI_IDS` lists them all. Each returns `null` for an id with no banner here.
+
+## Size, and loading one drawing
+
+The entry carries the records only: the ids, names, descriptions, dates, sources and notes, about 19 KB (3.9 KB gzipped), with no drawing in it. Each drawing is a module of its own, `@johnmorrisdotca/hata/samurai/ii-igeta` (a median of 388 B, at most 735 B), which the lookup loads by a dynamic import when it is asked for, as `/load` does for a country's flag. A page therefore carries the drawings it asks for and no others. You can import a module yourself (`import svg from "@johnmorrisdotca/hata/samurai/ii-igeta"`, the drawing of `samurai:ii-igeta`); there is no other way to a drawing than its id or its module.
 
 ## What is documented, and what is not
 

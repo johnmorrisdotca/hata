@@ -24,6 +24,18 @@ describe("the built entries", () => {
     for (const file of ["dist/index.js", "dist/load.js", "dist/adapted.js"]) expect(readFileSync(file, "utf8"), file).not.toContain("<path");
   });
 
+  it("keep each drawn set's entry to its records, and each drawing a module of its own, under the set's budget", () => {
+    // The entry carries ids, names and metadata only; a drawing is a dynamic import of dist/<set>/<slug>.js, loaded when it is asked for.
+    const budgets: Record<string, { entry: number; drawing: number }> = { signals: { entry: 64 * KB, drawing: 4 * KB }, samurai: { entry: 24 * KB, drawing: 4 * KB }, military: { entry: 110 * KB, drawing: 140 * KB }, medieval: { entry: 96 * KB, drawing: 120 * KB }, organisations: { entry: 10 * KB, drawing: 50 * KB } };
+    for (const [set, budget] of Object.entries(budgets)) {
+      expect(size(`dist/${set}.js`), set).toBeLessThan(budget.entry);
+      expect(readFileSync(`dist/${set}.js`, "utf8"), set).not.toContain("<path");
+      const drawings = readdirSync(`dist/${set}`).filter((file) => file.endsWith(".js"));
+      expect(drawings.length, set).toBeGreaterThan(5);
+      for (const file of drawings) expect(size(`dist/${set}/${file}`), `${set}/${file}`).toBeLessThan(budget.drawing);
+    }
+  });
+
   it("make each flag's module its SVG and a line, no larger than the ceiling, and a shared flag's a line alone", () => {
     const files = readdirSync("dist/flags").filter((file) => file.endsWith(".js") && !/\.(4x3|1x1)\.js$/.test(file) && !file.includes("--"));
     expect(files).toHaveLength(MANIFEST.length);

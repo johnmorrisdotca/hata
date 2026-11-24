@@ -12,12 +12,16 @@ import { frame } from "@johnmorrisdotca/hata";
 import { militaryFlag, militaryInfo, militaryName } from "@johnmorrisdotca/hata/military";
 
 // A military flag is an SVG string, framed like a country's; its id begins with "mil:", and its record has its dates and its source.
-const ensign = militaryFlag("mil:gb-white-ensign");
+const ensign = await militaryFlag("mil:gb-white-ensign");
 const round = ensign === null ? "" : frame(ensign, { shape: "round", label: militaryName("mil:gb-white-ensign", "ja") ?? "" });
 console.log(ensign?.startsWith("<svg"), round.includes("clipPath"), militaryInfo("mil:gb-white-ensign")?.dates?.from);
 ```
 
-`militaryFlag(id)` はSVG文字列、`militaryName(id, lang)` と `militaryAbout(id, lang)` は英語か日本語の名前と一文、`militaryAspect(id)` は幅÷高さ、`militaryInfo(id)` はパッケージが知っているすべて（期間、位置づけ、注記、出典）、`militaryIn("ensign")` は種類（`ensign`、`jack`）ごとのidを返します。`militaryId("gb-white-ensign")` は緩く書いたidを読み取り、`MILITARY_IDS` は全idの一覧です。旗がないidにはどれも `null` を返します。
+`militaryFlag(id)` はSVG文字列を（Promiseとして）読み込み、`militaryName(id, lang)` と `militaryAbout(id, lang)` は英語か日本語の名前と一文、`militaryAspect(id)` は幅÷高さ、`militaryInfo(id)` はパッケージが知っているすべて（期間、位置づけ、注記、出典）、`militaryIn("ensign")` は種類（`ensign`、`jack`）ごとのidを返します。`militaryId("gb-white-ensign")` は緩く書いたidを読み取り、`MILITARY_IDS` は全idの一覧です。旗がないidにはどれも `null` を返します。
+
+## サイズと、1枚だけ読み込む方法
+
+入口にあるのは記録だけです（ID、名前、説明、期間、出典、注記。約99 KB、gzipで11 KB）。絵は入っていません。絵はそれぞれ別のモジュール `@johnmorrisdotca/hata/military/gb-white-ensign`（中央値1.5 KB、最大134 KB）で、国の旗に `/load` がするのと同じく、検索が頼まれたときに動的importで読み込みます。そのため、ページに入るのは頼んだ絵だけです。モジュールは自分で読み込むこともできます（`import svg from "@johnmorrisdotca/hata/military/gb-white-ensign"` は `mil:gb-white-ensign` の絵）。既定では出さない絵もモジュールで、名前を挙げて読み込む場合にだけ読み込めます。
 
 ## ここにあるもの
 

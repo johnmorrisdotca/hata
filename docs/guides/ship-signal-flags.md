@@ -13,12 +13,17 @@ import { signalFlag, signalMeaning, signalsFor } from "@johnmorrisdotca/hata/sig
 
 // A hoist that spells a word: one flag a letter, each an SVG string framed like a country's; its id begins with "ics:".
 const hoist = signalsFor("SOS 7");
-const round = frame(signalFlag(hoist[0] ?? "") ?? "", { shape: "round", label: "S" });
+const first = await signalFlag(hoist[0] ?? "");
+const round = frame(first ?? "", { shape: "round", label: "S" });
 console.log(hoist.join(" "), round?.includes("clipPath"));
 console.log(signalMeaning("ics:o"), signalMeaning("ics:o", "ja"));
 ```
 
-`signalFlag(id)` gives the SVG string, `signalName(id, lang)` the name ("A: Alfa", "A旗（アルファ）"), `signalMeaning(id, lang)` what the flag means or does, `signalAspect(id)` the width over the height, `signalInfo(id)` everything the package knows of it, and `signalsFor(text)` the flags that spell a text. `signalId("a")` reads an id written loosely and answers `"ics:a"`, and `SIGNAL_IDS` lists them all, in the order of the Code's plate. Each returns `null` for an id the Code does not have.
+`signalFlag(id)` loads the SVG string (a promise), `signalName(id, lang)` the name ("A: Alfa", "A旗（アルファ）"), `signalMeaning(id, lang)` what the flag means or does, `signalAspect(id)` the width over the height, `signalInfo(id)` everything the package knows of it, and `signalsFor(text)` the flags that spell a text. `signalId("a")` reads an id written loosely and answers `"ics:a"`, and `SIGNAL_IDS` lists them all, in the order of the Code's plate. Each returns `null` for an id the Code does not have.
+
+## Size, and loading one drawing
+
+The entry carries the records only: the ids, names, descriptions, dates, sources and notes, about 58 KB (5.8 KB gzipped), with no drawing in it. Each drawing is a module of its own, `@johnmorrisdotca/hata/signals/a` (a median of 321 B, at most 448 B), which the lookup loads by a dynamic import when it is asked for, as `/load` does for a country's flag. A page therefore carries the drawings it asks for and no others. You can import a module yourself (`import svg from "@johnmorrisdotca/hata/signals/a"`, the drawing of `ics:a`); there is no other way to a drawing than its id or its module.
 
 ## Where the drawings come from
 

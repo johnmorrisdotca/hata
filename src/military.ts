@@ -7,11 +7,11 @@
 
 import { drawnSet } from "./drawn";
 import type { DrawnInfo } from "./drawn";
-import { MILITARY } from "./sets/military.data";
+import { MILITARY, MILITARY_LOADERS } from "./sets/military.data";
 import type { MilitaryRecordId } from "./sets/military.data";
 import type { DrawnRestriction } from "./drawn";
 
-const set = drawnSet("mil", MILITARY);
+const set = drawnSet("mil", MILITARY, MILITARY_LOADERS);
 
 /**
  * The id of a military flag, written exactly as this package writes it: `mil:`, the country's two letters and a lower-case slug
@@ -119,19 +119,19 @@ const militaryId = (input: string): MilitaryId | null => set.idOf(input) as Mili
  *
  * @param id - A flag's id, in any case, with or without `mil:`.
  * @param options - `{ allowRestricted: true }` to draw a flag shipped for history and education only.
- * @returns The SVG string, or `null` when the set has no such flag or the flag is restricted and not asked for.
- * @throws TypeError when `id` is not a string.
+ * @returns The SVG string, loaded when it is asked for (the drawing is a module of its own, so a page carries only the drawings it asks for), or `null` when the set has no such flag or the flag is restricted and not asked for.
+ * @throws TypeError, as a rejection, when `id` is not a string.
  *
  * @example
  * ```ts
  * import { toDataUri } from "@johnmorrisdotca/hata";
  * import { militaryFlag } from "@johnmorrisdotca/hata/military";
  *
- * const ensign = militaryFlag("mil:gb-white-ensign"); // "<svg …>"
+ * const ensign = await militaryFlag("mil:gb-white-ensign"); // "<svg …>"
  * console.log(ensign === null ? null : toDataUri(ensign)?.startsWith("data:image/svg+xml,"));
  * ```
  */
-const militaryFlag = (id: string, options: { allowRestricted?: boolean } = {}): string | null => set.flag(id, options.allowRestricted === true);
+const militaryFlag = (id: string, options: { allowRestricted?: boolean } = {}): Promise<string | null> => set.flag(id, options.allowRestricted === true);
 
 /**
  * A flag's name, in English or Japanese: the country and what the flag is. Any language tag that starts with `ja` is Japanese.

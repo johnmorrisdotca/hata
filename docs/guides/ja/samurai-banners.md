@@ -12,13 +12,17 @@ import { frame } from "@johnmorrisdotca/hata";
 import { samuraiFlag, samuraiInfo, samuraiName } from "@johnmorrisdotca/hata/samurai";
 
 // A banner is an SVG string, framed like a country's; its id begins with "samurai:", and its record says what is documented.
-const nobori = samuraiFlag("samurai:sanada-rokumonsen");
+const nobori = await samuraiFlag("samurai:sanada-rokumonsen");
 const round = nobori === null ? "" : frame(nobori, { shape: "round", label: samuraiName("samurai:sanada-rokumonsen", "ja") ?? "" });
 console.log(nobori?.startsWith("<svg"), round.includes("clipPath"), samuraiName("samurai:sanada-rokumonsen", "ja"));
 console.log(samuraiInfo("samurai:sanada-rokumonsen")?.status);
 ```
 
-`samuraiFlag(id)` はSVG文字列、`samuraiName(id, lang)` と `samuraiAbout(id, lang)` は英語か日本語の名前と一文、`samuraiAspect(id)` は幅÷高さ、`samuraiInfo(id)` はパッケージが知っているすべて、`samuraiIn("nobori")` は種類（`nobori`、`hata`、`uma`）ごとのidを返します。`samuraiId("ii-igeta")` は緩く書いたidを読み取り、`SAMURAI_IDS` は全idの一覧です。旗がないidにはどれも `null` を返します。
+`samuraiFlag(id)` はSVG文字列を（Promiseとして）読み込み、`samuraiName(id, lang)` と `samuraiAbout(id, lang)` は英語か日本語の名前と一文、`samuraiAspect(id)` は幅÷高さ、`samuraiInfo(id)` はパッケージが知っているすべて、`samuraiIn("nobori")` は種類（`nobori`、`hata`、`uma`）ごとのidを返します。`samuraiId("ii-igeta")` は緩く書いたidを読み取り、`SAMURAI_IDS` は全idの一覧です。旗がないidにはどれも `null` を返します。
+
+## サイズと、1枚だけ読み込む方法
+
+入口にあるのは記録だけです（ID、名前、説明、期間、出典、注記。約19 KB、gzipで3.9 KB）。絵は入っていません。絵はそれぞれ別のモジュール `@johnmorrisdotca/hata/samurai/ii-igeta`（中央値388 B、最大735 B）で、国の旗に `/load` がするのと同じく、検索が頼まれたときに動的importで読み込みます。そのため、ページに入るのは頼んだ絵だけです。モジュールは自分で読み込むこともできます（`import svg from "@johnmorrisdotca/hata/samurai/ii-igeta"` は `samurai:ii-igeta` の絵）。絵に行く道は、IDかモジュールだけです。
 
 ## 確かめられていることと、そうでないこと
 

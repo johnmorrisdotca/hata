@@ -1,15 +1,14 @@
 // The medieval banners: six, each a reconstruction that names its dated source and says what is documented.
 import { readFileSync } from "node:fs";
-import { fileURLToPath } from "node:url";
 
 import { describe, expect, it } from "vitest";
 
-import { medievalDataText, medievalNoticeText, medievalRecords } from "../scripts/draw-medieval";
+import { medievalFiles, medievalNoticeText, medievalRecords } from "../scripts/draw-medieval";
 import { isMedievalId, MEDIEVAL_IDS, medievalAbout, medievalAspect, medievalFlag, medievalId, medievalIn, medievalInfo, medievalName } from "./medieval";
 
 describe("the banners", () => {
   it("are what scripts/draw-medieval.ts makes, so the data file cannot drift from the geometry", () => {
-    expect(readFileSync(fileURLToPath(new URL("./sets/medieval.data.ts", import.meta.url)), "utf8")).toBe(medievalDataText());
+    for (const [path, text] of medievalFiles()) expect(readFileSync(`src/sets/${path}`, "utf8"), path).toBe(text);
     expect(medievalRecords().map((one) => one.id)).toEqual([...MEDIEVAL_IDS]);
     expect(MEDIEVAL_IDS).toHaveLength(42);
     const notice = readFileSync("NOTICE.md", "utf8");
@@ -34,7 +33,7 @@ describe("the banners", () => {
     expect(medievalInfo("med:gelre-denmark")?.dates).toBeNull();
   });
 
-  it("are grouped, drawn at their ratios, and read loosely, in both languages", () => {
+  it("are grouped, drawn at their ratios, and read loosely, in both languages", async () => {
     expect(medievalIn("order")).toEqual(expect.arrayContaining(["med:templar-baucent", "med:hospitaller-cross", "med:teutonic-banner"]));
     expect(medievalIn("cross")).toEqual(expect.arrayContaining(["med:red-cross", "med:scotland-saltire", "med:swiss-cross"]));
     expect(medievalIn("kingdom")).toEqual(expect.arrayContaining(["med:gelre-denmark", "med:aragon-pallets", "med:gb-royal-banner"]));
@@ -48,14 +47,14 @@ describe("the banners", () => {
     expect(isMedievalId("red-cross")).toBe(false);
     expect(medievalName("med:red-cross", "ja-JP")).toBe("白地に赤十字（聖ジョージ十字）");
     expect(medievalAbout("med:aragon-pallets", "ja")).toMatch(/アルフォンソ2世/);
-    expect(medievalFlag("med:nobody")).toBeNull();
+    expect(await medievalFlag("med:nobody")).toBeNull();
     expect(() => medievalId(1 as unknown as string)).toThrow(TypeError);
   });
 
-  it("draw Aragon as nine stripes with four red, and Denmark's banner with the cross nearer the hoist", () => {
-    const aragon = medievalFlag("med:aragon-pallets") ?? "";
+  it("draw Aragon as nine stripes with four red, and Denmark's banner with the cross nearer the hoist", async () => {
+    const aragon = (await medievalFlag("med:aragon-pallets")) ?? "";
     expect((aragon.match(/h40v240/g) ?? []).length).toBe(4);
-    expect(medievalFlag("med:gelre-denmark")).toContain("M120 0h60v300h-60z");
+    expect(await medievalFlag("med:gelre-denmark")).toContain("M120 0h60v300h-60z");
   });
 
   it("take Commons files through the licence check: public domain or CC0 only, with the author and the page kept", () => {

@@ -2,6 +2,18 @@
 // path text, polygons clipped to a rectangle, and the SVG wrapper every drawing shares. A drawing is a string with a viewBox and
 // no width or height, ids that begin with `<prefix>-<slug>-`, and nothing active or external (the sets' test checks).
 
+import { mkdirSync, readdirSync, rmSync, writeFileSync } from "node:fs";
+import { join } from "node:path";
+
+import type { DrawnDrawing } from "../src/drawn.ts";
+
+// The width over the height of the drawing's viewBox (src/svg.ts's aspectOf, which Node cannot import without a bundler).
+const aspectOf = (drawing: string): number | null => {
+  const box = /viewBox="(-?[\d.]+) (-?[\d.]+) ([\d.]+) ([\d.]+)"/.exec(drawing);
+
+  return box === null ? null : Number(box[3]) / Number(box[4]);
+};
+
 const n = (value: number): string => String(Math.round(value * 100) / 100);
 
 /** A closed polygon as path text: points are [x, y]. */
@@ -47,5 +59,31 @@ const svg = (prefix: string, slug: string, w: number, h: number, shapes: readonl
   return `<svg data-hata-${prefix}="${slug}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${n(w)} ${n(h)}">${clip === undefined ? body : `<defs><clipPath id="${id}"><path d="${clip}"/></clipPath></defs><g clip-path="url(#${id})">${body}</g>`}</svg>`;
 };
 
-export { box, clipTo, n, poly, svg };
+/**
+ * The files of a drawn set: `<name>.data.ts` (the records without their drawings, and a loader for each) and one module for each drawing,
+ * `<name>/<slug>.ts`, which holds its SVG string and nothing else. A page that imports the set's entry carries the records only; a drawing is a
+ * dynamic import, loaded when it is asked for, as a country's flag is. Paths are relative to src/sets.
+ */
+const setFiles = (name: string, constant: string, idType: string, header: string, drawings: readonly DrawnDrawing[]): Map<string, string> => {
+  const files = new Map<string, string>();
+  const slugOf = (id: string): string => id.slice(id.indexOf(":") + 1);
+  const records = drawings.map(({ svg: drawing, ...record }) => ({ ...record, aspect: aspectOf(drawing) ?? 1 }));
+  const ids = drawings.map((one) => JSON.stringify(one.id)).join(" | ");
+  files.set(
+    `${name}.data.ts`,
+    `// Made by ${header} (pnpm draw): do not edit by hand. The records of the set, without their drawings, and a loader for each drawing (src/sets/${name}/<slug>.ts).\nimport type { DrawnLoader, DrawnRecord } from "../drawn";\n\ntype ${idType} = ${ids};\n\nconst ${constant}: readonly (DrawnRecord & { id: ${idType} })[] = [\n${records.map((record) => `  ${JSON.stringify(record)},`).join("\n")}\n];\n\nconst ${constant}_LOADERS: Readonly<Record<string, DrawnLoader>> = {\n${drawings.map((one) => `  ${JSON.stringify(one.id)}: () => import("./${name}/${slugOf(one.id)}"),`).join("\n")}\n};\n\nexport { ${constant}, ${constant}_LOADERS };\nexport type { ${idType} };\n`,
+  );
+  for (const one of drawings) files.set(`${name}/${slugOf(one.id)}.ts`, `// Made by ${header}: do not edit by hand. The drawing of ${one.id}.\n\n/** ${one.name.en}, as an SVG string: viewBox ${/viewBox="([^"]+)"/.exec(one.svg)?.[1] ?? ""}, ${one.svg.length} B. Loaded by the set's entry when it is asked for. */\nconst svg = ${JSON.stringify(one.svg)};\n\nexport { svg };\nexport default svg;\n`);
+
+  return files;
+};
+
+/** Writes a set's files under src/sets and removes the drawing modules that are no longer in it. */
+const writeSetFiles = (root: string, name: string, files: ReadonlyMap<string, string>): void => {
+  mkdirSync(join(root, name), { recursive: true });
+  for (const old of readdirSync(join(root, name))) if (!files.has(`${name}/${old}`)) rmSync(join(root, name, old));
+  for (const [path, text] of files) writeFileSync(join(root, path), text);
+};
+
+export { box, clipTo, n, poly, setFiles, svg, writeSetFiles };
 export type { Shape };

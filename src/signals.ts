@@ -7,10 +7,10 @@
 
 import { drawnSet } from "./drawn";
 import type { DrawnInfo } from "./drawn";
-import { SIGNALS } from "./sets/signals.data";
+import { SIGNALS, SIGNALS_LOADERS } from "./sets/signals.data";
 import { mustBeString } from "./svg";
 
-const set = drawnSet("ics", SIGNALS);
+const set = drawnSet("ics", SIGNALS, SIGNALS_LOADERS);
 
 /**
  * What the package knows of one flag of the Code: its id, group, both names, meaning, status, note, source and aspect ratio.
@@ -91,19 +91,19 @@ const signalId = (input: string): SignalId | null => set.idOf(input) as SignalId
  * triangular substitute. `frame()` and `toDataUri()` from the main entry take it like any other.
  *
  * @param id - A flag's id, in any case, with or without `ics:` ("ics:a", "A").
- * @returns The SVG string, or `null` when the Code has no such flag.
- * @throws TypeError when `id` is not a string.
+ * @returns The SVG string, loaded when it is asked for (the drawing is a module of its own, so a page carries only the drawings it asks for), or `null` when the Code has no such flag.
+ * @throws TypeError, as a rejection, when `id` is not a string.
  *
  * @example
  * ```ts
  * import { toDataUri } from "@johnmorrisdotca/hata";
  * import { signalFlag } from "@johnmorrisdotca/hata/signals";
  *
- * const alfa = signalFlag("ics:a"); // "<svg …>"
+ * const alfa = await signalFlag("ics:a"); // "<svg …>"
  * console.log(alfa === null ? null : toDataUri(alfa)?.startsWith("data:image/svg+xml,"));
  * ```
  */
-const signalFlag = (id: string): string | null => set.flag(id);
+const signalFlag = (id: string): Promise<string | null> => set.flag(id);
 
 /**
  * A flag's name, in English or Japanese: the letter and its word ("A: Alfa", "A旗（アルファ）"), the figure and its word, a substitute or

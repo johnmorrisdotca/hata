@@ -1,10 +1,9 @@
 // The ship signal flags: the Code's 26 letters, 10 numeral pennants, 3 substitutes and the answering pennant, with their meanings.
 import { readFileSync } from "node:fs";
-import { fileURLToPath } from "node:url";
 
 import { describe, expect, it } from "vitest";
 
-import { signalRecords, signalsDataText } from "../scripts/draw-signals";
+import { signalRecords, signalFiles } from "../scripts/draw-signals";
 import { isSignalId, SIGNAL_IDS, signalAspect, signalFlag, signalId, signalInfo, signalMeaning, signalName, signalsFor } from "./signals";
 
 describe("the ids", () => {
@@ -26,8 +25,7 @@ describe("the ids", () => {
 
 describe("the drawings", () => {
   it("are what scripts/draw-signals.ts makes, so the data file cannot drift from the geometry", () => {
-    const file = readFileSync(fileURLToPath(new URL("./sets/signals.data.ts", import.meta.url)), "utf8");
-    expect(file).toBe(signalsDataText());
+    for (const [path, text] of signalFiles()) expect(readFileSync(`src/sets/${path}`, "utf8"), path).toBe(text);
     expect(signalRecords().map((one) => one.id)).toEqual([...SIGNAL_IDS]);
   });
 
@@ -38,16 +36,16 @@ describe("the drawings", () => {
     expect(signalAspect("ics:answer")).toBe(3);
   });
 
-  it("draw A as a white hoist third and a swallow-tailed blue fly, and Y as nine stripes", () => {
-    const alfa = signalFlag("ics:a") ?? "";
+  it("draw A as a white hoist third and a swallow-tailed blue fly, and Y as nine stripes", async () => {
+    const alfa = (await signalFlag("ics:a")) ?? "";
     expect(alfa).toContain('fill="#ffffff" d="M0 0L240 0L240 600L0 600z"');
     expect(alfa).toContain("M240 0L720 0L480 300L720 600L240 600z");
-    expect((signalFlag("ics:y")?.match(/z/g) ?? []).length).toBe(1 + 5);
+    expect(((await signalFlag("ics:y"))?.match(/z/g) ?? []).length).toBe(1 + 5);
   });
 });
 
 describe("the names and the meanings", () => {
-  it("give the Code's own words for a letter, and the Japanese beside them", () => {
+  it("give the Code's own words for a letter, and the Japanese beside them", async () => {
     expect(signalName("ics:a")).toBe("A: Alfa");
     expect(signalName("A", "ja-JP")).toBe("A旗（アルファ）");
     expect(signalMeaning("ics:a")).toBe("I have a diver down; keep well clear at slow speed.");
@@ -61,7 +59,7 @@ describe("the names and the meanings", () => {
     expect(signalName("ics:xx")).toBeNull();
     expect(signalMeaning("ics:xx")).toBeNull();
     expect(signalAspect("ics:xx")).toBeNull();
-    expect(signalFlag("ics:xx")).toBeNull();
+    expect(await signalFlag("ics:xx")).toBeNull();
     expect(signalInfo("ics:xx")).toBeNull();
   });
 

@@ -7,9 +7,9 @@
 
 import { drawnSet } from "./drawn";
 import type { DrawnInfo } from "./drawn";
-import { SAMURAI } from "./sets/samurai.data";
+import { SAMURAI, SAMURAI_LOADERS } from "./sets/samurai.data";
 
-const set = drawnSet("samurai", SAMURAI);
+const set = drawnSet("samurai", SAMURAI, SAMURAI_LOADERS);
 
 /**
  * The id of a banner, written exactly as this package writes it: `samurai:` and a lower-case slug. No country or region code contains a
@@ -89,19 +89,19 @@ const samuraiId = (input: string): SamuraiId | null => set.idOf(input) as Samura
  * `toDataUri()` from the main entry take it like any other.
  *
  * @param id - A banner's id, in any case, with or without `samurai:`.
- * @returns The SVG string, or `null` when the set has no such banner.
- * @throws TypeError when `id` is not a string.
+ * @returns The SVG string, loaded when it is asked for (the drawing is a module of its own, so a page carries only the drawings it asks for), or `null` when the set has no such banner.
+ * @throws TypeError, as a rejection, when `id` is not a string.
  *
  * @example
  * ```ts
  * import { toDataUri } from "@johnmorrisdotca/hata";
  * import { samuraiFlag } from "@johnmorrisdotca/hata/samurai";
  *
- * const nobori = samuraiFlag("samurai:sanada-rokumonsen"); // "<svg …>"
+ * const nobori = await samuraiFlag("samurai:sanada-rokumonsen"); // "<svg …>"
  * console.log(nobori === null ? null : toDataUri(nobori)?.startsWith("data:image/svg+xml,"));
  * ```
  */
-const samuraiFlag = (id: string): string | null => set.flag(id);
+const samuraiFlag = (id: string): Promise<string | null> => set.flag(id);
 
 /**
  * A banner's name, in English or Japanese: whose it was and what it is. Any language tag that starts with `ja` is Japanese.

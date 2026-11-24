@@ -13,12 +13,17 @@ import { signalFlag, signalMeaning, signalsFor } from "@johnmorrisdotca/hata/sig
 
 // A hoist that spells a word: one flag a letter, each an SVG string framed like a country's; its id begins with "ics:".
 const hoist = signalsFor("SOS 7");
-const round = frame(signalFlag(hoist[0] ?? "") ?? "", { shape: "round", label: "S" });
+const first = await signalFlag(hoist[0] ?? "");
+const round = frame(first ?? "", { shape: "round", label: "S" });
 console.log(hoist.join(" "), round?.includes("clipPath"));
 console.log(signalMeaning("ics:o"), signalMeaning("ics:o", "ja"));
 ```
 
-`signalFlag(id)` はSVG文字列、`signalName(id, lang)` は名前（「A: Alfa」「A旗（アルファ）」）、`signalMeaning(id, lang)` は旗の意味や働き、`signalAspect(id)` は幅÷高さ、`signalInfo(id)` はパッケージが知っているすべて、`signalsFor(text)` は文を綴る旗を返します。`signalId("a")` は緩く書いたidを読み取り `"ics:a"` を返し、`SIGNAL_IDS` は国際信号書の図版の順にすべてのidを並べます。規約にないidにはどれも `null` を返します。
+`signalFlag(id)` はSVG文字列を（Promiseとして）読み込み、`signalName(id, lang)` は名前（「A: Alfa」「A旗（アルファ）」）、`signalMeaning(id, lang)` は旗の意味や働き、`signalAspect(id)` は幅÷高さ、`signalInfo(id)` はパッケージが知っているすべて、`signalsFor(text)` は文を綴る旗を返します。`signalId("a")` は緩く書いたidを読み取り `"ics:a"` を返し、`SIGNAL_IDS` は国際信号書の図版の順にすべてのidを並べます。規約にないidにはどれも `null` を返します。
+
+## サイズと、1枚だけ読み込む方法
+
+入口にあるのは記録だけです（ID、名前、説明、期間、出典、注記。約58 KB、gzipで5.8 KB）。絵は入っていません。絵はそれぞれ別のモジュール `@johnmorrisdotca/hata/signals/a`（中央値321 B、最大448 B）で、国の旗に `/load` がするのと同じく、検索が頼まれたときに動的importで読み込みます。そのため、ページに入るのは頼んだ絵だけです。モジュールは自分で読み込むこともできます（`import svg from "@johnmorrisdotca/hata/signals/a"` は `ics:a` の絵）。絵に行く道は、IDかモジュールだけです。
 
 ## 絵の出どころ
 

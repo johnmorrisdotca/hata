@@ -12,12 +12,16 @@ import { frame } from "@johnmorrisdotca/hata";
 import { organisationFlag, organisationName } from "@johnmorrisdotca/hata/organisations";
 
 // An organisation's flag is an SVG string, framed like a country's; its id begins with "org:".
-const svg = organisationFlag("org:eu");
+const svg = await organisationFlag("org:eu");
 const round = svg === null ? "" : frame(svg, { shape: "round", label: organisationName("org:eu", "ja") ?? "" });
 console.log(svg?.startsWith("<svg"), round.includes("clipPath"), organisationName("org:eu", "ja"));
 ```
 
-`organisationFlag(id)` gives the SVG string, `organisationName(id, lang)` the name in English or Japanese, `organisationAspect(id)` the width over the height, and `organisationTerms(id)` the page where the terms for the flag were read, the day, and what they say. `organisationId("EU")` reads an id written loosely and answers `"org:eu"`; `ORGANISATION_IDS` lists them all. Each returns `null` for an id with no flag here.
+`organisationFlag(id)` loads the SVG string (a promise), `organisationName(id, lang)` the name in English or Japanese, `organisationAspect(id)` the width over the height, and `organisationTerms(id)` the page where the terms for the flag were read, the day, and what they say. `organisationId("EU")` reads an id written loosely and answers `"org:eu"`; `ORGANISATION_IDS` lists them all. Each returns `null` for an id with no flag here.
+
+## Size, and loading one drawing
+
+The entry carries the records only: the ids, names, descriptions, dates, sources and notes, about 7.1 KB (2.5 KB gzipped), with no drawing in it. Each drawing is a module of its own, `@johnmorrisdotca/hata/organisations/eu` (a median of 885 B, at most 40 KB), which the lookup loads by a dynamic import when it is asked for, as `/load` does for a country's flag. A page therefore carries the drawings it asks for and no others. You can import a module yourself (`import svg from "@johnmorrisdotca/hata/organisations/eu"`, the drawing of `org:eu`); there is no other way to a drawing than its id or its module.
 
 ## Which organisations are here
 

@@ -14,11 +14,10 @@
 //     length into the flag from the fly.
 //   - Numeral pennants: tapering, 7 long to 2 high at the hoist, the fly end 0.38 of the hoist.
 //   - Substitutes: isosceles triangles, 3 long to 2 high; the answering pennant tapers, 3 long to 1 high, the fly end half the hoist.
-import { writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 
-import type { DrawnRecord } from "../src/drawn.ts";
-import { box, clipTo, n, poly, svg } from "./draw-lib.ts";
+import type { DrawnDrawing } from "../src/drawn.ts";
+import { box, setFiles, writeSetFiles, clipTo, n, poly, svg } from "./draw-lib.ts";
 import type { Shape } from "./draw-lib.ts";
 
 const RED = "#d7141a";
@@ -206,8 +205,8 @@ const NOTE = {
   ja: "規約は、この旗を寸法図のない図版で示しています。意匠と色の名前は規約のもの、縦横の比は図版から測って丸めたもの、色の値はこのパッケージのものです。",
 };
 
-const signalRecords = (): DrawnRecord[] => {
-  const records: DrawnRecord[] = [];
+const signalRecords = (): DrawnDrawing[] => {
+  const records: DrawnDrawing[] = [];
   NAMES.forEach((name, at) => {
     const slug = String.fromCharCode(97 + at);
     const letterName = slug.toUpperCase();
@@ -226,15 +225,11 @@ const signalRecords = (): DrawnRecord[] => {
   return records;
 };
 
-const text = (): string => {
-  const body = signalRecords().map((record) => `  ${JSON.stringify(record)},`).join("\n");
-
-  return `// Made by scripts/draw-signals.ts (pnpm draw): do not edit by hand. The International Code of Signals' flags, drawn for this package under the MIT licence from the Code's own plate (see that script).\nimport type { DrawnRecord } from "../drawn";\n\nconst SIGNALS = [\n${body}\n] as const satisfies readonly DrawnRecord[];\n\nexport { SIGNALS };\n`;
-};
+const files = (): Map<string, string> => setFiles("signals", "SIGNALS", "SignalRecordId", "scripts/draw-signals.ts", signalRecords());
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
-  writeFileSync(fileURLToPath(new URL("../src/sets/signals.data.ts", import.meta.url)), text());
-  console.log(`wrote src/sets/signals.data.ts: ${signalRecords().length} drawings`);
+  writeSetFiles(fileURLToPath(new URL("../src/sets", import.meta.url)), "signals", files());
+  console.log(`wrote src/sets/signals.data.ts and signals/: ${signalRecords().length} drawings`);
 }
 
-export { signalRecords, text as signalsDataText };
+export { signalRecords, files as signalFiles };

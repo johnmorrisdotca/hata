@@ -18,14 +18,18 @@ interface Row {
   dates: { from: string | null; until: string | null } | null;
   note: { en: string; ja: string };
   source: { title: string; url: string; kind: string; read: string; says: string };
+  aspect: number;
+  /** Loaded from the drawing's own module (src/sets/<set>/<slug>.ts), not held in the record. */
   svg: string;
 }
 
 const SETS: { name: string; records: readonly Row[] }[] = await Promise.all(
   readdirSync("src/sets").filter((file) => file.endsWith(".data.ts")).sort().map(async (file) => {
-    const module = (await import(/* @vite-ignore */ `./sets/${file}`)) as Record<string, readonly Row[]>;
+    const name = file.replace(/\.data\.ts$/, "");
+    const module = (await import(/* @vite-ignore */ `./sets/${file}`)) as Record<string, readonly Omit<Row, "svg">[]>;
+    const records = await Promise.all(Object.values(module)[0]!.map(async (one) => ({ ...one, svg: ((await import(/* @vite-ignore */ `./sets/${name}/${one.id.slice(one.id.indexOf(":") + 1)}`)) as { svg: string }).svg })));
 
-    return { name: file.replace(/\.data\.ts$/, ""), records: Object.values(module)[0]! };
+    return { name, records };
   }),
 );
 const notice = readFileSync("NOTICE.md", "utf8");
@@ -96,6 +100,14 @@ describe("every drawn set", () => {
     for (const { name, records } of SETS) {
       expect(notice, name).toContain(`\`${records[0]!.id.split(":")[0]}:`);
       for (const url of new Set(records.map((one) => one.source.url))) expect(notice, `${name}: ${url}`).toContain(url);
+    }
+  });
+
+  it("keeps the records free of drawings: each is a module of its own, loaded on demand, so a page carries only the drawings it asks for", () => {
+    for (const { name, records } of SETS) {
+      expect(readFileSync(`src/sets/${name}.data.ts`, "utf8"), name).not.toContain("<svg");
+      expect(readdirSync(`src/sets/${name}`).filter((file) => file.endsWith(".ts")).length, name).toBe(records.length);
+      for (const one of records) expect(one.aspect, one.id).toBeCloseTo(aspectOf(one.svg) ?? 0, 6);
     }
   });
 

@@ -14,8 +14,8 @@
 import { readFileSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 
-import type { DrawnRecord } from "../src/drawn.ts";
-import { box, clipTo, n, poly, svg } from "./draw-lib.ts";
+import type { DrawnDrawing } from "../src/drawn.ts";
+import { box, setFiles, writeSetFiles, clipTo, n, poly, svg } from "./draw-lib.ts";
 import { classify } from "./licence.ts";
 import { MILITARY_FILES } from "./military-files.ts";
 import { optimiseFlag } from "./optimise.ts";
@@ -101,7 +101,7 @@ const WHITE_SOURCE = { title: "White Ensign, Wikipedia", url: "https://en.wikipe
 const JACK_SOURCE = { title: "Union Jack, Wikipedia", url: "https://en.wikipedia.org/wiki/Union_Jack", kind: "encyclopedia", read: READ, says: "Says the Union Flag flown at a ship's bow as the jack is the Union Jack, the Royal Navy's naval jack." } as const;
 const US_SOURCE = { title: "Executive Order 10834 (1959), Providing for the arrangement of the stars in the flag of the United States, Wikisource", url: "https://en.wikisource.org/wiki/Executive_Order_10834", kind: "official", read: READ, says: "The order fixes the 50-star flag's construction, including the union's size (0.76 by 0.5385 of the hoist) and the place and size of the stars; the Navy jack is the union of that flag. The date of the current jack is 4 July 1960, as the Wikipedia article on the flag of the United States gives it." } as const;
 
-interface Entry { slug: string; group: "ensign" | "jack"; status: "documented" | "reconstruction"; en: string; ja: string; aboutEn: string; aboutJa: string; dates: { from: string | null; until: string | null }; source: DrawnRecord["source"]; noteEn: string; noteJa: string; svg: string }
+interface Entry { slug: string; group: "ensign" | "jack"; status: "documented" | "reconstruction"; en: string; ja: string; aboutEn: string; aboutJa: string; dates: { from: string | null; until: string | null }; source: DrawnDrawing["source"]; noteEn: string; noteJa: string; svg: string }
 const ENTRIES: Entry[] = [
   { slug: "jp-jmsdf-ensign", group: "ensign", status: "documented", en: "Japan: Maritime Self-Defense Force ensign", ja: "日本：海上自衛隊の自衛艦旗", aboutEn: "The ensign of the ships of the Japan Maritime Self-Defense Force: a red sun of sixteen rays on white, the sun's centre set toward the hoist. It is flown as the naval ensign and is the Rising Sun Flag of the Self-Defense Forces' ships.", aboutJa: "海上自衛隊の艦艇が掲げる旗です。白地に、掲揚側に寄せた紅の日章と16条の光線を描きます。艦艇の旗として掲げる、自衛艦旗（旭日旗）です。", dates: { from: "1954-06-30", until: null }, source: JMSDF_SOURCE, noteEn: "The ratio, the disc's diameter and place and the rays' angle are the source's. The red is #bd0029, the value the Wikipedia article on the Rising Sun Flag gives. That there is a ray on each axis is this package's reading, because the sources give the angle and not the orientation.", noteJa: "縦横の比、日章の直径と位置、光線の角度は出典のものです。紅は、Wikipediaの旭日旗の項が示す #bd0029 です。各軸に光線があるとしたのは、出典が角度だけを示して向きを示さないための、このパッケージの読み方です。", svg: risingSun("jp-jmsdf-ensign", "#bd0029") },
   { slug: "jp-ijn-ensign", group: "ensign", status: "reconstruction", en: "Japan: Imperial Japanese Navy ensign", ja: "日本：旧日本海軍の軍艦旗", aboutEn: "The war ensign of the Imperial Japanese Navy (the sixteen-ray ensign, 十六条旭日旗), fixed by the navy's flag regulations of 1889 and flown until the navy was dissolved in 1945.", aboutJa: "旧日本海軍の軍艦旗（十六条旭日旗）です。1889年の海軍旗章条例で定められ、海軍の解体される1945年まで掲げられました。", dates: { from: "1889-10-07", until: "1945" }, source: JMSDF_SOURCE, noteEn: "The source says the 1954 ensign was set to the navy's pattern and gives the sizes for the 1954 ensign only, so the geometry is the 1954 one. The navy's red was darker, and no value is given: the shade here is this package's. The end year is the navy's dissolution in 1945.", noteJa: "出典は、1954年の旗が海軍の様式に合わせて定められたと述べ、寸法は1954年の旗についてだけ示します。そのため図形は1954年のものです。海軍の紅はより暗い色でしたが値は示されず、ここの色合いはこのパッケージのものです。終わりの年は、海軍が解体された1945年です。", svg: risingSun("jp-ijn-ensign", "#a40d26") },
@@ -126,12 +126,12 @@ const KIND_JA = { ensign: "軍艦旗", jack: "艦首旗", war: "軍旗" } as con
 interface Taken { file: string; page: string; licence: string; author: string; description: string }
 let memo: ReturnType<typeof commonsOnce> | undefined;
 const commons = (): ReturnType<typeof commonsOnce> => (memo ??= commonsOnce());
-const commonsOnce = (): { records: DrawnRecord[]; left: { slug: string; file: string; why: string }[]; taken: (Taken & { id: string })[] } => {
+const commonsOnce = (): { records: DrawnDrawing[]; left: { slug: string; file: string; why: string }[]; taken: (Taken & { id: string })[] } => {
   const manifest = readManifest();
   const entry = manifest.files.find((one) => /^military-commons-\d{4}-\d{2}-\d{2}\.json$/.test(one.path));
   if (entry === undefined) throw new Error("no military Commons snapshot in data-sources/sources.json: run pnpm data:military");
   const snapshot = JSON.parse(readSource(manifest, entry.path).text) as { files: { file: string; page: string; stored: string; sha256: string; metadata: Record<string, string>; templates: string[] }[] };
-  const records: DrawnRecord[] = [];
+  const records: DrawnDrawing[] = [];
   const left: { slug: string; file: string; why: string }[] = [];
   const taken: (Taken & { id: string })[] = [];
   for (const one of MILITARY_FILES as readonly MilitaryFile[]) {
@@ -182,8 +182,8 @@ const commonsOnce = (): { records: DrawnRecord[]; left: { slug: string; file: st
   return { records, left, taken };
 };
 
-const militaryRecords = (): DrawnRecord[] => [...drawnRecords(), ...commons().records];
-const drawnRecords = (): DrawnRecord[] =>
+const militaryRecords = (): DrawnDrawing[] => [...drawnRecords(), ...commons().records];
+const drawnRecords = (): DrawnDrawing[] =>
   ENTRIES.map((entry) => ({
     id: `mil:${entry.slug}`,
     group: entry.group,
@@ -196,12 +196,7 @@ const drawnRecords = (): DrawnRecord[] =>
     svg: entry.svg,
   }));
 
-const text = (): string => {
-  const all = militaryRecords();
-  const ids = all.map((record) => JSON.stringify(record.id)).join(" | ");
-
-  return `// Made by scripts/draw-military.ts (pnpm draw:military): do not edit by hand. Naval ensigns, jacks and war flags, drawn for this package under the MIT licence from the sources named in each record, or taken from Wikimedia Commons (public domain and CC0 only), optimised, with each file's author and page.\nimport type { DrawnRecord } from "../drawn";\n\ntype MilitaryRecordId = ${ids};\n\nconst MILITARY: readonly (DrawnRecord & { id: MilitaryRecordId })[] = [\n${all.map((record) => `  ${JSON.stringify(record)},`).join("\n")}\n];\n\nexport { MILITARY };\nexport type { MilitaryRecordId };\n`;
-};
+const files = (): Map<string, string> => setFiles("military", "MILITARY", "MilitaryRecordId", "scripts/draw-military.ts", militaryRecords());
 
 // The table of Commons files in NOTICE.md, between its markers: the file, its licence and author as Commons gives them, its page, and the files left out.
 const noticeBlock = (): string => {
@@ -216,8 +211,8 @@ const noticeText = (current: string): string => current.replace(/<!-- military-f
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const notice = fileURLToPath(new URL("../NOTICE.md", import.meta.url));
   writeFileSync(notice, noticeText(readFileSync(notice, "utf8")));
-  writeFileSync(fileURLToPath(new URL("../src/sets/military.data.ts", import.meta.url)), text());
-  console.log(`wrote src/sets/military.data.ts: ${militaryRecords().length} drawings`);
+  writeSetFiles(fileURLToPath(new URL("../src/sets", import.meta.url)), "military", files());
+  console.log(`wrote src/sets/military.data.ts and military/: ${militaryRecords().length} drawings`);
 }
 
-export { commons as militaryCommons, militaryRecords, noticeText as militaryNoticeText, text as militaryDataText };
+export { commons as militaryCommons, militaryRecords, noticeText as militaryNoticeText, files as militaryFiles };

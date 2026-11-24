@@ -34,6 +34,21 @@ for (const file of readdirSync(SRC).filter((name) => name.endsWith(".ts")).sort(
   count += 1;
 }
 
+// The sets drawn for this package: each drawing's types (dist/<set>/<slug>.d.ts), with the doc comment carried over from src/sets/<set>/<slug>.ts.
+for (const set of ["signals", "samurai", "military", "medieval", "organisations"]) {
+  const dir = join(ROOT, "src", "sets", set);
+  mkdirSync(join(DIST, set), { recursive: true });
+  for (const file of readdirSync(dir).filter((name) => name.endsWith(".ts")).sort()) {
+    const slug = file.slice(0, -3);
+    const doc = /\/\*\*[\s\S]*?\*\//.exec(readFileSync(join(dir, file), "utf8"))?.[0];
+    if (doc === undefined) throw new Error(`src/sets/${set}/${file} has no doc comment`);
+    writeFileSync(join(DIST, set, `${slug}.d.ts`), `${doc}\ndeclare const svg: string;\n\nexport { svg };\nexport default svg;\n`);
+    const built = (await import(pathToFileURL(join(DIST, set, `${slug}.js`)).href)) as { svg: string; default: string };
+    if (built.default !== built.svg || !built.svg.startsWith("<svg")) throw new Error(`dist/${set}/${slug}.js does not export its SVG`);
+    count += 1;
+  }
+}
+
 // The Svelte binding is a .svelte file, compiled by the consumer's Svelte plugin (the "svelte" export condition), so it is copied as it is; it imports ../bind.js.
 mkdirSync(join(DIST, "svelte"), { recursive: true });
 copyFileSync(join(ROOT, "src", "svelte", "Flag.svelte"), join(DIST, "svelte", "Flag.svelte"));

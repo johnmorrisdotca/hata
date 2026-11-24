@@ -8,15 +8,16 @@
 // never shadow a country's. The ids of flags a page registers itself (MODULES-1244) will use the namespace `custom:`.
 // A drawing's ids and classes begin with `org-<slug>-`, so two flags in one page cannot collide.
 
-import { ORGANISATIONS_FROM_COMMONS } from "./organisations.commons.data";
+import type { DrawnLoader } from "./drawn";
+import { ORGANISATIONS_FROM_COMMONS, ORGANISATIONS_FROM_COMMONS_LOADERS } from "./organisations.commons.data";
 
 interface OrganisationRecord {
   /** `org:` and a lower-case slug (letters, digits and hyphens). */
   id: `org:${string}`;
   /** The body's name in English and in Japanese. */
   name: { en: string; ja: string };
-  /** The flag, as an SVG string with a viewBox and no width or height. */
-  svg: string;
+  /** The flag's width over its height. The drawing is a module of its own (src/sets/organisations/<slug>.ts), loaded when it is asked for. */
+  aspect: number;
   /** Where the terms for the flag were read, the day, and what they say. */
   terms: { url: string; read: string; says: string };
   /** For a drawing taken from Wikimedia Commons: its file, page, licence as Commons states it and author as Commons gives it. */
@@ -29,7 +30,7 @@ const HAND_DRAWN = [
     name: { en: "European Union", ja: "欧州連合" },
     // 3:2. Twelve five-pointed gold stars, one point up, on a circle whose radius is a third of the height, centred on the
     // flag and spaced as the hours of a clock; each star's points lie on a circle of a eighteenth of the height.
-    svg: '<svg data-hata-org="eu" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600"><defs><path id="org-eu-star" fill="#fc0" d="M0 -33.33L7.48 -10.3L31.7 -10.3L12.11 3.93L19.59 26.97L0 12.73L-19.59 26.97L-12.11 3.93L-31.7 -10.3L-7.48 -10.3z"/></defs><path fill="#039" d="M0 0h900v600H0z"/><use href="#org-eu-star" x="450" y="100"/><use href="#org-eu-star" x="550" y="126.79"/><use href="#org-eu-star" x="623.21" y="200"/><use href="#org-eu-star" x="650" y="300"/><use href="#org-eu-star" x="623.21" y="400"/><use href="#org-eu-star" x="550" y="473.21"/><use href="#org-eu-star" x="450" y="500"/><use href="#org-eu-star" x="350" y="473.21"/><use href="#org-eu-star" x="276.79" y="400"/><use href="#org-eu-star" x="250" y="300"/><use href="#org-eu-star" x="276.79" y="200"/><use href="#org-eu-star" x="350" y="126.79"/></svg>',
+    aspect: 1.5,
     terms: {
       url: "https://european-union.europa.eu/legal-notice_en",
       read: "2026-11-13",
@@ -41,5 +42,8 @@ const HAND_DRAWN = [
 // The European Union is drawn for this package; the others are Commons files (organisations.commons.data.ts).
 const ORGANISATIONS: readonly OrganisationRecord[] = [...HAND_DRAWN, ...ORGANISATIONS_FROM_COMMONS];
 
-export { ORGANISATIONS };
+/** One dynamic import for each drawing, so that a page downloads only the flags it shows. */
+const ORGANISATION_LOADERS: Readonly<Record<string, DrawnLoader>> = { "org:eu": () => import("./sets/organisations/eu"), ...ORGANISATIONS_FROM_COMMONS_LOADERS };
+
+export { ORGANISATIONS, ORGANISATION_LOADERS };
 export type { OrganisationRecord };

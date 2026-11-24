@@ -12,12 +12,16 @@ import { frame } from "@johnmorrisdotca/hata";
 import { medievalFlag, medievalInfo, medievalName } from "@johnmorrisdotca/hata/medieval";
 
 // A banner is an SVG string, framed like a country's; its id begins with "med:", and its record says what its source documents.
-const banner = medievalFlag("med:red-cross");
+const banner = await medievalFlag("med:red-cross");
 const round = banner === null ? "" : frame(banner, { shape: "round", label: medievalName("med:red-cross", "ja") ?? "" });
 console.log(banner?.startsWith("<svg"), round.includes("clipPath"), medievalInfo("med:red-cross")?.dates?.from);
 ```
 
-`medievalFlag(id)` はSVG文字列、`medievalName(id, lang)` と `medievalAbout(id, lang)` は英語か日本語の名前と一文、`medievalAspect(id)` は幅÷高さ、`medievalInfo(id)` はパッケージが知っているすべて（期間、位置づけ、注記、出典）、`medievalIn("order")` は種類（`order`、`cross`、`kingdom`、`empire`、`city`）ごとのidを返します。`medievalId("red-cross")` は緩く書いたidを読み取り、`MEDIEVAL_IDS` は全idの一覧です。旗がないidにはどれも `null` を返します。
+`medievalFlag(id)` はSVG文字列を（Promiseとして）読み込み、`medievalName(id, lang)` と `medievalAbout(id, lang)` は英語か日本語の名前と一文、`medievalAspect(id)` は幅÷高さ、`medievalInfo(id)` はパッケージが知っているすべて（期間、位置づけ、注記、出典）、`medievalIn("order")` は種類（`order`、`cross`、`kingdom`、`empire`、`city`）ごとのidを返します。`medievalId("red-cross")` は緩く書いたidを読み取り、`MEDIEVAL_IDS` は全idの一覧です。旗がないidにはどれも `null` を返します。
+
+## サイズと、1枚だけ読み込む方法
+
+入口にあるのは記録だけです（ID、名前、説明、期間、出典、注記。約83 KB、gzipで12 KB）。絵は入っていません。絵はそれぞれ別のモジュール `@johnmorrisdotca/hata/medieval/red-cross`（中央値1.6 KB、最大110 KB）で、国の旗に `/load` がするのと同じく、検索が頼まれたときに動的importで読み込みます。そのため、ページに入るのは頼んだ絵だけです。モジュールは自分で読み込むこともできます（`import svg from "@johnmorrisdotca/hata/medieval/red-cross"` は `med:red-cross` の絵）。絵に行く道は、IDかモジュールだけです。
 
 ## 旗の出どころ
 

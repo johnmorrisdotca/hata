@@ -12,12 +12,16 @@ import { frame } from "@johnmorrisdotca/hata";
 import { medievalFlag, medievalInfo, medievalName } from "@johnmorrisdotca/hata/medieval";
 
 // A banner is an SVG string, framed like a country's; its id begins with "med:", and its record says what its source documents.
-const banner = medievalFlag("med:red-cross");
+const banner = await medievalFlag("med:red-cross");
 const round = banner === null ? "" : frame(banner, { shape: "round", label: medievalName("med:red-cross", "ja") ?? "" });
 console.log(banner?.startsWith("<svg"), round.includes("clipPath"), medievalInfo("med:red-cross")?.dates?.from);
 ```
 
-`medievalFlag(id)` gives the SVG string, `medievalName(id, lang)` and `medievalAbout(id, lang)` the name and a sentence in English or Japanese, `medievalAspect(id)` the width over the height, `medievalInfo(id)` everything the package knows of it (its dates, status, note and source), and `medievalIn("order")` the ids of one kind (`order`, `cross`, `kingdom`, `empire` or `city`). `medievalId("red-cross")` reads an id written loosely, and `MEDIEVAL_IDS` lists them all. Each returns `null` for an id with no banner here.
+`medievalFlag(id)` loads the SVG string (a promise), `medievalName(id, lang)` and `medievalAbout(id, lang)` the name and a sentence in English or Japanese, `medievalAspect(id)` the width over the height, `medievalInfo(id)` everything the package knows of it (its dates, status, note and source), and `medievalIn("order")` the ids of one kind (`order`, `cross`, `kingdom`, `empire` or `city`). `medievalId("red-cross")` reads an id written loosely, and `MEDIEVAL_IDS` lists them all. Each returns `null` for an id with no banner here.
+
+## Size, and loading one drawing
+
+The entry carries the records only: the ids, names, descriptions, dates, sources and notes, about 83 KB (12 KB gzipped), with no drawing in it. Each drawing is a module of its own, `@johnmorrisdotca/hata/medieval/red-cross` (a median of 1.6 KB, at most 110 KB), which the lookup loads by a dynamic import when it is asked for, as `/load` does for a country's flag. A page therefore carries the drawings it asks for and no others. You can import a module yourself (`import svg from "@johnmorrisdotca/hata/medieval/red-cross"`, the drawing of `med:red-cross`); there is no other way to a drawing than its id or its module.
 
 ## Where the banners come from
 

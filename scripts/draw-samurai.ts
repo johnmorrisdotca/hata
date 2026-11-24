@@ -9,11 +9,10 @@
 // that shows the Sanada flag); the drawing is made from those words. The words give the design and the ground, not the proportions, the
 // shades or the order of the parts, so each drawing says in its `note` which part is the source's and which is this package's, and every
 // one is a `reconstruction`. Nothing was copied from a picture.
-import { writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 
-import type { DrawnRecord } from "../src/drawn.ts";
-import { box, n, poly, svg } from "./draw-lib.ts";
+import type { DrawnDrawing } from "../src/drawn.ts";
+import { box, setFiles, writeSetFiles, n, poly, svg } from "./draw-lib.ts";
 import type { Shape } from "./draw-lib.ts";
 
 const NAVY = "#1d2b53";
@@ -116,7 +115,7 @@ const ENTRIES: Entry[] = [
   { slug: "ii-igeta", group: "hata", en: "Ii Naomasa: the gold well-curb", ja: "井伊直政の赤地に金の井桁", aboutEn: "A gold well-curb (井桁) on a red ground (赤地に金の井桁), the matoi standard of Ii Naomasa, whose troops were known for their red.", aboutJa: "赤地に金の井桁。赤で知られた井伊直政の隊の纏です。", source: UMA, noteEn: "The source names the red ground and the gold well-curb on the standard: the curb's proportions, the shades and the square shape are this package's.", noteJa: "出典は、纏の赤い地と金の井桁を挙げるだけです。井桁の寸法、色合い、正方形の形はこのパッケージのものです。" },
 ];
 
-const samuraiRecords = (): DrawnRecord[] =>
+const samuraiRecords = (): DrawnDrawing[] =>
   ENTRIES.map((entry) => ({
     id: `samurai:${entry.slug}`,
     group: entry.group,
@@ -129,15 +128,11 @@ const samuraiRecords = (): DrawnRecord[] =>
     svg: SHAPES[entry.slug]!,
   }));
 
-const text = (): string => {
-  const body = samuraiRecords().map((record) => `  ${JSON.stringify(record)},`).join("\n");
-
-  return `// Made by scripts/draw-samurai.ts (pnpm draw:samurai): do not edit by hand. Battle banners of Sengoku daimyo, drawn for this package under the MIT licence from the words of the sources named in each record, every one a reconstruction.\nimport type { DrawnRecord } from "../drawn";\n\nconst SAMURAI = [\n${body}\n] as const satisfies readonly DrawnRecord[];\n\nexport { SAMURAI };\n`;
-};
+const files = (): Map<string, string> => setFiles("samurai", "SAMURAI", "SamuraiRecordId", "scripts/draw-samurai.ts", samuraiRecords());
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
-  writeFileSync(fileURLToPath(new URL("../src/sets/samurai.data.ts", import.meta.url)), text());
-  console.log(`wrote src/sets/samurai.data.ts: ${samuraiRecords().length} drawings`);
+  writeSetFiles(fileURLToPath(new URL("../src/sets", import.meta.url)), "samurai", files());
+  console.log(`wrote src/sets/samurai.data.ts and samurai/: ${samuraiRecords().length} drawings`);
 }
 
-export { samuraiRecords, text as samuraiDataText };
+export { samuraiRecords, files as samuraiFiles };

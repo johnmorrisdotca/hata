@@ -18,24 +18,24 @@
       "gzip": 10316
     },
     "./organisations": {
-      "minified": 56508,
-      "gzip": 21482
+      "minified": 57439,
+      "gzip": 21577
     },
     "./signals": {
-      "minified": 76316,
-      "gzip": 7158
+      "minified": 81924,
+      "gzip": 8463
     },
     "./samurai": {
-      "minified": 23997,
-      "gzip": 4764
+      "minified": 25254,
+      "gzip": 5123
     },
     "./military": {
-      "minified": 1490441,
-      "gzip": 434800
+      "minified": 1499842,
+      "gzip": 421888
     },
     "./medieval": {
-      "minified": 507683,
-      "gzip": 165024
+      "minified": 514323,
+      "gzip": 162218
     },
     "./search": {
       "minified": 73669,

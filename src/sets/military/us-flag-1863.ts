@@ -1,0 +1,7 @@
+// Made by scripts/draw-military.ts: do not edit by hand. The drawing of mil:us-flag-1863.
+
+/** United States: war flag, the national flag of the Union's armies and navy, 35 stars, as an SVG string: viewBox 0 0 1235 650, 1110 B. Loaded by the set's entry when it is asked for. */
+const svg = "<svg data-hata-mil=\"us-flag-1863\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1235 650\"><defs><g id=\"mil-us-flag-1863-b\"><use x=\"49\" y=\"43.75\" href=\"#mil-us-flag-1863-a\"/><use x=\"115\" y=\"43.75\" href=\"#mil-us-flag-1863-a\"/><use x=\"181\" y=\"43.75\" href=\"#mil-us-flag-1863-a\"/><use x=\"247\" y=\"43.75\" href=\"#mil-us-flag-1863-a\"/><use x=\"313\" y=\"43.75\" href=\"#mil-us-flag-1863-a\"/><use x=\"379\" y=\"43.75\" href=\"#mil-us-flag-1863-a\"/><use x=\"445\" y=\"43.75\" href=\"#mil-us-flag-1863-a\"/></g><g id=\"mil-us-flag-1863-c\"><use href=\"#mil-us-flag-1863-b\"/><use y=\"65.625\" href=\"#mil-us-flag-1863-b\"/><use y=\"131.25\" href=\"#mil-us-flag-1863-b\"/><use y=\"196.875\" href=\"#mil-us-flag-1863-b\"/><use y=\"262.5\" href=\"#mil-us-flag-1863-b\"/></g><path id=\"mil-us-flag-1863-a\" fill=\"#fff\" d=\"M0-1 .588.809-.952-.309H.952L-.588.809z\" transform=\"scale(20)\"/></defs><path fill=\"#bf0a30\" d=\"M0 0h1235v650H0z\"/><path stroke=\"#fff\" stroke-width=\"50\" d=\"M0 75h1235M0 175h1235M0 275h1235M0 375h1235M0 475h1235M0 575h1235\"/><path fill=\"#002868\" d=\"M0 0h494v350H0z\" style=\"fill:#00205b;fill-opacity:1\"/><use href=\"#mil-us-flag-1863-c\"/></svg>";
+
+export { svg };
+export default svg;

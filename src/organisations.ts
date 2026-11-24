@@ -4,8 +4,8 @@
 //
 // Every function is pure and works on strings: no DOM, no network, the same answer on a server and in a browser.
 
-import { ORGANISATIONS } from "./organisations.data";
-import { aspectOf, mustBeString } from "./svg";
+import { ORGANISATION_LOADERS, ORGANISATIONS } from "./organisations.data";
+import { mustBeString } from "./svg";
 
 /**
  * The id of an organisation's flag, written exactly as this package writes it: `org:` and a lower-case slug.
@@ -82,23 +82,24 @@ const organisationId = (input: string): OrganisationId | null => {
  * width or height. `frame()` and `toDataUri()` from the main entry take it like any other.
  *
  * @param id - An organisation's id, in any case, with or without `org:` ("org:eu", "EU").
- * @returns The SVG string, or `null` when the id has no flag here.
- * @throws TypeError when `id` is not a string.
+ * @returns The SVG string, loaded when it is asked for (each drawing is a module of its own, so a page carries only the flags it asks for), or `null` when the id has no flag here.
+ * @throws TypeError, as a rejection, when `id` is not a string.
  *
  * @example
  * ```ts
  * import { frame } from "@johnmorrisdotca/hata";
  * import { organisationFlag } from "@johnmorrisdotca/hata/organisations";
  *
- * const european = organisationFlag("org:eu"); // "<svg …>"
+ * const european = await organisationFlag("org:eu"); // "<svg …>"
  * console.log(european === null ? null : frame(european, { shape: "round", label: "European Union" }));
- * console.log(organisationFlag("org:xx"));     // null
+ * console.log(await organisationFlag("org:xx")); // null
  * ```
  */
-const organisationFlag = (id: string): string | null => {
+const organisationFlag = async (id: string): Promise<string | null> => {
   const known = organisationId(id);
+  const load = known === null ? undefined : ORGANISATION_LOADERS[known];
 
-  return known === null ? null : (BY_ID.get(known)?.svg ?? null);
+  return load === undefined ? null : (await load()).svg;
 };
 
 /**
@@ -144,9 +145,9 @@ const organisationName = (id: string, lang: string = "en"): string | null => {
  * ```
  */
 const organisationAspect = (id: string): number | null => {
-  const svg = organisationFlag(id);
+  const known = organisationId(id);
 
-  return svg === null ? null : aspectOf(svg);
+  return known === null ? null : (BY_ID.get(known)?.aspect ?? null);
 };
 
 /**

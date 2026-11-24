@@ -4,7 +4,7 @@
 // Node 24 allows, and the types checked by TypeScript under Node's own resolution. A package whose `exports` name
 // a file that is not in the tarball fails here, before it can be published. `pnpm test:package` builds first.
 import { spawnSync } from "node:child_process";
-import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 import process from "node:process";
@@ -43,9 +43,9 @@ const shipped = [...inTarball].filter((file) => file.startsWith("docs/") || file
 if (shipped.length > 0) fail(`the tarball holds pictures, sources, docs or data sources: ${shipped.slice(0, 5).join(", ")}`);
 console.log("ok   nothing from src/, docs/ or data-sources/ and no raster picture is in the tarball");
 
-// 2. Everything package.json points at is in the tarball; a wildcard is checked through every flag.
+// 2. Everything package.json points at is in the tarball; a wildcard is checked through every flag, and a set's through every drawing in its folder.
 const targets = (entry) => (typeof entry === "string" ? [entry] : Object.values(entry).flatMap(targets));
-const pointed = [pkg.main, pkg.module, pkg.types, ...Object.values(pkg.exports).flatMap(targets)].flatMap((file) => (file.includes("*") ? FLAG_CODES.map((code) => file.replace("*", file.includes("/svg/") ? `${code.toLowerCase()}.svg` : code.toLowerCase())) : [file]));
+const pointed = [pkg.main, pkg.module, pkg.types, ...Object.values(pkg.exports).flatMap(targets)].flatMap((file) => (/^\.\/dist\/(signals|samurai|military|medieval|organisations)\//.test(file) && file.includes("*") ? readdirSync(join(root, "dist", file.split("/")[2])).filter((name) => name.endsWith(".js")).map((name) => file.replace("*", name.slice(0, -3))) : file.includes("*") ? FLAG_CODES.map((code) => file.replace("*", file.includes("/svg/") ? `${code.toLowerCase()}.svg` : code.toLowerCase())) : [file]));
 for (const file of new Set(pointed)) if (!inTarball.has(file.replace(/^\.\//, ""))) fail(`package.json points at ${file}, which is not in the tarball`);
 console.log(`ok   every file package.json points at is in the tarball (${new Set(pointed).size}, every flag's module, types and SVG among them)`);
 for (const named of pkg.files) {
@@ -89,11 +89,11 @@ if (FLAG_CODES.length !== ${FLAG_CODES.length} || flagCode("jp-13") !== "JP-13")
 if ((await flag("JP-13")) !== tokyo || (await flag("XX")) !== null) throw new Error("/load answered wrongly");
 if (!frame(japan, { shape: "round" }).includes("clipPath") || !toDataUri(japan).startsWith("data:image/svg+xml,")) throw new Error("the helpers answered wrongly");
 if (flagName("JP-13", "ja") !== "東京都" || flagAspect("CA") !== 2) throw new Error("/names answered wrongly");
-if (ORGANISATION_IDS[0] !== "org:eu" || !organisationFlag("org:eu").startsWith("<svg") || organisationName("org:eu", "ja") !== "欧州連合") throw new Error("/organisations answered wrongly");
-if (SIGNAL_IDS.length !== 40 || !signalFlag("ics:a").startsWith("<svg") || !signalMeaning("ics:o").includes("Man overboard")) throw new Error("/signals answered wrongly");
-if (SAMURAI_IDS.length !== 9 || !samuraiFlag("samurai:ii-igeta").startsWith("<svg") || samuraiName("samurai:ii-igeta", "ja") !== "井伊直政の赤地に金の井桁") throw new Error("/samurai answered wrongly");
-if (MEDIEVAL_IDS.length !== 42 || !medievalFlag("med:red-cross").startsWith("<svg") || medievalName("med:red-cross", "ja") !== "白地に赤十字（聖ジョージ十字）") throw new Error("/medieval answered wrongly");
-if (MILITARY_IDS.length !== 58 || !militaryFlag("mil:us-navy-jack").startsWith("<svg") || militaryName("mil:us-navy-jack", "ja") !== "アメリカ：海軍の艦首旗") throw new Error("/military answered wrongly");
+if (ORGANISATION_IDS[0] !== "org:eu" || !(await organisationFlag("org:eu")).startsWith("<svg") || organisationName("org:eu", "ja") !== "欧州連合") throw new Error("/organisations answered wrongly");
+if (SIGNAL_IDS.length !== 40 || !(await signalFlag("ics:a")).startsWith("<svg") || !signalMeaning("ics:o").includes("Man overboard")) throw new Error("/signals answered wrongly");
+if (SAMURAI_IDS.length !== 9 || !(await samuraiFlag("samurai:ii-igeta")).startsWith("<svg") || samuraiName("samurai:ii-igeta", "ja") !== "井伊直政の赤地に金の井桁") throw new Error("/samurai answered wrongly");
+if (MEDIEVAL_IDS.length !== 42 || !(await medievalFlag("med:red-cross")).startsWith("<svg") || medievalName("med:red-cross", "ja") !== "白地に赤十字（聖ジョージ十字）") throw new Error("/medieval answered wrongly");
+if (MILITARY_IDS.length !== 58 || !(await militaryFlag("mil:us-navy-jack")).startsWith("<svg") || militaryName("mil:us-navy-jack", "ja") !== "アメリカ：海軍の艦首旗") throw new Error("/military answered wrongly");
 if (customFlag("custom:none") !== null || typeof registerFlags !== "function") throw new Error("/custom answered wrongly");
 if (FLAG_ELEMENT_NAME !== "hata-flag" || typeof defineFlag !== "function") throw new Error("/element is wrong");
 if ((await resolveFlag({ code: "JP" }))?.svg !== wanted || (await resolveFlag({ code: "XX" })) !== null) throw new Error("/bind answered wrongly");
@@ -135,16 +135,16 @@ const uri: Promise<string | null> = flagDataUri("JP");
 const record: FlagRecord | null = manifest("JP");
 const square: Framing | undefined = record?.framings["1:1"];
 const name: string | null = flagName("JP", "ja");
-const organisation: string | null = organisationFlag("org:eu");
+const organisation: Promise<string | null> = organisationFlag("org:eu");
 const eu: OrganisationId = "org:eu";
 const diver: SignalId = "ics:a";
-const alfa: string | null = signalFlag(diver);
+const alfa: Promise<string | null> = signalFlag(diver);
 const nobori: SamuraiId = "samurai:sanada-rokumonsen";
-const sanada: string | null = samuraiFlag(nobori);
+const sanada: Promise<string | null> = samuraiFlag(nobori);
 const banner: MedievalId = "med:red-cross";
-const cross: string | null = medievalFlag(banner);
+const cross: Promise<string | null> = medievalFlag(banner);
 const ensign: MilitaryId = "mil:gb-white-ensign";
-const white: string | null = militaryFlag(ensign);
+const white: Promise<string | null> = militaryFlag(ensign);
 const mine: CustomFlagRecord = { id: "custom:mine", name: { en: "Mine" }, svg: "<svg/>" };
 const register = registerFlags;
 const define: (name?: string) => void = defineFlag;

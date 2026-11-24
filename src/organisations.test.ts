@@ -6,7 +6,8 @@ import { describe, expect, it, vi } from "vitest";
 
 import { FLAG_ALIASES } from "./data/aliases.data";
 import { FLAG_CODES, flagCode, frame, isFlagCode, toDataUri } from "./index";
-import { ORGANISATIONS } from "./organisations.data";
+import { aspectOf } from "./svg";
+import { ORGANISATION_LOADERS, ORGANISATIONS } from "./organisations.data";
 import { isOrganisationId, ORGANISATION_IDS, organisationAspect, organisationFlag, organisationId, organisationName, organisationSource, organisationTerms } from "./organisations";
 
 const slugOf = (id: string): string => id.slice(4);
@@ -25,32 +26,33 @@ describe("the ids", () => {
     }
   });
 
-  it("leave a code's own flag alone: a country's code is no organisation id, with or without `org:`", () => {
+  it("leave a code's own flag alone: a country's code is no organisation id, with or without `org:`", async () => {
     expect(isOrganisationId("JP")).toBe(false);
     expect(isOrganisationId("org:jp")).toBe(false);
-    expect(organisationFlag("JP")).toBeNull();
-    expect(organisationFlag("org:jp")).toBeNull();
+    expect(await organisationFlag("JP")).toBeNull();
+    expect(await organisationFlag("org:jp")).toBeNull();
     expect(organisationId("org:xx")).toBeNull();
   });
 
-  it("are read loosely by organisationId, and exactly by isOrganisationId", () => {
+  it("are read loosely by organisationId, and exactly by isOrganisationId", async () => {
     expect(organisationId(" ORG:EU ")).toBe("org:eu");
     expect(organisationId("eu")).toBe("org:eu");
     expect(isOrganisationId("org:eu")).toBe(true);
     expect(isOrganisationId("ORG:EU")).toBe(false);
     expect(isOrganisationId(3)).toBe(false);
     expect(() => organisationId(3 as unknown as string)).toThrow(TypeError);
-    expect(() => organisationFlag(null as unknown as string)).toThrow(TypeError);
+    await expect(organisationFlag(null as unknown as string)).rejects.toThrow(TypeError);
   });
 });
 
 describe("each organisation's record", () => {
-  it("has English and Japanese names, a drawing with a viewBox, ids of its own, nothing active or external, and terms read on a day", () => {
+  it("has English and Japanese names, a drawing with a viewBox, ids of its own, nothing active or external, and terms read on a day", async () => {
     for (const one of ORGANISATIONS) {
       const slug = slugOf(one.id);
       expect(one.name.en.length, one.id).toBeGreaterThan(2);
       expect(one.name.ja, one.id).toMatch(/[぀-ヿ一-鿿]/);
-      const svg: string = one.svg;
+      const svg: string = (await ORGANISATION_LOADERS[one.id]!()).svg;
+      expect(one.aspect, one.id).toBeCloseTo(aspectOf(svg) ?? 0, 6);
       const root = /^<svg\b[^>]*>/.exec(svg)?.[0] ?? "";
       expect(root, one.id).toContain('xmlns="http://www.w3.org/2000/svg"');
       expect(root, one.id).toMatch(/viewBox="-?[\d.]+ -?[\d.]+ [\d.]+ [\d.]+"/);
@@ -95,8 +97,8 @@ describe("the organisations taken from Commons", () => {
 });
 
 describe("the functions", () => {
-  it("give the drawing, the names, the ratio and the terms", () => {
-    expect(organisationFlag("org:eu")).toBe(ORGANISATIONS[0].svg);
+  it("give the drawing, the names, the ratio and the terms", async () => {
+    expect(await organisationFlag("org:eu")).toBe((await ORGANISATION_LOADERS["org:eu"]!()).svg);
     expect(organisationName("org:eu")).toBe("European Union");
     expect(organisationName("EU", "ja-JP")).toBe("欧州連合");
     expect(organisationAspect("org:eu")).toBe(1.5);
@@ -104,18 +106,18 @@ describe("the functions", () => {
     const terms = organisationTerms("org:eu");
     expect(terms).toEqual(ORGANISATIONS[0].terms);
     expect(terms).not.toBe(organisationTerms("org:eu"));
-    for (const answer of [organisationFlag("org:xx"), organisationName("org:xx"), organisationAspect("org:xx"), organisationTerms("org:xx")]) expect(answer).toBeNull();
+    for (const answer of [await organisationFlag("org:xx"), organisationName("org:xx"), organisationAspect("org:xx"), organisationTerms("org:xx")]) expect(answer).toBeNull();
   });
 
-  it("draw twelve gold stars on blue, once each", () => {
-    const svg = organisationFlag("org:eu") ?? "";
+  it("draw twelve gold stars on blue, once each", async () => {
+    const svg = (await organisationFlag("org:eu")) ?? "";
     expect(svg.match(/<use /g)?.length).toBe(12);
     expect(svg).toContain('fill="#039"');
     expect(svg).toContain('fill="#fc0"');
   });
 
-  it("work with the main entry's frame and data: URI", () => {
-    const svg = organisationFlag("org:eu") ?? "";
+  it("work with the main entry's frame and data: URI", async () => {
+    const svg = (await organisationFlag("org:eu")) ?? "";
     expect(frame(svg, { shape: "round" }) ?? "").toContain("clipPath");
     expect(frame(svg, { shape: "1:1", fit: "whole" }) ?? "").toContain("<svg");
     expect(toDataUri(svg)?.startsWith("data:image/svg+xml,")).toBe(true);
@@ -136,16 +138,17 @@ describe("a new organisation", () => {
         {
           id: "org:test-body",
           name: { en: "Test Body", ja: "試験機関" },
-          svg: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400"><path id="org-test-body-a" fill="#123" d="M0 0h600v400H0z"/></svg>',
+          aspect: 1.5,
           terms: { url: "https://example.test/terms", read: "2026-11-13", says: "A made-up body whose terms let anyone carry its flag, for this test only." },
         },
       ],
+      ORGANISATION_LOADERS: { ...ORGANISATION_LOADERS, "org:test-body": async () => ({ svg: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400"><path id="org-test-body-a" fill="#123" d="M0 0h600v400H0z"/></svg>' }) },
     }));
     const added = await import("./organisations");
     expect(added.ORGANISATION_IDS).toEqual([...ORGANISATION_IDS, "org:test-body"]);
     expect(added.isOrganisationId("org:test-body")).toBe(true);
     expect(added.organisationId("TEST-BODY")).toBe("org:test-body");
-    expect(added.organisationFlag("org:test-body")).toContain("viewBox");
+    expect(await added.organisationFlag("org:test-body")).toContain("viewBox");
     expect(added.organisationName("org:test-body", "ja")).toBe("試験機関");
     expect(added.organisationAspect("org:test-body")).toBe(1.5);
     expect(added.organisationTerms("org:test-body")?.url).toBe("https://example.test/terms");

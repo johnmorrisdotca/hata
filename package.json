@@ -89,21 +89,41 @@
       "types": "./dist/organisations.d.ts",
       "default": "./dist/organisations.js"
     },
+    "./organisations/*": {
+      "types": "./dist/organisations/*.d.ts",
+      "default": "./dist/organisations/*.js"
+    },
     "./signals": {
       "types": "./dist/signals.d.ts",
       "default": "./dist/signals.js"
+    },
+    "./signals/*": {
+      "types": "./dist/signals/*.d.ts",
+      "default": "./dist/signals/*.js"
     },
     "./samurai": {
       "types": "./dist/samurai.d.ts",
       "default": "./dist/samurai.js"
     },
+    "./samurai/*": {
+      "types": "./dist/samurai/*.d.ts",
+      "default": "./dist/samurai/*.js"
+    },
     "./military": {
       "types": "./dist/military.d.ts",
       "default": "./dist/military.js"
     },
+    "./military/*": {
+      "types": "./dist/military/*.d.ts",
+      "default": "./dist/military/*.js"
+    },
     "./medieval": {
       "types": "./dist/medieval.d.ts",
       "default": "./dist/medieval.js"
+    },
+    "./medieval/*": {
+      "types": "./dist/medieval/*.d.ts",
+      "default": "./dist/medieval/*.js"
     },
     "./search": {
       "types": "./dist/search.d.ts",

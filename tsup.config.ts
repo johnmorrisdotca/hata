@@ -13,6 +13,14 @@ const flagEntries: Record<string, string> = Object.fromEntries(
     .map((file) => [`flags/${basename(file, ".ts")}`, `src/flags/${file}`]),
 );
 
+// The sets drawn for this package (signals, samurai, military, medieval) and the organisations: one entry for each drawing too
+// (src/sets/<set>/<slug>.ts, written by scripts/draw-*.ts), at dist/<set>/<slug>.js. The set's entry keeps only the records and a dynamic
+// import for each drawing, so a page carries the drawings it asks for and no others.
+const SETS = ["signals", "samurai", "military", "medieval", "organisations"] as const;
+const setEntries: Record<string, string> = Object.fromEntries(
+  SETS.flatMap((set) => readdirSync(`src/sets/${set}`).filter((file) => /^[a-z0-9]+(-[a-z0-9]+)*\.ts$/.test(file)).map((file) => [`${set}/${basename(file, ".ts")}`, `src/sets/${set}/${file}`])),
+);
+
 // /load imports each flag's entry when it is asked for, and a flag that shares another's picture imports that
 // flag's entry. Both are left as imports of the built entry file, so no picture is copied into another file.
 const flagImports: Plugin = {
@@ -25,6 +33,8 @@ const flagImports: Plugin = {
     build.onResolve({ filter: /^\.\/data\/adapted\.data\.js$/ }, () => ({ path: "./adapted.js", external: true }));
     // So is its table of variants, loaded when a variant is asked for.
     build.onResolve({ filter: /^\.\/data\/variants\.data\.js$/ }, () => ({ path: "./variants.js", external: true }));
+    // A set's entry imports each drawing's module as an entry of its own, left as an import of the built file.
+    build.onResolve({ filter: /^\.\/(sets\/)?(signals|samurai|military|medieval|organisations)\/[a-z0-9-]+$/ }, (args) => ({ path: `./${args.path.replace(/^\.\/(sets\/)?/, "")}.js`, external: true }));
     build.onResolve({ filter: /^\.\.\/flags\/[a-z0-9.-]+\.js$/ }, (args) => ({ path: `./flags/${basename(args.path)}`, external: true }));
     build.onResolve({ filter: /^\.\/([a-z]{2}(-[a-z0-9]{1,3})?|[a-z]{3,4})$/ }, (args) => (args.importer.includes("/src/flags/") ? { path: `${args.path}.js`, external: true } : undefined));
   },
@@ -52,7 +62,7 @@ export default defineConfig([
   },
   {
     ...shared,
-    entry: flagEntries,
+    entry: { ...flagEntries, ...setEntries },
     dts: false,
     // A flag's entry is its SVG string and an export: nothing to gain from more than whitespace.
     esbuildOptions(options) {

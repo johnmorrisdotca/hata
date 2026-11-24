@@ -12,12 +12,16 @@ import { frame } from "@johnmorrisdotca/hata";
 import { militaryFlag, militaryInfo, militaryName } from "@johnmorrisdotca/hata/military";
 
 // A military flag is an SVG string, framed like a country's; its id begins with "mil:", and its record has its dates and its source.
-const ensign = militaryFlag("mil:gb-white-ensign");
+const ensign = await militaryFlag("mil:gb-white-ensign");
 const round = ensign === null ? "" : frame(ensign, { shape: "round", label: militaryName("mil:gb-white-ensign", "ja") ?? "" });
 console.log(ensign?.startsWith("<svg"), round.includes("clipPath"), militaryInfo("mil:gb-white-ensign")?.dates?.from);
 ```
 
-`militaryFlag(id)` gives the SVG string, `militaryName(id, lang)` and `militaryAbout(id, lang)` the name and a sentence in English or Japanese, `militaryAspect(id)` the width over the height, `militaryInfo(id)` everything the package knows of it (its dates, status, note and source), and `militaryIn("ensign")` the ids of one kind (`ensign` or `jack`). `militaryId("gb-white-ensign")` reads an id written loosely, and `MILITARY_IDS` lists them all. Each returns `null` for an id with no flag here.
+`militaryFlag(id)` loads the SVG string (a promise), `militaryName(id, lang)` and `militaryAbout(id, lang)` the name and a sentence in English or Japanese, `militaryAspect(id)` the width over the height, `militaryInfo(id)` everything the package knows of it (its dates, status, note and source), and `militaryIn("ensign")` the ids of one kind (`ensign` or `jack`). `militaryId("gb-white-ensign")` reads an id written loosely, and `MILITARY_IDS` lists them all. Each returns `null` for an id with no flag here.
+
+## Size, and loading one drawing
+
+The entry carries the records only: the ids, names, descriptions, dates, sources and notes, about 99 KB (11 KB gzipped), with no drawing in it. Each drawing is a module of its own, `@johnmorrisdotca/hata/military/gb-white-ensign` (a median of 1.5 KB, at most 134 KB), which the lookup loads by a dynamic import when it is asked for, as `/load` does for a country's flag. A page therefore carries the drawings it asks for and no others. You can import a module yourself (`import svg from "@johnmorrisdotca/hata/military/gb-white-ensign"`, the drawing of `mil:gb-white-ensign`); a restricted drawing is a module too, and is imported only by naming it.
 
 ## What is here
 

@@ -6,10 +6,10 @@
 
 import { drawnSet } from "./drawn";
 import type { DrawnInfo } from "./drawn";
-import { MEDIEVAL } from "./sets/medieval.data";
+import { MEDIEVAL, MEDIEVAL_LOADERS } from "./sets/medieval.data";
 import type { MedievalRecordId } from "./sets/medieval.data";
 
-const set = drawnSet("med", MEDIEVAL);
+const set = drawnSet("med", MEDIEVAL, MEDIEVAL_LOADERS);
 
 /**
  * The id of a medieval banner, written exactly as this package writes it: `med:` and a lower-case slug ("med:red-cross"). No country or region
@@ -88,19 +88,19 @@ const medievalId = (input: string): MedievalId | null => set.idOf(input) as Medi
  * A medieval banner as an SVG string: it has a viewBox and no width or height. `frame()` and `toDataUri()` from the main entry take it like any other.
  *
  * @param id - A banner's id, in any case, with or without `med:`.
- * @returns The SVG string, or `null` when the set has no such banner.
- * @throws TypeError when `id` is not a string.
+ * @returns The SVG string, loaded when it is asked for (the drawing is a module of its own, so a page carries only the drawings it asks for), or `null` when the set has no such banner.
+ * @throws TypeError, as a rejection, when `id` is not a string.
  *
  * @example
  * ```ts
  * import { toDataUri } from "@johnmorrisdotca/hata";
  * import { medievalFlag } from "@johnmorrisdotca/hata/medieval";
  *
- * const banner = medievalFlag("med:red-cross"); // "<svg …>"
+ * const banner = await medievalFlag("med:red-cross"); // "<svg …>"
  * console.log(banner === null ? null : toDataUri(banner)?.startsWith("data:image/svg+xml,"));
  * ```
  */
-const medievalFlag = (id: string): string | null => set.flag(id);
+const medievalFlag = (id: string): Promise<string | null> => set.flag(id);
 
 /**
  * A banner's name, in English or Japanese: whose it was and what it is. Any language tag that starts with `ja` is Japanese.
