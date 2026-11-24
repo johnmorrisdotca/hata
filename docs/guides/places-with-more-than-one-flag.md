@@ -63,7 +63,7 @@ manifest("SUHH")?.historical;              // { from: "1922", until: "1991", ali
 
 ## Historic flags, and the flag of a date
 
-Countries that still exist have had other flags. Hata has the earlier national flags since 1900 of 33 of them, each a `historical` variant with `from`, `until`
+Countries that still exist have had other flags. Hata has the earlier national flags since 1900 of 35 of them, each a `historical` variant with `from`, `until`
 (the day of a change belongs to the new flag), a `source` and its kind. **`flag(code, { date })`** loads the flag of a day, **`variantOn(code, date)`** from `/manifest`
 finds its variant, and **`<hata-flag date>`** draws it.
 

@@ -256,7 +256,7 @@ One script tag and an element, for any page:
 
 ### Disputed, former and historic flags
 
-A place with more than one flag in real use has them all, each with a status, and Hata takes no side. Twelve former countries have flags under codes no present-day country uses, and 33 countries have earlier flags, found by date.
+A place with more than one flag in real use has them all, each with a status, and Hata takes no side. Twelve former countries have flags under codes no present-day country uses, and 35 countries have earlier flags, found by date.
 
 ```ts
 import { flag } from "@johnmorrisdotca/hata/load";

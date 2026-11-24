@@ -21,8 +21,8 @@ const endOf = (variant: Variant): string | null => (variant.until === null ? nul
 const dated = MANIFEST.filter((record) => record.variants.some((one) => (one.status === "official" || one.status === "historical") && (one.from !== null || one.until !== null)));
 
 describe("the earlier flags of present-day countries", () => {
-  it("are 33 countries' histories, each with the flag of today as its default and every one with a source, dates and two names", () => {
-    expect(Object.keys(HISTORIC)).toHaveLength(33);
+  it("are 35 countries' histories, each with the flag of today as its default and every one with a source, dates and two names", () => {
+    expect(Object.keys(HISTORIC)).toHaveLength(35);
     const total = Object.values(HISTORIC).reduce((sum, set) => sum + set.variants.length, 0);
     expect(total).toBeGreaterThan(70);
     for (const [code, set] of Object.entries(HISTORIC)) {

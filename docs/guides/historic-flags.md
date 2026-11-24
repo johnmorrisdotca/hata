@@ -5,7 +5,7 @@ order: 18
 description: Ask for the flag a country had in use on a day, list a country's earlier flags with their dates and sources, and see every country's flags on one page.
 ---
 
-A medal table, a timeline or a history lesson needs the flag a country had on the day, not today's. Hata has the earlier flags of 33 countries that still exist (the United States' 48 stars, Canada's Red Ensign, Japan's 1870 Hinomaru and more), each a variant with its dates, and the flag of each of the 12 former countries.
+A medal table, a timeline or a history lesson needs the flag a country had on the day, not today's. Hata has the earlier flags of 35 countries that still exist (the United States' 48 stars, Canada's Red Ensign, Japan's 1870 Hinomaru and more), each a variant with its dates, and the flag of each of the 12 former countries.
 
 ## The flag of a day
 

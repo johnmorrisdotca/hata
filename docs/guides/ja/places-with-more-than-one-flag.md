@@ -62,7 +62,7 @@ manifest("SUHH")?.historical;              // { from: "1922", until: "1991", ali
 
 ## 歴代の旗と、ある日の旗
 
-今ある国も、別の旗を使っていたことがあります。Hataには、そのうち33か国の、1900年以降に使われた以前の国旗があり、それぞれ `historical` の別の旗として、`from`、`until`
+今ある国も、別の旗を使っていたことがあります。Hataには、そのうち35か国の、1900年以降に使われた以前の国旗があり、それぞれ `historical` の別の旗として、`from`、`until`
 （旗が変わる日は新しい旗のものです）、`source`、その種類を持ちます。**`flag(code, { date })`** はある日の旗を読み込み、`/manifest` の **`variantOn(code, date)`** は
 その別の旗を探し、**`<hata-flag date>`** はそれを描きます。
 

@@ -1316,6 +1316,44 @@ const HISTORIC: Readonly<Record<string, VariantSet>> = {
       },
     ],
   },
+  PT: {
+    disputed: false,
+    default: "republic",
+    variants: [
+      {
+        id: "republic",
+        name: "The national flag (green and red)",
+        nameJa: "ポルトガル国旗（緑と赤）",
+        status: "official",
+        roles: BOTH,
+        from: "1911-06-19",
+        until: null,
+        why: "Vertical green at the hoist and red in the fly, with the national arms on the armillary sphere over the join. The Presidency's page gives the Constituent Assembly's decree of 19 June 1911, published in the Diário do Governo the next day. The monarchy's flag is not dated here: no official page that was read gives its dates.",
+        source: "https://www.presidencia.pt/presidente-da-republica/a-presidencia/simbolos-nacionais/bandeira-nacional/",
+        sourceKind: "official",
+        file: null,
+      },
+    ],
+  },
+  CZ: {
+    disputed: false,
+    default: "state-flag",
+    variants: [
+      {
+        id: "state-flag",
+        name: "The state flag (white over red, blue wedge)",
+        nameJa: "チェコの国旗（白・赤に青い三角）",
+        status: "official",
+        roles: BOTH,
+        from: "1993-01-01",
+        until: null,
+        why: "White over red, with a blue wedge at the hoist reaching the middle of the length, ratio 2:3. Act 3/1993 of the Czech National Council, adopted 17 December 1992, takes effect on 1 January 1993.",
+        source: "https://www.zakonyprolidi.cz/cs/1993-3",
+        sourceKind: "official",
+        file: null,
+      },
+    ],
+  },
 };
 
 export { HISTORIC };

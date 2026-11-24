@@ -29,7 +29,7 @@ had, and the IOC's three letters. `flagCode`, `flag`, `flagName`, `manifest`, `l
 
 ## Earlier flags of present-day countries
 
-Hata also has the flags that countries which still exist flew before today's, each with the dates it was in use: 79 flags of 33 countries,
+Hata also has the flags that countries which still exist flew before today's, each with the dates it was in use: 81 flags of 35 countries,
 every national flag change since 1900 for the countries with a space programme or satellites in orbit that the research reached, and the flag in force on 1900-01-01 where there was one.
 A country with no change since 1900 has one dated entry, the day its flag came in. What is left for later, and why, is in [decisions.md](decisions.md#historic-flags-of-present-day-countries).
 `flag(code, { date })` from `/load` loads the flag in use on a day, `variantOn(code, date)` from `/manifest` finds its variant, and
@@ -44,7 +44,7 @@ day or before its first, and for a place with no dated flags. A former country h
 
 **The source of each date** is the page in `source`, and `sourceKind` says what kind it is: `official` (a government, parliament, archive or law text),
 `reference` (Flags of the World, a scholarly article or another vexillological reference) or `encyclopedia` (Wikipedia, because nothing better was found: a better source is wanted).
-Of the 79 flags, 42 have an official source, 34 a reference and 3 an encyclopedia page.
+Of the 81 flags, 44 have an official source, 34 a reference and 3 an encyclopedia page.
 
 | Code | Place | Id | Years | Status | Roles | Name | Source | Drawing | Licence | Why |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -127,12 +127,14 @@ Of the 79 flags, 42 have an official source, 34 a reference and 3 an encyclopedi
 | `MX` | Mexico (メキシコ) | `eagle-1968` | 1968-09-16 to today | official | legal and in use | Current flag (1968 eagle) | [official](https://www.ordenjuridico.gob.mx/Documentos/Federal/html/wo13243.html) | [Flag of Mexico.svg](https://commons.wikimedia.org/wiki/File:Flag_of_Mexico.svg) | Public domain | Same tricolour (ratio 4:7 fixed by law); the eagle is again redrawn, with its left profile exposed, on the version still used today. |
 | `NG` | Nigeria (ナイジェリア) | `green-white-green` | 1960-10-01 to today | official | legal and in use | Green-white-green | [official](https://nigeriaembassyusa.org/the-national-flag/) | [Flag of Nigeria.svg](https://commons.wikimedia.org/wiki/File:Flag_of_Nigeria.svg) | Public domain | Vertical green, white, green bands in ratio 1:2, designed by Michael Taiwo Akinkunmi. |
 | `AE` | United Arab Emirates (アラブ首長国連邦) | `pan-arab-tricolour` | 1971-12-02 to today | official | legal and in use | Union flag | [reference](https://www.fotw.info/flags/ae.html) | [Flag of the United Arab Emirates.svg](https://commons.wikimedia.org/wiki/File:Flag_of_the_United_Arab_Emirates.svg) | Public domain | Red vertical band at the hoist and three equal horizontal bands, green over white over black, ratio 1:2, designed by Abdullah Mohammed Al Maainah. |
+| `PT` | Portugal (ポルトガル) | `republic` | 1911-06-19 to today | official | legal and in use | The national flag (green and red) | [official](https://www.presidencia.pt/presidente-da-republica/a-presidencia/simbolos-nacionais/bandeira-nacional/) | [Flag of Portugal (official).svg](https://commons.wikimedia.org/wiki/File:Flag_of_Portugal_(official).svg) | Public domain | Vertical green at the hoist and red in the fly, with the national arms on the armillary sphere over the join. The Presidency's page gives the Constituent Assembly's decree of 19 June 1911, published in the Diário do Governo the next day. The monarchy's flag is not dated here: no official page that was read gives its dates. |
+| `CZ` | Czechia (チェコ) | `state-flag` | 1993-01-01 to today | official | legal and in use | The state flag (white over red, blue wedge) | [official](https://www.zakonyprolidi.cz/cs/1993-3) | [Flag of the Czech Republic.svg](https://commons.wikimedia.org/wiki/File:Flag_of_the_Czech_Republic.svg) | Public domain | White over red, with a blue wedge at the hoist reaching the middle of the length, ratio 2:3. Act 3/1993 of the Czech National Council, adopted 17 December 1992, takes effect on 1 January 1993. |
 
 ### Legal flag and flag in use
 
 What the law made a country's flag and what its people flew were sometimes two flags. Every earlier flag has `roles`: `legal` (the flag the law made the
 national flag), `in-use` (the flag flown as the country's own in practice) or both, with the days of each (`roleDates`; a role's days may differ from the flag's own).
-67 of the 79 flags are both on the same days as their own, and need no more. The 12 below are not, and each has a reason and a source (`roleNote`).
+69 of the 81 flags are both on the same days as their own, and need no more. The 12 below are not, and each has a reason and a source (`roleNote`).
 `flag(code, { date })` and `variantOn(code, date)` give the legal flag by default, with `other` naming the flag of the other role and why;
 `{ role: "in-use" }` (`which="in-use"` on `<hata-flag>`) picks the other. A flag whose display the law restricts (Germany's of 1935 to 1945) is in no table here: see [decisions.md](decisions.md#restricted-flags).
 
