@@ -6,6 +6,8 @@ All notable changes to this project are written here. The format follows
 
 ## [Unreleased]
 
+## [1.15.0] - 2026-11-23
+
 ### Added
 
 - **Dated flags for Portugal and Czechia** (MODULES-1607). Portugal's green and red flag is dated from the Constituent Assembly's decree of 19 June 1911, on the Presidency's page. Czechia's white-over-red flag with the blue wedge is dated from 1 January 1993, the day Act 3/1993 takes effect. Thirteen of the fifteen named countries are not added: their official pages did not load, or no shippable drawing was found.
