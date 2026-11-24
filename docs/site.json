@@ -33,6 +33,9 @@
     "./signals": {
       "en": "Ship signal flags (International Code of Signals)",
       "ja": "船の信号旗（国際信号書）"
+    "./samurai": {
+      "en": "Samurai battle banners",
+      "ja": "武士の戦場の旗"
     },
     "./search": {
       "en": "Flags by their colours",

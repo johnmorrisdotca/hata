@@ -1,0 +1,17 @@
+{
+  "name": "samurai",
+  "what": { "en": "samurai battle banners", "ja": "武士の戦場の旗" },
+  "description": {
+    "en": "Nine battle banners of Sengoku daimyo (nobori, hata and uma-jirushi), each drawn from the words of its source and saying what is documented and what is reconstruction.",
+    "ja": "戦国大名の戦場の旗（幟、旗、馬印）9点を、出典のことばから描いたものです。確かめられていることと復元とを、それぞれが述べています。"
+  },
+  "intro": {
+    "en": "Choose a kind, then a banner. No cloth survives for any of them, so each is a reconstruction, and its note says which part follows the source.",
+    "ja": "種類を選び、旗を選んでください。どれも現存する布がなく復元で、出典に従った部分は、それぞれの注記に書いてあります。"
+  },
+  "groups": {
+    "nobori": { "en": "Nobori", "ja": "幟" },
+    "hata": { "en": "Hata", "ja": "旗" },
+    "uma": { "en": "Uma-jirushi", "ja": "馬印" }
+  }
+}

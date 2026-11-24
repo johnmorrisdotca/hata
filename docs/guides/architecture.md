@@ -17,6 +17,9 @@ src/
 ├── signals.ts          the "/signals" entry: the International Code of Signals' flags by their "ics:" id
 ├── drawn.ts            what the sets drawn for this package share (not an entry): ids, names, meanings, sources, aspect ratios
 ├── sets/               the drawn sets' records: signals.data.ts, made by scripts/draw-signals.ts (pnpm draw)
+├── samurai.ts          the "/samurai" entry: the battle banners of Sengoku daimyo by their "samurai:" id
+├── drawn.ts            what the sets drawn for this package share (not an entry): ids, names, descriptions, sources, aspect ratios
+├── sets/               the drawn sets' records: samurai.data.ts, made by scripts/draw-samurai.ts (pnpm draw:samurai)
 ├── search.ts           the "/search" entry: each flag's colours and tags, and the flags that have the ones asked for
 ├── organisations.data.ts   the organisations' records (id, names, drawing, terms): the one place to add a flag
 ├── custom.ts           the "/custom" entry: flags a page registers itself, as custom:<slug>, from a data-door source

@@ -92,6 +92,9 @@
     "./signals": {
       "types": "./dist/signals.d.ts",
       "default": "./dist/signals.js"
+    "./samurai": {
+      "types": "./dist/samurai.d.ts",
+      "default": "./dist/samurai.js"
     },
     "./search": {
       "types": "./dist/search.d.ts",
@@ -3849,6 +3852,7 @@
     "prepublishOnly": "pnpm check",
     "data": "node scripts/build-data.ts",
     "draw": "node scripts/draw-signals.ts",
+    "draw:samurai": "node scripts/draw-samurai.ts",
     "data:wikidata": "node scripts/fetch-wikidata.ts",
     "data:commons": "node scripts/fetch-commons.ts",
     "site": "pnpm build && node scripts/site.mjs",

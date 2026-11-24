@@ -126,6 +126,17 @@ text. The Code is a work of the United States Government, with no copyright clai
 | Ids | What | Source | What it says |
 | --- | --- | --- | --- |
 | `ics:a` to `ics:z`, `ics:0` to `ics:9`, `ics:sub-1` to `ics:sub-3`, `ics:answer` | The 26 alphabet flags, the 10 numeral pennants, the 3 substitutes and the answering pennant | International Code of Signals, United States Edition, 1969 (Revised 2003), Pub. 102, National Imagery and Mapping Agency (the copy read is the Internet Archive's, https://archive.org/details/pub-102) | The plate "International Flags and Pennants" shows each flag and pennant, and the Code names the five colours and gives each single-letter signal its meaning. It gives no construction sheet: the proportions are measured from the plate and the values of the colours are this package's. |
+## Samurai battle banners
+
+The battle banners of Sengoku daimyo are a separate entry point (`@johnmorrisdotca/hata/samurai`, ids `samurai:<slug>`), and none of them is a Commons file:
+each is drawn for this package, under the MIT licence, as geometry written out in `scripts/draw-samurai.ts`, from the words of a published source, and
+nothing is copied from a picture. No cloth survives for any of them, so every drawing is a reconstruction, and its record says which part follows the source and
+which is this package's. Read on 2026-11-24:
+
+| Ids | What | Source | What it says |
+| --- | --- | --- | --- |
+| `samurai:uesugi-tenshi`, `samurai:uesugi-ogi`, `samurai:hojo-gosyoku`, `samurai:date-daishihan`, `samurai:toyotomi-gunbai`, `samurai:tokugawa-kinsen`, `samurai:oda-karakasa`, `samurai:ii-igeta` | Banners and signs of named commanders | 馬印 (Uma-jirushi), Japanese Wikipedia, https://ja.wikipedia.org/wiki/馬印 | Lists the banners and signs of named Sengoku commanders with their designs and grounds in words; it names no surviving cloth or museum for them. |
+| `samurai:sanada-rokumonsen` | The Sanada nobori | 真田氏 (Sanada clan), Japanese Wikipedia, https://ja.wikipedia.org/wiki/真田氏 | Says the six-coin crest was mainly a battle banner, describes an all-red nobori with the crest of unclear use, and names the screen of the Summer Campaign of Osaka (Osaka Castle collection) as the source for the Sanada unit's all-red flag with a gold line. |
 
 ## Not carried
 
