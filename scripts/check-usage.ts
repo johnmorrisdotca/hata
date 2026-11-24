@@ -176,6 +176,11 @@ await step("organisations", () => {
   if (out !== "true true 欧州連合") throw new Error(`unexpected output: ${out}`);
 });
 
+await step("former countries", () => {
+  const out = execFileSync(process.execPath, [join(examples("former"), "former.mjs")], { cwd: usage, encoding: "utf8" }).trim().split("\n");
+  if (out.join("|") !== "1844 1299|BJ true|civil-ensign other-role|The Kingdom's flags on Commons") throw new Error(`unexpected output: ${out.join(" | ")}`);
+});
+
 await step("historic", () => {
   const out = execFileSync(process.execPath, [join(examples("historic"), "historic.mjs")], {
     cwd: usage,
@@ -440,6 +445,7 @@ const FILES: Record<string, string[]> = {
   "node/server.mjs": guide("typescript-and-node"),
   "organisations/organisations.mjs": guide("organisations"),
   "custom/custom.mjs": guide("custom-flags"),
+  "former/former.mjs": guide("former-countries"),
   "historic/historic.mjs": guide("historic-flags"),
   "historic/roles.mjs": guide("historic-flags"),
   "historic/restricted.mjs": guide("historic-flags"),

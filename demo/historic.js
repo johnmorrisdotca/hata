@@ -46,6 +46,7 @@ const words = {
     roleInUse: "Flag in use",
     splitTitle: "The legal flag and the flag in use differ",
     splitWhy: "Why",
+    noLaw: "No flag was made the national flag by law.",
     restricted: "restricted",
     restrictedNote: "Flag of Nazi Germany, 1935–1945. Shown for history and education. Displaying it is restricted by law in Germany and Austria outside those purposes.",
     today2: "today",
@@ -91,6 +92,7 @@ const words = {
     roleInUse: "実際に使われた旗",
     splitTitle: "法律上の国旗と、実際に使われた旗が違う期間",
     splitWhy: "理由",
+    noLaw: "法律で国旗とされた旗はありませんでした。",
     restricted: "使用制限あり",
     restrictedNote: "ナチス・ドイツの国旗（1935～1945年）。歴史と教育のために表示しています。ドイツとオーストリアでは、これらの目的以外での掲示は法律で制限されています。",
     today2: "現在",
@@ -178,6 +180,7 @@ const split = (row, flags) => {
       item.querySelector(".role")?.remove();
       list.append(item);
     }
+    if (list.children.length === 0) list.append(Object.assign(document.createElement("li"), { className: "split-none", textContent: say("noLaw") }));
     column.append(list);
     columns.append(column);
   }

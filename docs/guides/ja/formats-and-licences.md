@@ -16,7 +16,7 @@ description: Hataの旗が提供される形式のすべてと、その大きさ
 | 枠のためのモジュール | 4:3または正方形の枠のために作った図 | `@johnmorrisdotca/hata/flags/<code>.4x3`と`.1x1` | 429の図、2869.6 KB（gzipで957.8 KB） |
 | 実行時にコードで | ページの動作中に選ぶ旗 | `/load`の`flag(code)`。その旗自身のファイルを1つ読み込みます | コードから旗を引く部分は25 KB、そのあとに旗 |
 | データURI | `data:image/svg+xml`のアドレスにしたSVG。base64より小さい | `toDataUri(svg)`、`flagDataUri(code)` | SVGより少し大きい |
-| 要素 | `<hata-flag code="JP-13" shape="round" size="48">` | `@johnmorrisdotca/hata/element/define` | 中核は12 KB（gzipで3.7 kB）で、旗は入っていません |
+| 要素 | `<hata-flag code="JP-13" shape="round" size="48">` | `@johnmorrisdotca/hata/element/define` | 中核は13 KB（gzipで4.5 kB）で、旗は入っていません |
 | フレームワークのコンポーネント | React・Vue・Svelte・React Native向けの型付きの`Flag` | `@johnmorrisdotca/hata/react`、`/vue`、`/svelte`、`/react-native` | 旗自身のモジュール |
 | iframe | 1つの旗を描くページ | [埋め込みページ](embed-in-an-iframe.md) | 1ページと1つの旗 |
 | 保存したファイル | SVG、選んだ大きさのPNG、旗の情報のJSON | デモの詳細パネル。求めたときにブラウザーで作られます（[ガイド](gallery-and-downloads.md)） | 求めに応じて作ります。PNGのファイルは同梱していません |
@@ -27,12 +27,12 @@ description: Hataの旗が提供される形式のすべてと、その大きさ
 
 ## ライセンス
 
-パッケージのコードはMITです。旗はパッケージ自身の作品ではなく、それぞれがWikimedia Commonsにある描画で、Commonsがそのファイルについて示すライセンスのもとにあり、そのライセンスは旗に付随します。コードでは`manifest(code).licence`で読め、すべては[docs/provenance.md](../../provenance.md)にあります。そのうち、479の既定の図は次のとおりです：
+パッケージのコードはMITです。旗はパッケージ自身の作品ではなく、それぞれがWikimedia Commonsにある描画で、Commonsがそのファイルについて示すライセンスのもとにあり、そのライセンスは旗に付随します。コードでは`manifest(code).licence`で読め、すべては[docs/provenance.md](../../provenance.md)にあります。そのうち、510の既定の図は次のとおりです：
 
 | ライセンス | 旗の数 | しなければならないこと |
 | --- | --- | --- |
-| パブリックドメイン | 469 | 必要なことはありません。それでも、作者はマニフェストに残してあります |
-| CC0 | 8 | 必要なことはありません |
+| パブリックドメイン | 496 | 必要なことはありません。それでも、作者はマニフェストに残してあります |
+| CC0 | 9 | 必要なことはありません |
 | OGL-om 1.0 | 1（オマーン） | [NOTICE.md](../../../NOTICE.md)にあるクレジットを残してください |
 | Copyrighted free use（著作権はあるが自由に使える） | 1（ミシシッピ州） | 権利者は、条件なしでどんな使い方も許しています。CC BYよりも自由です。[NOTICE.md](../../../NOTICE.md)にクレジットがあるので、残すと礼儀にかないます |
 | CC BY 2.5 | 別の旗が1つ（サン・バルテルミーの地方旗、`BL--local`） | 作者を表示し、ライセンスへのリンクをつけ、図を変えたなら、その旨を明記してください。クレジットは[NOTICE.md](../../../NOTICE.md)にあります |

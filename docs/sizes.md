@@ -5,8 +5,8 @@ Made by `pnpm data`; a test fails if this list and the data differ. Sizes are of
 
 | | Pictures | SVG | Gzipped |
 | --- | --- | --- | --- |
-| Every flag | 444 (479 codes; 35 share another's picture) | 8890.7 KB | 3081.6 KB |
-| The same drawings as their sources have them | 444 | 15541.9 KB | |
+| Every flag | 464 (510 codes; 46 share another's picture) | 9090.1 KB | 3154.4 KB |
+| The same drawings as their sources have them | 464 | 15865.7 KB | |
 | The median flag | | 806 B | |
 | The countries alone | 235 | 2119.6 KB | 725.0 KB |
 | Drawings made for a frame (flag-icons' 4:3 and square, `/flags/<code>.4x3`, `.1x1`) | 429 | 2869.6 KB | 957.8 KB |
@@ -41,6 +41,7 @@ and listed here so a new one is noticed (the size test holds this list).
 | `MP` | Northern Mariana Islands | 130.0 KB | 43.1 KB | 161.0 KB |
 | `US-WI` | Wisconsin | 127.0 KB | 48.8 KB | 201.0 KB |
 | `US-IA` | Iowa | 123.9 KB | 51.4 KB | 128.5 KB |
+| `XQI` | Qing Empire | 123.4 KB | 48.8 KB | 177.7 KB |
 | `DE-SL` | Saarland | 114.7 KB | 38.9 KB | 187.3 KB |
 | `ES` | Spain | 110.1 KB | 23.3 KB | 152.2 KB |
 | `US-NJ` | New Jersey | 105.4 KB | 35.0 KB | 202.4 KB |

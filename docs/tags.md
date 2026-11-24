@@ -17,20 +17,20 @@ can also take a wrong tag away. To review a flag, look at it, add a line for it 
 
 | Tag | When it applies | Flags | Reviewed | Computed | Wikidata | Unreviewed |
 | --- | --- | --- | --- | --- | --- | --- |
-| `plain` | Flat fields of colour with straight edges and nothing drawn on them: one colour, or bands across or down the whole flag. | 64 | 0 | 64 | 0 | 0 |
-| `stripes-horizontal` | Bands across the flag, one above another. | 170 | 0 | 53 | 30 | 87 |
-| `stripes-vertical` | Bands down the flag, side by side. | 59 | 0 | 11 | 7 | 41 |
+| `plain` | Flat fields of colour with straight edges and nothing drawn on them: one colour, or bands across or down the whole flag. | 67 | 0 | 67 | 0 | 0 |
+| `stripes-horizontal` | Bands across the flag, one above another. | 172 | 0 | 55 | 30 | 87 |
+| `stripes-vertical` | Bands down the flag, side by side. | 60 | 0 | 12 | 7 | 41 |
 | `stripes-diagonal` | A band or a division from corner to corner. | 16 | 0 | 0 | 10 | 6 |
 | `cross` | A cross of any kind, upright or not; a Nordic cross and the crosses of a Union Flag count. | 65 | 0 | 0 | 43 | 22 |
 | `nordic-cross` | A cross whose upright is nearer the hoist, as on Denmark's flag. | 7 | 0 | 0 | 7 | 0 |
 | `saltire` | A diagonal cross, as on Scotland's or Jamaica's flag. | 45 | 0 | 0 | 34 | 11 |
 | `canton` | A rectangle of its own in the corner by the hoist, as on the flag of the United States. | 43 | 0 | 0 | 12 | 31 |
-| `stars` | One star or more, of any number of points, or a constellation. | 130 | 0 | 0 | 88 | 42 |
+| `stars` | One star or more, of any number of points, or a constellation. | 131 | 0 | 0 | 88 | 43 |
 | `crescent` | A crescent moon. | 22 | 0 | 0 | 15 | 7 |
 | `sun` | A sun, as a disc or with rays. | 36 | 0 | 0 | 21 | 15 |
 | `circle` | A disc or a ring that is a shape of the flag itself. | 32 | 0 | 0 | 20 | 12 |
 | `triangle` | A triangle, most often at the hoist. | 31 | 0 | 0 | 25 | 6 |
-| `emblem` | A seal, a badge, a shield or another device placed on the flag; a coat of arms counts. | 100 | 0 | 0 | 52 | 48 |
+| `emblem` | A seal, a badge, a shield or another device placed on the flag; a coat of arms counts. | 103 | 0 | 0 | 52 | 51 |
 | `coat-of-arms` | A coat of arms. | 66 | 0 | 0 | 48 | 18 |
 | `animal` | An animal or a bird, real or of legend. | 54 | 0 | 0 | 23 | 31 |
 | `plant` | A tree, a leaf, a flower or another plant. | 49 | 0 | 0 | 23 | 26 |
@@ -42,7 +42,7 @@ can also take a wrong tag away. To review a flag, look at it, add a line for it 
 
 ## Every flag
 
-42 of the 501 pictures have no tag yet.
+60 of the 526 pictures have no tag yet.
 
 | Code | Flag | Tags, each with its source and what it rests on |
 | --- | --- | --- |
@@ -483,11 +483,31 @@ can also take a wrong tag away. To review a flag, look at it, add a line for it 
 | `ANHH` | Netherlands Antilles | `cross` (unreviewed: a band across and a band down, each the same at both edges) |
 | `BOH` | Bohemia | `plain` (computed: the whole flag is two bands across, with nothing on them); `stripes-horizontal` (computed: the whole flag is two bands across) |
 | `BUMM` | Burma |  |
+| `BYAA` | Byelorussian Soviet Socialist Republic |  |
 | `CSXX` | Serbia and Montenegro | `plain` (computed: the whole flag is three bands across, with nothing on them); `stripes-horizontal` (computed: the whole flag is three bands across) |
 | `DDDE` | East Germany | `stripes-horizontal` (unreviewed: the same three bands at the hoist and at the fly); `plant` (unreviewed: Commons category "Flags with plants") |
+| `GEHH` | Gilbert and Ellice Islands | `emblem` (unreviewed: 8 colours, as a seal or a coat of arms has) |
+| `HVBF` | Upper Volta | `plain` (computed: the whole flag is three bands across, with nothing on them); `stripes-horizontal` (computed: the whole flag is three bands across) |
+| `PCHH` | Pacific Islands (Trust Territory) |  |
 | `RHZW` | Rhodesia | `stripes-vertical` (unreviewed: the same three bands at the top and at the bottom); `emblem` (unreviewed: 20 colours, as a seal or a coat of arms has); `coat-of-arms` (unreviewed: Commons category "Flags with centered coat of arms from the British possessions"); `animal` (unreviewed: Commons category "Flags with birds") |
 | `SUHH` | Soviet Union | `stars` (wikidata: Q165230 depicts red star (Q208578)) |
+| `VDVN` | Democratic Republic of Vietnam |  |
 | `WIF` | West Indies Federation | `stripes-horizontal` (unreviewed: the same nine bands at the hoist and at the fly); `circle` (unreviewed: Commons category "Flags with centered orange disks") |
+| `XAH` | Austria-Hungary |  |
+| `XCS` | Confederate States of America |  |
+| `XGE` | German Empire | `plain` (computed: the whole flag is three bands across, with nothing on them); `stripes-horizontal` (computed: the whole flag is three bands across) |
+| `XIT` | Kingdom of Italy | `stripes-vertical` (unreviewed: the same three bands at the top and at the bottom); `cross` (unreviewed: Commons category "Flags with 1 white cross"); `emblem` (unreviewed: Commons category "Flags with centered coat of arms from Italy"); `coat-of-arms` (unreviewed: Commons category "Flags with centered coat of arms from Italy") |
+| `XKR` | Korean Empire |  |
+| `XOT` | Ottoman Empire |  |
+| `XPR` | Prussia | `plain` (computed: the whole flag is two bands across, with nothing on them); `stripes-horizontal` (computed: the whole flag is two bands across) |
+| `XPS` | Papal States | `plain` (computed: the whole flag is two bands down, with nothing on them); `stripes-vertical` (computed: the whole flag is two bands down) |
+| `XQI` | Qing Empire | `emblem` (unreviewed: 11 colours, as a seal or a coat of arms has) |
+| `XSD` | Kingdom of Sardinia |  |
+| `XSM` | Siam |  |
+| `XSV` | South Vietnam | `plain` (computed: the whole flag is seven bands across, with nothing on them); `stripes-horizontal` (computed: the whole flag is seven bands across) |
+| `XUA` | United Arab Republic | `stripes-horizontal` (unreviewed: the same three bands at the hoist and at the fly) |
+| `XZB` | Sultanate of Zanzibar |  |
+| `YDYE` | South Yemen |  |
 | `YUCS` | Yugoslavia | `stripes-horizontal` (unreviewed: the same three bands at the hoist and at the fly); `stars` (wikidata: Q381988 depicts red star (Q208578)) |
 | `ZRCD` | Zaire | `circle` (unreviewed: Commons category "Flags with centered yellow disks"); `emblem` (unreviewed: Commons category "Flags with arms"); `coat-of-arms` (unreviewed: Commons category "Flags with arms") |
 | `US--stars-45` | United States: The 45-star flag | `stripes-horizontal` (unreviewed: Commons category "Flags with thirteen horizontal stripes"); `canton` (unreviewed: Commons category "Flags with stars, canton"); `stars` (unreviewed: Commons category "Flags with stars, canton") |
@@ -515,12 +535,8 @@ can also take a wrong tag away. To review a flag, look at it, add a line for it 
 | `KZ--kazssr-1953` | Kazakhstan: Kazakh SSR flag, 1953 (blue stripe) | `stripes-horizontal` (unreviewed: the same three bands at the hoist and at the fly); `stars` (unreviewed: Commons category "Flags with one red five-pointed star") |
 | `EG--khedivate-red` | Egypt: Red flag with three crescents and stars (Khedivate, Sultanate) | `stars` (unreviewed: Commons category "Flags with star and crescent"); `crescent` (unreviewed: Commons category "Flags with 3 white crescents") |
 | `EG--green-crescent` | Egypt: Green flag with crescent and three stars (Kingdom) | `stars` (unreviewed: Commons category "Flags with three white five-pointed stars and 1 white crescent"); `crescent` (unreviewed: Commons category "Flags with three white five-pointed stars and 1 white crescent") |
-| `EG--uar` | Egypt: United Arab Republic flag (red, white, black, two green stars) | `stripes-horizontal` (unreviewed: the same three bands at the hoist and at the fly) |
 | `EG--hawk-of-quraish` | Egypt: Flag with the Hawk of Quraish (Federation of Arab Republics) | `stripes-horizontal` (unreviewed: the same three bands at the hoist and at the fly); `animal` (unreviewed: Commons category "Flags with the Hawk of Quraish") |
-| `DE--imperial-bwr` | Germany: Black-white-red (North German Confederation / German Empire) | `plain` (computed: the whole flag is three bands across, with nothing on them); `stripes-horizontal` (computed: the whole flag is three bands across) |
 | `DE--weimar-bkrg` | Germany: Black-red-gold (Weimar Republic) | `plain` (computed: the whole flag is three bands across, with nothing on them); `stripes-horizontal` (computed: the whole flag is three bands across) |
-| `DE--bwr-1933` | Germany: Black-white-red (1933-1935, flown with the swastika flag) | `plain` (computed: the whole flag is three bands across, with nothing on them); `stripes-horizontal` (computed: the whole flag is three bands across) |
-| `IT--savoy-arms-1861` | Italy: Tricolour with the Savoy arms (Kingdom of Italy) | `stripes-vertical` (unreviewed: the same three bands at the top and at the bottom); `cross` (unreviewed: Commons category "Flags with 1 white cross"); `emblem` (unreviewed: Commons category "Flags with centered coat of arms from Italy"); `coat-of-arms` (unreviewed: Commons category "Flags with centered coat of arms from Italy") |
 | `ES--second-republic` | Spain: Red-yellow-purple (Second Republic) | `stripes-horizontal` (unreviewed: the same three bands at the hoist and at the fly); `animal` (unreviewed: Commons category "Flags with lions facing left"); `plant` (unreviewed: Commons category "Flags with flowers"); `building` (unreviewed: Commons category "Flags with castles"); `text` (unreviewed: Commons category "Flags with mottos") |
 | `IR--lion-sun-tricolour-1907` | Iran: Tricolour with lion and sun (1907 constitutional flag) | `stripes-horizontal` (unreviewed: the same three bands at the hoist and at the fly); `sun` (unreviewed: Commons category "Flags with lion and sun"); `animal` (unreviewed: Commons category "Flags with lion and sun") |
 | `IR--lion-sun-1933` | Iran: Tricolour with lion and sun (1933 redrawing) | `stripes-horizontal` (unreviewed: the same three bands at the hoist and at the fly); `sun` (unreviewed: Commons category "Flags with lion and sun"); `animal` (unreviewed: Commons category "Flags with lion and sun") |
@@ -532,6 +548,15 @@ can also take a wrong tag away. To review a flag, look at it, add a line for it 
 | `BR--republic-23-stars` | Brazil: 23 stars (Acre) |  |
 | `MX--carranza-1916` | Mexico: Profile eagle (Carranza, 1916) | `stripes-vertical` (unreviewed: the same three bands at the top and at the bottom); `emblem` (unreviewed: 14 colours, as a seal or a coat of arms has) |
 | `MX--enciso-1934` | Mexico: 1934 eagle | `stripes-vertical` (unreviewed: the same three bands at the top and at the bottom); `emblem` (unreviewed: 14 colours, as a seal or a coat of arms has) |
+| `XCS--stars-and-bars` | Confederate States of America: The first national flag ("Stars and Bars") |  |
+| `XCS--blood-stained-banner` | Confederate States of America: The third national flag ("Blood-Stained Banner") |  |
+| `BYAA--1937` | Byelorussian Soviet Socialist Republic: The flag of 1937 to 1951 |  |
+| `BYAA--1927` | Byelorussian Soviet Socialist Republic: The flag of 1927 to 1937 |  |
+| `BYAA--1919` | Byelorussian Soviet Socialist Republic: The flag of 1919 to 1927 |  |
+| `VDVN--gold-star-1945` | Democratic Republic of Vietnam: The flag of 1945 to 1955 | `stars` (unreviewed: Commons category "Flags with one yellow five-pointed star (centered)") |
+| `XHW--1816` | Kingdom of Hawaii: The flag of 1816 |  |
+| `XQI--triangular-1862` | Qing Empire: The triangular Yellow Dragon Flag | `emblem` (unreviewed: 11 colours, as a seal or a coat of arms has) |
+| `XTX--burnet` | Republic of Texas: The Burnet Flag |  |
 | `AF--de-facto` | Afghanistan: The Taliban's flag | `text` (unreviewed: Commons category "Flags with shahada") |
 | `SH--union-flag` | St. Helena: The Union Flag | `cross` (unreviewed: Commons category "Flags with crosses and saltires"); `saltire` (unreviewed: Commons category "Flags with crosses and saltires") |
 | `DE-BY--stripes` | Bavaria: White and blue stripes | `plain` (computed: the whole flag is two bands across, with nothing on them); `stripes-horizontal` (computed: the whole flag is two bands across) |

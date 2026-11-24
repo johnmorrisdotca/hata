@@ -59,6 +59,7 @@ interface CommonsFile {
   stored: string;
   metadata: Record<string, string>;
   templates: string[];
+  fetched?: string; // the day this file was added to a snapshot read on an earlier day (pnpm data:commons writes none: every file was fetched on the snapshot's day)
 }
 
 interface CommonsSnapshot {
@@ -100,7 +101,7 @@ interface Shipped {
   drawing: Drawing;
   reference: CommonsFile; // The Commons file Wikidata names: the reference for the design and its proportions
   referenceLicence: Licence;
-  item: string;
+  item: string | null;
   optimised: Optimised;
   owner: string; // The code whose module carries the picture: its own, or the one it shares a drawing with
   gzip: number;
@@ -219,7 +220,7 @@ const drawingOf = (place: Place, choice: Choice, reference: CommonsFile, referen
 // 3. Each place's flag, or why it has none.
 const shipped: Shipped[] = [];
 const leftOut: LeftOut[] = [];
-const chosen: { place: Place; drawing: Drawing; reference: CommonsFile; referenceLicence: Licence; item: string; choice: Choice; named?: string }[] = [];
+const chosen: { place: Place; drawing: Drawing; reference: CommonsFile; referenceLicence: Licence; item: string | null; choice: Choice; named?: string }[] = [];
 for (const place of places) {
   const selection = selectPlace(place.code, wikidata);
   const handWritten = NO_FLAG[place.code];
@@ -244,7 +245,7 @@ for (const place of places) {
     leftOut.push({ place, kind: "licence", reason: `Commons gives its licence as ${referenceLicence.name}, which is not public domain, CC0 or CC BY, and no MIT flag set draws the same flag at its proportions`, file: reference, licence: referenceLicence });
     continue;
   }
-  chosen.push({ place, drawing: drawingOf(place, choice, reference, referenceLicence), reference, referenceLicence, item: selection.item!, choice, ...(selection.rule === "named" ? { named: selection.why } : {}) });
+  chosen.push({ place, drawing: drawingOf(place, choice, reference, referenceLicence), reference, referenceLicence, item: selection.item, choice, ...(selection.rule === "named" ? { named: selection.why } : {}) });
 }
 
 // Which place a shared drawing belongs to: a country whose English name is in the file's name, else the first
@@ -890,7 +891,7 @@ const row = (one: Shipped): string => {
     restrictions: restrictionsOf(reference.metadata),
     templates: drawing.templates,
     uploaded: drawing.uploaded,
-    fetched: commons.read,
+    fetched: (drawing.source === "commons" ? commonsByFile.get(drawing.file)?.fetched : undefined) ?? commons.read,
     reference: drawing.source === "commons" ? null : { file: reference.file, page: reference.page, licence: one.referenceLicence.name },
     why: one.why,
     sameAs: one.owner === one.place.code ? null : one.owner,
@@ -1195,7 +1196,8 @@ countries, each under a code that no present-day country uses, and lists ${forme
 The decisions behind them are in [decisions.md](decisions.md), "Former countries".
 
 **The code of a former country** is its ISO 3166-3 code where that standard has one (four letters: \`SUHH\`, \`DDDE\`, \`YUCS\`), else the
-IOC's (\`FRG\`, \`BOH\`, \`WIF\`). **The other codes that find it** are \`FLAG_ALIASES\`: the ISO 3166-1 alpha-2 and alpha-3 the place
+IOC's (\`FRG\`, \`BOH\`, \`WIF\`), else a code of Hata's own: \`X\` and two letters (\`XAH\` Austria-Hungary, \`XOT\` the Ottoman Empire), a range ISO 3166 keeps for
+users and never gives a country (scripts/former-flags.ts). **The other codes that find it** are \`FLAG_ALIASES\`: the ISO 3166-1 alpha-2 and alpha-3 the place
 had, and the IOC's three letters. \`flagCode\`, \`flag\`, \`flagName\`, \`manifest\`, \`leftOut\` and \`<hata-flag>\` read them in any case;
 \`isFlagCode\` and \`FLAG_CODES\` hold only the code itself. No alias is a code of a place, and no alias belongs to two.
 

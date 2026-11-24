@@ -385,6 +385,22 @@ the Soviet Union, East and West Germany, Yugoslavia and the rest, and found none
 
 ### What to know about the former countries
 
+- **Every ISO 3166-3 code has a flag or a reason (MODULES-1808).** Thirty codes: 24 have a flag and six are in `LEFT_OUT` (British
+  Antarctic Territory, Canton and Enderbury Islands, the New Hebrides, the Neutral Zone, Sikkim and East Timor), each with its reason.
+  A territory that flew its country's flag (the Afars and the Issas, the French Southern and Antarctic Territories, Dronning Maud Land,
+  Johnston, Midway, Wake, the Panama Canal Zone and the United States' other Pacific islands) draws that country's one picture, as West Germany does.
+- **A state that never had an ISO 3166-3 code has a code of Hata's own: `X` and two letters.** ISO 3166 reserves `XAA` to `XZZ`
+  for users and never assigns them, so none can ever be an official code. They are `XAH`, `XOT`, `XPR`, `XHW`, `XGE`, `XSV`, `XKR`,
+  `XQI`, `XUA`, `XTX`, `XIT` and `XZB`, and the former-countries guide lists them. This is Hata's choice, not a standard's, and a
+  code can be renamed before 2.0 if the maintainer prefers another scheme.
+- **These states have no Wikidata item in the snapshot, so their Commons files are named by hand** (`item: null` in
+  `scripts/former-flags.ts`; the manifest's `wikidata` is `null`). Wikidata is not asked for more than the snapshot has. The Commons snapshot
+  gained their 19 files on 2026-11-24 (each has a `fetched` day); the others were not read again.
+- **A state with no flag in law says so.** Austria-Hungary's civil ensign is its flag in use only (`roles: ["in-use"]` and a `roleNote`),
+  and so are the Qing Empire's Yellow Dragon Flags and the Kingdom of Hawaii's flag of 1816.
+- **Held for the maintainer, because the status is disputed today:** Tibet (1912 to 1950) and Manchukuo, each with a public-domain drawing on Commons. **Left out for a licence.** Gran Colombia and Tanganyika (every drawing under CC BY-SA). The Confederate States are in (`XCS`): the three national flags, as dated variants, like any former state; the battle flag is not a national flag and is in the military set (docs/guides/military-flags.md). Prussia's state flag with the arms (1892 to 1918) is drawn on Commons only at changed proportions
+  or under a licence that is not shipped, so Prussia ships the plain black and white flag.
+
 - **A code two countries held finds neither.** `CS` was Czechoslovakia's until 1992 and Serbia and Montenegro's from
   2003, so `flag("CS")` is `null`, and `leftOut("CS")` says to use `CSHH` or `TCH`, `CSXX` or `SCG`.
 - **West Germany and Czechoslovakia fly today's flags.** `FRG` and `CSHH` are separate codes with Germany's and Czechia's

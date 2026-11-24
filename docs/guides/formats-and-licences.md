@@ -16,7 +16,7 @@ One drawing, in the forms below. Sizes are from [docs/sizes.md](../sizes.md), ma
 | Module for a frame | the drawing made for a 4:3 or a square frame | `@johnmorrisdotca/hata/flags/<code>.4x3` and `.1x1` | 429 drawings, 2869.6 KB, 957.8 KB gzipped |
 | By code at run time | a flag chosen while the page runs | `flag(code)` from `/load`, which loads one flag's own file | the lookup is 25 KB, then the flag |
 | Data URI | the SVG as a `data:image/svg+xml` address, smaller than base64 | `toDataUri(svg)`, `flagDataUri(code)` | the SVG, a little larger |
-| Element | `<hata-flag code="JP-13" shape="round" size="48">` | `@johnmorrisdotca/hata/element/define` | the core is 12 KB, 3.7 KB gzipped, with no flag in it |
+| Element | `<hata-flag code="JP-13" shape="round" size="48">` | `@johnmorrisdotca/hata/element/define` | the core is 13 KB, 4.5 KB gzipped, with no flag in it |
 | Framework component | typed `Flag` for React, Vue, Svelte and React Native | `@johnmorrisdotca/hata/react`, `/vue`, `/svelte`, `/react-native` | the flag's own module |
 | Iframe | a page that draws one flag | the [embed page](embed-in-an-iframe.md) | one page and one flag |
 | Saved file | SVG, PNG at the size you chose, and JSON of the flag's facts | the demo's detail panel, made in the browser when asked ([the guide](gallery-and-downloads.md)) | made on request; no PNG file is shipped |
@@ -27,12 +27,12 @@ The largest flags carry a coat of arms or a seal drawn as their source draws it:
 
 ## Licences
 
-The code of the package is MIT. The flags are not the package's own work: each is a drawing on Wikimedia Commons under the licence Commons states for that file, and it travels with the flag. Read it in code with `manifest(code).licence`, or all of them in [docs/provenance.md](../provenance.md). Of the 479 primary drawings there:
+The code of the package is MIT. The flags are not the package's own work: each is a drawing on Wikimedia Commons under the licence Commons states for that file, and it travels with the flag. Read it in code with `manifest(code).licence`, or all of them in [docs/provenance.md](../provenance.md). Of the 510 primary drawings there:
 
 | Licence | Flags | What you must do |
 | --- | --- | --- |
-| Public domain | 469 | nothing is required; the author is kept in the manifest anyway |
-| CC0 | 8 | nothing is required |
+| Public domain | 496 | nothing is required; the author is kept in the manifest anyway |
+| CC0 | 9 | nothing is required |
 | OGL-om 1.0 | 1 (Oman) | keep the credit [NOTICE.md](../../NOTICE.md) gives for it |
 | Copyrighted free use | 1 (Mississippi) | the holder allows any use with no condition, freer than CC BY; [NOTICE.md](../../NOTICE.md) still gives its credit, and keeping it is courteous |
 | CC BY 2.5 | 1 variant (the local flag of Saint-Barthélemy, `BL--local`) | credit the author, link the licence and say if you changed the drawing; [NOTICE.md](../../NOTICE.md) has the credit |

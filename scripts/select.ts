@@ -42,7 +42,7 @@ interface WikidataSnapshot {
 }
 
 type Selection =
-  | { code: string; file: string; item: string; rule: "only" | "preferred" | "chosen" | "named"; why?: string; others: string[] }
+  | { code: string; file: string; item: string | null; rule: "only" | "preferred" | "chosen" | "named"; why?: string; others: string[] }
   | { code: string; file: null; item: string | null; reason: string };
 
 const select = (code: string, items: readonly WikidataItem[] | undefined): Selection => {
@@ -79,6 +79,8 @@ const select = (code: string, items: readonly WikidataItem[] | undefined): Selec
 const selectHistorical = (code: string, items: readonly WikidataItem[] | undefined): Selection => {
   const spec = HISTORICAL[code]!;
   if (spec.file === null) return { code, file: null, item: spec.item, reason: spec.why };
+  // A former state with no Wikidata item here (the ones with no ISO 3166-3 code, and those whose item was not in the snapshot): its Commons file is named by hand and checked as every other is, by the licence and the build.
+  if (spec.item === null) return { code, file: spec.file, item: null, rule: "named", why: spec.why, others: [] };
   const item = (items ?? []).find((one) => one.id === spec.item);
   if (item === undefined) throw new Error(`${code}: the Wikidata snapshot has no item ${spec.item}: run pnpm data:wikidata -- --historical`);
   const found = item.flags.find((flag) => flag.file === spec.file);

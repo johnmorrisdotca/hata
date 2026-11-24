@@ -55,8 +55,8 @@ interface FlagRecord {
   page: string;
   /** The flag set's version the drawing is from; null for Commons. */
   version: string | null;
-  /** The Wikidata item whose flag image (P41) names the file: "Q17". */
-  wikidata: string;
+  /** The Wikidata item whose flag image (P41) names the file: "Q17"; null for a former state that has no item here, whose Commons file is named by hand (HISTORICAL in scripts/data-config.ts). */
+  wikidata: string | null;
   /** The licence: its kind, its name ("Public domain", "CC BY 4.0", "MIT") and its address where it has one. */
   licence: { kind: LicenceKind; name: string; url: string | null };
   /** The author: as Commons' Artist field gives it, in plain text, or the set's copyright line; where Commons' field is empty, the author the file's description page names, or "Unknown author" where it names none (docs/decisions.md). Every shipped flag has one; null is kept for a record that has none. */
