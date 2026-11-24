@@ -28,6 +28,7 @@ src/
 ├── sets/               the drawn sets' records: military.data.ts, made by scripts/draw-military.ts (pnpm draw:military)
 ├── search.ts           the "/search" entry: each flag's colours and tags, and the flags that have the ones asked for
 ├── organisations.data.ts   the organisations' records (id, names, drawing, terms): the one place to add a flag
+├── organisations.commons.data.ts   the six taken from Commons, made by scripts/draw-organisations.ts (pnpm draw:organisations)
 ├── custom.ts           the "/custom" entry: flags a page registers itself, as custom:<slug>, from a data-door source
 ├── custom-svg.ts       the check on a page's SVG: an allowlist, then written again from what was read
 ├── dates.ts            a date as a day, a month or a year, compared as text (`variantOn`, `flag(code, { date })`)

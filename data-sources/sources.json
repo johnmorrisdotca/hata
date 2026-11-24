@@ -16,6 +16,7 @@
     },
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
       "path": "medieval-commons-2026-11-24.json",
       "url": "https://commons.wikimedia.org/w/api.php",
       "read": "2026-11-24",
@@ -28,6 +29,13 @@
       "sha256": "f589b973a6b144835e0e48f8b7555f511594b217e89c3f768eeb8e110277af68",
       "note": "Wikimedia Commons, the description, licence and author of every military flag file, and the SHA-256 of each file kept in military/ (each file under its own licence)"
 >>>>>>> origin/feat/1812-military-flags
+=======
+      "path": "organisations-commons-2026-11-24.json",
+      "url": "https://commons.wikimedia.org/w/api.php",
+      "read": "2026-11-24",
+      "sha256": "a46467d183ece56994a427381d9ad4411bda366d140cee413cf0027de9d9103c",
+      "note": "Wikimedia Commons, the description, licence and author of every organisations flag file, and the SHA-256 of each file kept in organisations/ (each file under its own licence)"
+>>>>>>> origin/feat/1813-organisations-terms
     },
     {
       "path": "wikidata-2026-10-09.json",

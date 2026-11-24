@@ -199,6 +199,7 @@ The alias changes only the import name in your project.
 | `@johnmorrisdotca/hata/samurai` | Nine battle banners of Sengoku daimyo (nobori, hata, uma-jirushi), by `samurai:` id, each saying what is documented and what is reconstruction | 24 KB, 4.7 KB gzipped |
 | `@johnmorrisdotca/hata/medieval` | 42 medieval banners (six drawn for this package, 36 Wikimedia Commons drawings in the public domain or CC0), by `med:` id, each with its dates, source, file and licence | 496 KB, 161 KB gzipped |
 | `@johnmorrisdotca/hata/military` | 60 naval ensigns, jacks and war flags of more than thirty navies (Japan's Rising Sun Flag only here, as two ensigns), by `mil:` id, with dates, sources, licences and authors; the Confederate battle flags withheld by default | 1.5 MB, 425 KB gzipped |
+| `@johnmorrisdotca/hata/organisations` | Organisations' flags (the European Union's and six taken from Commons), by `org:` id | 55 KB, 21 KB gzipped |
 | `@johnmorrisdotca/hata/search` | Each flag's colours (`coloursOf`) and tags (`tagsOf`), and the flags that have them (`flagsWith`) | 67 KB, 21 KB gzipped |
 | `@johnmorrisdotca/hata/custom` | Flags the page registers (`custom:<slug>`) | 11 KB |
 | `@johnmorrisdotca/hata/element` | `<hata-flag>`: `defineFlag`, `FLAG_ELEMENT_NAME`, `FLAG_ELEMENT_ATTRIBUTES` | 8 KB, 2.8 KB gzipped, then /load and /names |
@@ -389,6 +390,7 @@ The [API reference](https://johnmorrisdotca.github.io/hata/api.html) lists every
 | `@johnmorrisdotca/hata/samurai` | `SAMURAI_IDS`, `isSamuraiId`, `samuraiId`, `samuraiFlag`, `samuraiName`, `samuraiAbout`, `samuraiAspect`, `samuraiInfo`, `samuraiIn`, types `SamuraiId`, `SamuraiInfo` |
 | `@johnmorrisdotca/hata/medieval` | `MEDIEVAL_IDS`, `isMedievalId`, `medievalId`, `medievalFlag`, `medievalName`, `medievalAbout`, `medievalAspect`, `medievalInfo`, `medievalIn`, types `MedievalId`, `MedievalInfo` |
 | `@johnmorrisdotca/hata/military` | `MILITARY_IDS`, `MILITARY_RESTRICTED_IDS`, `isMilitaryId`, `militaryId`, `militaryFlag`, `militaryName`, `militaryAbout`, `militaryAspect`, `militaryInfo`, `militaryIn`, types `MilitaryId`, `MilitaryInfo`, `MilitaryRestriction` |
+| `@johnmorrisdotca/hata/organisations` | `ORGANISATION_IDS`, `isOrganisationId`, `organisationId`, `organisationFlag`, `organisationName`, `organisationAspect`, `organisationSource`, `organisationTerms`, type `OrganisationId` |
 | `@johnmorrisdotca/hata/search` | `COLOUR_NAMES`, `coloursOf`, `FLAG_TAGS`, `TAG_SOURCES`, `tagsOf`, `flagsWith`, and their types |
 | `@johnmorrisdotca/hata/custom` | `registerFlags`, `removeFlags`, `enableFlags`, `customFlag`, `customName`, `customAspect`, `customId`, `isCustomId`, `listCustomFlags`, `customGroups`, `searchCustomFlags`, `customCreditLine`, `CUSTOM_GROUP`, `MAX_CUSTOM_FLAGS` |
 | `@johnmorrisdotca/hata/element` | `defineFlag`, `FLAG_ELEMENT_NAME`, `FLAG_ELEMENT_ATTRIBUTES`, and the types `HataFlagElement` and `FlagElementEventDetail` |

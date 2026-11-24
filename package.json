@@ -3865,6 +3865,7 @@
     "data": "node scripts/build-data.ts",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     "draw": "node scripts/draw-signals.ts",
     "draw:samurai": "node scripts/draw-samurai.ts",
 =======
@@ -3875,6 +3876,10 @@
     "draw:military": "node scripts/draw-military.ts",
     "data:military": "node scripts/fetch-military.ts",
 >>>>>>> origin/feat/1812-military-flags
+=======
+    "data:organisations": "node scripts/fetch-organisations.ts",
+    "draw:organisations": "node scripts/draw-organisations.ts",
+>>>>>>> origin/feat/1813-organisations-terms
     "data:wikidata": "node scripts/fetch-wikidata.ts",
     "data:commons": "node scripts/fetch-commons.ts",
     "site": "pnpm build && node scripts/site.mjs",

@@ -18,8 +18,8 @@
       "gzip": 9347
     },
     "./organisations": {
-      "minified": 2407,
-      "gzip": 1170
+      "minified": 56508,
+      "gzip": 21482
     },
     "./military": {
       "minified": 1490441,

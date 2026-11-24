@@ -28,7 +28,7 @@ type OrganisationId = (typeof ORGANISATIONS)[number]["id"];
  * ```ts
  * import { ORGANISATION_IDS } from "@johnmorrisdotca/hata/organisations";
  *
- * console.log(ORGANISATION_IDS); // ["org:eu"]
+ * console.log(ORGANISATION_IDS[0]); // "org:eu"
  * ```
  */
 const ORGANISATION_IDS: readonly OrganisationId[] = ORGANISATIONS.map((one) => one.id);
@@ -172,5 +172,28 @@ const organisationTerms = (id: string): { url: string; read: string; says: strin
   return found === undefined ? null : { ...found.terms };
 };
 
-export { isOrganisationId, ORGANISATION_IDS, organisationAspect, organisationFlag, organisationId, organisationName, organisationTerms };
+/**
+ * Where a drawing taken from Wikimedia Commons comes from: its file, its page, its licence as Commons states it (public domain or CC0, never
+ * share-alike) and its author as Commons gives it. The European Union's flag is drawn for this package, not a file, so it has none.
+ *
+ * @param id - An organisation's id, in any case, with or without `org:`.
+ * @returns `{ file, page, licence, author }`, or `null` for the European Union's drawing and for an id with no flag here.
+ * @throws TypeError when `id` is not a string.
+ *
+ * @example
+ * ```ts
+ * import { organisationSource } from "@johnmorrisdotca/hata/organisations";
+ *
+ * console.log(organisationSource("org:caricom")?.licence); // "Public domain"
+ * console.log(organisationSource("org:eu"));               // null
+ * ```
+ */
+const organisationSource = (id: string): { file: string; page: string; licence: string; author: string } | null => {
+  const known = organisationId(id);
+  const found = known === null ? undefined : BY_ID.get(known);
+
+  return found?.source === undefined ? null : { ...found.source };
+};
+
+export { isOrganisationId, ORGANISATION_IDS, organisationAspect, organisationFlag, organisationId, organisationName, organisationSource, organisationTerms };
 export type { OrganisationId };

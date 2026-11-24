@@ -7,7 +7,7 @@ import { describe, expect, it, vi } from "vitest";
 import { FLAG_ALIASES } from "./data/aliases.data";
 import { FLAG_CODES, flagCode, frame, isFlagCode, toDataUri } from "./index";
 import { ORGANISATIONS } from "./organisations.data";
-import { isOrganisationId, ORGANISATION_IDS, organisationAspect, organisationFlag, organisationId, organisationName, organisationTerms } from "./organisations";
+import { isOrganisationId, ORGANISATION_IDS, organisationAspect, organisationFlag, organisationId, organisationName, organisationSource, organisationTerms } from "./organisations";
 
 const slugOf = (id: string): string => id.slice(4);
 
@@ -53,11 +53,11 @@ describe("each organisation's record", () => {
       const svg: string = one.svg;
       const root = /^<svg\b[^>]*>/.exec(svg)?.[0] ?? "";
       expect(root, one.id).toContain('xmlns="http://www.w3.org/2000/svg"');
-      expect(root, one.id).toMatch(/viewBox="0 0 \d+ \d+"/);
+      expect(root, one.id).toMatch(/viewBox="-?[\d.]+ -?[\d.]+ [\d.]+ [\d.]+"/);
       expect(root, one.id).not.toMatch(/\s(width|height)=/);
       expect(svg, one.id).not.toMatch(/<script|<foreignObject|<image|javascript:|\son\w+=|xlink:href|href="(?!#)|url\((?!#)/i);
       for (const [, id] of svg.matchAll(/\sid="([^"]+)"/g)) expect(id, one.id).toMatch(new RegExp(`^org-${slug}-`));
-      expect(one.terms.url, one.id).toMatch(/^https:\/\//);
+      expect(one.terms.url, one.id).toMatch(/^https?:\/\//);
       expect(one.terms.read, one.id).toMatch(/^2026-\d\d-\d\d$/);
       expect(one.terms.says.length, one.id).toBeGreaterThan(40);
     }
@@ -70,6 +70,27 @@ describe("each organisation's record", () => {
       expect(notice, one.id).toContain(one.terms.url);
       expect(notice, one.id).toContain(one.terms.read);
     }
+  });
+});
+
+describe("the organisations taken from Commons", () => {
+  const FROM_COMMONS = ORGANISATIONS.filter((one) => "source" in one && one.source !== undefined);
+
+  it("are six, each public domain or CC0 with its file, page and author, and with what the body's own page said on the day it was read", () => {
+    expect(FROM_COMMONS.map((one) => one.id)).toEqual(["org:caricom", "org:arab-league", "org:cis", "org:commonwealth", "org:andean-community", "org:oic"]);
+    for (const one of FROM_COMMONS) {
+      expect(one.source?.licence, one.id).toMatch(/^(Public domain|CC0)/);
+      expect(one.source?.page, one.id).toMatch(/^https:\/\/commons\.wikimedia\.org\/wiki\/File:/);
+      expect(one.terms.read, one.id).toBe("2026-11-24");
+      expect(one.terms.says, one.id).toMatch(/No terms for the flag or emblem were found/);
+      expect(organisationSource(one.id)?.file, one.id).toBe(one.source?.file);
+    }
+    expect(organisationSource("org:eu")).toBeNull();
+    expect(organisationSource("org:xx")).toBeNull();
+  });
+
+  it("are not the bodies whose own terms or law restrict their flag or emblem, which stay out", () => {
+    for (const body of ["un", "nato", "au", "asean", "nordic-council", "red-cross", "red-crescent", "olympic", "ioc", "oas", "mercosur"]) expect(isOrganisationId(`org:${body}`), body).toBe(false);
   });
 });
 
