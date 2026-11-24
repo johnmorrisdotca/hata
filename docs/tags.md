@@ -17,9 +17,9 @@ can also take a wrong tag away. To review a flag, look at it, add a line for it 
 
 | Tag | When it applies | Flags | Reviewed | Computed | Wikidata | Unreviewed |
 | --- | --- | --- | --- | --- | --- | --- |
-| `plain` | Flat fields of colour with straight edges and nothing drawn on them: one colour, or bands across or down the whole flag. | 66 | 0 | 66 | 0 | 0 |
+| `plain` | Flat fields of colour with straight edges and nothing drawn on them: one colour, or bands across or down the whole flag. | 67 | 0 | 67 | 0 | 0 |
 | `stripes-horizontal` | Bands across the flag, one above another. | 172 | 0 | 55 | 30 | 87 |
-| `stripes-vertical` | Bands down the flag, side by side. | 59 | 0 | 11 | 7 | 41 |
+| `stripes-vertical` | Bands down the flag, side by side. | 60 | 0 | 12 | 7 | 41 |
 | `stripes-diagonal` | A band or a division from corner to corner. | 16 | 0 | 0 | 10 | 6 |
 | `cross` | A cross of any kind, upright or not; a Nordic cross and the crosses of a Union Flag count. | 65 | 0 | 0 | 43 | 22 |
 | `nordic-cross` | A cross whose upright is nearer the hoist, as on Denmark's flag. | 7 | 0 | 0 | 7 | 0 |
@@ -42,7 +42,7 @@ can also take a wrong tag away. To review a flag, look at it, add a line for it 
 
 ## Every flag
 
-58 of the 523 pictures have no tag yet.
+60 of the 526 pictures have no tag yet.
 
 | Code | Flag | Tags, each with its source and what it rests on |
 | --- | --- | --- |
@@ -500,7 +500,10 @@ can also take a wrong tag away. To review a flag, look at it, add a line for it 
 | `XKR` | Korean Empire |  |
 | `XOT` | Ottoman Empire |  |
 | `XPR` | Prussia | `plain` (computed: the whole flag is two bands across, with nothing on them); `stripes-horizontal` (computed: the whole flag is two bands across) |
+| `XPS` | Papal States | `plain` (computed: the whole flag is two bands down, with nothing on them); `stripes-vertical` (computed: the whole flag is two bands down) |
 | `XQI` | Qing Empire | `emblem` (unreviewed: 11 colours, as a seal or a coat of arms has) |
+| `XSD` | Kingdom of Sardinia |  |
+| `XSM` | Siam |  |
 | `XSV` | South Vietnam | `plain` (computed: the whole flag is seven bands across, with nothing on them); `stripes-horizontal` (computed: the whole flag is seven bands across) |
 | `XUA` | United Arab Republic | `stripes-horizontal` (unreviewed: the same three bands at the hoist and at the fly) |
 | `XZB` | Sultanate of Zanzibar |  |

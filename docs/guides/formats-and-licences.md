@@ -27,7 +27,7 @@ The largest flags carry a coat of arms or a seal drawn as their source draws it:
 
 ## Licences
 
-The code of the package is MIT. The flags are not the package's own work: each is a drawing on Wikimedia Commons under the licence Commons states for that file, and it travels with the flag. Read it in code with `manifest(code).licence`, or all of them in [docs/provenance.md](../provenance.md). Of the 507 primary drawings there:
+The code of the package is MIT. The flags are not the package's own work: each is a drawing on Wikimedia Commons under the licence Commons states for that file, and it travels with the flag. Read it in code with `manifest(code).licence`, or all of them in [docs/provenance.md](../provenance.md). Of the 510 primary drawings there:
 
 | Licence | Flags | What you must do |
 | --- | --- | --- |

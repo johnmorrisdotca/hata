@@ -1,7 +1,7 @@
 # The codes with no flag in this version, and why
 
 Made by `pnpm data`; a test fails if this list and the data differ. Every code Kuni knows (483: the
-250 countries and the first level of JP, CA, US, AU, GB, DE, FR, CH, AT, BR), and every former country or team of sport that Hata lists (58, the Olympic teams that marched under the Olympic flag among them), either has a flag or is here with its reason.
+250 countries and the first level of JP, CA, US, AU, GB, DE, FR, CH, AT, BR), and every former country or team of sport that Hata lists (63, the Olympic teams that marched under the Olympic flag among them), either has a flag or is here with its reason.
 The decisions behind the reasons are in [decisions.md](decisions.md).
 
 | Code | Place | Why | Commons file |
@@ -39,7 +39,9 @@ The decisions behind the reasons are in [decisions.md](decisions.md).
 | `SKIN` | Sikkim | The Kingdom's flags on Commons are reconstructions drawn by a contributor, and the last of them (1967 to 1975, the flag at the end of the Kingdom) is under CC BY-SA 2.5, which this package does not ship; the two earlier ones are public domain, but a Kingdom shown with the flag it had a decade before its end would misrepresent it, and no source for the dates of each was found. |  |
 | `TPTL` | East Timor | In the years of the code (1974 to 1993) East Timor was Portuguese Timor, then from 1976 a province of Indonesia: it flew Portugal's flag and then Indonesia's, and had none of its own that was in lasting use. Timor-Leste (`TL`) has its flag since independence. |  |
 | `XGC` | Gran Colombia | Every drawing of its flags on Commons is under CC BY-SA 3.0 or 4.0, which this package does not ship (docs/decisions.md). |  |
+| `XMK` | Manchukuo | Held for the maintainer's decision: Manchukuo was a state set up under Japanese control and its status is disputed; a public-domain drawing of its flag exists on Commons. |  |
 | `XTA` | Tanganyika | The flag of independent Tanganyika (1961 to 1964, green, black and gold) is on Commons under CC BY-SA 3.0, which this package does not ship (docs/decisions.md). |  |
+| `XTB` | Tibet (1912 to 1950) | Held for the maintainer's decision: Tibet's status in 1912 to 1950 and today is disputed, and the flag's use is politically contested. A public-domain drawing exists on Commons. |  |
 
 ## Left out for their licence, for the maintainer to decide
 
