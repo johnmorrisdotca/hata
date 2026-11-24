@@ -6,6 +6,10 @@ All notable changes to this project are written here. The format follows
 
 ## [Unreleased]
 
+### Added
+
+- **Military flags: naval ensigns and jacks** (MODULES-1812). A new entry point, `@johnmorrisdotca/hata/military`, with an id namespace of its own, `mil:`: five flags (Japan's Maritime Self-Defense Force ensign and the Imperial Japanese Navy's, the United Kingdom's White Ensign and Union Jack as naval jack, the United States' Navy jack), drawn for this package as geometry under the MIT licence, each with its dates, its source and a status saying whether its construction is the source's (`documented`) or this package's (`reconstruction`). Japan's Rising Sun Flag is in this set only, as an ensign among the other countries' military flags, and in no country's record. `militaryFlag`, `militaryName`, `militaryAbout`, `militaryAspect`, `militaryInfo`, `militaryId`, `isMilitaryId`, `militaryIn` and `MILITARY_IDS`; `pnpm draw:military` makes the data. A page of them in the demo (`military.html`, kinds as chips) and a guide in English and Japanese, which also lists what is left out.
+
 ## [1.15.0] - 2026-11-23
 
 ### Added

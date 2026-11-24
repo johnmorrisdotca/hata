@@ -30,6 +30,10 @@
       "en": "Flags of international organisations",
       "ja": "国際機関の旗"
     },
+    "./military": {
+      "en": "Military flags (naval ensigns and jacks)",
+      "ja": "軍の旗（軍艦旗と艦首旗）"
+    },
     "./search": {
       "en": "Flags by their colours",
       "ja": "色で旗を探す"

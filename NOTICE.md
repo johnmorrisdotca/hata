@@ -116,6 +116,21 @@ Left out, read on 2026-11-13, for the owner to decide again if a body's terms ch
 | Commonwealth | The Secretariat's page covers its logo, to be used exactly as supplied; it says nothing of the flag, and its terms page is about procurement. | https://thecommonwealth.org/commonwealth-secretariat-logo-kit-and-guidelines |
 | CARICOM, Pacific Islands Forum, Organisation of Islamic Cooperation, League of Arab States, Commonwealth of Independent States | No terms for the flag or emblem were found on the body's own pages (the League's portal carries an all-rights-reserved notice); there is no sentence to record. | https://caricom.org/ , https://forumsec.org/ , https://www.oic-oci.org/ , http://www.lasportal.org/en/Pages/default.aspx , https://eccis.org/en/about-cis |
 
+## Military flags
+
+The military flags are a separate entry point (`@johnmorrisdotca/hata/military`, ids `mil:<slug>`), and none of them is a Commons file: each is drawn for this
+package, under the MIT licence, as geometry written out in `scripts/draw-military.ts`, from the sources named, and nothing is copied from a picture. The Rising
+Sun Flag of Japan is in this set only, as the ensign of the Japan Maritime Self-Defense Force and as the war ensign of the Imperial Japanese Navy, and is in no
+country's record. Read on 2026-11-24:
+
+| Ids | What | Source | What it says |
+| --- | --- | --- | --- |
+| `mil:jp-jmsdf-ensign`, `mil:jp-ijn-ensign` | Japan: the Maritime Self-Defense Force's ensign and the Imperial Japanese Navy's | 自衛艦旗, Japanese Wikipedia, https://ja.wikipedia.org/wiki/自衛艦旗 | The ratio 2 to 3, the sun's diameter half the hoist, its centre a sixth of the length from the middle toward the hoist, rays of 11.25 degrees, set by Cabinet Order No. 179 of 1954; the navy's ensign fixed by the navy's flag regulations of 7 October 1889. |
+| `mil:jp-jmsdf-ensign`, `mil:jp-ijn-ensign` | The dates and the red | Rising Sun Flag, Wikipedia, https://en.wikipedia.org/wiki/Rising_Sun_Flag | The Self-Defense Force ensign readopted on 30 June 1954 (red #bd0029); the navy's ensign adopted on 7 October 1889. |
+| `mil:gb-white-ensign` | United Kingdom: the White Ensign | White Ensign, Wikipedia, https://en.wikipedia.org/wiki/White_Ensign | The Admiralty reserved it to the Royal Navy in 1864; the ratio is 1 to 2; the Union Flag is in the canton since 1801. |
+| `mil:gb-naval-jack` | United Kingdom: the Union Jack as naval jack | Union Jack, Wikipedia, https://en.wikipedia.org/wiki/Union_Jack | The Union Flag flown at the bow as the jack is the Royal Navy's naval jack. |
+| `mil:us-navy-jack` | United States: the Navy jack | Executive Order 10834 (1959), Wikisource, https://en.wikisource.org/wiki/Executive_Order_10834 | Fixes the union of the 50-star flag (0.76 by 0.5385 of the hoist) and its stars; the jack is that union, current from 4 July 1960. |
+
 ## Not carried
 
 Nothing from other flag sets (flag-icons, country-flag-icons, circle-flags): they were measured for comparison

@@ -1,7 +1,7 @@
 // Builds the static demo for GitHub Pages into ./site: the page, written here from the family's shared header and
 // footer, with the family's stylesheet, Hata's own, the page's script, its words, the names of the places (from
 // Kuni, at build time, so the page needs no network and no Kuni of its own) and the built package beside it.
-import { cpSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { cpSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 
 import { pageCreditsHtml, pageHeaderHtml, pageTitle } from "@johnmorrisdotca/kazoku-ui/page-frame";
 import { build } from "esbuild";
@@ -314,3 +314,23 @@ const codesWords = {
   "unreviewed": familyUnreviewed({ id }), "footer": familyFooter({ id }), "script": `<script>${FAMILY_SCRIPT}</script>\n    <script type="module" src="kazoku-parts.js"></script>`,
 };
 writeFileSync("site/codes.html", framed(readFileSync("demo/codes.html", "utf8").replace(/<!-- ?family:([A-Za-z]+) ?-->/g, (_match, key) => codesWords[key]), "codes.html"));
+
+// The pages of the sets drawn for this package (demo/sets/<name>.json: the ship signal flags, the samurai banners ...), each one demo/set.html
+// with its set's records (src/sets/<name>.data.ts) written beside it as <name>-data.js (e2e/sets.demo.mjs holds each page to them).
+rmSync("site/sets", { recursive: true, force: true });
+rmSync("site/set.html", { force: true });
+for (const file of readdirSync("demo/sets").filter((one) => one.endsWith(".json")).sort()) {
+  const config = JSON.parse(readFileSync(`demo/sets/${file}`, "utf8"));
+  const records = Object.values(await import(new URL(`../src/sets/${config.name}.data.ts`, import.meta.url).href))[0];
+  const page = `${config.name}.html`;
+  writeFileSync(`site/${config.name}-data.js`, `// Made by scripts/site.mjs from src/sets/${config.name}.data.ts: the set's config and every record.\nexport const CONFIG = ${JSON.stringify({ groups: config.groups, intro: config.intro, spell: config.spell })};\nexport const ITEMS = ${JSON.stringify(records)};\n`);
+  FRAME_TEXTS[page] = { en: { name: "Hata 旗", what: config.what.en, description: config.description.en }, ja: { name: "旗 Hata", what: config.what.ja, description: config.description.ja } };
+  const parts = {
+    head: `${familyHead({ id, title: pageTitle(FRAME_TEXTS[page].en), description: config.description.en })}\n    <meta name="hata-set" content="${config.name}" />`,
+    setHeader: familyHeader({ id, links: [{ href: "./", say: "toGallery" }, { href: "docs/index.html", say: "pageDocs" }, { href: "api.html", say: "pageApi" }] }),
+    unreviewed: familyUnreviewed({ id }),
+    footer: familyFooter({ id }),
+    script: `<script>${FAMILY_SCRIPT}</script>\n    <script type="module" src="kazoku-parts.js"></script>`,
+  };
+  writeFileSync(`site/${page}`, framed(readFileSync("demo/set.html", "utf8").replace(/<!-- ?family:([A-Za-z]+) ?-->/g, (_match, key) => parts[key]), page));
+}

@@ -73,6 +73,7 @@ import { manifest, MANIFEST, LEFT_OUT } from "${pkg.name}/manifest";
 import json from "${pkg.name}/manifest.json" with { type: "json" };
 import { flagName, flagAspect } from "${pkg.name}/names";
 import { organisationFlag, organisationName, ORGANISATION_IDS } from "${pkg.name}/organisations";
+import { militaryFlag, militaryName, MILITARY_IDS } from "${pkg.name}/military";
 import { customFlag, registerFlags } from "${pkg.name}/custom";
 import { defineFlag, FLAG_ELEMENT_NAME } from "${pkg.name}/element";
 import { resolveFlag } from "${pkg.name}/bind";
@@ -86,6 +87,7 @@ if ((await flag("JP-13")) !== tokyo || (await flag("XX")) !== null) throw new Er
 if (!frame(japan, { shape: "round" }).includes("clipPath") || !toDataUri(japan).startsWith("data:image/svg+xml,")) throw new Error("the helpers answered wrongly");
 if (flagName("JP-13", "ja") !== "東京都" || flagAspect("CA") !== 2) throw new Error("/names answered wrongly");
 if (ORGANISATION_IDS[0] !== "org:eu" || !organisationFlag("org:eu").startsWith("<svg") || organisationName("org:eu", "ja") !== "欧州連合") throw new Error("/organisations answered wrongly");
+if (MILITARY_IDS.length !== 5 || !militaryFlag("mil:us-navy-jack").startsWith("<svg") || militaryName("mil:us-navy-jack", "ja") !== "アメリカ：海軍の艦首旗") throw new Error("/military answered wrongly");
 if (customFlag("custom:none") !== null || typeof registerFlags !== "function") throw new Error("/custom answered wrongly");
 if (FLAG_ELEMENT_NAME !== "hata-flag" || typeof defineFlag !== "function") throw new Error("/element is wrong");
 if ((await resolveFlag({ code: "JP" }))?.svg !== wanted || (await resolveFlag({ code: "XX" })) !== null) throw new Error("/bind answered wrongly");
@@ -95,7 +97,7 @@ const file = readFileSync(createRequire(import.meta.url).resolve("${pkg.name}/sv
 if (file !== wanted) throw new Error("svg/jp.svg is not the module's SVG");
 const required = createRequire(import.meta.url)("${pkg.name}/flags/jp");
 if (required.default !== wanted) throw new Error("require() of flags/jp gave " + typeof required.default);
-console.log("every entry, flags/jp, flags/ca.1x1, /load, /names, /organisations, /custom, /element, svg/jp.svg, manifest.json and require()");
+console.log("every entry, flags/jp, flags/ca.1x1, /load, /names, /organisations, /military, /custom, /element, svg/jp.svg, manifest.json and require()");
 `,
 );
 console.log(`ok   ${run(process.execPath, ["esm.mjs"], project).trim()}`);
@@ -110,6 +112,7 @@ import { manifest, type FlagRecord, type Framing } from "${pkg.name}/manifest";
 import { flagName } from "${pkg.name}/names";
 import { defineFlag, type HataFlagElement } from "${pkg.name}/element";
 import { organisationFlag, type OrganisationId } from "${pkg.name}/organisations";
+import { militaryFlag, type MilitaryId } from "${pkg.name}/military";
 import { registerFlags, type CustomFlagRecord } from "${pkg.name}/custom";
 import { resolveFlag, type FlagProps } from "${pkg.name}/bind";
 
@@ -125,13 +128,15 @@ const square: Framing | undefined = record?.framings["1:1"];
 const name: string | null = flagName("JP", "ja");
 const organisation: string | null = organisationFlag("org:eu");
 const eu: OrganisationId = "org:eu";
+const ensign: MilitaryId = "mil:gb-white-ensign";
+const white: string | null = militaryFlag(ensign);
 const mine: CustomFlagRecord = { id: "custom:mine", name: { en: "Mine" }, svg: "<svg/>" };
 const register = registerFlags;
 const define: (name?: string) => void = defineFlag;
 const props: FlagProps = { code: "JP", which: "in-use", date: "1962" };
 const bound: Promise<unknown> = resolveFlag(props);
 type Element = HataFlagElement;
-export { bound, code, define, eu, mine, register, first, framed, later, name, organisation, record, square, uri, url };
+export { bound, code, define, eu, white, mine, register, first, framed, later, name, organisation, record, square, uri, url };
 export type { Element };
 `,
 );
