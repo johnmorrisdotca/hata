@@ -17,13 +17,27 @@ interface DrawnSource {
   read: string;
   /** What the page says that this drawing relies on. */
   says: string;
+  /** For a drawing taken from Wikimedia Commons: its file name, its licence as Commons states it and its author as Commons gives it. */
+  file?: string;
+  licence?: string;
+  author?: string;
 }
 
 /** What is known of a drawing: `official` (the body's own specification), `documented` (a period or museum source shows it) or `reconstruction` (drawn from a description or a later picture). */
 type DrawnStatus = "official" | "documented" | "reconstruction";
 
+/** A drawing that is shipped for history and education and never given by default: why, and who it is for, in both languages. No law restricts it. */
+interface DrawnRestriction {
+  reason: string;
+  reasonJa: string;
+  allowedFor: string;
+  allowedForJa: string;
+}
+
 interface DrawnRecord {
   id: string;
+  /** Left out of every list and withheld from every call unless asked for by name with `allowRestricted: true`. */
+  restricted?: DrawnRestriction;
   /** A group of the set for a menu: "letter", "numeral" ... */
   group: string;
   name: { en: string; ja: string };
@@ -49,10 +63,14 @@ interface DrawnInfo {
   note: { en: string; ja: string };
   source: DrawnSource;
   aspect: number;
+  /** Why the drawing is withheld by default, or null. */
+  restricted: DrawnRestriction | null;
 }
 
-const drawnSet = <const Records extends readonly DrawnRecord[]>(prefix: string, records: Records) => {
-  const byId: ReadonlyMap<string, Records[number]> = new Map(records.map((one) => [one.id, one]));
+const drawnSet = <const Records extends readonly DrawnRecord[]>(prefix: string, all: Records) => {
+  // A restricted drawing is in no list and no group: only a call that names it, and asks, gives it.
+  const records = all.filter((one) => one.restricted === undefined) as unknown as Records;
+  const byId: ReadonlyMap<string, Records[number]> = new Map(all.map((one) => [one.id, one as Records[number]]));
   const idOf = (input: string): string | null => {
     const written = mustBeString(input, "id").trim().toLowerCase();
     const id = written.startsWith(`${prefix}:`) ? written : `${prefix}:${written}`;
@@ -63,12 +81,14 @@ const drawnSet = <const Records extends readonly DrawnRecord[]>(prefix: string, 
 
   return {
     ids: records.map((one) => one.id) as readonly Records[number]["id"][],
-    isId: (value: unknown): boolean => typeof value === "string" && byId.has(value),
+    isId: (value: unknown): boolean => typeof value === "string" && byId.has(value) && byId.get(value)?.restricted === undefined,
+    restrictedIds: all.filter((one) => one.restricted !== undefined).map((one) => one.id),
     idOf,
-    flag: (id: string): string | null => {
+    flag: (id: string, allowRestricted: boolean = false): string | null => {
       const known = idOf(id);
+      const found = known === null ? undefined : byId.get(known);
 
-      return known === null ? null : (byId.get(known)?.svg ?? null);
+      return found === undefined || (found.restricted !== undefined && !allowRestricted) ? null : found.svg;
     },
     name: (id: string, language: string): string | null => {
       const known = idOf(id);
@@ -103,6 +123,7 @@ const drawnSet = <const Records extends readonly DrawnRecord[]>(prefix: string, 
         note: { ...found.note },
         source: { ...found.source },
         aspect: aspectOf(found.svg) ?? 1,
+        restricted: found.restricted === undefined ? null : { ...found.restricted },
       };
     },
     inGroup: (group: string): readonly Records[number]["id"][] => records.filter((one) => one.group === group).map((one) => one.id),
@@ -110,4 +131,4 @@ const drawnSet = <const Records extends readonly DrawnRecord[]>(prefix: string, 
 };
 
 export { drawnSet };
-export type { DrawnInfo, DrawnRecord, DrawnSource, DrawnStatus };
+export type { DrawnInfo, DrawnRecord, DrawnRestriction, DrawnSource, DrawnStatus };

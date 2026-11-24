@@ -118,9 +118,12 @@ Left out, read on 2026-11-13, for the owner to decide again if a body's terms ch
 
 ## Medieval banners
 
-The medieval banners are a separate entry point (`@johnmorrisdotca/hata/medieval`, ids `med:<slug>`), and none of them is a Commons file: each is drawn for this
-package, under the MIT licence, as geometry written out in `scripts/draw-medieval.ts`, from the page that dates it, and nothing is copied from a picture. No banner of
-the time survives for any of them, so every drawing is a reconstruction, and its record says what the source documents and what is this package's. Read on 2026-11-24:
+The medieval banners are a separate entry point (`@johnmorrisdotca/hata/medieval`, ids `med:<slug>`). Six are drawn for this package, under the MIT licence, as geometry
+written out in `scripts/draw-medieval.ts`, from the page that dates each, and nothing is copied from a picture. The others are Wikimedia Commons files, taken as the
+country flags are: each file's licence is read from Commons and only public domain and CC0 are shipped (never CC BY-SA), the file is optimised and its page, licence and author
+are kept (`data-sources/medieval-commons-2026-11-24.json`, made by `pnpm data:medieval`). No banner of the time survives, so every drawing is a reconstruction. Read on 2026-11-24.
+
+The six drawn here:
 
 | Id | What | Source | What it says |
 | --- | --- | --- | --- |
@@ -130,6 +133,55 @@ the time survives for any of them, so every drawing is a reconstruction, and its
 | `med:aragon-pallets` | The arms of Aragon | Flag of Aragon, Wikipedia, https://en.wikipedia.org/wiki/Flag_of_Aragon | The earliest undisputed material evidence is the seal of Alfonso II of 1159; the blazon is Or, four bars Gules. |
 | `med:scotland-saltire` | The saltire of Scotland | Flag of Scotland, Wikipedia, https://en.wikipedia.org/wiki/Flag_of_Scotland | The white saltire on blue is recorded as a naval flag for 1507 (the carrack Great Michael) and shown in Lindsay's armorial in 1542. |
 | `med:hospitaller-cross` | The Hospitallers' white cross on red | Knights Hospitaller, Wikipedia, https://en.wikipedia.org/wiki/Knights_Hospitaller | A plain silver cross in a field of red given to the order by Pope Innocent II (1130); a red surcoat with a white cross approved in 1248. |
+
+The Commons files:
+
+<!-- medieval-files:start -->
+| Id | Commons file | Licence | Author as Commons gives it | Page |
+| --- | --- | --- | --- | --- |
+| `med:fr-blue-banner` | Banner of France (10th century-12th century).svg | Public domain | Dekodrak | https://commons.wikimedia.org/wiki/File:Banner_of_France_(10th_century-12th_century).svg |
+| `med:fr-valois-lis` | Flag of medieval France.svg | Public domain | No machine-readable author provided. ZooFari assumed (based on copyright claims). | https://commons.wikimedia.org/wiki/File:Flag_of_medieval_France.svg |
+| `med:fr-navarre-1284` | Flag of France and Navarre (1284 -1328).svg | CC0 | Johannes der junge | https://commons.wikimedia.org/wiki/File:Flag_of_France_and_Navarre_(1284_-1328).svg |
+| `med:gb-royal-banner` | Royal Banner of England.svg | Public domain | Flag of the Duchy of Lancaster.svg: Yaddah / derivative work: Brunanburh | https://commons.wikimedia.org/wiki/File:Royal_Banner_of_England.svg |
+| `med:hre-red-cross` | Flag of the Holy Roman Empire (1200-1350).svg | Public domain | User:Madden | https://commons.wikimedia.org/wiki/File:Flag_of_the_Holy_Roman_Empire_(1200-1350).svg |
+| `med:hre-war-flag` | War flag of the Holy Roman Empire (1200-1350).svg | Public domain | Sir Iain | https://commons.wikimedia.org/wiki/File:War_flag_of_the_Holy_Roman_Empire_(1200-1350).svg |
+| `med:genoa-cross` | Flag of Genoa.svg | Public domain | an author the file's page does not name | https://commons.wikimedia.org/wiki/File:Flag_of_Genoa.svg |
+| `med:teutonic-banner` | Flag of the Teutonic Order.svg | Public domain | SVG by the uploader | https://commons.wikimedia.org/wiki/File:Flag_of_the_Teutonic_Order.svg |
+| `med:teutonic-state` | Flag of the State of the Teutonic Order.svg | Public domain | Samhanin | https://commons.wikimedia.org/wiki/File:Flag_of_the_State_of_the_Teutonic_Order.svg |
+| `med:leon` | Flag of Leon.svg | CC0 | Cartagena1741 | https://commons.wikimedia.org/wiki/File:Flag_of_Leon.svg |
+| `med:navarre-chains` | Flag of Navarre (1212–1589).svg | CC0 | That Northern Irish Historian | https://commons.wikimedia.org/wiki/File:Flag_of_Navarre_(1212%E2%80%931589).svg |
+| `med:portugal-first` | First banner of Portugal.svg | CC0 | UVA Cads | https://commons.wikimedia.org/wiki/File:First_banner_of_Portugal.svg |
+| `med:hungary-arpad` | Flag of Hungary (11th-12th century).svg | Public domain | Thommy | https://commons.wikimedia.org/wiki/File:Flag_of_Hungary_(11th-12th_century).svg |
+| `med:hungary-1170` | Flag of Hungary (late 12th century).svg | Public domain | Thommy | https://commons.wikimedia.org/wiki/File:Flag_of_Hungary_(late_12th_century).svg |
+| `med:hungary-1467` | Flag of Hungary (15th century).svg | Public domain | Sir Iain | https://commons.wikimedia.org/wiki/File:Flag_of_Hungary_(15th_century).svg |
+| `med:poland-eagle` | Flag of the Kingdom of Poland.svg | Public domain | Alex Tora or Alex K in Ukranian and Japanese wiki | https://commons.wikimedia.org/wiki/File:Flag_of_the_Kingdom_of_Poland.svg |
+| `med:burgundy-saltire` | Flag of Cross of Burgundy.svg | Public domain | Ningyou. | https://commons.wikimedia.org/wiki/File:Flag_of_Cross_of_Burgundy.svg |
+| `med:palaiologos-1250` | Palaiologos Flag 1250.svg | Public domain | originaly uploaded by Dragases (talk), transfered to commons by Μυρμηγκάκι | https://commons.wikimedia.org/wiki/File:Palaiologos_Flag_1250.svg |
+| `med:byzantium-1375` | Byzantine imperial flag, 14th century, square.svg | Public domain | Dragases at English Wikipedia | https://commons.wikimedia.org/wiki/File:Byzantine_imperial_flag,_14th_century,_square.svg |
+| `med:papal-states` | Flag of the Papal States (pre 1808).svg | Public domain | User:Dinozzo2005 | https://commons.wikimedia.org/wiki/File:Flag_of_the_Papal_States_(pre_1808).svg |
+| `med:jerusalem-1162` | Flag of Kingdom of Jerusalem.svg | Public domain | Orange Tuesday at English Wikipedia | https://commons.wikimedia.org/wiki/File:Flag_of_Kingdom_of_Jerusalem.svg |
+| `med:florence-ghibelline` | Flag of Florence (until 1250).svg | CC0 | HapHaxion | https://commons.wikimedia.org/wiki/File:Flag_of_Florence_(until_1250).svg |
+| `med:pisa` | Flag of the Republic of Pisa.svg | Public domain | an author the file's page does not name | https://commons.wikimedia.org/wiki/File:Flag_of_the_Republic_of_Pisa.svg |
+| `med:milan-1450` | Flag of the Duchy of Milan (1450, 2-3 ratio).svg | Public domain | F l a n k e r | https://commons.wikimedia.org/wiki/File:Flag_of_the_Duchy_of_Milan_(1450,_2-3_ratio).svg |
+| `med:corsica-14c` | Flag of Corsica (14th century).svg | CC0 | Samhanin | https://commons.wikimedia.org/wiki/File:Flag_of_Corsica_(14th_century).svg |
+| `med:serbia-1339` | Flag of Serbia (1339).svg | CC0 | Samhanin | https://commons.wikimedia.org/wiki/File:Flag_of_Serbia_(1339).svg |
+| `med:serbian-church` | Serbian Church later Patriarchate flag 13th century.svg | CC0 | AnaliticStar | https://commons.wikimedia.org/wiki/File:Serbian_Church_later_Patriarchate_flag_13th_century.svg |
+| `med:almoravid` | Flag of Almoravid dynasty 1073 1147.svg | Public domain | Flad | https://commons.wikimedia.org/wiki/File:Flag_of_Almoravid_dynasty_1073_1147.svg |
+| `med:ayyubid` | Flag of Ayyubid Dynasty.svg | Public domain | Ch1902 | https://commons.wikimedia.org/wiki/File:Flag_of_Ayyubid_Dynasty.svg |
+| `med:saladin` | Flag of Saladin.svg | CC0 | Salah ad-Din Yusuf ibn Ayyub | https://commons.wikimedia.org/wiki/File:Flag_of_Saladin.svg |
+| `med:morocco-medieval` | Flag of Morocco (11th-13th Century) (Schwenkel).svg | CC0 | BlinxTheKitty | https://commons.wikimedia.org/wiki/File:Flag_of_Morocco_(11th-13th_Century)_(Schwenkel).svg |
+| `med:wales-dragon` | Golden Dragon War Flag of Wales (created 1400).svg | CC0 | Llywelyn2000 | https://commons.wikimedia.org/wiki/File:Golden_Dragon_War_Flag_of_Wales_(created_1400).svg |
+| `med:rostock-14c` | Flag of Rostock (Hanging flag, 14th century).svg | Public domain | Unknown | https://commons.wikimedia.org/wiki/File:Flag_of_Rostock_(Hanging_flag,_14th_century).svg |
+| `med:swiss-cross` | Early Swiss cross.svg | Public domain | Dbachmann | https://commons.wikimedia.org/wiki/File:Early_Swiss_cross.svg |
+| `med:unterwalden-1309` | Old flag of Unterwalden.svg | Public domain | Original: Unknown author Vector: Dbachmann | https://commons.wikimedia.org/wiki/File:Old_flag_of_Unterwalden.svg |
+| `med:ragusa-secondary` | Secondary flag of Republic of Ragusa.svg | Public domain | Facquis | https://commons.wikimedia.org/wiki/File:Secondary_flag_of_Republic_of_Ragusa.svg |
+
+Commons files left out of the medieval banners for their size or because they are not a plain vector (the size ceiling is 140 KB optimised):
+
+| Id | Commons file | Why |
+| --- | --- | --- |
+| `med:venice-lion` | Lion of St Mark.svg | 301 KB optimised, over the 140 KB ceiling |
+<!-- medieval-files:end -->
 
 ## Not carried
 

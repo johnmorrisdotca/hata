@@ -7,11 +7,15 @@
 // source gives the design, never the proportions, so every drawing is a `reconstruction` and its `note` says what the source documents and
 // what is this package's (the proportions, the shades, the shape of the cloth, which is a rectangle here). Nothing was copied from a picture.
 // A banner whose source could not be found on a page that dates it (the Teutonic Order's white banner with a black cross) is left out.
-import { writeFileSync } from "node:fs";
+import { readFileSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 
 import type { DrawnRecord } from "../src/drawn.ts";
 import { box, clipTo, poly, svg } from "./draw-lib.ts";
+import { classify } from "./licence.ts";
+import { MEDIEVAL_FILES } from "./medieval-files.ts";
+import { optimiseFlag } from "./optimise.ts";
+import { readManifest, readSource, ROOT } from "./sources.ts";
 import type { Shape } from "./draw-lib.ts";
 
 const RED = "#c8102e";
@@ -98,7 +102,64 @@ const ENTRIES: Entry[] = [
   },
 ];
 
-const medievalRecords = (): DrawnRecord[] =>
+// The banners taken from Wikimedia Commons (scripts/medieval-files.ts, fetched by scripts/fetch-medieval.ts): each file's licence is read from the
+// snapshot and only public domain and CC0 ship; the file is optimised as a country's flag is. A file over the size ceiling, or not a plain vector, is left out and listed.
+const CEILING_BYTES = 140 * 1024;
+const TODAY = "2026-11-24";
+interface Taken { id: string; file: string; page: string; licence: string; author: string }
+let memo: ReturnType<typeof commonsOnce> | undefined;
+const commons = (): ReturnType<typeof commonsOnce> => (memo ??= commonsOnce());
+const commonsOnce = (): { records: DrawnRecord[]; left: { slug: string; file: string; why: string }[]; taken: Taken[] } => {
+  const manifest = readManifest();
+  const entry = manifest.files.find((one) => /^medieval-commons-\d{4}-\d{2}-\d{2}\.json$/.test(one.path));
+  if (entry === undefined) throw new Error("no medieval Commons snapshot in data-sources/sources.json: run pnpm data:medieval");
+  const snapshot = JSON.parse(readSource(manifest, entry.path).text) as { files: { file: string; page: string; stored: string; metadata: Record<string, string>; templates: string[] }[] };
+  const records: DrawnRecord[] = [];
+  const left: { slug: string; file: string; why: string }[] = [];
+  const taken: Taken[] = [];
+  for (const one of MEDIEVAL_FILES) {
+    const found = snapshot.files.find((file) => file.file === one.file);
+    if (found === undefined) throw new Error(`${one.file} is not in the medieval snapshot: run pnpm data:medieval`);
+    const licence = classify(found.metadata, found.templates);
+    if (!licence.shipped || (licence.kind !== "public-domain" && licence.kind !== "cc0")) {
+      left.push({ slug: one.slug, file: one.file, why: `licence ${licence.name}` });
+      continue;
+    }
+    const optimised = optimiseFlag(readFileSync(`${ROOT}/data-sources/${found.stored}`, "utf8"), `med-${one.slug}`);
+    const drawing = optimised.svg.replace(/hata-med-/g, "med-").replace(/^<svg /, `<svg data-hata-med="${one.slug}" `);
+    if (/<image\b|<style\b|base64/i.test(drawing)) {
+      left.push({ slug: one.slug, file: one.file, why: "not a plain vector (an embedded raster picture or a style element)" });
+      continue;
+    }
+    if (drawing.length > CEILING_BYTES) {
+      left.push({ slug: one.slug, file: one.file, why: `${Math.round(drawing.length / 1024)} KB optimised, over the ${CEILING_BYTES / 1024} KB ceiling` });
+      continue;
+    }
+    const artist = (found.metadata.Artist ?? "").trim();
+    const author = artist === "" || /^See File history/i.test(artist) ? "an author the file's page does not name" : artist;
+    const { from, until } = one.dates;
+    records.push({
+      id: `med:${one.slug}`,
+      group: one.group,
+      name: one.name,
+      about: { en: `${one.name.en}. ${one.says}`, ja: `${one.name.ja}。Wikimedia Commonsのファイルのページには、次のように書かれています：${one.says}` },
+      status: "reconstruction",
+      dates: from === null && until === null ? null : { from, until },
+      note: {
+        en: `A modern drawing on Wikimedia Commons (${licence.name}, by ${author}) of a banner known from the sources its page names, optimised as a country's flag is. The drawing, its proportions and its shades are the drawer's, not the banner's, so it is a reconstruction. ${from === null && until === null ? `The file's page gives no dates (read on ${TODAY}).` : "The dates are the ones the file's title or description gives."}`,
+        ja: `Wikimedia Commons（${licence.name}、作者：${author}）にある、そのページが挙げる出典から知られる旗の現代の絵を、国の旗と同じく最適化したものです。絵、縦横の比、色合いは描いた人のもので、旗そのものではないため、復元です。${from === null && until === null ? `ファイルのページに期間は書かれていません（${TODAY}に確認）。` : "期間は、ファイルの名前か説明が示すものです。"}`,
+      },
+      source: { title: `${one.file} (Wikimedia Commons)`, url: found.page, kind: "reference", read: TODAY, says: `A file on Wikimedia Commons under ${licence.name}, by ${author}. Its page says: ${one.says}`, file: one.file, licence: licence.name, author },
+      svg: drawing,
+    });
+    taken.push({ id: `med:${one.slug}`, file: one.file, page: found.page, licence: licence.name, author });
+  }
+
+  return { records, left, taken };
+};
+
+const medievalRecords = (): DrawnRecord[] => [...drawnRecords(), ...commons().records];
+const drawnRecords = (): DrawnRecord[] =>
   ENTRIES.map((entry) => ({
     id: `med:${entry.slug}`,
     group: entry.slug === "templar-baucent" || entry.slug === "hospitaller-cross" ? "order" : entry.slug === "red-cross" || entry.slug === "scotland-saltire" ? "cross" : "kingdom",
@@ -112,14 +173,27 @@ const medievalRecords = (): DrawnRecord[] =>
   }));
 
 const text = (): string => {
-  const body = medievalRecords().map((record) => `  ${JSON.stringify(record)},`).join("\n");
+  const all = medievalRecords();
+  const ids = all.map((record) => JSON.stringify(record.id)).join(" | ");
 
-  return `// Made by scripts/draw-medieval.ts (pnpm draw:medieval): do not edit by hand. A small curated set of medieval banners, drawn for this package under the MIT licence from the dated sources named in each record, every one a reconstruction.\nimport type { DrawnRecord } from "../drawn";\n\nconst MEDIEVAL = [\n${body}\n] as const satisfies readonly DrawnRecord[];\n\nexport { MEDIEVAL };\n`;
+  return `// Made by scripts/draw-medieval.ts (pnpm draw:medieval): do not edit by hand. Medieval banners: six drawn for this package under the MIT licence from the dated sources named in each record, and the rest Wikimedia Commons files (public domain and CC0 only), optimised, each with its author and page. Every one is a reconstruction.\nimport type { DrawnRecord } from "../drawn";\n\ntype MedievalRecordId = ${ids};\n\nconst MEDIEVAL: readonly (DrawnRecord & { id: MedievalRecordId })[] = [\n${all.map((record) => `  ${JSON.stringify(record)},`).join("\n")}\n];\n\nexport { MEDIEVAL };\nexport type { MedievalRecordId };\n`;
 };
 
+// The table of Commons files in NOTICE.md, between its markers.
+const noticeBlock = (): string => {
+  const { taken, left } = commons();
+  const rows = taken.map((one) => `| \`${one.id}\` | ${one.file} | ${one.licence} | ${one.author.replace(/\|/g, "/")} | ${one.page} |`).join("\n");
+  const out = left.length === 0 ? "| none | | |" : left.map((one) => `| \`med:${one.slug}\` | ${one.file} | ${one.why} |`).join("\n");
+
+  return `<!-- medieval-files:start -->\n| Id | Commons file | Licence | Author as Commons gives it | Page |\n| --- | --- | --- | --- | --- |\n${rows}\n\nCommons files left out of the medieval banners for their size or because they are not a plain vector (the size ceiling is ${CEILING_BYTES / 1024} KB optimised):\n\n| Id | Commons file | Why |\n| --- | --- | --- |\n${out}\n<!-- medieval-files:end -->`;
+};
+const noticeText = (current: string): string => current.replace(/<!-- medieval-files:start -->[\s\S]*?<!-- medieval-files:end -->/, noticeBlock());
+
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  const notice = fileURLToPath(new URL("../NOTICE.md", import.meta.url));
+  writeFileSync(notice, noticeText(readFileSync(notice, "utf8")));
   writeFileSync(fileURLToPath(new URL("../src/sets/medieval.data.ts", import.meta.url)), text());
   console.log(`wrote src/sets/medieval.data.ts: ${medievalRecords().length} drawings`);
 }
 
-export { medievalRecords, text as medievalDataText };
+export { commons as medievalCommons, medievalRecords, noticeText as medievalNoticeText, text as medievalDataText };

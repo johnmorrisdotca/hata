@@ -3849,6 +3849,7 @@
     "prepublishOnly": "pnpm check",
     "data": "node scripts/build-data.ts",
     "draw:medieval": "node scripts/draw-medieval.ts",
+    "data:medieval": "node scripts/fetch-medieval.ts",
     "data:wikidata": "node scripts/fetch-wikidata.ts",
     "data:commons": "node scripts/fetch-commons.ts",
     "site": "pnpm build && node scripts/site.mjs",

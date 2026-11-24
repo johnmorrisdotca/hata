@@ -4,23 +4,25 @@ import { fileURLToPath } from "node:url";
 
 import { describe, expect, it } from "vitest";
 
-import { medievalDataText, medievalRecords } from "../scripts/draw-medieval";
+import { medievalDataText, medievalNoticeText, medievalRecords } from "../scripts/draw-medieval";
 import { isMedievalId, MEDIEVAL_IDS, medievalAbout, medievalAspect, medievalFlag, medievalId, medievalIn, medievalInfo, medievalName } from "./medieval";
 
 describe("the banners", () => {
   it("are what scripts/draw-medieval.ts makes, so the data file cannot drift from the geometry", () => {
     expect(readFileSync(fileURLToPath(new URL("./sets/medieval.data.ts", import.meta.url)), "utf8")).toBe(medievalDataText());
     expect(medievalRecords().map((one) => one.id)).toEqual([...MEDIEVAL_IDS]);
-    expect(MEDIEVAL_IDS).toHaveLength(6);
+    expect(MEDIEVAL_IDS).toHaveLength(42);
+    const notice = readFileSync("NOTICE.md", "utf8");
+    expect(notice).toBe(medievalNoticeText(notice));
   });
 
-  it("are all reconstructions that say what the source documents, cite a page, and name no ticket or tool", () => {
+  it("are all reconstructions that say what the source documents and cite a page", () => {
     for (const id of MEDIEVAL_IDS) {
       const info = medievalInfo(id);
       expect(info?.status, id).toBe("reconstruction");
-      expect(info?.note.en, id).toMatch(/this package's/);
-      expect(info?.note.en, id).toMatch(/No banner of the time survives/);
-      expect(info?.source.url, id).toMatch(/^https:\/\/en\.wikipedia\.org\/wiki\//);
+      expect(info?.note.en, id).toMatch(/this package's|the drawer's/);
+      expect(info?.note.en, id).toMatch(/No banner of the time survives|reconstruction/);
+      expect(info?.source.url, id).toMatch(/^https:\/\/(en\.wikipedia\.org|commons\.wikimedia\.org)\/wiki\//);
       expect(info?.source.says.length, id).toBeGreaterThan(80);
     }
   });
@@ -33,9 +35,11 @@ describe("the banners", () => {
   });
 
   it("are grouped, drawn at their ratios, and read loosely, in both languages", () => {
-    expect(medievalIn("order")).toEqual(["med:templar-baucent", "med:hospitaller-cross"]);
-    expect(medievalIn("cross")).toEqual(["med:red-cross", "med:scotland-saltire"]);
-    expect(medievalIn("kingdom")).toEqual(["med:gelre-denmark", "med:aragon-pallets"]);
+    expect(medievalIn("order")).toEqual(expect.arrayContaining(["med:templar-baucent", "med:hospitaller-cross", "med:teutonic-banner"]));
+    expect(medievalIn("cross")).toEqual(expect.arrayContaining(["med:red-cross", "med:scotland-saltire", "med:swiss-cross"]));
+    expect(medievalIn("kingdom")).toEqual(expect.arrayContaining(["med:gelre-denmark", "med:aragon-pallets", "med:gb-royal-banner"]));
+    expect(medievalIn("empire")).toContain("med:hre-war-flag");
+    expect(medievalIn("city")).toContain("med:genoa-cross");
     expect(medievalIn("none")).toEqual([]);
     expect(medievalAspect("med:aragon-pallets")).toBe(1.5);
     expect(medievalAspect("med:red-cross")).toBeCloseTo(4 / 3, 5);
@@ -52,5 +56,16 @@ describe("the banners", () => {
     const aragon = medievalFlag("med:aragon-pallets") ?? "";
     expect((aragon.match(/h40v240/g) ?? []).length).toBe(4);
     expect(medievalFlag("med:gelre-denmark")).toContain("M120 0h60v300h-60z");
+  });
+
+  it("take Commons files through the licence check: public domain or CC0 only, with the author and the page kept", () => {
+    const files = medievalRecords().filter((one) => one.source.file !== undefined);
+    expect(files.length).toBeGreaterThanOrEqual(30);
+    for (const one of files) {
+      expect(one.source.licence, one.id).toMatch(/^(Public domain|CC0)/);
+      expect(one.source.url, one.id).toMatch(/^https:\/\/commons\.wikimedia\.org\/wiki\/File:/);
+      expect(one.status, one.id).toBe("reconstruction");
+    }
+    expect(medievalRecords().length).toBeGreaterThanOrEqual(25);
   });
 });

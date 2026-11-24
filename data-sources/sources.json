@@ -15,6 +15,13 @@
       "note": "Wikidata (CC0), what each flag's item depicts (P180) and of which named kinds those things are; Wikimedia Commons, the categories of each flag's file (facts about the files)"
     },
     {
+      "path": "medieval-commons-2026-11-24.json",
+      "url": "https://commons.wikimedia.org/w/api.php",
+      "read": "2026-11-24",
+      "sha256": "bf48b097f9a6226093b096e63d41258a93a5db5c52a0254f5050da602592f1c4",
+      "note": "Wikimedia Commons, the description, licence and author of every medieval flag file, and the SHA-256 of each file kept in medieval/ (each file under its own licence)"
+    },
+    {
       "path": "wikidata-2026-10-09.json",
       "url": "https://query.wikidata.org/sparql",
       "read": "2026-10-09",

@@ -7,6 +7,7 @@
 import { drawnSet } from "./drawn";
 import type { DrawnInfo } from "./drawn";
 import { MEDIEVAL } from "./sets/medieval.data";
+import type { MedievalRecordId } from "./sets/medieval.data";
 
 const set = drawnSet("med", MEDIEVAL);
 
@@ -22,7 +23,7 @@ const set = drawnSet("med", MEDIEVAL);
  * console.log(cross);
  * ```
  */
-type MedievalId = (typeof MEDIEVAL)[number]["id"];
+type MedievalId = MedievalRecordId;
 
 /**
  * What the package knows of one medieval banner: its id, group, both names, what it is, its status, the note on what the source documents and what
@@ -45,7 +46,7 @@ type MedievalInfo = DrawnInfo;
  * ```ts
  * import { MEDIEVAL_IDS } from "@johnmorrisdotca/hata/medieval";
  *
- * console.log(MEDIEVAL_IDS.length); // 6
+ * console.log(MEDIEVAL_IDS.length); // 42
  * ```
  */
 const MEDIEVAL_IDS: readonly MedievalId[] = set.ids;
@@ -154,7 +155,7 @@ const medievalAbout = (id: string, lang: string = "en"): string | null => set.ab
 const medievalAspect = (id: string): number | null => set.aspect(id);
 
 /**
- * Everything the package knows of a banner, a copy: its group (`order`, `cross` or `kingdom`), both names, what it is, its dates (where its
+ * Everything the package knows of a banner, a copy: its group (`order`, `cross`, `kingdom`, `empire` or `city`), both names, what it is, its dates (where its
  * source gives them), its status (`reconstruction` for every banner here), the note that says what the source documents and what is this
  * package's, and the page it was read from.
  *
@@ -172,9 +173,9 @@ const medievalAspect = (id: string): number | null => set.aspect(id);
 const medievalInfo = (id: string): MedievalInfo | null => set.info(id);
 
 /**
- * The ids of one kind of banner: `order` (a military order's), `cross` (a cross on a field) or `kingdom` (a kingdom's).
+ * The ids of one kind of banner: `order` (a military or religious order's), `cross` (a cross on a field), `kingdom` (a kingdom's), `empire` (an empire's or a dynasty's) or `city` (a city's or a republic's).
  *
- * @param group - `"order"`, `"cross"` or `"kingdom"`.
+ * @param group - `"order"`, `"cross"`, `"kingdom"`, `"empire"` or `"city"`.
  * @returns The ids in the order of the table; an empty list for any other word.
  *
  * @example

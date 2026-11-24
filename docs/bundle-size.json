@@ -22,8 +22,8 @@
       "gzip": 1170
     },
     "./medieval": {
-      "minified": 18072,
-      "gzip": 5122
+      "minified": 507683,
+      "gzip": 165024
     },
     "./search": {
       "minified": 69111,

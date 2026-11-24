@@ -195,7 +195,7 @@ The alias changes only the import name in your project.
 | `@johnmorrisdotca/hata/load` | `flag(code, { shape, fit, variant, date, role })`, one dynamic import per flag | 26 KB, 5.7 KB gzipped, then the flag's own file (and a 3.6 KB gzipped table when a frame is asked for, and a 0.5 KB one when a variant is) |
 | `@johnmorrisdotca/hata/names` | `flagName(code, lang)` and `flagAspect(code)`: each flag's place in English and Japanese, from Kuni | 24 KB, 8.7 KB gzipped |
 | `@johnmorrisdotca/hata/organisations` | Organisations' flags, by `org:` id | 1.2 KB gzipped |
-| `@johnmorrisdotca/hata/medieval` | Six medieval banners (the Templars', the red cross, Denmark's in the Gelre Armorial, Aragon, Scotland, the Hospitallers'), by `med:` id, each citing its dated source | 18 KB, 5.0 KB gzipped |
+| `@johnmorrisdotca/hata/medieval` | 42 medieval banners (six drawn for this package, 36 Wikimedia Commons drawings in the public domain or CC0), by `med:` id, each with its dates, source, file and licence | 496 KB, 161 KB gzipped |
 | `@johnmorrisdotca/hata/search` | Each flag's colours (`coloursOf`) and tags (`tagsOf`), and the flags that have them (`flagsWith`) | 67 KB, 21 KB gzipped |
 | `@johnmorrisdotca/hata/custom` | Flags the page registers (`custom:<slug>`) | 11 KB |
 | `@johnmorrisdotca/hata/element` | `<hata-flag>`: `defineFlag`, `FLAG_ELEMENT_NAME`, `FLAG_ELEMENT_ATTRIBUTES` | 8 KB, 2.8 KB gzipped, then /load and /names |
