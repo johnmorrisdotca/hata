@@ -6,6 +6,10 @@ All notable changes to this project are written here. The format follows
 
 ## [Unreleased]
 
+### Changed
+
+- **The terms of the organisations left out were read again** (MODULES-1813). On 2026-11-24 the page of each body listed in `NOTICE.md` as left out was read again, and what it said that day is recorded beside the earlier reading. None of the terms lets an MIT package pass on a drawing made from the description of the flag or emblem, so no organisation is added and the European Union is still the only one in. Three pages could not be read (the ICRC's database page returned no text, ASEAN's answered with a browser check, the Nordic Council's with 403) and the earlier readings stand; none was worked around.
+
 ## [1.15.0] - 2026-11-23
 
 ### Added
