@@ -30,6 +30,10 @@
       "en": "Flags of international organisations",
       "ja": "国際機関の旗"
     },
+    "./signals": {
+      "en": "Ship signal flags (International Code of Signals)",
+      "ja": "船の信号旗（国際信号書）"
+    },
     "./search": {
       "en": "Flags by their colours",
       "ja": "色で旗を探す"

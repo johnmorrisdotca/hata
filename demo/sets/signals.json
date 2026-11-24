@@ -1,0 +1,19 @@
+{
+  "name": "signals",
+  "what": { "en": "ship signal flags", "ja": "船の信号旗" },
+  "description": {
+    "en": "The International Code of Signals' flags: the 26 alphabet flags, the 10 numeral pennants, the 3 substitutes and the answering pennant, drawn for this package, each with its meaning in English and Japanese.",
+    "ja": "国際信号書の旗（26の文字旗、10の数字旗、3つの代表旗、応答旗）を、このパッケージのために描いたものです。英語と日本語の意味つきです。"
+  },
+  "intro": {
+    "en": "Choose a kind, then a flag, to read what it means. Each is drawn for this package from the Code's own plate, with the proportions measured from it.",
+    "ja": "種類を選び、旗を選ぶと、その意味が読めます。どれも国際信号書の図版から、このパッケージのために描き、縦横の比は図版から測ったものです。"
+  },
+  "groups": {
+    "letter": { "en": "Letters", "ja": "文字旗" },
+    "numeral": { "en": "Numerals", "ja": "数字旗" },
+    "substitute": { "en": "Substitutes", "ja": "代表旗" },
+    "answer": { "en": "Answering pennant", "ja": "応答旗" }
+  },
+  "spell": { "en": "Spell a word", "ja": "文字を綴る" }
+}

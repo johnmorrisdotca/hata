@@ -179,6 +179,9 @@ await step("organisations", () => {
 await step("former countries", () => {
   const out = execFileSync(process.execPath, [join(examples("former"), "former.mjs")], { cwd: usage, encoding: "utf8" }).trim().split("\n");
   if (out.join("|") !== "1844 1299|BJ true|civil-ensign other-role|The Kingdom's flags on Commons") throw new Error(`unexpected output: ${out.join(" | ")}`);
+await step("signals", () => {
+  const out = execFileSync(process.execPath, [join(examples("signals"), "signals.mjs")], { cwd: usage, encoding: "utf8" }).trim().split("\n");
+  if (out.join("|") !== "ics:s ics:o ics:s ics:7 true|Man overboard. 人が海に落ちました。") throw new Error(`unexpected output: ${out.join(" | ")}`);
 });
 
 await step("historic", () => {
@@ -444,6 +447,7 @@ const FILES: Record<string, string[]> = {
   "typescript/index.ts": guide("typescript-and-node"),
   "node/server.mjs": guide("typescript-and-node"),
   "organisations/organisations.mjs": guide("organisations"),
+  "signals/signals.mjs": guide("ship-signal-flags"),
   "custom/custom.mjs": guide("custom-flags"),
   "former/former.mjs": guide("former-countries"),
   "historic/historic.mjs": guide("historic-flags"),
