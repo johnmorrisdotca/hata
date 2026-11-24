@@ -13,7 +13,7 @@ The sets: [flag-icons](https://github.com/lipis/flag-icons), [country-flag-icons
 
 | Set | What its README says it contains | Shapes |
 | --- | --- | --- |
-| hata | 510 flags: 246 of the 250 countries, the first-level regions of ten countries, 43 former countries and the dated earlier flags of some present-day ones | each flag at its own proportions, and 4:3, square and round frames that never stretch it |
+| hata | 512 flags: 246 of the 250 countries, the first-level regions of ten countries, 45 former countries and the dated earlier flags of some present-day ones | each flag at its own proportions, and 4:3, square and round frames that never stretch it |
 | flag-icons | "A curated collection of all country flags in SVG, plus the CSS" | 4:3, and a squared version (`fis`) |
 | country-flag-icons | every ISO 3166-1 country, plus `EU`, `IC`, `AC`, `TA`, `XK`, `XA`, `XO`, `XC`, `BQ-BO`, `BQ-SA`, `BQ-SE`, `GB-ENG`, `GB-NIR`, `GB-SCT`, `GB-WLS` and `ES-CT` | 3:2 |
 | circle-flags | "A collection of circular SVG country flags"; the README also names regional files such as `es-ib` (the Balearic Islands) and `aq-true_south` | round |

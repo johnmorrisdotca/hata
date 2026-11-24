@@ -135,8 +135,8 @@ test("fits a phone without sideways scrolling, and the docs and gallery link to 
 test("shows the legal flag and the flag in use side by side wherever they differ, each with its reason and source", async ({ page }) => {
   await open(page, "?lang=en");
   const noted = MANIFEST.filter((record) => record.variants.some((variant) => variant.roleNote !== null)).map((record) => record.code);
-  expect(noted.sort()).toEqual(["AU", "CA", "NZ", "UA", "XAH", "XHW", "XQI"]);
-  await expect(page.locator(at("historic-split"))).toHaveCount(7);
+  expect(noted.sort()).toEqual(["AU", "CA", "NZ", "UA", "XAH", "XHW", "XQI", "XTB"]);
+  await expect(page.locator(at("historic-split"))).toHaveCount(8);
   for (const code of noted) {
     const block = page.locator(`${at("historic-split")}[data-code="${code}"]`);
     await expect(block, code).toHaveCount(1);
