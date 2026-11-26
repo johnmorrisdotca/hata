@@ -22,8 +22,8 @@
       "gzip": 21730
     },
     "./signals": {
-      "minified": 124727,
-      "gzip": 12449
+      "minified": 132024,
+      "gzip": 13554
     },
     "./samurai": {
       "minified": 25426,

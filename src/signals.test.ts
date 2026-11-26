@@ -111,5 +111,25 @@ describe("the Navy's special pennants", () => {
     expect(signalName("usn:turn", "ja")).toBe("回頭旗");
     expect(signalName("usn:corpen", "ja")).toBe("針路旗（コーペン）");
     expect(signalMeaning("usn:turn")).toMatch(/TURN STARBOARD 15/);
+    expect(signalMeaning("usn:turn")).toMatch(/tens of degrees/);
+    expect(signalMeaning("usn:turn", "ja")).toMatch(/一斉回頭/);
+    expect(signalMeaning("usn:corpen")).toMatch(/in succession/);
+    expect(signalMeaning("usn:corpen", "ja")).toMatch(/逐次回頭/);
+    expect(signalMeaning("usn:designation")).toMatch(/name or describe/);
+    expect(signalMeaning("usn:speed")).toMatch(/16\.5 knots/);
+    expect(signalMeaning("usn:negative")).toMatch(/cancels/);
+    expect(signalName("usn:interrogative", "ja")).toBe("質問旗");
+    expect(signalName("usn:substitute-1")).toBe("1st substitute (US Navy)");
+    expect(signalName("usn:substitute-4")).toBe("4th substitute (US Navy)");
+  });
+
+  it("follow the Navy's signalman manual and the RCN's page for their meanings, and say so in each record", () => {
+    for (const slug of TACTICAL) {
+      const info = signalInfo(`usn:${slug}`);
+      expect(info?.note.en, slug).toMatch(/NAVEDTRA 14244/);
+      expect(info?.note.ja, slug).toMatch(/NAVEDTRA 14244/);
+      expect(info?.source.says, slug).toMatch(/NAVEDTRA 14244/);
+      expect(`${info?.note.en}${info?.source.says}`, slug).not.toMatch(/Wikipedia|McMillan/);
+    }
   });
 });

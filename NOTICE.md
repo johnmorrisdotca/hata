@@ -147,10 +147,10 @@ text. The Code is a work of the United States Government, with no copyright clai
 The United States Navy's special pennants (ids `usn:<slug>`, in the same entry) are the other kind: Wikimedia Commons files taken as the country flags are. Each file's
 licence is read from Commons and only public domain and CC0 are shipped, the file is optimised (`scripts/optimise.ts`), and its page, licence and author are kept
 (`data-sources/tactical-commons-2026-11-26.json`, made by `pnpm data:tactical`). Every file is by Carl Lindberg, "per the U.S. Navy specification", and its page calls
-it ineligible for copyright (plain geometry). Their meanings are general descriptions written for this package from Wikipedia's article on naval flag signalling,
-https://en.wikipedia.org/wiki/Naval_flag_signalling (the section on maneuvering signals, which cites the NATO codebook MTP 1(D), Volume II), and Joseph McMillan's
-"Signal Flags" page on Sea Flags, https://www.seaflags.us/signals/sigflags.html (which names the Navy's special pennants and cites the NATO signal code ATP-1);
-the Navy's own signal books are the authority at sea. The Navy's numeral pennants are the International Code's, so they are `ics:0` to `ics:9`. Read on 2026-11-26.
+it ineligible for copyright (plain geometry). Their meanings follow, in general terms, the Navy's Signalman training manual, NAVEDTRA 14244 (https://navyaviation.tpub.com/14244/: "Basic Maneuvering Flags",
+"Substitutes" and "Correcting a Signal"), and the Royal Canadian Navy's visual signalling page, https://jproc.ca/rrp/rrp2/visual_flags.html (the uses of the Preparative,
+Designation, Interrogative, Emergency and Subdivision pennants); Joseph McMillan's "Signal Flags" page on Sea Flags, https://www.seaflags.us/signals/sigflags.html, and
+Wikipedia's "Naval flag signalling" were read for the names only. The Navy's own signal books are the authority at sea. The Navy's numeral pennants are the International Code's, so they are `ics:0` to `ics:9`. Read on 2026-11-26.
 
 <!-- tactical-files:start -->
 | Id | Commons file | Licence | Author as Commons gives it | Page |

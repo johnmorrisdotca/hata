@@ -261,10 +261,10 @@ const tacticalOnce = (): { records: DrawnDrawing[]; taken: Taken[] } => {
       status: "documented",
       dates: null,
       note: {
-        en: `Taken from Wikimedia Commons (${licence.name}, by ${author}): a drawing per the U.S. Navy's specification, at the file's own proportions. The meaning is a general description, not the Navy's own text; the Navy's signal books are the authority at sea.`,
-        ja: `Wikimedia Commons（${licence.name}、作者：${author}）から取りました。米海軍の仕様どおりの絵で、縦横の比はファイルのままです。意味は一般的な説明で、米海軍の文言ではありません。海上では米海軍の信号書が基準です。`,
+        en: `Taken from Wikimedia Commons (${licence.name}, by ${author}): a drawing per the U.S. Navy's specification, at the file's own proportions. The meaning follows, in general terms, the Navy's Signalman manual (NAVEDTRA 14244) and the RCN's visual signalling page; the Navy's signal books are the authority at sea.`,
+        ja: `Wikimedia Commons（${licence.name}、作者：${author}）から取りました。米海軍の仕様どおりの絵で、縦横の比はファイルのままです。意味は、米海軍の信号員の教本（NAVEDTRA 14244）とカナダ海軍の視覚信号のページに、おおまかに従っています。海上では米海軍の信号書が基準です。`,
       },
-      source: { title: `${one.file} (Wikimedia Commons)`, url: found.page, kind: "reference", read: READ, says: `A Commons file under ${licence.name}, by ${author}: a pennant of the United States Navy's special signals, drawn per its specification. The meaning is read from Wikipedia's article on naval flag signalling and from Sea Flags' page "Signal Flags" (docs/guides/ship-signal-flags.md).`, file: one.file, licence: licence.name, author },
+      source: { title: `${one.file} (Wikimedia Commons)`, url: found.page, kind: "reference", read: READ, says: `A Commons file under ${licence.name}, by ${author}: a pennant of the United States Navy's special signals, drawn per its specification. The meaning follows NAVEDTRA 14244 (navyaviation.tpub.com/14244: "Basic Maneuvering Flags", "Substitutes", "Correcting a Signal") and the RCN page jproc.ca/rrp/rrp2/visual_flags.html; see docs/guides/ship-signal-flags.md.`, file: one.file, licence: licence.name, author },
       svg: drawing,
     };
   });

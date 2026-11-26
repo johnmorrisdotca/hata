@@ -1,5 +1,5 @@
 // The entry @johnmorrisdotca/hata/signals: the flags of the International Code of Signals (the 26 alphabet flags, the 10 numeral
-// pennants, the 3 substitutes and the answering pennant), drawn for this package from the Code's own plate, and the 18 special pennants of the
+// pennants, the 3 substitutes and the answering pennant), drawn for this package from the Code's own plate, and 18 of the special pennants of the
 // United States Navy's tactical signals, taken from Commons, kept apart from the countries' flags. Ids are `ics:<slug>` ("ics:a", "ics:0",
 // "ics:sub-1", "ics:answer") and `usn:<slug>` ("usn:turn"), namespaces no ISO 3166 code can be in.
 // Every drawing is one record in sets/signals.data.ts, made by scripts/draw-signals.ts.
@@ -44,7 +44,7 @@ type SignalId = (typeof SIGNALS)[number]["id"];
 
 /**
  * Every id of the set: the Code's 40 flags in the order of its plate (the letters, the numeral pennants, the substitutes, then the answering
- * pennant), then the 18 special pennants of the United States Navy, `usn:code-answer` to `usn:turn`.
+ * pennant), then 18 of the special pennants of the United States Navy, `usn:code-answer` to `usn:turn`.
  *
  * @example
  * ```ts
