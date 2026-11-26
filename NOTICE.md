@@ -187,7 +187,7 @@ part follows the source and which is this package's. Read on 2026-11-24:
 | `samurai:uesugi-tenshi`, `samurai:uesugi-ogi`, `samurai:hojo-gosyoku`, `samurai:date-daishihan`, `samurai:toyotomi-gunbai`, `samurai:tokugawa-kinsen`, `samurai:oda-karakasa`, `samurai:ii-igeta` | Banners and signs of named commanders | 馬印 (Uma-jirushi), Japanese Wikipedia, https://ja.wikipedia.org/wiki/馬印 | Lists the banners and signs of named Sengoku commanders with their designs and grounds in words; it names no surviving cloth or museum for them. |
 | `samurai:sanada-rokumonsen` | The Sanada nobori | 真田氏 (Sanada clan), Japanese Wikipedia, https://ja.wikipedia.org/wiki/真田氏 | Says the six-coin crest was mainly a battle banner, describes an all-red nobori with the crest of unclear use, and names the screen of the Summer Campaign of Osaka (Osaka Castle collection) as the source for the Sanada unit's all-red flag with a gold line. |
 
-Fifty-one more are drawn from a picture of about the period, read on 2026-11-26: the handscroll 御馬印 (*Go-umajirushi*), scrolls 1 and 2 of six (scroll 2 is https://dl.ndl.go.jp/pid/1288242), which the National Diet
+Sixty more are drawn from a picture of about the period, read on 2026-11-26: the handscroll 御馬印 (*Go-umajirushi*), scrolls 1 and 2 of six (scroll 2 is https://dl.ndl.go.jp/pid/1288242), which the National Diet
 Library dates to around the Kan'ei years (1624 to 1644, its estimate; call number WA8-7, https://dl.ndl.go.jp/pid/1286895) and marks as public domain (保護期間満了,
 its term has expired). Each is
 geometry written out in `scripts/draw-samurai.ts`, its proportions and the place and size of its parts measured from the frame named below, under the MIT licence;
@@ -246,6 +246,15 @@ nothing of the photograph is in the package. Each is `documented`.
 | `samurai:asano-uneme-shiromaru` | 浅野采女正: a black banner with a white disc | https://dl.ndl.go.jp/pid/1288242/1/19 |
 | `samurai:mizoguchi-izumo-kuro-obi` | 溝口出雲守: a white nobori with four black bands | https://dl.ndl.go.jp/pid/1288242/1/20 |
 | `samurai:mizoguchi-izumo-janome` | 溝口出雲守: a black banner with a gold ring and disc | https://dl.ndl.go.jp/pid/1288242/1/20 |
+| `samurai:matsudaira-oki-naname` | 松平隠岐守: a black nobori with a white slant and six black discs | https://dl.ndl.go.jp/pid/1288242/1/9 |
+| `samurai:inaba-mino-shiromaru` | 稲葉美濃守: a black nobori with a white disc | https://dl.ndl.go.jp/pid/1288242/1/22 |
+| `samurai:matsudaira-shikibu-shiromaru` | 松平式部少輔: a vermilion banner with a white disc | https://dl.ndl.go.jp/pid/1288242/1/24 |
+| `samurai:ando-ukyo-janome` | 安藤右京: a vermilion banner with a gold ring and disc | https://dl.ndl.go.jp/pid/1288242/1/26 |
+| `samurai:naito-sama-kuro-obi` | 内藤左馬: a white nobori with a black band | https://dl.ndl.go.jp/pid/1288242/1/28 |
+| `samurai:tozawa-ukyo-kuro-obi` | 戸澤右京: a white nobori with five black bands | https://dl.ndl.go.jp/pid/1288242/1/29 |
+| `samurai:tozawa-ukyo-akamaru` | 戸澤右京: a white banner with a vermilion disc | https://dl.ndl.go.jp/pid/1288242/1/30 |
+| `samurai:tsugaru-etchu-kinmaru` | 津輕越中守: a white banner with a gold disc, labelled 小むましるし | https://dl.ndl.go.jp/pid/1288242/1/31 |
+| `samurai:kuki-nagato-akamaru` | 九鬼長門守: a black banner with a vermilion disc | https://dl.ndl.go.jp/pid/1288242/1/32 |
 
 **The lettering.** The characters 五, 毘, 本 and 山 are lettered in **Yuji Syuku**, a brush font by Kinuta Font Factory, Copyright 2021 The Yuji Project Authors
 (https://github.com/Kinutafontfactory/Yuji), licensed under the **SIL Open Font License, Version 1.1**. `pnpm data:glyphs` (`scripts/fetch-glyphs.ts`) takes the

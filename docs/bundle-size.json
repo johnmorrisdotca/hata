@@ -26,8 +26,8 @@
       "gzip": 13554
     },
     "./samurai": {
-      "minified": 196723,
-      "gzip": 28121
+      "minified": 222743,
+      "gzip": 30483
     },
     "./military": {
       "minified": 1500519,
