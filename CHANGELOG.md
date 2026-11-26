@@ -6,6 +6,8 @@ All notable changes to this project are written here. The format follows
 
 ## [Unreleased]
 
+## [1.20.0] - 2026-11-26
+
 ### Added
 
 - **Twelve more samurai banners from the handscroll 御馬印** (MODULES-1818, second batch), scroll 1, frames 25 to 37, each measured from its frame and `documented`: the plain red nobori and the plain red banner of Ii, titled Kamon-no-kami; Koide, titled Yamato-no-kami's nobori parted white and black on a slant and his red disc on white; the three black discs on white of Terazawa, titled Shima-no-kami; the six coins on black (labelled 大馬しるし) and the red band on white of Sanada, titled Kawachi-no-kami; the white disc on black of Kōriki, titled Settsu-no-kami; the gold lozenge on black of Matsudaira, titled Shimōsa-no-kami, on a nobori and a banner; the three stacked lozenges on black (labelled 大馬しるし) of Ogasawara, titled Ukon-no-taifu; and the six black bands on white of Matsudaira, titled Tanba-no-kami. The samurai entry is 64 KB (9.0 KB gzipped) and its budget 72 KB.
