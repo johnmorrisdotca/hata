@@ -1,5 +1,5 @@
 // The samurai banners: nine reconstructions from words, each saying which part is the source's, and twelve drawn from the painted
-// roll book 御馬印 (National Diet Library), each cited to its roll and frame, three of them lettered in an SIL OFL brush font.
+// picture book 御馬印 (National Diet Library), each cited to its volume and frame, three of them lettered in an SIL OFL brush font.
 import { readFileSync } from "node:fs";
 
 import { describe, expect, it } from "vitest";
@@ -26,7 +26,7 @@ describe("the banners", () => {
     }
   });
 
-  it("take twelve banners from the painted roll book 御馬印 at the National Diet Library, each documented and cited to its roll and frame", () => {
+  it("take twelve banners from the picture book 御馬印 at the National Diet Library, each documented and cited to its volume and frame", () => {
     const documented = SAMURAI_IDS.filter((id) => samuraiInfo(id)?.status === "documented");
     expect(documented).toHaveLength(12);
     for (const id of documented) {

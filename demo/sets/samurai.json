@@ -2,12 +2,12 @@
   "name": "samurai",
   "what": { "en": "samurai battle banners", "ja": "武士の戦場の旗" },
   "description": {
-    "en": "Twenty-one battle banners of Sengoku and early Edo daimyo (nobori, hata and uma-jirushi): nine drawn from the words of a source, and twelve from the painted roll book 御馬印 at the National Diet Library. Each says what is documented and what is reconstruction.",
-    "ja": "戦国から江戸のはじめの大名の戦場の旗（幟、旗、馬印）21点です。9点は出典の記述から、12点は国立国会図書館の絵巻『御馬印』から描きました。確かめられていることと復元とを、それぞれが述べています。"
+    "en": "Twenty-one battle banners of Sengoku and early Edo shoguns and daimyo (nobori, hata and uma-jirushi): nine drawn from the words of a source, and twelve from the picture book 御馬印 at the National Diet Library, from around the Kan'ei years (its estimate). Each says what is documented and what is reconstruction.",
+    "ja": "戦国から江戸のはじめの将軍と大名の戦場の旗（幟、旗、馬印）21点です。9点は出典の記述から、12点は国立国会図書館の絵本『御馬印』（寛永年間ごろ、図書館の推定）から描きました。確かめられていることと復元とを、それぞれが述べています。"
   },
   "intro": {
-    "en": "Choose a kind, then a banner. No cloth survives for any of them: the ones drawn from the roll book are measured from its painting, the others are reconstructions, and each note says which part follows the source.",
-    "ja": "種類を選び、旗を選んでください。どれも現存する布はありません。絵巻から描いたものはその絵から測り、ほかは復元です。出典に従った部分は、それぞれの注記に書いてあります。"
+    "en": "Choose a kind, then a banner. No cloth survives for any of them: the ones drawn from the picture book are measured from its painting, the others are reconstructions, and each note says which part follows the source.",
+    "ja": "種類を選び、旗を選んでください。どれも現存する布はありません。絵本から描いたものはその絵から測り、ほかは復元です。出典に従った部分は、それぞれの注記に書いてあります。"
   },
   "groups": {
     "nobori": { "en": "Nobori", "ja": "幟" },
