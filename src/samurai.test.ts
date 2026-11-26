@@ -1,5 +1,5 @@
-// The samurai banners: nine reconstructions from words, each saying which part is the source's, and twelve drawn from the painted
-// picture book 御馬印 (National Diet Library), each cited to its volume and frame, three of them lettered in an SIL OFL brush font.
+// The samurai banners: nine reconstructions from words, each saying which part is the source's, and twenty-four drawn from the painted
+// handscroll 御馬印 (National Diet Library), each cited to its scroll and frame, three of them lettered in an SIL OFL brush font.
 import { readFileSync } from "node:fs";
 
 import { describe, expect, it } from "vitest";
@@ -11,7 +11,7 @@ describe("the banners", () => {
   it("are what scripts/draw-samurai.ts makes, so the data file cannot drift from the geometry", () => {
     for (const [path, text] of samuraiFiles()) expect(readFileSync(`src/sets/${path}`, "utf8"), path).toBe(text);
     expect(samuraiRecords().map((one) => one.id)).toEqual([...SAMURAI_IDS]);
-    expect(SAMURAI_IDS).toHaveLength(21);
+    expect(SAMURAI_IDS).toHaveLength(33);
   });
 
   it("are reconstructions where they come from words, each saying what the source gives and what is this package's, and citing a page", () => {
@@ -26,9 +26,9 @@ describe("the banners", () => {
     }
   });
 
-  it("take twelve banners from the picture book 御馬印 at the National Diet Library, each documented and cited to its volume and frame", () => {
+  it("take twenty-four banners from the handscroll 御馬印 at the National Diet Library, each documented and cited to its scroll and frame", () => {
     const documented = SAMURAI_IDS.filter((id) => samuraiInfo(id)?.status === "documented");
-    expect(documented).toHaveLength(12);
+    expect(documented).toHaveLength(24);
     for (const id of documented) {
       const info = samuraiInfo(id)!;
       expect(info.source.kind, id).toBe("official");
@@ -36,6 +36,9 @@ describe("the banners", () => {
       expect(info.source.url, id).toMatch(/^https:\/\/dl\.ndl\.go\.jp\/pid\/1286895\/1\/\d+$/);
       expect(info.note.en, id).toMatch(new RegExp(`frame ${info.source.url.split("/").pop()}\\b`));
       expect(info.note.ja, id).toMatch(/コマ\d+/);
+      expect(info.note.en, id).toMatch(/handscroll/);
+      expect(info.note.ja, id).toMatch(/絵巻『御馬印』/);
+      expect(`${info.about.ja}${info.note.ja}`, id).not.toMatch(/絵本/);
     }
   });
 
@@ -52,9 +55,9 @@ describe("the banners", () => {
   });
 
   it("are grouped as nobori, hata and uma-jirushi, and tall where they are nobori", () => {
-    expect(samuraiIn("nobori")).toEqual(["samurai:hojo-gosyoku", "samurai:sanada-rokumonsen", "samurai:hoshina-higo-kuroboshi", "samurai:sakai-kunai-mitsumaru", "samurai:todo-izumi-mitsumaru", "samurai:honda-mino-hon"]);
-    expect(samuraiIn("hata")).toHaveLength(8);
-    expect(samuraiIn("uma")).toHaveLength(7);
+    expect(samuraiIn("nobori")).toEqual(["samurai:hojo-gosyoku", "samurai:sanada-rokumonsen", "samurai:hoshina-higo-kuroboshi", "samurai:sakai-kunai-mitsumaru", "samurai:todo-izumi-mitsumaru", "samurai:honda-mino-hon", "samurai:ii-kamon-aka-nobori", "samurai:koide-yamato-naname", "samurai:terazawa-shima-mitsumaru", "samurai:sanada-kawachi-aka-obi", "samurai:koriki-settsu-shiromaru", "samurai:matsudaira-shimosa-kinbishi", "samurai:matsudaira-tanba-kuro-obi"]);
+    expect(samuraiIn("hata")).toHaveLength(11);
+    expect(samuraiIn("uma")).toHaveLength(9);
     expect(samuraiIn("none")).toEqual([]);
     expect(samuraiAspect("samurai:sanada-rokumonsen")).toBe(0.25);
     expect(samuraiAspect("samurai:uesugi-tenshi")).toBe(1.5);
