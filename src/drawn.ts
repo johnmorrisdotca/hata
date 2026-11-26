@@ -79,7 +79,7 @@ const drawnSet = <const Records extends readonly DrawnRecord[]>(prefix: string, 
   const byId: ReadonlyMap<string, Records[number]> = new Map(all.map((one) => [one.id, one as Records[number]]));
   const idOf = (input: string): string | null => {
     const written = mustBeString(input, "id").trim().toLowerCase();
-    const id = written.startsWith(`${prefix}:`) ? written : `${prefix}:${written}`;
+    const id = byId.has(written) || written.startsWith(`${prefix}:`) ? written : `${prefix}:${written}`;
 
     return byId.has(id) ? id : null;
   };

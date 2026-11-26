@@ -14,10 +14,15 @@
 //     length into the flag from the fly.
 //   - Numeral pennants: tapering, 7 long to 2 high at the hoist, the fly end 0.38 of the hoist.
 //   - Substitutes: isosceles triangles, 3 long to 2 high; the answering pennant tapers, 3 long to 1 high, the fly end half the hoist.
+import { readFileSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 
 import type { DrawnDrawing } from "../src/drawn.ts";
 import { box, setFiles, writeSetFiles, clipTo, n, poly, svg } from "./draw-lib.ts";
+import { classify } from "./licence.ts";
+import { optimiseFlag } from "./optimise.ts";
+import { readManifest, readSource, ROOT } from "./sources.ts";
+import { TACTICAL_FILES } from "./tactical-files.ts";
 import type { Shape } from "./draw-lib.ts";
 
 const RED = "#d7141a";
@@ -222,14 +227,65 @@ const signalRecords = (): DrawnDrawing[] => {
   });
   records.push({ id: "ics:answer", group: "answer", name: { en: "Answering pennant (Code pennant)", ja: "応答旗（コード旗）" }, about: { en: "Hoisted at the dip to answer each hoist of a signal, and closed up when it is understood; hoisted singly after the last hoist to show that a signal is complete; and in a group of numerals it is the decimal point. A ship of war uses it as the Code pennant to call a merchant vessel.", ja: "信号の各掲揚に応えて半ばまで掲げ、意味がわかったら一杯に掲げます。信号の最後の掲揚のあとに単独で掲げて信号の完了を示し、数字の群では小数点になります。軍艦は、商船に呼びかけるときのコード旗として使います。" }, status: "official", dates: null, note: NOTE, source: SOURCE, svg: ANSWER });
 
-  return records;
+  return [...records, ...tactical().records];
+};
+
+// The Navy's special pennants, taken from Wikimedia Commons (scripts/tactical-files.ts, fetched by scripts/fetch-tactical.ts): each file's licence is
+// read from the snapshot and only public domain and CC0 ship; the file is optimised as a country's flag is.
+const READ = "2026-11-26";
+interface Taken { id: string; file: string; page: string; licence: string; author: string }
+let memo: { records: DrawnDrawing[]; taken: Taken[] } | undefined;
+const tactical = (): { records: DrawnDrawing[]; taken: Taken[] } => (memo ??= tacticalOnce());
+const tacticalOnce = (): { records: DrawnDrawing[]; taken: Taken[] } => {
+  const manifest = readManifest();
+  const entry = manifest.files.find((one) => /^tactical-commons-\d{4}-\d{2}-\d{2}\.json$/.test(one.path));
+  if (entry === undefined) throw new Error("no tactical Commons snapshot in data-sources/sources.json: run pnpm data:tactical");
+  const snapshot = JSON.parse(readSource(manifest, entry.path).text) as { files: { file: string; page: string; stored: string; metadata: Record<string, string>; templates: string[] }[] };
+  const taken: Taken[] = [];
+  const records = TACTICAL_FILES.map((one): DrawnDrawing => {
+    const found = snapshot.files.find((file) => file.file === one.file);
+    if (found === undefined) throw new Error(`${one.file} is not in the tactical snapshot: run pnpm data:tactical`);
+    const licence = classify(found.metadata, found.templates);
+    if (!licence.shipped || (licence.kind !== "public-domain" && licence.kind !== "cc0")) throw new Error(`${one.file}: licence ${licence.name} does not ship`);
+    const optimised = optimiseFlag(readFileSync(`${ROOT}/data-sources/${found.stored}`, "utf8"), `usn-${one.slug}`);
+    const drawing = optimised.svg.replace(/hata-usn-/g, "usn-").replace(/^<svg /, `<svg data-hata-usn="${one.slug}" `);
+    if (/<image\b|<style\b|base64/i.test(drawing)) throw new Error(`${one.file} is not a plain vector`);
+    const author = (found.metadata.Artist ?? "").trim();
+    taken.push({ id: `usn:${one.slug}`, file: one.file, page: found.page, licence: licence.name, author });
+
+    return {
+      id: `usn:${one.slug}`,
+      group: "tactical",
+      name: one.name,
+      about: one.meaning,
+      status: "documented",
+      dates: null,
+      note: {
+        en: `Taken from Wikimedia Commons (${licence.name}, by ${author}): a drawing per the U.S. Navy's specification, at the file's own proportions. The meaning is a general description, not the Navy's own text; the Navy's signal books are the authority at sea.`,
+        ja: `Wikimedia Commons（${licence.name}、作者：${author}）から取りました。米海軍の仕様どおりの絵で、縦横の比はファイルのままです。意味は一般的な説明で、米海軍の文言ではありません。海上では米海軍の信号書が基準です。`,
+      },
+      source: { title: `${one.file} (Wikimedia Commons)`, url: found.page, kind: "reference", read: READ, says: `A Commons file under ${licence.name}, by ${author}: a pennant of the United States Navy's special signals, drawn per its specification. The meaning is read from Wikipedia's article on naval flag signalling and from Sea Flags' page "Signal Flags" (docs/guides/ship-signal-flags.md).`, file: one.file, licence: licence.name, author },
+      svg: drawing,
+    };
+  });
+
+  return { records, taken };
 };
 
 const files = (): Map<string, string> => setFiles("signals", "SIGNALS", "SignalRecordId", "scripts/draw-signals.ts", signalRecords());
 
+// The table of the Navy's Commons files in NOTICE.md, between its markers.
+const noticeBlock = (): string =>
+  `<!-- tactical-files:start -->\n| Id | Commons file | Licence | Author as Commons gives it | Page |\n| --- | --- | --- | --- | --- |\n${tactical()
+    .taken.map((one) => `| \`${one.id}\` | ${one.file} | ${one.licence} | ${one.author.replace(/\|/g, "/")} | ${one.page} |`)
+    .join("\n")}\n<!-- tactical-files:end -->`;
+const noticeText = (current: string): string => current.replace(/<!-- tactical-files:start -->[\s\S]*?<!-- tactical-files:end -->/, noticeBlock());
+
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  const notice = fileURLToPath(new URL("../NOTICE.md", import.meta.url));
+  writeFileSync(notice, noticeText(readFileSync(notice, "utf8")));
   writeSetFiles(fileURLToPath(new URL("../src/sets", import.meta.url)), "signals", files());
   console.log(`wrote src/sets/signals.data.ts and signals/: ${signalRecords().length} drawings`);
 }
 
-export { signalRecords, files as signalFiles };
+export { signalRecords, files as signalFiles, noticeText as signalsNoticeText };

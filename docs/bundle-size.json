@@ -22,20 +22,20 @@
       "gzip": 21730
     },
     "./signals": {
-      "minified": 83622,
-      "gzip": 8483
+      "minified": 124727,
+      "gzip": 12449
     },
     "./samurai": {
-      "minified": 25416,
-      "gzip": 5083
+      "minified": 25426,
+      "gzip": 5089
     },
     "./military": {
-      "minified": 1500509,
-      "gzip": 424696
+      "minified": 1500519,
+      "gzip": 424703
     },
     "./medieval": {
-      "minified": 513160,
-      "gzip": 164165
+      "minified": 513170,
+      "gzip": 164177
     },
     "./search": {
       "minified": 75285,

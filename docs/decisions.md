@@ -319,6 +319,14 @@ the licence check (or a drawing made from its published description), with a not
 - **Out, because their own terms or law restrict the flag or emblem:** the United Nations (the UN Flag Code and resolution 92(I)), NATO (advance authorisation for its logo, name and emblems), the Red Cross, Red Crescent and Red Crystal (the Geneva Conventions), the African Union (its emblem is trademarked or copyrighted and not to be used without approval), ASEAN (reserved copyright, use asked for in writing), the Nordic Council (use by others by permission) and the Olympic rings (the Olympic Charter).
 - **Out, because the page could not be read** (a 403 or a browser check, which this package does not work around): the Organization of American States, Mercosur. **Out, for want of a drawing:** the Pacific Islands Forum.
 
+## Ship signal flags: the Navy's special pennants
+
+*(MODULES-1819, 2026-11-26.)* The ticket asked for the tactical flags and pennants "from a US Government publication (PD), as their own group in /signals". Hata holds no copy of the Navy's signal books (ACP 129, NWP 1-02.1), so it takes the 18 special pennants drawn "per the U.S. Navy specification" by Carl Lindberg on Commons (`SpecialSignalPennant-<name>-USNSpec.svg`): each is public domain as "ineligible for copyright" plain geometry, passes the licence check and the optimiser as the military flags do, and nothing is redrawn.
+
+- **A group of the signals entry.** The group is `tactical`, the ids are `usn:<slug>`, and the entry therefore has two id namespaces, `ics:` and `usn:` (`src/sets.test.ts` allows it for the signals set only). `SIGNAL_IDS` lists the Code's 40 and then the Navy's 18; `signalsFor` still spells only with the Code's. The entry grew from 58 KB to 91 KB (8.6 KB gzipped) and its budget from 64 KB to 96 KB.
+- **The meanings are this package's general descriptions**, written from Wikipedia's "Naval flag signalling" (which cites the NATO codebook MTP 1(D), Volume II) and Sea Flags' "Signal Flags" (which names the pennants and cites ATP-1), not the Navy's text; each record's `note` says so, and the Navy's own books are the authority at sea.
+- **Not added.** The numeral pennants are the Code's own (`ics:0` to `ics:9`). The Navy's "Port" pennant, and the allied (NATO ACP 129) set where it differs, have no public-domain file on Commons that was found. The Japanese names (回頭旗, 針路旗, 予令旗 and the others) are this package's, not yet reviewed by a native reader.
+
 ## Restricted flags
 
 **Germany's national flag of 1935 to 1945** (the swastika flag) is a variant of `DE` with `restricted: { reason, reasonJa, law, allowedFor, allowedForJa }` (MODULES-1447, John 2026-11-17: shipped "for historic educational reasons", restricted). It was left out of 1.10.0 as a gap; it is now shipped, and every lookup treats it with care.

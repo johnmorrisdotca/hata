@@ -1,6 +1,7 @@
 // The entry @johnmorrisdotca/hata/signals: the flags of the International Code of Signals (the 26 alphabet flags, the 10 numeral
-// pennants, the 3 substitutes and the answering pennant), drawn for this package from the Code's own plate and kept apart from the
-// countries' flags. Ids are `ics:<slug>` ("ics:a", "ics:0", "ics:sub-1", "ics:answer"), a namespace no ISO 3166 code can be in.
+// pennants, the 3 substitutes and the answering pennant), drawn for this package from the Code's own plate, and the 18 special pennants of the
+// United States Navy's tactical signals, taken from Commons, kept apart from the countries' flags. Ids are `ics:<slug>` ("ics:a", "ics:0",
+// "ics:sub-1", "ics:answer") and `usn:<slug>` ("usn:turn"), namespaces no ISO 3166 code can be in.
 // Every drawing is one record in sets/signals.data.ts, made by scripts/draw-signals.ts.
 //
 // Every function is pure and works on strings: no DOM, no network, the same answer on a server and in a browser.
@@ -28,7 +29,8 @@ type SignalInfo = DrawnInfo;
 /**
  * The id of one of the Code's flags, written exactly as this package writes it: `ics:` and a lower-case slug. A letter is `ics:a`
  * to `ics:z`, a numeral pennant `ics:0` to `ics:9`, a substitute `ics:sub-1` to `ics:sub-3` and the answering pennant `ics:answer`.
- * No country or region code contains a colon, so none of these can be taken for one.
+ * The Navy's special pennants are `usn:` and a slug (`usn:turn`, `usn:corpen`, `usn:substitute-4`). No country or region code contains a colon,
+ * so none of these can be taken for one.
  *
  * @example
  * ```ts
@@ -41,13 +43,14 @@ type SignalInfo = DrawnInfo;
 type SignalId = (typeof SIGNALS)[number]["id"];
 
 /**
- * Every id of the set, in the order of the Code's plate: the letters, the numeral pennants, the substitutes, then the answering pennant.
+ * Every id of the set: the Code's 40 flags in the order of its plate (the letters, the numeral pennants, the substitutes, then the answering
+ * pennant), then the 18 special pennants of the United States Navy, `usn:code-answer` to `usn:turn`.
  *
  * @example
  * ```ts
  * import { SIGNAL_IDS } from "@johnmorrisdotca/hata/signals";
  *
- * console.log(SIGNAL_IDS.length); // 40
+ * console.log(SIGNAL_IDS.length); // 58
  * ```
  */
 const SIGNAL_IDS: readonly SignalId[] = set.ids;

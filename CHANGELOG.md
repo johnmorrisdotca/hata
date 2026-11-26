@@ -6,6 +6,10 @@ All notable changes to this project are written here. The format follows
 
 ## [Unreleased]
 
+### Added
+
+- **The US Navy's special signal pennants** (MODULES-1819), in the `/signals` entry as a group of their own, `tactical`, under ids `usn:<slug>`: the code or answering pennant, Corpen (course), Designation, Emergency, Formation, Interrogative, Negative, Preparative, Screen, Speed, Starboard, Station, Subdivision, Turn and four substitutes. 18 flags, so `SIGNAL_IDS` has 58 (the Code's 40 first). Each is a public-domain Commons file by Carl Lindberg drawn "per the U.S. Navy specification" (read 2026-11-26, `pnpm data:tactical`), with its author and licence in the record and in `NOTICE.md`, and a meaning in English and Japanese written for this package from Wikipedia's article on naval flag signalling and Sea Flags' "Signal Flags" page. The Navy's numeral pennants are the Code's own (`ics:0` to `ics:9`). The allied (NATO ACP 129) set is not here: no public-domain drawing of the flags where it differs was found. The entry is 91 KB (8.6 KB gzipped), up from 58 KB, so its size budget is 96 KB (was 64 KB).
+
 ## [1.17.0] - 2026-11-26
 
 ### Added

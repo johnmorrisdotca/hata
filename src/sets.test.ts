@@ -47,7 +47,8 @@ describe("every drawn set", () => {
       expect(records.length, name).toBeGreaterThan(0);
       expect(new Set(records.map((one) => one.id)).size, name).toBe(records.length);
       const prefixes = new Set(records.map((one) => one.id.split(":")[0]));
-      expect(prefixes.size, name).toBe(1);
+      // The signals entry holds the Code's flags (`ics:`) and the Navy's special pennants (`usn:`); every other set has one namespace.
+      expect([...prefixes].sort(), name).toEqual(name === "signals" ? ["ics", "usn"] : [records[0]!.id.split(":")[0]]);
       for (const one of records) {
         expect(one.id, one.id).toMatch(/^[a-z]+:[a-z0-9]+(-[a-z0-9]+)*$/);
         expect(taken.has(one.id), one.id).toBe(false);
@@ -98,7 +99,7 @@ describe("every drawn set", () => {
 
   it("is named in NOTICE.md with the page each source was read from", () => {
     for (const { name, records } of SETS) {
-      expect(notice, name).toContain(`\`${records[0]!.id.split(":")[0]}:`);
+      for (const prefix of new Set(records.map((one) => one.id.split(":")[0]))) expect(notice, name).toContain(`\`${prefix}:`);
       for (const url of new Set(records.map((one) => one.source.url))) expect(notice, `${name}: ${url}`).toContain(url);
     }
   });

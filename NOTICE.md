@@ -144,6 +144,37 @@ text. The Code is a work of the United States Government, with no copyright clai
 | Ids | What | Source | What it says |
 | --- | --- | --- | --- |
 | `ics:a` to `ics:z`, `ics:0` to `ics:9`, `ics:sub-1` to `ics:sub-3`, `ics:answer` | The 26 alphabet flags, the 10 numeral pennants, the 3 substitutes and the answering pennant | International Code of Signals, United States Edition, 1969 (Revised 2003), Pub. 102, National Imagery and Mapping Agency (the copy read is the Internet Archive's, https://archive.org/details/pub-102) | The plate "International Flags and Pennants" shows each flag and pennant, and the Code names the five colours and gives each single-letter signal its meaning. It gives no construction sheet: the proportions are measured from the plate and the values of the colours are this package's. |
+The United States Navy's special pennants (ids `usn:<slug>`, in the same entry) are the other kind: Wikimedia Commons files taken as the country flags are. Each file's
+licence is read from Commons and only public domain and CC0 are shipped, the file is optimised (`scripts/optimise.ts`), and its page, licence and author are kept
+(`data-sources/tactical-commons-2026-11-26.json`, made by `pnpm data:tactical`). Every file is by Carl Lindberg, "per the U.S. Navy specification", and its page calls
+it ineligible for copyright (plain geometry). Their meanings are general descriptions written for this package from Wikipedia's article on naval flag signalling,
+https://en.wikipedia.org/wiki/Naval_flag_signalling (the section on maneuvering signals, which cites the NATO codebook MTP 1(D), Volume II), and Joseph McMillan's
+"Signal Flags" page on Sea Flags, https://www.seaflags.us/signals/sigflags.html (which names the Navy's special pennants and cites the NATO signal code ATP-1);
+the Navy's own signal books are the authority at sea. The Navy's numeral pennants are the International Code's, so they are `ics:0` to `ics:9`. Read on 2026-11-26.
+
+<!-- tactical-files:start -->
+| Id | Commons file | Licence | Author as Commons gives it | Page |
+| --- | --- | --- | --- | --- |
+| `usn:code-answer` | SpecialSignalPennant-CodeAnswer-USNSpec.svg | Public domain | Carl Lindberg | https://commons.wikimedia.org/wiki/File:SpecialSignalPennant-CodeAnswer-USNSpec.svg |
+| `usn:corpen` | SpecialSignalPennant-Corpen-USNSpec.svg | Public domain | Carl Lindberg | https://commons.wikimedia.org/wiki/File:SpecialSignalPennant-Corpen-USNSpec.svg |
+| `usn:designation` | SpecialSignalPennant-Designation-USNSpec.svg | Public domain | Carl Lindberg | https://commons.wikimedia.org/wiki/File:SpecialSignalPennant-Designation-USNSpec.svg |
+| `usn:emergency` | SpecialSignalPennant-Emergency-USNSpec.svg | Public domain | Carl Lindberg | https://commons.wikimedia.org/wiki/File:SpecialSignalPennant-Emergency-USNSpec.svg |
+| `usn:formation` | SpecialSignalPennant-Formation-USNSpec.svg | Public domain | Carl Lindberg | https://commons.wikimedia.org/wiki/File:SpecialSignalPennant-Formation-USNSpec.svg |
+| `usn:interrogative` | SpecialSignalPennant-Interrogative-USNSpec.svg | Public domain | Carl Lindberg | https://commons.wikimedia.org/wiki/File:SpecialSignalPennant-Interrogative-USNSpec.svg |
+| `usn:negative` | SpecialSignalPennant-Negative-USNSpec.svg | Public domain | Carl Lindberg | https://commons.wikimedia.org/wiki/File:SpecialSignalPennant-Negative-USNSpec.svg |
+| `usn:preparative` | SpecialSignalPennant-Preparative-USNSpec.svg | Public domain | Carl Lindberg | https://commons.wikimedia.org/wiki/File:SpecialSignalPennant-Preparative-USNSpec.svg |
+| `usn:screen` | SpecialSignalPennant-Screen-USNSpec.svg | Public domain | Carl Lindberg | https://commons.wikimedia.org/wiki/File:SpecialSignalPennant-Screen-USNSpec.svg |
+| `usn:speed` | SpecialSignalPennant-Speed-USNSpec.svg | Public domain | Carl Lindberg | https://commons.wikimedia.org/wiki/File:SpecialSignalPennant-Speed-USNSpec.svg |
+| `usn:starboard` | SpecialSignalPennant-Starboard-USNSpec.svg | Public domain | Carl Lindberg | https://commons.wikimedia.org/wiki/File:SpecialSignalPennant-Starboard-USNSpec.svg |
+| `usn:station` | SpecialSignalPennant-Station-USNSpec.svg | Public domain | Carl Lindberg | https://commons.wikimedia.org/wiki/File:SpecialSignalPennant-Station-USNSpec.svg |
+| `usn:subdivision` | SpecialSignalPennant-Subdivision-USNSpec.svg | Public domain | Carl Lindberg | https://commons.wikimedia.org/wiki/File:SpecialSignalPennant-Subdivision-USNSpec.svg |
+| `usn:substitute-1` | SpecialSignalPennant-Substitute1-USNSpec.svg | Public domain | Carl Lindberg | https://commons.wikimedia.org/wiki/File:SpecialSignalPennant-Substitute1-USNSpec.svg |
+| `usn:substitute-2` | SpecialSignalPennant-Substitute2-USNSpec.svg | Public domain | Carl Lindberg | https://commons.wikimedia.org/wiki/File:SpecialSignalPennant-Substitute2-USNSpec.svg |
+| `usn:substitute-3` | SpecialSignalPennant-Substitute3-USNSpec.svg | Public domain | Carl Lindberg | https://commons.wikimedia.org/wiki/File:SpecialSignalPennant-Substitute3-USNSpec.svg |
+| `usn:substitute-4` | SpecialSignalPennant-Substitute4-USNSpec.svg | Public domain | Carl Lindberg | https://commons.wikimedia.org/wiki/File:SpecialSignalPennant-Substitute4-USNSpec.svg |
+| `usn:turn` | SpecialSignalPennant-Turn-USNSpec.svg | Public domain | Carl Lindberg | https://commons.wikimedia.org/wiki/File:SpecialSignalPennant-Turn-USNSpec.svg |
+<!-- tactical-files:end -->
+
 ## Samurai battle banners
 
 The battle banners of Sengoku daimyo are a separate entry point (`@johnmorrisdotca/hata/samurai`, ids `samurai:<slug>`), and none of them is a Commons file:

@@ -73,7 +73,7 @@ import { manifest, MANIFEST, LEFT_OUT } from "${pkg.name}/manifest";
 import json from "${pkg.name}/manifest.json" with { type: "json" };
 import { flagName, flagAspect } from "${pkg.name}/names";
 import { organisationFlag, organisationName, ORGANISATION_IDS } from "${pkg.name}/organisations";
-import { signalFlag, signalMeaning, SIGNAL_IDS } from "${pkg.name}/signals";
+import { signalFlag, signalMeaning, signalName, SIGNAL_IDS } from "${pkg.name}/signals";
 import { samuraiFlag, samuraiName, SAMURAI_IDS } from "${pkg.name}/samurai";
 import { medievalFlag, medievalName, MEDIEVAL_IDS } from "${pkg.name}/medieval";
 import { militaryFlag, militaryName, MILITARY_IDS } from "${pkg.name}/military";
@@ -90,7 +90,7 @@ if ((await flag("JP-13")) !== tokyo || (await flag("XX")) !== null) throw new Er
 if (!frame(japan, { shape: "round" }).includes("clipPath") || !toDataUri(japan).startsWith("data:image/svg+xml,")) throw new Error("the helpers answered wrongly");
 if (flagName("JP-13", "ja") !== "東京都" || flagAspect("CA") !== 2) throw new Error("/names answered wrongly");
 if (ORGANISATION_IDS[0] !== "org:eu" || !organisationFlag("org:eu").startsWith("<svg") || organisationName("org:eu", "ja") !== "欧州連合") throw new Error("/organisations answered wrongly");
-if (SIGNAL_IDS.length !== 40 || !(await signalFlag("ics:a")).startsWith("<svg") || !signalMeaning("ics:o").includes("Man overboard")) throw new Error("/signals answered wrongly");
+if (SIGNAL_IDS.length !== 58 || !(await signalFlag("ics:a")).startsWith("<svg") || !signalMeaning("ics:o").includes("Man overboard") || signalName("usn:turn", "ja") !== "回頭旗" || !(await signalFlag("usn:turn")).startsWith("<svg")) throw new Error("/signals answered wrongly");
 if (SAMURAI_IDS.length !== 9 || !(await samuraiFlag("samurai:ii-igeta")).startsWith("<svg") || samuraiName("samurai:ii-igeta", "ja") !== "井伊直政の赤地に金の井桁") throw new Error("/samurai answered wrongly");
 if (MEDIEVAL_IDS.length !== 42 || !(await medievalFlag("med:red-cross")).startsWith("<svg") || medievalName("med:red-cross", "ja") !== "白地に赤い十字（聖ジョージ十字）") throw new Error("/medieval answered wrongly");
 if (MILITARY_IDS.length !== 58 || !(await militaryFlag("mil:us-navy-jack")).startsWith("<svg") || militaryName("mil:us-navy-jack", "ja") !== "アメリカ：海軍の艦首旗") throw new Error("/military answered wrongly");
