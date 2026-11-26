@@ -6,6 +6,10 @@ All notable changes to this project are written here. The format follows
 
 ## [Unreleased]
 
+### Added
+
+- **Sixteen more samurai banners from the handscroll 御馬印** (MODULES-1818, fourth batch), each measured from its frame and `documented`: the four gold bands on black of Matsudaira, titled Tanba-no-kami, from scroll 1, frame 38; and from scroll 2, frames 7 to 20, the red disc on a white nobori of Matsudaira, titled Kai-no-kami, the two white bands on a black nobori, the six white discs on black and the plain black banner of Matsudaira, titled Yamashiro-no-kami, the small white disc on black of Matsudaira, titled Dewa-no-kami, the nobori and the banner parted white and red on a slant and the red lozenge on white (labelled 大馬しるし) of Matsudaira, titled Uemon-no-taifu, 山 in pale blue on white and 山 in white on pale blue of Aoyama, titled Ōkura-no-shō, the red square on white of Sengoku, titled Echizen-no-kami, the five white discs on a black nobori and the white disc on black of Asano, titled Uneme-no-shō, and the nobori with four black bands on white and the gold bullseye on black of Mizoguchi, titled Izumo-no-kami. The two 山 are lettered in Yuji Syuku. The samurai entry is 118 KB and its budget 136 KB.
+
 ## [1.21.0] - 2026-11-26
 
 ### Added
