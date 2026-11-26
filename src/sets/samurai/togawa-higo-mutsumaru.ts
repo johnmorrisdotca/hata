@@ -1,0 +1,7 @@
+// Made by scripts/draw-samurai.ts: do not edit by hand. The drawing of samurai:togawa-higo-mutsumaru.
+
+/** Togawa Higo: three groups of six white discs on black, as an SVG string: viewBox 0 0 100 267.4, 1162 B. Loaded by the set's entry when it is asked for. */
+const svg = "<svg data-hata-samurai=\"togawa-higo-mutsumaru\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 267.4\"><path fill=\"#16161a\" d=\"M0 0h100v267.4h-100z\"/><path fill=\"#f4f1e8\" d=\"M41.1 39.3a8.1 8.1 0 1 0 16.2 0a8.1 8.1 0 1 0 -16.2 0zM62 51.7a8.1 8.1 0 1 0 16.2 0a8.1 8.1 0 1 0 -16.2 0zM22 57.8a8.1 8.1 0 1 0 16.2 0a8.1 8.1 0 1 0 -16.2 0zM42.6 62.2a8.1 8.1 0 1 0 16.2 0a8.1 8.1 0 1 0 -16.2 0zM60.3 76.4a8.1 8.1 0 1 0 16.2 0a8.1 8.1 0 1 0 -16.2 0zM35.4 82.2a8.1 8.1 0 1 0 16.2 0a8.1 8.1 0 1 0 -16.2 0zM43 116.4a8.1 8.1 0 1 0 16.2 0a8.1 8.1 0 1 0 -16.2 0zM63.8 130.8a8.1 8.1 0 1 0 16.2 0a8.1 8.1 0 1 0 -16.2 0zM21.7 135.5a8.1 8.1 0 1 0 16.2 0a8.1 8.1 0 1 0 -16.2 0zM42.5 139.1a8.1 8.1 0 1 0 16.2 0a8.1 8.1 0 1 0 -16.2 0zM58.9 154.7a8.1 8.1 0 1 0 16.2 0a8.1 8.1 0 1 0 -16.2 0zM33.3 159.6a8.1 8.1 0 1 0 16.2 0a8.1 8.1 0 1 0 -16.2 0zM40.5 203.6a8.1 8.1 0 1 0 16.2 0a8.1 8.1 0 1 0 -16.2 0zM62.9 217.3a8.1 8.1 0 1 0 16.2 0a8.1 8.1 0 1 0 -16.2 0zM21.3 219.9a8.1 8.1 0 1 0 16.2 0a8.1 8.1 0 1 0 -16.2 0zM41.4 225.3a8.1 8.1 0 1 0 16.2 0a8.1 8.1 0 1 0 -16.2 0zM57 240.8a8.1 8.1 0 1 0 16.2 0a8.1 8.1 0 1 0 -16.2 0zM31.6 244.8a8.1 8.1 0 1 0 16.2 0a8.1 8.1 0 1 0 -16.2 0z\"/></svg>";
+
+export { svg };
+export default svg;

@@ -6,6 +6,10 @@ All notable changes to this project are written here. The format follows
 
 ## [Unreleased]
 
+### Added
+
+- **Nine more samurai banners from the handscroll 御馬印** (MODULES-1818, tenth batch), flat banners left over from the earlier rounds, each cited to its own scroll and frame and `documented`: from scroll 3, the three white discs and two white bands on a red nobori of Matsura, titled Hizen-no-kami, and the nine white discs scattered on black of Ikoma, titled Iki-no-kami; from scroll 5, the three black discs on a white nobori of Kuriyama, titled Saemon-no-suke, the three groups of six white discs on a black nobori of Togawa, titled Higo-no-kami, the two black bands and black foot on a white nobori of Hitotsuyanagi, titled Kenmotsu, and the five black bands on a white nobori of Date, titled Tōtōmi-no-kami; and from scroll 6, the three black bullseyes on a white nobori and the white bullseye on black of Hori, titled Mimasaka-no-kami, and the plain black nobori of Inoue, titled Kawachi-no-kami. Twenty-four flat banners are left in the pool in `docs/decisions.md`. The samurai entry is 115 KB.
+
 ## [1.27.0] - 2026-11-26
 
 ### Added
