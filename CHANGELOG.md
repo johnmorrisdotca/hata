@@ -6,6 +6,10 @@ All notable changes to this project are written here. The format follows
 
 ## [Unreleased]
 
+### Changed
+
+- **`pnpm data:image` runs the data step in a Linux x64 container with the official Node 24**, as CI does, so the gzip sizes it writes are the same bytes CI makes. A repository change only.
+
 ## [1.18.0] - 2026-11-26
 
 ### Added

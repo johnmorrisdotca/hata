@@ -88,6 +88,7 @@ later to build, because its data scripts are TypeScript that Node runs as it is.
 pnpm check            # lint, types, build, every export's documentation, tests (sizes included), the packed package
 pnpm test:demo        # build the demo and play it in a real browser
 pnpm data             # rebuild src/flags, src/data and the lists in docs/ from data-sources/ (no network, no browser)
+pnpm data:image       # the same in a Linux x64 container with the official Node 24 (Docker), so the gzip sizes are CI's
 pnpm data:compare     # draw every shipped flag beside its source, pixel by pixel (Chromium)
 pnpm data:choose      # compare every flag's drawings and choose what ships (Chromium); then pnpm data
 pnpm data:framing     # measure each flag's 4:3, square and round frames (Chromium); then pnpm data

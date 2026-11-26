@@ -3880,6 +3880,7 @@
     "check": "pnpm lint && pnpm typecheck && pnpm build && node scripts/check-docs.mjs && pnpm test && node scripts/check-package.mjs",
     "prepublishOnly": "pnpm check",
     "data": "node scripts/build-data.ts",
+    "data:image": "sh scripts/data-image.sh",
     "draw": "node scripts/draw-signals.ts",
     "draw:samurai": "node scripts/draw-samurai.ts",
     "draw:military": "node scripts/draw-military.ts",

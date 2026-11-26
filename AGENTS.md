@@ -55,6 +55,7 @@ Country and region flags as SVG, keyed by ISO 3166 code, with the source, author
 
 - Zero runtime dependencies. The family's shared parts (`@johnmorrisdotca/kazoku-ui`) are dev dependencies used by the demo site only.
 - `src/data`, `src/flags` and the generated docs come from `pnpm data` and the committed inputs; CI reruns it and fails on any difference. Do not edit them by hand.
+- **Run the data step as `pnpm data:image`**, not `pnpm data`, on a Mac. It runs `pnpm data` in Docker (`node:24.22.3-bookworm`, `linux/amd64`, the build CI's checks use), with a node_modules of its own in a Docker volume, so the gzip sizes it writes into `src/data/manifest.data.ts` and `docs/sizes.md` are CI's bytes; a Node that links the system's zlib (Homebrew's) writes others and CI's check then fails. Arguments go on to `pnpm data`. Copying CI's numbers in by hand is the fallback only, when Docker is not there.
 - Every drawing is from Wikimedia Commons or an MIT flag set, with its licence kept in the manifest and `NOTICE.md`.
 - Shared files are copied unchanged and held to recorded hashes (`src/family.test.js`, `src/docs-site.test.js`, `src/standard.test.js`): `scripts/family-template.mjs`, `scripts/family-readme.mjs`, `demo/family.css`, `scripts/docs-site.mjs`, `e2e/docs-site.demo.mjs`, `scripts/check-standard.mjs`.
 - The README stays under 64,000 characters (npm cuts it at 65,536); reference material goes to `docs/`.
