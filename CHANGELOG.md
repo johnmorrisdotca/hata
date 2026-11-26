@@ -6,6 +6,8 @@ All notable changes to this project are written here. The format follows
 
 ## [Unreleased]
 
+## [1.23.0] - 2026-11-26
+
 ### Added
 
 - **Nine more samurai banners from the handscroll 御馬印** (MODULES-1818, fifth batch), scroll 2, each measured from its frame and `documented`: the white slant with six black discs on a black nobori of Matsudaira, titled Oki-no-kami (frame 9); and from frames 22 to 32, the white disc on a black nobori of Inaba, titled Mino-no-kami, the white disc on red of Matsudaira, titled Shikibu-no-shō, the gold bullseye on red of Andō, styled Ukyō (右京), a shortened court title, the black band on a white nobori of Naitō, styled Sama (左馬), a shortened court title, the five black bands on a white nobori and the red disc on white of Tozawa, styled Ukyō (右京), a shortened court title, the gold disc on white (labelled 小むましるし) of Tsugaru, titled Etchū-no-kami, and the red disc on black of Kuki, titled Nagato-no-kami. The samurai entry is 135 KB, within its budget of 136 KB.
