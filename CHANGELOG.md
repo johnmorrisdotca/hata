@@ -6,6 +6,8 @@ All notable changes to this project are written here. The format follows
 
 ## [Unreleased]
 
+## [1.19.0] - 2026-11-26
+
 ### Added
 
 - **Twelve samurai banners drawn from a picture of about the period** (MODULES-1818): the picture book 御馬印 (*Go-umajirushi*), volume 1, from around the Kan'ei years (1624 to 1644, the National Diet Library's estimate), at the National Diet Library (NDL 1286895, public domain). Each is measured from the frame its record names and cited to it, and each is `documented`: Taitoku-in's banner with 五 (`samurai:taitokuin-go`), the Lord of Mito's gold disc on black, the Lord of Echizen's red disc on white, the pale blue nobori with twenty-seven black dots of Hoshina, titled Higo-no-kami, three of Sakai Kunai's, Uesugi Danjō's gold disc on black and his banner with 毘, the three white discs on black of Tōdō of Tsu, titled Izumi-no-kami, and the nobori with 本 and the gold band on black (`samurai:honda-mino-kin-obi`) of Honda, titled Mino-no-kami. The characters are lettered in Yuji Syuku, an SIL Open Font License brush font named in `NOTICE.md`; `pnpm data:glyphs` keeps the outlines of the characters used, not the font. The samurai entry is 40 KB (6.8 KB gzipped) and its budget 48 KB.
