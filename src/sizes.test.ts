@@ -26,7 +26,7 @@ describe("the built entries", () => {
 
   it("keep each drawn set's entry to its records, and each drawing a module of its own, under the set's budget", () => {
     // The entry carries ids, names and metadata only; a drawing is a dynamic import of dist/<set>/<slug>.js, loaded when it is asked for.
-    const budgets: Record<string, { entry: number; drawing: number }> = { signals: { entry: 96 * KB, drawing: 4 * KB }, samurai: { entry: 48 * KB, drawing: 6 * KB }, military: { entry: 110 * KB, drawing: 140 * KB }, medieval: { entry: 96 * KB, drawing: 120 * KB }, organisations: { entry: 10 * KB, drawing: 50 * KB } };
+    const budgets: Record<string, { entry: number; drawing: number }> = { signals: { entry: 96 * KB, drawing: 4 * KB }, samurai: { entry: 72 * KB, drawing: 6 * KB }, military: { entry: 110 * KB, drawing: 140 * KB }, medieval: { entry: 96 * KB, drawing: 120 * KB }, organisations: { entry: 10 * KB, drawing: 50 * KB } };
     for (const [set, budget] of Object.entries(budgets)) {
       expect(size(`dist/${set}.js`), set).toBeLessThan(budget.entry);
       expect(readFileSync(`dist/${set}.js`, "utf8"), set).not.toContain("<path");
