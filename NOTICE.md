@@ -179,13 +179,39 @@ Wikipedia's "Naval flag signalling" were read for the names only. The Navy's own
 
 The battle banners of Sengoku daimyo are a separate entry point (`@johnmorrisdotca/hata/samurai`, ids `samurai:<slug>`), and none of them is a Commons file:
 each is drawn for this package, under the MIT licence, as geometry written out in `scripts/draw-samurai.ts`, from the words of a published source, and
-nothing is copied from a picture. No cloth survives for any of them, so every drawing is a reconstruction, and its record says which part follows the source and
-which is this package's. Read on 2026-11-24:
+nothing is copied from a picture. The nine below are drawn from words: no cloth survives for any of them, so each is a reconstruction, and its record says which
+part follows the source and which is this package's. Read on 2026-11-24:
 
 | Ids | What | Source | What it says |
 | --- | --- | --- | --- |
 | `samurai:uesugi-tenshi`, `samurai:uesugi-ogi`, `samurai:hojo-gosyoku`, `samurai:date-daishihan`, `samurai:toyotomi-gunbai`, `samurai:tokugawa-kinsen`, `samurai:oda-karakasa`, `samurai:ii-igeta` | Banners and signs of named commanders | 馬印 (Uma-jirushi), Japanese Wikipedia, https://ja.wikipedia.org/wiki/馬印 | Lists the banners and signs of named Sengoku commanders with their designs and grounds in words; it names no surviving cloth or museum for them. |
 | `samurai:sanada-rokumonsen` | The Sanada nobori | 真田氏 (Sanada clan), Japanese Wikipedia, https://ja.wikipedia.org/wiki/真田氏 | Says the six-coin crest was mainly a battle banner, describes an all-red nobori with the crest of unclear use, and names the screen of the Summer Campaign of Osaka (Osaka Castle collection) as the source for the Sanada unit's all-red flag with a gold line. |
+
+Twelve more are drawn from a period picture, read on 2026-11-26: the painted roll book 御馬印 (*Go-umajirushi*), roll 1, of the Kan'ei era (1624 to 1644), in the
+National Diet Library (call number WA8-7, https://dl.ndl.go.jp/pid/1286895), which the library marks as public domain (保護期間満了, its term has expired). Each is
+geometry written out in `scripts/draw-samurai.ts`, its proportions and the place and size of its parts measured from the frame named below, under the MIT licence;
+nothing of the photograph is in the package. Each is `documented`.
+
+| Id | What the frame shows | Frame |
+| --- | --- | --- |
+| `samurai:taitokuin-go` | 台徳院様 (Tokugawa Hidetada): a black banner with 五 in white | https://dl.ndl.go.jp/pid/1286895/1/8 |
+| `samurai:mito-kinmaru` | 水戸中納言様: a black banner with a gold disc | https://dl.ndl.go.jp/pid/1286895/1/11 |
+| `samurai:echizen-hinomaru` | 越前宰相殿: a white banner with a vermilion disc, labelled 大馬しるし | https://dl.ndl.go.jp/pid/1286895/1/14 |
+| `samurai:hoshina-higo-kuroboshi` | 保科肥後殿: a pale blue nobori with three blocks of nine black dots | https://dl.ndl.go.jp/pid/1286895/1/14 |
+| `samurai:sakai-kunai-mitsumaru` | 酒井宮内: a white nobori with three vermilion discs | https://dl.ndl.go.jp/pid/1286895/1/19 |
+| `samurai:sakai-kunai-hinomaru` | 酒井宮内: a square white banner with a vermilion disc | https://dl.ndl.go.jp/pid/1286895/1/19 |
+| `samurai:sakai-kunai-kinmaru` | 酒井宮内: a pale blue banner with a gold disc | https://dl.ndl.go.jp/pid/1286895/1/20 |
+| `samurai:uesugi-danjo-kinmaru` | 上杉弾正: a black banner with a gold disc, labelled 大馬しるし | https://dl.ndl.go.jp/pid/1286895/1/20 |
+| `samurai:uesugi-danjo-bi` | 上杉弾正: a white banner with 毘 in black, labelled 小馬しるし | https://dl.ndl.go.jp/pid/1286895/1/20 |
+| `samurai:todo-izumi-mitsumaru` | 藤堂和泉守: a black nobori with three white discs | https://dl.ndl.go.jp/pid/1286895/1/22 |
+| `samurai:honda-mino-hon` | 本多美濃守: a white nobori with a black band and 本 in black | https://dl.ndl.go.jp/pid/1286895/1/24 |
+| `samurai:honda-mino-kinsuji` | 本多美濃守: a black banner with a gold band | https://dl.ndl.go.jp/pid/1286895/1/24 |
+
+**The lettering.** The characters 五, 毘 and 本 are lettered in **Yuji Syuku**, a brush font by Kinuta Font Factory, Copyright 2021 The Yuji Project Authors
+(https://github.com/Kinutafontfactory/Yuji), licensed under the **SIL Open Font License, Version 1.1**. `pnpm data:glyphs` (`scripts/fetch-glyphs.ts`) takes the
+outlines of those characters only from the font at google/fonts commit f6a4e8a8 and keeps them in `data-sources/glyphs/yuji-syuku.json`, with the licence in
+`data-sources/glyphs/OFL.txt`; the font itself is not in the repository or the package. The drawings use the outlines as artwork made with the font, which the licence does not restrict.
+
 ## Medieval banners
 
 The medieval banners are a separate entry point (`@johnmorrisdotca/hata/medieval`, ids `med:<slug>`). Six are drawn for this package, under the MIT licence, as geometry

@@ -6,6 +6,10 @@ All notable changes to this project are written here. The format follows
 
 ## [Unreleased]
 
+### Added
+
+- **Twelve samurai banners drawn from a period picture** (MODULES-1818): the painted roll book 御馬印 (*Go-umajirushi*), roll 1, of the Kan'ei era (1624 to 1644), at the National Diet Library (NDL 1286895, public domain). Each is measured from the frame its record names and cited to it, and each is `documented`: Taitoku-in's banner with 五 (`samurai:taitokuin-go`), the Lord of Mito's gold disc on black, the Lord of Echizen's red disc on white, Hoshina Higo's pale blue nobori with twenty-seven black dots, three of Sakai Kunai's, Uesugi Danjō's gold disc on black and his banner with 毘, Tōdō Izumi's three white discs on black, and Honda Mino's nobori with 本 and his gold band on black. The characters are lettered in Yuji Syuku, an SIL Open Font License brush font named in `NOTICE.md`; `pnpm data:glyphs` keeps the outlines of the characters used, not the font. The samurai entry is 40 KB (6.8 KB gzipped) and its budget 48 KB.
+
 ### Changed
 
 - **`pnpm data:image` runs the data step in a Linux x64 container with the official Node 24**, as CI does, so the gzip sizes it writes are the same bytes CI makes. A repository change only.

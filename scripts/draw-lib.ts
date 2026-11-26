@@ -50,11 +50,13 @@ const clipTo = (points: readonly (readonly [number, number])[], w: number, h: nu
 interface Shape {
   fill: string;
   d: string;
+  /** For a written character: the character, kept on the path as `data-glyph`. */
+  glyph?: string;
 }
 /** The drawing: `<svg>` with the viewBox, the data attribute `data-hata-<prefix>="<slug>"`, an optional clip, and the shapes in order. */
 const svg = (prefix: string, slug: string, w: number, h: number, shapes: readonly Shape[], clip?: string): string => {
   const id = `${prefix}-${slug}-c`;
-  const body = shapes.map((shape) => `<path fill="${shape.fill}" d="${shape.d}"/>`).join("");
+  const body = shapes.map((shape) => `<path${shape.glyph === undefined ? "" : ` data-glyph="${shape.glyph}"`} fill="${shape.fill}" d="${shape.d}"/>`).join("");
 
   return `<svg data-hata-${prefix}="${slug}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${n(w)} ${n(h)}">${clip === undefined ? body : `<defs><clipPath id="${id}"><path d="${clip}"/></clipPath></defs><g clip-path="url(#${id})">${body}</g>`}</svg>`;
 };
