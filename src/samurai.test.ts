@@ -1,4 +1,4 @@
-// The samurai banners: nine reconstructions from words, each saying which part is the source's, and ninety-one drawn from the painted
+// The samurai banners: nine reconstructions from words, each saying which part is the source's, and a hundred and one drawn from the painted
 // handscroll 御馬印 (National Diet Library), each cited to its scroll and frame, seven of them lettered in an SIL OFL brush font.
 import { readFileSync } from "node:fs";
 
@@ -11,7 +11,7 @@ describe("the banners", () => {
   it("are what scripts/draw-samurai.ts makes, so the data file cannot drift from the geometry", () => {
     for (const [path, text] of samuraiFiles()) expect(readFileSync(`src/sets/${path}`, "utf8"), path).toBe(text);
     expect(samuraiRecords().map((one) => one.id)).toEqual([...SAMURAI_IDS]);
-    expect(SAMURAI_IDS).toHaveLength(100);
+    expect(SAMURAI_IDS).toHaveLength(110);
   });
 
   it("give each record the name, about, note and source the script writes, though the entry builds the handscroll's note and source itself", () => {
@@ -33,18 +33,19 @@ describe("the banners", () => {
     }
   });
 
-  it("take ninety-one banners from the handscroll 御馬印 at the National Diet Library, each documented and cited to its scroll and frame", () => {
+  it("take a hundred and one banners from the handscroll 御馬印 at the National Diet Library, each documented and cited to its scroll and frame", () => {
     const documented = SAMURAI_IDS.filter((id) => samuraiInfo(id)?.status === "documented");
-    expect(documented).toHaveLength(91);
+    expect(documented).toHaveLength(101);
     for (const id of documented) {
       const info = samuraiInfo(id)!;
       expect(info.source.kind, id).toBe("official");
-      expect(info.source.title, id).toMatch(/^御馬印 巻[12345] /);
-      expect(info.source.url, id).toMatch(/^https:\/\/dl\.ndl\.go\.jp\/pid\/(1286895|1288242|1288243|1288217|1288244)\/1\/\d+$/);
+      expect(info.source.title, id).toMatch(/^御馬印 巻[1-6] /);
+      expect(info.source.url, id).toMatch(/^https:\/\/dl\.ndl\.go\.jp\/pid\/(1286895|1288242|1288243|1288217|1288244|1287803)\/1\/\d+$/);
       expect(info.source.title.startsWith("御馬印 巻2"), id).toBe(info.source.url.includes("/1288242/"));
       expect(info.source.title.startsWith("御馬印 巻3"), id).toBe(info.source.url.includes("/1288243/"));
       expect(info.source.title.startsWith("御馬印 巻4"), id).toBe(info.source.url.includes("/1288217/"));
       expect(info.source.title.startsWith("御馬印 巻5"), id).toBe(info.source.url.includes("/1288244/"));
+      expect(info.source.title.startsWith("御馬印 巻6"), id).toBe(info.source.url.includes("/1287803/"));
       expect(info.note.en, id).toMatch(new RegExp(`frame ${info.source.url.split("/").pop()}\\b`));
       expect(info.note.ja, id).toMatch(/コマ\d+/);
       expect(info.note.en, id).toMatch(/handscroll/);
@@ -66,8 +67,8 @@ describe("the banners", () => {
   });
 
   it("are grouped as nobori, hata and uma-jirushi, and tall where they are nobori", () => {
-    expect(samuraiIn("nobori")).toEqual(["samurai:hojo-gosyoku", "samurai:sanada-rokumonsen", "samurai:hoshina-higo-kuroboshi", "samurai:sakai-kunai-mitsumaru", "samurai:todo-izumi-mitsumaru", "samurai:honda-mino-hon", "samurai:ii-kamon-aka-nobori", "samurai:koide-yamato-naname", "samurai:terazawa-shima-mitsumaru", "samurai:sanada-kawachi-aka-obi", "samurai:koriki-settsu-shiromaru", "samurai:matsudaira-shimosa-kinbishi", "samurai:matsudaira-tanba-kuro-obi", "samurai:sakai-awa-inazuma", "samurai:matsudaira-dewa-shiromaru-nobori", "samurai:okubo-kaga-shirowa", "samurai:aoyama-okura-yama", "samurai:matsudaira-kai-akamaru-nobori", "samurai:matsudaira-yamashiro-shiro-obi", "samurai:matsudaira-uemon-naname-nobori", "samurai:asano-uneme-itsutsumaru", "samurai:mizoguchi-izumo-kuro-obi", "samurai:matsudaira-oki-naname", "samurai:inaba-mino-shiromaru", "samurai:naito-sama-kuro-obi", "samurai:tozawa-ukyo-kuro-obi", "samurai:matsudaira-shogen-kuromaru", "samurai:tsuchiya-minbu-kuro-obi", "samurai:kuriyama-kaga-shiro-obi", "samurai:matsudaira-iwami-hinomaru", "samurai:mizoguchi-hoki-kuro-obi", "samurai:matsudaira-hizen-aka", "samurai:asano-aki-kuro-obi", "samurai:abe-bitchu-kuro-obi", "samurai:okabe-mino-kuro-obi", "samurai:mori-kai-mitsumaru", "samurai:oda-izumo-kuro-obi", "samurai:so-tsushima-shiro-obi", "samurai:katagiri-izumo-naname", "samurai:kurushima-dewa-kuro-obi", "samurai:nakagawa-naizen-mitsumaru", "samurai:shinjo-echizen-naname", "samurai:yamazaki-kai-yama", "samurai:matsudaira-nagato-shiro-obi", "samurai:endo-tajima-hinomaru", "samurai:sugihara-hoki-kuro"]);
-    expect(samuraiIn("hata")).toHaveLength(42);
+    expect(samuraiIn("nobori")).toEqual(["samurai:hojo-gosyoku", "samurai:sanada-rokumonsen", "samurai:hoshina-higo-kuroboshi", "samurai:sakai-kunai-mitsumaru", "samurai:todo-izumi-mitsumaru", "samurai:honda-mino-hon", "samurai:ii-kamon-aka-nobori", "samurai:koide-yamato-naname", "samurai:terazawa-shima-mitsumaru", "samurai:sanada-kawachi-aka-obi", "samurai:koriki-settsu-shiromaru", "samurai:matsudaira-shimosa-kinbishi", "samurai:matsudaira-tanba-kuro-obi", "samurai:sakai-awa-inazuma", "samurai:matsudaira-dewa-shiromaru-nobori", "samurai:okubo-kaga-shirowa", "samurai:aoyama-okura-yama", "samurai:matsudaira-kai-akamaru-nobori", "samurai:matsudaira-yamashiro-shiro-obi", "samurai:matsudaira-uemon-naname-nobori", "samurai:asano-uneme-itsutsumaru", "samurai:mizoguchi-izumo-kuro-obi", "samurai:matsudaira-oki-naname", "samurai:inaba-mino-shiromaru", "samurai:naito-sama-kuro-obi", "samurai:tozawa-ukyo-kuro-obi", "samurai:matsudaira-shogen-kuromaru", "samurai:tsuchiya-minbu-kuro-obi", "samurai:kuriyama-kaga-shiro-obi", "samurai:matsudaira-iwami-hinomaru", "samurai:mizoguchi-hoki-kuro-obi", "samurai:matsudaira-hizen-aka", "samurai:asano-aki-kuro-obi", "samurai:abe-bitchu-kuro-obi", "samurai:okabe-mino-kuro-obi", "samurai:mori-kai-mitsumaru", "samurai:oda-izumo-kuro-obi", "samurai:so-tsushima-shiro-obi", "samurai:katagiri-izumo-naname", "samurai:kurushima-dewa-kuro-obi", "samurai:nakagawa-naizen-mitsumaru", "samurai:shinjo-echizen-naname", "samurai:yamazaki-kai-yama", "samurai:matsudaira-nagato-shiro-obi", "samurai:endo-tajima-hinomaru", "samurai:sugihara-hoki-kuro", "samurai:honda-ise-kuro-obi", "samurai:matsudaira-yamato-shiro-obi", "samurai:kamei-noto-kokonotsumaru", "samurai:matsushita-iwami-kinbatsu", "samurai:hasegawa-shikibu-kuro", "samurai:mukai-shogen-itsutsumaru", "samurai:matsukura-bungo-aka", "samurai:sanada-izu-aka-obi"]);
+    expect(samuraiIn("hata")).toHaveLength(44);
     expect(samuraiIn("uma")).toHaveLength(12);
     expect(samuraiIn("none")).toEqual([]);
     expect(samuraiAspect("samurai:sanada-rokumonsen")).toBe(0.25);
