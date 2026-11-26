@@ -6,6 +6,8 @@ All notable changes to this project are written here. The format follows
 
 ## [Unreleased]
 
+## [1.21.0] - 2026-11-26
+
 ### Added
 
 - **Eleven more samurai banners from the handscroll 御馬印** (MODULES-1818, third batch), each measured from its frame and `documented`: the white disc on black of Sakai, titled Uta-no-kami, and the two gold zigzags on black of Sakai, titled Awa-no-kami, from scroll 1; and from scroll 2 (NDL 1288242), the red ring and disc on white and the plain gold banner of Matsudaira, titled Kai-no-kami, the gold band on red on a slant of Matsudaira, titled Echigo-no-kami, the nine white discs on red and the gold ring on black of Matsudaira, titled Yamashiro-no-kami, the white disc on black of Matsudaira, titled Dewa-no-kami, on a banner and a nobori, the white ring on black of Ōkubo, titled Kaga-no-kami, and the pale blue nobori with 山 of Aoyama, titled Ōkura-no-shō. 山 is lettered in Yuji Syuku. The samurai entry is 85 KB and its budget 96 KB.
