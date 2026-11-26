@@ -748,6 +748,9 @@ const ADAPTED: Readonly<Record<string, Loader>> = {
   "NQAQ 4:3": () => import("../flags/no.4x3.js"),
   "NQAQ 1:1": () => import("../flags/no.1x1.js"),
   "NQAQ round": () => import("../flags/no.1x1.js"),
+  "XRE 4:3": () => import("../flags/ru.4x3.js"),
+  "XRE 1:1": () => import("../flags/ru.1x1.js"),
+  "XRE round": () => import("../flags/ru.1x1.js"),
 };
 
 export { ADAPTED };

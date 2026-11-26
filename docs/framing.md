@@ -155,7 +155,7 @@ no reason excuses, or where a person judged that no crop shows the flag.
 | `SUHH--1936` | Soviet Union, The flag of 1936 to 1955 | kept at the hoist (left) | the crop | The emblem sits in a canton at the hoist on a plain field, so a crop from the centre is a square of one colour; a crop from the left keeps the emblem, as a hand-drawn square of the flag would. |
 | `BUMM--union` | Burma, The flag of 1948 to 1974 | kept at the hoist (left) | the crop | The blue canton with its stars or its wheel sits at the hoist, and a crop from the centre cuts half of it away; a crop from the left keeps it whole with the red field beside it. |
 
-## Flags shown whole by default because a crop loses a colour (23)
+## Flags shown whole by default because a crop loses a colour (25)
 
 Nobody chose a side for these, and the measure found that a centre crop drops a colour covering 5% of the flag.
 
@@ -183,4 +183,6 @@ Nobody chose a side for these, and the measure found that a centre crop drops a 
 | `US-WY` | Wyoming | red 23% to 7% |
 | `RHZW` | Rhodesia | green 69% to 27% |
 | `XCS` | Confederate States of America | blue 9% to 4%, red 13% to 6% |
+| `XHJ` | Kingdom of Hejaz | red 17% to 6% |
+| `XOF` | Orange Free State | red 6% to 3% |
 | `YDYE` | South Yemen | blue 19% to 9% |

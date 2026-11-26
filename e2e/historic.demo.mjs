@@ -94,8 +94,9 @@ test("narrows by what changed since 1900 and by continent, and searches names, c
   await page.locator(at("continent")).selectOption("");
   await page.locator(at("show")).selectOption("all");
   await page.locator(at("search")).fill("red ensign");
-  await expect(page.locator(at("historic-country"))).toHaveCount(1);
+  await expect(page.locator(at("historic-country"))).toHaveCount(2);
   await expect(page.locator(`${at("historic-country")}[data-code="CA"]`)).toHaveCount(1);
+  await expect(page.locator(`${at("historic-country")}[data-code="XNF"]`)).toHaveCount(1);
   await page.locator(at("search")).fill("weimar");
   await expect(page.locator(at("historic-country"))).toHaveCount(1);
   await expect(page.locator(`${at("historic-country")}[data-code="DE"]`)).toHaveCount(1);
@@ -135,8 +136,8 @@ test("fits a phone without sideways scrolling, and the docs and gallery link to 
 test("shows the legal flag and the flag in use side by side wherever they differ, each with its reason and source", async ({ page }) => {
   await open(page, "?lang=en");
   const noted = MANIFEST.filter((record) => record.variants.some((variant) => variant.roleNote !== null)).map((record) => record.code);
-  expect(noted.sort()).toEqual(["AU", "CA", "NZ", "UA", "XAH", "XHW", "XQI", "XTB"]);
-  await expect(page.locator(at("historic-split"))).toHaveCount(8);
+  expect(noted.sort()).toEqual(["AU", "CA", "NZ", "UA", "XAH", "XBA", "XHW", "XNF", "XQI", "XTB"]);
+  await expect(page.locator(at("historic-split"))).toHaveCount(10);
   for (const code of noted) {
     const block = page.locator(`${at("historic-split")}[data-code="${code}"]`);
     await expect(block, code).toHaveCount(1);

@@ -6,6 +6,10 @@ All notable changes to this project are written here. The format follows
 
 ## [Unreleased]
 
+### Added
+
+- **Seven more former states** (MODULES-1820): the Kingdom of Bavaria (`XBA`), the Kingdom of Saxony (`XSX`), the Kingdom of Württemberg (`XWU`), the Kingdom of Hejaz (`XHJ`, with the Arab Revolt flag of 1917 to 1920 as a variant), the Orange Free State (`XOF`), the Russian Empire (`XRE`, the tricolour of 1896 to 1917 and the black, yellow and white state flag of 1858 to 1896 as a variant) and the Dominion of Newfoundland (`XNF`, the Red Ensign with the colony's badge, as the flag in use). 52 former countries in all, 519 flags. Every drawing is a public-domain file on Commons (named by hand, read 2026-11-26), under a code of Hata's own, with its dates and a source on Wikipedia. The Kingdom of the Two Sicilies (`XTS`) is in `LEFT_OUT`: its one public-domain drawing is 615 KB after optimising, over the 400 KB ceiling.
+
 ## [1.16.0] - 2026-11-24
 
 ### Added

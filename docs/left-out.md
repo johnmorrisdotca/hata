@@ -1,7 +1,7 @@
 # The codes with no flag in this version, and why
 
 Made by `pnpm data`; a test fails if this list and the data differ. Every code Kuni knows (483: the
-250 countries and the first level of JP, CA, US, AU, GB, DE, FR, CH, AT, BR), and every former country or team of sport that Hata lists (63, the Olympic teams that marched under the Olympic flag among them), either has a flag or is here with its reason.
+250 countries and the first level of JP, CA, US, AU, GB, DE, FR, CH, AT, BR), and every former country or team of sport that Hata lists (71, the Olympic teams that marched under the Olympic flag among them), either has a flag or is here with its reason.
 The decisions behind the reasons are in [decisions.md](decisions.md).
 
 | Code | Place | Why | Commons file |
@@ -40,6 +40,7 @@ The decisions behind the reasons are in [decisions.md](decisions.md).
 | `TPTL` | East Timor | In the years of the code (1974 to 1993) East Timor was Portuguese Timor, then from 1976 a province of Indonesia: it flew Portugal's flag and then Indonesia's, and had none of its own that was in lasting use. Timor-Leste (`TL`) has its flag since independence. |  |
 | `XGC` | Gran Colombia | Every drawing of its flags on Commons is under CC BY-SA 3.0 or 4.0, which this package does not ship (docs/decisions.md). |  |
 | `XTA` | Tanganyika | The flag of independent Tanganyika (1961 to 1964, green, black and gold) is on Commons under CC BY-SA 3.0, which this package does not ship (docs/decisions.md). |  |
+| `XTS` | Kingdom of the Two Sicilies | The Bourbon kingdom of Naples and Sicily (1816-12-08 to 1861-03-17) flew a white field with the royal arms. The one public-domain drawing on Commons ("Flag of the Kingdom of the Two Sicilies (1816).svg") is 615 KB after optimising, over the package's ceiling of 400 KB for a flag, and the other drawings are CC BY-SA (the "Sodacan style" ones and the flag of 1860) or CC BY with the arms in a different layout (1848), which Hata does not redraw. |  |
 
 ## Left out for their licence, for the maintainer to decide
 

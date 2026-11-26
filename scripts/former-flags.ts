@@ -441,6 +441,88 @@ const FORMER_HISTORICAL: Readonly<Record<string, HistoricalSpec>> = {
     file: null,
     why: "The flag of independent Tanganyika (1961 to 1964, green, black and gold) is on Commons under CC BY-SA 3.0, which this package does not ship (docs/decisions.md).",
   },
+
+  // MODULES-1820: the next states, each with a public-domain Commons drawing named by hand (read 2026-11-26).
+  XBA: {
+    en: "Kingdom of Bavaria",
+    ja: "バイエルン王国",
+    item: null,
+    from: "1806",
+    until: "1918",
+    aliases: [],
+    file: "Flag of Bavaria (striped).svg",
+    why: "The white and blue striped flag, which Wikipedia's article on the flag of Bavaria shows for the Kingdom (1806 to 1918); it is the same design as the Free State's striped flag (`DE-BY`'s `stripes`), drawn from Commons' own file. The lozenge flag is not dated to the Kingdom by that article. The Kingdom ended with the revolution of November 1918.",
+  },
+  XHJ: {
+    en: "Kingdom of Hejaz",
+    ja: "ヒジャーズ王国",
+    item: null,
+    from: "1916",
+    until: "1925",
+    aliases: [],
+    file: "Flag of Hejaz (1920).svg",
+    why: "The Hashemite Kingdom of the Hejaz, proclaimed in the Arab Revolt of 1916-06-10 and conquered by Nejd on 1925-12-19 (Hejaz then joined Nejd in a union that is not this state). Its flag of 1920, black, white and green with a red triangle at the hoist, is the default; the Arab Revolt flag of 1917 to 1920 is a variant.",
+  },
+  XNF: {
+    en: "Dominion of Newfoundland",
+    ja: "ニューファンドランド自治領",
+    item: null,
+    from: "1907",
+    until: "1949",
+    aliases: [],
+    file: "Flag of Newfoundland (1904–1949).svg",
+    why: "The Dominion (1907 to its union with Canada in 1949; self-government was suspended in 1934). Its own flag was the Red Ensign with the colony's badge, designated by Parliament in 1904; the Union Flag was the national flag from the Newfoundland National Flag Act of 1931. The ensign is the one drawing of its own, so it is shown, with the role it had.",
+  },
+  XOF: {
+    en: "Orange Free State",
+    ja: "オレンジ自由国",
+    item: null,
+    from: "1854",
+    until: "1902",
+    aliases: [],
+    file: "Flag of the Orange Free State.svg",
+    why: "The Boer republic between the Orange and Vaal rivers (1854-02-23 to its surrender on 1902-05-31, when it became the Orange River Colony and, in 1910, a province of South Africa). Its flag, four white and three orange bands with the Dutch tricolour in the canton, was approved by the Volksraad on 1856-02-28 and taken into use on 1857-02-23.",
+  },
+  XRE: {
+    en: "Russian Empire",
+    ja: "ロシア帝国",
+    item: null,
+    from: "1721",
+    until: "1917",
+    aliases: [],
+    file: "Flag of Russia.svg",
+    why: "The Empire (proclaimed 1721-10-22, ended by the revolution of 1917) flew two flags at once for most of its last sixty years: the black, yellow and white heraldic state flag decreed in 1858, and the white, blue and red tricolour of its merchant ships, made the sole national flag in 1896. The tricolour is the default, as the flag the Empire ended with, and is Russia's one picture drawn once; the black, yellow and white flag is a variant. The Olympic team of 1900 to 1912 (`RU1`) stays among the codes with no flag (docs/left-out.md).",
+  },
+  XSX: {
+    en: "Kingdom of Saxony",
+    ja: "ザクセン王国",
+    item: null,
+    from: "1806",
+    until: "1918",
+    aliases: [],
+    file: "Flagge Königreich Sachsen.svg",
+    why: "The white and green flag, decided as the Kingdom's state colours in 1815 and flown until the Kingdom ended with the abdication of 1918-11-13 (the Free State kept it). Raised from an electorate to a kingdom on 1806-12-20.",
+  },
+  XTS: {
+    en: "Kingdom of the Two Sicilies",
+    ja: "両シチリア王国",
+    item: null,
+    from: "1816",
+    until: "1861",
+    aliases: [],
+    file: null,
+    why: "The Bourbon kingdom of Naples and Sicily (1816-12-08 to 1861-03-17) flew a white field with the royal arms. The one public-domain drawing on Commons (\"Flag of the Kingdom of the Two Sicilies (1816).svg\") is 615 KB after optimising, over the package's ceiling of 400 KB for a flag, and the other drawings are CC BY-SA (the \"Sodacan style\" ones and the flag of 1860) or CC BY with the arms in a different layout (1848), which Hata does not redraw.",
+  },
+  XWU: {
+    en: "Kingdom of Württemberg",
+    ja: "ヴュルテンベルク王国",
+    item: null,
+    from: "1806",
+    until: "1918",
+    aliases: [],
+    file: "Flagge Königreich Württemberg.svg",
+    why: "The black over red flag of 1816 to 1918 (Wikipedia's infobox dates it so; Commons dates the drawing to 1816 to 1935, as the Free People's State kept it). The Kingdom was raised on 1806-12-26 and ended in the revolution, on 1918-11-30. Its earlier flag of 1809 to 1816 has no public-domain drawing.",
+  },
 };
 
 const FORMER_VARIANTS: Readonly<Record<string, VariantSet>> = {
@@ -647,6 +729,58 @@ const FORMER_VARIANTS: Readonly<Record<string, VariantSet>> = {
     default: "sultanate",
     variants: [
       { id: "sultanate", name: "The Sultanate's flag", nameJa: "スルタン国の国旗", status: "official", roles: BOTH, from: "1963-12-10", until: "1964-01-12", why: "A red flag, flown from independence on 1963-12-10 until the revolution of 1964-01-12.", source: "https://en.wikipedia.org/wiki/Zanzibar", sourceKind: "encyclopedia", file: null },
+    ],
+  },
+
+  XBA: {
+    disputed: false,
+    default: "stripes",
+    variants: [
+      { id: "stripes", name: "The white and blue striped flag", nameJa: "白と青の横縞の旗", status: "official", roles: [{ role: "in-use" }], from: "1806", until: "1918-11-12", roleNote: { why: "The Kingdom's state colours were white and blue; Wikipedia's table of the flag of Bavaria shows the striped flag for 1806 to 1918, and no law of the Kingdom found fixes a flag, so it is shown as the flag in use.", source: "https://en.wikipedia.org/wiki/Flag_of_Bavaria", sourceKind: "encyclopedia" }, why: "Horizontal white and blue stripes, the colours of the House of Wittelsbach, flown until the Kingdom ended in November 1918 (King Ludwig III's declaration at Anif is dated 1918-11-12).", source: "https://en.wikipedia.org/wiki/Flag_of_Bavaria", sourceKind: "encyclopedia", file: null },
+    ],
+  },
+  XHJ: {
+    disputed: false,
+    default: "hejaz-1920",
+    variants: [
+      { id: "hejaz-1920", name: "The flag of 1920", nameJa: "1920年の旗", status: "official", roles: BOTH, from: "1920", until: "1925-12-19", why: "Black, white and green stripes with a red triangle at the hoist, the flag of the Kingdom from 1920 until Nejd conquered it on 1925-12-19; it was also the Sharifian Caliphate's flag in 1924 to 1925.", source: "https://en.wikipedia.org/wiki/Kingdom_of_Hejaz", sourceKind: "encyclopedia", file: null },
+      { id: "arab-revolt", name: "The Arab Revolt flag", nameJa: "アラブ反乱の旗", status: "historical", roles: BOTH, from: "1917", until: "1920", why: "Black, green and white stripes with a red triangle at the hoist, the flag of the Arab Revolt that Commons dates 1917 to 1920, the Kingdom's first flag.", source: "https://en.wikipedia.org/wiki/Kingdom_of_Hejaz", sourceKind: "encyclopedia", file: "Flag of Hejaz (1917).svg" },
+    ],
+  },
+  XNF: {
+    disputed: false,
+    default: "red-ensign",
+    variants: [
+      { id: "red-ensign", name: "The Red Ensign with the Newfoundland badge", nameJa: "ニューファンドランドの紋章入りレッド・エンサイン", status: "official", roles: [{ role: "in-use" }], from: "1907", until: "1949", roleNote: { why: "The Dominion never adopted a flag of its own in law: the Union Flag was its national flag (the Newfoundland National Flag Act of 1931), and the ensign, designated by the British Parliament in 1904 for merchant ships, was the flag seen at sea and on stamps and badges.", source: "https://en.wikipedia.org/wiki/Flag_of_Newfoundland_and_Labrador", sourceKind: "encyclopedia" }, why: "A Red Ensign with the Union Flag in the canton and the Great Seal's badge, designated in 1904, flown by the Dominion's merchant ships until the union with Canada in 1949.", source: "https://en.wikipedia.org/wiki/Flag_of_Newfoundland_and_Labrador", sourceKind: "encyclopedia", file: null },
+    ],
+  },
+  XOF: {
+    disputed: false,
+    default: "vierkleur-canton",
+    variants: [
+      { id: "vierkleur-canton", name: "The Orange Free State flag", nameJa: "オレンジ自由国の旗", status: "official", roles: BOTH, from: "1857-02-23", until: "1902-05-31", why: "Four white and three orange horizontal bands with the Dutch tricolour in the canton, approved by the Volksraad on 1856-02-28, taken into use on 1857-02-23 and flown until the republic ended on 1902-05-31.", source: "https://en.wikipedia.org/wiki/Flag_of_the_Orange_Free_State", sourceKind: "encyclopedia", file: null },
+    ],
+  },
+  XRE: {
+    disputed: false,
+    default: "tricolour",
+    variants: [
+      { id: "tricolour", name: "The white, blue and red tricolour", nameJa: "白・青・赤の三色旗", status: "official", roles: BOTH, from: "1896-04-29", until: "1917", why: "White, blue and red horizontal stripes, the merchant flag since 1705 and made the sole national flag by an imperial order of 1896-04-29; the Provisional Government kept it after the revolution of February 1917. It is Russia's one picture, drawn once for both codes.", source: "https://en.wikipedia.org/wiki/Flag_of_Russia", sourceKind: "encyclopedia", file: null },
+      { id: "black-yellow-white", name: "The black, yellow and white state flag", nameJa: "黒・黄・白の国旗", status: "historical", roles: BOTH, from: "1858-06-23", until: "1896-04-29", why: "Black, yellow and white horizontal stripes, the Romanov dynastic colours, decreed by Alexander II on 1858-06-23 (11 June in the Russian calendar of the day) as the heraldic state flag, flown on government buildings beside the tricolour until the order of 1896.", source: "https://en.wikipedia.org/wiki/Flag_of_Russia", sourceKind: "encyclopedia", file: "Flag of Russia (1858–1896).svg" },
+    ],
+  },
+  XSX: {
+    disputed: false,
+    default: "white-green",
+    variants: [
+      { id: "white-green", name: "The white and green flag", nameJa: "白と緑の旗", status: "official", roles: BOTH, from: "1815", until: "1918-11-13", why: "Horizontal white and green stripes, decided as the Kingdom's state colours in 1815 and flown until the abdication of 1918-11-13.", source: "https://en.wikipedia.org/wiki/Flag_of_Saxony", sourceKind: "encyclopedia", file: null },
+    ],
+  },
+  XWU: {
+    disputed: false,
+    default: "black-red",
+    variants: [
+      { id: "black-red", name: "The black and red flag", nameJa: "黒と赤の旗", status: "official", roles: BOTH, from: "1816", until: "1918-11-30", why: "Horizontal black over red stripes, the Kingdom's flag from 1816 until the revolution ended it on 1918-11-30.", source: "https://en.wikipedia.org/wiki/Kingdom_of_W%C3%BCrttemberg", sourceKind: "encyclopedia", file: null },
     ],
   },
 };

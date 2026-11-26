@@ -4,7 +4,7 @@
       "path": "commons-2026-11-17.json",
       "url": "https://commons.wikimedia.org/w/api.php",
       "read": "2026-11-17",
-      "sha256": "881ed89dd4873a4802c8d3f1fa9f1ee7c0dec4bcbbd75b4b0b44d08d79c27c3f",
+      "sha256": "dcf1e87147caf9282a389eb47fbc22b6235e2f31e38d7708d0b4f83e21e56991",
       "note": "Wikimedia Commons, the description, licence and author of every chosen flag file, and the SHA-256 of each file kept in commons/ (each file under its own licence)"
     },
     {

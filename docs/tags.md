@@ -17,8 +17,8 @@ can also take a wrong tag away. To review a flag, look at it, add a line for it 
 
 | Tag | When it applies | Flags | Reviewed | Computed | Wikidata | Unreviewed |
 | --- | --- | --- | --- | --- | --- | --- |
-| `plain` | Flat fields of colour with straight edges and nothing drawn on them: one colour, or bands across or down the whole flag. | 67 | 0 | 67 | 0 | 0 |
-| `stripes-horizontal` | Bands across the flag, one above another. | 172 | 0 | 55 | 30 | 87 |
+| `plain` | Flat fields of colour with straight edges and nothing drawn on them: one colour, or bands across or down the whole flag. | 70 | 0 | 70 | 0 | 0 |
+| `stripes-horizontal` | Bands across the flag, one above another. | 175 | 0 | 58 | 30 | 87 |
 | `stripes-vertical` | Bands down the flag, side by side. | 60 | 0 | 12 | 7 | 41 |
 | `stripes-diagonal` | A band or a division from corner to corner. | 16 | 0 | 0 | 10 | 6 |
 | `cross` | A cross of any kind, upright or not; a Nordic cross and the crosses of a Union Flag count. | 65 | 0 | 0 | 43 | 22 |
@@ -30,7 +30,7 @@ can also take a wrong tag away. To review a flag, look at it, add a line for it 
 | `sun` | A sun, as a disc or with rays. | 36 | 0 | 0 | 21 | 15 |
 | `circle` | A disc or a ring that is a shape of the flag itself. | 32 | 0 | 0 | 20 | 12 |
 | `triangle` | A triangle, most often at the hoist. | 31 | 0 | 0 | 25 | 6 |
-| `emblem` | A seal, a badge, a shield or another device placed on the flag; a coat of arms counts. | 104 | 0 | 0 | 52 | 52 |
+| `emblem` | A seal, a badge, a shield or another device placed on the flag; a coat of arms counts. | 105 | 0 | 0 | 52 | 53 |
 | `coat-of-arms` | A coat of arms. | 66 | 0 | 0 | 48 | 18 |
 | `animal` | An animal or a bird, real or of legend. | 54 | 0 | 0 | 23 | 31 |
 | `plant` | A tree, a leaf, a flower or another plant. | 49 | 0 | 0 | 23 | 26 |
@@ -42,7 +42,7 @@ can also take a wrong tag away. To review a flag, look at it, add a line for it 
 
 ## Every flag
 
-61 of the 528 pictures have no tag yet.
+64 of the 535 pictures have no tag yet.
 
 | Code | Flag | Tags, each with its source and what it rests on |
 | --- | --- | --- |
@@ -494,11 +494,15 @@ can also take a wrong tag away. To review a flag, look at it, add a line for it 
 | `VDVN` | Democratic Republic of Vietnam |  |
 | `WIF` | West Indies Federation | `stripes-horizontal` (unreviewed: the same nine bands at the hoist and at the fly); `circle` (unreviewed: Commons category "Flags with centered orange disks") |
 | `XAH` | Austria-Hungary |  |
+| `XBA` | Kingdom of Bavaria | `plain` (computed: the whole flag is two bands across, with nothing on them); `stripes-horizontal` (computed: the whole flag is two bands across) |
 | `XCS` | Confederate States of America |  |
 | `XGE` | German Empire | `plain` (computed: the whole flag is three bands across, with nothing on them); `stripes-horizontal` (computed: the whole flag is three bands across) |
+| `XHJ` | Kingdom of Hejaz |  |
 | `XIT` | Kingdom of Italy | `stripes-vertical` (unreviewed: the same three bands at the top and at the bottom); `cross` (unreviewed: Commons category "Flags with 1 white cross"); `emblem` (unreviewed: Commons category "Flags with centered coat of arms from Italy"); `coat-of-arms` (unreviewed: Commons category "Flags with centered coat of arms from Italy") |
 | `XKR` | Korean Empire |  |
 | `XMK` | Manchukuo |  |
+| `XNF` | Dominion of Newfoundland | `emblem` (unreviewed: 12 colours, as a seal or a coat of arms has) |
+| `XOF` | Orange Free State |  |
 | `XOT` | Ottoman Empire |  |
 | `XPR` | Prussia | `plain` (computed: the whole flag is two bands across, with nothing on them); `stripes-horizontal` (computed: the whole flag is two bands across) |
 | `XPS` | Papal States | `plain` (computed: the whole flag is two bands down, with nothing on them); `stripes-vertical` (computed: the whole flag is two bands down) |
@@ -506,8 +510,10 @@ can also take a wrong tag away. To review a flag, look at it, add a line for it 
 | `XSD` | Kingdom of Sardinia |  |
 | `XSM` | Siam |  |
 | `XSV` | South Vietnam | `plain` (computed: the whole flag is seven bands across, with nothing on them); `stripes-horizontal` (computed: the whole flag is seven bands across) |
+| `XSX` | Kingdom of Saxony | `plain` (computed: the whole flag is two bands across, with nothing on them); `stripes-horizontal` (computed: the whole flag is two bands across) |
 | `XTB` | Tibet (1912 to 1950) | `emblem` (unreviewed: 10 colours, as a seal or a coat of arms has) |
 | `XUA` | United Arab Republic | `stripes-horizontal` (unreviewed: the same three bands at the hoist and at the fly) |
+| `XWU` | Kingdom of Württemberg | `plain` (computed: the whole flag is two bands across, with nothing on them); `stripes-horizontal` (computed: the whole flag is two bands across) |
 | `XZB` | Sultanate of Zanzibar |  |
 | `YDYE` | South Yemen |  |
 | `YUCS` | Yugoslavia | `stripes-horizontal` (unreviewed: the same three bands at the hoist and at the fly); `stars` (wikidata: Q381988 depicts red star (Q208578)) |
@@ -559,9 +565,10 @@ can also take a wrong tag away. To review a flag, look at it, add a line for it 
 | `XHW--1816` | Kingdom of Hawaii: The flag of 1816 |  |
 | `XQI--triangular-1862` | Qing Empire: The triangular Yellow Dragon Flag | `emblem` (unreviewed: 11 colours, as a seal or a coat of arms has) |
 | `XTX--burnet` | Republic of Texas: The Burnet Flag |  |
+| `XHJ--arab-revolt` | Kingdom of Hejaz: The Arab Revolt flag |  |
+| `XRE--black-yellow-white` | Russian Empire: The black, yellow and white state flag | `plain` (computed: the whole flag is three bands across, with nothing on them); `stripes-horizontal` (computed: the whole flag is three bands across) |
 | `AF--de-facto` | Afghanistan: The Taliban's flag | `text` (unreviewed: Commons category "Flags with shahada") |
 | `SH--union-flag` | St. Helena: The Union Flag | `cross` (unreviewed: Commons category "Flags with crosses and saltires"); `saltire` (unreviewed: Commons category "Flags with crosses and saltires") |
-| `DE-BY--stripes` | Bavaria: White and blue stripes | `plain` (computed: the whole flag is two bands across, with nothing on them); `stripes-horizontal` (computed: the whole flag is two bands across) |
 | `GB-NIR--ulster-banner` | Northern Ireland: The Ulster Banner | `cross` (unreviewed: a band across and a band down, each the same at both edges); `emblem` (unreviewed: 8 colours, as a seal or a coat of arms has) |
 | `SY--assad-era` | Syria: The red, white and black flag | `stripes-horizontal` (unreviewed: the same three bands at the hoist and at the fly) |
 | `GP--local` | Guadeloupe: Guadeloupe's local flag | `stripes-horizontal` (unreviewed: the same two bands at the hoist and at the fly) |
