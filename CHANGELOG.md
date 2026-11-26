@@ -6,6 +6,10 @@ All notable changes to this project are written here. The format follows
 
 ## [Unreleased]
 
+### Added
+
+- **Eleven more samurai banners from the handscroll 御馬印** (MODULES-1818, seventh batch), all from scroll 4 (NDL 1288217), frames 15 to 34, each measured from its frame and `documented`: the two black bands on a white nobori of Asano, titled Aki-no-kami, the white disc on black and the seven black bands on a white nobori of Abe, titled Bitchū-no-kami, the red disc on white and the five black bands on a white nobori of Okabe, titled Mino-no-kami, the white disc on red and the three white discs on a red nobori of Mōri, titled Kai-no-kami, the five black bands on a white nobori of Oda, titled Izumo-no-kami, the plain black banner and the plain gold banner of Honda, titled Shimōsa-no-kami, and the two white bands on a red nobori of Sō, titled Tsushima-no-kami. The samurai entry is 90 KB.
+
 ## [1.24.0] - 2026-11-26
 
 ### Added
