@@ -7,6 +7,6 @@
  * console.log(VERSION); // "1.16.0"
  * ```
  */
-const VERSION = "1.28.0";
+const VERSION = "1.29.0";
 
 export { VERSION };

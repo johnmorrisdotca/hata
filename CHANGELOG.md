@@ -6,6 +6,8 @@ All notable changes to this project are written here. The format follows
 
 ## [Unreleased]
 
+## [1.29.0] - 2026-11-26
+
 ### Added
 
 - **Ten more samurai banners from the handscroll 御馬印** (MODULES-1818, eleventh batch), flat banners left over from the earlier rounds, each cited to its own scroll and frame and `documented`: from scroll 3, the black disc on red of Matsudaira, titled Shōgen (將監), and the four black bands on white of Ogasawara, titled Shinano-no-kami; from scroll 5, the black band on a narrow white nobori of Hitotsuyanagi, titled Kenmotsu, the six black bands on a white nobori and the five black bands on a narrow white nobori of Matsudaira, titled Suō-no-kami, and the white band on a black nobori of Matsudaira, titled Uemon-no-suke; and from scroll 6, the white band on black of Matsudaira, titled Yamato-no-kami, the gold saltire on black of Matsushita, titled Iwami-no-kami, the red disc on white of Mukai, titled Shōgen (將監), and the red band on a narrow white nobori of Sanada, titled Izu-no-kami. Fourteen flat banners are left in the pool in `docs/decisions.md`. The samurai entry is 124 KB.
