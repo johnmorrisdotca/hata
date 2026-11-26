@@ -6,6 +6,8 @@ All notable changes to this project are written here. The format follows
 
 ## [Unreleased]
 
+## [1.27.0] - 2026-11-26
+
 ### Added
 
 - **Ten more samurai banners from the handscroll 御馬印** (MODULES-1818, ninth batch), all from scroll 6 (NDL 1287803), the last scroll, frames 7 to 36, each measured from its frame and `documented`: the black band on a red nobori of Honda, titled Ise-no-kami, the white ring on red and the white band on a black nobori of Matsudaira, titled Yamato-no-kami, the nine white discs on a black nobori of Kamei, titled Noto-no-kami, the gold saltire on a black nobori of Matsushita, titled Iwami-no-kami, the red disc on white of Ogasawara, titled Uemon-no-suke, the nobori black above and white below of Hasegawa, styled Shikibu (式部), a shortened court title, the five red discs on a narrow white nobori of Mukai, titled Shōgen (將監), the nobori black above, with a white band, and red below of Matsukura, titled Bungo-no-kami, and the red band on a white nobori of Sanada, titled Izu-no-kami. `docs/decisions.md` lists the flat banners of all six scrolls not yet taken. The samurai entry is 107 KB.
