@@ -10,7 +10,7 @@ import { mkdirSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 
 /** The characters the banners letter. */
-const CHARACTERS = ["五", "毘", "本"];
+const CHARACTERS = ["五", "毘", "本", "山"];
 const COMMIT = "f6a4e8a8247cd8382551b8c2926fae6b650df6f0";
 const FONT = {
   name: "Yuji Syuku",

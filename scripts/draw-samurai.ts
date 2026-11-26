@@ -82,6 +82,10 @@ const discs = (points: readonly (readonly [number, number])[], r: number): strin
 const annulus = (cx: number, cy: number, r: number, inner: number): string => `${circle(cx, cy, r)}M${n(cx - inner)} ${n(cy)}a${n(inner)} ${n(inner)} 0 1 1 ${n(2 * inner)} 0a${n(inner)} ${n(inner)} 0 1 1 ${n(-2 * inner)} 0z`;
 // A lozenge (菱) w wide and h high, centred on (cx, cy).
 const lozenge = (cx: number, cy: number, w: number, h: number): string => poly([[cx, cy - h / 2], [cx + w / 2, cy], [cx, cy + h / 2], [cx - w / 2, cy]]);
+// A zigzag band, 2 * half wide across, along the points given and moved dx to the right.
+const zigzag = (points: readonly (readonly [number, number])[], dx: number, half: number): string => poly([...points.map(([x, y]) => [x + dx - half, y] as const), ...[...points].reverse().map(([x, y]) => [x + dx + half, y] as const)]);
+// The gold zigzag of 酒井阿波守's nobori, as the scroll paints it: the left line's turns, the other 20 to its right.
+const ZIGZAG: readonly (readonly [number, number])[] = [[36, 0], [43.1, 33.8], [28.5, 64.6], [43.1, 103], [28.5, 133.8], [43.1, 164.6], [28.5, 199.2], [43.1, 233.8], [28.5, 268.4], [43.1, 306.8], [28.5, 337.6], [43.1, 379.9], [28.5, 414.5], [43.1, 449.1], [42, 455.4]];
 // The six coins of 真田河内守's banner, two rows of three, as the scroll paints them.
 const COINS: readonly (readonly [number, number])[] = [31.8, 76.3].flatMap((y) => [19.8, 47, 76.6].map((x) => [x, y] as const));
 
@@ -150,6 +154,17 @@ const SHAPES: Record<string, string> = {
   "matsudaira-shimosa-kinbishi-hata": svg("samurai", "matsudaira-shimosa-kinbishi-hata", 100, 119.4, [fill(BLACK, box(0, 0, 100, 119.4)), fill(LEAF, lozenge(51.2, 60.1, 63.6, 44.1)), fill(BLACK, lozenge(51.2, 60.1, 26.7, 18.2))]),
   "ogasawara-ukon-sangaibishi": svg("samurai", "ogasawara-ukon-sangaibishi", 100, 121.2, [fill(BLACK, box(0, 0, 100, 121.2)), fill(WHITE, lozenge(44.1, 39, 26, 17) + lozenge(44.4, 55.2, 43.8, 24) + lozenge(47.6, 72.5, 53.3, 30.4))]),
   "matsudaira-tanba-kuro-obi": svg("samurai", "matsudaira-tanba-kuro-obi", 100, 364.5, [fill(WHITE, box(0, 0, 100, 364.5)), fill(BLACK, [[47.3, 63.4], [104.3, 121.5], [163.4, 180.6], [218.8, 235], [270.9, 286], [318.5, 330.9]].map(([y0, y1]) => box(0, y0, 100, y1 - y0)).join(""))]),
+  "sakai-uta-shiromaru": svg("samurai", "sakai-uta-shiromaru", 100, 120.1, [fill(BLACK, box(0, 0, 100, 120.1)), fill(WHITE, circle(45, 59.6, 31))]),
+  "sakai-awa-inazuma": svg("samurai", "sakai-awa-inazuma", 100, 455.4, [fill(BLACK, box(0, 0, 100, 455.4)), fill(LEAF, zigzag(ZIGZAG, 0, 3.85) + zigzag(ZIGZAG, 20, 3.85))]),
+  "matsudaira-kai-janome": svg("samurai", "matsudaira-kai-janome", 100, 107, [fill(WHITE, box(0, 0, 100, 107)), fill(VERMILION, annulus(51.9, 48.8, 37.6, 19) + circle(51.9, 48.8, 9.8))]),
+  "matsudaira-kai-kin": svg("samurai", "matsudaira-kai-kin", 100, 120.4, [fill(LEAF, box(0, 0, 100, 120.4))]),
+  "matsudaira-echigo-naname": svg("samurai", "matsudaira-echigo-naname", 100, 128.5, [fill(VERMILION, box(0, 0, 100, 128.5)), fill(LEAF, poly([[88.1, 0], [100, 0], [100, 20.7], [11.5, 128.5], [0, 128.5], [0, 107.9]]))]),
+  "matsudaira-yamashiro-kuyo": svg("samurai", "matsudaira-yamashiro-kuyo", 100, 112, [fill(VERMILION, box(0, 0, 100, 112)), fill(WHITE, circle(48.9, 54.2, 11.6) + discs(Array.from({ length: 8 }, (_, i) => [48.9 + 21.2 * Math.sin((i * Math.PI) / 4), 54.2 - 21.2 * Math.cos((i * Math.PI) / 4)] as const), 6.8))]),
+  "matsudaira-yamashiro-kinwa": svg("samurai", "matsudaira-yamashiro-kinwa", 100, 113.4, [fill(BLACK, box(0, 0, 100, 113.4)), fill(LEAF, annulus(51.3, 53.2, 40.1, 33.8))]),
+  "matsudaira-dewa-shiromaru": svg("samurai", "matsudaira-dewa-shiromaru", 100, 110.3, [fill(BLACK, box(0, 0, 100, 110.3)), fill(WHITE, circle(48.2, 51.3, 36.9))]),
+  "matsudaira-dewa-shiromaru-nobori": svg("samurai", "matsudaira-dewa-shiromaru-nobori", 100, 282.7, [fill(BLACK, box(0, 0, 100, 282.7)), fill(WHITE, circle(44.7, 61.2, 37.6))]),
+  "okubo-kaga-shirowa": svg("samurai", "okubo-kaga-shirowa", 100, 266.4, [fill(BLACK, box(0, 0, 100, 266.4)), fill(WHITE, annulus(49.1, 52.7, 35.2, 29))]),
+  "aoyama-okura-yama": svg("samurai", "aoyama-okura-yama", 100, 270.4, [fill(ASAGI, box(0, 0, 100, 270.4)), letter("山", WHITE, 43, 72.2, 44)]),
 };
 
 const READ = "2026-11-24";
@@ -186,20 +201,22 @@ const ENTRIES: Entry[] = [
 ];
 
 // The handscroll: one page of the National Diet Library for each frame of scroll 1 that a banner is drawn from.
-const BOOK = (frame: number, says: string) =>
+// The National Diet Library's page of each scroll of the six.
+const SCROLL_PID: Record<number, string> = { 1: "1286895", 2: "1288242" };
+const BOOK = (frame: number, says: string, scroll: number) =>
   ({
-    title: "御馬印 巻1 (Go-umajirushi, scroll 1 of six), around the Kan'ei years (NDL's estimate), National Diet Library, call number WA8-7",
-    url: `https://dl.ndl.go.jp/pid/1286895/1/${frame}`,
+    title: `御馬印 巻${scroll} (Go-umajirushi, scroll ${scroll} of six), around the Kan'ei years (NDL's estimate), National Diet Library, call number WA8-7`,
+    url: `https://dl.ndl.go.jp/pid/${SCROLL_PID[scroll]}/1/${frame}`,
     kind: "official",
     read: "2026-11-26",
     says,
   }) as const;
-const bookNote = (frame: number, lettered: boolean) => ({
-  en: `Drawn from frame ${frame} of the handscroll 御馬印, scroll 1 of six, from around the Kan'ei years (NDL's estimate), at the National Diet Library (public domain). The cloth's proportions and the place and size of its parts are measured from the painting; the shades are this package's reading of it, and the loops that hold the cloth to the pole, the pole and any finial are not drawn.${lettered ? " The character is lettered in Yuji Syuku (Kinuta Font Factory, SIL Open Font License 1.1), not traced from the page, so its brush is the font's and not the painter's." : ""}`,
-  ja: `国立国会図書館の絵巻『御馬印』巻1（6巻のうちの1巻。寛永年間ごろ、国立国会図書館の推定。保護期間満了）のコマ${frame}から描きました。布の縦横の比と、図柄の位置と大きさは絵から測り、色合いはこのパッケージが絵から読み取ったものです。布を竿に留める輪、竿、竿の先の飾りは描いていません。${lettered ? "文字は絵から写したものではなく、Yuji Syuku（Kinuta Font Factory、SIL Open Font License 1.1）の字形で書いたので、筆づかいは絵とは違います。" : ""}`,
+const bookNote = (frame: number, lettered: boolean, scroll: number) => ({
+  en: `Drawn from frame ${frame} of the handscroll 御馬印, scroll ${scroll} of six, from around the Kan'ei years (NDL's estimate), at the National Diet Library (public domain). The cloth's proportions and the place and size of its parts are measured from the painting; the shades are this package's reading of it, and the loops that hold the cloth to the pole, the pole and any finial are not drawn.${lettered ? " The character is lettered in Yuji Syuku (Kinuta Font Factory, SIL Open Font License 1.1), not traced from the page, so its brush is the font's and not the painter's." : ""}`,
+  ja: `国立国会図書館の絵巻『御馬印』巻${scroll}（6巻のうちの1巻。寛永年間ごろ、国立国会図書館の推定。保護期間満了）のコマ${frame}から描きました。布の縦横の比と、図柄の位置と大きさは絵から測り、色合いはこのパッケージが絵から読み取ったものです。布を竿に留める輪、竿、竿の先の飾りは描いていません。${lettered ? "文字は絵から写したものではなく、Yuji Syuku（Kinuta Font Factory、SIL Open Font License 1.1）の字形で書いたので、筆づかいは絵とは違います。" : ""}`,
 });
 
-interface BookEntry { slug: string; group: "nobori" | "hata" | "uma"; frame: number; en: string; ja: string; aboutEn: string; aboutJa: string; says: string; lettered?: true; noteEn?: string; noteJa?: string }
+interface BookEntry { slug: string; group: "nobori" | "hata" | "uma"; scroll?: 2; frame: number; en: string; ja: string; aboutEn: string; aboutJa: string; says: string; lettered?: true; noteEn?: string; noteJa?: string }
 const BOOK_ENTRIES: BookEntry[] = [
   { slug: "taitokuin-go", group: "hata", frame: 8, en: "Taitoku-in (Tokugawa Hidetada): the banner with 五", ja: "台徳院（徳川秀忠）の五の字の旗", aboutEn: "A black banner with the character 五 (five) in white, in the handscroll's section for 台徳院様, the second Tokugawa shogun.", aboutJa: "黒地に白で「五」の字を書いた旗。絵巻の「台徳院様」（二代将軍、徳川秀忠）の段にあります。", says: "In the section for 台徳院様 (Taitoku-in, Tokugawa Hidetada), a black banner with the character 五 in white.", lettered: true, noteEn: "The painting shows a square of a slightly deeper black round the character; it is not drawn.", noteJa: "絵では字のまわりに少し濃い黒の四角がありますが、描いていません。" },
   { slug: "mito-kinmaru", group: "hata", frame: 11, en: "The Lord of Mito: black with a gold disc", ja: "水戸中納言の黒地に金の丸の旗", aboutEn: "A black banner with a gold disc, in the handscroll's section for 水戸中納言様, the head of the Mito branch of the Tokugawa.", aboutJa: "黒地に金の丸の旗。絵巻の「水戸中納言様」（徳川家の水戸家の当主）の段にあります。", says: "In the section for 水戸中納言様 (the Lord of Mito), two black banners with a gold disc." },
@@ -225,6 +242,17 @@ const BOOK_ENTRIES: BookEntry[] = [
   { slug: "matsudaira-shimosa-kinbishi-hata", group: "hata", frame: 35, en: "Matsudaira Shimōsa: a gold lozenge on black, the banner", ja: "松平下総守の黒地に金の菱の旗", aboutEn: "A black banner with a gold lozenge, black in its middle, in the handscroll's section for 松平下総守, Matsudaira, titled Shimōsa-no-kami.", aboutJa: "黒地に、金の縁の菱（中は黒）を一つ入れた旗。絵巻の「松平下総守」の段にあります。", says: "In the section for 松平下総守 (Matsudaira, titled Shimōsa-no-kami), continued on this frame, a black banner with a gold lozenge, black in its middle." },
   { slug: "ogasawara-ukon-sangaibishi", group: "uma", frame: 36, en: "Ogasawara Ukon: the large uma-jirushi, three stacked lozenges", ja: "小笠原右近大夫の黒地に三階菱の大馬印", aboutEn: "A black banner with three white lozenges stacked one on another (三階菱, the Ogasawara crest), labelled 大馬しるし (the large uma-jirushi) in the handscroll's section for 小笠原右近大夫, Ogasawara, titled Ukon-no-taifu.", aboutJa: "黒地に白い菱を三つ重ねた旗（小笠原家の三階菱）。絵巻の「小笠原右近大夫」の段で「大馬しるし」と書かれています。", says: "In the section for 小笠原右近大夫 (Ogasawara, titled Ukon-no-taifu), a black banner with three white lozenges stacked one on another, labelled 大馬しるし.", noteEn: "Each of the three lozenges is measured from the painting, where they stand a little askew, and they are drawn so; how far each one hides the one above it is this package's.", noteJa: "三つの菱は、それぞれ絵から測りました。絵では少しずれて重なっているので、ここでもそのとおりに描きました。どこまで重なるかは、このパッケージのものです。" },
   { slug: "matsudaira-tanba-kuro-obi", group: "nobori", frame: 37, en: "Matsudaira Tanba: six black bands on white", ja: "松平丹波守の白地に黒の帯六つの幟", aboutEn: "A white nobori with six black bands across it, in the handscroll's section for 松平丹波守, Matsudaira, titled Tanba-no-kami.", aboutJa: "白地に黒の帯を横に六本入れた幟。絵巻の「松平丹波守」の段にあります。", says: "In the section for 松平丹波守 (Matsudaira, titled Tanba-no-kami), a white nobori with six black bands across it, with a gold ball on its pole.", noteEn: "The gold ball on its pole is not drawn.", noteJa: "竿の先の金の玉は描いていません。" },
+  { slug: "sakai-uta-shiromaru", group: "hata", frame: 31, en: "Sakai Uta: a white disc on black", ja: "酒井雅楽頭の黒地に白の丸の旗", aboutEn: "A black banner with a white disc, in the handscroll's section for 酒井雅楽頭, Sakai, titled Uta-no-kami.", aboutJa: "黒地に白の丸の旗。絵巻の「酒井雅楽頭」の段にあります。", says: "In the section for 酒井雅楽頭 (Sakai, titled Uta-no-kami), a black banner with a white disc." },
+  { slug: "sakai-awa-inazuma", group: "nobori", frame: 32, en: "Sakai Awa: two gold zigzags on black", ja: "酒井阿波守の黒地に金の稲妻の幟", aboutEn: "A black nobori with two gold zigzag lines (lightning, 稲妻) down it, in the handscroll's section for 酒井阿波守, Sakai, titled Awa-no-kami.", aboutJa: "黒地に、金のぎざぎざの線（稲妻）を二本、縦に入れた幟。絵巻の「酒井阿波守」の段にあります。", says: "In the section for 酒井阿波守 (Sakai, titled Awa-no-kami), a black nobori with two gold zigzag lines down it.", noteEn: "The zigzags' turns are measured from the painting; there the cloth leans a little to the right towards its foot, which is not drawn.", noteJa: "ぎざぎざの曲がり目は絵から測りました。絵では布が下へ行くほど少し右へ寄っていますが、それは描いていません。" },
+  { slug: "matsudaira-kai-janome", group: "hata", scroll: 2, frame: 7, en: "Matsudaira Kai: a red ring and disc on white", ja: "松平甲斐守の白地に朱の蛇の目の旗", aboutEn: "A white banner with a vermilion ring and a vermilion disc inside it, in the handscroll's section for 松平甲斐守, Matsudaira, titled Kai-no-kami.", aboutJa: "白地に、朱の輪とその中の朱の丸を入れた旗（蛇の目）。絵巻の「松平甲斐守」の段にあります。", says: "In the section for 松平甲斐守 (Matsudaira, titled Kai-no-kami), a white banner with a vermilion ring and a vermilion disc inside it.", noteEn: "The thin lines the painting draws round the white ring and the inner disc are not drawn.", noteJa: "絵で白い輪と中の丸を囲む細い線は描いていません。" },
+  { slug: "matsudaira-kai-kin", group: "hata", scroll: 2, frame: 7, en: "Matsudaira Kai: the plain gold banner", ja: "松平甲斐守の金一色の旗", aboutEn: "A plain gold banner, in the handscroll's section for 松平甲斐守, Matsudaira, titled Kai-no-kami.", aboutJa: "金一色の旗。絵巻の「松平甲斐守」の段にあります。", says: "In the section for 松平甲斐守 (Matsudaira, titled Kai-no-kami), a plain gold banner." },
+  { slug: "matsudaira-echigo-naname", group: "hata", scroll: 2, frame: 9, en: "Matsudaira Echigo: a gold band on red, on a slant", ja: "松平越後守の朱地に金の斜めの帯の旗", aboutEn: "A vermilion banner with a gold band across it on a slant, from the top of the pole side to the foot of the free side, in the handscroll's section for 松平越後守, Matsudaira, titled Echigo-no-kami.", aboutJa: "朱地に、金の帯を右上から左下へ斜めに入れた旗。絵巻の「松平越後守」の段にあります。", says: "In the section for 松平越後守 (Matsudaira, titled Echigo-no-kami), continued on this frame, a vermilion banner with a gold band across it on a slant." },
+  { slug: "matsudaira-yamashiro-kuyo", group: "hata", scroll: 2, frame: 11, en: "Matsudaira Yamashiro: nine white discs on red", ja: "松平山城守の朱地に白の九曜の旗", aboutEn: "A vermilion banner with nine white discs, one in the middle and eight round it (九曜), in the handscroll's section for 松平山城守, Matsudaira, titled Yamashiro-no-kami.", aboutJa: "朱地に、白の丸を真ん中に一つ、まわりに八つ並べた旗（九曜）。絵巻の「松平山城守」の段にあります。", says: "In the section for 松平山城守 (Matsudaira, titled Yamashiro-no-kami), continued on this frame, a vermilion banner with nine white discs, one in the middle and eight round it." },
+  { slug: "matsudaira-yamashiro-kinwa", group: "hata", scroll: 2, frame: 11, en: "Matsudaira Yamashiro: a gold ring on black", ja: "松平山城守の黒地に金の輪の旗", aboutEn: "A black banner with a gold ring, in the handscroll's section for 松平山城守, Matsudaira, titled Yamashiro-no-kami.", aboutJa: "黒地に金の輪の旗。絵巻の「松平山城守」の段にあります。", says: "In the section for 松平山城守 (Matsudaira, titled Yamashiro-no-kami), continued on this frame, a black banner with a gold ring." },
+  { slug: "matsudaira-dewa-shiromaru", group: "hata", scroll: 2, frame: 12, en: "Matsudaira Dewa: a large white disc on black", ja: "松平出羽守の黒地に白の丸の旗", aboutEn: "A black banner with a large white disc, in the handscroll's section for 松平出羽守, Matsudaira, titled Dewa-no-kami.", aboutJa: "黒地に大きな白の丸の旗。絵巻の「松平出羽守」の段にあります。", says: "In the section for 松平出羽守 (Matsudaira, titled Dewa-no-kami), a black banner with a large white disc." },
+  { slug: "matsudaira-dewa-shiromaru-nobori", group: "nobori", scroll: 2, frame: 12, en: "Matsudaira Dewa: a white disc on black, the nobori", ja: "松平出羽守の黒地に白の丸の幟", aboutEn: "A black nobori with a white disc near its top, in the handscroll's section for 松平出羽守, Matsudaira, titled Dewa-no-kami.", aboutJa: "黒地の上のほうに白の丸を一つ入れた幟。絵巻の「松平出羽守」の段にあります。", says: "In the section for 松平出羽守 (Matsudaira, titled Dewa-no-kami), a black nobori with a white disc near its top." },
+  { slug: "okubo-kaga-shirowa", group: "nobori", scroll: 2, frame: 14, en: "Ōkubo Kaga: a white ring on black", ja: "大久保加賀守の黒地に白の輪の幟", aboutEn: "A black nobori with a white ring near its top, in the handscroll's section for 大久保加賀守, Ōkubo, titled Kaga-no-kami.", aboutJa: "黒地の上のほうに白の輪を一つ入れた幟。絵巻の「大久保加賀守」の段にあります。", says: "In the section for 大久保加賀守 (Ōkubo, titled Kaga-no-kami), a black nobori with a white ring near its top." },
+  { slug: "aoyama-okura-yama", group: "nobori", scroll: 2, frame: 15, en: "Aoyama Ōkura: the nobori with 山", ja: "青山大蔵少輔の浅葱地に白の山の字の幟", aboutEn: "A pale blue nobori with the character 山 (the second of the name Aoyama) in white, in the handscroll's section for 青山大蔵少輔, Aoyama, titled Ōkura-no-shō.", aboutJa: "浅葱色の地に、白で「山」（青山の「山」）を書いた幟。絵巻の「青山大蔵少輔」の段にあります。", says: "In the section for 青山大蔵少輔 (Aoyama, titled Ōkura-no-shō), a pale blue nobori with the character 山 in white.", lettered: true, noteEn: "The painting draws the character's edge with a thin dark line; it is not drawn.", noteJa: "絵では字のふちを細い黒い線で囲んでいますが、それは描いていません。" },
 ];
 
 const samuraiRecords = (): DrawnDrawing[] => [
@@ -240,7 +268,7 @@ const samuraiRecords = (): DrawnDrawing[] => [
     svg: SHAPES[entry.slug]!,
   })),
   ...BOOK_ENTRIES.map((entry): DrawnDrawing => {
-    const base = bookNote(entry.frame, entry.lettered === true);
+    const base = bookNote(entry.frame, entry.lettered === true, entry.scroll ?? 1);
 
     return {
       id: `samurai:${entry.slug}`,
@@ -250,7 +278,7 @@ const samuraiRecords = (): DrawnDrawing[] => [
       status: "documented",
       dates: null,
       note: { en: `${base.en}${entry.noteEn === undefined ? "" : ` ${entry.noteEn}`}`, ja: `${base.ja}${entry.noteJa ?? ""}` },
-      source: BOOK(entry.frame, entry.says),
+      source: BOOK(entry.frame, entry.says, entry.scroll ?? 1),
       svg: SHAPES[entry.slug]!,
     };
   }),
