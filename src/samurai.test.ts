@@ -14,6 +14,13 @@ describe("the banners", () => {
     expect(SAMURAI_IDS).toHaveLength(69);
   });
 
+  it("give each record the name, about, note and source the script writes, though the entry builds the handscroll's note and source itself", () => {
+    for (const record of samuraiRecords()) {
+      const info = samuraiInfo(record.id);
+      expect({ name: info?.name, about: info?.about, status: info?.status, dates: info?.dates, note: info?.note, source: info?.source }, record.id).toEqual({ name: record.name, about: record.about, status: record.status, dates: record.dates, note: record.note, source: record.source });
+    }
+  });
+
   it("are reconstructions where they come from words, each saying what the source gives and what is this package's, and citing a page", () => {
     const fromWords = SAMURAI_IDS.filter((id) => samuraiInfo(id)?.status !== "documented");
     expect(fromWords).toHaveLength(9);

@@ -231,15 +231,15 @@ const ENTRIES: Entry[] = [
 // The handscroll: one page of the National Diet Library for each frame of scroll 1 that a banner is drawn from.
 // The National Diet Library's page of each scroll of the six.
 const SCROLL_PID: Record<number, string> = { 1: "1286895", 2: "1288242" };
-const BOOK = (frame: number, says: string, scroll: number) =>
+const BOOK = (frame: number | string, says: string, scroll: number | string, pid = SCROLL_PID[Number(scroll)]) =>
   ({
     title: `御馬印 巻${scroll} (Go-umajirushi, scroll ${scroll} of six), around the Kan'ei years (NDL's estimate), National Diet Library, call number WA8-7`,
-    url: `https://dl.ndl.go.jp/pid/${SCROLL_PID[scroll]}/1/${frame}`,
+    url: `https://dl.ndl.go.jp/pid/${pid}/1/${frame}`,
     kind: "official",
     read: "2026-11-26",
     says,
   }) as const;
-const bookNote = (frame: number, lettered: boolean, scroll: number) => ({
+const bookNote = (frame: number | string, lettered: boolean, scroll: number | string) => ({
   en: `Drawn from frame ${frame} of the handscroll 御馬印, scroll ${scroll} of six, from around the Kan'ei years (NDL's estimate), at the National Diet Library (public domain). The cloth's proportions and the place and size of its parts are measured from the painting; the shades are this package's reading of it, and the loops that hold the cloth to the pole, the pole and any finial are not drawn.${lettered ? " The character is lettered in Yuji Syuku (Kinuta Font Factory, SIL Open Font License 1.1), not traced from the page, so its brush is the font's and not the painter's." : ""}`,
   ja: `国立国会図書館の絵巻『御馬印』巻${scroll}（6巻のうちの1巻。寛永年間ごろ、国立国会図書館の推定。保護期間満了）のコマ${frame}から描きました。布の縦横の比と、図柄の位置と大きさは絵から測り、色合いはこのパッケージが絵から読み取ったものです。布を竿に留める輪、竿、竿の先の飾りは描いていません。${lettered ? "文字は絵から写したものではなく、Yuji Syuku（Kinuta Font Factory、SIL Open Font License 1.1）の字形で書いたので、筆づかいは絵とは違います。" : ""}`,
 });
@@ -337,7 +337,31 @@ const samuraiRecords = (): DrawnDrawing[] => [
   }),
 ];
 
-const files = (): Map<string, string> => setFiles("samurai", "SAMURAI", "SamuraiRecordId", "scripts/draw-samurai.ts", samuraiRecords());
+// The 御馬印 records share their note and source but for the scroll, the frame and what the frame says, so the entry builds those with
+// book(), which is BOOK and bookNote written out with ${scroll} and ${frame} in place of the numbers; the records are the same.
+const files = (): Map<string, string> => {
+  const out = setFiles("samurai", "SAMURAI", "SamuraiRecordId", "scripts/draw-samurai.ts", samuraiRecords());
+  const note = bookNote("${frame}", false, "${scroll}");
+  const lettered = { en: bookNote(0, true, 0).en.slice(bookNote(0, false, 0).en.length), ja: bookNote(0, true, 0).ja.slice(bookNote(0, false, 0).ja.length) };
+  const source = BOOK("${frame}", "", "${scroll}", "${PID[scroll]}");
+  for (const text of [note.en, note.ja, source.title, source.url]) if (text.includes("`")) throw new Error(`a backtick in the book's text: ${text}`);
+  let data = out.get("samurai.data.ts")!;
+  data = data.replace(
+    "\nconst SAMURAI:",
+    `\nconst PID: Record<number, string> = ${JSON.stringify(SCROLL_PID)};\nconst book = (scroll: number, frame: number, lettered: boolean, says: string, en: string, ja: string) => ({\n  note: { en: \`${note.en}\${lettered ? ${JSON.stringify(lettered.en)} : ""}\${en}\`, ja: \`${note.ja}\${lettered ? ${JSON.stringify(lettered.ja)} : ""}\${ja}\` },\n  source: { title: \`${source.title}\`, url: \`${source.url}\`, kind: ${JSON.stringify(source.kind)} as const, read: ${JSON.stringify(source.read)}, says },\n});\n\nconst SAMURAI:`,
+  );
+  for (const entry of BOOK_ENTRIES) {
+    const id = JSON.stringify(`samurai:${entry.slug}`);
+    const line = data.split("\n").find((one) => one.startsWith(`  {"id":${id},`))!;
+    const record = JSON.parse(line.trim().replace(/,$/, "")) as Record<string, unknown>;
+    const head = Object.fromEntries(Object.entries(record).filter(([key]) => !["note", "source", "aspect"].includes(key)));
+    const call = `...book(${entry.scroll ?? 1}, ${entry.frame}, ${entry.lettered === true}, ${JSON.stringify(entry.says)}, ${JSON.stringify(entry.noteEn === undefined ? "" : ` ${entry.noteEn}`)}, ${JSON.stringify(entry.noteJa ?? "")})`;
+    data = data.replace(line, `  {${JSON.stringify(head).slice(1, -1)},${call},"aspect":${JSON.stringify(record.aspect)}}${line.endsWith(",") ? "," : ""}`);
+  }
+  out.set("samurai.data.ts", data);
+
+  return out;
+};
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   writeSetFiles(fileURLToPath(new URL("../src/sets", import.meta.url)), "samurai", files());

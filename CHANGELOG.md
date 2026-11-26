@@ -6,6 +6,10 @@ All notable changes to this project are written here. The format follows
 
 ## [Unreleased]
 
+### Changed
+
+- **The samurai entry is 73 KB, down from 135 KB** (MODULES-1818). The note and source that every banner from the handscroll 御馬印 shares, but for its scroll and frame, are built by the entry instead of written out in each record. Every record is the same as in 1.23.0.
+
 ## [1.23.0] - 2026-11-26
 
 ### Added
