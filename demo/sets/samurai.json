@@ -2,8 +2,8 @@
   "name": "samurai",
   "what": { "en": "samurai battle banners", "ja": "武士の戦場の旗" },
   "description": {
-    "en": "Ninety battle banners of Sengoku and early Edo shoguns and daimyo (nobori, hata and uma-jirushi): nine drawn from the words of a source, and eighty-one from the handscroll 御馬印 at the National Diet Library, from around the Kan'ei years (its estimate). Each says what is documented and what is reconstruction.",
-    "ja": "戦国から江戸のはじめの将軍と大名の戦場の旗（幟、旗、馬印）90点です。9点は出典の記述から、81点は国立国会図書館の絵巻『御馬印』（寛永年間ごろ、図書館の推定）から描きました。確かめられていることと復元とを、それぞれが述べています。"
+    "en": "A hundred battle banners of Sengoku and early Edo shoguns and daimyo (nobori, hata and uma-jirushi): nine drawn from the words of a source, and ninety-one from the handscroll 御馬印 at the National Diet Library, from around the Kan'ei years (its estimate). Each says what is documented and what is reconstruction.",
+    "ja": "戦国から江戸のはじめの将軍と大名の戦場の旗（幟、旗、馬印）100点です。9点は出典の記述から、91点は国立国会図書館の絵巻『御馬印』（寛永年間ごろ、図書館の推定）から描きました。確かめられていることと復元とを、それぞれが述べています。"
   },
   "intro": {
     "en": "Choose a kind, then a banner. No cloth survives for any of them: the ones drawn from the handscroll are measured from its painting, the others are reconstructions, and each note says which part follows the source.",
