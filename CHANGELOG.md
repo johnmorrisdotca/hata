@@ -6,6 +6,10 @@ All notable changes to this project are written here. The format follows
 
 ## [Unreleased]
 
+### Added
+
+- **Ten more samurai banners from the handscroll 御馬印** (MODULES-1818, sixth batch), all from scroll 3 (NDL 1288243), frames 7 to 33, each measured from its frame and `documented`: the four black bands on white of Ogasawara, titled Iki-no-kami, the black disc on a red nobori of Matsudaira, styled Shōgen (將監), a shortened court title, the four black bands on a white nobori of Tsuchiya, styled Minbu (民部), a shortened court title, the white band on a black nobori and the three white discs on red of Kuriyama, titled Kaga-no-kami, the red disc and black band on a white nobori of Matsudaira, titled Iwami-no-kami, the four black bands on a white nobori and the white ring on black of Mizoguchi, titled Hōki-no-kami, the plain red nobori of Matsudaira, titled Hizen-no-kami, and the black disc on red of Nagai, titled Hyūga-no-kami. The samurai entry is 81 KB.
+
 ### Changed
 
 - **The samurai entry is 73 KB, down from 135 KB** (MODULES-1818). The note and source that every banner from the handscroll 御馬印 shares, but for its scroll and frame, are built by the entry instead of written out in each record. Every record is the same as in 1.23.0.
