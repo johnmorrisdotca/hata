@@ -62,7 +62,7 @@ listed in [the sizes list](../sizes.md). A page pays only for the flags it impor
 | --- | --- | --- |
 | Countries | 246 of the 250 Kuni knows | `FLAG_CODES` |
 | Subdivisions | the first level of Japan (45 of 47), Canada (13 of 13), the United States (57 of 57), Australia (8 of 8), the United Kingdom (3 of 4), Germany (16 of 16), France (17 of 26), Switzerland (26 of 26), Austria (9 of 9) and Brazil (27 of 27) | `FLAG_CODES` |
-| Former countries | 12 flags, 10 more codes with a reason (Olympic teams, and two without one flag) | `FLAG_CODES`, `LEFT_OUT`, [the former countries list](../historical.md) |
+| Former countries | 52 flags, 19 more codes with a reason | `FLAG_CODES`, `LEFT_OUT`, [the former countries list](../historical.md) |
 | Codes with no flag | 35 codes, each with its reason | `LEFT_OUT`, [the left-out list](../left-out.md) |
 | Licences | public domain, CC0, CC BY and MIT only | `manifest(code).licence` |
 | Largest flag | 372 KB (Virginia); 55 over the 40 KB budget | [the sizes list](../sizes.md) |
