@@ -6,6 +6,8 @@ All notable changes to this project are written here. The format follows
 
 ## [Unreleased]
 
+## [1.26.0] - 2026-11-26
+
 ### Added
 
 - **Ten more samurai banners from the handscroll 御馬印** (MODULES-1818, eighth batch), all from scroll 5 (NDL 1288244), frames 11 to 30, each measured from its frame and `documented`: the black band and black slant on a white nobori of Katagiri, titled Izumo-no-kami, the black band on a white nobori and the two white bands on black of Kurushima, titled Dewa-no-kami, the red saltire on white (labelled 大馬しるし) of Niwa, styled Sakyō (左京), a shortened court title, the three white discs on a red nobori of Nakagawa, styled Naizen (内膳), a shortened court title, the two white slanted bands on a black nobori of Shinjō, titled Echizen-no-kami, the black nobori with 山 of Yamazaki, titled Kai-no-kami, the white band on a red nobori of Matsudaira, titled Nagato-no-kami, the red disc and black slant on a white nobori of Endō, titled Tajima-no-kami, and the white nobori with a black foot of Sugihara, titled Hōki-no-kami. 山 is lettered in Yuji Syuku. The samurai entry is 99 KB.
