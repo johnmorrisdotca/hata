@@ -1,4 +1,4 @@
-// The samurai banners: nine reconstructions from words, each saying which part is the source's, and fifty-one drawn from the painted
+// The samurai banners: nine reconstructions from words, each saying which part is the source's, and sixty drawn from the painted
 // handscroll 御馬印 (National Diet Library), each cited to its scroll and frame, six of them lettered in an SIL OFL brush font.
 import { readFileSync } from "node:fs";
 
@@ -11,7 +11,7 @@ describe("the banners", () => {
   it("are what scripts/draw-samurai.ts makes, so the data file cannot drift from the geometry", () => {
     for (const [path, text] of samuraiFiles()) expect(readFileSync(`src/sets/${path}`, "utf8"), path).toBe(text);
     expect(samuraiRecords().map((one) => one.id)).toEqual([...SAMURAI_IDS]);
-    expect(SAMURAI_IDS).toHaveLength(60);
+    expect(SAMURAI_IDS).toHaveLength(69);
   });
 
   it("are reconstructions where they come from words, each saying what the source gives and what is this package's, and citing a page", () => {
@@ -26,9 +26,9 @@ describe("the banners", () => {
     }
   });
 
-  it("take fifty-one banners from the handscroll 御馬印 at the National Diet Library, each documented and cited to its scroll and frame", () => {
+  it("take sixty banners from the handscroll 御馬印 at the National Diet Library, each documented and cited to its scroll and frame", () => {
     const documented = SAMURAI_IDS.filter((id) => samuraiInfo(id)?.status === "documented");
-    expect(documented).toHaveLength(51);
+    expect(documented).toHaveLength(60);
     for (const id of documented) {
       const info = samuraiInfo(id)!;
       expect(info.source.kind, id).toBe("official");
@@ -56,9 +56,9 @@ describe("the banners", () => {
   });
 
   it("are grouped as nobori, hata and uma-jirushi, and tall where they are nobori", () => {
-    expect(samuraiIn("nobori")).toEqual(["samurai:hojo-gosyoku", "samurai:sanada-rokumonsen", "samurai:hoshina-higo-kuroboshi", "samurai:sakai-kunai-mitsumaru", "samurai:todo-izumi-mitsumaru", "samurai:honda-mino-hon", "samurai:ii-kamon-aka-nobori", "samurai:koide-yamato-naname", "samurai:terazawa-shima-mitsumaru", "samurai:sanada-kawachi-aka-obi", "samurai:koriki-settsu-shiromaru", "samurai:matsudaira-shimosa-kinbishi", "samurai:matsudaira-tanba-kuro-obi", "samurai:sakai-awa-inazuma", "samurai:matsudaira-dewa-shiromaru-nobori", "samurai:okubo-kaga-shirowa", "samurai:aoyama-okura-yama", "samurai:matsudaira-kai-akamaru-nobori", "samurai:matsudaira-yamashiro-shiro-obi", "samurai:matsudaira-uemon-naname-nobori", "samurai:asano-uneme-itsutsumaru", "samurai:mizoguchi-izumo-kuro-obi"]);
-    expect(samuraiIn("hata")).toHaveLength(28);
-    expect(samuraiIn("uma")).toHaveLength(10);
+    expect(samuraiIn("nobori")).toEqual(["samurai:hojo-gosyoku", "samurai:sanada-rokumonsen", "samurai:hoshina-higo-kuroboshi", "samurai:sakai-kunai-mitsumaru", "samurai:todo-izumi-mitsumaru", "samurai:honda-mino-hon", "samurai:ii-kamon-aka-nobori", "samurai:koide-yamato-naname", "samurai:terazawa-shima-mitsumaru", "samurai:sanada-kawachi-aka-obi", "samurai:koriki-settsu-shiromaru", "samurai:matsudaira-shimosa-kinbishi", "samurai:matsudaira-tanba-kuro-obi", "samurai:sakai-awa-inazuma", "samurai:matsudaira-dewa-shiromaru-nobori", "samurai:okubo-kaga-shirowa", "samurai:aoyama-okura-yama", "samurai:matsudaira-kai-akamaru-nobori", "samurai:matsudaira-yamashiro-shiro-obi", "samurai:matsudaira-uemon-naname-nobori", "samurai:asano-uneme-itsutsumaru", "samurai:mizoguchi-izumo-kuro-obi", "samurai:matsudaira-oki-naname", "samurai:inaba-mino-shiromaru", "samurai:naito-sama-kuro-obi", "samurai:tozawa-ukyo-kuro-obi"]);
+    expect(samuraiIn("hata")).toHaveLength(32);
+    expect(samuraiIn("uma")).toHaveLength(11);
     expect(samuraiIn("none")).toEqual([]);
     expect(samuraiAspect("samurai:sanada-rokumonsen")).toBe(0.25);
     expect(samuraiAspect("samurai:uesugi-tenshi")).toBe(1.5);
