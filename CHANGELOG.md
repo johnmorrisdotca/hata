@@ -6,6 +6,10 @@ All notable changes to this project are written here. The format follows
 
 ## [Unreleased]
 
+### Fixed
+
+- **Germany and Canada no longer count as agreeing with their colour specifications** (MODULES-1603). The 2026-10 audit said they did, without the pages being fetched. Germany's style guide gives screen red `#FF0000` and gold `#FFCC00` (the flag ships `#dd0000` and `#ffce00`). Canada's Federal Identity Program gives red as RGB 235, 45, 55, `#EB2D37` (the flag ships `#d52b1e`). The official screen colour is recorded beside the shipped one. A mismatch is flagged only past CIE76 ΔE of 5, and the drawings are unchanged.
+
 ## [1.30.0] - 2026-11-26
 
 ### Added

@@ -1,0 +1,24 @@
+{
+  "deltaE76": 5,
+  "flags": [
+    {
+      "code": "DE",
+      "file": "src/flags/de.ts",
+      "page": "https://styleguide.bundesregierung.de/sg-de/basiselemente/farben",
+      "read": "2026-11-27",
+      "colours": [
+        { "name": "red", "official": "#FF0000", "shipped": "#dd0000" },
+        { "name": "gold", "official": "#FFCC00", "shipped": "#ffce00" }
+      ]
+    },
+    {
+      "code": "CA",
+      "file": "src/flags/ca.ts",
+      "page": "https://www.canada.ca/en/treasury-board-secretariat/services/government-communications/design-standard/colour-design-standard-fip.html",
+      "read": "2026-11-27",
+      "colours": [
+        { "name": "red", "official": "#EB2D37", "shipped": "#d52b1e" }
+      ]
+    }
+  ]
+}
