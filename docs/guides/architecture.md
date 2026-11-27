@@ -12,7 +12,8 @@ src/
 ├── index.ts            the main entry: the codes, flagCode, flagUrl, and the helpers from svg.ts
 ├── svg.ts              aspectOf, frame and toDataUri: pure string work on a flag's SVG
 ├── load.ts             the "/load" entry: a flag by its code, by dynamic import, framed as measured
-├── names.ts            the "/names" entry: each flag's place in English and Japanese, and its aspect ratio
+├── nameFold.ts         the fold a name is compared by, the same one Kuni 1.18 uses, so /names does not pull Kuni in
+├── names.ts            the "/names" entry: each flag's place, and flagCode for an alpha-3, a numeric code, an IOC code, a name or an emoji
 ├── organisations.ts    the "/organisations" entry: the flags of international organisations by their "org:" id
 ├── signals.ts          the "/signals" entry: the International Code of Signals' flags by their "ics:" id
 ├── samurai.ts          the "/samurai" entry: the battle banners of Sengoku daimyo by their "samurai:" id

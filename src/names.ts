@@ -2,8 +2,12 @@
 // the flag's aspect ratio. Data only, kept out of the main entry: <hata-flag> loads it for the name it reads aloud.
 
 import { FLAG_ALIASES } from "./data/aliases.data";
+import { CODE_LOOKUP, FLAG_EMOJI, NAME_LOOKUP } from "./data/lookups.data";
 import { NAMES } from "./data/names.data";
+import { foldKey } from "./nameFold";
 import { mustBeString } from "./svg";
+
+const EMOJI_OF: ReadonlyMap<string, string> = new Map(Object.entries(FLAG_EMOJI).map(([code, emoji]) => [emoji, code]));
 
 /**
  * The languages a flag's place is named in.
@@ -69,5 +73,65 @@ const flagName = (code: string, lang: string = "en"): string | null => {
  */
 const flagAspect = (code: string): number | null => NAMES[codeOf(code)]?.[2] ?? null;
 
-export { flagAspect, flagName };
+/**
+ * The code of a flag, from any of the names a table uses for the place. Besides what the main entry's
+ * `flagCode` reads (an alpha-2 or a subdivision code, in any case, and a former country's alias), this one
+ * also reads an alpha-3 (`JPN`), a numeric code (`392`), an IOC code (`GER`, `SUI`), the place's name in
+ * English or Japanese (`Holland`, `UK`, `日本`, and katakana as hiragana), and a flag emoji. A code or a
+ * name that two places hold (`CS`, `England`, `Georgia`) is null, because a near miss would draw the wrong flag.
+ * FIFA codes are not here: Kuni does not list them.
+ *
+ * @param input - A code, a name, or a flag emoji.
+ * @returns The code as this package writes it (`"JP"`, `"JP-13"`, `"SUHH"`), or `null` when nothing here has that flag.
+ * @throws TypeError when `input` is not a string.
+ *
+ * @example
+ * ```ts
+ * import { flagCode, flagEmoji } from "@johnmorrisdotca/hata/names";
+ *
+ * console.log(flagCode("JPN"), flagCode("392"), flagCode("GER")); // "JP", "JP", "DE"
+ * console.log(flagCode("Holland"), flagCode("UK"), flagCode("日本")); // "NL", "GB", "JP"
+ * console.log(flagCode("🇯🇵")); // "JP"
+ * console.log(flagCode("CS"), flagCode("England")); // null, null
+ * console.log(flagEmoji("GB-ENG")); // the England tag sequence
+ * ```
+ */
+const flagCode = (input: string): string | null => {
+  const raw = mustBeString(input, "code").trim();
+  if (raw === "") return null;
+  const fromEmoji = EMOJI_OF.get(raw);
+  if (fromEmoji !== undefined) return fromEmoji;
+  const written = raw.toUpperCase().replace(/_/g, "-");
+  const aliased = FLAG_ALIASES[written] ?? written;
+  if (NAMES[aliased] !== undefined) return aliased;
+  const coded = CODE_LOOKUP[written];
+  if (coded !== undefined) return coded;
+
+  return NAME_LOOKUP[foldKey(raw)] ?? null;
+};
+
+/**
+ * A flag as an emoji: a country's two regional-indicator letters, or the tag sequence for England, Scotland
+ * or Wales. A subdivision, a former country, and Northern Ireland have none.
+ *
+ * @param code - A flag's code, a name, or another code `flagCode` reads (`"JP"`, `"jpn"`, `"GB-ENG"`).
+ * @returns The emoji, or `null` when the place has no flag emoji here.
+ * @throws TypeError when `code` is not a string.
+ *
+ * @example
+ * ```ts
+ * import { flagEmoji } from "@johnmorrisdotca/hata/names";
+ *
+ * console.log(flagEmoji("JP"));      // "🇯🇵"
+ * console.log(flagEmoji("GB-SCT"));  // the Scotland tag sequence
+ * console.log(flagEmoji("JP-13"));   // null
+ * ```
+ */
+const flagEmoji = (code: string): string | null => {
+  const known = flagCode(code);
+
+  return known === null ? null : (FLAG_EMOJI[known] ?? null);
+};
+
+export { flagAspect, flagCode, flagEmoji, flagName };
 export type { NameLanguage };

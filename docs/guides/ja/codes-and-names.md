@@ -16,6 +16,16 @@ console.log(flagName("JP-13","ja"),flagAspect("JP-13"));
 
 `isFlagCode`は保存した大文字の既定のコードを正確に確認します。`flagCode`は大小文字とアンダースコアをそろえ、既定の旗がないコードにnullを返します。行政区画は完全なコードで区別します。既定のコードの一覧と、枠に合わせた絵や別の旗を含む一覧は別です。
 
+## 別のコード、名前、絵文字で引く
+
+本体の入口は小さく保つため、alpha-3、数字のコード、IOCのコード、名前、旗の絵文字は `@johnmorrisdotca/hata/names` の `flagCode` が読みます。`flagEmoji` は国の絵文字を返し、イングランド、スコットランド、ウェールズにはタグ列を返します。二つの場所が持ったコードや名前（`CS`、`England`、`Georgia`）は null です。FIFAのコードは収録しません。Kuniに無いためです。
+
+```ts
+import { flagCode, flagEmoji } from "@johnmorrisdotca/hata/names";
+console.log(flagCode("JPN"), flagCode("392"), flagCode("GER"), flagCode("Holland"), flagCode("日本"));
+console.log(flagEmoji("JP"), flagEmoji("GB-ENG"), flagCode("CS"));
+```
+
 ## 旧国の旗を求める
 
 メダル表や記録集には、いまもソビエト連邦、東ドイツ、ユーゴスラビアが出てきます。Hataはこれらの旗を、現在の国が使わないコードで収録しています。ISO 3166-3のコードがあればそれ（`SUHH`、`DDDE`、`YUCS`）を、なければIOCのコード（`FRG`、`BOH`、`WIF`）を、それもなければHata独自の、`X` に2文字を続けたコード（`XAH` オーストリア＝ハンガリー帝国、`XOT` オスマン帝国）を使います。ISO 3166は、このコードを国に割り当てません（[かつての国](former-countries.md)）。表でよく使われるコードは`FLAG_ALIASES`にあり、`flagCode`・`flag`・`flagName`・`manifest`が読みます。`isFlagCode`と`FLAG_CODES`はコードそのものだけを持ちます。

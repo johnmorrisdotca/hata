@@ -16,6 +16,16 @@ console.log(flagName("JP-13","ja"),flagAspect("JP-13"));
 
 `isFlagCode` checks the exact stored uppercase primary code; `flagCode` normalizes the documented case and underscore forms and returns null for a code with no primary flag. A full subdivision code identifies a region; a country code is not its subdivision. The primary-code list is distinct from the larger catalogue of adapted drawings and variants.
 
+## Look up by another code, a name, or an emoji
+
+The main entry stays small, so alpha-3, a numeric code, an IOC code, a name and a flag emoji are read by `flagCode` from `@johnmorrisdotca/hata/names`. `flagEmoji` gives the emoji back for a country, and the tag sequence for England, Scotland and Wales. A code or a name that two places held (`CS`, `England`, `Georgia`) is null. FIFA codes are not listed: Kuni does not have them.
+
+```ts
+import { flagCode, flagEmoji } from "@johnmorrisdotca/hata/names";
+console.log(flagCode("JPN"), flagCode("392"), flagCode("GER"), flagCode("Holland"), flagCode("日本"));
+console.log(flagEmoji("JP"), flagEmoji("GB-ENG"), flagCode("CS"));
+```
+
 ## Ask for a former country
 
 A medal table or a record book still names the Soviet Union, East Germany and Yugoslavia. Hata has their flags under codes no present-day country uses: the ISO 3166-3 code where that standard has one (`SUHH`, `DDDE`, `YUCS`), else the IOC's (`FRG`, `BOH`, `WIF`), else a code of Hata's own, `X` and two letters (`XAH` Austria-Hungary, `XOT` the Ottoman Empire), which ISO 3166 never gives a country ([former countries](former-countries.md)). The codes a table is likely to hold are `FLAG_ALIASES`, and `flagCode`, `flag`, `flagName` and `manifest` read them; `isFlagCode` and `FLAG_CODES` hold only the code itself.

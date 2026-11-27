@@ -388,7 +388,7 @@ The [API reference](https://johnmorrisdotca.github.io/hata/api.html) lists every
 | `@johnmorrisdotca/hata` | `FLAG_CODES`, `FLAG_ALIASES`, `isFlagCode`, `flagCode`, `flagUrl`, `aspectOf`, `frame`, `toDataUri`, `VERSION`, and the types `FlagCode`, `FlagUrlOptions`, `FrameOptions`, `Shape` and `Fit` |
 | `@johnmorrisdotca/hata/flags/<code>` | the flag's SVG string as the default export and as `svg` |
 | `@johnmorrisdotca/hata/load` | `flag`, `flagDataUri`, `flagOn` and the types `FlagOptions`, `FrameOptions` and `LoadedFlagOn` |
-| `@johnmorrisdotca/hata/names` | `flagName`, `flagAspect` and the type `NameLanguage` |
+| `@johnmorrisdotca/hata/names` | `flagName`, `flagAspect`, `flagCode` (also alpha-3, numeric, IOC, a name, an emoji), `flagEmoji`, and the type `NameLanguage` |
 | `@johnmorrisdotca/hata/signals` | `SIGNAL_IDS`, `isSignalId`, `signalId`, `signalFlag`, `signalName`, `signalMeaning`, `signalAspect`, `signalInfo`, `signalsFor`, types `SignalId`, `SignalInfo` |
 | `@johnmorrisdotca/hata/samurai` | `SAMURAI_IDS`, `isSamuraiId`, `samuraiId`, `samuraiFlag`, `samuraiName`, `samuraiAbout`, `samuraiAspect`, `samuraiInfo`, `samuraiIn`, types `SamuraiId`, `SamuraiInfo` |
 | `@johnmorrisdotca/hata/medieval` | `MEDIEVAL_IDS`, `isMedievalId`, `medievalId`, `medievalFlag`, `medievalName`, `medievalAbout`, `medievalAspect`, `medievalInfo`, `medievalIn`, types `MedievalId`, `MedievalInfo` |
@@ -472,6 +472,7 @@ The root keeps codes and pure SVG helpers separate from lazy loading, names, pro
 | The 425 drawings made for a frame | flag-icons 7.5.0 | MIT |
 | The drawings compared but not shipped | circle-flags 2.8.3 | MIT |
 | The places' names, in the docs, the demo, `/names` and `<hata-flag>` | Kuni 1.1.0 (Unicode CLDR and Wikidata) | MIT, Unicode-3.0, CC0 |
+| The alpha-3, numeric and IOC lookup, and the flag emoji, in `/names` | Kuni 1.18.0 | MIT |
 | The pipeline, the frames, the lookups and the demo | written for this package | MIT |
 
 flag-icons 7.6.0 was compared on 2026-11-27 for the twelve codes whose files differ and that hata ships. Commons still won each one, so the frame drawings stay these 7.5.0 files. [The sizes guide](./docs/guides/sources-sizes-and-limits.md) names the files.
