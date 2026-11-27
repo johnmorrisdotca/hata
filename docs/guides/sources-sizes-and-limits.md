@@ -52,6 +52,8 @@ Measured on 2026-10-09, SVG as shipped and gzipped at level 9:
 | country-flag-icons 1.6.20, 3:2 (simplified) | 265 | 174 KB | 87 KB | 479 B |
 | circle-flags 2.8.3 (round) | 430 | 301 KB | 159 KB | 585 B |
 
+flag-icons 7.6.0 was read on 2026-11-27. Its changelog says "Fix color bleed in Chrome", "Fix the white border on the Panama flag", and fixes for Ascension Island, Ethiopia, Yemen, Ivory Coast, New Caledonia, Burkina Faso and Vanuatu. Of the 542 SVG files in its 4:3 and square folders, 20 differ from 7.5.0: both shapes of Ethiopia, Yemen, Ivory Coast, New Caledonia, Burkina Faso, Vanuatu and `sh-ac`, and the 4:3 file only of France, Poland, Ukraine, Latvia, Hungary and Panama. `pnpm data:choose` for the twelve of those codes that hata ships (PA, ET, YE, CI, NC, BF, VU, FR, PL, UA, LV, HU) still chooses the Commons drawing every time. The drawings made for a frame stay the 7.5.0 files in the row above. Ascension Island is `sh-ac` in flag-icons, and it is not a hata code.
+
 The countries weigh what flag-icons' do, at their true proportions. The American states are most of the package
 because their flags carry full seals (Virginia's is 372 KB); 55 flags are over the 40 KB budget, and 12 drawings made for a frame,
 listed in [the sizes list](../sizes.md). A page pays only for the flags it imports or loads.

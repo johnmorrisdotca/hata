@@ -2,12 +2,12 @@
 title: Hata and the other flag sets
 section: explanation
 order: 2
-description: What hata and seven other flag sets each say they draw, in which formats and with which licence, and what hata does not have yet.
+description: What hata, seven other flag sets and Twemoji each say they draw, in which formats and with which licence, and what hata does not have yet.
 ---
 
-Most flag packages draw the same few hundred flags, so the choice is about shapes, formats, codes and licences. This page puts hata beside seven sets that people reach for. Every statement about another set is taken from that set's own README, linked below, and read on 2026-11-17; "its README does not say" means exactly that, not that the set lacks the thing. Every statement about hata is from [the README](../../README.md) and the guides, and a test that checks the docs holds the numbers.
+Most flag packages draw the same few hundred flags, so the choice is about shapes, formats, codes and licences. This page puts hata beside seven flag sets that people reach for, and beside Twemoji. Every statement about another set is taken from that set's own README, linked below, and read on 2026-11-17, except Twemoji's, read on 2026-11-27; "its README does not say" means exactly that, not that the set lacks the thing. Every statement about hata is from [the README](../../README.md) and the guides, and a test that checks the docs holds the numbers.
 
-The sets: [flag-icons](https://github.com/lipis/flag-icons), [country-flag-icons](https://github.com/catamphetamine/country-flag-icons/blob/master/README.md), [circle-flags](https://github.com/HatScripts/circle-flags/blob/gh-pages/README.md), [react-world-flags](https://github.com/smucode/react-world-flags/blob/master/README.md), [svg-country-flags](https://github.com/hampusborgos/country-flags/blob/main/README.md) (the `country-flags` repository), [world-flags-sprite](https://github.com/lafeber/world-flags-sprite/blob/master/README.md) and [flagpack-core](https://github.com/Yummygum/flagpack-core/blob/main/README.md).
+The sets: [flag-icons](https://github.com/lipis/flag-icons), [country-flag-icons](https://github.com/catamphetamine/country-flag-icons/blob/master/README.md), [circle-flags](https://github.com/HatScripts/circle-flags/blob/gh-pages/README.md), [react-world-flags](https://github.com/smucode/react-world-flags/blob/master/README.md), [svg-country-flags](https://github.com/hampusborgos/country-flags/blob/main/README.md) (the `country-flags` repository), [world-flags-sprite](https://github.com/lafeber/world-flags-sprite/blob/master/README.md), [flagpack-core](https://github.com/Yummygum/flagpack-core/blob/main/README.md) and [Twemoji](https://github.com/jdecked/twemoji/blob/master/README.md).
 
 ## What each set draws
 
@@ -21,6 +21,7 @@ The sets: [flag-icons](https://github.com/lipis/flag-icons), [country-flag-icons
 | svg-country-flags | "accurate renders of all the worlds flags", named by 2-letter code, `GB-ENG` and the like, and `XK` for Kosovo | SVG as rendered; its README does not give a ratio |
 | world-flags-sprite | "The flags of all countries in the world in one sprite" | one sprite, class `f32` |
 | flagpack-core | "250+ flag icons", every ISO 3166 country plus `BQ-SA`, `BQ-BO`, `BQ-SE`, `GB-ENG`, `GB-SCT`, `GB-WLS`, `GB-NIR` | its README does not say |
+| twemoji | standard Unicode emoji recommended for general interchange; Twemoji v17.0 follows Unicode 17.0 and Emoji 17.0. Its README does not say how many of them are flags | its README does not say a flag's proportions; the default image is a 72×72 PNG, and SVG files are an asset folder |
 
 ## How you get a flag
 
@@ -34,6 +35,7 @@ The sets: [flag-icons](https://github.com/lipis/flag-icons), [country-flag-icons
 | svg-country-flags | SVG files and PNG exports at 100, 250 and 1000 px wide; a JSON file from code to name; a script for other widths | its README names none |
 | world-flags-sprite | one CSS sprite, `<li class="flag ar">` | its README names none |
 | flagpack-core | SVG files, one import each, and a `countryCodeList.json` | separate React, Vue and Svelte packages, linked from its README |
+| twemoji | `twemoji.parse` replaces an emoji with an image. The default is a PNG at 72×72; an SVG is the `svg` folder | its README names none |
 
 ## Codes, names and licences
 
@@ -47,6 +49,7 @@ The sets: [flag-icons](https://github.com/lipis/flag-icons), [country-flag-icons
 | svg-country-flags | alpha-2 | a JSON file from code to country name | says that flags are in the public domain, and that there may be other restrictions on how a flag can be used |
 | world-flags-sprite | alpha-2 or alpha-3 | its README does not say | its README does not say |
 | flagpack-core | alpha-2 | `countryCodeList.json` | MIT |
+| twemoji | its README does not say a country code | its README does not say | CC-BY 4.0 |
 
 ## Where hata has something the others' READMEs do not mention
 

@@ -474,6 +474,8 @@ The root keeps codes and pure SVG helpers separate from lazy loading, names, pro
 | The places' names, in the docs, the demo, `/names` and `<hata-flag>` | Kuni 1.1.0 (Unicode CLDR and Wikidata) | MIT, Unicode-3.0, CC0 |
 | The pipeline, the frames, the lookups and the demo | written for this package | MIT |
 
+flag-icons 7.6.0 was compared on 2026-11-27 for the twelve codes whose files differ and that hata ships. Commons still won each one, so the frame drawings stay these 7.5.0 files. [The sizes guide](./docs/guides/sources-sizes-and-limits.md) names the files.
+
 How a drawing is chosen and checked, and what each set weighs: [sources, sizes and limits](./docs/guides/sources-sizes-and-limits.md). [NOTICE.md](./NOTICE.md) carries the credit CC BY asks for, country-flag-icons' and flag-icons' MIT notices, and the note on
 insignia, and ships with the package. [data-sources/README.md](./data-sources/README.md) says where every input
 came from and how to refresh it.
