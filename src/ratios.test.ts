@@ -79,3 +79,35 @@ describe("each flag's shipped shape", () => {
     expect(shape("CA-PE")).toBeCloseTo(3 / 2, 3);
   });
 });
+
+// A proportion stated on a page that was read, or the finding that the page does not state one (MODULES-1602).
+// This is not the correction list: a flag whose drawing already has the ratio stays out of official-ratios.data.json.
+interface ProportionSource {
+  code: string;
+  ratio: [number, number] | null;
+  page: string;
+  read: string;
+  finding: string;
+}
+
+const PROPORTIONS = JSON.parse(readFileSync("scripts/proportion-sources.data.json", "utf8")) as { flags: ProportionSource[] };
+
+describe("proportions read from a page", () => {
+  it("keeps each finding with the page, and a stated ratio only when the drawing already has it", () => {
+    const codes = PROPORTIONS.flags.map((flag) => flag.code);
+    expect(codes).toEqual(["JP", "GB", "US", "FR", "ZA", "AR"]);
+    for (const flag of PROPORTIONS.flags) {
+      const record = commons.find((one) => one.code === flag.code);
+      expect(record, flag.code).toBeDefined();
+      expect(flag.page.startsWith("https://"), flag.code).toBe(true);
+      expect(flag.read, flag.code).toBe("2026-11-27");
+      expect(flag.finding.length, flag.code).toBeGreaterThan(40);
+      expect(OFFICIAL[flag.code], `${flag.code} is a source, not a stretched drawing`).toBeUndefined();
+      if (flag.ratio === null) continue;
+      const shipped = record!.width / record!.height;
+      expect(Math.abs(shipped - flag.ratio[0] / flag.ratio[1]) / shipped, flag.code).toBeLessThanOrEqual(TOLERANCE);
+    }
+    expect(PROPORTIONS.flags.find((flag) => flag.code === "JP")?.ratio).toEqual([3, 2]);
+    expect(PROPORTIONS.flags.filter((flag) => flag.ratio === null).map((flag) => flag.code)).toEqual(["GB", "US", "FR", "ZA", "AR"]);
+  });
+});

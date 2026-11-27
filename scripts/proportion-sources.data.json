@@ -1,0 +1,46 @@
+{
+  "flags": [
+    {
+      "code": "JP",
+      "ratio": [3, 2],
+      "page": "https://www8.cao.go.jp/chosei/kokkikokka/kokkikokka.html",
+      "read": "2026-11-27",
+      "finding": "The Cabinet Office page of the Act on the National Flag and Anthem says the height is two thirds of the width, so the flag is 3:2. The drawing is already 3:2."
+    },
+    {
+      "code": "GB",
+      "ratio": null,
+      "page": "https://www.college-of-arms.gov.uk/resources/union-flag-approved-designs",
+      "read": "2026-11-27",
+      "finding": "The College of Arms says the 1801 proclamation states no proportions, and that 5:3 and 2:1 are both correct. The drawing is the 5:3 form."
+    },
+    {
+      "code": "US",
+      "ratio": null,
+      "page": "https://www.archives.gov/federal-register/codification/executive-order/10834.html",
+      "read": "2026-11-27",
+      "finding": "Executive Order 10834 authorizes several sizes, including 10 by 19 feet, and says the proportions are in an attachment this page does not print. The drawing is 19:10."
+    },
+    {
+      "code": "FR",
+      "ratio": null,
+      "page": "https://www.elysee.fr/en/french-presidency/the-french-flag",
+      "read": "2026-11-27",
+      "finding": "The presidency's page on the flag does not state a proportion. The drawing is the source file's 3:2."
+    },
+    {
+      "code": "ZA",
+      "ratio": null,
+      "page": "https://www.gov.za/about-sa/national-symbols/national-flag",
+      "read": "2026-11-27",
+      "finding": "The government's flag page states the textile colours and not a proportion. The drawing is the source file's 3:2."
+    },
+    {
+      "code": "AR",
+      "ratio": null,
+      "page": "https://www.argentina.gob.ar/pais/simbolos/bandera",
+      "read": "2026-11-27",
+      "finding": "The page says Decree 1650/2010 fixed the measurements, and it does not print them. The drawing is the source file's 8:5."
+    }
+  ]
+}
