@@ -171,7 +171,14 @@ file. Its licence kind in the manifest is `accepted`; the licence name there car
 NOTICE.md credits it with the licence's link, as the licence asks (the source acknowledged). The drawing is the Commons file itself,
 as the snapshot of 2026-11-17 recorded it (the revision of 2025-07-28); Commons' file history names its authors, which is what the
 file's own Artist field says ("See File history below for details."). The flag on the page was edited again on 2026-11-09 after
-Royal Decree No. 99/2026 and was in dispute there, so the snapshot's revision is kept until a person reads the new decree against it. What
+Royal Decree No. 99/2026 and was in dispute there. The decree was read on 2026-11-27, on qanoon.om's copy of Royal Decree 99/2026
+(it names Official Gazette 1672 of 1 November 2026, and the decree is in force the next day) and on decree.om's English page of the
+same text. Annex 1 states the bands the drawing already has: a red vertical third at the hoist with the white emblem in its upper
+quarter, then white, red and green in three equal bands. Its measurement sheet gives one official size, 350 cm by 200 cm, which is
+7:4, and the drawing is already 7:4 (1050 by 600). The annex names the colours and leaves the cloth and the colour materials to the
+competent authority, so it states no colour values. Annex 2 replaces the previous emblem sheet with a line drawing of the state
+emblem, a khanjar over two crossed swords, which is the emblem the drawing already carries in white. The snapshot's revision is
+kept, and no dated variant was added. What
 would change it: the Omani government stating that the flag may be used freely, or a person reading OGL-om as not covering the
 flag and deciding to take it out again (remove the line in `ACCEPTED`, then `pnpm data:choose OM`).
 

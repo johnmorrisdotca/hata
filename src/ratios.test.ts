@@ -80,7 +80,7 @@ describe("each flag's shipped shape", () => {
   });
 });
 
-// A proportion stated on a page that was read, or the finding that the page does not state one (MODULES-1602).
+// A proportion stated on a page that was read, or the finding that the page does not state one (MODULES-1602, MODULES-1604).
 // This is not the correction list: a flag whose drawing already has the ratio stays out of official-ratios.data.json.
 interface ProportionSource {
   code: string;
@@ -95,7 +95,7 @@ const PROPORTIONS = JSON.parse(readFileSync("scripts/proportion-sources.data.jso
 describe("proportions read from a page", () => {
   it("keeps each finding with the page, and a stated ratio only when the drawing already has it", () => {
     const codes = PROPORTIONS.flags.map((flag) => flag.code);
-    expect(codes).toEqual(["JP", "GB", "US", "FR", "ZA", "AR"]);
+    expect(codes).toEqual(["JP", "GB", "US", "FR", "ZA", "AR", "OM"]);
     for (const flag of PROPORTIONS.flags) {
       const record = commons.find((one) => one.code === flag.code);
       expect(record, flag.code).toBeDefined();
@@ -108,6 +108,10 @@ describe("proportions read from a page", () => {
       expect(Math.abs(shipped - flag.ratio[0] / flag.ratio[1]) / shipped, flag.code).toBeLessThanOrEqual(TOLERANCE);
     }
     expect(PROPORTIONS.flags.find((flag) => flag.code === "JP")?.ratio).toEqual([3, 2]);
+    expect(PROPORTIONS.flags.find((flag) => flag.code === "OM")?.ratio).toEqual([7, 4]);
     expect(PROPORTIONS.flags.filter((flag) => flag.ratio === null).map((flag) => flag.code)).toEqual(["GB", "US", "FR", "ZA", "AR"]);
+    const decisions = readFileSync("docs/decisions.md", "utf8");
+    expect(decisions).toContain("Its measurement sheet gives one official size, 350 cm by 200 cm, which is");
+    expect(decisions).toContain("no dated variant was added.");
   });
 });
