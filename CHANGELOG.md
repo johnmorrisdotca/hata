@@ -6,6 +6,8 @@ All notable changes to this project are written here. The format follows
 
 ## [Unreleased]
 
+## [1.30.0] - 2026-11-26
+
 ### Added
 
 - **Six more samurai banners from the handscroll 御馬印** (MODULES-1818, twelfth and last batch), flat banners left over from the earlier rounds, each cited to its own scroll and frame and `documented`: from scroll 5, the plain white nobori of Kinoshita, titled Uemon-no-taifu, and the plain black banner of Matsudaira, titled Nagato-no-kami; and from scroll 6, the plain red banner and the four black bands on a white nobori of Ōtawara, titled Bizen-no-kami, the plain white narrow nobori of Horio, titled Yamashiro-no-kami, and the plain gold narrow nobori of Matsushita, titled Iwami-no-kami. Eight flat banners are left in the pool in `docs/decisions.md`. The samurai entry is 128 KB.
