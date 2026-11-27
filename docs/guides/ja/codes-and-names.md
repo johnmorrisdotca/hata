@@ -18,7 +18,7 @@ console.log(flagName("JP-13","ja"),flagAspect("JP-13"));
 
 ## 別のコード、名前、絵文字で引く
 
-本体の入口は小さく保つため、alpha-3、数字のコード、IOCのコード、名前、旗の絵文字は `@johnmorrisdotca/hata/names` の `flagCode` が読みます。`flagEmoji` は国の絵文字を返し、イングランド、スコットランド、ウェールズにはタグ列を返します。二つの場所が持ったコードや名前（`CS`、`England`、`Georgia`）は null です。FIFAのコードは収録しません。Kuniに無いためです。
+主な入口を小さく保つため、alpha-3、数字のコード、IOCのコード、名前、旗の絵文字は `@johnmorrisdotca/hata/names` の `flagCode` が読みます。`flagEmoji` は国の絵文字を返し、イングランド、スコットランド、ウェールズにはタグシーケンスを返します。二つの場所が使ったコードや名前（`CS`、`England`、`Georgia`）はnullです。FIFAのコードは収録しません。Kuniにないためです。
 
 ```ts
 import { flagCode, flagEmoji } from "@johnmorrisdotca/hata/names";
