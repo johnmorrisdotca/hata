@@ -29,6 +29,8 @@ const flagImports: Plugin = {
     // The element's modules are entries of their own: <hata-flag> loads /load and /names, and element-define the
     // element, rather than carry a copy of each.
     build.onResolve({ filter: /^\.\/(load|names|element|custom|manifest|bind|react)\.js$/ }, (args) => ({ path: args.path, external: true }));
+    // A language's names are an entry of their own. <hata-flag> loads the one the page asked for.
+    build.onResolve({ filter: /^\.\/names\/[a-z]+(?:-[A-Za-z]+)?\.js$/ }, (args) => ({ path: args.path, external: true }));
     // /load's table of the drawings made for a frame is an entry of its own, loaded when a frame is asked for.
     build.onResolve({ filter: /^\.\/data\/adapted\.data\.js$/ }, () => ({ path: "./adapted.js", external: true }));
     // So is its table of variants, loaded when a variant is asked for.
@@ -53,7 +55,7 @@ const shared = {
 export default defineConfig([
   {
     ...shared,
-    entry: { index: "src/index.ts", load: "src/load.ts", manifest: "src/manifest.ts", adapted: "src/data/adapted.data.ts", variants: "src/data/variants.data.ts", names: "src/names.ts", organisations: "src/organisations.ts", signals: "src/signals.ts", samurai: "src/samurai.ts", military: "src/military.ts", medieval: "src/medieval.ts", search: "src/search.ts", custom: "src/custom.ts", element: "src/element.ts", "element-define": "src/element-define.ts", bind: "src/bind.ts", react: "src/react.ts", vue: "src/vue.ts", "react-native": "src/react-native.ts" },
+    entry: { index: "src/index.ts", load: "src/load.ts", manifest: "src/manifest.ts", adapted: "src/data/adapted.data.ts", variants: "src/data/variants.data.ts", names: "src/names.ts", "names/fr": "src/names/fr.ts", "names/es": "src/names/es.ts", "names/de": "src/names/de.ts", "names/zh-Hans": "src/names/zh-Hans.ts", "names/zh-Hant": "src/names/zh-Hant.ts", "names/ko": "src/names/ko.ts", "names/pt": "src/names/pt.ts", "names/ar": "src/names/ar.ts", "names/ru": "src/names/ru.ts", organisations: "src/organisations.ts", signals: "src/signals.ts", samurai: "src/samurai.ts", military: "src/military.ts", medieval: "src/medieval.ts", search: "src/search.ts", custom: "src/custom.ts", element: "src/element.ts", "element-define": "src/element-define.ts", bind: "src/bind.ts", react: "src/react.ts", vue: "src/vue.ts", "react-native": "src/react-native.ts" },
     dts: true,
     minify: false,
     esbuildOptions(options) {

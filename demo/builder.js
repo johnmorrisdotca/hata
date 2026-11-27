@@ -57,7 +57,7 @@ const options = [
   row("fit", "choice", ["Whole or cropped", "Use the curated frame, the whole flag or a crop."], ["全体か切り抜きか", "旗に合わせた表示・旗の全体・切り抜きから選びます。"], { default: "auto", choices: ["auto", "whole", "crop", "cover", "hoist", "contain"] }),
   row("size", "choice", ["Display size", "Small, medium or large; width overrides it."], ["表示の大きさ", "小・中・大を選びます。幅の指定が優先されます。"], { choices: ["small", "medium", "large"] }),
   row("width", "number", ["Width", "Width in pixels, preserving the flag's proportions."], ["幅", "旗の縦横比を保った幅を、ピクセルで指定します。"], { range: { min: 12, max: 600, step: 4 } }),
-  row("lang", "choice", ["Spoken name language", "The language of the name a screen reader reads."], ["読み上げる言語", "スクリーンリーダーが読む地名の言語です。"], { choices: ["en", "ja"] }),
+  row("lang", "choice", ["Spoken name language", "The language of the name a screen reader reads."], ["読み上げる言語", "スクリーンリーダーが読む地名の言語です。"], { choices: ["en", "ja", "fr", "es", "de", "zh-Hans", "zh-Hant", "ko", "pt", "ar", "ru"] }),
   row("label", "text", ["Spoken name", "An optional name for a screen reader."], ["読み上げる名前", "スクリーンリーダー用の名前です。指定は任意です。"]),
   row("border", "boolean", ["Border", "Show a thin border around the flag."], ["枠線", "旗のまわりに細い線を表示します。"], { default: false }),
   row("shadow", "boolean", ["Shadow", "Show a soft shadow below the flag."], ["影", "旗の下にやわらかい影を表示します。"], { default: false }),

@@ -46,7 +46,7 @@
       const draw = () => {
         const query = new URLSearchParams(location.hash.length > 1 ? location.hash.slice(1) : location.search.slice(1));
         const lang = query.get("lang");
-        if (lang === "en" || lang === "ja") document.documentElement.lang = lang;
+        if (["en", "ja", "fr", "es", "de", "zh-Hans", "zh-Hant", "ko", "pt", "ar", "ru"].includes(lang)) document.documentElement.lang = lang;
         for (const name of ATTRIBUTES) {
           const value = query.get(name);
           if (FLAGS.includes(name)) element.toggleAttribute(name, value !== null && value !== "0" && value !== "false");

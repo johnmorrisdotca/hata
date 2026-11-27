@@ -26,6 +26,18 @@ console.log(flagCode("JPN"), flagCode("392"), flagCode("GER"), flagCode("Holland
 console.log(flagEmoji("JP"), flagEmoji("GB-ENG"), flagCode("CS"));
 ```
 
+## Name a country in another language
+
+English and Japanese stay in `@johnmorrisdotca/hata/names`. A country Kuni names in another language is a separate entry, so a page that asks for French does not pay for the other languages. `flagName` there takes the code and returns that language's name, or null when Kuni has none (a prefecture, a former country). `<hata-flag lang="fr">` reads the French name for a country, and keeps the English name when that language has none, so the flag is still named.
+
+```ts
+import { flagName } from "@johnmorrisdotca/hata/names/fr";
+console.log(flagName("JP"));
+console.log(flagName("JP-13"));
+```
+
+The languages are `fr`, `es`, `de`, `zh-Hans`, `zh-Hant`, `ko`, `pt`, `ar` and `ru`.
+
 ## Ask for a former country
 
 A medal table or a record book still names the Soviet Union, East Germany and Yugoslavia. Hata has their flags under codes no present-day country uses: the ISO 3166-3 code where that standard has one (`SUHH`, `DDDE`, `YUCS`), else the IOC's (`FRG`, `BOH`, `WIF`), else a code of Hata's own, `X` and two letters (`XAH` Austria-Hungary, `XOT` the Ottoman Empire), which ISO 3166 never gives a country ([former countries](former-countries.md)). The codes a table is likely to hold are `FLAG_ALIASES`, and `flagCode`, `flag`, `flagName` and `manifest` read them; `isFlagCode` and `FLAG_CODES` hold only the code itself.

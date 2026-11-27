@@ -194,6 +194,7 @@ The alias changes only the import name in your project.
 | `@johnmorrisdotca/hata/flags/<code>` | One flag's SVG string (`/flags/jp`, `/flags/jp-13`, `/flags/ca-on`, `/flags/de-by`, and a former country's, `/flags/suhh`, lower case); `/flags/<code>.1x1` and `.4x3`, flag-icons' drawing made for that frame, where there is one | median 755 bytes; 176 bytes for Japan |
 | `@johnmorrisdotca/hata/load` | `flag(code, { shape, fit, variant, date, role })`, one dynamic import per flag | 26 KB, 5.7 KB gzipped, then the flag's own file (and a 3.6 KB gzipped table when a frame is asked for, and a 0.5 KB one when a variant is) |
 | `@johnmorrisdotca/hata/names` | `flagName(code, lang)` and `flagAspect(code)`: each flag's place in English and Japanese, from Kuni | 24 KB, 8.7 KB gzipped |
+| `@johnmorrisdotca/hata/names/fr` | `flagName(code)`: the country's name in French, from Kuni's Unicode CLDR names. The same entry for `@johnmorrisdotca/hata/names/es`, `@johnmorrisdotca/hata/names/de`, `@johnmorrisdotca/hata/names/zh-Hans`, `@johnmorrisdotca/hata/names/zh-Hant`, `@johnmorrisdotca/hata/names/ko`, `@johnmorrisdotca/hata/names/pt`, `@johnmorrisdotca/hata/names/ar` and `@johnmorrisdotca/hata/names/ru`. A page pays for the one language it imports. A place Kuni does not name in that language is null | that language's country names only |
 | `@johnmorrisdotca/hata/signals` | The International Code of Signals' 40 ship signal flags (`ics:`) and 18 of the US Navy's special pennants (`usn:`), with their meanings in English and Japanese | 91 KB, 8.6 KB gzipped, the records only; a drawing is its own file, loaded when asked for |
 | `@johnmorrisdotca/hata/signals/<code>` | One drawing's SVG string (`/signals/a`), the module the entry loads for `ics:a`; the restricted ones only by name | median 324 B, at most 500 B |
 | `@johnmorrisdotca/hata/samurai` | A hundred and thirty-five battle banners of Sengoku and early Edo daimyo (nobori, hata, uma-jirushi), by `samurai:` id: nine reconstructed from words, a hundred and twenty-six drawn from the handscroll 御馬印 (National Diet Library), each saying what is documented and what is reconstruction | 128 KB, 21 KB gzipped, the records only; a drawing is its own file, loaded when asked for |
@@ -389,6 +390,7 @@ The [API reference](https://johnmorrisdotca.github.io/hata/api.html) lists every
 | `@johnmorrisdotca/hata/flags/<code>` | the flag's SVG string as the default export and as `svg` |
 | `@johnmorrisdotca/hata/load` | `flag`, `flagDataUri`, `flagOn` and the types `FlagOptions`, `FrameOptions` and `LoadedFlagOn` |
 | `@johnmorrisdotca/hata/names` | `flagName`, `flagAspect`, `flagCode` (also alpha-3, numeric, IOC, a name, an emoji), `flagEmoji`, and the type `NameLanguage` |
+| `@johnmorrisdotca/hata/names/fr` | `flagName`, and the same on `@johnmorrisdotca/hata/names/es`, `@johnmorrisdotca/hata/names/de`, `@johnmorrisdotca/hata/names/zh-Hans`, `@johnmorrisdotca/hata/names/zh-Hant`, `@johnmorrisdotca/hata/names/ko`, `@johnmorrisdotca/hata/names/pt`, `@johnmorrisdotca/hata/names/ar` and `@johnmorrisdotca/hata/names/ru` |
 | `@johnmorrisdotca/hata/signals` | `SIGNAL_IDS`, `isSignalId`, `signalId`, `signalFlag`, `signalName`, `signalMeaning`, `signalAspect`, `signalInfo`, `signalsFor`, types `SignalId`, `SignalInfo` |
 | `@johnmorrisdotca/hata/samurai` | `SAMURAI_IDS`, `isSamuraiId`, `samuraiId`, `samuraiFlag`, `samuraiName`, `samuraiAbout`, `samuraiAspect`, `samuraiInfo`, `samuraiIn`, types `SamuraiId`, `SamuraiInfo` |
 | `@johnmorrisdotca/hata/medieval` | `MEDIEVAL_IDS`, `isMedievalId`, `medievalId`, `medievalFlag`, `medievalName`, `medievalAbout`, `medievalAspect`, `medievalInfo`, `medievalIn`, types `MedievalId`, `MedievalInfo` |
@@ -425,7 +427,7 @@ A flag is a picture, so what Hata can do is make it easy to name.
 - **A label on request.** `frame(svg, { label })` and `flag(code, { label })` give the SVG `role="img"`, an
   `aria-label` and a `<title>`; an `&lt;img&gt;` takes the place's name as its `alt`.
 - **Named by default in the element.** `<hata-flag>` is `role="img"` with the place's name from Kuni as its
-  `aria-label`, in English or Japanese by the page's language, unless `label` says otherwise; a code with no flag
+  `aria-label`, in English or Japanese by the page's language, or in French, Spanish, German, Simplified or Traditional Chinese, Korean, Portuguese, Arabic or Russian when the page asks for that language (a place with no name in it keeps the English one), unless `label` says otherwise; a code with no flag
   leaves no unnamed picture behind.
 - **A frame that does not mislead.** A square or round flag never drops the colours that make it the flag.
 - **Never the only label.** The demo always writes the name beside a flag, in the page's language.

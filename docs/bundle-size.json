@@ -46,12 +46,12 @@
       "gzip": 6865
     },
     "./element": {
-      "minified": 15399346,
-      "gzip": 4749261
+      "minified": 15470055,
+      "gzip": 4768093
     },
     "./element/define": {
-      "minified": 15399299,
-      "gzip": 4749242
+      "minified": 15470008,
+      "gzip": 4768071
     },
     "./bind": {
       "minified": 15393003,
@@ -3764,6 +3764,42 @@
     "./flags/zw": {
       "minified": 1825,
       "gzip": 929
+    },
+    "./names/fr": {
+      "minified": 4482,
+      "gzip": 2457
+    },
+    "./names/es": {
+      "minified": 4278,
+      "gzip": 2362
+    },
+    "./names/de": {
+      "minified": 4291,
+      "gzip": 2401
+    },
+    "./names/zh-Hans": {
+      "minified": 7304,
+      "gzip": 2839
+    },
+    "./names/zh-Hant": {
+      "minified": 7208,
+      "gzip": 2821
+    },
+    "./names/ko": {
+      "minified": 8000,
+      "gzip": 2790
+    },
+    "./names/pt": {
+      "minified": 4452,
+      "gzip": 2395
+    },
+    "./names/ar": {
+      "minified": 14688,
+      "gzip": 2820
+    },
+    "./names/ru": {
+      "minified": 15253,
+      "gzip": 2953
     }
   }
 }

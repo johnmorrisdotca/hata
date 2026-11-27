@@ -59,6 +59,7 @@ The sets: [flag-icons](https://github.com/lipis/flag-icons), [country-flag-icons
 - **Colours and tags for every flag**, as exact hex values and a closed list of tags, each with its source (`/search`, [colours](colours.md), [tags](tags.md)).
 - **A small core.** The main entry is 4.0 kB gzipped and carries no flag, and a page pays only for the flags it imports.
 - **A gallery, a builder, a quiz and a docs site** in English and Japanese.
+- **Names in nine more languages.** Each language is its own entry, so a page pays for one: `@johnmorrisdotca/hata/names/fr`, `/es`, `/de`, `/zh-Hans`, `/zh-Hant`, `/ko`, `/pt`, `/ar` and `/ru`. The names are Unicode CLDR's, as Kuni ships them. English and Japanese stay in `/names`. A place Kuni does not name in that language is null.
 
 ## What hata does not have yet, and why
 
@@ -69,7 +70,6 @@ Each row is a gap against one of the sets above or a thing people ask a flag set
 | CSS classes and one sprite sheet (`fi-xx` style) | flag-icons, country-flag-icons, world-flags-sprite | not built yet; hata ships SVG strings and files | MODULES-1426 |
 | PNG or WebP files at set widths, and a zip of everything | svg-country-flags (PNG 100, 250, 1000 px) | the demo makes PNG in the browser; no file is shipped | MODULES-1427 |
 | Lookup by alpha-3, numeric or emoji, and a `flagEmoji` | react-world-flags, world-flags-sprite, country-flag-icons | the lookup takes alpha-2 and subdivision codes only; the README says why it does not draw emoji | MODULES-1425 |
-| Names in more languages | | English and Japanese today | MODULES-1432 |
 | Flags of organisations beyond the EU (the UN, the African Union, NATO…) | | an organisation's flag goes in only where its terms let an MIT package carry it | MODULES-1417 |
 | Cultural, indigenous and stateless-nation flags | | needs a decision on how far to go; a page can register its own with `/custom` | MODULES-1418 |
 | Spain's and Italy's regions, and the regions of Russia, India, Portugal, the Netherlands, Indonesia, Pakistan and Ethiopia | circle-flags' README names `es-ib` | several of Spain's and Italy's regional drawings are CC BY-SA, which hata does not ship ([decisions](../decisions.md)) | MODULES-1412, MODULES-1415 |

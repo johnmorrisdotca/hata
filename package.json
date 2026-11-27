@@ -85,6 +85,42 @@
       "types": "./dist/names.d.ts",
       "default": "./dist/names.js"
     },
+    "./names/fr": {
+      "types": "./dist/names/fr.d.ts",
+      "default": "./dist/names/fr.js"
+    },
+    "./names/es": {
+      "types": "./dist/names/es.d.ts",
+      "default": "./dist/names/es.js"
+    },
+    "./names/de": {
+      "types": "./dist/names/de.d.ts",
+      "default": "./dist/names/de.js"
+    },
+    "./names/zh-Hans": {
+      "types": "./dist/names/zh-Hans.d.ts",
+      "default": "./dist/names/zh-Hans.js"
+    },
+    "./names/zh-Hant": {
+      "types": "./dist/names/zh-Hant.d.ts",
+      "default": "./dist/names/zh-Hant.js"
+    },
+    "./names/ko": {
+      "types": "./dist/names/ko.d.ts",
+      "default": "./dist/names/ko.js"
+    },
+    "./names/pt": {
+      "types": "./dist/names/pt.d.ts",
+      "default": "./dist/names/pt.js"
+    },
+    "./names/ar": {
+      "types": "./dist/names/ar.d.ts",
+      "default": "./dist/names/ar.js"
+    },
+    "./names/ru": {
+      "types": "./dist/names/ru.d.ts",
+      "default": "./dist/names/ru.js"
+    },
     "./organisations": {
       "types": "./dist/organisations.d.ts",
       "default": "./dist/organisations.js"

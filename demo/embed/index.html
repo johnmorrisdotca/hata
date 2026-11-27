@@ -13,7 +13,7 @@ const query = new URLSearchParams(location.search);
 const element = document.getElementById("flag");
 const code = (query.get("code") ?? "JP").trim().toUpperCase();
 element.setAttribute("code", FLAG_CODES.includes(code) || LEFT_OUT.some(one => one.code === code && one.variants.length > 0) ? code : "JP");
-const choices = { shape: ["own", "4:3", "1:1", "round"], size: ["small", "medium", "large"], theme: ["light", "dark", "auto"], fit: ["auto", "whole", "crop", "contain", "cover", "hoist"], lang: ["en", "ja"] };
+const choices = { shape: ["own", "4:3", "1:1", "round"], size: ["small", "medium", "large"], theme: ["light", "dark", "auto"], fit: ["auto", "whole", "crop", "contain", "cover", "hoist"], lang: ["en", "ja", "fr", "es", "de", "zh-Hans", "zh-Hant", "ko", "pt", "ar", "ru"] };
 for (const [name, values] of Object.entries(choices)) {
   const value = query.get(name);
   if (values.includes(value)) element.setAttribute(name, value);

@@ -14,6 +14,7 @@ src/
 ├── load.ts             the "/load" entry: a flag by its code, by dynamic import, framed as measured
 ├── nameFold.ts         the fold a name is compared by, the same one Kuni 1.18 uses, so /names does not pull Kuni in
 ├── names.ts            the "/names" entry: each flag's place, and flagCode for an alpha-3, a numeric code, an IOC code, a name or an emoji
+├── names/              one "/names/<language>" entry each (fr, es, de, zh-Hans, zh-Hant, ko, pt, ar, ru): that language's country names only
 ├── organisations.ts    the "/organisations" entry: the flags of international organisations by their "org:" id
 ├── signals.ts          the "/signals" entry: the International Code of Signals' flags by their "ics:" id
 ├── samurai.ts          the "/samurai" entry: the battle banners of Sengoku daimyo by their "samurai:" id
@@ -44,7 +45,7 @@ src/
 └── flags/              written by scripts/build-data.ts: the "/flags/<code>" entries, the "<code>--<id>" variants, and the ".1x1" and ".4x3" drawings
 ```
 
-`scripts/build-data.ts` (`pnpm data`) makes `src/flags/` and `src/data/` from the inputs in `data-sources/` and the
+`scripts/build-name-languages.ts` writes `src/data/name-languages/` and the `src/names/<language>.ts` entries from Kuni's CLDR name tables. It is not part of `pnpm data`. `scripts/build-data.ts` (`pnpm data`) makes `src/flags/` and `src/data/` from the inputs in `data-sources/` and the
 flag sets in `node_modules`, with no network and no browser, and checks every input's SHA-256 first; run twice, it
 leaves the tree as it was. `scripts/choose.mjs` (`pnpm data:choose`) is the comparison that decides which drawing
 ships; `scripts/framing.mjs` (`pnpm data:framing`) measures how each flag is framed; `scripts/colours.mjs` (`pnpm data:colours`) measures each flag's colours, and `scripts/colour-data.ts` names them; `scripts/tags.mjs` (`pnpm data:tags`) measures each flag's bands, `scripts/fetch-tags.ts` (`pnpm data:tags:fetch`) asks Wikidata and Commons what is on it, and `scripts/tag-data.ts` makes the tags by the tables in `scripts/tag-config.ts`; `scripts/optimise.ts` is the SVGO settings and the safety checks; `scripts/data-config.ts` holds the few

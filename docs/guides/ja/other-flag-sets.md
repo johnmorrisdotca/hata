@@ -59,6 +59,7 @@ description: Hataと、よく使われる7つの旗のセット、そしてTwemo
 - **すべての旗の色とタグ。** 正確な16進値と、決まったタグの一覧で、それぞれに出典があります（`/search`、[色](colours.md)、[タグ](tags.md)）。
 - **小さな中核。** メインのエントリーはgzipで4.0 kBしかなく、旗は入っていません。ページが読み込むのは、インポートした旗の分だけです。
 - **ギャラリー、ビルダー、クイズ、ドキュメントサイト**は、英語と日本語で用意されています。
+- **ほかに9つの言語の名前。** ページが払うのは1言語分だけになるよう、言語ごとに入口を分けました。`@johnmorrisdotca/hata/names/fr`、`/es`、`/de`、`/zh-Hans`、`/zh-Hant`、`/ko`、`/pt`、`/ar`、`/ru` です。名前は、Kuniが収録しているUnicode CLDRのものです。英語と日本語は、これまでどおり `/names` にあります。Kuniがその言語の名前を持たない場所は、そこでは名前がなく、null です。
 
 ## Hataにまだないもの、その理由
 
@@ -69,7 +70,6 @@ description: Hataと、よく使われる7つの旗のセット、そしてTwemo
 | CSSのクラスと、1枚のスプライトシート（`fi-xx`形式） | flag-icons、country-flag-icons、world-flags-sprite | まだ作っていません。Hataが提供するのはSVGの文字列とファイルです | MODULES-1426 |
 | 決まった幅のPNGやWebP、すべてをまとめたzip | svg-country-flags（PNG 100・250・1000 px） | デモはブラウザーでPNGを作ります。PNGのファイルは配布していません | MODULES-1427 |
 | alpha-3、数字コード、絵文字での指定と`flagEmoji` | react-world-flags、world-flags-sprite、country-flag-icons | 指定できるのはalpha-2と行政区画のコードだけです。絵文字を描かない理由はREADMEにあります | MODULES-1425 |
-| ほかの言語の名前 | | 今は英語と日本語です | MODULES-1432 |
 | EU以外の組織の旗（国連、アフリカ連合、NATOなど） | | 組織の旗は、その使用条件がMITのパッケージに載せることを許す場合だけ入れます | MODULES-1417 |
 | 文化的な旗、先住民の旗、国を持たない民族の旗 | | どこまで扱うかの判断が必要です。ページは`/custom`で独自の旗を登録できます | MODULES-1418 |
 | スペインとイタリアの地域、ロシア・インド・ポルトガル・オランダ・インドネシア・パキスタン・エチオピアの地域 | circle-flagsのREADMEには`es-ib`が挙げられている | スペインとイタリアの地域の図のいくつかはCC BY-SAで、Hataは載せません（[判断の記録](../../decisions.md)） | MODULES-1412、MODULES-1415 |

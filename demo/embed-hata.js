@@ -5,6 +5,17 @@ import { VERSION } from "./dist/index.js";
 import { flagDataUri } from "./dist/load.js";
 import { manifest, variantOn, variantsOf } from "./dist/manifest.js";
 import { flagAspect, flagName } from "./dist/names.js";
+import { flagName as nameFr } from "./dist/names/fr.js";
+import { flagName as nameEs } from "./dist/names/es.js";
+import { flagName as nameDe } from "./dist/names/de.js";
+import { flagName as nameHans } from "./dist/names/zh-Hans.js";
+import { flagName as nameHant } from "./dist/names/zh-Hant.js";
+import { flagName as nameKo } from "./dist/names/ko.js";
+import { flagName as namePt } from "./dist/names/pt.js";
+import { flagName as nameAr } from "./dist/names/ar.js";
+import { flagName as nameRu } from "./dist/names/ru.js";
+
+const NAME_IN = { fr: nameFr, es: nameEs, de: nameDe, "zh-Hans": nameHans, "zh-Hant": nameHant, ko: nameKo, pt: namePt, ar: nameAr, ru: nameRu };
 
 const PACKAGE = "@johnmorrisdotca/hata";
 const MAJOR = VERSION.split(".")[0];
@@ -80,6 +91,15 @@ export const FLAG_OPTIONS = [
       { value: "", label: { en: "The page's language", ja: "ページの言語" } },
       { value: "en", label: { en: "English", ja: "英語" } },
       { value: "ja", label: { en: "Japanese", ja: "日本語" } },
+      { value: "fr", label: { en: "français", ja: "français" } },
+      { value: "es", label: { en: "español", ja: "español" } },
+      { value: "de", label: { en: "Deutsch", ja: "Deutsch" } },
+      { value: "zh-Hans", label: { en: "简体中文", ja: "简体中文" } },
+      { value: "zh-Hant", label: { en: "繁體中文", ja: "繁體中文" } },
+      { value: "ko", label: { en: "한국어", ja: "한국어" } },
+      { value: "pt", label: { en: "português", ja: "português" } },
+      { value: "ar", label: { en: "العربية", ja: "العربية" } },
+      { value: "ru", label: { en: "русский", ja: "русский" } },
     ],
   },
   { id: "label", kind: "text", attribute: "label", default: "", label: { en: "Spoken name (optional)", ja: "読み上げる名前（任意）" }, help: { en: "What a screen reader says instead of the place's name.", ja: "地名の代わりにスクリーンリーダーが読み上げる文です。" } },
@@ -121,7 +141,11 @@ const variantAspect = (settings) => {
   return drawing === undefined ? null : drawing.width / drawing.height;
 };
 const aspectFor = (settings) => (settings.shape === "4:3" ? 4 / 3 : settings.shape === "own" ? ((settings.variant ? variantAspect(settings) : null) ?? flagAspect(settings.code) ?? 1.5) : 1);
-const nameFor = (settings) => settings.label || flagName(settings.code, settings.lang || "en") || settings.code;
+const nameFor = (settings) => {
+  const extra = NAME_IN[settings.lang];
+  const named = extra === undefined ? flagName(settings.code, settings.lang || "en") : (extra(settings.code) ?? flagName(settings.code, "en"));
+  return settings.label || named || settings.code;
+};
 const escapeAttribute = (text) => String(text).replaceAll("&", "&amp;").replaceAll('"', "&quot;").replaceAll("<", "&lt;");
 
 // What the flag's own file needs in a frame: the whole flag (contain), or a crop (cover) kept at a side. `whole` and

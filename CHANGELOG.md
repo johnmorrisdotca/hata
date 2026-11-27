@@ -6,6 +6,10 @@ All notable changes to this project are written here. The format follows
 
 ## [Unreleased]
 
+### Added
+
+- **Country names in nine more languages** (MODULES-1432). `@johnmorrisdotca/hata/names/fr`, and the same entry for `es`, `de`, `zh-Hans`, `zh-Hant`, `ko`, `pt`, `ar` and `ru`, give `flagName(code)` from Unicode CLDR, as Kuni ships those names. Each language is its own entry, so a page pays for one. English and Japanese stay in `/names`. A prefecture or a former country has no name there (`null`). `<hata-flag lang="fr">` reads the French name, and keeps the English name when that language has none, so the flag is still named.
+
 ### Fixed
 
 - **The dated-flag counts in decisions.md match the history page** (MODULES-1610). The history page, written from the data and leaving out the restricted flag, has 81 flags, 69 with both roles, and 45 official, 35 reference and 1 encyclopedia source. decisions.md still said 80 flags and 68 with both roles. A test reads both sentences from the data.

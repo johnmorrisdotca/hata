@@ -10,9 +10,11 @@
 // properties too, `lang` and `theme` as everywhere, and events named for the package.
 
 import { flag } from "./load.js";
+import { extraLanguage } from "./names/languages";
 import { reflectAttributes } from "./reflect";
 import { aspectOf, toDataUri } from "./svg";
 import type { FlagRole } from "./manifest";
+import type { ExtraNameLanguage } from "./names/languages";
 import type { Shape } from "./svg";
 
 /**
@@ -35,8 +37,8 @@ import type { Shape } from "./svg";
  *   in 1962 draws the Union Flag, or with `which="in-use"` the Red Ensign. (Not `role`: that is the ARIA role, which the element sets to `img`.)
  * - `allow-restricted`: draw a flag whose display the law restricts (Germany's of 1935 to 1945), for history and education. Without it the element draws
  *   nothing for such a flag, sets `data-restricted` and says why in `data-reason` and on `hata-error`.
- * - `label`: what a screen reader says. Left out, the place's name, in English or Japanese by `lang`.
- * - `lang`: `en` or `ja`, the language of the name read out. Left out, the page's language where the element is.
+ * - `label`: what a screen reader says. Left out, the place's name, in the language `lang` asks for.
+ * - `lang`: `en` or `ja`, or `fr`, `es`, `de`, `zh-Hans`, `zh-Hant`, `ko`, `pt`, `ar` or `ru`, the language of the name read out. Left out, the page's language where the element is. A language other than English or Japanese names a country from that language's own entry, and keeps the English name when that entry has none, so a prefecture is still named.
  * - `theme`: `auto` (the default), `light` or `dark`: the colour of the border on a light or a dark page.
  * - `border`: a hairline round the flag, so a white flag shows on a white page.
  * - `shadow`: a soft shadow under it.
@@ -166,10 +168,23 @@ const warned = new Set<string>();
 let made: CustomElementConstructor | null = null;
 
 // The language a name is read in: the element's own lang, else the nearest one above it, else English.
-const languageOf = (element: HTMLElement): "en" | "ja" => {
+// Japanese is /names. The other languages Kuni ships are each their own entry, loaded only when asked for.
+const EXTRA_NAMES: Record<ExtraNameLanguage, () => Promise<{ flagName: (code: string) => string | null }>> = {
+  fr: () => import("./names/fr.js"),
+  es: () => import("./names/es.js"),
+  de: () => import("./names/de.js"),
+  "zh-Hans": () => import("./names/zh-Hans.js"),
+  "zh-Hant": () => import("./names/zh-Hant.js"),
+  ko: () => import("./names/ko.js"),
+  pt: () => import("./names/pt.js"),
+  ar: () => import("./names/ar.js"),
+  ru: () => import("./names/ru.js"),
+};
+const languageOf = (element: HTMLElement): "en" | "ja" | ExtraNameLanguage => {
   const tag = element.getAttribute("lang") || element.closest("[lang]")?.getAttribute("lang") || document.documentElement.lang || "en";
+  if (/^ja\b/i.test(tag)) return "ja";
 
-  return /^ja\b/i.test(tag) ? "ja" : "en";
+  return extraLanguage(tag) ?? "en";
 };
 
 const build = (): CustomElementConstructor => {
@@ -252,7 +267,13 @@ const build = (): CustomElementConstructor => {
         const own = /^custom:/i.test(code) ? await import("./custom.js") : null;
         if (turn !== this.drawing) return;
         const aspect = shape === "4:3" ? 4 / 3 : shape === "own" ? (own === null ? names.flagAspect(code) : own.customAspect(code)) : 1;
-        const name = own === null ? names.flagName(code, languageOf(this)) : own.customName(code, languageOf(this));
+        const language = languageOf(this);
+        let name = own === null ? names.flagName(code, language === "ja" ? "ja" : "en") : own.customName(code, language === "ja" ? "ja" : "en");
+        if (own === null && language !== "en" && language !== "ja") {
+          const named = (await EXTRA_NAMES[language]()).flagName(code);
+          if (turn !== this.drawing) return;
+          if (named !== null) name = named;
+        }
         if (aspect === null || name === null) {
           this.missing(code, shape, `no flag for the code "${code}" in this version of @johnmorrisdotca/hata (its /manifest's LEFT_OUT gives the reason where Kuni knows the code)`);
           return;

@@ -26,6 +26,18 @@ console.log(flagCode("JPN"), flagCode("392"), flagCode("GER"), flagCode("Holland
 console.log(flagEmoji("JP"), flagEmoji("GB-ENG"), flagCode("CS"));
 ```
 
+## ほかの言語で国の名前を読む
+
+英語と日本語は `@johnmorrisdotca/hata/names` のままです。Kuniがほかの言語で付けている国の名前は、言語ごとに別の入口です。フランス語を読むページは、ほかの言語の分を読みません。その入口の `flagName` はコードを受け取り、その言語の名前を返します。Kuniがその言語の名前を持たない場所（都道府県、かつての国）は null です。`<hata-flag lang="fr">` は国のフランス語名を読み、その言語に名前がない場所は英語の名前を残すので、旗には名前がついたままです。
+
+```ts
+import { flagName } from "@johnmorrisdotca/hata/names/fr";
+console.log(flagName("JP"));
+console.log(flagName("JP-13"));
+```
+
+言語は `fr`、`es`、`de`、`zh-Hans`、`zh-Hant`、`ko`、`pt`、`ar`、`ru` です。
+
 ## 旧国の旗を求める
 
 メダル表や記録集には、いまもソビエト連邦、東ドイツ、ユーゴスラビアが出てきます。Hataはこれらの旗を、現在の国が使わないコードで収録しています。ISO 3166-3のコードがあればそれ（`SUHH`、`DDDE`、`YUCS`）を、なければIOCのコード（`FRG`、`BOH`、`WIF`）を、それもなければHata独自の、`X` に2文字を続けたコード（`XAH` オーストリア＝ハンガリー帝国、`XOT` オスマン帝国）を使います。ISO 3166は、このコードを国に割り当てません（[かつての国](former-countries.md)）。表でよく使われるコードは`FLAG_ALIASES`にあり、`flagCode`・`flag`・`flagName`・`manifest`が読みます。`isFlagCode`と`FLAG_CODES`はコードそのものだけを持ちます。
