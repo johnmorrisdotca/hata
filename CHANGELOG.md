@@ -6,12 +6,15 @@ All notable changes to this project are written here. The format follows
 
 ## [Unreleased]
 
+## [1.31.0] - 2026-11-27
+
 ### Added
 
 - **Country names in nine more languages** (MODULES-1432). `@johnmorrisdotca/hata/names/fr`, and the same entry for `es`, `de`, `zh-Hans`, `zh-Hant`, `ko`, `pt`, `ar` and `ru`, give `flagName(code)` from Unicode CLDR, as Kuni ships those names. Each language is its own entry, so a page pays for one. English and Japanese stay in `/names`. A prefecture or a former country has no name there (`null`). `<hata-flag lang="fr">` reads the French name, and keeps the English name when that language has none, so the flag is still named.
 
 ### Fixed
 
+- **Three samurai banners match their 御馬印 pages more closely** (MODULES-1877). The red disc of Matsudaira, titled Kai-no-kami (nobori), now has the two thin concentric rings the page paints at its centre, drawn in a dark brown whose shade is this package's. The white ring of Matsudaira, titled Yamato-no-kami, is 6.0 thick (was 4.6), with the same outer size and centre. The gold saltire bars of Matsushita's nobori, titled Iwami-no-kami, are about 6.3 wide (were 5.0 and 4.6), with the same angles and crossing. Widths were measured from the page photos. Colours, counts and positions are unchanged.
 - **The dated-flag counts in decisions.md match the history page** (MODULES-1610). The history page, written from the data and leaving out the restricted flag, has 81 flags, 69 with both roles, and 45 official, 35 reference and 1 encyclopedia source. decisions.md still said 80 flags and 68 with both roles. A test reads both sentences from the data.
 - **The README no longer says every flag is drawn at a proportion its government gives** (MODULES-1602). Japan's Cabinet Office page states 3:2, which is the drawing. The United Kingdom's proclamation, the United States order's printed text, France's presidency page and South Africa's flag page do not state one ratio; Argentina's page says a decree fixed the measurements and does not print them. Each finding is kept with the page. The drawings are unchanged.
 - **Germany and Canada no longer count as agreeing with their colour specifications** (MODULES-1603). The 2026-10 audit said they did, without the pages being fetched. Germany's style guide gives screen red `#FF0000` and gold `#FFCC00` (the flag ships `#dd0000` and `#ffce00`). Canada's Federal Identity Program gives red as RGB 235, 45, 55, `#EB2D37` (the flag ships `#d52b1e`). The official screen colour is recorded beside the shipped one. A mismatch is flagged only past CIE76 ΔE of 5, and the drawings are unchanged.
