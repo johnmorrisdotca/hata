@@ -1,6 +1,8 @@
 // The earlier flags of present-day countries (scripts/historic-flags.ts) and the flag of a day: every dated variant has a
 // source and dates in order that do not overlap, and `variantOn(code, date)` and `flag(code, { date })` answer for the
 // day a flag changed, before the first flag the package knows, after the last, and for a former country outside its years.
+import { readFileSync } from "node:fs";
+
 import { describe, expect, it } from "vitest";
 
 import { HISTORIC } from "../scripts/historic-flags";
@@ -210,5 +212,28 @@ describe("flag(code, { date })", () => {
     expect(() => flag("CA", { date: "1950-02-30" })).toThrow(TypeError);
     expect(() => flag("CA", { date: 1950 as unknown as string })).toThrow(TypeError);
     expect(() => flag("CA", { date: "" })).toThrow(TypeError);
+  });
+});
+
+// The history page is written from these flags, leaving out a restricted one. decisions.md used to keep an older count (MODULES-1610).
+describe("the dated flags' source counts", () => {
+  it("are the same numbers in the history page and in decisions.md", () => {
+    const kinds = { official: 0, reference: 0, encyclopedia: 0 };
+    let noted = 0;
+    for (const set of Object.values(HISTORIC)) {
+      for (const variant of set.variants) {
+        if (variant.restricted !== undefined) continue;
+        kinds[variant.sourceKind ?? "encyclopedia"] += 1;
+        if (variant.roleNote !== undefined) noted += 1;
+      }
+    }
+    const count = kinds.official + kinds.reference + kinds.encyclopedia;
+    const both = count - noted;
+    const historical = readFileSync("docs/historical.md", "utf8");
+    const decisions = readFileSync("docs/decisions.md", "utf8");
+    expect(historical).toContain(`Of the ${count} flags, ${kinds.official} have an official source, ${kinds.reference} a reference and ${kinds.encyclopedia} an encyclopedia page.`);
+    expect(historical).toContain(`${both} of the ${count} flags are both on the same days as their own, and need no more. The ${noted} below are not`);
+    expect(decisions).toContain(`The ${count} flags fall into: ${both} legal and in use on the same days; ${noted} with a note`);
+    expect(decisions).toContain(`${kinds.official} have an official source (a government, parliament, archive or law text), ${kinds.reference} a reference and ${kinds.encyclopedia} only Wikipedia`);
   });
 });

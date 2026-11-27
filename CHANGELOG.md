@@ -8,6 +8,7 @@ All notable changes to this project are written here. The format follows
 
 ### Fixed
 
+- **The dated-flag counts in decisions.md match the history page** (MODULES-1610). The history page, written from the data and leaving out the restricted flag, has 81 flags, 69 with both roles, and 45 official, 35 reference and 1 encyclopedia source. decisions.md still said 80 flags and 68 with both roles. A test reads both sentences from the data.
 - **The README no longer says every flag is drawn at a proportion its government gives** (MODULES-1602). Japan's Cabinet Office page states 3:2, which is the drawing. The United Kingdom's proclamation, the United States order's printed text, France's presidency page and South Africa's flag page do not state one ratio; Argentina's page says a decree fixed the measurements and does not print them. Each finding is kept with the page. The drawings are unchanged.
 - **Germany and Canada no longer count as agreeing with their colour specifications** (MODULES-1603). The 2026-10 audit said they did, without the pages being fetched. Germany's style guide gives screen red `#FF0000` and gold `#FFCC00` (the flag ships `#dd0000` and `#ffce00`). Canada's Federal Identity Program gives red as RGB 235, 45, 55, `#EB2D37` (the flag ships `#d52b1e`). The official screen colour is recorded beside the shipped one. A mismatch is flagged only past CIE76 ΔE of 5, and the drawings are unchanged.
 
