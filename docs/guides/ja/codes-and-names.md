@@ -28,7 +28,7 @@ console.log(flagEmoji("JP"), flagEmoji("GB-ENG"), flagCode("CS"));
 
 ## ほかの言語で国の名前を読む
 
-英語と日本語は `@johnmorrisdotca/hata/names` のままです。Kuniがほかの言語で付けている国の名前は、言語ごとに別の入口です。フランス語を読むページは、ほかの言語の分を読みません。その入口の `flagName` はコードを受け取り、その言語の名前を返します。Kuniがその言語の名前を持たない場所（都道府県、かつての国）は null です。`<hata-flag lang="fr">` は国のフランス語名を読み、その言語に名前がない場所は英語の名前を残すので、旗には名前がついたままです。
+英語と日本語は `@johnmorrisdotca/hata/names` のままです。言語ごとに別の入口にあります。フランス語を読み込むページは、ほかの言語を読み込みません。その入口の `flagName` はコードを受け取り、その言語の名前を返します。Kuniがその言語の名前を持たない場所（都道府県、かつての国）は null です。`<hata-flag lang="fr">` は国のフランス語名を読み、その言語に名前がない場所では英語の名前を残すので、旗には名前がついたままです。
 
 ```ts
 import { flagName } from "@johnmorrisdotca/hata/names/fr";
